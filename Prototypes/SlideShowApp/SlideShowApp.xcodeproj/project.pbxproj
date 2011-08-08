@@ -1,0 +1,484 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		64534C6F13E7DA6A00D9151F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64534C6E13E7DA6A00D9151F /* UIKit.framework */; };
+		64534C7113E7DA6A00D9151F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64534C7013E7DA6A00D9151F /* Foundation.framework */; };
+		64534C7313E7DA6A00D9151F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64534C7213E7DA6A00D9151F /* CoreGraphics.framework */; };
+		64534C7913E7DA6A00D9151F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 64534C7713E7DA6A00D9151F /* InfoPlist.strings */; };
+		64534C7C13E7DA6A00D9151F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 64534C7B13E7DA6A00D9151F /* main.m */; };
+		64534C7F13E7DA6A00D9151F /* SlideShowAppAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 64534C7E13E7DA6A00D9151F /* SlideShowAppAppDelegate.m */; };
+		64534C8213E7DA6A00D9151F /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64534C8013E7DA6A00D9151F /* MainWindow.xib */; };
+		64534C8513E7DA6A00D9151F /* SlideShowAppViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64534C8413E7DA6A00D9151F /* SlideShowAppViewController.m */; };
+		64534C8813E7DA6A00D9151F /* SlideShowAppViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64534C8613E7DA6A00D9151F /* SlideShowAppViewController.xib */; };
+		64534C8F13E7DA6A00D9151F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64534C6E13E7DA6A00D9151F /* UIKit.framework */; };
+		64534C9013E7DA6A00D9151F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64534C7013E7DA6A00D9151F /* Foundation.framework */; };
+		64534C9113E7DA6A00D9151F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64534C7213E7DA6A00D9151F /* CoreGraphics.framework */; };
+		64534C9913E7DA6A00D9151F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 64534C9713E7DA6A00D9151F /* InfoPlist.strings */; };
+		64534C9C13E7DA6A00D9151F /* SlideShowAppTests.h in Resources */ = {isa = PBXBuildFile; fileRef = 64534C9B13E7DA6A00D9151F /* SlideShowAppTests.h */; };
+		64534C9E13E7DA6A00D9151F /* SlideShowAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 64534C9D13E7DA6A00D9151F /* SlideShowAppTests.m */; };
+		64534CAB13E7DBF300D9151F /* glee1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 64534CA813E7DBF300D9151F /* glee1.jpg */; };
+		64534CAC13E7DBF300D9151F /* glee2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 64534CA913E7DBF300D9151F /* glee2.jpg */; };
+		64534CAD13E7DBF300D9151F /* glee3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 64534CAA13E7DBF300D9151F /* glee3.jpg */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		64534C9213E7DA6A00D9151F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 64534C6113E7DA6A00D9151F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 64534C6913E7DA6A00D9151F;
+			remoteInfo = SlideShowApp;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		64534C6A13E7DA6A00D9151F /* SlideShowApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SlideShowApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		64534C6E13E7DA6A00D9151F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		64534C7013E7DA6A00D9151F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		64534C7213E7DA6A00D9151F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		64534C7613E7DA6A00D9151F /* SlideShowApp-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SlideShowApp-Info.plist"; sourceTree = "<group>"; };
+		64534C7813E7DA6A00D9151F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		64534C7A13E7DA6A00D9151F /* SlideShowApp-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SlideShowApp-Prefix.pch"; sourceTree = "<group>"; };
+		64534C7B13E7DA6A00D9151F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		64534C7D13E7DA6A00D9151F /* SlideShowAppAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SlideShowAppAppDelegate.h; sourceTree = "<group>"; };
+		64534C7E13E7DA6A00D9151F /* SlideShowAppAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SlideShowAppAppDelegate.m; sourceTree = "<group>"; };
+		64534C8113E7DA6A00D9151F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
+		64534C8313E7DA6A00D9151F /* SlideShowAppViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SlideShowAppViewController.h; sourceTree = "<group>"; };
+		64534C8413E7DA6A00D9151F /* SlideShowAppViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SlideShowAppViewController.m; sourceTree = "<group>"; };
+		64534C8713E7DA6A00D9151F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SlideShowAppViewController.xib; sourceTree = "<group>"; };
+		64534C8E13E7DA6A00D9151F /* SlideShowAppTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SlideShowAppTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		64534C9613E7DA6A00D9151F /* SlideShowAppTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SlideShowAppTests-Info.plist"; sourceTree = "<group>"; };
+		64534C9813E7DA6A00D9151F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		64534C9A13E7DA6A00D9151F /* SlideShowAppTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SlideShowAppTests-Prefix.pch"; sourceTree = "<group>"; };
+		64534C9B13E7DA6A00D9151F /* SlideShowAppTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SlideShowAppTests.h; sourceTree = "<group>"; };
+		64534C9D13E7DA6A00D9151F /* SlideShowAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SlideShowAppTests.m; sourceTree = "<group>"; };
+		64534CA813E7DBF300D9151F /* glee1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = glee1.jpg; sourceTree = "<group>"; };
+		64534CA913E7DBF300D9151F /* glee2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = glee2.jpg; sourceTree = "<group>"; };
+		64534CAA13E7DBF300D9151F /* glee3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = glee3.jpg; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		64534C6713E7DA6A00D9151F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				64534C6F13E7DA6A00D9151F /* UIKit.framework in Frameworks */,
+				64534C7113E7DA6A00D9151F /* Foundation.framework in Frameworks */,
+				64534C7313E7DA6A00D9151F /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		64534C8A13E7DA6A00D9151F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				64534C8F13E7DA6A00D9151F /* UIKit.framework in Frameworks */,
+				64534C9013E7DA6A00D9151F /* Foundation.framework in Frameworks */,
+				64534C9113E7DA6A00D9151F /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		64534C5F13E7DA6A00D9151F = {
+			isa = PBXGroup;
+			children = (
+				64534C7413E7DA6A00D9151F /* SlideShowApp */,
+				64534C9413E7DA6A00D9151F /* SlideShowAppTests */,
+				64534C6D13E7DA6A00D9151F /* Frameworks */,
+				64534C6B13E7DA6A00D9151F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		64534C6B13E7DA6A00D9151F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				64534C6A13E7DA6A00D9151F /* SlideShowApp.app */,
+				64534C8E13E7DA6A00D9151F /* SlideShowAppTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		64534C6D13E7DA6A00D9151F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				64534C6E13E7DA6A00D9151F /* UIKit.framework */,
+				64534C7013E7DA6A00D9151F /* Foundation.framework */,
+				64534C7213E7DA6A00D9151F /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		64534C7413E7DA6A00D9151F /* SlideShowApp */ = {
+			isa = PBXGroup;
+			children = (
+				64534CA713E7DB5A00D9151F /* Images */,
+				64534C7E13E7DA6A00D9151F /* SlideShowAppAppDelegate.m */,
+				64534C7D13E7DA6A00D9151F /* SlideShowAppAppDelegate.h */,
+				64534C8013E7DA6A00D9151F /* MainWindow.xib */,
+				64534C8313E7DA6A00D9151F /* SlideShowAppViewController.h */,
+				64534C8413E7DA6A00D9151F /* SlideShowAppViewController.m */,
+				64534C8613E7DA6A00D9151F /* SlideShowAppViewController.xib */,
+				64534C7513E7DA6A00D9151F /* Supporting Files */,
+			);
+			path = SlideShowApp;
+			sourceTree = "<group>";
+		};
+		64534C7513E7DA6A00D9151F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				64534C7613E7DA6A00D9151F /* SlideShowApp-Info.plist */,
+				64534C7713E7DA6A00D9151F /* InfoPlist.strings */,
+				64534C7A13E7DA6A00D9151F /* SlideShowApp-Prefix.pch */,
+				64534C7B13E7DA6A00D9151F /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		64534C9413E7DA6A00D9151F /* SlideShowAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				64534C9B13E7DA6A00D9151F /* SlideShowAppTests.h */,
+				64534C9D13E7DA6A00D9151F /* SlideShowAppTests.m */,
+				64534C9513E7DA6A00D9151F /* Supporting Files */,
+			);
+			path = SlideShowAppTests;
+			sourceTree = "<group>";
+		};
+		64534C9513E7DA6A00D9151F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				64534C9613E7DA6A00D9151F /* SlideShowAppTests-Info.plist */,
+				64534C9713E7DA6A00D9151F /* InfoPlist.strings */,
+				64534C9A13E7DA6A00D9151F /* SlideShowAppTests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		64534CA713E7DB5A00D9151F /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				64534CA813E7DBF300D9151F /* glee1.jpg */,
+				64534CA913E7DBF300D9151F /* glee2.jpg */,
+				64534CAA13E7DBF300D9151F /* glee3.jpg */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		64534C6913E7DA6A00D9151F /* SlideShowApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 64534CA113E7DA6A00D9151F /* Build configuration list for PBXNativeTarget "SlideShowApp" */;
+			buildPhases = (
+				64534C6613E7DA6A00D9151F /* Sources */,
+				64534C6713E7DA6A00D9151F /* Frameworks */,
+				64534C6813E7DA6A00D9151F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SlideShowApp;
+			productName = SlideShowApp;
+			productReference = 64534C6A13E7DA6A00D9151F /* SlideShowApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		64534C8D13E7DA6A00D9151F /* SlideShowAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 64534CA413E7DA6A00D9151F /* Build configuration list for PBXNativeTarget "SlideShowAppTests" */;
+			buildPhases = (
+				64534C8913E7DA6A00D9151F /* Sources */,
+				64534C8A13E7DA6A00D9151F /* Frameworks */,
+				64534C8B13E7DA6A00D9151F /* Resources */,
+				64534C8C13E7DA6A00D9151F /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				64534C9313E7DA6A00D9151F /* PBXTargetDependency */,
+			);
+			name = SlideShowAppTests;
+			productName = SlideShowAppTests;
+			productReference = 64534C8E13E7DA6A00D9151F /* SlideShowAppTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		64534C6113E7DA6A00D9151F /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 64534C6413E7DA6A00D9151F /* Build configuration list for PBXProject "SlideShowApp" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 64534C5F13E7DA6A00D9151F;
+			productRefGroup = 64534C6B13E7DA6A00D9151F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				64534C6913E7DA6A00D9151F /* SlideShowApp */,
+				64534C8D13E7DA6A00D9151F /* SlideShowAppTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		64534C6813E7DA6A00D9151F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				64534C7913E7DA6A00D9151F /* InfoPlist.strings in Resources */,
+				64534C8213E7DA6A00D9151F /* MainWindow.xib in Resources */,
+				64534C8813E7DA6A00D9151F /* SlideShowAppViewController.xib in Resources */,
+				64534CAB13E7DBF300D9151F /* glee1.jpg in Resources */,
+				64534CAC13E7DBF300D9151F /* glee2.jpg in Resources */,
+				64534CAD13E7DBF300D9151F /* glee3.jpg in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		64534C8B13E7DA6A00D9151F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				64534C9913E7DA6A00D9151F /* InfoPlist.strings in Resources */,
+				64534C9C13E7DA6A00D9151F /* SlideShowAppTests.h in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		64534C8C13E7DA6A00D9151F /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		64534C6613E7DA6A00D9151F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				64534C7C13E7DA6A00D9151F /* main.m in Sources */,
+				64534C7F13E7DA6A00D9151F /* SlideShowAppAppDelegate.m in Sources */,
+				64534C8513E7DA6A00D9151F /* SlideShowAppViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		64534C8913E7DA6A00D9151F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				64534C9E13E7DA6A00D9151F /* SlideShowAppTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		64534C9313E7DA6A00D9151F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 64534C6913E7DA6A00D9151F /* SlideShowApp */;
+			targetProxy = 64534C9213E7DA6A00D9151F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		64534C7713E7DA6A00D9151F /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				64534C7813E7DA6A00D9151F /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		64534C8013E7DA6A00D9151F /* MainWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				64534C8113E7DA6A00D9151F /* en */,
+			);
+			name = MainWindow.xib;
+			sourceTree = "<group>";
+		};
+		64534C8613E7DA6A00D9151F /* SlideShowAppViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				64534C8713E7DA6A00D9151F /* en */,
+			);
+			name = SlideShowAppViewController.xib;
+			sourceTree = "<group>";
+		};
+		64534C9713E7DA6A00D9151F /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				64534C9813E7DA6A00D9151F /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		64534C9F13E7DA6A00D9151F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		64534CA013E7DA6A00D9151F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Release;
+		};
+		64534CA213E7DA6A00D9151F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SlideShowApp/SlideShowApp-Prefix.pch";
+				INFOPLIST_FILE = "SlideShowApp/SlideShowApp-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		64534CA313E7DA6A00D9151F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SlideShowApp/SlideShowApp-Prefix.pch";
+				INFOPLIST_FILE = "SlideShowApp/SlideShowApp-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		64534CA513E7DA6A00D9151F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SlideShowApp.app/SlideShowApp";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SlideShowAppTests/SlideShowAppTests-Prefix.pch";
+				INFOPLIST_FILE = "SlideShowAppTests/SlideShowAppTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		64534CA613E7DA6A00D9151F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SlideShowApp.app/SlideShowApp";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SlideShowAppTests/SlideShowAppTests-Prefix.pch";
+				INFOPLIST_FILE = "SlideShowAppTests/SlideShowAppTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		64534C6413E7DA6A00D9151F /* Build configuration list for PBXProject "SlideShowApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				64534C9F13E7DA6A00D9151F /* Debug */,
+				64534CA013E7DA6A00D9151F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		64534CA113E7DA6A00D9151F /* Build configuration list for PBXNativeTarget "SlideShowApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				64534CA213E7DA6A00D9151F /* Debug */,
+				64534CA313E7DA6A00D9151F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		64534CA413E7DA6A00D9151F /* Build configuration list for PBXNativeTarget "SlideShowAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				64534CA513E7DA6A00D9151F /* Debug */,
+				64534CA613E7DA6A00D9151F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 64534C6113E7DA6A00D9151F /* Project object */;
+}

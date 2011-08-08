@@ -1,0 +1,324 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1C00997A13E905C500666A9D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C00997913E905C500666A9D /* UIKit.framework */; };
+		1C00997C13E905C500666A9D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C00997B13E905C500666A9D /* Foundation.framework */; };
+		1C00997E13E905C500666A9D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C00997D13E905C500666A9D /* CoreGraphics.framework */; };
+		1C00998413E905C500666A9D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1C00998213E905C500666A9D /* InfoPlist.strings */; };
+		1C00998613E905C500666A9D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C00998513E905C500666A9D /* main.m */; };
+		1C00998A13E905C500666A9D /* SimpleAudioRenderTestAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C00998913E905C500666A9D /* SimpleAudioRenderTestAppDelegate.m */; };
+		1C00998D13E905C500666A9D /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C00998B13E905C500666A9D /* MainWindow.xib */; };
+		1C00999013E905C500666A9D /* SimpleAudioRenderTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C00998F13E905C500666A9D /* SimpleAudioRenderTestViewController.m */; };
+		1C00999313E905C500666A9D /* SimpleAudioRenderTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C00999113E905C500666A9D /* SimpleAudioRenderTestViewController.xib */; };
+		1C00999D13E905FE00666A9D /* CAErrorHandling.c in Sources */ = {isa = PBXBuildFile; fileRef = 1C00999913E905FE00666A9D /* CAErrorHandling.c */; };
+		1C00999E13E905FE00666A9D /* ASBDHelper.c in Sources */ = {isa = PBXBuildFile; fileRef = 1C00999B13E905FE00666A9D /* ASBDHelper.c */; };
+		1C0099A013E9061300666A9D /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C00999F13E9061200666A9D /* AudioToolbox.framework */; };
+		1C0099A213E9061700666A9D /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C0099A113E9061700666A9D /* AVFoundation.framework */; };
+		1C0099A913E9067400666A9D /* Fire.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 1C0099A813E9067400666A9D /* Fire.m4a */; };
+		1C0099AB13E930E400666A9D /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C0099AA13E930E400666A9D /* CoreMedia.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1C00997513E905C500666A9D /* SimpleAudioRenderTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleAudioRenderTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1C00997913E905C500666A9D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		1C00997B13E905C500666A9D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		1C00997D13E905C500666A9D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		1C00998113E905C500666A9D /* SimpleAudioRenderTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SimpleAudioRenderTest-Info.plist"; sourceTree = "<group>"; };
+		1C00998313E905C500666A9D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		1C00998513E905C500666A9D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		1C00998713E905C500666A9D /* SimpleAudioRenderTest-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SimpleAudioRenderTest-Prefix.pch"; sourceTree = "<group>"; };
+		1C00998813E905C500666A9D /* SimpleAudioRenderTestAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimpleAudioRenderTestAppDelegate.h; sourceTree = "<group>"; };
+		1C00998913E905C500666A9D /* SimpleAudioRenderTestAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SimpleAudioRenderTestAppDelegate.m; sourceTree = "<group>"; };
+		1C00998C13E905C500666A9D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
+		1C00998E13E905C500666A9D /* SimpleAudioRenderTestViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimpleAudioRenderTestViewController.h; sourceTree = "<group>"; };
+		1C00998F13E905C500666A9D /* SimpleAudioRenderTestViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SimpleAudioRenderTestViewController.m; sourceTree = "<group>"; };
+		1C00999213E905C500666A9D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SimpleAudioRenderTestViewController.xib; sourceTree = "<group>"; };
+		1C00999913E905FE00666A9D /* CAErrorHandling.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = CAErrorHandling.c; path = ../../ElegantMixer/ElegantMixer/CAErrorHandling.c; sourceTree = "<group>"; };
+		1C00999A13E905FE00666A9D /* CAErrorHandling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CAErrorHandling.h; path = ../../ElegantMixer/ElegantMixer/CAErrorHandling.h; sourceTree = "<group>"; };
+		1C00999B13E905FE00666A9D /* ASBDHelper.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ASBDHelper.c; path = ../../ElegantMixer/ElegantMixer/ASBDHelper.c; sourceTree = "<group>"; };
+		1C00999C13E905FE00666A9D /* ASBDHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASBDHelper.h; path = ../../ElegantMixer/ElegantMixer/ASBDHelper.h; sourceTree = "<group>"; };
+		1C00999F13E9061200666A9D /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		1C0099A113E9061700666A9D /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		1C0099A813E9067400666A9D /* Fire.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = Fire.m4a; sourceTree = "<group>"; };
+		1C0099AA13E930E400666A9D /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1C00997213E905C500666A9D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1C00997A13E905C500666A9D /* UIKit.framework in Frameworks */,
+				1C00997C13E905C500666A9D /* Foundation.framework in Frameworks */,
+				1C00997E13E905C500666A9D /* CoreGraphics.framework in Frameworks */,
+				1C0099AB13E930E400666A9D /* CoreMedia.framework in Frameworks */,
+				1C0099A013E9061300666A9D /* AudioToolbox.framework in Frameworks */,
+				1C0099A213E9061700666A9D /* AVFoundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1C00996A13E905C500666A9D = {
+			isa = PBXGroup;
+			children = (
+				1C0099AA13E930E400666A9D /* CoreMedia.framework */,
+				1C0099A713E9066000666A9D /* Resources */,
+				1C0099A113E9061700666A9D /* AVFoundation.framework */,
+				1C00999F13E9061200666A9D /* AudioToolbox.framework */,
+				1C00997F13E905C500666A9D /* SimpleAudioRenderTest */,
+				1C00997813E905C500666A9D /* Frameworks */,
+				1C00997613E905C500666A9D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1C00997613E905C500666A9D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1C00997513E905C500666A9D /* SimpleAudioRenderTest.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1C00997813E905C500666A9D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1C00997913E905C500666A9D /* UIKit.framework */,
+				1C00997B13E905C500666A9D /* Foundation.framework */,
+				1C00997D13E905C500666A9D /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1C00997F13E905C500666A9D /* SimpleAudioRenderTest */ = {
+			isa = PBXGroup;
+			children = (
+				1C00999913E905FE00666A9D /* CAErrorHandling.c */,
+				1C00999A13E905FE00666A9D /* CAErrorHandling.h */,
+				1C00999B13E905FE00666A9D /* ASBDHelper.c */,
+				1C00999C13E905FE00666A9D /* ASBDHelper.h */,
+				1C00998813E905C500666A9D /* SimpleAudioRenderTestAppDelegate.h */,
+				1C00998913E905C500666A9D /* SimpleAudioRenderTestAppDelegate.m */,
+				1C00998B13E905C500666A9D /* MainWindow.xib */,
+				1C00998E13E905C500666A9D /* SimpleAudioRenderTestViewController.h */,
+				1C00998F13E905C500666A9D /* SimpleAudioRenderTestViewController.m */,
+				1C00999113E905C500666A9D /* SimpleAudioRenderTestViewController.xib */,
+				1C00998013E905C500666A9D /* Supporting Files */,
+			);
+			path = SimpleAudioRenderTest;
+			sourceTree = "<group>";
+		};
+		1C00998013E905C500666A9D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				1C00998113E905C500666A9D /* SimpleAudioRenderTest-Info.plist */,
+				1C00998213E905C500666A9D /* InfoPlist.strings */,
+				1C00998513E905C500666A9D /* main.m */,
+				1C00998713E905C500666A9D /* SimpleAudioRenderTest-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1C0099A713E9066000666A9D /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				1C0099A813E9067400666A9D /* Fire.m4a */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1C00997413E905C500666A9D /* SimpleAudioRenderTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1C00999613E905C500666A9D /* Build configuration list for PBXNativeTarget "SimpleAudioRenderTest" */;
+			buildPhases = (
+				1C00997113E905C500666A9D /* Sources */,
+				1C00997213E905C500666A9D /* Frameworks */,
+				1C00997313E905C500666A9D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SimpleAudioRenderTest;
+			productName = SimpleAudioRenderTest;
+			productReference = 1C00997513E905C500666A9D /* SimpleAudioRenderTest.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1C00996C13E905C500666A9D /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 1C00996F13E905C500666A9D /* Build configuration list for PBXProject "SimpleAudioRenderTest" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 1C00996A13E905C500666A9D;
+			productRefGroup = 1C00997613E905C500666A9D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1C00997413E905C500666A9D /* SimpleAudioRenderTest */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1C00997313E905C500666A9D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1C00998413E905C500666A9D /* InfoPlist.strings in Resources */,
+				1C00998D13E905C500666A9D /* MainWindow.xib in Resources */,
+				1C00999313E905C500666A9D /* SimpleAudioRenderTestViewController.xib in Resources */,
+				1C0099A913E9067400666A9D /* Fire.m4a in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1C00997113E905C500666A9D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1C00998613E905C500666A9D /* main.m in Sources */,
+				1C00998A13E905C500666A9D /* SimpleAudioRenderTestAppDelegate.m in Sources */,
+				1C00999013E905C500666A9D /* SimpleAudioRenderTestViewController.m in Sources */,
+				1C00999D13E905FE00666A9D /* CAErrorHandling.c in Sources */,
+				1C00999E13E905FE00666A9D /* ASBDHelper.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		1C00998213E905C500666A9D /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1C00998313E905C500666A9D /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		1C00998B13E905C500666A9D /* MainWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1C00998C13E905C500666A9D /* en */,
+			);
+			name = MainWindow.xib;
+			sourceTree = "<group>";
+		};
+		1C00999113E905C500666A9D /* SimpleAudioRenderTestViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1C00999213E905C500666A9D /* en */,
+			);
+			name = SimpleAudioRenderTestViewController.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		1C00999413E905C500666A9D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		1C00999513E905C500666A9D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1C00999713E905C500666A9D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SimpleAudioRenderTest/SimpleAudioRenderTest-Prefix.pch";
+				INFOPLIST_FILE = "SimpleAudioRenderTest/SimpleAudioRenderTest-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		1C00999813E905C500666A9D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SimpleAudioRenderTest/SimpleAudioRenderTest-Prefix.pch";
+				INFOPLIST_FILE = "SimpleAudioRenderTest/SimpleAudioRenderTest-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1C00996F13E905C500666A9D /* Build configuration list for PBXProject "SimpleAudioRenderTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1C00999413E905C500666A9D /* Debug */,
+				1C00999513E905C500666A9D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1C00999613E905C500666A9D /* Build configuration list for PBXNativeTarget "SimpleAudioRenderTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1C00999713E905C500666A9D /* Debug */,
+				1C00999813E905C500666A9D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1C00996C13E905C500666A9D /* Project object */;
+}

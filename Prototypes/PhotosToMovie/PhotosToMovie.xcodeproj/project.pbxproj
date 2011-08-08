@@ -1,0 +1,648 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1C1A327E13CC8246001F55ED /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C1A327D13CC8246001F55ED /* UIKit.framework */; };
+		1C1A328013CC8246001F55ED /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C1A327F13CC8246001F55ED /* Foundation.framework */; };
+		1C1A328213CC8246001F55ED /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C1A328113CC8246001F55ED /* CoreGraphics.framework */; };
+		1C1A328813CC8246001F55ED /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1C1A328613CC8246001F55ED /* InfoPlist.strings */; };
+		1C1A328B13CC8246001F55ED /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C1A328A13CC8246001F55ED /* main.m */; };
+		1C1A328E13CC8246001F55ED /* PhotosToMovieAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C1A328D13CC8246001F55ED /* PhotosToMovieAppDelegate.m */; };
+		1C1A329113CC8246001F55ED /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C1A328F13CC8246001F55ED /* MainWindow.xib */; };
+		1C1A329413CC8246001F55ED /* PhotosToMovieViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C1A329313CC8246001F55ED /* PhotosToMovieViewController.m */; };
+		1C1A329713CC8246001F55ED /* PhotosToMovieViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C1A329513CC8246001F55ED /* PhotosToMovieViewController.xib */; };
+		1C1A329E13CC8246001F55ED /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C1A327D13CC8246001F55ED /* UIKit.framework */; };
+		1C1A329F13CC8246001F55ED /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C1A327F13CC8246001F55ED /* Foundation.framework */; };
+		1C1A32A013CC8246001F55ED /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C1A328113CC8246001F55ED /* CoreGraphics.framework */; };
+		1C1A32A813CC8246001F55ED /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1C1A32A613CC8246001F55ED /* InfoPlist.strings */; };
+		1C1A32AB13CC8246001F55ED /* PhotosToMovieTests.h in Resources */ = {isa = PBXBuildFile; fileRef = 1C1A32AA13CC8246001F55ED /* PhotosToMovieTests.h */; };
+		1C1A32AD13CC8246001F55ED /* PhotosToMovieTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C1A32AC13CC8246001F55ED /* PhotosToMovieTests.m */; };
+		1C1A32B713CC8266001F55ED /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C1A32B613CC8266001F55ED /* AVFoundation.framework */; };
+		1C1A32C413CC833E001F55ED /* PICT2.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 1C1A32C313CC833E001F55ED /* PICT2.JPG */; };
+		1C1A32C613CC8352001F55ED /* pict1.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 1C1A32C513CC8352001F55ED /* pict1.JPG */; };
+		1C1A32C813CC835C001F55ED /* PICT3.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 1C1A32C713CC835C001F55ED /* PICT3.JPG */; };
+		1C1A32CA13CC837D001F55ED /* PICT4.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 1C1A32C913CC837D001F55ED /* PICT4.JPG */; };
+		1C1A32CC13CC8CA5001F55ED /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C1A32CB13CC8CA5001F55ED /* CoreMedia.framework */; };
+		1C1A32D613CC8E43001F55ED /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C1A32D513CC8E43001F55ED /* CoreVideo.framework */; };
+		1C264E4D13DFD429007B3846 /* PhotosToMovie.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C264E4C13DFD429007B3846 /* PhotosToMovie.m */; };
+		1C264E4E13DFD429007B3846 /* PhotosToMovie.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C264E4C13DFD429007B3846 /* PhotosToMovie.m */; };
+		1C264E5113E11F95007B3846 /* AddAudioToMovie.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C264E5013E11F95007B3846 /* AddAudioToMovie.m */; };
+		1C264E5213E11F95007B3846 /* AddAudioToMovie.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C264E5013E11F95007B3846 /* AddAudioToMovie.m */; };
+		1C264E5413E12357007B3846 /* Friday.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1C264E5313E12357007B3846 /* Friday.mp3 */; };
+		1C264E5513E12357007B3846 /* Friday.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1C264E5313E12357007B3846 /* Friday.mp3 */; };
+		1C264E6A13E14484007B3846 /* NGMoviePlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C264E6513E14484007B3846 /* NGMoviePlayerViewController.m */; };
+		1C264E6B13E14484007B3846 /* NGMoviePlayerUpperControlsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C264E6713E14484007B3846 /* NGMoviePlayerUpperControlsView.m */; };
+		1C264E6C13E14484007B3846 /* NGMoviePlayerLowerControlsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C264E6913E14484007B3846 /* NGMoviePlayerLowerControlsView.m */; };
+		1C264E6E13E1449F007B3846 /* NGMoviePlayer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C264E6D13E1449E007B3846 /* NGMoviePlayer.xib */; };
+		1C264E6F13E14910007B3846 /* NGMoviePlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C264E6513E14484007B3846 /* NGMoviePlayerViewController.m */; };
+		1C264E7013E14913007B3846 /* NGMoviePlayerUpperControlsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C264E6713E14484007B3846 /* NGMoviePlayerUpperControlsView.m */; };
+		1C264E7113E14915007B3846 /* NGMoviePlayerLowerControlsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C264E6913E14484007B3846 /* NGMoviePlayerLowerControlsView.m */; };
+		1C264E7213E149B7007B3846 /* NGMoviePlayer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C264E6D13E1449E007B3846 /* NGMoviePlayer.xib */; };
+		1C264E8213E14C0A007B3846 /* movie_done.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C264E7413E14C0A007B3846 /* movie_done.png */; };
+		1C264E8313E14C0A007B3846 /* movie_done.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C264E7413E14C0A007B3846 /* movie_done.png */; };
+		1C264E8413E14C0A007B3846 /* movie_done@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C264E7513E14C0A007B3846 /* movie_done@2x.png */; };
+		1C264E8513E14C0A007B3846 /* movie_done@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C264E7513E14C0A007B3846 /* movie_done@2x.png */; };
+		1C264E8613E14C0A007B3846 /* movie_fastforward.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C264E7613E14C0A007B3846 /* movie_fastforward.png */; };
+		1C264E8713E14C0A007B3846 /* movie_fastforward.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C264E7613E14C0A007B3846 /* movie_fastforward.png */; };
+		1C264E8813E14C0A007B3846 /* movie_fastforward@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C264E7713E14C0A007B3846 /* movie_fastforward@2x.png */; };
+		1C264E8913E14C0A007B3846 /* movie_fastforward@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C264E7713E14C0A007B3846 /* movie_fastforward@2x.png */; };
+		1C264E8A13E14C0A007B3846 /* movie_lower-controls_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C264E7813E14C0A007B3846 /* movie_lower-controls_background.png */; };
+		1C264E8B13E14C0A007B3846 /* movie_lower-controls_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C264E7813E14C0A007B3846 /* movie_lower-controls_background.png */; };
+		1C264E8C13E14C0A007B3846 /* movie_lower-controls_background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C264E7913E14C0A007B3846 /* movie_lower-controls_background@2x.png */; };
+		1C264E8D13E14C0A007B3846 /* movie_lower-controls_background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C264E7913E14C0A007B3846 /* movie_lower-controls_background@2x.png */; };
+		1C264E8E13E14C0A007B3846 /* movie_pause.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C264E7A13E14C0A007B3846 /* movie_pause.png */; };
+		1C264E8F13E14C0A007B3846 /* movie_pause.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C264E7A13E14C0A007B3846 /* movie_pause.png */; };
+		1C264E9013E14C0A007B3846 /* movie_pause@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C264E7B13E14C0A007B3846 /* movie_pause@2x.png */; };
+		1C264E9113E14C0A007B3846 /* movie_pause@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C264E7B13E14C0A007B3846 /* movie_pause@2x.png */; };
+		1C264E9213E14C0A007B3846 /* movie_play.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C264E7C13E14C0A007B3846 /* movie_play.png */; };
+		1C264E9313E14C0A007B3846 /* movie_play.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C264E7C13E14C0A007B3846 /* movie_play.png */; };
+		1C264E9413E14C0A007B3846 /* movie_play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C264E7D13E14C0A007B3846 /* movie_play@2x.png */; };
+		1C264E9513E14C0A007B3846 /* movie_play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C264E7D13E14C0A007B3846 /* movie_play@2x.png */; };
+		1C264E9613E14C0A007B3846 /* movie_rewind.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C264E7E13E14C0A007B3846 /* movie_rewind.png */; };
+		1C264E9713E14C0A007B3846 /* movie_rewind.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C264E7E13E14C0A007B3846 /* movie_rewind.png */; };
+		1C264E9813E14C0A007B3846 /* movie_rewind@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C264E7F13E14C0A007B3846 /* movie_rewind@2x.png */; };
+		1C264E9913E14C0B007B3846 /* movie_rewind@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C264E7F13E14C0A007B3846 /* movie_rewind@2x.png */; };
+		1C264E9A13E14C0B007B3846 /* movie_upper-controls_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C264E8013E14C0A007B3846 /* movie_upper-controls_background.png */; };
+		1C264E9B13E14C0B007B3846 /* movie_upper-controls_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C264E8013E14C0A007B3846 /* movie_upper-controls_background.png */; };
+		1C264E9C13E14C0B007B3846 /* movie_upper-controls_background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C264E8113E14C0A007B3846 /* movie_upper-controls_background@2x.png */; };
+		1C264E9D13E14C0B007B3846 /* movie_upper-controls_background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C264E8113E14C0A007B3846 /* movie_upper-controls_background@2x.png */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1C1A32A113CC8246001F55ED /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1C1A327013CC8246001F55ED /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1C1A327813CC8246001F55ED;
+			remoteInfo = PhotosToMovie;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1C1A327913CC8246001F55ED /* PhotosToMovie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotosToMovie.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1C1A327D13CC8246001F55ED /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		1C1A327F13CC8246001F55ED /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		1C1A328113CC8246001F55ED /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		1C1A328513CC8246001F55ED /* PhotosToMovie-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PhotosToMovie-Info.plist"; sourceTree = "<group>"; };
+		1C1A328713CC8246001F55ED /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		1C1A328913CC8246001F55ED /* PhotosToMovie-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PhotosToMovie-Prefix.pch"; sourceTree = "<group>"; };
+		1C1A328A13CC8246001F55ED /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		1C1A328C13CC8246001F55ED /* PhotosToMovieAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotosToMovieAppDelegate.h; sourceTree = "<group>"; };
+		1C1A328D13CC8246001F55ED /* PhotosToMovieAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotosToMovieAppDelegate.m; sourceTree = "<group>"; };
+		1C1A329013CC8246001F55ED /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
+		1C1A329213CC8246001F55ED /* PhotosToMovieViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotosToMovieViewController.h; sourceTree = "<group>"; };
+		1C1A329313CC8246001F55ED /* PhotosToMovieViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotosToMovieViewController.m; sourceTree = "<group>"; };
+		1C1A329613CC8246001F55ED /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/PhotosToMovieViewController.xib; sourceTree = "<group>"; };
+		1C1A329D13CC8246001F55ED /* PhotosToMovieTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PhotosToMovieTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1C1A32A513CC8246001F55ED /* PhotosToMovieTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PhotosToMovieTests-Info.plist"; sourceTree = "<group>"; };
+		1C1A32A713CC8246001F55ED /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		1C1A32A913CC8246001F55ED /* PhotosToMovieTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PhotosToMovieTests-Prefix.pch"; sourceTree = "<group>"; };
+		1C1A32AA13CC8246001F55ED /* PhotosToMovieTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotosToMovieTests.h; sourceTree = "<group>"; };
+		1C1A32AC13CC8246001F55ED /* PhotosToMovieTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotosToMovieTests.m; sourceTree = "<group>"; };
+		1C1A32B613CC8266001F55ED /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		1C1A32C313CC833E001F55ED /* PICT2.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = PICT2.JPG; sourceTree = "<group>"; };
+		1C1A32C513CC8352001F55ED /* pict1.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = pict1.JPG; sourceTree = "<group>"; };
+		1C1A32C713CC835C001F55ED /* PICT3.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = PICT3.JPG; sourceTree = "<group>"; };
+		1C1A32C913CC837D001F55ED /* PICT4.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = PICT4.JPG; sourceTree = "<group>"; };
+		1C1A32CB13CC8CA5001F55ED /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		1C1A32D513CC8E43001F55ED /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		1C264E4B13DFD429007B3846 /* PhotosToMovie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotosToMovie.h; sourceTree = "<group>"; };
+		1C264E4C13DFD429007B3846 /* PhotosToMovie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotosToMovie.m; sourceTree = "<group>"; };
+		1C264E4F13E11F95007B3846 /* AddAudioToMovie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddAudioToMovie.h; sourceTree = "<group>"; };
+		1C264E5013E11F95007B3846 /* AddAudioToMovie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddAudioToMovie.m; sourceTree = "<group>"; };
+		1C264E5313E12357007B3846 /* Friday.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Friday.mp3; sourceTree = "<group>"; };
+		1C264E6413E14484007B3846 /* NGMoviePlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGMoviePlayerViewController.h; sourceTree = "<group>"; };
+		1C264E6513E14484007B3846 /* NGMoviePlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGMoviePlayerViewController.m; sourceTree = "<group>"; };
+		1C264E6613E14484007B3846 /* NGMoviePlayerUpperControlsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGMoviePlayerUpperControlsView.h; sourceTree = "<group>"; };
+		1C264E6713E14484007B3846 /* NGMoviePlayerUpperControlsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGMoviePlayerUpperControlsView.m; sourceTree = "<group>"; };
+		1C264E6813E14484007B3846 /* NGMoviePlayerLowerControlsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGMoviePlayerLowerControlsView.h; sourceTree = "<group>"; };
+		1C264E6913E14484007B3846 /* NGMoviePlayerLowerControlsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGMoviePlayerLowerControlsView.m; sourceTree = "<group>"; };
+		1C264E6D13E1449E007B3846 /* NGMoviePlayer.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NGMoviePlayer.xib; sourceTree = "<group>"; };
+		1C264E7413E14C0A007B3846 /* movie_done.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = movie_done.png; sourceTree = "<group>"; };
+		1C264E7513E14C0A007B3846 /* movie_done@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "movie_done@2x.png"; sourceTree = "<group>"; };
+		1C264E7613E14C0A007B3846 /* movie_fastforward.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = movie_fastforward.png; sourceTree = "<group>"; };
+		1C264E7713E14C0A007B3846 /* movie_fastforward@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "movie_fastforward@2x.png"; sourceTree = "<group>"; };
+		1C264E7813E14C0A007B3846 /* movie_lower-controls_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "movie_lower-controls_background.png"; sourceTree = "<group>"; };
+		1C264E7913E14C0A007B3846 /* movie_lower-controls_background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "movie_lower-controls_background@2x.png"; sourceTree = "<group>"; };
+		1C264E7A13E14C0A007B3846 /* movie_pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = movie_pause.png; sourceTree = "<group>"; };
+		1C264E7B13E14C0A007B3846 /* movie_pause@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "movie_pause@2x.png"; sourceTree = "<group>"; };
+		1C264E7C13E14C0A007B3846 /* movie_play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = movie_play.png; sourceTree = "<group>"; };
+		1C264E7D13E14C0A007B3846 /* movie_play@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "movie_play@2x.png"; sourceTree = "<group>"; };
+		1C264E7E13E14C0A007B3846 /* movie_rewind.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = movie_rewind.png; sourceTree = "<group>"; };
+		1C264E7F13E14C0A007B3846 /* movie_rewind@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "movie_rewind@2x.png"; sourceTree = "<group>"; };
+		1C264E8013E14C0A007B3846 /* movie_upper-controls_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "movie_upper-controls_background.png"; sourceTree = "<group>"; };
+		1C264E8113E14C0A007B3846 /* movie_upper-controls_background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "movie_upper-controls_background@2x.png"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1C1A327613CC8246001F55ED /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1C1A327E13CC8246001F55ED /* UIKit.framework in Frameworks */,
+				1C1A328013CC8246001F55ED /* Foundation.framework in Frameworks */,
+				1C1A328213CC8246001F55ED /* CoreGraphics.framework in Frameworks */,
+				1C1A32CC13CC8CA5001F55ED /* CoreMedia.framework in Frameworks */,
+				1C1A32D613CC8E43001F55ED /* CoreVideo.framework in Frameworks */,
+				1C1A32B713CC8266001F55ED /* AVFoundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1C1A329913CC8246001F55ED /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1C1A329E13CC8246001F55ED /* UIKit.framework in Frameworks */,
+				1C1A329F13CC8246001F55ED /* Foundation.framework in Frameworks */,
+				1C1A32A013CC8246001F55ED /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1C1A326E13CC8246001F55ED = {
+			isa = PBXGroup;
+			children = (
+				1C1A32D513CC8E43001F55ED /* CoreVideo.framework */,
+				1C1A32CB13CC8CA5001F55ED /* CoreMedia.framework */,
+				1C1A32B813CC8270001F55ED /* Resources */,
+				1C1A32B613CC8266001F55ED /* AVFoundation.framework */,
+				1C1A328313CC8246001F55ED /* PhotosToMovie */,
+				1C1A32A313CC8246001F55ED /* PhotosToMovieTests */,
+				1C1A327C13CC8246001F55ED /* Frameworks */,
+				1C1A327A13CC8246001F55ED /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1C1A327A13CC8246001F55ED /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1C1A327913CC8246001F55ED /* PhotosToMovie.app */,
+				1C1A329D13CC8246001F55ED /* PhotosToMovieTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1C1A327C13CC8246001F55ED /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1C1A327D13CC8246001F55ED /* UIKit.framework */,
+				1C1A327F13CC8246001F55ED /* Foundation.framework */,
+				1C1A328113CC8246001F55ED /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1C1A328313CC8246001F55ED /* PhotosToMovie */ = {
+			isa = PBXGroup;
+			children = (
+				1C264E6313E1446C007B3846 /* NGMoviePlayer */,
+				1C1A328C13CC8246001F55ED /* PhotosToMovieAppDelegate.h */,
+				1C1A328D13CC8246001F55ED /* PhotosToMovieAppDelegate.m */,
+				1C1A328F13CC8246001F55ED /* MainWindow.xib */,
+				1C1A329213CC8246001F55ED /* PhotosToMovieViewController.h */,
+				1C1A329313CC8246001F55ED /* PhotosToMovieViewController.m */,
+				1C1A329513CC8246001F55ED /* PhotosToMovieViewController.xib */,
+				1C1A328413CC8246001F55ED /* Supporting Files */,
+				1C264E4B13DFD429007B3846 /* PhotosToMovie.h */,
+				1C264E4C13DFD429007B3846 /* PhotosToMovie.m */,
+				1C264E4F13E11F95007B3846 /* AddAudioToMovie.h */,
+				1C264E5013E11F95007B3846 /* AddAudioToMovie.m */,
+			);
+			path = PhotosToMovie;
+			sourceTree = "<group>";
+		};
+		1C1A328413CC8246001F55ED /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				1C1A328513CC8246001F55ED /* PhotosToMovie-Info.plist */,
+				1C1A328613CC8246001F55ED /* InfoPlist.strings */,
+				1C1A328913CC8246001F55ED /* PhotosToMovie-Prefix.pch */,
+				1C1A328A13CC8246001F55ED /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1C1A32A313CC8246001F55ED /* PhotosToMovieTests */ = {
+			isa = PBXGroup;
+			children = (
+				1C1A32AA13CC8246001F55ED /* PhotosToMovieTests.h */,
+				1C1A32AC13CC8246001F55ED /* PhotosToMovieTests.m */,
+				1C1A32A413CC8246001F55ED /* Supporting Files */,
+			);
+			path = PhotosToMovieTests;
+			sourceTree = "<group>";
+		};
+		1C1A32A413CC8246001F55ED /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				1C1A32A513CC8246001F55ED /* PhotosToMovieTests-Info.plist */,
+				1C1A32A613CC8246001F55ED /* InfoPlist.strings */,
+				1C1A32A913CC8246001F55ED /* PhotosToMovieTests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1C1A32B813CC8270001F55ED /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				1C264E7313E14BF6007B3846 /* Graphics */,
+				1C264E6D13E1449E007B3846 /* NGMoviePlayer.xib */,
+				1C264E5313E12357007B3846 /* Friday.mp3 */,
+				1C1A32C513CC8352001F55ED /* pict1.JPG */,
+				1C1A32C313CC833E001F55ED /* PICT2.JPG */,
+				1C1A32C713CC835C001F55ED /* PICT3.JPG */,
+				1C1A32C913CC837D001F55ED /* PICT4.JPG */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		1C264E6313E1446C007B3846 /* NGMoviePlayer */ = {
+			isa = PBXGroup;
+			children = (
+				1C264E6413E14484007B3846 /* NGMoviePlayerViewController.h */,
+				1C264E6513E14484007B3846 /* NGMoviePlayerViewController.m */,
+				1C264E6613E14484007B3846 /* NGMoviePlayerUpperControlsView.h */,
+				1C264E6713E14484007B3846 /* NGMoviePlayerUpperControlsView.m */,
+				1C264E6813E14484007B3846 /* NGMoviePlayerLowerControlsView.h */,
+				1C264E6913E14484007B3846 /* NGMoviePlayerLowerControlsView.m */,
+			);
+			name = NGMoviePlayer;
+			sourceTree = "<group>";
+		};
+		1C264E7313E14BF6007B3846 /* Graphics */ = {
+			isa = PBXGroup;
+			children = (
+				1C264E7413E14C0A007B3846 /* movie_done.png */,
+				1C264E7513E14C0A007B3846 /* movie_done@2x.png */,
+				1C264E7613E14C0A007B3846 /* movie_fastforward.png */,
+				1C264E7713E14C0A007B3846 /* movie_fastforward@2x.png */,
+				1C264E7813E14C0A007B3846 /* movie_lower-controls_background.png */,
+				1C264E7913E14C0A007B3846 /* movie_lower-controls_background@2x.png */,
+				1C264E7A13E14C0A007B3846 /* movie_pause.png */,
+				1C264E7B13E14C0A007B3846 /* movie_pause@2x.png */,
+				1C264E7C13E14C0A007B3846 /* movie_play.png */,
+				1C264E7D13E14C0A007B3846 /* movie_play@2x.png */,
+				1C264E7E13E14C0A007B3846 /* movie_rewind.png */,
+				1C264E7F13E14C0A007B3846 /* movie_rewind@2x.png */,
+				1C264E8013E14C0A007B3846 /* movie_upper-controls_background.png */,
+				1C264E8113E14C0A007B3846 /* movie_upper-controls_background@2x.png */,
+			);
+			name = Graphics;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1C1A327813CC8246001F55ED /* PhotosToMovie */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1C1A32B013CC8246001F55ED /* Build configuration list for PBXNativeTarget "PhotosToMovie" */;
+			buildPhases = (
+				1C1A327513CC8246001F55ED /* Sources */,
+				1C1A327613CC8246001F55ED /* Frameworks */,
+				1C1A327713CC8246001F55ED /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PhotosToMovie;
+			productName = PhotosToMovie;
+			productReference = 1C1A327913CC8246001F55ED /* PhotosToMovie.app */;
+			productType = "com.apple.product-type.application";
+		};
+		1C1A329C13CC8246001F55ED /* PhotosToMovieTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1C1A32B313CC8246001F55ED /* Build configuration list for PBXNativeTarget "PhotosToMovieTests" */;
+			buildPhases = (
+				1C1A329813CC8246001F55ED /* Sources */,
+				1C1A329913CC8246001F55ED /* Frameworks */,
+				1C1A329A13CC8246001F55ED /* Resources */,
+				1C1A329B13CC8246001F55ED /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1C1A32A213CC8246001F55ED /* PBXTargetDependency */,
+			);
+			name = PhotosToMovieTests;
+			productName = PhotosToMovieTests;
+			productReference = 1C1A329D13CC8246001F55ED /* PhotosToMovieTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1C1A327013CC8246001F55ED /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 1C1A327313CC8246001F55ED /* Build configuration list for PBXProject "PhotosToMovie" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 1C1A326E13CC8246001F55ED;
+			productRefGroup = 1C1A327A13CC8246001F55ED /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1C1A327813CC8246001F55ED /* PhotosToMovie */,
+				1C1A329C13CC8246001F55ED /* PhotosToMovieTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1C1A327713CC8246001F55ED /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1C1A328813CC8246001F55ED /* InfoPlist.strings in Resources */,
+				1C1A329113CC8246001F55ED /* MainWindow.xib in Resources */,
+				1C1A329713CC8246001F55ED /* PhotosToMovieViewController.xib in Resources */,
+				1C1A32C413CC833E001F55ED /* PICT2.JPG in Resources */,
+				1C1A32C613CC8352001F55ED /* pict1.JPG in Resources */,
+				1C1A32C813CC835C001F55ED /* PICT3.JPG in Resources */,
+				1C1A32CA13CC837D001F55ED /* PICT4.JPG in Resources */,
+				1C264E5413E12357007B3846 /* Friday.mp3 in Resources */,
+				1C264E7213E149B7007B3846 /* NGMoviePlayer.xib in Resources */,
+				1C264E8213E14C0A007B3846 /* movie_done.png in Resources */,
+				1C264E8413E14C0A007B3846 /* movie_done@2x.png in Resources */,
+				1C264E8613E14C0A007B3846 /* movie_fastforward.png in Resources */,
+				1C264E8813E14C0A007B3846 /* movie_fastforward@2x.png in Resources */,
+				1C264E8A13E14C0A007B3846 /* movie_lower-controls_background.png in Resources */,
+				1C264E8C13E14C0A007B3846 /* movie_lower-controls_background@2x.png in Resources */,
+				1C264E8E13E14C0A007B3846 /* movie_pause.png in Resources */,
+				1C264E9013E14C0A007B3846 /* movie_pause@2x.png in Resources */,
+				1C264E9213E14C0A007B3846 /* movie_play.png in Resources */,
+				1C264E9413E14C0A007B3846 /* movie_play@2x.png in Resources */,
+				1C264E9613E14C0A007B3846 /* movie_rewind.png in Resources */,
+				1C264E9813E14C0A007B3846 /* movie_rewind@2x.png in Resources */,
+				1C264E9A13E14C0B007B3846 /* movie_upper-controls_background.png in Resources */,
+				1C264E9C13E14C0B007B3846 /* movie_upper-controls_background@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1C1A329A13CC8246001F55ED /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1C1A32A813CC8246001F55ED /* InfoPlist.strings in Resources */,
+				1C1A32AB13CC8246001F55ED /* PhotosToMovieTests.h in Resources */,
+				1C264E5513E12357007B3846 /* Friday.mp3 in Resources */,
+				1C264E6E13E1449F007B3846 /* NGMoviePlayer.xib in Resources */,
+				1C264E8313E14C0A007B3846 /* movie_done.png in Resources */,
+				1C264E8513E14C0A007B3846 /* movie_done@2x.png in Resources */,
+				1C264E8713E14C0A007B3846 /* movie_fastforward.png in Resources */,
+				1C264E8913E14C0A007B3846 /* movie_fastforward@2x.png in Resources */,
+				1C264E8B13E14C0A007B3846 /* movie_lower-controls_background.png in Resources */,
+				1C264E8D13E14C0A007B3846 /* movie_lower-controls_background@2x.png in Resources */,
+				1C264E8F13E14C0A007B3846 /* movie_pause.png in Resources */,
+				1C264E9113E14C0A007B3846 /* movie_pause@2x.png in Resources */,
+				1C264E9313E14C0A007B3846 /* movie_play.png in Resources */,
+				1C264E9513E14C0A007B3846 /* movie_play@2x.png in Resources */,
+				1C264E9713E14C0A007B3846 /* movie_rewind.png in Resources */,
+				1C264E9913E14C0B007B3846 /* movie_rewind@2x.png in Resources */,
+				1C264E9B13E14C0B007B3846 /* movie_upper-controls_background.png in Resources */,
+				1C264E9D13E14C0B007B3846 /* movie_upper-controls_background@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1C1A329B13CC8246001F55ED /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1C1A327513CC8246001F55ED /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1C1A328B13CC8246001F55ED /* main.m in Sources */,
+				1C1A328E13CC8246001F55ED /* PhotosToMovieAppDelegate.m in Sources */,
+				1C1A329413CC8246001F55ED /* PhotosToMovieViewController.m in Sources */,
+				1C264E4D13DFD429007B3846 /* PhotosToMovie.m in Sources */,
+				1C264E5113E11F95007B3846 /* AddAudioToMovie.m in Sources */,
+				1C264E6F13E14910007B3846 /* NGMoviePlayerViewController.m in Sources */,
+				1C264E7013E14913007B3846 /* NGMoviePlayerUpperControlsView.m in Sources */,
+				1C264E7113E14915007B3846 /* NGMoviePlayerLowerControlsView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1C1A329813CC8246001F55ED /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1C1A32AD13CC8246001F55ED /* PhotosToMovieTests.m in Sources */,
+				1C264E4E13DFD429007B3846 /* PhotosToMovie.m in Sources */,
+				1C264E5213E11F95007B3846 /* AddAudioToMovie.m in Sources */,
+				1C264E6A13E14484007B3846 /* NGMoviePlayerViewController.m in Sources */,
+				1C264E6B13E14484007B3846 /* NGMoviePlayerUpperControlsView.m in Sources */,
+				1C264E6C13E14484007B3846 /* NGMoviePlayerLowerControlsView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1C1A32A213CC8246001F55ED /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1C1A327813CC8246001F55ED /* PhotosToMovie */;
+			targetProxy = 1C1A32A113CC8246001F55ED /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		1C1A328613CC8246001F55ED /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1C1A328713CC8246001F55ED /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		1C1A328F13CC8246001F55ED /* MainWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1C1A329013CC8246001F55ED /* en */,
+			);
+			name = MainWindow.xib;
+			sourceTree = "<group>";
+		};
+		1C1A329513CC8246001F55ED /* PhotosToMovieViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1C1A329613CC8246001F55ED /* en */,
+			);
+			name = PhotosToMovieViewController.xib;
+			sourceTree = "<group>";
+		};
+		1C1A32A613CC8246001F55ED /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1C1A32A713CC8246001F55ED /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		1C1A32AE13CC8246001F55ED /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		1C1A32AF13CC8246001F55ED /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+			};
+			name = Release;
+		};
+		1C1A32B113CC8246001F55ED /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PhotosToMovie/PhotosToMovie-Prefix.pch";
+				INFOPLIST_FILE = "PhotosToMovie/PhotosToMovie-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		1C1A32B213CC8246001F55ED /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PhotosToMovie/PhotosToMovie-Prefix.pch";
+				INFOPLIST_FILE = "PhotosToMovie/PhotosToMovie-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		1C1A32B413CC8246001F55ED /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/PhotosToMovie.app/PhotosToMovie";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PhotosToMovieTests/PhotosToMovieTests-Prefix.pch";
+				INFOPLIST_FILE = "PhotosToMovieTests/PhotosToMovieTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		1C1A32B513CC8246001F55ED /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/PhotosToMovie.app/PhotosToMovie";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PhotosToMovieTests/PhotosToMovieTests-Prefix.pch";
+				INFOPLIST_FILE = "PhotosToMovieTests/PhotosToMovieTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1C1A327313CC8246001F55ED /* Build configuration list for PBXProject "PhotosToMovie" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1C1A32AE13CC8246001F55ED /* Debug */,
+				1C1A32AF13CC8246001F55ED /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1C1A32B013CC8246001F55ED /* Build configuration list for PBXNativeTarget "PhotosToMovie" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1C1A32B113CC8246001F55ED /* Debug */,
+				1C1A32B213CC8246001F55ED /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1C1A32B313CC8246001F55ED /* Build configuration list for PBXNativeTarget "PhotosToMovieTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1C1A32B413CC8246001F55ED /* Debug */,
+				1C1A32B513CC8246001F55ED /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1C1A327013CC8246001F55ED /* Project object */;
+}
