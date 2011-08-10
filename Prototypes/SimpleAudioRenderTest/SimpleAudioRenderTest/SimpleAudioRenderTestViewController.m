@@ -155,7 +155,7 @@ static OSStatus playbackCallback(void *inRefCon,
     printf("numPackets is %lu, dividing by 6 gives it %lu", numPackets, cutNumPackets);
     
     
-    error = ExtAudioFileRead(xafref, &cutNumPackets, &bufList);
+    error = ExtAudioFileRead(xafref, &numPackets, &bufList);
     if (error)
     {
         printf("ExtAudioFileRead result %ld %08X %4.4s\n", error, (unsigned int)error, (char*)&error); 
