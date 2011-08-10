@@ -54,6 +54,7 @@ static void SilenceData(AudioBufferList *inData)
     NSLog(@"rendering silence...");
 }
 
+/*
 static OSStatus playbackCallback(void *inRefCon, 
                                  AudioUnitRenderActionFlags *ioActionFlags, 
                                  const AudioTimeStamp *inTimeStamp, 
@@ -94,6 +95,49 @@ static OSStatus playbackCallback(void *inRefCon,
     
     //printf("render input bus %ld sample %ld\n", inBusNumber, sample);
     this->currentFrameNum += inNumberFrames;
+    
+    return noErr;
+    
+}
+*/
+
+static OSStatus playbackCallback(void *inRefCon, 
+                                 AudioUnitRenderActionFlags *ioActionFlags, 
+                                 const AudioTimeStamp *inTimeStamp, 
+                                 UInt32 inBusNumber, 
+                                 UInt32 inNumberFrames, 
+                                 AudioBufferList *ioData) {
+    
+    SimpleAudioRenderTestViewController *this = (SimpleAudioRenderTestViewController *)inRefCon;
+    
+    AudioSampleType *out = (AudioSampleType *)ioData->mBuffers[0].mData;
+    int samplesToCopy = ioData->mBuffers[0].mDataByteSize/sizeof(SInt16);
+    
+    // Pull audio from playthrough buffer, in contiguous chunks
+    
+    
+    while ( samplesToCopy > 0 ) {
+        int sampleCount;
+        
+        while (samplesToCopy > TPCircularBufferFillCountContiguous(&this->bufferRecord)) {
+            [this loadAudioFileUsingEAFS];
+        }
+        
+        sampleCount = samplesToCopy;
+        
+        if ( sampleCount == 0 ) break;
+        [this->bufferRecordLock lock];
+        SInt16 *buffer = this->buffer + TPCircularBufferTail(&this->bufferRecord);
+        
+        memcpy(out, buffer, sampleCount*sizeof(SInt16));
+        
+        out += sampleCount;
+        samplesToCopy -= sampleCount;
+        TPCircularBufferConsume(&this->bufferRecord, sampleCount);
+        [this->bufferRecordLock unlock];
+    }
+    
+    
     
     return noErr;
     
@@ -151,11 +195,18 @@ static OSStatus playbackCallback(void *inRefCon,
 {
     // perform a synchronous sequential read of the audio data out of the file into our allocated data buffer
     UInt32 numPackets = numFrames;
-    UInt32 cutNumPackets = numPackets / 3;
-    printf("numPackets is %lu, dividing by 6 gives it %lu", numPackets, cutNumPackets);
+    UInt32 inNumFrames = 1024;
+    //printf("numPackets is %lu, dividing by 6 gives it %lu", numPackets, inNumFrames);
+    
+    // set up an AudioBufferList to store the read data before pushing it into the circular buffer
+    AudioBufferList tempBufList;
+    tempBufList.mNumberBuffers = 1;
+    tempBufList.mBuffers[0].mNumberChannels = asbd.mChannelsPerFrame;
+    tempBufList.mBuffers[0].mDataByteSize = inNumFrames * sizeof(SInt16) * asbd.mChannelsPerFrame;
+    tempBufList.mBuffers[0].mData = malloc(tempBufList.mBuffers[0].mDataByteSize);
     
     
-    error = ExtAudioFileRead(xafref, &numPackets, &bufList);
+    error = ExtAudioFileRead(xafref, &inNumFrames, &tempBufList);
     if (error)
     {
         printf("ExtAudioFileRead result %ld %08X %4.4s\n", error, (unsigned int)error, (char*)&error); 
@@ -163,7 +214,13 @@ static OSStatus playbackCallback(void *inRefCon,
         data = 0;
         return;
     }
-
+    
+    [bufferRecordLock lock];
+    TPCircularBufferCopy(&bufferRecord, buffer, tempBufList.mBuffers[0].mData, inNumFrames * asbd.mChannelsPerFrame, sizeof(SInt16));
+    [bufferRecordLock unlock];
+    
+    //free(&tempBufList);
+    
 }
 
 - (void)setupRemoteIOAudioUnit
