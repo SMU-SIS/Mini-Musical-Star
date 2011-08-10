@@ -13,7 +13,7 @@
 #import "SimpleAudioRenderTestViewController.h"
 
 @implementation SimpleAudioRenderTestViewController
-@synthesize assetReaderOutput, startingFrameCount;
+
 - (void)didReceiveMemoryWarning
 {
     // Releases the view if it doesn't have a superview.
@@ -30,16 +30,29 @@
 {
     [super viewDidLoad];
     
-    //set up the buffers with 4 seconds of interleaved stereo data
-    bufferSize = 44100 * 2 * 4; //44100 is the sample rate per channel, 2 channel, 4 seconds
-    [tempBuffer 
+    // Allocate buffer
+    buffer = (SInt16*)malloc(sizeof(SInt16) * kBufferLength);
     
+    // Initialise record
+    TPCircularBufferInit(&bufferRecord, kBufferLength);
+    bufferRecordLock = [[NSLock alloc] init];
     
-    
-    [self loadAudioFile];
+    NSLog(@"setting up audio file...");
+    [self setupAudioFileUsingEAFS];
+    NSLog(@"loading the audio file...");
+    [self loadAudioFileUsingEAFS];
+    NSLog(@"setting up audio unit...");
     [self setupRemoteIOAudioUnit];
 }
 
+//called by the audioFileCallback when some silence is needed
+static void SilenceData(AudioBufferList *inData)
+{
+	for (UInt32 i=0; i < inData->mNumberBuffers; i++)
+		memset(inData->mBuffers[i].mData, 0, inData->mBuffers[i].mDataByteSize);
+    
+    NSLog(@"rendering silence...");
+}
 
 static OSStatus playbackCallback(void *inRefCon, 
                                  AudioUnitRenderActionFlags *ioActionFlags, 
@@ -51,102 +64,106 @@ static OSStatus playbackCallback(void *inRefCon,
     // Fill them up as much as you can. Remember to set the size value in each buffer to match how
     // much data is in the buffer.
     
-    SimpleAudioRenderTestViewController *this = (SimpleAudioRenderTestViewController *) inRefCon;
+    SimpleAudioRenderTestViewController *this = (SimpleAudioRenderTestViewController *)inRefCon;
+    AudioSampleType *in = this->bufList.mBuffers[0].mData;
+    AudioSampleType *out = (AudioSampleType *)ioData->mBuffers[0].mData;
     
-    CMSampleBufferRef ref = [this.assetReaderOutput copyNextSampleBuffer];
-    CMItemCount numSamplesInBuffer = CMSampleBufferGetNumSamples(ref);
-    printf("numsamplesinbuffer gives me %ld\n", numSamplesInBuffer);
-    printf("innumberframes gives me %lu", inNumberFrames);
-    AudioBufferList audioBufferList;
-    CMBlockBufferRef blockBuffer;
+    UInt32 sample = this->currentFrameNum * this->asbd.mChannelsPerFrame;
     
-    CMSampleBufferGetAudioBufferListWithRetainedBlockBuffer(
-                                                            ref,
-                                                            NULL,
-                                                            &audioBufferList,
-                                                            sizeof(audioBufferList),
-                                                            NULL,
-                                                            NULL,
-                                                            kCMSampleBufferFlag_AudioBufferList_Assure16ByteAlignment,
-                                                            &blockBuffer);
-    
-    for (int bufferCount = 0; bufferCount < audioBufferList.mNumberBuffers; bufferCount++)
-    {
-        SInt16 *samples = (SInt16 *)audioBufferList.mBuffers[bufferCount].mData;
-        for (int i = 0; i < inNumberFrames; i++)
-        {
-            SInt16 *data = ioData->mBuffers[bufferCount].mData;
-            (data)[i] = samples[i];
+    // make sure we don't attempt to render more data than we have available in the source buffers
+    // if one buffer is larger than the other, just render silence for that bus until we loop around again
+    if ((this->currentFrameNum + inNumberFrames) > this->numFrames) {
+        UInt32 offset = (this->currentFrameNum + inNumberFrames) - this->numFrames;
+        if (offset < inNumberFrames) {
+            // copy the last bit of source
+            SilenceData(ioData);
+            memcpy(out, &in[sample], ((inNumberFrames - offset) * this->asbd.mBytesPerFrame));
+            printf("Rendering out the last bits of data to bus number %lu\n", inBusNumber);
+            return noErr;
+        } else {
+            // got no source data
+            //NSLog(@"we have no source data because offset is %lu and inNumberFrames is %lu", offset, inNumberFrames);
+            printf("We have no source data to provide to bus number %lu\n", inBusNumber);
+            SilenceData(ioData);
+            *ioActionFlags |= kAudioUnitRenderAction_OutputIsSilence;
+            return noErr;
         }
-        
     }
-     
+	
+    memcpy(out, &in[sample], ioData->mBuffers[0].mDataByteSize);
     
-    
-    /*
-    double j = this.startingFrameCount;
-    double cycleLength = 44100.0 / sineFrequency;
-    
-    for (int frame = 0; frame < inNumberFrames; frame++)
-    {
-        SInt16 *data = (SInt16 *)ioData->mBuffers[0].mData;
-        (data)[frame] = (SInt16)sin (2 * M_PI * (j / cycleLength));
-        printf("data is %i", (SInt16)sin (2 * M_PI * (j / cycleLength)));
-        
-        j += 1.0;
-        if (j > cycleLength)
-            j -= cycleLength;
-        
-    }
-    
-    this->startingFrameCount = j;
-     */
+    //printf("render input bus %ld sample %ld\n", inBusNumber, sample);
+    this->currentFrameNum += inNumberFrames;
     
     return noErr;
+    
 }
 
-- (void)loadAudioFile
+
+- (void)setupAudioFileUsingEAFS
 {
-    NSString *audioURLString = [[NSBundle mainBundle] pathForResource:@"Fire" ofType:@"m4a"];
-    NSURL *audioURL = [NSURL fileURLWithPath:audioURLString];
+    //get url to audio file in bundle
+    NSString *audioPathString = [[NSBundle mainBundle] pathForResource:@"Fire" ofType:@"m4a"];
+    NSURL *audioURL = [NSURL fileURLWithPath:audioPathString];
     
-    AVURLAsset *audioAsset = [AVURLAsset URLAssetWithURL:audioURL options:nil];
+    //open the url in extended audio file services
+    xafref = 0;
+    error = ExtAudioFileOpenURL((CFURLRef)audioURL, &xafref);
     
-    NSError *assetError = nil;
-    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-    AVAssetReader *assetReader = [AVAssetReader assetReaderWithAsset:audioAsset error:&assetError];
-    NSDictionary *audioSettings = [NSDictionary dictionaryWithObjectsAndKeys:
-                                   [NSNumber numberWithFloat:44100.0], AVSampleRateKey,
-                                   [NSNumber numberWithInt:2], AVNumberOfChannelsKey,
-                                   [NSNumber numberWithInt:32], AVLinearPCMBitDepthKey,
-                                   [NSNumber numberWithInt:kAudioFormatLinearPCM], AVFormatIDKey,
-                                   [NSNumber numberWithBool:YES], AVLinearPCMIsFloatKey,
-                                   [NSNumber numberWithBool:NO], AVLinearPCMIsBigEndianKey,
-                                   [NSNumber numberWithBool:NO], AVLinearPCMIsNonInterleaved,
-                                   [NSData data], AVChannelLayoutKey, nil];
+    //get the format of the audio file
+    AudioStreamBasicDescription fileFormat;
+    UInt32 propSize = sizeof(fileFormat);
+    error = ExtAudioFileGetProperty(xafref, kExtAudioFileProperty_FileDataFormat, &propSize, &fileFormat);
+    CheckError(error, "cannot get audio file data format");
+    
+    //create our output ASBD - we're also giving this to our mixer input
+    ASBDSetCanonical(&mClientFormat, 2, true);						
+    mClientFormat.mSampleRate = 44100.0;
+    
+    error = ExtAudioFileSetProperty(xafref, kExtAudioFileProperty_ClientDataFormat, sizeof(mClientFormat), &mClientFormat);
+    CheckError(error, "cannot get kExtAudioFileProperty_ClientDataFormat");
+    
+    //get the file's length in sample frames
+    UInt64 fileNumFrames = 0;
+    propSize = sizeof(fileNumFrames);
+    error = ExtAudioFileGetProperty(xafref, kExtAudioFileProperty_FileLengthFrames, &propSize, &fileNumFrames);
+    CheckError(error, "cannot get file's length in sample frames");
+    
+    //NSLog(@"here numFrames is %llul and maxNumFrames is %lul and i is %d", numFrames, mUserData.maxNumFrames, i);
+    
+    //set up our buffer
+    numFrames = fileNumFrames;
+    asbd = mClientFormat;
+    
+    UInt32 samples = numFrames * asbd.mChannelsPerFrame;
+    data = (AudioSampleType *)calloc(samples, sizeof(AudioSampleType));
+    
+    //set up a AudioBufferList to read data into
+    
+    bufList.mNumberBuffers = 1;
+    bufList.mBuffers[0].mNumberChannels = asbd.mChannelsPerFrame;
+    bufList.mBuffers[0].mData = data;
+    bufList.mBuffers[0].mDataByteSize = samples * sizeof(AudioSampleType);
+    
+    }
+
+- (void)loadAudioFileUsingEAFS
+{
+    // perform a synchronous sequential read of the audio data out of the file into our allocated data buffer
+    UInt32 numPackets = numFrames;
+    UInt32 cutNumPackets = numPackets / 3;
+    printf("numPackets is %lu, dividing by 6 gives it %lu", numPackets, cutNumPackets);
     
     
-    
-    assetReaderOutput = [AVAssetReaderAudioMixOutput assetReaderAudioMixOutputWithAudioTracks:audioAsset.tracks audioSettings:audioSettings];
-    [assetReaderOutput retain];
-    
-    if (! [assetReader canAddOutput: assetReaderOutput]) {
-        NSLog (@"can't add reader output... die!");
+    error = ExtAudioFileRead(xafref, &cutNumPackets, &bufList);
+    if (error)
+    {
+        printf("ExtAudioFileRead result %ld %08X %4.4s\n", error, (unsigned int)error, (char*)&error); 
+        free(data);
+        data = 0;
         return;
     }
-    
-    [assetReader addOutput: assetReaderOutput];
-    
-    //last check
-    if (![assetReader startReading]) {
-        NSLog(@"Cannot start reading");
-        return;
-    }
-    
-    //set up the temp buffer
-    
-    
-    [pool drain]; 
+
 }
 
 - (void)setupRemoteIOAudioUnit
@@ -227,6 +244,15 @@ static OSStatus playbackCallback(void *inRefCon,
 {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+- (void)dealloc
+{
+    free(&mClientFormat);
+    free(&asbd);
+    free(&bufList);
+    ExtAudioFileDispose(xafref);
+    [super dealloc];
 }
 
 @end

@@ -16,12 +16,13 @@
 		1C00998D13E905C500666A9D /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C00998B13E905C500666A9D /* MainWindow.xib */; };
 		1C00999013E905C500666A9D /* SimpleAudioRenderTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C00998F13E905C500666A9D /* SimpleAudioRenderTestViewController.m */; };
 		1C00999313E905C500666A9D /* SimpleAudioRenderTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C00999113E905C500666A9D /* SimpleAudioRenderTestViewController.xib */; };
-		1C00999D13E905FE00666A9D /* CAErrorHandling.c in Sources */ = {isa = PBXBuildFile; fileRef = 1C00999913E905FE00666A9D /* CAErrorHandling.c */; };
-		1C00999E13E905FE00666A9D /* ASBDHelper.c in Sources */ = {isa = PBXBuildFile; fileRef = 1C00999B13E905FE00666A9D /* ASBDHelper.c */; };
 		1C0099A013E9061300666A9D /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C00999F13E9061200666A9D /* AudioToolbox.framework */; };
 		1C0099A213E9061700666A9D /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C0099A113E9061700666A9D /* AVFoundation.framework */; };
 		1C0099A913E9067400666A9D /* Fire.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 1C0099A813E9067400666A9D /* Fire.m4a */; };
 		1C0099AB13E930E400666A9D /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C0099AA13E930E400666A9D /* CoreMedia.framework */; };
+		9581744013F26777006E72D6 /* ASBDHelper.c in Sources */ = {isa = PBXBuildFile; fileRef = 9581743C13F26777006E72D6 /* ASBDHelper.c */; };
+		9581744113F26777006E72D6 /* CAErrorHandling.c in Sources */ = {isa = PBXBuildFile; fileRef = 9581743E13F26777006E72D6 /* CAErrorHandling.c */; };
+		9581744413F27FC2006E72D6 /* TPCircularBuffer.c in Sources */ = {isa = PBXBuildFile; fileRef = 9581744213F27FC2006E72D6 /* TPCircularBuffer.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,14 +40,16 @@
 		1C00998E13E905C500666A9D /* SimpleAudioRenderTestViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimpleAudioRenderTestViewController.h; sourceTree = "<group>"; };
 		1C00998F13E905C500666A9D /* SimpleAudioRenderTestViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SimpleAudioRenderTestViewController.m; sourceTree = "<group>"; };
 		1C00999213E905C500666A9D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SimpleAudioRenderTestViewController.xib; sourceTree = "<group>"; };
-		1C00999913E905FE00666A9D /* CAErrorHandling.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = CAErrorHandling.c; path = ../../ElegantMixer/ElegantMixer/CAErrorHandling.c; sourceTree = "<group>"; };
-		1C00999A13E905FE00666A9D /* CAErrorHandling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CAErrorHandling.h; path = ../../ElegantMixer/ElegantMixer/CAErrorHandling.h; sourceTree = "<group>"; };
-		1C00999B13E905FE00666A9D /* ASBDHelper.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ASBDHelper.c; path = ../../ElegantMixer/ElegantMixer/ASBDHelper.c; sourceTree = "<group>"; };
-		1C00999C13E905FE00666A9D /* ASBDHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASBDHelper.h; path = ../../ElegantMixer/ElegantMixer/ASBDHelper.h; sourceTree = "<group>"; };
 		1C00999F13E9061200666A9D /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		1C0099A113E9061700666A9D /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		1C0099A813E9067400666A9D /* Fire.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = Fire.m4a; sourceTree = "<group>"; };
 		1C0099AA13E930E400666A9D /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		9581743C13F26777006E72D6 /* ASBDHelper.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ASBDHelper.c; path = ../../AcceptancePrototype/ThirdAttempt/ASBDHelper.c; sourceTree = "<group>"; };
+		9581743D13F26777006E72D6 /* ASBDHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASBDHelper.h; path = ../../AcceptancePrototype/ThirdAttempt/ASBDHelper.h; sourceTree = "<group>"; };
+		9581743E13F26777006E72D6 /* CAErrorHandling.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = CAErrorHandling.c; path = ../../AcceptancePrototype/ThirdAttempt/CAErrorHandling.c; sourceTree = "<group>"; };
+		9581743F13F26777006E72D6 /* CAErrorHandling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CAErrorHandling.h; path = ../../AcceptancePrototype/ThirdAttempt/CAErrorHandling.h; sourceTree = "<group>"; };
+		9581744213F27FC2006E72D6 /* TPCircularBuffer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = TPCircularBuffer.c; sourceTree = "<group>"; };
+		9581744313F27FC2006E72D6 /* TPCircularBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPCircularBuffer.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,10 +103,12 @@
 		1C00997F13E905C500666A9D /* SimpleAudioRenderTest */ = {
 			isa = PBXGroup;
 			children = (
-				1C00999913E905FE00666A9D /* CAErrorHandling.c */,
-				1C00999A13E905FE00666A9D /* CAErrorHandling.h */,
-				1C00999B13E905FE00666A9D /* ASBDHelper.c */,
-				1C00999C13E905FE00666A9D /* ASBDHelper.h */,
+				9581744213F27FC2006E72D6 /* TPCircularBuffer.c */,
+				9581744313F27FC2006E72D6 /* TPCircularBuffer.h */,
+				9581743C13F26777006E72D6 /* ASBDHelper.c */,
+				9581743D13F26777006E72D6 /* ASBDHelper.h */,
+				9581743E13F26777006E72D6 /* CAErrorHandling.c */,
+				9581743F13F26777006E72D6 /* CAErrorHandling.h */,
 				1C00998813E905C500666A9D /* SimpleAudioRenderTestAppDelegate.h */,
 				1C00998913E905C500666A9D /* SimpleAudioRenderTestAppDelegate.m */,
 				1C00998B13E905C500666A9D /* MainWindow.xib */,
@@ -198,8 +203,9 @@
 				1C00998613E905C500666A9D /* main.m in Sources */,
 				1C00998A13E905C500666A9D /* SimpleAudioRenderTestAppDelegate.m in Sources */,
 				1C00999013E905C500666A9D /* SimpleAudioRenderTestViewController.m in Sources */,
-				1C00999D13E905FE00666A9D /* CAErrorHandling.c in Sources */,
-				1C00999E13E905FE00666A9D /* ASBDHelper.c in Sources */,
+				9581744013F26777006E72D6 /* ASBDHelper.c in Sources */,
+				9581744113F26777006E72D6 /* CAErrorHandling.c in Sources */,
+				9581744413F27FC2006E72D6 /* TPCircularBuffer.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -317,6 +323,7 @@
 				1C00999813E905C500666A9D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
