@@ -117,23 +117,21 @@ static OSStatus playbackCallback(void *inRefCon,
     
     
     while ( samplesToCopy > 0 ) {
-        int sampleCount;
         
         while (samplesToCopy > TPCircularBufferFillCountContiguous(&this->bufferRecord)) {
             [this loadAudioFileUsingEAFS];
         }
         
-        sampleCount = samplesToCopy;
-        
-        if ( sampleCount == 0 ) break;
+        if ( samplesToCopy == 0 ) break;
         [this->bufferRecordLock lock];
         SInt16 *buffer = this->buffer + TPCircularBufferTail(&this->bufferRecord);
         
-        memcpy(out, buffer, sampleCount*sizeof(SInt16));
+        memcpy(out, buffer, samplesToCopy*sizeof(SInt16));
         
-        out += sampleCount;
-        samplesToCopy -= sampleCount;
-        TPCircularBufferConsume(&this->bufferRecord, sampleCount);
+        out += samplesToCopy;
+        TPCircularBufferConsume(&this->bufferRecord, samplesToCopy);
+        samplesToCopy = 0;
+        
         [this->bufferRecordLock unlock];
     }
     
@@ -255,15 +253,15 @@ static OSStatus playbackCallback(void *inRefCon,
                                   kAudioUnitProperty_StreamFormat, 
                                   kAudioUnitScope_Output, 
                                   kInputBus, 
-                                  &audioFormat, 
-                                  sizeof(audioFormat));
+                                  &mClientFormat, 
+                                  sizeof(mClientFormat));
     CheckError(status, "Cannot apply format to input bus");
     status = AudioUnitSetProperty(audioUnit, 
                                   kAudioUnitProperty_StreamFormat, 
                                   kAudioUnitScope_Input, 
                                   kOutputBus, 
-                                  &audioFormat, 
-                                  sizeof(audioFormat));
+                                  &mClientFormat, 
+                                  sizeof(mClientFormat));
     CheckError(status, "cannot apply format to output bus");
     
     // Set output callback
