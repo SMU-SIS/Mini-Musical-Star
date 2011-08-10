@@ -19,13 +19,10 @@
     OSStatus error;
     
     //the following ivars store information about the currently loaded audio file
-    ExtAudioFileRef xafref;
-    AudioStreamBasicDescription mClientFormat;
-    long numFrames; //this numFrames is how many frames total in the audio file 
-    long currentFrameNum;
-    AudioStreamBasicDescription asbd;
-    AudioSampleType *data; //a pointer to the actual buffer that is found at bufList.mBuffers[0].mData
-    AudioBufferList bufList;
+    ExtAudioFileRef xafref; //reference to the current open audio file
+    AudioStreamBasicDescription asbd; //ouput asbd, audio file is converted to this format, and remoteio output is also this format
+    UInt64 numFrames; //this numFrames is how many frames total in the audio file 
+    UInt64 currentFrameNum; //the current playing position of the file in frames
     
     
     //using the TPCircularBuffer instead

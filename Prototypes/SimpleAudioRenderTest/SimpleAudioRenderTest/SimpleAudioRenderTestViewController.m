@@ -134,9 +134,7 @@ static OSStatus playbackCallback(void *inRefCon,
         
         [this->bufferRecordLock unlock];
     }
-    
-    
-    
+
     return noErr;
     
 }
@@ -152,47 +150,32 @@ static OSStatus playbackCallback(void *inRefCon,
     xafref = 0;
     error = ExtAudioFileOpenURL((CFURLRef)audioURL, &xafref);
     
-    //get the format of the audio file
+    //get the format of the audio file - what are we doing this for? nowhere else in the code needs this
     AudioStreamBasicDescription fileFormat;
     UInt32 propSize = sizeof(fileFormat);
     error = ExtAudioFileGetProperty(xafref, kExtAudioFileProperty_FileDataFormat, &propSize, &fileFormat);
     CheckError(error, "cannot get audio file data format");
     
     //create our output ASBD - we're also giving this to our mixer input
-    ASBDSetCanonical(&mClientFormat, 2, true);						
-    mClientFormat.mSampleRate = 44100.0;
+    ASBDSetCanonical(&asbd, 2, true);						
+    asbd.mSampleRate = 44100.0;
     
-    error = ExtAudioFileSetProperty(xafref, kExtAudioFileProperty_ClientDataFormat, sizeof(mClientFormat), &mClientFormat);
+    error = ExtAudioFileSetProperty(xafref, kExtAudioFileProperty_ClientDataFormat, sizeof(asbd), &asbd);
     CheckError(error, "cannot get kExtAudioFileProperty_ClientDataFormat");
     
     //get the file's length in sample frames
-    UInt64 fileNumFrames = 0;
-    propSize = sizeof(fileNumFrames);
-    error = ExtAudioFileGetProperty(xafref, kExtAudioFileProperty_FileLengthFrames, &propSize, &fileNumFrames);
+    numFrames = 0;
+    propSize = sizeof(numFrames);
+    error = ExtAudioFileGetProperty(xafref, kExtAudioFileProperty_FileLengthFrames, &propSize, &numFrames);
     CheckError(error, "cannot get file's length in sample frames");
     
     //NSLog(@"here numFrames is %llul and maxNumFrames is %lul and i is %d", numFrames, mUserData.maxNumFrames, i);
-    
-    //set up our buffer
-    numFrames = fileNumFrames;
-    asbd = mClientFormat;
-    
-    UInt32 samples = numFrames * asbd.mChannelsPerFrame;
-    data = (AudioSampleType *)calloc(samples, sizeof(AudioSampleType));
-    
-    //set up a AudioBufferList to read data into
-    
-    bufList.mNumberBuffers = 1;
-    bufList.mBuffers[0].mNumberChannels = asbd.mChannelsPerFrame;
-    bufList.mBuffers[0].mData = data;
-    bufList.mBuffers[0].mDataByteSize = samples * sizeof(AudioSampleType);
     
     }
 
 - (void)loadAudioFileUsingEAFS
 {
     // perform a synchronous sequential read of the audio data out of the file into our allocated data buffer
-    UInt32 numPackets = numFrames;
     UInt32 inNumFrames = 1024;
     //printf("numPackets is %lu, dividing by 6 gives it %lu", numPackets, inNumFrames);
     
@@ -208,8 +191,8 @@ static OSStatus playbackCallback(void *inRefCon,
     if (error)
     {
         printf("ExtAudioFileRead result %ld %08X %4.4s\n", error, (unsigned int)error, (char*)&error); 
-        free(data);
-        data = 0;
+        free(tempBufList.mBuffers[0].mData);
+        tempBufList.mBuffers[0].mData = 0;
         return;
     }
     
@@ -253,15 +236,15 @@ static OSStatus playbackCallback(void *inRefCon,
                                   kAudioUnitProperty_StreamFormat, 
                                   kAudioUnitScope_Output, 
                                   kInputBus, 
-                                  &mClientFormat, 
-                                  sizeof(mClientFormat));
+                                  &asbd, 
+                                  sizeof(asbd));
     CheckError(status, "Cannot apply format to input bus");
     status = AudioUnitSetProperty(audioUnit, 
                                   kAudioUnitProperty_StreamFormat, 
                                   kAudioUnitScope_Input, 
                                   kOutputBus, 
-                                  &mClientFormat, 
-                                  sizeof(mClientFormat));
+                                  &asbd, 
+                                  sizeof(asbd));
     CheckError(status, "cannot apply format to output bus");
     
     // Set output callback
@@ -303,9 +286,7 @@ static OSStatus playbackCallback(void *inRefCon,
 
 - (void)dealloc
 {
-    free(&mClientFormat);
-    free(&asbd);
-    free(&bufList);
+    free(buffer);
     ExtAudioFileDispose(xafref);
     [super dealloc];
 }
