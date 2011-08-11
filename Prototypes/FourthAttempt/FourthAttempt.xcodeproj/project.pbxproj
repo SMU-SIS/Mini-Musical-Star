@@ -1,0 +1,368 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		958338B013F3D78500CF268F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 958338AF13F3D78500CF268F /* UIKit.framework */; };
+		958338B213F3D78500CF268F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 958338B113F3D78500CF268F /* Foundation.framework */; };
+		958338B413F3D78500CF268F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 958338B313F3D78500CF268F /* CoreGraphics.framework */; };
+		958338BA13F3D78500CF268F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 958338B813F3D78500CF268F /* InfoPlist.strings */; };
+		958338BC13F3D78500CF268F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 958338BB13F3D78500CF268F /* main.m */; };
+		958338C013F3D78500CF268F /* FourthAttemptAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 958338BF13F3D78500CF268F /* FourthAttemptAppDelegate.m */; };
+		958338C313F3D78500CF268F /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 958338C113F3D78500CF268F /* MainWindow.xib */; };
+		958338C613F3D78500CF268F /* FourthAttemptViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 958338C513F3D78500CF268F /* FourthAttemptViewController.m */; };
+		958338C913F3D78500CF268F /* FourthAttemptViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 958338C713F3D78500CF268F /* FourthAttemptViewController.xib */; };
+		958338DC13F3D7AF00CF268F /* ASBDHelper.c in Sources */ = {isa = PBXBuildFile; fileRef = 958338D013F3D7AF00CF268F /* ASBDHelper.c */; };
+		958338DD13F3D7AF00CF268F /* AudioFileRingBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 958338D313F3D7AF00CF268F /* AudioFileRingBuffer.m */; };
+		958338DE13F3D7AF00CF268F /* BoomzAUOutputCapturer.m in Sources */ = {isa = PBXBuildFile; fileRef = 958338D513F3D7AF00CF268F /* BoomzAUOutputCapturer.m */; };
+		958338DF13F3D7AF00CF268F /* CAErrorHandling.c in Sources */ = {isa = PBXBuildFile; fileRef = 958338D613F3D7AF00CF268F /* CAErrorHandling.c */; };
+		958338E013F3D7AF00CF268F /* MixPlayerRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 958338D913F3D7AF00CF268F /* MixPlayerRecorder.m */; };
+		958338E113F3D7AF00CF268F /* TPCircularBuffer.c in Sources */ = {isa = PBXBuildFile; fileRef = 958338DA13F3D7AF00CF268F /* TPCircularBuffer.c */; };
+		958338F113F3D8A400CF268F /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 958338F013F3D8A400CF268F /* AudioToolbox.framework */; };
+		9583390A13F3DC3A00CF268F /* bass.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9583390513F3DC3A00CF268F /* bass.mp3 */; };
+		9583390B13F3DC3A00CF268F /* drums.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9583390613F3DC3A00CF268F /* drums.mp3 */; };
+		9583390C13F3DC3A00CF268F /* guitar.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9583390713F3DC3A00CF268F /* guitar.mp3 */; };
+		9583390D13F3DC3A00CF268F /* keys.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9583390813F3DC3A00CF268F /* keys.mp3 */; };
+		9583390E13F3DC3A00CF268F /* vocals.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9583390913F3DC3A00CF268F /* vocals.mp3 */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		958338AB13F3D78500CF268F /* FourthAttempt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FourthAttempt.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		958338AF13F3D78500CF268F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		958338B113F3D78500CF268F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		958338B313F3D78500CF268F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		958338B713F3D78500CF268F /* FourthAttempt-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FourthAttempt-Info.plist"; sourceTree = "<group>"; };
+		958338B913F3D78500CF268F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		958338BB13F3D78500CF268F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		958338BD13F3D78500CF268F /* FourthAttempt-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FourthAttempt-Prefix.pch"; sourceTree = "<group>"; };
+		958338BE13F3D78500CF268F /* FourthAttemptAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FourthAttemptAppDelegate.h; sourceTree = "<group>"; };
+		958338BF13F3D78500CF268F /* FourthAttemptAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FourthAttemptAppDelegate.m; sourceTree = "<group>"; };
+		958338C213F3D78500CF268F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
+		958338C413F3D78500CF268F /* FourthAttemptViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FourthAttemptViewController.h; sourceTree = "<group>"; };
+		958338C513F3D78500CF268F /* FourthAttemptViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FourthAttemptViewController.m; sourceTree = "<group>"; };
+		958338C813F3D78500CF268F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/FourthAttemptViewController.xib; sourceTree = "<group>"; };
+		958338D013F3D7AF00CF268F /* ASBDHelper.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ASBDHelper.c; path = ../../../Libraries/ASBDHelper.c; sourceTree = "<group>"; };
+		958338D113F3D7AF00CF268F /* ASBDHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASBDHelper.h; path = ../../../Libraries/ASBDHelper.h; sourceTree = "<group>"; };
+		958338D213F3D7AF00CF268F /* AudioFileRingBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AudioFileRingBuffer.h; path = ../../../Libraries/AudioFileRingBuffer.h; sourceTree = "<group>"; };
+		958338D313F3D7AF00CF268F /* AudioFileRingBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AudioFileRingBuffer.m; path = ../../../Libraries/AudioFileRingBuffer.m; sourceTree = "<group>"; };
+		958338D413F3D7AF00CF268F /* BoomzAUOutputCapturer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BoomzAUOutputCapturer.h; path = ../../../Libraries/BoomzAUOutputCapturer.h; sourceTree = "<group>"; };
+		958338D513F3D7AF00CF268F /* BoomzAUOutputCapturer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BoomzAUOutputCapturer.m; path = ../../../Libraries/BoomzAUOutputCapturer.m; sourceTree = "<group>"; };
+		958338D613F3D7AF00CF268F /* CAErrorHandling.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = CAErrorHandling.c; path = ../../../Libraries/CAErrorHandling.c; sourceTree = "<group>"; };
+		958338D713F3D7AF00CF268F /* CAErrorHandling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CAErrorHandling.h; path = ../../../Libraries/CAErrorHandling.h; sourceTree = "<group>"; };
+		958338D813F3D7AF00CF268F /* MixPlayerRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MixPlayerRecorder.h; path = ../../../Libraries/MixPlayerRecorder.h; sourceTree = "<group>"; };
+		958338D913F3D7AF00CF268F /* MixPlayerRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MixPlayerRecorder.m; path = ../../../Libraries/MixPlayerRecorder.m; sourceTree = "<group>"; };
+		958338DA13F3D7AF00CF268F /* TPCircularBuffer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = TPCircularBuffer.c; path = ../../../Libraries/TPCircularBuffer.c; sourceTree = "<group>"; };
+		958338DB13F3D7AF00CF268F /* TPCircularBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TPCircularBuffer.h; path = ../../../Libraries/TPCircularBuffer.h; sourceTree = "<group>"; };
+		958338F013F3D8A400CF268F /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		9583390513F3DC3A00CF268F /* bass.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = bass.mp3; path = ../../../SampleMedia/bass.mp3; sourceTree = "<group>"; };
+		9583390613F3DC3A00CF268F /* drums.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = drums.mp3; path = ../../../SampleMedia/drums.mp3; sourceTree = "<group>"; };
+		9583390713F3DC3A00CF268F /* guitar.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = guitar.mp3; path = ../../../SampleMedia/guitar.mp3; sourceTree = "<group>"; };
+		9583390813F3DC3A00CF268F /* keys.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = keys.mp3; path = ../../../SampleMedia/keys.mp3; sourceTree = "<group>"; };
+		9583390913F3DC3A00CF268F /* vocals.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = vocals.mp3; path = ../../../SampleMedia/vocals.mp3; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		958338A813F3D78500CF268F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				958338F113F3D8A400CF268F /* AudioToolbox.framework in Frameworks */,
+				958338B013F3D78500CF268F /* UIKit.framework in Frameworks */,
+				958338B213F3D78500CF268F /* Foundation.framework in Frameworks */,
+				958338B413F3D78500CF268F /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		958338A013F3D78500CF268F = {
+			isa = PBXGroup;
+			children = (
+				958338F013F3D8A400CF268F /* AudioToolbox.framework */,
+				958338E313F3D7DB00CF268F /* Resources */,
+				958338B513F3D78500CF268F /* FourthAttempt */,
+				958338AE13F3D78500CF268F /* Frameworks */,
+				958338AC13F3D78500CF268F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		958338AC13F3D78500CF268F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				958338AB13F3D78500CF268F /* FourthAttempt.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		958338AE13F3D78500CF268F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				958338AF13F3D78500CF268F /* UIKit.framework */,
+				958338B113F3D78500CF268F /* Foundation.framework */,
+				958338B313F3D78500CF268F /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		958338B513F3D78500CF268F /* FourthAttempt */ = {
+			isa = PBXGroup;
+			children = (
+				958338CF13F3D7A300CF268F /* Supporting Files */,
+				958338BE13F3D78500CF268F /* FourthAttemptAppDelegate.h */,
+				958338BF13F3D78500CF268F /* FourthAttemptAppDelegate.m */,
+				958338C113F3D78500CF268F /* MainWindow.xib */,
+				958338C413F3D78500CF268F /* FourthAttemptViewController.h */,
+				958338C513F3D78500CF268F /* FourthAttemptViewController.m */,
+				958338C713F3D78500CF268F /* FourthAttemptViewController.xib */,
+				958338B613F3D78500CF268F /* Supporting Files */,
+			);
+			path = FourthAttempt;
+			sourceTree = "<group>";
+		};
+		958338B613F3D78500CF268F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				958338B713F3D78500CF268F /* FourthAttempt-Info.plist */,
+				958338B813F3D78500CF268F /* InfoPlist.strings */,
+				958338BB13F3D78500CF268F /* main.m */,
+				958338BD13F3D78500CF268F /* FourthAttempt-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		958338CF13F3D7A300CF268F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				958338D013F3D7AF00CF268F /* ASBDHelper.c */,
+				958338D113F3D7AF00CF268F /* ASBDHelper.h */,
+				958338D213F3D7AF00CF268F /* AudioFileRingBuffer.h */,
+				958338D313F3D7AF00CF268F /* AudioFileRingBuffer.m */,
+				958338D413F3D7AF00CF268F /* BoomzAUOutputCapturer.h */,
+				958338D513F3D7AF00CF268F /* BoomzAUOutputCapturer.m */,
+				958338D613F3D7AF00CF268F /* CAErrorHandling.c */,
+				958338D713F3D7AF00CF268F /* CAErrorHandling.h */,
+				958338D813F3D7AF00CF268F /* MixPlayerRecorder.h */,
+				958338D913F3D7AF00CF268F /* MixPlayerRecorder.m */,
+				958338DA13F3D7AF00CF268F /* TPCircularBuffer.c */,
+				958338DB13F3D7AF00CF268F /* TPCircularBuffer.h */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		958338E313F3D7DB00CF268F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				9583390513F3DC3A00CF268F /* bass.mp3 */,
+				9583390613F3DC3A00CF268F /* drums.mp3 */,
+				9583390713F3DC3A00CF268F /* guitar.mp3 */,
+				9583390813F3DC3A00CF268F /* keys.mp3 */,
+				9583390913F3DC3A00CF268F /* vocals.mp3 */,
+			);
+			name = Resources;
+			path = FourthAttempt;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		958338AA13F3D78500CF268F /* FourthAttempt */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 958338CC13F3D78500CF268F /* Build configuration list for PBXNativeTarget "FourthAttempt" */;
+			buildPhases = (
+				958338A713F3D78500CF268F /* Sources */,
+				958338A813F3D78500CF268F /* Frameworks */,
+				958338A913F3D78500CF268F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FourthAttempt;
+			productName = FourthAttempt;
+			productReference = 958338AB13F3D78500CF268F /* FourthAttempt.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		958338A213F3D78500CF268F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = "mohawk.riceball@gmail.com";
+			};
+			buildConfigurationList = 958338A513F3D78500CF268F /* Build configuration list for PBXProject "FourthAttempt" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 958338A013F3D78500CF268F;
+			productRefGroup = 958338AC13F3D78500CF268F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				958338AA13F3D78500CF268F /* FourthAttempt */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		958338A913F3D78500CF268F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				958338BA13F3D78500CF268F /* InfoPlist.strings in Resources */,
+				958338C313F3D78500CF268F /* MainWindow.xib in Resources */,
+				958338C913F3D78500CF268F /* FourthAttemptViewController.xib in Resources */,
+				9583390A13F3DC3A00CF268F /* bass.mp3 in Resources */,
+				9583390B13F3DC3A00CF268F /* drums.mp3 in Resources */,
+				9583390C13F3DC3A00CF268F /* guitar.mp3 in Resources */,
+				9583390D13F3DC3A00CF268F /* keys.mp3 in Resources */,
+				9583390E13F3DC3A00CF268F /* vocals.mp3 in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		958338A713F3D78500CF268F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				958338BC13F3D78500CF268F /* main.m in Sources */,
+				958338C013F3D78500CF268F /* FourthAttemptAppDelegate.m in Sources */,
+				958338C613F3D78500CF268F /* FourthAttemptViewController.m in Sources */,
+				958338DC13F3D7AF00CF268F /* ASBDHelper.c in Sources */,
+				958338DD13F3D7AF00CF268F /* AudioFileRingBuffer.m in Sources */,
+				958338DE13F3D7AF00CF268F /* BoomzAUOutputCapturer.m in Sources */,
+				958338DF13F3D7AF00CF268F /* CAErrorHandling.c in Sources */,
+				958338E013F3D7AF00CF268F /* MixPlayerRecorder.m in Sources */,
+				958338E113F3D7AF00CF268F /* TPCircularBuffer.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		958338B813F3D78500CF268F /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				958338B913F3D78500CF268F /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		958338C113F3D78500CF268F /* MainWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				958338C213F3D78500CF268F /* en */,
+			);
+			name = MainWindow.xib;
+			sourceTree = "<group>";
+		};
+		958338C713F3D78500CF268F /* FourthAttemptViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				958338C813F3D78500CF268F /* en */,
+			);
+			name = FourthAttemptViewController.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		958338CA13F3D78500CF268F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		958338CB13F3D78500CF268F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		958338CD13F3D78500CF268F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "FourthAttempt/FourthAttempt-Prefix.pch";
+				INFOPLIST_FILE = "FourthAttempt/FourthAttempt-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		958338CE13F3D78500CF268F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "FourthAttempt/FourthAttempt-Prefix.pch";
+				INFOPLIST_FILE = "FourthAttempt/FourthAttempt-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		958338A513F3D78500CF268F /* Build configuration list for PBXProject "FourthAttempt" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				958338CA13F3D78500CF268F /* Debug */,
+				958338CB13F3D78500CF268F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		958338CC13F3D78500CF268F /* Build configuration list for PBXNativeTarget "FourthAttempt" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				958338CD13F3D78500CF268F /* Debug */,
+				958338CE13F3D78500CF268F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 958338A213F3D78500CF268F /* Project object */;
+}
