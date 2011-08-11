@@ -8,7 +8,6 @@
 
 #define kOutputBus 0
 #define kInputBus 1
-#define sineFrequency 880.0
 
 #import "SimpleAudioRenderTestViewController.h"
 
@@ -200,7 +199,7 @@ static OSStatus playbackCallback(void *inRefCon,
     TPCircularBufferCopy(&bufferRecord, buffer, tempBufList.mBuffers[0].mData, inNumFrames * asbd.mChannelsPerFrame, sizeof(SInt16));
     [bufferRecordLock unlock];
     
-    //free(&tempBufList);
+    free(tempBufList.mBuffers[0].mData);
     
 }
 
