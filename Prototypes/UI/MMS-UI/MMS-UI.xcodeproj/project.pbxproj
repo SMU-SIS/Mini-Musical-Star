@@ -1,0 +1,528 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		ED79D3A313F27D6E003E42B2 /* Create.m in Sources */ = {isa = PBXBuildFile; fileRef = ED79D3A113F27D6E003E42B2 /* Create.m */; };
+		ED79D3A413F27D6E003E42B2 /* Create.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED79D3A213F27D6E003E42B2 /* Create.xib */; };
+		EDA2A1C513F26F8400B64EA5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDA2A1C413F26F8400B64EA5 /* UIKit.framework */; };
+		EDA2A1C713F26F8400B64EA5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDA2A1C613F26F8400B64EA5 /* Foundation.framework */; };
+		EDA2A1C913F26F8400B64EA5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDA2A1C813F26F8400B64EA5 /* CoreGraphics.framework */; };
+		EDA2A1CF13F26F8400B64EA5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EDA2A1CD13F26F8400B64EA5 /* InfoPlist.strings */; };
+		EDA2A1D213F26F8400B64EA5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA2A1D113F26F8400B64EA5 /* main.m */; };
+		EDA2A1D513F26F8400B64EA5 /* MMS_UIAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA2A1D413F26F8400B64EA5 /* MMS_UIAppDelegate.m */; };
+		EDA2A1D813F26F8400B64EA5 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDA2A1D613F26F8400B64EA5 /* MainWindow.xib */; };
+		EDA2A1DB13F26F8400B64EA5 /* MMS_UIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA2A1DA13F26F8400B64EA5 /* MMS_UIViewController.m */; };
+		EDA2A1DE13F26F8400B64EA5 /* MMS_UIViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDA2A1DC13F26F8400B64EA5 /* MMS_UIViewController.xib */; };
+		EDA2A1E513F26F8400B64EA5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDA2A1C413F26F8400B64EA5 /* UIKit.framework */; };
+		EDA2A1E613F26F8400B64EA5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDA2A1C613F26F8400B64EA5 /* Foundation.framework */; };
+		EDA2A1E713F26F8400B64EA5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDA2A1C813F26F8400B64EA5 /* CoreGraphics.framework */; };
+		EDA2A1EF13F26F8400B64EA5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EDA2A1ED13F26F8400B64EA5 /* InfoPlist.strings */; };
+		EDA2A1F213F26F8400B64EA5 /* MMS_UITests.h in Resources */ = {isa = PBXBuildFile; fileRef = EDA2A1F113F26F8400B64EA5 /* MMS_UITests.h */; };
+		EDA2A1F413F26F8500B64EA5 /* MMS_UITests.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA2A1F313F26F8500B64EA5 /* MMS_UITests.m */; };
+		EDA2A20313F2726100B64EA5 /* glee1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EDA2A20013F2726100B64EA5 /* glee1.jpg */; };
+		EDA2A20413F2726100B64EA5 /* glee2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EDA2A20113F2726100B64EA5 /* glee2.jpg */; };
+		EDA2A20513F2726100B64EA5 /* glee3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EDA2A20213F2726100B64EA5 /* glee3.jpg */; };
+		EDA2A20913F2726B00B64EA5 /* edit.png in Resources */ = {isa = PBXBuildFile; fileRef = EDA2A20613F2726B00B64EA5 /* edit.png */; };
+		EDA2A20A13F2726B00B64EA5 /* new.png in Resources */ = {isa = PBXBuildFile; fileRef = EDA2A20713F2726B00B64EA5 /* new.png */; };
+		EDA2A20B13F2726B00B64EA5 /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = EDA2A20813F2726B00B64EA5 /* play.png */; };
+		EDA2A20E13F272BF00B64EA5 /* ShowImage.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA2A20D13F272BF00B64EA5 /* ShowImage.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		EDA2A1E813F26F8400B64EA5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EDA2A1B713F26F8300B64EA5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EDA2A1BF13F26F8400B64EA5;
+			remoteInfo = "MMS-UI";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		ED79D3A013F27D6E003E42B2 /* Create.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Create.h; sourceTree = "<group>"; };
+		ED79D3A113F27D6E003E42B2 /* Create.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Create.m; sourceTree = "<group>"; };
+		ED79D3A213F27D6E003E42B2 /* Create.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Create.xib; sourceTree = "<group>"; };
+		EDA2A1C013F26F8400B64EA5 /* MMS-UI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MMS-UI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EDA2A1C413F26F8400B64EA5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		EDA2A1C613F26F8400B64EA5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		EDA2A1C813F26F8400B64EA5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		EDA2A1CC13F26F8400B64EA5 /* MMS-UI-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MMS-UI-Info.plist"; sourceTree = "<group>"; };
+		EDA2A1CE13F26F8400B64EA5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		EDA2A1D013F26F8400B64EA5 /* MMS-UI-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MMS-UI-Prefix.pch"; sourceTree = "<group>"; };
+		EDA2A1D113F26F8400B64EA5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		EDA2A1D313F26F8400B64EA5 /* MMS_UIAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MMS_UIAppDelegate.h; sourceTree = "<group>"; };
+		EDA2A1D413F26F8400B64EA5 /* MMS_UIAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MMS_UIAppDelegate.m; sourceTree = "<group>"; };
+		EDA2A1D713F26F8400B64EA5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
+		EDA2A1D913F26F8400B64EA5 /* MMS_UIViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MMS_UIViewController.h; sourceTree = "<group>"; };
+		EDA2A1DA13F26F8400B64EA5 /* MMS_UIViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MMS_UIViewController.m; sourceTree = "<group>"; };
+		EDA2A1DD13F26F8400B64EA5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MMS_UIViewController.xib; sourceTree = "<group>"; };
+		EDA2A1E413F26F8400B64EA5 /* MMS-UITests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "MMS-UITests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EDA2A1EC13F26F8400B64EA5 /* MMS-UITests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MMS-UITests-Info.plist"; sourceTree = "<group>"; };
+		EDA2A1EE13F26F8400B64EA5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		EDA2A1F013F26F8400B64EA5 /* MMS-UITests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MMS-UITests-Prefix.pch"; sourceTree = "<group>"; };
+		EDA2A1F113F26F8400B64EA5 /* MMS_UITests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MMS_UITests.h; sourceTree = "<group>"; };
+		EDA2A1F313F26F8500B64EA5 /* MMS_UITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MMS_UITests.m; sourceTree = "<group>"; };
+		EDA2A20013F2726100B64EA5 /* glee1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = glee1.jpg; path = "Images/Musical Images/glee1.jpg"; sourceTree = SOURCE_ROOT; };
+		EDA2A20113F2726100B64EA5 /* glee2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = glee2.jpg; path = "Images/Musical Images/glee2.jpg"; sourceTree = SOURCE_ROOT; };
+		EDA2A20213F2726100B64EA5 /* glee3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = glee3.jpg; path = "Images/Musical Images/glee3.jpg"; sourceTree = SOURCE_ROOT; };
+		EDA2A20613F2726B00B64EA5 /* edit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = edit.png; path = Images/Buttons/edit.png; sourceTree = SOURCE_ROOT; };
+		EDA2A20713F2726B00B64EA5 /* new.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = new.png; path = Images/Buttons/new.png; sourceTree = SOURCE_ROOT; };
+		EDA2A20813F2726B00B64EA5 /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = play.png; path = Images/Buttons/play.png; sourceTree = SOURCE_ROOT; };
+		EDA2A20C13F272BF00B64EA5 /* ShowImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowImage.h; sourceTree = "<group>"; };
+		EDA2A20D13F272BF00B64EA5 /* ShowImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowImage.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EDA2A1BD13F26F8400B64EA5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EDA2A1C513F26F8400B64EA5 /* UIKit.framework in Frameworks */,
+				EDA2A1C713F26F8400B64EA5 /* Foundation.framework in Frameworks */,
+				EDA2A1C913F26F8400B64EA5 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EDA2A1E013F26F8400B64EA5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EDA2A1E513F26F8400B64EA5 /* UIKit.framework in Frameworks */,
+				EDA2A1E613F26F8400B64EA5 /* Foundation.framework in Frameworks */,
+				EDA2A1E713F26F8400B64EA5 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		EDA2A1B513F26F8300B64EA5 = {
+			isa = PBXGroup;
+			children = (
+				EDA2A1CA13F26F8400B64EA5 /* MMS-UI */,
+				EDA2A1EA13F26F8400B64EA5 /* MMS-UITests */,
+				EDA2A1C313F26F8400B64EA5 /* Frameworks */,
+				EDA2A1C113F26F8400B64EA5 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		EDA2A1C113F26F8400B64EA5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EDA2A1C013F26F8400B64EA5 /* MMS-UI.app */,
+				EDA2A1E413F26F8400B64EA5 /* MMS-UITests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EDA2A1C313F26F8400B64EA5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EDA2A1C413F26F8400B64EA5 /* UIKit.framework */,
+				EDA2A1C613F26F8400B64EA5 /* Foundation.framework */,
+				EDA2A1C813F26F8400B64EA5 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EDA2A1CA13F26F8400B64EA5 /* MMS-UI */ = {
+			isa = PBXGroup;
+			children = (
+				EDA2A1FD13F2712000B64EA5 /* Images */,
+				EDA2A1D313F26F8400B64EA5 /* MMS_UIAppDelegate.h */,
+				EDA2A1D413F26F8400B64EA5 /* MMS_UIAppDelegate.m */,
+				EDA2A1D613F26F8400B64EA5 /* MainWindow.xib */,
+				EDA2A1D913F26F8400B64EA5 /* MMS_UIViewController.h */,
+				EDA2A1DA13F26F8400B64EA5 /* MMS_UIViewController.m */,
+				EDA2A1DC13F26F8400B64EA5 /* MMS_UIViewController.xib */,
+				EDA2A1CB13F26F8400B64EA5 /* Supporting Files */,
+				EDA2A20C13F272BF00B64EA5 /* ShowImage.h */,
+				EDA2A20D13F272BF00B64EA5 /* ShowImage.m */,
+				ED79D3A013F27D6E003E42B2 /* Create.h */,
+				ED79D3A113F27D6E003E42B2 /* Create.m */,
+				ED79D3A213F27D6E003E42B2 /* Create.xib */,
+			);
+			path = "MMS-UI";
+			sourceTree = "<group>";
+		};
+		EDA2A1CB13F26F8400B64EA5 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				EDA2A1CC13F26F8400B64EA5 /* MMS-UI-Info.plist */,
+				EDA2A1CD13F26F8400B64EA5 /* InfoPlist.strings */,
+				EDA2A1D013F26F8400B64EA5 /* MMS-UI-Prefix.pch */,
+				EDA2A1D113F26F8400B64EA5 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		EDA2A1EA13F26F8400B64EA5 /* MMS-UITests */ = {
+			isa = PBXGroup;
+			children = (
+				EDA2A1F113F26F8400B64EA5 /* MMS_UITests.h */,
+				EDA2A1F313F26F8500B64EA5 /* MMS_UITests.m */,
+				EDA2A1EB13F26F8400B64EA5 /* Supporting Files */,
+			);
+			path = "MMS-UITests";
+			sourceTree = "<group>";
+		};
+		EDA2A1EB13F26F8400B64EA5 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				EDA2A1EC13F26F8400B64EA5 /* MMS-UITests-Info.plist */,
+				EDA2A1ED13F26F8400B64EA5 /* InfoPlist.strings */,
+				EDA2A1F013F26F8400B64EA5 /* MMS-UITests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		EDA2A1FD13F2712000B64EA5 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				EDA2A1FF13F2713400B64EA5 /* Show Images */,
+				EDA2A1FE13F2713000B64EA5 /* Buttons */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+		EDA2A1FE13F2713000B64EA5 /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				EDA2A20613F2726B00B64EA5 /* edit.png */,
+				EDA2A20713F2726B00B64EA5 /* new.png */,
+				EDA2A20813F2726B00B64EA5 /* play.png */,
+			);
+			name = Buttons;
+			sourceTree = "<group>";
+		};
+		EDA2A1FF13F2713400B64EA5 /* Show Images */ = {
+			isa = PBXGroup;
+			children = (
+				EDA2A20013F2726100B64EA5 /* glee1.jpg */,
+				EDA2A20113F2726100B64EA5 /* glee2.jpg */,
+				EDA2A20213F2726100B64EA5 /* glee3.jpg */,
+			);
+			name = "Show Images";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		EDA2A1BF13F26F8400B64EA5 /* MMS-UI */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EDA2A1F713F26F8500B64EA5 /* Build configuration list for PBXNativeTarget "MMS-UI" */;
+			buildPhases = (
+				EDA2A1BC13F26F8400B64EA5 /* Sources */,
+				EDA2A1BD13F26F8400B64EA5 /* Frameworks */,
+				EDA2A1BE13F26F8400B64EA5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "MMS-UI";
+			productName = "MMS-UI";
+			productReference = EDA2A1C013F26F8400B64EA5 /* MMS-UI.app */;
+			productType = "com.apple.product-type.application";
+		};
+		EDA2A1E313F26F8400B64EA5 /* MMS-UITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EDA2A1FA13F26F8500B64EA5 /* Build configuration list for PBXNativeTarget "MMS-UITests" */;
+			buildPhases = (
+				EDA2A1DF13F26F8400B64EA5 /* Sources */,
+				EDA2A1E013F26F8400B64EA5 /* Frameworks */,
+				EDA2A1E113F26F8400B64EA5 /* Resources */,
+				EDA2A1E213F26F8400B64EA5 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EDA2A1E913F26F8400B64EA5 /* PBXTargetDependency */,
+			);
+			name = "MMS-UITests";
+			productName = "MMS-UITests";
+			productReference = EDA2A1E413F26F8400B64EA5 /* MMS-UITests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EDA2A1B713F26F8300B64EA5 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = EDA2A1BA13F26F8300B64EA5 /* Build configuration list for PBXProject "MMS-UI" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = EDA2A1B513F26F8300B64EA5;
+			productRefGroup = EDA2A1C113F26F8400B64EA5 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EDA2A1BF13F26F8400B64EA5 /* MMS-UI */,
+				EDA2A1E313F26F8400B64EA5 /* MMS-UITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EDA2A1BE13F26F8400B64EA5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EDA2A1CF13F26F8400B64EA5 /* InfoPlist.strings in Resources */,
+				EDA2A1D813F26F8400B64EA5 /* MainWindow.xib in Resources */,
+				EDA2A1DE13F26F8400B64EA5 /* MMS_UIViewController.xib in Resources */,
+				EDA2A20313F2726100B64EA5 /* glee1.jpg in Resources */,
+				EDA2A20413F2726100B64EA5 /* glee2.jpg in Resources */,
+				EDA2A20513F2726100B64EA5 /* glee3.jpg in Resources */,
+				EDA2A20913F2726B00B64EA5 /* edit.png in Resources */,
+				EDA2A20A13F2726B00B64EA5 /* new.png in Resources */,
+				EDA2A20B13F2726B00B64EA5 /* play.png in Resources */,
+				ED79D3A413F27D6E003E42B2 /* Create.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EDA2A1E113F26F8400B64EA5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EDA2A1EF13F26F8400B64EA5 /* InfoPlist.strings in Resources */,
+				EDA2A1F213F26F8400B64EA5 /* MMS_UITests.h in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		EDA2A1E213F26F8400B64EA5 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EDA2A1BC13F26F8400B64EA5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EDA2A1D213F26F8400B64EA5 /* main.m in Sources */,
+				EDA2A1D513F26F8400B64EA5 /* MMS_UIAppDelegate.m in Sources */,
+				EDA2A1DB13F26F8400B64EA5 /* MMS_UIViewController.m in Sources */,
+				EDA2A20E13F272BF00B64EA5 /* ShowImage.m in Sources */,
+				ED79D3A313F27D6E003E42B2 /* Create.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EDA2A1DF13F26F8400B64EA5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EDA2A1F413F26F8500B64EA5 /* MMS_UITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		EDA2A1E913F26F8400B64EA5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EDA2A1BF13F26F8400B64EA5 /* MMS-UI */;
+			targetProxy = EDA2A1E813F26F8400B64EA5 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		EDA2A1CD13F26F8400B64EA5 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EDA2A1CE13F26F8400B64EA5 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		EDA2A1D613F26F8400B64EA5 /* MainWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EDA2A1D713F26F8400B64EA5 /* en */,
+			);
+			name = MainWindow.xib;
+			sourceTree = "<group>";
+		};
+		EDA2A1DC13F26F8400B64EA5 /* MMS_UIViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EDA2A1DD13F26F8400B64EA5 /* en */,
+			);
+			name = MMS_UIViewController.xib;
+			sourceTree = "<group>";
+		};
+		EDA2A1ED13F26F8400B64EA5 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EDA2A1EE13F26F8400B64EA5 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		EDA2A1F513F26F8500B64EA5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		EDA2A1F613F26F8500B64EA5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Release;
+		};
+		EDA2A1F813F26F8500B64EA5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MMS-UI/MMS-UI-Prefix.pch";
+				INFOPLIST_FILE = "MMS-UI/MMS-UI-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		EDA2A1F913F26F8500B64EA5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MMS-UI/MMS-UI-Prefix.pch";
+				INFOPLIST_FILE = "MMS-UI/MMS-UI-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		EDA2A1FB13F26F8500B64EA5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MMS-UI.app/MMS-UI";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MMS-UITests/MMS-UITests-Prefix.pch";
+				INFOPLIST_FILE = "MMS-UITests/MMS-UITests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		EDA2A1FC13F26F8500B64EA5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MMS-UI.app/MMS-UI";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MMS-UITests/MMS-UITests-Prefix.pch";
+				INFOPLIST_FILE = "MMS-UITests/MMS-UITests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EDA2A1BA13F26F8300B64EA5 /* Build configuration list for PBXProject "MMS-UI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EDA2A1F513F26F8500B64EA5 /* Debug */,
+				EDA2A1F613F26F8500B64EA5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EDA2A1F713F26F8500B64EA5 /* Build configuration list for PBXNativeTarget "MMS-UI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EDA2A1F813F26F8500B64EA5 /* Debug */,
+				EDA2A1F913F26F8500B64EA5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EDA2A1FA13F26F8500B64EA5 /* Build configuration list for PBXNativeTarget "MMS-UITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EDA2A1FB13F26F8500B64EA5 /* Debug */,
+				EDA2A1FC13F26F8500B64EA5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EDA2A1B713F26F8300B64EA5 /* Project object */;
+}
