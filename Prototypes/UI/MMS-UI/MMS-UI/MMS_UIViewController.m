@@ -8,6 +8,7 @@
 
 #import "MMS_UIViewController.h"
 #import "Create.h"
+#import "Scene.h"
 
 @implementation MMS_UIViewController
 
@@ -98,15 +99,15 @@
 
 //Button action for creating new musical
 - (IBAction)createMusical {
-    Create *createView = [[Create alloc] initWithNibName:nil bundle:nil];
+    Scene *sceneView = [[Scene alloc] initWithNibName:nil bundle:nil];
     
     int current = [self currentPage];    
-    [createView setImageNum:current];
+    [sceneView setImageNum:current];
     
-    createView.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-    [self presentModalViewController:createView animated:YES];
+    sceneView.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    [self presentModalViewController:sceneView animated:YES];
     
-    [createView release];
+    [sceneView release];
 }
 
 -(int)currentPage

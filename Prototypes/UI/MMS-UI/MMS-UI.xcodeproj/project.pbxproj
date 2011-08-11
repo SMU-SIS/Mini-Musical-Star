@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		820511BF13F3BB9B0016F87E /* Scene.m in Sources */ = {isa = PBXBuildFile; fileRef = 820511BD13F3BB9B0016F87E /* Scene.m */; };
+		820511C013F3BB9B0016F87E /* Scene.xib in Resources */ = {isa = PBXBuildFile; fileRef = 820511BE13F3BB9B0016F87E /* Scene.xib */; };
 		ED79D3A313F27D6E003E42B2 /* Create.m in Sources */ = {isa = PBXBuildFile; fileRef = ED79D3A113F27D6E003E42B2 /* Create.m */; };
 		ED79D3A413F27D6E003E42B2 /* Create.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED79D3A213F27D6E003E42B2 /* Create.xib */; };
 		EDA2A1C513F26F8400B64EA5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDA2A1C413F26F8400B64EA5 /* UIKit.framework */; };
@@ -44,6 +46,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		820511BC13F3BB9B0016F87E /* Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scene.h; sourceTree = "<group>"; };
+		820511BD13F3BB9B0016F87E /* Scene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Scene.m; sourceTree = "<group>"; };
+		820511BE13F3BB9B0016F87E /* Scene.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Scene.xib; sourceTree = "<group>"; };
 		ED79D3A013F27D6E003E42B2 /* Create.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Create.h; sourceTree = "<group>"; };
 		ED79D3A113F27D6E003E42B2 /* Create.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Create.m; sourceTree = "<group>"; };
 		ED79D3A213F27D6E003E42B2 /* Create.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Create.xib; sourceTree = "<group>"; };
@@ -146,6 +151,9 @@
 				ED79D3A013F27D6E003E42B2 /* Create.h */,
 				ED79D3A113F27D6E003E42B2 /* Create.m */,
 				ED79D3A213F27D6E003E42B2 /* Create.xib */,
+				820511BC13F3BB9B0016F87E /* Scene.h */,
+				820511BD13F3BB9B0016F87E /* Scene.m */,
+				820511BE13F3BB9B0016F87E /* Scene.xib */,
 			);
 			path = "MMS-UI";
 			sourceTree = "<group>";
@@ -287,6 +295,7 @@
 				EDA2A20A13F2726B00B64EA5 /* new.png in Resources */,
 				EDA2A20B13F2726B00B64EA5 /* play.png in Resources */,
 				ED79D3A413F27D6E003E42B2 /* Create.xib in Resources */,
+				820511C013F3BB9B0016F87E /* Scene.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -327,6 +336,7 @@
 				EDA2A1DB13F26F8400B64EA5 /* MMS_UIViewController.m in Sources */,
 				EDA2A20E13F272BF00B64EA5 /* ShowImage.m in Sources */,
 				ED79D3A313F27D6E003E42B2 /* Create.m in Sources */,
+				820511BF13F3BB9B0016F87E /* Scene.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
