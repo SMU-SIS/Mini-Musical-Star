@@ -78,46 +78,27 @@
     return YES;
 }
 
--(IBAction)toggleToImage
+-(IBAction)setToggleMenu
 {
-    CGRect rect2 = CGRectMake(0, 0, toggleview.frame.size.width, toggleview.frame.size.height);
+    //int selection;
+	//election = segControl.selectedSegmentIndex;
     
-    imageView2 = [[UIImageView alloc] initWithFrame:rect2];
-    imageView2.image = [UIImage imageNamed:@"glee2.jpg"];
-    [toggleview addSubview:imageView2];
-    [imageView2 release];
-}
+    if (segControl.selectedSegmentIndex == 0) {
+        CGRect rect2 = CGRectMake(0, 0, toggleview.frame.size.width, toggleview.frame.size.height);
+        
+        imageView2 = [[UIImageView alloc] initWithFrame:rect2];
+        imageView2.image = [UIImage imageNamed:@"glee1.jpg"];
+        [toggleview addSubview:imageView2];
+        [imageView2 release];        
+    }
+    else if (segControl.selectedSegmentIndex == 1) {
+        CGRect rect1 = CGRectMake(0, 0, toggleview.frame.size.width, toggleview.frame.size.height);
+        imageView1 = [[UIImageView alloc] initWithFrame:rect1];
+        imageView1.image = [UIImage imageNamed:@"glee2.jpg"];
+        [toggleview addSubview:imageView1];
+        [imageView1 release];    
+    }
 
--(IBAction)toggleToAudio
-{
-    CGRect rect1 = CGRectMake(0, 0, toggleview.frame.size.width, toggleview.frame.size.height);
-    imageView1 = [[UIImageView alloc] initWithFrame:rect1];
-    imageView1.image = [UIImage imageNamed:@"glee1.jpg"];
-    [toggleview addSubview:imageView1];
-    [imageView1 release];
-}
-
--(void)setToggleMenu
-{
-    int colorNum;
-	colorNum=segControl.selectedSegmentIndex;
-	switch (colorNum) {
-		case 0:
-			CGRect rect2 = CGRectMake(0, 0, toggleview.frame.size.width, toggleview.frame.size.height);
-            
-            imageView2 = [[UIImageView alloc] initWithFrame:rect2];
-            imageView2.image = [UIImage imageNamed:@"glee2.jpg"];
-            [toggleview addSubview:imageView2];
-            [imageView2 release];
-			break;
-		case 1:
-            CGRect rect1 = CGRectMake(0, 0, toggleview.frame.size.width, toggleview.frame.size.height);
-            imageView1 = [[UIImageView alloc] initWithFrame:rect1];
-            imageView1.image = [UIImage imageNamed:@"glee1.jpg"];
-            [toggleview addSubview:imageView1];
-            [imageView1 release];
-			break;
-	}    
 }
 
 @end

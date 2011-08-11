@@ -17,6 +17,8 @@
     
     UIImageView *imageView1;
     UIImageView *imageView2;
+    
+    IBOutlet UISegmentedControl *segControl;
 }
 
 @property (nonatomic, assign) int imageNum;
@@ -25,9 +27,6 @@
 -(int)getImageNum;
 -(IBAction)backToMenu;
 
--(IBAction)toggleToImage;
--(IBAction)toggleToAudio;
-
--(void)setToggleMenu;
+-(IBAction)setToggleMenu;
 
 @end
