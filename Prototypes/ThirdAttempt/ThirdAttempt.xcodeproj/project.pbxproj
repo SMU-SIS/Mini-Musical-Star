@@ -7,12 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1C0099B713E9477700666A9D /* Fire.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 1C0099B613E9477700666A9D /* Fire.m4a */; };
-		1C0099D413E99E2C00666A9D /* bass.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1C0099CF13E99E2C00666A9D /* bass.mp3 */; };
-		1C0099D513E99E2C00666A9D /* drums.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1C0099D013E99E2C00666A9D /* drums.mp3 */; };
-		1C0099D613E99E2C00666A9D /* guitar.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1C0099D113E99E2C00666A9D /* guitar.mp3 */; };
-		1C0099D713E99E2C00666A9D /* keys.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1C0099D213E99E2C00666A9D /* keys.mp3 */; };
-		1C0099D813E99E2C00666A9D /* vocals.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1C0099D313E99E2C00666A9D /* vocals.mp3 */; };
 		1C0CA2C613EA9DB9001C2E67 /* glee1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1C0CA2C313EA9DB9001C2E67 /* glee1.jpg */; };
 		1C0CA2C713EA9DB9001C2E67 /* glee2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1C0CA2C413EA9DB9001C2E67 /* glee2.jpg */; };
 		1C0CA2C813EA9DB9001C2E67 /* glee3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1C0CA2C513EA9DB9001C2E67 /* glee3.jpg */; };
@@ -30,11 +24,9 @@
 		1C6E1DC713B629CA006D12DA /* ThirdAttemptViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C6E1DC513B629CA006D12DA /* ThirdAttemptViewController.xib */; };
 		1C6E1DCF13B62A28006D12DA /* KaraokeRecorderController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C6E1DCE13B62A28006D12DA /* KaraokeRecorderController.m */; };
 		1C6E1DE713B64258006D12DA /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C6E1DE613B64258006D12DA /* AudioToolbox.framework */; };
-		1C6E1DFC13B65659006D12DA /* Secrets.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1C6E1DFB13B65659006D12DA /* Secrets.mp3 */; };
 		1C7F937813E7182300367773 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C7F937713E7182300367773 /* AVFoundation.framework */; };
 		1C897D7413C1FE33009B9694 /* CAErrorHandling.c in Sources */ = {isa = PBXBuildFile; fileRef = 1C897D7213C1FE33009B9694 /* CAErrorHandling.c */; };
 		1C897D7D13C205E0009B9694 /* ASBDHelper.c in Sources */ = {isa = PBXBuildFile; fileRef = 1C897D7B13C205E0009B9694 /* ASBDHelper.c */; };
-		1C897D8813C4A082009B9694 /* BoomzAUOutputCapturer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C897D8713C4A082009B9694 /* BoomzAUOutputCapturer.m */; };
 		1C994D3713EA60F1005C0786 /* MixPlayback.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C994D3613EA60F1005C0786 /* MixPlayback.m */; };
 		1C994D4713EA7E65005C0786 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C994D4613EA7E65005C0786 /* CoreMedia.framework */; };
 		1CD096E413C754DB00FE33E9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C6E1DAD13B629CA006D12DA /* UIKit.framework */; };
@@ -42,15 +34,17 @@
 		1CD096E613C754DB00FE33E9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C6E1DB113B629CA006D12DA /* CoreGraphics.framework */; };
 		1CD096EC13C754DB00FE33E9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1CD096EA13C754DB00FE33E9 /* InfoPlist.strings */; };
 		1CD0970213C756A300FE33E9 /* GHUnitIOSTestMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CD0970113C756A300FE33E9 /* GHUnitIOSTestMain.m */; };
+		9583391F13F3E8C600CF268F /* bass.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9583391813F3E8C600CF268F /* bass.mp3 */; };
+		9583392013F3E8C600CF268F /* drums.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9583391913F3E8C600CF268F /* drums.mp3 */; };
+		9583392113F3E8C600CF268F /* Fire.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 9583391A13F3E8C600CF268F /* Fire.m4a */; };
+		9583392213F3E8C600CF268F /* guitar.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9583391B13F3E8C600CF268F /* guitar.mp3 */; };
+		9583392313F3E8C600CF268F /* keys.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9583391C13F3E8C600CF268F /* keys.mp3 */; };
+		9583392413F3E8C600CF268F /* Secrets.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9583391D13F3E8C600CF268F /* Secrets.mp3 */; };
+		9583392513F3E8C600CF268F /* vocals.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9583391E13F3E8C600CF268F /* vocals.mp3 */; };
+		9583392813F3E8D600CF268F /* BoomzAUOutputCapturer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9583392713F3E8D600CF268F /* BoomzAUOutputCapturer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1C0099B613E9477700666A9D /* Fire.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = Fire.m4a; sourceTree = "<group>"; };
-		1C0099CF13E99E2C00666A9D /* bass.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bass.mp3; sourceTree = "<group>"; };
-		1C0099D013E99E2C00666A9D /* drums.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = drums.mp3; sourceTree = "<group>"; };
-		1C0099D113E99E2C00666A9D /* guitar.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = guitar.mp3; sourceTree = "<group>"; };
-		1C0099D213E99E2C00666A9D /* keys.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = keys.mp3; sourceTree = "<group>"; };
-		1C0099D313E99E2C00666A9D /* vocals.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = vocals.mp3; sourceTree = "<group>"; };
 		1C0CA2C313EA9DB9001C2E67 /* glee1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = glee1.jpg; sourceTree = "<group>"; };
 		1C0CA2C413EA9DB9001C2E67 /* glee2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = glee2.jpg; sourceTree = "<group>"; };
 		1C0CA2C513EA9DB9001C2E67 /* glee3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = glee3.jpg; sourceTree = "<group>"; };
@@ -81,14 +75,11 @@
 		1C6E1DCD13B62A28006D12DA /* KaraokeRecorderController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KaraokeRecorderController.h; path = ../KaraokeRecorderController.h; sourceTree = "<group>"; };
 		1C6E1DCE13B62A28006D12DA /* KaraokeRecorderController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KaraokeRecorderController.m; path = ../KaraokeRecorderController.m; sourceTree = "<group>"; };
 		1C6E1DE613B64258006D12DA /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		1C6E1DFB13B65659006D12DA /* Secrets.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Secrets.mp3; sourceTree = "<group>"; };
 		1C7F937713E7182300367773 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		1C897D7213C1FE33009B9694 /* CAErrorHandling.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CAErrorHandling.c; sourceTree = "<group>"; };
 		1C897D7313C1FE33009B9694 /* CAErrorHandling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAErrorHandling.h; sourceTree = "<group>"; };
 		1C897D7B13C205E0009B9694 /* ASBDHelper.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ASBDHelper.c; sourceTree = "<group>"; };
 		1C897D7C13C205E0009B9694 /* ASBDHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASBDHelper.h; sourceTree = "<group>"; };
-		1C897D8613C4A082009B9694 /* BoomzAUOutputCapturer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoomzAUOutputCapturer.h; sourceTree = "<group>"; };
-		1C897D8713C4A082009B9694 /* BoomzAUOutputCapturer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoomzAUOutputCapturer.m; sourceTree = "<group>"; };
 		1C994D3513EA60F1005C0786 /* MixPlayback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MixPlayback.h; sourceTree = "<group>"; };
 		1C994D3613EA60F1005C0786 /* MixPlayback.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MixPlayback.m; sourceTree = "<group>"; };
 		1C994D4613EA7E65005C0786 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
@@ -96,6 +87,15 @@
 		1CD096E913C754DB00FE33E9 /* MyProjTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MyProjTests-Info.plist"; sourceTree = "<group>"; };
 		1CD096EB13C754DB00FE33E9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1CD0970113C756A300FE33E9 /* GHUnitIOSTestMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GHUnitIOSTestMain.m; path = ../../../Libraries/GHUnitIOSTestMain.m; sourceTree = "<group>"; };
+		9583391813F3E8C600CF268F /* bass.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = bass.mp3; path = ../../SampleMedia/bass.mp3; sourceTree = "<group>"; };
+		9583391913F3E8C600CF268F /* drums.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = drums.mp3; path = ../../SampleMedia/drums.mp3; sourceTree = "<group>"; };
+		9583391A13F3E8C600CF268F /* Fire.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = Fire.m4a; path = ../../SampleMedia/Fire.m4a; sourceTree = "<group>"; };
+		9583391B13F3E8C600CF268F /* guitar.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = guitar.mp3; path = ../../SampleMedia/guitar.mp3; sourceTree = "<group>"; };
+		9583391C13F3E8C600CF268F /* keys.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = keys.mp3; path = ../../SampleMedia/keys.mp3; sourceTree = "<group>"; };
+		9583391D13F3E8C600CF268F /* Secrets.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Secrets.mp3; path = ../../SampleMedia/Secrets.mp3; sourceTree = "<group>"; };
+		9583391E13F3E8C600CF268F /* vocals.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = vocals.mp3; path = ../../SampleMedia/vocals.mp3; sourceTree = "<group>"; };
+		9583392613F3E8D600CF268F /* BoomzAUOutputCapturer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BoomzAUOutputCapturer.h; path = ../../../Libraries/BoomzAUOutputCapturer.h; sourceTree = "<group>"; };
+		9583392713F3E8D600CF268F /* BoomzAUOutputCapturer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BoomzAUOutputCapturer.m; path = ../../../Libraries/BoomzAUOutputCapturer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -207,10 +207,10 @@
 				1C6E1DC313B629CA006D12DA /* ThirdAttemptViewController.m */,
 				1C6E1DC513B629CA006D12DA /* ThirdAttemptViewController.xib */,
 				1C6E1DB413B629CA006D12DA /* Supporting Files */,
-				1C897D8613C4A082009B9694 /* BoomzAUOutputCapturer.h */,
-				1C897D8713C4A082009B9694 /* BoomzAUOutputCapturer.m */,
 				1C994D3513EA60F1005C0786 /* MixPlayback.h */,
 				1C994D3613EA60F1005C0786 /* MixPlayback.m */,
+				9583392613F3E8D600CF268F /* BoomzAUOutputCapturer.h */,
+				9583392713F3E8D600CF268F /* BoomzAUOutputCapturer.m */,
 			);
 			path = ThirdAttempt;
 			sourceTree = "<group>";
@@ -229,13 +229,13 @@
 		1C6E1DE313B640E5006D12DA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				1C0099B613E9477700666A9D /* Fire.m4a */,
-				1C6E1DFB13B65659006D12DA /* Secrets.mp3 */,
-				1C0099CF13E99E2C00666A9D /* bass.mp3 */,
-				1C0099D013E99E2C00666A9D /* drums.mp3 */,
-				1C0099D113E99E2C00666A9D /* guitar.mp3 */,
-				1C0099D213E99E2C00666A9D /* keys.mp3 */,
-				1C0099D313E99E2C00666A9D /* vocals.mp3 */,
+				9583391813F3E8C600CF268F /* bass.mp3 */,
+				9583391913F3E8C600CF268F /* drums.mp3 */,
+				9583391A13F3E8C600CF268F /* Fire.m4a */,
+				9583391B13F3E8C600CF268F /* guitar.mp3 */,
+				9583391C13F3E8C600CF268F /* keys.mp3 */,
+				9583391D13F3E8C600CF268F /* Secrets.mp3 */,
+				9583391E13F3E8C600CF268F /* vocals.mp3 */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -340,16 +340,16 @@
 				1C6E1DB813B629CA006D12DA /* InfoPlist.strings in Resources */,
 				1C6E1DC113B629CA006D12DA /* MainWindow.xib in Resources */,
 				1C6E1DC713B629CA006D12DA /* ThirdAttemptViewController.xib in Resources */,
-				1C6E1DFC13B65659006D12DA /* Secrets.mp3 in Resources */,
-				1C0099B713E9477700666A9D /* Fire.m4a in Resources */,
-				1C0099D413E99E2C00666A9D /* bass.mp3 in Resources */,
-				1C0099D513E99E2C00666A9D /* drums.mp3 in Resources */,
-				1C0099D613E99E2C00666A9D /* guitar.mp3 in Resources */,
-				1C0099D713E99E2C00666A9D /* keys.mp3 in Resources */,
-				1C0099D813E99E2C00666A9D /* vocals.mp3 in Resources */,
 				1C0CA2C613EA9DB9001C2E67 /* glee1.jpg in Resources */,
 				1C0CA2C713EA9DB9001C2E67 /* glee2.jpg in Resources */,
 				1C0CA2C813EA9DB9001C2E67 /* glee3.jpg in Resources */,
+				9583391F13F3E8C600CF268F /* bass.mp3 in Resources */,
+				9583392013F3E8C600CF268F /* drums.mp3 in Resources */,
+				9583392113F3E8C600CF268F /* Fire.m4a in Resources */,
+				9583392213F3E8C600CF268F /* guitar.mp3 in Resources */,
+				9583392313F3E8C600CF268F /* keys.mp3 in Resources */,
+				9583392413F3E8C600CF268F /* Secrets.mp3 in Resources */,
+				9583392513F3E8C600CF268F /* vocals.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -374,8 +374,8 @@
 				1C6E1DCF13B62A28006D12DA /* KaraokeRecorderController.m in Sources */,
 				1C897D7413C1FE33009B9694 /* CAErrorHandling.c in Sources */,
 				1C897D7D13C205E0009B9694 /* ASBDHelper.c in Sources */,
-				1C897D8813C4A082009B9694 /* BoomzAUOutputCapturer.m in Sources */,
 				1C994D3713EA60F1005C0786 /* MixPlayback.m in Sources */,
+				9583392813F3E8D600CF268F /* BoomzAUOutputCapturer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

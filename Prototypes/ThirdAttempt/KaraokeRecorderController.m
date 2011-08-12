@@ -117,7 +117,7 @@ static OSStatus renderNotification(void *inRefCon,
     for (int i = 0; i < inputFileURLs.count; i++)
     {
         ExtAudioFileRef xafref = 0;
-        error = ExtAudioFileOpenURL((CFURLRef)[inputFileURLs objectAtIndex:i], &xafref);
+        error = ((CFURLRef)[inputFileURLs objectAtIndex:i], &xafref);
         CheckError(error, "Cannot open audio file");
         
         //CFRelease(inputFileURL);
