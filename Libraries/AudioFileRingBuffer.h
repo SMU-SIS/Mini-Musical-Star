@@ -42,5 +42,6 @@
 - (void)readAudioFileIntoRingBuffer;
 - (SInt16 *)readFromRingBufferNumberOfSamples:(int)samplesToRead;
 - (id)initWithAudioFile: (NSURL *)audioFileURL;
+- (void)moveReadPositionOfAudioFileToFrame:(UInt64)targetFrame;
 
 @end

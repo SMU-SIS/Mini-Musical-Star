@@ -9,7 +9,7 @@
 #import "MixPlayerRecorder.h"
 
 @implementation MixPlayerRecorder
-@synthesize numInputFiles, isPlaying;
+@synthesize numInputFiles, isPlaying, frameNum, totalNumFrames, totalPlaybackTimeInSeconds, elapsedPlaybackTimeInSeconds;
 
 #pragma mark - audio callbacks and graph setup
 static OSStatus micRenderCallback(void                          *inRefCon, 
@@ -58,16 +58,21 @@ static OSStatus renderNotification(void *inRefCon,
                                    UInt32 inNumberFrames, 
                                    AudioBufferList *ioData)
 {
-    MixPlayerRecorder *recorder = (MixPlayerRecorder *)inRefCon;
+    MixPlayerRecorder *player = (MixPlayerRecorder *)inRefCon;
     
     if (*ioActionFlags & kAudioUnitRenderAction_PostRender) {
         
         //printf("post render notification frameNum %ld inNumberFrames %ld\n", userData->frameNum, inNumberFrames);
         
-        recorder->frameNum += inNumberFrames;
-        if (recorder->frameNum >= recorder->totalNumFrames) {
-            //this will repeat the entire thing
-            recorder->frameNum = 0;
+        player.frameNum += inNumberFrames;
+        
+        [player postNotificationForElapsedTime];
+        
+        if (player.frameNum >= player.totalNumFrames) {
+            //once done, stop the AUGraph
+            
+            //[player stop]; //not very sure why this takes such a long time to stop as compared to running on the main thread
+            [player performSelectorOnMainThread:@selector(stop) withObject:nil waitUntilDone:NO];
             
         }
     }
@@ -234,6 +239,10 @@ static OSStatus renderNotification(void *inRefCon,
         //retain the audioRingBuffers, if not after one runloop it will be autoreleased then the AUGraph will choke and die
         [audioRingBuffers retain];
         [self prepareAUGraph];
+        
+        //record the total number of playable seconds (length of the mix) from the totalNumFrames which the prepareAUGraph function calculated for us
+        totalPlaybackTimeInSeconds = totalNumFrames / 44100;
+        printf("totalNumFrames is %lu\n", totalNumFrames);
     }
     
     return self;
@@ -245,6 +254,9 @@ static OSStatus renderNotification(void *inRefCon,
     CheckError(error, "Cannot start AUGraph");
     isPlaying = YES;
     printf("AUGraph started\n");
+    
+    //post notification
+    [[NSNotificationCenter defaultCenter] postNotificationName:kMixPlayerRecorderPlaybackStarted object:self];
 }
 
 - (void)stop
@@ -252,7 +264,10 @@ static OSStatus renderNotification(void *inRefCon,
     error = AUGraphStop(processingGraph);
     CheckError(error, "Cannot stop AUGraph");
     isPlaying = NO;
+    printf("AUGraph stopped\n");
     
+    //post notification
+    [[NSNotificationCenter defaultCenter] postNotificationName:kMixPlayerRecorderPlaybackStopped object:self];
 }
 
 - (void)seekTo:(CMTime)time
@@ -298,6 +313,21 @@ static OSStatus renderNotification(void *inRefCon,
     
 }
 
+#pragma mark - notification posting methods
+-(void)postNotificationForElapsedTime
+{
+    //use frameNum and totalNumFrames for this, and we have 44100 samples (thus frames?) in one second of audio
+    
+    UInt32 tempElapsedTime = frameNum / 44100;
+    if (tempElapsedTime != elapsedPlaybackTimeInSeconds) 
+    {
+        elapsedPlaybackTimeInSeconds = tempElapsedTime;
+        
+        //send notification
+        [[NSNotificationCenter defaultCenter] postNotificationName:kMixPlayerRecorderPlaybackElapsedTimeAdvanced object:nil];
+    }
+
+}
 - (void)dealloc
 {
     [audioRingBuffers release];

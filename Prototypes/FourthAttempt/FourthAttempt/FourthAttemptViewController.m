@@ -27,6 +27,11 @@
 {
     [super viewDidLoad];
     
+    //register notifications
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceivePlayerStoppedNotification:) name:kMixPlayerRecorderPlaybackStopped object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveElapsedTimeNotification:) name:kMixPlayerRecorderPlaybackElapsedTimeAdvanced object:nil];
+    
     NSString *bass = [[NSBundle mainBundle] pathForResource:@"bass" ofType:@"mp3"];
     NSString *drums = [[NSBundle mainBundle] pathForResource:@"drums" ofType:@"mp3"];
     NSString *guitar = [[NSBundle mainBundle] pathForResource:@"guitar" ofType:@"mp3"];
@@ -68,6 +73,17 @@
         [sender setTitle:@"Stop" forState:UIControlStateNormal];
     }
 }
+
+#pragma mark - NSNotificationCenter callbacks
+-(void)didReceiveElapsedTimeNotification:(NSNotification *)notification
+{
+    printf("Time elasped: %lu\n", player.elapsedPlaybackTimeInSeconds);
+}
+     
+ -(void)didReceivePlayerStoppedNotification:(NSNotification *)notification
+ {
+     [togglePlaybackButton setTitle:@"Play" forState:UIControlStateNormal];
+ }
 
 
 - (void)viewDidUnload

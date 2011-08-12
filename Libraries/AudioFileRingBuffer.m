@@ -47,9 +47,17 @@
         printf("Cannot start reading file yet!");
         return;
     }
-    //printf("in reading method now\n");
+
     //the amount of frames to read from the audio file into the buffer
     UInt32 inNumFrames = kInNumFrames;
+    
+    //make sure we don't read more than the total length.
+    
+    
+    //if next read will exceed total length, just read the remaining frames left
+    if ((currentFrameNum + kInNumFrames) > numFrames) {
+        inNumFrames = (currentFrameNum + kInNumFrames) - numFrames;
+    }
     
     //set up an AudioBufferList to temporarily store the read data before pushing into the buffer
     AudioBufferList tempBufList;
@@ -59,14 +67,31 @@
     tempBufList.mBuffers[0].mData = malloc(tempBufList.mBuffers[0].mDataByteSize); //must remember to free this later
     
     //do the actual reading
-    error = ExtAudioFileRead(xafref, &inNumFrames, &tempBufList);
-    if (error)
+    if (finishedReading)
     {
-        printf("ExtAudioFileRead result %ld %08X %4.4s\n", error, (unsigned int)error, (char*)&error); 
-        free(tempBufList.mBuffers[0].mData);
-        tempBufList.mBuffers[0].mData = 0;
-        return;
+        //if there are no more frames to read, just put silence into the buffers
+        memset(tempBufList.mBuffers[0].mData, 0, tempBufList.mBuffers[0].mDataByteSize);
+        //printf("Filling buffers with silence because there is nothing left to read for this audio file.\n");
     }
+    
+    else
+    {
+        error = ExtAudioFileRead(xafref, &inNumFrames, &tempBufList);
+        if (error)
+        {
+            printf("ExtAudioFileRead result %ld %08X %4.4s\n", error, (unsigned int)error, (char*)&error); 
+            free(tempBufList.mBuffers[0].mData);
+            tempBufList.mBuffers[0].mData = 0;
+            printf("lookie here!");
+            return;
+        }
+        
+        //advance the read "pointer"
+        currentFrameNum += inNumFrames;
+    }
+    
+    //check inNumFrames, if it's now 0 (the ExtAudioFileRead sets it as such when there's nothing else to read, toggle finishedReading to YES
+    if (inNumFrames == 0) finishedReading = YES;
     
     //take a lock on the buffer and push the contents of the temp buffer into the ringbuffer
     [bufferRecordLock lock];
@@ -81,10 +106,6 @@
 
 - (SInt16 *)readFromRingBufferNumberOfSamples:(int)samplesToRead
 {
-    //printf("in ringbuffer now and samplestoRead is %i \n", samplesToRead);
-    
-    if (finishedReading) return nil;
-    
     while (samplesToRead > 0)
     {
         while (samplesToRead > TPCircularBufferFillCountContiguous(&bufferRecord)) {
@@ -103,7 +124,7 @@
         return tempBuffer;
     }
     
-    finishedReading = YES;
+    //hopefully this doesn't happen! LOL
     return nil;
 }
 
@@ -122,6 +143,11 @@
     }
     
     return self;
+}
+
+- (void)moveReadPositionOfAudioFileToFrame:(UInt64)targetFrame
+{
+    
 }
 
 - (void)dealloc
