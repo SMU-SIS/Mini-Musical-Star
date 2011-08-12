@@ -10,6 +10,7 @@
 #import "ShowImage.h"
 
 @interface Scene : UIViewController{
+    IBOutlet UISegmentedControl *segControl;
     IBOutlet UIImageView *imageView;
     IBOutlet UIView *toggleview;
     int imageNum;
