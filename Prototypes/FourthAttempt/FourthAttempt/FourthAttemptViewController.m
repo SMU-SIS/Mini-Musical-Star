@@ -9,7 +9,7 @@
 #import "FourthAttemptViewController.h"
 
 @implementation FourthAttemptViewController
-@synthesize slider, segmentedControl;
+@synthesize slider, segmentedControl, togglePlaybackButton;
 
 - (void)didReceiveMemoryWarning
 {
@@ -36,7 +36,6 @@
     NSArray *audioFiles = [NSArray arrayWithObjects:[NSURL fileURLWithPath:bass], [NSURL fileURLWithPath:drums], [NSURL fileURLWithPath:guitar], [NSURL fileURLWithPath:keys], [NSURL fileURLWithPath:vocals], nil];
     
     player = [[MixPlayerRecorder alloc] initWithAudioFileURLs:audioFiles];
-    [player play];
 }
 
 - (IBAction)volumeSliderDidMove:(UISlider *)sender
@@ -53,6 +52,21 @@
     float currentVol = [player getVolumeForBus:segmentIndex];
     
     slider.value = currentVol;
+}
+
+- (IBAction)togglePlaybackButtonDidPress:(UIButton *)sender
+{
+    if (player.isPlaying)
+    {
+        [player stop];
+        [sender setTitle:@"Play" forState:UIControlStateNormal];
+    }
+    
+    else
+    {
+        [player play];
+        [sender setTitle:@"Stop" forState:UIControlStateNormal];
+    }
 }
 
 
@@ -75,6 +89,7 @@
 {
     [slider release];
     [segmentedControl release];
+    [togglePlaybackButton release];
     [player release];
     [super dealloc];
 }

@@ -28,9 +28,12 @@
     //playback state flags
     UInt32 frameNum; //current playback position of the mix in frames
     UInt32 totalNumFrames; //total length in frames of the mix
+    bool isPlaying;
+    
 }
 
 @property (nonatomic, readonly) int numInputFiles;
+@property (nonatomic, readonly) bool isPlaying;
 
 -(MixPlayerRecorder *)initWithAudioFileURLs: (NSArray *)urls;
 -(void)play;

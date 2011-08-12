@@ -9,7 +9,7 @@
 #import "MixPlayerRecorder.h"
 
 @implementation MixPlayerRecorder
-@synthesize numInputFiles;
+@synthesize numInputFiles, isPlaying;
 
 #pragma mark - audio callbacks and graph setup
 static OSStatus micRenderCallback(void                          *inRefCon, 
@@ -243,6 +243,7 @@ static OSStatus renderNotification(void *inRefCon,
 {
     error = AUGraphStart(processingGraph);
     CheckError(error, "Cannot start AUGraph");
+    isPlaying = YES;
     printf("AUGraph started\n");
 }
 
@@ -250,6 +251,8 @@ static OSStatus renderNotification(void *inRefCon,
 {
     error = AUGraphStop(processingGraph);
     CheckError(error, "Cannot stop AUGraph");
+    isPlaying = NO;
+    
 }
 
 - (void)seekTo:(CMTime)time
