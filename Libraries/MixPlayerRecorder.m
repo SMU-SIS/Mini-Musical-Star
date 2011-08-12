@@ -9,7 +9,7 @@
 #import "MixPlayerRecorder.h"
 
 @implementation MixPlayerRecorder
-@synthesize numInputFiles, isPlaying, frameNum, totalNumFrames, totalPlaybackTimeInSeconds, elapsedPlaybackTimeInSeconds;
+@synthesize numInputFiles, isPlaying, frameNum, totalNumFrames, totalPlaybackTimeInSeconds, elapsedPlaybackTimeInSeconds, stoppedBecauseReachedEnd;
 
 #pragma mark - audio callbacks and graph setup
 static OSStatus micRenderCallback(void                          *inRefCon, 
@@ -69,10 +69,9 @@ static OSStatus renderNotification(void *inRefCon,
         [player postNotificationForElapsedTime];
         
         if (player.frameNum >= player.totalNumFrames) {
-            //once done, stop the AUGraph
-            
-            //[player stop]; //not very sure why this takes such a long time to stop as compared to running on the main thread
+            //once done, stop the AUGraph and reset the lengths
             [player performSelectorOnMainThread:@selector(stop) withObject:nil waitUntilDone:NO];
+            player.stoppedBecauseReachedEnd = YES;
             
         }
     }
@@ -240,9 +239,12 @@ static OSStatus renderNotification(void *inRefCon,
         [audioRingBuffers retain];
         [self prepareAUGraph];
         
+        //set the stoppedBecauseReachedEnd flag to NO
+        stoppedBecauseReachedEnd = NO;
+        
         //record the total number of playable seconds (length of the mix) from the totalNumFrames which the prepareAUGraph function calculated for us
         totalPlaybackTimeInSeconds = totalNumFrames / 44100;
-        printf("totalNumFrames is %lu\n", totalNumFrames);
+        //printf("totalNumFrames is %lu\n", totalNumFrames);
     }
     
     return self;
@@ -255,8 +257,12 @@ static OSStatus renderNotification(void *inRefCon,
     isPlaying = YES;
     printf("AUGraph started\n");
     
-    //post notification
+    //post notifications
     [[NSNotificationCenter defaultCenter] postNotificationName:kMixPlayerRecorderPlaybackStarted object:self];
+    
+    //must do this because let's say if we were replaying again from the end, we need to tell the UI to "reset" the progress to 0 on start
+    //if don't have this, we need to wait for the 1st second to update the UI
+    [[NSNotificationCenter defaultCenter] postNotificationName:kMixPlayerRecorderPlaybackElapsedTimeAdvanced object:nil];
 }
 
 - (void)stop
@@ -268,11 +274,38 @@ static OSStatus renderNotification(void *inRefCon,
     
     //post notification
     [[NSNotificationCenter defaultCenter] postNotificationName:kMixPlayerRecorderPlaybackStopped object:self];
+    
+    if (stoppedBecauseReachedEnd)
+    {
+        [audioRingBuffers enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            AudioFileRingBuffer *buffer = (AudioFileRingBuffer *)obj;
+            [buffer reset];
+        }];
+        
+        frameNum = 0;
+        elapsedPlaybackTimeInSeconds = 0;
+        stoppedBecauseReachedEnd = NO;
+    }
 }
 
-- (void)seekTo:(CMTime)time
+- (void)seekTo:(UInt32)targetSeconds
 {
+    [self stop];
     
+    //convert seconds to frames
+    UInt32 targetFrame = targetSeconds * 44100;
+    
+    //loop through every audio file ring buffer and change the read/seek position
+    [audioRingBuffers enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        AudioFileRingBuffer *buffer = (AudioFileRingBuffer *)obj;
+        [buffer moveReadPositionOfAudioFileToFrame:targetFrame];
+    }];
+    
+    //update the properties
+    frameNum = targetFrame;
+    elapsedPlaybackTimeInSeconds = targetSeconds;
+    
+    [self play];
 }
 
 - (void)setVolume:(AudioUnitParameterValue)vol forBus:(UInt32)busNumber
@@ -328,6 +361,7 @@ static OSStatus renderNotification(void *inRefCon,
     }
 
 }
+
 - (void)dealloc
 {
     [audioRingBuffers release];

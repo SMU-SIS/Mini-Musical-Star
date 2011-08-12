@@ -9,7 +9,7 @@
 #import "FourthAttemptViewController.h"
 
 @implementation FourthAttemptViewController
-@synthesize slider, segmentedControl, togglePlaybackButton;
+@synthesize slider, segmentedControl, togglePlaybackButton, progressSlider;
 
 - (void)didReceiveMemoryWarning
 {
@@ -28,6 +28,9 @@
     [super viewDidLoad];
     
     //register notifications
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceivePlayerStartedNotification:) name:kMixPlayerRecorderPlaybackStarted object:nil];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceivePlayerStoppedNotification:) name:kMixPlayerRecorderPlaybackStopped object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveElapsedTimeNotification:) name:kMixPlayerRecorderPlaybackElapsedTimeAdvanced object:nil];
@@ -74,10 +77,29 @@
     }
 }
 
+- (IBAction)toggleSeek:(UISlider *)sender
+{
+    //convert the float value to seconds
+    int targetSeconds = sender.value * player.totalPlaybackTimeInSeconds;
+    [player seekTo:targetSeconds];
+    
+}
+
 #pragma mark - NSNotificationCenter callbacks
 -(void)didReceiveElapsedTimeNotification:(NSNotification *)notification
 {
-    printf("Time elasped: %lu\n", player.elapsedPlaybackTimeInSeconds);
+    float progressSliderValue = (float)player.elapsedPlaybackTimeInSeconds / (float)player.totalPlaybackTimeInSeconds;
+    
+    //need to alloc the NSNumber because there is no autorelease pool in the secondary thread
+    [self performSelectorOnMainThread:@selector(updateProgressSliderWithTime:) withObject:[[NSNumber alloc] initWithFloat:progressSliderValue] waitUntilDone:NO];
+    
+}
+
+//for the secondary thread to call on the main thread
+-(void)updateProgressSliderWithTime:(NSNumber *)elapsedTime
+{
+    progressSlider.value = [elapsedTime floatValue];
+    [elapsedTime release];
 }
      
  -(void)didReceivePlayerStoppedNotification:(NSNotification *)notification
@@ -85,13 +107,18 @@
      [togglePlaybackButton setTitle:@"Play" forState:UIControlStateNormal];
  }
 
+-(void)didReceivePlayerStartedNotification:(NSNotification *)notification
+{
+    [togglePlaybackButton setTitle:@"Stop" forState:UIControlStateNormal];
+}
+
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
-    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     
 }
 
@@ -103,7 +130,9 @@
 
 - (void)dealloc
 {
+    
     [slider release];
+    [progressSlider release];
     [segmentedControl release];
     [togglePlaybackButton release];
     [player release];

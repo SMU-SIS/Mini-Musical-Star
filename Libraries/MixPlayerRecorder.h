@@ -33,6 +33,7 @@
     //playback state flags
     UInt32 frameNum; //current playback position of the mix in frames
     UInt32 totalNumFrames; //total length in frames of the mix
+    bool stoppedBecauseReachedEnd;
     
     //to send elasped time notifications
     UInt32 totalPlaybackTimeInSeconds;
@@ -43,6 +44,7 @@
 
 @property (nonatomic, readonly) int numInputFiles;
 @property (nonatomic, readonly) bool isPlaying;
+@property (nonatomic) bool stoppedBecauseReachedEnd;
 @property (nonatomic) UInt32 frameNum;
 @property (nonatomic, readonly) UInt32 totalNumFrames;
 @property (nonatomic, readonly) UInt32 totalPlaybackTimeInSeconds; //read this to find out the total length of the mix
@@ -51,7 +53,7 @@
 -(MixPlayerRecorder *)initWithAudioFileURLs: (NSArray *)urls;
 -(void)play;
 -(void)stop;
--(void)seekTo: (CMTime)time;
+-(void)seekTo:(UInt32)targetSeconds;
 -(void)setVolume:(AudioUnitParameterValue)vol forBus:(UInt32)busNumber;
 -(float)getVolumeForBus:(UInt32)busNumber;
 -(void)enableRecordingToFile: (NSURL *)filePath;

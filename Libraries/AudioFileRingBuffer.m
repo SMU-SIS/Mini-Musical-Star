@@ -13,6 +13,7 @@
 
 - (void)prepareAudioFile: (NSURL *)audioFileURL
 {
+    audioFile = [audioFileURL retain];
     //open the audio file
     xafref = 0;
     error = ExtAudioFileOpenURL((CFURLRef)audioFileURL, &xafref);
@@ -82,7 +83,6 @@
             printf("ExtAudioFileRead result %ld %08X %4.4s\n", error, (unsigned int)error, (char*)&error); 
             free(tempBufList.mBuffers[0].mData);
             tempBufList.mBuffers[0].mData = 0;
-            printf("lookie here!");
             return;
         }
         
@@ -145,14 +145,50 @@
     return self;
 }
 
-- (void)moveReadPositionOfAudioFileToFrame:(UInt64)targetFrame
+- (void)moveReadPositionOfAudioFileToFrame:(SInt64)targetFrame
 {
+    //check if new targetFrame is less than numFrames
+    if (targetFrame >= numFrames) {
+        currentFrameNum = numFrames;
+        finishedReading = YES;
+    }
     
+    else {
+        //change the seek position
+        error = ExtAudioFileSeek(xafref, targetFrame);
+        CheckError(error, "Cannot change seek location of audio file.");
+        
+        //set the current frame to the new targetFrame
+        currentFrameNum = targetFrame;
+    }
+    
+    //clear the ring buffer
+    TPCircularBufferClear(&bufferRecord);
+    
+}
+
+- (void)reset
+{
+    free(buffer);
+    ExtAudioFileDispose(xafref);
+    
+    currentFrameNum = 0;
+    canStartReading = NO;
+    finishedReading =NO;
+    
+    //recreate the ring buffer
+    //init the bufferRecord and malloc the ringbuffer
+    TPCircularBufferInit(&bufferRecord, kBufferLength);
+    buffer = (SInt16*)malloc(sizeof(SInt16) * kBufferLength); //remember to free this later
+    
+    [self prepareAudioFile:audioFile];
+
 }
 
 - (void)dealloc
 {
     free(buffer);
+    [audioFile release];
     ExtAudioFileDispose(xafref);
     [super dealloc];
 }

@@ -18,6 +18,7 @@
     OSStatus error;
     
     //the following ivars store information about the currently loaded audio file
+    NSURL *audioFile;
     ExtAudioFileRef xafref; //reference to the current open audio file
     AudioStreamBasicDescription asbd; //ouput asbd, audio file is converted to this format, and remoteio output is also this format
     UInt64 numFrames; //this numFrames is how many frames total in the audio file 
@@ -42,6 +43,7 @@
 - (void)readAudioFileIntoRingBuffer;
 - (SInt16 *)readFromRingBufferNumberOfSamples:(int)samplesToRead;
 - (id)initWithAudioFile: (NSURL *)audioFileURL;
-- (void)moveReadPositionOfAudioFileToFrame:(UInt64)targetFrame;
+- (void)moveReadPositionOfAudioFileToFrame:(SInt64)targetFrame;
+- (void)reset;
 
 @end

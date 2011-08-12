@@ -14,11 +14,13 @@
 }
 
 @property (nonatomic, retain) IBOutlet UISlider *slider;
+@property (nonatomic, retain) IBOutlet UISlider *progressSlider;
 @property (nonatomic, retain) IBOutlet UISegmentedControl *segmentedControl;
 @property (nonatomic, retain) IBOutlet UIButton *togglePlaybackButton;
 
 - (IBAction)volumeSliderDidMove:(UISlider *)sender;
 - (IBAction)segmentedControlDidChange:(UISegmentedControl *)sender;
 - (IBAction)togglePlaybackButtonDidPress:(UIButton *)sender;
+-(void)updateProgressSliderWithTime:(NSNumber *)elapsedTime;
 
 @end
