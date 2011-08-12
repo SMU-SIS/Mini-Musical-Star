@@ -9,6 +9,7 @@
 #import "MixPlayerRecorder.h"
 
 @implementation MixPlayerRecorder
+@synthesize numInputFiles;
 
 #pragma mark - audio callbacks and graph setup
 static OSStatus micRenderCallback(void                          *inRefCon, 
@@ -256,9 +257,19 @@ static OSStatus renderNotification(void *inRefCon,
     
 }
 
-- (void)setVolume:(float)vol forBus:(int)busNumber
+- (void)setVolume:(AudioUnitParameterValue)vol forBus:(UInt32)busNumber
 {
+    error = AudioUnitSetParameter(mixerUnit, kMultiChannelMixerParam_Volume, kAudioUnitScope_Input, busNumber, vol, 0);
+    CheckError(error, "Cannot change volume");
+}
+
+- (float)getVolumeForBus:(UInt32)busNumber
+{
+    float floatVolume;
+    error = AudioUnitGetParameter(mixerUnit, kMultiChannelMixerParam_Volume, kAudioUnitScope_Input, busNumber, &floatVolume);
+    CheckError(error, "Cannot get volume value");
     
+    return floatVolume;
 }
 
 - (void)enableRecordingToFile:(NSURL *)filePath
@@ -266,9 +277,17 @@ static OSStatus renderNotification(void *inRefCon,
     
 }
 
-- (void)setMicVolume:(float)vol
+- (void)setMicVolume:(AudioUnitParameterValue)vol
 {
+    /*
+     the numInputFiles ivar represents the total number of audio file inputs into the mixer unit.
+     as the mic input callback is the last bus on the mixer unit, the bus number for the mic directly corresponds to the value of numInputFiles.
+     
+     for example, if numInputFiles is 3, mixer unit input bus 0,1,2 corresponds to audio file callbacks.
+     bus 3 will then be the mic input callback, which == numInputFiles
+     */
     
+    [self setVolume:vol forBus:self.numInputFiles];
 }
 
 - (void)disableRecording

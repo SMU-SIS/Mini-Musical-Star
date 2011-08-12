@@ -9,6 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "MixPlayerRecorder.h"
 
-@interface FourthAttemptViewController : UIViewController
+@interface FourthAttemptViewController : UIViewController {
+    MixPlayerRecorder *player;
+}
+
+@property (nonatomic, retain) IBOutlet UISlider *slider;
+@property (nonatomic, retain) IBOutlet UISegmentedControl *segmentedControl;
+
+- (IBAction)volumeSliderDidMove:(UISlider *)sender;
+- (IBAction)segmentedControlDidChange:(UISegmentedControl *)sender;
 
 @end

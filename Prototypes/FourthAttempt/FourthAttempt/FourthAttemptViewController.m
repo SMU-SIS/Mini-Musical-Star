@@ -9,6 +9,7 @@
 #import "FourthAttemptViewController.h"
 
 @implementation FourthAttemptViewController
+@synthesize slider, segmentedControl;
 
 - (void)didReceiveMemoryWarning
 {
@@ -34,8 +35,24 @@
     
     NSArray *audioFiles = [NSArray arrayWithObjects:[NSURL fileURLWithPath:bass], [NSURL fileURLWithPath:drums], [NSURL fileURLWithPath:guitar], [NSURL fileURLWithPath:keys], [NSURL fileURLWithPath:vocals], nil];
     
-    MixPlayerRecorder *player = [[MixPlayerRecorder alloc] initWithAudioFileURLs:audioFiles];
+    player = [[MixPlayerRecorder alloc] initWithAudioFileURLs:audioFiles];
     [player play];
+}
+
+- (IBAction)volumeSliderDidMove:(UISlider *)sender
+{
+    int segmentIndex = [segmentedControl selectedSegmentIndex];
+    float vol = sender.value;
+    
+    [player setVolume:vol forBus:segmentIndex];
+}
+
+- (IBAction)segmentedControlDidChange:(UISegmentedControl *)sender
+{
+    int segmentIndex = [segmentedControl selectedSegmentIndex];
+    float currentVol = [player getVolumeForBus:segmentIndex];
+    
+    slider.value = currentVol;
 }
 
 
@@ -52,6 +69,14 @@
 {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+- (void)dealloc
+{
+    [slider release];
+    [segmentedControl release];
+    [player release];
+    [super dealloc];
 }
 
 @end

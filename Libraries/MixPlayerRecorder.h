@@ -30,11 +30,14 @@
     UInt32 totalNumFrames; //total length in frames of the mix
 }
 
+@property (nonatomic, readonly) int numInputFiles;
+
 -(MixPlayerRecorder *)initWithAudioFileURLs: (NSArray *)urls;
 -(void)play;
 -(void)stop;
 -(void)seekTo: (CMTime)time;
--(void)setVolume: (float)vol forBus: (int)busNumber;
+- (void)setVolume:(AudioUnitParameterValue)vol forBus:(UInt32)busNumber;
+- (float)getVolumeForBus:(UInt32)busNumber;
 -(void)enableRecordingToFile: (NSURL *)filePath;
 -(void)setMicVolume: (float)vol;
 -(void)disableRecording;
