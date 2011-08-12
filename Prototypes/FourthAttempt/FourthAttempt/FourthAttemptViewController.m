@@ -44,6 +44,13 @@
     NSArray *audioFiles = [NSArray arrayWithObjects:[NSURL fileURLWithPath:bass], [NSURL fileURLWithPath:drums], [NSURL fileURLWithPath:guitar], [NSURL fileURLWithPath:keys], [NSURL fileURLWithPath:vocals], nil];
     
     player = [[MixPlayerRecorder alloc] initWithAudioFileURLs:audioFiles];
+    
+    //create temp file for recording
+    NSString *tempRecordingFile = [NSTemporaryDirectory() stringByAppendingString:@"recording.m4a"];
+    [player enableRecordingToFile:[NSURL fileURLWithPath:tempRecordingFile]];
+    
+    NSLog(@"temp file is %@\n", tempRecordingFile);
+     
 }
 
 - (IBAction)volumeSliderDidMove:(UISlider *)sender
