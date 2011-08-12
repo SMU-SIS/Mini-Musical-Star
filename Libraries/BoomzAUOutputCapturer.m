@@ -42,15 +42,7 @@ static OSStatus RenderCallback(	void *							inRefCon,
         //should be changeable (set to 0 to record the entire mix (VERY LAGGY THOUGH), set to 1 to record just mic)
         mBusNumber = busNumber;
         
-        //ASBD should be changeable too
-        format.mFormatID = kAudioFormatLinearPCM;
-        format.mFormatFlags = kAudioFormatFlagIsSignedInteger | kAudioFormatFlagIsBigEndian | kAudioFormatFlagIsPacked;
-        format.mSampleRate = 44100;
-        format.mChannelsPerFrame = 2;
-        format.mFramesPerPacket = 1;
-        format.mBytesPerPacket= format.mChannelsPerFrame * sizeof (SInt16);
-        format.mBytesPerFrame = format.mChannelsPerFrame * sizeof (SInt16);
-        format.mBitsPerChannel = 16;
+        ASBDSetM4A(&format, 2);
         
     }
     

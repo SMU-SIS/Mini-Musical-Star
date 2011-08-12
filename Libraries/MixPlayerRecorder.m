@@ -9,7 +9,7 @@
 #import "MixPlayerRecorder.h"
 
 @implementation MixPlayerRecorder
-@synthesize numInputFiles, isPlaying, frameNum, totalNumFrames, totalPlaybackTimeInSeconds, elapsedPlaybackTimeInSeconds, stoppedBecauseReachedEnd;
+@synthesize numInputFiles, isPlaying, frameNum, totalNumFrames, totalPlaybackTimeInSeconds, elapsedPlaybackTimeInSeconds, stoppedBecauseReachedEnd, isRecording;
 
 #pragma mark - audio callbacks and graph setup
 static OSStatus micRenderCallback(void                          *inRefCon, 
@@ -275,6 +275,12 @@ static OSStatus renderNotification(void *inRefCon,
     //post notification
     [[NSNotificationCenter defaultCenter] postNotificationName:kMixPlayerRecorderPlaybackStopped object:self];
     
+    if (isRecording)
+    {
+        //stop recording too
+        [self stopRecording];
+    }
+    
     if (stoppedBecauseReachedEnd)
     {
         [audioRingBuffers enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
@@ -325,6 +331,10 @@ static OSStatus renderNotification(void *inRefCon,
 
 - (void)enableRecordingToFile:(NSURL *)filePath
 {
+    recorder = [[BoomzAUOutputCapturer alloc] initWithAudioUnit:rioUnit OutputURL:(CFURLRef)filePath AudioFileTypeID:kAudioFileM4AType forBusNumber:1];
+    
+    [recorder start];
+    isRecording = YES;
     
 }
 
@@ -341,9 +351,12 @@ static OSStatus renderNotification(void *inRefCon,
     [self setVolume:vol forBus:self.numInputFiles];
 }
 
-- (void)disableRecording
+- (void)stopRecording
 {
-    
+    [recorder stop];
+    [recorder close];
+    [recorder release];
+    isRecording = NO;
 }
 
 #pragma mark - notification posting methods
