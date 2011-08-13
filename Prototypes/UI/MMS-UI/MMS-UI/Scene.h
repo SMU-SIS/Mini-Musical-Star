@@ -11,14 +11,10 @@
 
 @interface Scene : UIViewController{
     IBOutlet UIImageView *imageView;
-    IBOutlet UIView *toggleview;
+    IBOutlet UIButton *sceneButton;
+
     int imageNum;
     ShowImage *menuImages;
-    
-    UIImageView *imageView1;
-    UIImageView *imageView2;
-    
-    IBOutlet UISegmentedControl *segControl;
 }
 
 @property (nonatomic, assign) int imageNum;
@@ -27,6 +23,7 @@
 -(int)getImageNum;
 -(IBAction)backToMenu;
 
--(IBAction)setToggleMenu;
+-(IBAction)selectScene;
+-(void)fromEditToMenu;
 
 @end

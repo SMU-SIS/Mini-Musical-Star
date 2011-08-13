@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ShowImage.h"
-#import "Create.h"
+#import "Edit.h"
 
 @interface MMS_UIViewController : UIViewController {
     IBOutlet UIScrollView *scrollView;
@@ -17,6 +17,9 @@
 }
 
 -(IBAction)createMusical;
+-(IBAction)playBackMusical;
+-(IBAction)coverMusical;
+
 -(int)currentPage;
 
 @end

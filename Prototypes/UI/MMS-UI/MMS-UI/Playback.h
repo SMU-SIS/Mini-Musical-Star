@@ -1,8 +1,8 @@
 //
-//  Create.h
+//  Playback.h
 //  MMS-UI
 //
-//  Created by Weijie Tan on 8/10/11.
+//  Created by Weijie Tan on 8/13/11.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
@@ -10,13 +10,12 @@
 #import "ShowImage.h"
 
 
-@interface Create : UIViewController {
-    IBOutlet UIImageView *imageView;
+@interface Playback : UIViewController {
+    IBOutlet UIImageView *playBack;
+    
     int imageNum;
     ShowImage *menuImages;
 }
-
-@property (nonatomic, assign) int imageNum;
 
 -(void)setImageNum:(int)num;
 -(int)getImageNum;
