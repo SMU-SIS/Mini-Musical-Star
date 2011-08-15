@@ -7,8 +7,10 @@
 //
 
 #import "MMS_UIViewController.h"
-#import "Create.h"
+#import "Edit.h"
 #import "Scene.h"
+#import "Playback.h"
+#import "Cover.h"
 
 @implementation MMS_UIViewController
 
@@ -117,6 +119,30 @@
 	int page = floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
 	
 	return page;
+}
+
+- (IBAction)playBackMusical {
+    Playback *pBackMusical = [[Playback alloc] initWithNibName:nil bundle:nil];
+    
+    int current = [self currentPage];    
+    [pBackMusical setImageNum:current];
+    
+    pBackMusical.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    [self presentModalViewController:pBackMusical animated:YES];
+    
+    [pBackMusical release];
+}
+
+- (IBAction)coverMusical {
+    Cover *covers = [[Cover alloc] initWithNibName:nil bundle:nil];
+    
+    int current = [self currentPage];    
+    [covers setImageNum:current];
+    
+    covers.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    [self presentModalViewController:covers animated:YES];
+    
+    [covers release];
 }
 
 @end

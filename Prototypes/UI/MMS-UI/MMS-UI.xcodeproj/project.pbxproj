@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		820511BF13F3BB9B0016F87E /* Scene.m in Sources */ = {isa = PBXBuildFile; fileRef = 820511BD13F3BB9B0016F87E /* Scene.m */; };
 		820511C013F3BB9B0016F87E /* Scene.xib in Resources */ = {isa = PBXBuildFile; fileRef = 820511BE13F3BB9B0016F87E /* Scene.xib */; };
-		ED79D3A313F27D6E003E42B2 /* Create.m in Sources */ = {isa = PBXBuildFile; fileRef = ED79D3A113F27D6E003E42B2 /* Create.m */; };
-		ED79D3A413F27D6E003E42B2 /* Create.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED79D3A213F27D6E003E42B2 /* Create.xib */; };
 		EDA2A1C513F26F8400B64EA5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDA2A1C413F26F8400B64EA5 /* UIKit.framework */; };
 		EDA2A1C713F26F8400B64EA5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDA2A1C613F26F8400B64EA5 /* Foundation.framework */; };
 		EDA2A1C913F26F8400B64EA5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDA2A1C813F26F8400B64EA5 /* CoreGraphics.framework */; };
@@ -33,6 +31,12 @@
 		EDA2A20A13F2726B00B64EA5 /* new.png in Resources */ = {isa = PBXBuildFile; fileRef = EDA2A20713F2726B00B64EA5 /* new.png */; };
 		EDA2A20B13F2726B00B64EA5 /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = EDA2A20813F2726B00B64EA5 /* play.png */; };
 		EDA2A20E13F272BF00B64EA5 /* ShowImage.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA2A20D13F272BF00B64EA5 /* ShowImage.m */; };
+		EDC5CC3213F6260400EAF813 /* Playback.m in Sources */ = {isa = PBXBuildFile; fileRef = EDC5CC3013F6260400EAF813 /* Playback.m */; };
+		EDC5CC3313F6260400EAF813 /* Playback.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDC5CC3113F6260400EAF813 /* Playback.xib */; };
+		EDC5CC3813F6261500EAF813 /* Cover.m in Sources */ = {isa = PBXBuildFile; fileRef = EDC5CC3613F6261500EAF813 /* Cover.m */; };
+		EDC5CC3913F6261500EAF813 /* Cover.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDC5CC3713F6261500EAF813 /* Cover.xib */; };
+		EDC5CC3D13F6269300EAF813 /* Edit.m in Sources */ = {isa = PBXBuildFile; fileRef = EDC5CC3B13F6269300EAF813 /* Edit.m */; };
+		EDC5CC3E13F6269300EAF813 /* Edit.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDC5CC3C13F6269300EAF813 /* Edit.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,9 +53,6 @@
 		820511BC13F3BB9B0016F87E /* Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scene.h; sourceTree = "<group>"; };
 		820511BD13F3BB9B0016F87E /* Scene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Scene.m; sourceTree = "<group>"; };
 		820511BE13F3BB9B0016F87E /* Scene.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Scene.xib; sourceTree = "<group>"; };
-		ED79D3A013F27D6E003E42B2 /* Create.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Create.h; sourceTree = "<group>"; };
-		ED79D3A113F27D6E003E42B2 /* Create.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Create.m; sourceTree = "<group>"; };
-		ED79D3A213F27D6E003E42B2 /* Create.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Create.xib; sourceTree = "<group>"; };
 		EDA2A1C013F26F8400B64EA5 /* MMS-UI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MMS-UI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDA2A1C413F26F8400B64EA5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		EDA2A1C613F26F8400B64EA5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -80,6 +81,15 @@
 		EDA2A20813F2726B00B64EA5 /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = play.png; path = Images/Buttons/play.png; sourceTree = SOURCE_ROOT; };
 		EDA2A20C13F272BF00B64EA5 /* ShowImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowImage.h; sourceTree = "<group>"; };
 		EDA2A20D13F272BF00B64EA5 /* ShowImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowImage.m; sourceTree = "<group>"; };
+		EDC5CC2F13F6260400EAF813 /* Playback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Playback.h; sourceTree = "<group>"; };
+		EDC5CC3013F6260400EAF813 /* Playback.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Playback.m; sourceTree = "<group>"; };
+		EDC5CC3113F6260400EAF813 /* Playback.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Playback.xib; sourceTree = "<group>"; };
+		EDC5CC3513F6261500EAF813 /* Cover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cover.h; sourceTree = "<group>"; };
+		EDC5CC3613F6261500EAF813 /* Cover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cover.m; sourceTree = "<group>"; };
+		EDC5CC3713F6261500EAF813 /* Cover.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Cover.xib; sourceTree = "<group>"; };
+		EDC5CC3A13F6269300EAF813 /* Edit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Edit.h; sourceTree = "<group>"; };
+		EDC5CC3B13F6269300EAF813 /* Edit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Edit.m; sourceTree = "<group>"; };
+		EDC5CC3C13F6269300EAF813 /* Edit.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Edit.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,16 +154,22 @@
 				EDA2A1D613F26F8400B64EA5 /* MainWindow.xib */,
 				EDA2A1D913F26F8400B64EA5 /* MMS_UIViewController.h */,
 				EDA2A1DA13F26F8400B64EA5 /* MMS_UIViewController.m */,
-				EDA2A1DC13F26F8400B64EA5 /* MMS_UIViewController.xib */,
-				EDA2A1CB13F26F8400B64EA5 /* Supporting Files */,
 				EDA2A20C13F272BF00B64EA5 /* ShowImage.h */,
 				EDA2A20D13F272BF00B64EA5 /* ShowImage.m */,
-				ED79D3A013F27D6E003E42B2 /* Create.h */,
-				ED79D3A113F27D6E003E42B2 /* Create.m */,
-				ED79D3A213F27D6E003E42B2 /* Create.xib */,
 				820511BC13F3BB9B0016F87E /* Scene.h */,
 				820511BD13F3BB9B0016F87E /* Scene.m */,
+				EDC5CC2F13F6260400EAF813 /* Playback.h */,
+				EDC5CC3013F6260400EAF813 /* Playback.m */,
+				EDC5CC3513F6261500EAF813 /* Cover.h */,
+				EDC5CC3613F6261500EAF813 /* Cover.m */,
+				EDC5CC3A13F6269300EAF813 /* Edit.h */,
+				EDC5CC3B13F6269300EAF813 /* Edit.m */,
+				EDA2A1CB13F26F8400B64EA5 /* Supporting Files */,
+				EDA2A1DC13F26F8400B64EA5 /* MMS_UIViewController.xib */,
+				EDC5CC3113F6260400EAF813 /* Playback.xib */,
 				820511BE13F3BB9B0016F87E /* Scene.xib */,
+				EDC5CC3713F6261500EAF813 /* Cover.xib */,
+				EDC5CC3C13F6269300EAF813 /* Edit.xib */,
 			);
 			path = "MMS-UI";
 			sourceTree = "<group>";
@@ -294,8 +310,10 @@
 				EDA2A20913F2726B00B64EA5 /* edit.png in Resources */,
 				EDA2A20A13F2726B00B64EA5 /* new.png in Resources */,
 				EDA2A20B13F2726B00B64EA5 /* play.png in Resources */,
-				ED79D3A413F27D6E003E42B2 /* Create.xib in Resources */,
 				820511C013F3BB9B0016F87E /* Scene.xib in Resources */,
+				EDC5CC3313F6260400EAF813 /* Playback.xib in Resources */,
+				EDC5CC3913F6261500EAF813 /* Cover.xib in Resources */,
+				EDC5CC3E13F6269300EAF813 /* Edit.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -335,8 +353,10 @@
 				EDA2A1D513F26F8400B64EA5 /* MMS_UIAppDelegate.m in Sources */,
 				EDA2A1DB13F26F8400B64EA5 /* MMS_UIViewController.m in Sources */,
 				EDA2A20E13F272BF00B64EA5 /* ShowImage.m in Sources */,
-				ED79D3A313F27D6E003E42B2 /* Create.m in Sources */,
 				820511BF13F3BB9B0016F87E /* Scene.m in Sources */,
+				EDC5CC3213F6260400EAF813 /* Playback.m in Sources */,
+				EDC5CC3813F6261500EAF813 /* Cover.m in Sources */,
+				EDC5CC3D13F6269300EAF813 /* Edit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

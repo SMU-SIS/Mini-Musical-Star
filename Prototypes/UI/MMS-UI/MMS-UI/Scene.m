@@ -7,9 +7,15 @@
 //
 
 #import "Scene.h"
+#import "Edit.h"
 
 @implementation Scene
 @synthesize imageNum;
+
+- (void)dealloc
+{
+    [super dealloc];
+}
 
 - (void)didReceiveMemoryWarning
 {
@@ -24,6 +30,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    // Do any additional setup after loading the view from its nib.
     
     menuImages = [ShowImage alloc];
     NSArray *images = [menuImages getShowImages];
@@ -31,20 +38,9 @@
     
     
     UIImage *img = [images objectAtIndex:imageNum];
+    [sceneButton setBackgroundImage:img forState:UIControlStateNormal];
     
-    [imageView setImage:img];
-    // Do any additional setup after loading the view from its nib.
-    
-    //[self setToggleMenu];
-    
-    CGRect rect1 = CGRectMake(0, 0, toggleview.frame.size.width, toggleview.frame.size.height);
-    imageView1 = [[UIImageView alloc] initWithFrame:rect1];
-    imageView1.image = [UIImage imageNamed:@"glee1.jpg"];
-    [toggleview addSubview:imageView1];
-    [imageView1 release];
-
-    
-
+    [imageView setImage:img];    
 }
 
 - (IBAction)backToMenu {
@@ -61,6 +57,14 @@
     return imageNum;
 }
 
+-(IBAction)selectScene {
+    Edit *editScene = [[Edit alloc] initWithNibName:nil bundle:nil];
+    
+    editScene.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    [self presentModalViewController:editScene animated:YES];
+    
+    [editScene release];
+}
 
 - (void)viewDidUnload
 {
@@ -78,27 +82,9 @@
     return YES;
 }
 
--(IBAction)setToggleMenu
+-(void)fromEditToMenu
 {
-    //int selection;
-	//election = segControl.selectedSegmentIndex;
-    
-    if (segControl.selectedSegmentIndex == 0) {
-        CGRect rect2 = CGRectMake(0, 0, toggleview.frame.size.width, toggleview.frame.size.height);
-        
-        imageView2 = [[UIImageView alloc] initWithFrame:rect2];
-        imageView2.image = [UIImage imageNamed:@"glee1.jpg"];
-        [toggleview addSubview:imageView2];
-        [imageView2 release];        
-    }
-    else if (segControl.selectedSegmentIndex == 1) {
-        CGRect rect1 = CGRectMake(0, 0, toggleview.frame.size.width, toggleview.frame.size.height);
-        imageView1 = [[UIImageView alloc] initWithFrame:rect1];
-        imageView1.image = [UIImage imageNamed:@"glee2.jpg"];
-        [toggleview addSubview:imageView1];
-        [imageView1 release];    
-    }
-
+    [self dismissModalViewControllerAnimated:NO];  
 }
 
 @end
