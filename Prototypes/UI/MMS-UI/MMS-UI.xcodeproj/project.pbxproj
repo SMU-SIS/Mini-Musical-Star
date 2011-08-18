@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		820511BF13F3BB9B0016F87E /* Scene.m in Sources */ = {isa = PBXBuildFile; fileRef = 820511BD13F3BB9B0016F87E /* Scene.m */; };
 		820511C013F3BB9B0016F87E /* Scene.xib in Resources */ = {isa = PBXBuildFile; fileRef = 820511BE13F3BB9B0016F87E /* Scene.xib */; };
+		825FDF4C13FC12CC005D4CDC /* A_sampleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 825FDF4A13FC12CC005D4CDC /* A_sampleViewController.xib */; };
+		825FDF5013FCA967005D4CDC /* A_sampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 825FDF4F13FCA967005D4CDC /* A_sampleViewController.m */; };
+		829ED71313F91EDB000CFFC7 /* kk.m in Sources */ = {isa = PBXBuildFile; fileRef = 829ED71113F91EDA000CFFC7 /* kk.m */; };
+		829ED71413F91EDB000CFFC7 /* kk.xib in Resources */ = {isa = PBXBuildFile; fileRef = 829ED71213F91EDA000CFFC7 /* kk.xib */; };
 		EDA2A1C513F26F8400B64EA5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDA2A1C413F26F8400B64EA5 /* UIKit.framework */; };
 		EDA2A1C713F26F8400B64EA5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDA2A1C613F26F8400B64EA5 /* Foundation.framework */; };
 		EDA2A1C913F26F8400B64EA5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDA2A1C813F26F8400B64EA5 /* CoreGraphics.framework */; };
@@ -53,6 +57,12 @@
 		820511BC13F3BB9B0016F87E /* Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scene.h; sourceTree = "<group>"; };
 		820511BD13F3BB9B0016F87E /* Scene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Scene.m; sourceTree = "<group>"; };
 		820511BE13F3BB9B0016F87E /* Scene.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Scene.xib; sourceTree = "<group>"; };
+		825FDF4B13FC12CC005D4CDC /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = "../../../../../../A sample/A sample/en.lproj/A_sampleViewController.xib"; sourceTree = "<group>"; };
+		825FDF4E13FCA967005D4CDC /* A_sampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = A_sampleViewController.h; path = "../../../../../../A sample/A sample/A_sampleViewController.h"; sourceTree = "<group>"; };
+		825FDF4F13FCA967005D4CDC /* A_sampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = A_sampleViewController.m; path = "../../../../../../A sample/A sample/A_sampleViewController.m"; sourceTree = "<group>"; };
+		829ED71013F91EDA000CFFC7 /* kk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kk.h; sourceTree = "<group>"; };
+		829ED71113F91EDA000CFFC7 /* kk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = kk.m; sourceTree = "<group>"; };
+		829ED71213F91EDA000CFFC7 /* kk.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = kk.xib; sourceTree = "<group>"; };
 		EDA2A1C013F26F8400B64EA5 /* MMS-UI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MMS-UI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDA2A1C413F26F8400B64EA5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		EDA2A1C613F26F8400B64EA5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -170,6 +180,12 @@
 				820511BE13F3BB9B0016F87E /* Scene.xib */,
 				EDC5CC3713F6261500EAF813 /* Cover.xib */,
 				EDC5CC3C13F6269300EAF813 /* Edit.xib */,
+				825FDF4E13FCA967005D4CDC /* A_sampleViewController.h */,
+				825FDF4F13FCA967005D4CDC /* A_sampleViewController.m */,
+				825FDF4A13FC12CC005D4CDC /* A_sampleViewController.xib */,
+				829ED71013F91EDA000CFFC7 /* kk.h */,
+				829ED71113F91EDA000CFFC7 /* kk.m */,
+				829ED71213F91EDA000CFFC7 /* kk.xib */,
 			);
 			path = "MMS-UI";
 			sourceTree = "<group>";
@@ -314,6 +330,8 @@
 				EDC5CC3313F6260400EAF813 /* Playback.xib in Resources */,
 				EDC5CC3913F6261500EAF813 /* Cover.xib in Resources */,
 				EDC5CC3E13F6269300EAF813 /* Edit.xib in Resources */,
+				829ED71413F91EDB000CFFC7 /* kk.xib in Resources */,
+				825FDF4C13FC12CC005D4CDC /* A_sampleViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -357,6 +375,8 @@
 				EDC5CC3213F6260400EAF813 /* Playback.m in Sources */,
 				EDC5CC3813F6261500EAF813 /* Cover.m in Sources */,
 				EDC5CC3D13F6269300EAF813 /* Edit.m in Sources */,
+				829ED71313F91EDB000CFFC7 /* kk.m in Sources */,
+				825FDF5013FCA967005D4CDC /* A_sampleViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -379,6 +399,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		825FDF4A13FC12CC005D4CDC /* A_sampleViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				825FDF4B13FC12CC005D4CDC /* en */,
+			);
+			name = A_sampleViewController.xib;
+			sourceTree = "<group>";
+		};
 		EDA2A1CD13F26F8400B64EA5 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
