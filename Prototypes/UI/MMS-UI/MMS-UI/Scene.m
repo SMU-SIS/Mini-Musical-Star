@@ -68,11 +68,19 @@
         UIImage *img = [sceneImages objectAtIndex:i];
         
         //creating an ImageView and insert into scrollView as a subview
+        /*
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:frame];
         imageView.image = img;
         
         [sceneMenu addSubview:imageView];
         [imageView release];
+         */
+        
+        UIButton *button = [[UIButton alloc] initWithFrame:frame];
+        [button setImage:img forState:(UIControlStateNormal)];
+        [button addTarget:self action:@selector(selectScene:) forControlEvents:UIControlEventTouchUpInside];
+        [sceneMenu addSubview:button];
+        [button release];
         
     }
     
@@ -101,6 +109,16 @@
 }
 
 -(IBAction)selectScene {
+    Edit *editScene = [[Edit alloc] initWithNibName:nil bundle:nil];
+    
+    editScene.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    [self presentModalViewController:editScene animated:YES];
+    
+    [editScene release];
+}
+
+-(void)selectScene:(id)sender
+{
     Edit *editScene = [[Edit alloc] initWithNibName:nil bundle:nil];
     
     editScene.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;

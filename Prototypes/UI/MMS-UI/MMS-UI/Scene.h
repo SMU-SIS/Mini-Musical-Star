@@ -25,6 +25,7 @@
 -(IBAction)backToMenu;
 
 -(IBAction)selectScene;
+-(void)selectScene:(id)sender;
 -(void)fromEditToMenu;
 
 @end
