@@ -8,13 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-#import "Scene.h"
-#import "A_sampleViewController.h"
 
 @interface Edit : UIViewController {
     IBOutlet UIView *toggleView;
     IBOutlet UISegmentedControl *segControl;
-    A_sampleViewController *sampleview;
+    
     UIImageView *imageView1;
     UIImageView *imageView2;
 }
@@ -23,9 +21,5 @@
 
 -(IBAction)backToScene;
 //-(IBAction)backtoMenu;
-
-@property(retain, nonatomic) UIImageView *imageView1;
-@property(retain, nonatomic) UIImageView *imageView2;
-@property(retain, nonatomic) A_sampleViewController *sampleview;
 
 @end
