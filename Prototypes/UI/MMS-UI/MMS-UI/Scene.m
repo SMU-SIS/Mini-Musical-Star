@@ -32,6 +32,14 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+    [sceneMenu setScrollEnabled:YES];
+    [sceneMenu setShowsHorizontalScrollIndicator:NO];
+    [sceneMenu setShowsVerticalScrollIndicator:NO];
+    [sceneMenu setPagingEnabled:NO]; 
+    sceneMenu.clipsToBounds = NO;
+    //[sceneMenu  setZoomScale:1.5 animated:YES];   
+    
+    //Codes to disply the picture of the musical above on the scene selection page
     menuImages = [ShowImage alloc];
     NSArray *images = [menuImages getShowImages];
     [menuImages autorelease];
@@ -40,8 +48,43 @@
     UIImage *img = [images objectAtIndex:imageNum];
     [sceneButton setBackgroundImage:img forState:UIControlStateNormal];
     
-    [imageView setImage:img];    
+    
+    //For the scene selection page. Scrollable.
+    scenes = [ShowImage alloc];
+    NSArray *sceneImages = [scenes getSceneImages:(imageNum)];
+    [scenes autorelease];
+    
+    for (int i=0; i<sceneImages.count; i++) {
+        CGRect frame;
+        frame.origin.x = sceneMenu.frame.origin.x + i * 230;
+        frame.origin.y = 10;
+        //frame.size = scrollView.frame.size;
+        frame.size.width = 200;
+        frame.size.height = 150;
+        
+        NSLog(@"Width is %g", frame.size.width);
+        NSLog(@"Length is %g", frame.size.height);
+        
+        UIImage *img = [sceneImages objectAtIndex:i];
+        
+        //creating an ImageView and insert into scrollView as a subview
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:frame];
+        imageView.image = img;
+        
+        [sceneMenu addSubview:imageView];
+        [imageView release];
+        
+    }
+    
+    int extend = 0;
+    
+    if (sceneImages.count>4) {
+        extend = sceneImages.count -4;
+    }
+
+    [sceneMenu setContentSize:CGSizeMake(sceneMenu.frame.size.width + (extend * 200), 0)];
 }
+
 
 - (IBAction)backToMenu {
     [self dismissModalViewControllerAnimated:YES];    

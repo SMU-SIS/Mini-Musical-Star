@@ -11,8 +11,10 @@
 
 @interface ShowImage : NSObject {
     NSArray *showImages;
+    NSArray *sceneImages;
 }
 
 -(NSArray *)getShowImages;
+-(NSArray *)getSceneImages:(int)musical;
 
 @end

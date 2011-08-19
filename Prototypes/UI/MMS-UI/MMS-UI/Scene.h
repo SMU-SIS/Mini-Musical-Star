@@ -10,12 +10,12 @@
 #import "ShowImage.h"
 
 @interface Scene : UIViewController{
-    IBOutlet UISegmentedControl *segControl;
-    IBOutlet UIImageView *imageView;
     IBOutlet UIButton *sceneButton;
+    IBOutlet UIScrollView *sceneMenu;
 
     int imageNum;
     ShowImage *menuImages;
+    ShowImage *scenes;
 }
 
 @property (nonatomic, assign) int imageNum;

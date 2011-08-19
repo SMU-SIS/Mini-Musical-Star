@@ -83,7 +83,8 @@
         
     }
     
-    [scrollView setContentSize:CGSizeMake(scrollView.frame.size.width * images.count, scrollView.frame.size.height)];}
+    [scrollView setContentSize:CGSizeMake(scrollView.frame.size.width * images.count, scrollView.frame.size.height)];
+}
 
 
 - (void)viewDidUnload
