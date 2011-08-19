@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ShowImage.h"
 
 
 @interface Edit : UIViewController {
@@ -15,11 +16,14 @@
     
     UIImageView *imageView1;
     UIImageView *imageView2;
+    
+    UIView *graphicsMenu;
 }
 
 -(IBAction)setToggleOption;
 
 -(IBAction)backToScene;
-//-(IBAction)backtoMenu;
+
+-(UIView *)getGraphics;
 
 @end

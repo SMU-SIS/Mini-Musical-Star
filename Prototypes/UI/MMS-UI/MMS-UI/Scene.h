@@ -16,6 +16,7 @@
     int imageNum;
     ShowImage *menuImages;
     ShowImage *scenes;
+
 }
 
 @property (nonatomic, assign) int imageNum;
@@ -26,6 +27,5 @@
 
 -(IBAction)selectScene;
 -(void)selectScene:(id)sender;
--(void)fromEditToMenu;
 
 @end

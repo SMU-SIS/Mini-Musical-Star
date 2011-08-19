@@ -31,7 +31,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    
+  
+    //Settings for the scrollview
     [sceneMenu setScrollEnabled:YES];
     [sceneMenu setShowsHorizontalScrollIndicator:NO];
     [sceneMenu setShowsVerticalScrollIndicator:NO];
@@ -141,11 +142,6 @@
     // Return YES for supported orientations
     //return (interfaceOrientation == UIInterfaceOrientationPortrait);
     return YES;
-}
-
--(void)fromEditToMenu
-{
-    [self dismissModalViewControllerAnimated:NO];  
 }
 
 @end

@@ -33,4 +33,11 @@
     return [sceneImages autorelease];
 }
 
+-(NSArray *)getImagesInTheScene
+{
+    imagesOfAScene = [[NSArray alloc] initWithObjects:[UIImage imageNamed:@"g1.png"], [UIImage imageNamed:@"g2.png"], [UIImage imageNamed:@"g3.png"], [UIImage imageNamed:@"g4.png"], [UIImage imageNamed:@"g5.png"], nil];
+    
+    return [imagesOfAScene autorelease];
+}
+
 @end
