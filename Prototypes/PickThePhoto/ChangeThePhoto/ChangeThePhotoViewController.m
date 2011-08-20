@@ -10,6 +10,7 @@
 
 @implementation ChangeThePhotoViewController
 @synthesize imageView, imagesArray;
+@synthesize secondViewController;
 
 - (void)didReceiveMemoryWarning
 {

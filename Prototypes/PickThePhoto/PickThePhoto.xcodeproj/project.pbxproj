@@ -22,9 +22,6 @@
 		6448020C13FEB87C0048930E /* glee2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6448020713FEB87C0048930E /* glee2.jpg */; };
 		6448020D13FEB87C0048930E /* glee3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6448020813FEB87C0048930E /* glee3.jpg */; };
 		6448020E13FEB87C0048930E /* glee3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6448020813FEB87C0048930E /* glee3.jpg */; };
-		6488CDE313FF7B1100B99BAC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 649A2CA813FDFA1F005F2EB5 /* UIKit.framework */; };
-		6488CDE413FF7B1100B99BAC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 649A2CAA13FDFA1F005F2EB5 /* Foundation.framework */; };
-		6488CDE513FF7B1100B99BAC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 649A2CAC13FDFA1F005F2EB5 /* CoreGraphics.framework */; };
 		6488CE0113FF7C1200B99BAC /* ImageReplacer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6488CE0013FF7C1200B99BAC /* ImageReplacer.m */; };
 		649A2CA913FDFA1F005F2EB5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 649A2CA813FDFA1F005F2EB5 /* UIKit.framework */; };
 		649A2CAB13FDFA1F005F2EB5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 649A2CAA13FDFA1F005F2EB5 /* Foundation.framework */; };
@@ -43,6 +40,21 @@
 		649A2CD713FDFA1F005F2EB5 /* PickThePhotoTests.h in Resources */ = {isa = PBXBuildFile; fileRef = 649A2CD613FDFA1F005F2EB5 /* PickThePhotoTests.h */; };
 		649A2CD913FDFA1F005F2EB5 /* PickThePhotoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 649A2CD813FDFA1F005F2EB5 /* PickThePhotoTests.m */; };
 		64CCC98C13FE0306004BF024 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64CCC98B13FE0306004BF024 /* MobileCoreServices.framework */; };
+		64DC3F4313FFAD1A00F9CBC0 /* ImageReplacerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64DC3F4113FFAD1A00F9CBC0 /* ImageReplacerController.m */; };
+		64DC3F4413FFAD1A00F9CBC0 /* ImageReplacerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64DC3F4213FFAD1A00F9CBC0 /* ImageReplacerController.xib */; };
+		64DC3F4D13FFAF6D00F9CBC0 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64DC3F4B13FFAF6D00F9CBC0 /* SecondViewController.m */; };
+		64DC3F4E13FFAF6D00F9CBC0 /* SecondViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64DC3F4C13FFAF6D00F9CBC0 /* SecondViewController.xib */; };
+		64DC3F5513FFB0B700F9CBC0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 649A2CA813FDFA1F005F2EB5 /* UIKit.framework */; };
+		64DC3F5613FFB0B700F9CBC0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 649A2CAA13FDFA1F005F2EB5 /* Foundation.framework */; };
+		64DC3F5713FFB0B700F9CBC0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 649A2CAC13FDFA1F005F2EB5 /* CoreGraphics.framework */; };
+		64DC3F5D13FFB0B700F9CBC0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 64DC3F5B13FFB0B700F9CBC0 /* InfoPlist.strings */; };
+		64DC3F5F13FFB0B700F9CBC0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 64DC3F5E13FFB0B700F9CBC0 /* main.m */; };
+		64DC3F6313FFB0B700F9CBC0 /* PlayWithViewsAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 64DC3F6213FFB0B700F9CBC0 /* PlayWithViewsAppDelegate.m */; };
+		64DC3F6613FFB0B700F9CBC0 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64DC3F6413FFB0B700F9CBC0 /* MainWindow.xib */; };
+		64DC3F6913FFB0B700F9CBC0 /* PlayWithViewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64DC3F6813FFB0B700F9CBC0 /* PlayWithViewsViewController.m */; };
+		64DC3F6C13FFB0B700F9CBC0 /* PlayWithViewsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64DC3F6A13FFB0B700F9CBC0 /* PlayWithViewsViewController.xib */; };
+		64DC3F7613FFB66100F9CBC0 /* NextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64DC3F7513FFB66100F9CBC0 /* NextView.xib */; };
+		64DC3F7913FFB6AC00F9CBC0 /* NextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 64DC3F7813FFB6AC00F9CBC0 /* NextView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,7 +82,6 @@
 		6448020613FEB87C0048930E /* glee1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = glee1.jpg; sourceTree = "<group>"; };
 		6448020713FEB87C0048930E /* glee2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = glee2.jpg; sourceTree = "<group>"; };
 		6448020813FEB87C0048930E /* glee3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = glee3.jpg; sourceTree = "<group>"; };
-		6488CDE113FF7B1100B99BAC /* ImageReplacer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageReplacer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6488CDFF13FF7C1200B99BAC /* ImageReplacer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageReplacer.h; sourceTree = "<group>"; };
 		6488CE0013FF7C1200B99BAC /* ImageReplacer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageReplacer.m; sourceTree = "<group>"; };
 		649A2CA413FDFA1F005F2EB5 /* PickThePhoto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PickThePhoto.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -94,6 +105,26 @@
 		649A2CD613FDFA1F005F2EB5 /* PickThePhotoTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PickThePhotoTests.h; sourceTree = "<group>"; };
 		649A2CD813FDFA1F005F2EB5 /* PickThePhotoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PickThePhotoTests.m; sourceTree = "<group>"; };
 		64CCC98B13FE0306004BF024 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		64DC3F4013FFAD1A00F9CBC0 /* ImageReplacerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageReplacerController.h; sourceTree = "<group>"; };
+		64DC3F4113FFAD1A00F9CBC0 /* ImageReplacerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageReplacerController.m; sourceTree = "<group>"; };
+		64DC3F4213FFAD1A00F9CBC0 /* ImageReplacerController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageReplacerController.xib; sourceTree = "<group>"; };
+		64DC3F4A13FFAF6D00F9CBC0 /* SecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
+		64DC3F4B13FFAF6D00F9CBC0 /* SecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
+		64DC3F4C13FFAF6D00F9CBC0 /* SecondViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SecondViewController.xib; sourceTree = "<group>"; };
+		64DC3F5313FFB0B700F9CBC0 /* PlayWithViews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlayWithViews.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		64DC3F5A13FFB0B700F9CBC0 /* PlayWithViews-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PlayWithViews-Info.plist"; sourceTree = "<group>"; };
+		64DC3F5C13FFB0B700F9CBC0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		64DC3F5E13FFB0B700F9CBC0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		64DC3F6013FFB0B700F9CBC0 /* PlayWithViews-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PlayWithViews-Prefix.pch"; sourceTree = "<group>"; };
+		64DC3F6113FFB0B700F9CBC0 /* PlayWithViewsAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlayWithViewsAppDelegate.h; sourceTree = "<group>"; };
+		64DC3F6213FFB0B700F9CBC0 /* PlayWithViewsAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlayWithViewsAppDelegate.m; sourceTree = "<group>"; };
+		64DC3F6513FFB0B700F9CBC0 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
+		64DC3F6713FFB0B700F9CBC0 /* PlayWithViewsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlayWithViewsViewController.h; sourceTree = "<group>"; };
+		64DC3F6813FFB0B700F9CBC0 /* PlayWithViewsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlayWithViewsViewController.m; sourceTree = "<group>"; };
+		64DC3F6B13FFB0B700F9CBC0 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/PlayWithViewsViewController.xib; sourceTree = "<group>"; };
+		64DC3F7513FFB66100F9CBC0 /* NextView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NextView.xib; sourceTree = "<group>"; };
+		64DC3F7713FFB6AC00F9CBC0 /* NextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NextView.h; sourceTree = "<group>"; };
+		64DC3F7813FFB6AC00F9CBC0 /* NextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NextView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,16 +135,6 @@
 				644801E913FEB7CC0048930E /* UIKit.framework in Frameworks */,
 				644801EA13FEB7CC0048930E /* Foundation.framework in Frameworks */,
 				644801EB13FEB7CC0048930E /* CoreGraphics.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		6488CDDE13FF7B1100B99BAC /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				6488CDE313FF7B1100B99BAC /* UIKit.framework in Frameworks */,
-				6488CDE413FF7B1100B99BAC /* Foundation.framework in Frameworks */,
-				6488CDE513FF7B1100B99BAC /* CoreGraphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -139,6 +160,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		64DC3F5013FFB0B700F9CBC0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				64DC3F5513FFB0B700F9CBC0 /* UIKit.framework in Frameworks */,
+				64DC3F5613FFB0B700F9CBC0 /* Foundation.framework in Frameworks */,
+				64DC3F5713FFB0B700F9CBC0 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -152,6 +183,9 @@
 				644801FC13FEB7CD0048930E /* ChangeThePhotoViewController.m */,
 				644801FE13FEB7CD0048930E /* ChangeThePhotoViewController.xib */,
 				644801ED13FEB7CC0048930E /* Supporting Files */,
+				64DC3F4A13FFAF6D00F9CBC0 /* SecondViewController.h */,
+				64DC3F4B13FFAF6D00F9CBC0 /* SecondViewController.m */,
+				64DC3F4C13FFAF6D00F9CBC0 /* SecondViewController.xib */,
 			);
 			path = ChangeThePhoto;
 			sourceTree = "<group>";
@@ -185,6 +219,7 @@
 				649A2CAE13FDFA1F005F2EB5 /* PickThePhoto */,
 				649A2CD013FDFA1F005F2EB5 /* PickThePhotoTests */,
 				644801EC13FEB7CC0048930E /* ChangeThePhoto */,
+				64DC3F5813FFB0B700F9CBC0 /* PlayWithViews */,
 				649A2CA713FDFA1F005F2EB5 /* Frameworks */,
 				649A2CA513FDFA1F005F2EB5 /* Products */,
 			);
@@ -196,7 +231,7 @@
 				649A2CA413FDFA1F005F2EB5 /* PickThePhoto.app */,
 				649A2CC813FDFA1F005F2EB5 /* PickThePhotoTests.octest */,
 				644801E713FEB7CC0048930E /* ChangeThePhoto.app */,
-				6488CDE113FF7B1100B99BAC /* ImageReplacer.app */,
+				64DC3F5313FFB0B700F9CBC0 /* PlayWithViews.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -224,6 +259,9 @@
 				649A2CAF13FDFA1F005F2EB5 /* Supporting Files */,
 				6488CDFF13FF7C1200B99BAC /* ImageReplacer.h */,
 				6488CE0013FF7C1200B99BAC /* ImageReplacer.m */,
+				64DC3F4013FFAD1A00F9CBC0 /* ImageReplacerController.h */,
+				64DC3F4113FFAD1A00F9CBC0 /* ImageReplacerController.m */,
+				64DC3F4213FFAD1A00F9CBC0 /* ImageReplacerController.xib */,
 			);
 			path = PickThePhoto;
 			sourceTree = "<group>";
@@ -258,6 +296,34 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		64DC3F5813FFB0B700F9CBC0 /* PlayWithViews */ = {
+			isa = PBXGroup;
+			children = (
+				64DC3F6113FFB0B700F9CBC0 /* PlayWithViewsAppDelegate.h */,
+				64DC3F6213FFB0B700F9CBC0 /* PlayWithViewsAppDelegate.m */,
+				64DC3F6413FFB0B700F9CBC0 /* MainWindow.xib */,
+				64DC3F6713FFB0B700F9CBC0 /* PlayWithViewsViewController.h */,
+				64DC3F6813FFB0B700F9CBC0 /* PlayWithViewsViewController.m */,
+				64DC3F6A13FFB0B700F9CBC0 /* PlayWithViewsViewController.xib */,
+				64DC3F5913FFB0B700F9CBC0 /* Supporting Files */,
+				64DC3F7513FFB66100F9CBC0 /* NextView.xib */,
+				64DC3F7713FFB6AC00F9CBC0 /* NextView.h */,
+				64DC3F7813FFB6AC00F9CBC0 /* NextView.m */,
+			);
+			path = PlayWithViews;
+			sourceTree = "<group>";
+		};
+		64DC3F5913FFB0B700F9CBC0 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				64DC3F5A13FFB0B700F9CBC0 /* PlayWithViews-Info.plist */,
+				64DC3F5B13FFB0B700F9CBC0 /* InfoPlist.strings */,
+				64DC3F5E13FFB0B700F9CBC0 /* main.m */,
+				64DC3F6013FFB0B700F9CBC0 /* PlayWithViews-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -276,23 +342,6 @@
 			name = ChangeThePhoto;
 			productName = ChangeThePhoto;
 			productReference = 644801E713FEB7CC0048930E /* ChangeThePhoto.app */;
-			productType = "com.apple.product-type.application";
-		};
-		6488CDE013FF7B1100B99BAC /* ImageReplacer */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 6488CDFD13FF7B1100B99BAC /* Build configuration list for PBXNativeTarget "ImageReplacer" */;
-			buildPhases = (
-				6488CDDD13FF7B1100B99BAC /* Sources */,
-				6488CDDE13FF7B1100B99BAC /* Frameworks */,
-				6488CDDF13FF7B1100B99BAC /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = ImageReplacer;
-			productName = ImageReplacer;
-			productReference = 6488CDE113FF7B1100B99BAC /* ImageReplacer.app */;
 			productType = "com.apple.product-type.application";
 		};
 		649A2CA313FDFA1F005F2EB5 /* PickThePhoto */ = {
@@ -331,6 +380,23 @@
 			productReference = 649A2CC813FDFA1F005F2EB5 /* PickThePhotoTests.octest */;
 			productType = "com.apple.product-type.bundle";
 		};
+		64DC3F5213FFB0B700F9CBC0 /* PlayWithViews */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 64DC3F6D13FFB0B700F9CBC0 /* Build configuration list for PBXNativeTarget "PlayWithViews" */;
+			buildPhases = (
+				64DC3F4F13FFB0B700F9CBC0 /* Sources */,
+				64DC3F5013FFB0B700F9CBC0 /* Frameworks */,
+				64DC3F5113FFB0B700F9CBC0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PlayWithViews;
+			productName = PlayWithViews;
+			productReference = 64DC3F5313FFB0B700F9CBC0 /* PlayWithViews.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -351,7 +417,7 @@
 				649A2CA313FDFA1F005F2EB5 /* PickThePhoto */,
 				649A2CC713FDFA1F005F2EB5 /* PickThePhotoTests */,
 				644801E613FEB7CC0048930E /* ChangeThePhoto */,
-				6488CDE013FF7B1100B99BAC /* ImageReplacer */,
+				64DC3F5213FFB0B700F9CBC0 /* PlayWithViews */,
 			);
 		};
 /* End PBXProject section */
@@ -367,13 +433,8 @@
 				6448020A13FEB87C0048930E /* glee1.jpg in Resources */,
 				6448020C13FEB87C0048930E /* glee2.jpg in Resources */,
 				6448020E13FEB87C0048930E /* glee3.jpg in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		6488CDDF13FF7B1100B99BAC /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				64DC3F4E13FFAF6D00F9CBC0 /* SecondViewController.xib in Resources */,
+				64DC3F7613FFB66100F9CBC0 /* NextView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -387,6 +448,7 @@
 				6448020913FEB87C0048930E /* glee1.jpg in Resources */,
 				6448020B13FEB87C0048930E /* glee2.jpg in Resources */,
 				6448020D13FEB87C0048930E /* glee3.jpg in Resources */,
+				64DC3F4413FFAD1A00F9CBC0 /* ImageReplacerController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -396,6 +458,16 @@
 			files = (
 				649A2CD513FDFA1F005F2EB5 /* InfoPlist.strings in Resources */,
 				649A2CD713FDFA1F005F2EB5 /* PickThePhotoTests.h in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		64DC3F5113FFB0B700F9CBC0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				64DC3F5D13FFB0B700F9CBC0 /* InfoPlist.strings in Resources */,
+				64DC3F6613FFB0B700F9CBC0 /* MainWindow.xib in Resources */,
+				64DC3F6C13FFB0B700F9CBC0 /* PlayWithViewsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -425,13 +497,8 @@
 				644801F313FEB7CC0048930E /* main.m in Sources */,
 				644801F713FEB7CC0048930E /* ChangeThePhotoAppDelegate.m in Sources */,
 				644801FD13FEB7CD0048930E /* ChangeThePhotoViewController.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		6488CDDD13FF7B1100B99BAC /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				64DC3F4D13FFAF6D00F9CBC0 /* SecondViewController.m in Sources */,
+				64DC3F7913FFB6AC00F9CBC0 /* NextView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -443,6 +510,7 @@
 				649A2CB913FDFA1F005F2EB5 /* PickThePhotoAppDelegate.m in Sources */,
 				649A2CBF13FDFA1F005F2EB5 /* PickThePhotoViewController.m in Sources */,
 				6488CE0113FF7C1200B99BAC /* ImageReplacer.m in Sources */,
+				64DC3F4313FFAD1A00F9CBC0 /* ImageReplacerController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -451,6 +519,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				649A2CD913FDFA1F005F2EB5 /* PickThePhotoTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		64DC3F4F13FFB0B700F9CBC0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				64DC3F5F13FFB0B700F9CBC0 /* main.m in Sources */,
+				64DC3F6313FFB0B700F9CBC0 /* PlayWithViewsAppDelegate.m in Sources */,
+				64DC3F6913FFB0B700F9CBC0 /* PlayWithViewsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -521,6 +599,30 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
+		64DC3F5B13FFB0B700F9CBC0 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				64DC3F5C13FFB0B700F9CBC0 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		64DC3F6413FFB0B700F9CBC0 /* MainWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				64DC3F6513FFB0B700F9CBC0 /* en */,
+			);
+			name = MainWindow.xib;
+			sourceTree = "<group>";
+		};
+		64DC3F6A13FFB0B700F9CBC0 /* PlayWithViewsViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				64DC3F6B13FFB0B700F9CBC0 /* en */,
+			);
+			name = PlayWithViewsViewController.xib;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -545,32 +647,6 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ChangeThePhoto/ChangeThePhoto-Prefix.pch";
 				INFOPLIST_FILE = "ChangeThePhoto/ChangeThePhoto-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = app;
-			};
-			name = Release;
-		};
-		6488CDFB13FF7B1100B99BAC /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "ImageReplacer/ImageReplacer-Prefix.pch";
-				INFOPLIST_FILE = "ImageReplacer/ImageReplacer-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = app;
-			};
-			name = Debug;
-		};
-		6488CDFC13FF7B1100B99BAC /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "ImageReplacer/ImageReplacer-Prefix.pch";
-				INFOPLIST_FILE = "ImageReplacer/ImageReplacer-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -681,6 +757,32 @@
 			};
 			name = Release;
 		};
+		64DC3F6E13FFB0B700F9CBC0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PlayWithViews/PlayWithViews-Prefix.pch";
+				INFOPLIST_FILE = "PlayWithViews/PlayWithViews-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		64DC3F6F13FFB0B700F9CBC0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PlayWithViews/PlayWithViews-Prefix.pch";
+				INFOPLIST_FILE = "PlayWithViews/PlayWithViews-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -692,14 +794,6 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
-		};
-		6488CDFD13FF7B1100B99BAC /* Build configuration list for PBXNativeTarget "ImageReplacer" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				6488CDFB13FF7B1100B99BAC /* Debug */,
-				6488CDFC13FF7B1100B99BAC /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
 		};
 		649A2C9E13FDFA1F005F2EB5 /* Build configuration list for PBXProject "PickThePhoto" */ = {
 			isa = XCConfigurationList;
@@ -727,6 +821,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		64DC3F6D13FFB0B700F9CBC0 /* Build configuration list for PBXNativeTarget "PlayWithViews" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				64DC3F6E13FFB0B700F9CBC0 /* Debug */,
+				64DC3F6F13FFB0B700F9CBC0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

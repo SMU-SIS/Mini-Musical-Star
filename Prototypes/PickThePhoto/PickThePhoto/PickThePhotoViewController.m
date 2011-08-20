@@ -68,6 +68,7 @@
     }
 }
 
+/* Called when the user had taken a photo or selected a photo from the photo library. */
 -(void)imagePickerController:(UIImagePickerController *)picker
 didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
