@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "ShowImage.h"
-
+#import "AudioMenu.h"
+#import "GraphicMenu.h"
 
 @interface Edit : UIViewController {
     IBOutlet UIView *toggleView;
