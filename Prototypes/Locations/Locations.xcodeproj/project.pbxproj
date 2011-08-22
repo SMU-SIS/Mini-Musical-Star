@@ -1,0 +1,350 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3A35F5AE13F3B86D0056F73F /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A35F5AD13F3B86D0056F73F /* Event.m */; };
+		3A87331313F2710A006032E5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A87331213F2710A006032E5 /* UIKit.framework */; };
+		3A87331513F2710A006032E5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A87331413F2710A006032E5 /* Foundation.framework */; };
+		3A87331713F2710A006032E5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A87331613F2710A006032E5 /* CoreGraphics.framework */; };
+		3A87331913F2710A006032E5 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A87331813F2710A006032E5 /* CoreData.framework */; };
+		3A87331F13F2710A006032E5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3A87331D13F2710A006032E5 /* InfoPlist.strings */; };
+		3A87332113F2710A006032E5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A87332013F2710A006032E5 /* main.m */; };
+		3A87332513F2710A006032E5 /* LocationsAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A87332413F2710A006032E5 /* LocationsAppDelegate.m */; };
+		3A87332813F2710A006032E5 /* Locations.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3A87332613F2710A006032E5 /* Locations.xcdatamodeld */; };
+		3A87332C13F2710A006032E5 /* LocationsAppDelegate_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A87332B13F2710A006032E5 /* LocationsAppDelegate_iPhone.m */; };
+		3A87332F13F2710A006032E5 /* MainWindow_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A87332D13F2710A006032E5 /* MainWindow_iPhone.xib */; };
+		3A87333313F2710A006032E5 /* LocationsAppDelegate_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A87333213F2710A006032E5 /* LocationsAppDelegate_iPad.m */; };
+		3A87333613F2710A006032E5 /* MainWindow_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A87333413F2710A006032E5 /* MainWindow_iPad.xib */; };
+		3A87334113F27F57006032E5 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A87334013F27F57006032E5 /* RootViewController.m */; };
+		3A87334313F3A6FA006032E5 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A87334213F3A6FA006032E5 /* CoreLocation.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		3A35F5AC13F3B86D0056F73F /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
+		3A35F5AD13F3B86D0056F73F /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
+		3A87330E13F2710A006032E5 /* Locations.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Locations.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3A87331213F2710A006032E5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		3A87331413F2710A006032E5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		3A87331613F2710A006032E5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		3A87331813F2710A006032E5 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		3A87331C13F2710A006032E5 /* Locations-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Locations-Info.plist"; sourceTree = "<group>"; };
+		3A87331E13F2710A006032E5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3A87332013F2710A006032E5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		3A87332213F2710A006032E5 /* Locations-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Locations-Prefix.pch"; sourceTree = "<group>"; };
+		3A87332313F2710A006032E5 /* LocationsAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocationsAppDelegate.h; sourceTree = "<group>"; };
+		3A87332413F2710A006032E5 /* LocationsAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocationsAppDelegate.m; sourceTree = "<group>"; };
+		3A87332713F2710A006032E5 /* Locations.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Locations.xcdatamodel; sourceTree = "<group>"; };
+		3A87332A13F2710A006032E5 /* LocationsAppDelegate_iPhone.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LocationsAppDelegate_iPhone.h; path = iPhone/LocationsAppDelegate_iPhone.h; sourceTree = "<group>"; };
+		3A87332B13F2710A006032E5 /* LocationsAppDelegate_iPhone.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = LocationsAppDelegate_iPhone.m; path = iPhone/LocationsAppDelegate_iPhone.m; sourceTree = "<group>"; };
+		3A87332E13F2710A006032E5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = iPhone/en.lproj/MainWindow_iPhone.xib; sourceTree = "<group>"; };
+		3A87333113F2710A006032E5 /* LocationsAppDelegate_iPad.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LocationsAppDelegate_iPad.h; path = iPad/LocationsAppDelegate_iPad.h; sourceTree = "<group>"; };
+		3A87333213F2710A006032E5 /* LocationsAppDelegate_iPad.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = LocationsAppDelegate_iPad.m; path = iPad/LocationsAppDelegate_iPad.m; sourceTree = "<group>"; };
+		3A87333513F2710A006032E5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = iPad/en.lproj/MainWindow_iPad.xib; sourceTree = "<group>"; };
+		3A87333F13F27F57006032E5 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		3A87334013F27F57006032E5 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		3A87334213F3A6FA006032E5 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3A87330B13F2710A006032E5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3A87334313F3A6FA006032E5 /* CoreLocation.framework in Frameworks */,
+				3A87331313F2710A006032E5 /* UIKit.framework in Frameworks */,
+				3A87331513F2710A006032E5 /* Foundation.framework in Frameworks */,
+				3A87331713F2710A006032E5 /* CoreGraphics.framework in Frameworks */,
+				3A87331913F2710A006032E5 /* CoreData.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3A87330313F2710A006032E5 = {
+			isa = PBXGroup;
+			children = (
+				3A87333F13F27F57006032E5 /* RootViewController.h */,
+				3A87334013F27F57006032E5 /* RootViewController.m */,
+				3A87331A13F2710A006032E5 /* Locations */,
+				3A87331113F2710A006032E5 /* Frameworks */,
+				3A87330F13F2710A006032E5 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3A87330F13F2710A006032E5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3A87330E13F2710A006032E5 /* Locations.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3A87331113F2710A006032E5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3A87334213F3A6FA006032E5 /* CoreLocation.framework */,
+				3A87331213F2710A006032E5 /* UIKit.framework */,
+				3A87331413F2710A006032E5 /* Foundation.framework */,
+				3A87331613F2710A006032E5 /* CoreGraphics.framework */,
+				3A87331813F2710A006032E5 /* CoreData.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3A87331A13F2710A006032E5 /* Locations */ = {
+			isa = PBXGroup;
+			children = (
+				3A87332313F2710A006032E5 /* LocationsAppDelegate.h */,
+				3A87332413F2710A006032E5 /* LocationsAppDelegate.m */,
+				3A87332613F2710A006032E5 /* Locations.xcdatamodeld */,
+				3A35F5AC13F3B86D0056F73F /* Event.h */,
+				3A35F5AD13F3B86D0056F73F /* Event.m */,
+				3A87332913F2710A006032E5 /* iPhone */,
+				3A87333013F2710A006032E5 /* iPad */,
+				3A87331B13F2710A006032E5 /* Supporting Files */,
+			);
+			path = Locations;
+			sourceTree = "<group>";
+		};
+		3A87331B13F2710A006032E5 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3A87331C13F2710A006032E5 /* Locations-Info.plist */,
+				3A87331D13F2710A006032E5 /* InfoPlist.strings */,
+				3A87332013F2710A006032E5 /* main.m */,
+				3A87332213F2710A006032E5 /* Locations-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3A87332913F2710A006032E5 /* iPhone */ = {
+			isa = PBXGroup;
+			children = (
+				3A87332A13F2710A006032E5 /* LocationsAppDelegate_iPhone.h */,
+				3A87332B13F2710A006032E5 /* LocationsAppDelegate_iPhone.m */,
+				3A87332D13F2710A006032E5 /* MainWindow_iPhone.xib */,
+			);
+			name = iPhone;
+			sourceTree = "<group>";
+		};
+		3A87333013F2710A006032E5 /* iPad */ = {
+			isa = PBXGroup;
+			children = (
+				3A87333113F2710A006032E5 /* LocationsAppDelegate_iPad.h */,
+				3A87333213F2710A006032E5 /* LocationsAppDelegate_iPad.m */,
+				3A87333413F2710A006032E5 /* MainWindow_iPad.xib */,
+			);
+			name = iPad;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3A87330D13F2710A006032E5 /* Locations */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3A87333913F2710A006032E5 /* Build configuration list for PBXNativeTarget "Locations" */;
+			buildPhases = (
+				3A87330A13F2710A006032E5 /* Sources */,
+				3A87330B13F2710A006032E5 /* Frameworks */,
+				3A87330C13F2710A006032E5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Locations;
+			productName = Locations;
+			productReference = 3A87330E13F2710A006032E5 /* Locations.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3A87330513F2710A006032E5 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 3A87330813F2710A006032E5 /* Build configuration list for PBXProject "Locations" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 3A87330313F2710A006032E5;
+			productRefGroup = 3A87330F13F2710A006032E5 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3A87330D13F2710A006032E5 /* Locations */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3A87330C13F2710A006032E5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3A87331F13F2710A006032E5 /* InfoPlist.strings in Resources */,
+				3A87332F13F2710A006032E5 /* MainWindow_iPhone.xib in Resources */,
+				3A87333613F2710A006032E5 /* MainWindow_iPad.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3A87330A13F2710A006032E5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3A87332113F2710A006032E5 /* main.m in Sources */,
+				3A87332513F2710A006032E5 /* LocationsAppDelegate.m in Sources */,
+				3A87332813F2710A006032E5 /* Locations.xcdatamodeld in Sources */,
+				3A87332C13F2710A006032E5 /* LocationsAppDelegate_iPhone.m in Sources */,
+				3A87333313F2710A006032E5 /* LocationsAppDelegate_iPad.m in Sources */,
+				3A87334113F27F57006032E5 /* RootViewController.m in Sources */,
+				3A35F5AE13F3B86D0056F73F /* Event.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		3A87331D13F2710A006032E5 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3A87331E13F2710A006032E5 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		3A87332D13F2710A006032E5 /* MainWindow_iPhone.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3A87332E13F2710A006032E5 /* en */,
+			);
+			name = MainWindow_iPhone.xib;
+			sourceTree = "<group>";
+		};
+		3A87333413F2710A006032E5 /* MainWindow_iPad.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3A87333513F2710A006032E5 /* en */,
+			);
+			name = MainWindow_iPad.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3A87333713F2710A006032E5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3A87333813F2710A006032E5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3A87333A13F2710A006032E5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Locations/Locations-Prefix.pch";
+				INFOPLIST_FILE = "Locations/Locations-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		3A87333B13F2710A006032E5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Locations/Locations-Prefix.pch";
+				INFOPLIST_FILE = "Locations/Locations-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3A87330813F2710A006032E5 /* Build configuration list for PBXProject "Locations" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3A87333713F2710A006032E5 /* Debug */,
+				3A87333813F2710A006032E5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3A87333913F2710A006032E5 /* Build configuration list for PBXNativeTarget "Locations" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3A87333A13F2710A006032E5 /* Debug */,
+				3A87333B13F2710A006032E5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		3A87332613F2710A006032E5 /* Locations.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				3A87332713F2710A006032E5 /* Locations.xcdatamodel */,
+			);
+			currentVersion = 3A87332713F2710A006032E5 /* Locations.xcdatamodel */;
+			path = Locations.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 3A87330513F2710A006032E5 /* Project object */;
+}

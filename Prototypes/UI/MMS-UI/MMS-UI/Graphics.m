@@ -1,14 +1,15 @@
 //
-//  NextView.m
-//  PickThePhoto
+//  Graphics.m
+//  MMS-UI
 //
-//  Created by Jason on 22/8/11.
+//  Created by Weijie Tan on 8/22/11.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "NextView.h"
+#import "Graphics.h"
 
-@implementation NextView
+
+@implementation Graphics
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -17,6 +18,11 @@
         // Custom initialization
     }
     return self;
+}
+
+- (void)dealloc
+{
+    [super dealloc];
 }
 
 - (void)didReceiveMemoryWarning
@@ -45,7 +51,7 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+	return YES;
 }
 
 @end
