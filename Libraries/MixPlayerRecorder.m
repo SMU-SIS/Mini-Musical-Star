@@ -359,6 +359,13 @@ static OSStatus renderNotification(void *inRefCon,
     isRecording = NO;
 }
 
+-(bool)checkGraphStatus
+{
+    unsigned char result;
+    AUGraphIsRunning(processingGraph, &result);
+    return result;
+}
+
 #pragma mark - notification posting methods
 -(void)postNotificationForElapsedTime
 {
