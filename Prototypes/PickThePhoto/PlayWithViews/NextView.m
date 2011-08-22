@@ -2,7 +2,7 @@
 //  NextView.m
 //  PickThePhoto
 //
-//  Created by Tommi on 20/8/11.
+//  Created by Jason on 22/8/11.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
@@ -45,7 +45,7 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
-	return YES;
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 @end

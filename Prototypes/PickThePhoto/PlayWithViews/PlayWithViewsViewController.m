@@ -27,7 +27,7 @@
 {
     [super viewDidLoad];
 }
-*/
+*/	
 
 - (void)viewDidUnload
 {
@@ -46,7 +46,9 @@
 {
     if (self.nextView == nil) {
         NextView *view2 = [[NextView alloc] initWithNibName:@"View2" bundle:[NSBundle mainBundle]];
-        self.nextView = view2;
+        view2.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+        [self presentModalViewController:view2 animated:YES];
+     
         [view2 release];
     }
     
@@ -54,3 +56,4 @@
 }
 
 @end
+	
