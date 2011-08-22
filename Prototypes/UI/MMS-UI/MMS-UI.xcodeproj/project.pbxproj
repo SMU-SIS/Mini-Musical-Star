@@ -60,6 +60,8 @@
 		EDAEB39113FE75810064F8C3 /* wickedS4.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = EDAEB38413FE75810064F8C3 /* wickedS4.jpeg */; };
 		EDAEB39213FE75810064F8C3 /* wickedS5.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = EDAEB38513FE75810064F8C3 /* wickedS5.jpeg */; };
 		EDB9C5EE1402651500434223 /* picture.png in Resources */ = {isa = PBXBuildFile; fileRef = EDB9C5ED1402651500434223 /* picture.png */; };
+		EDB9C60314026C7C00434223 /* Graphics.m in Sources */ = {isa = PBXBuildFile; fileRef = EDB9C60114026C7C00434223 /* Graphics.m */; };
+		EDB9C60414026C7C00434223 /* Graphics.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDB9C60214026C7C00434223 /* Graphics.xib */; };
 		EDC5CC3213F6260400EAF813 /* Playback.m in Sources */ = {isa = PBXBuildFile; fileRef = EDC5CC3013F6260400EAF813 /* Playback.m */; };
 		EDC5CC3313F6260400EAF813 /* Playback.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDC5CC3113F6260400EAF813 /* Playback.xib */; };
 		EDC5CC3813F6261500EAF813 /* Cover.m in Sources */ = {isa = PBXBuildFile; fileRef = EDC5CC3613F6261500EAF813 /* Cover.m */; };
@@ -141,6 +143,9 @@
 		EDAEB38413FE75810064F8C3 /* wickedS4.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = wickedS4.jpeg; path = "Images/Musical Scenes/wickedS4.jpeg"; sourceTree = SOURCE_ROOT; };
 		EDAEB38513FE75810064F8C3 /* wickedS5.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = wickedS5.jpeg; path = "Images/Musical Scenes/wickedS5.jpeg"; sourceTree = SOURCE_ROOT; };
 		EDB9C5ED1402651500434223 /* picture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = picture.png; path = Images/Buttons/picture.png; sourceTree = SOURCE_ROOT; };
+		EDB9C60014026C7C00434223 /* Graphics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Graphics.h; sourceTree = "<group>"; };
+		EDB9C60114026C7C00434223 /* Graphics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Graphics.m; sourceTree = "<group>"; };
+		EDB9C60214026C7C00434223 /* Graphics.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Graphics.xib; sourceTree = "<group>"; };
 		EDC5CC2F13F6260400EAF813 /* Playback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Playback.h; sourceTree = "<group>"; };
 		EDC5CC3013F6260400EAF813 /* Playback.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Playback.m; sourceTree = "<group>"; };
 		EDC5CC3113F6260400EAF813 /* Playback.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Playback.xib; sourceTree = "<group>"; };
@@ -249,6 +254,9 @@
 				EDACF6281400308D00A478C8 /* AudioMenu.m */,
 				EDACF62A140030AB00A478C8 /* GraphicMenu.h */,
 				EDACF62B140030AB00A478C8 /* GraphicMenu.m */,
+				EDB9C60014026C7C00434223 /* Graphics.h */,
+				EDB9C60114026C7C00434223 /* Graphics.m */,
+				EDB9C60214026C7C00434223 /* Graphics.xib */,
 			);
 			path = "MMS-UI";
 			sourceTree = "<group>";
@@ -448,6 +456,7 @@
 				EDA06CA713FEA5BA00ED4771 /* g8.png in Resources */,
 				EDA363A9140230FC00E93779 /* home.png in Resources */,
 				EDB9C5EE1402651500434223 /* picture.png in Resources */,
+				EDB9C60414026C7C00434223 /* Graphics.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -493,6 +502,7 @@
 				EDC5CC3D13F6269300EAF813 /* Edit.m in Sources */,
 				EDACF6291400308D00A478C8 /* AudioMenu.m in Sources */,
 				EDACF62C140030AB00A478C8 /* GraphicMenu.m in Sources */,
+				EDB9C60314026C7C00434223 /* Graphics.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
