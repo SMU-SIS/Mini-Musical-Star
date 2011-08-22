@@ -1,0 +1,464 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3A6BC0601401FE56000A8BC3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A6BC05F1401FE56000A8BC3 /* UIKit.framework */; };
+		3A6BC0621401FE56000A8BC3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A6BC0611401FE56000A8BC3 /* Foundation.framework */; };
+		3A6BC0641401FE56000A8BC3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A6BC0631401FE56000A8BC3 /* CoreGraphics.framework */; };
+		3A6BC0661401FE56000A8BC3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A6BC0651401FE56000A8BC3 /* CoreData.framework */; };
+		3A6BC06C1401FE56000A8BC3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3A6BC06A1401FE56000A8BC3 /* InfoPlist.strings */; };
+		3A6BC06E1401FE56000A8BC3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6BC06D1401FE56000A8BC3 /* main.m */; };
+		3A6BC0721401FE56000A8BC3 /* MusicalStarAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6BC0711401FE56000A8BC3 /* MusicalStarAppDelegate.m */; };
+		3A6BC0751401FE56000A8BC3 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A6BC0731401FE56000A8BC3 /* MainWindow.xib */; };
+		3A6BC0781401FE56000A8BC3 /* MusicalStar.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3A6BC0761401FE56000A8BC3 /* MusicalStar.xcdatamodeld */; };
+		3A6BC0801401FE56000A8BC3 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A6BC07F1401FE56000A8BC3 /* SenTestingKit.framework */; };
+		3A6BC0811401FE56000A8BC3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A6BC05F1401FE56000A8BC3 /* UIKit.framework */; };
+		3A6BC0821401FE56000A8BC3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A6BC0611401FE56000A8BC3 /* Foundation.framework */; };
+		3A6BC0831401FE56000A8BC3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A6BC0631401FE56000A8BC3 /* CoreGraphics.framework */; };
+		3A6BC0841401FE56000A8BC3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A6BC0651401FE56000A8BC3 /* CoreData.framework */; };
+		3A6BC08C1401FE56000A8BC3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3A6BC08A1401FE56000A8BC3 /* InfoPlist.strings */; };
+		3A6BC08E1401FE56000A8BC3 /* MusicalStarTests.h in Resources */ = {isa = PBXBuildFile; fileRef = 3A6BC08D1401FE56000A8BC3 /* MusicalStarTests.h */; };
+		3A6BC0901401FE56000A8BC3 /* MusicalStarTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6BC08F1401FE56000A8BC3 /* MusicalStarTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3A6BC0851401FE56000A8BC3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3A6BC0521401FE56000A8BC3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3A6BC05A1401FE56000A8BC3;
+			remoteInfo = MusicalStar;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		3A6BC05B1401FE56000A8BC3 /* MusicalStar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusicalStar.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3A6BC05F1401FE56000A8BC3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		3A6BC0611401FE56000A8BC3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		3A6BC0631401FE56000A8BC3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		3A6BC0651401FE56000A8BC3 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		3A6BC0691401FE56000A8BC3 /* MusicalStar-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MusicalStar-Info.plist"; sourceTree = "<group>"; };
+		3A6BC06B1401FE56000A8BC3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3A6BC06D1401FE56000A8BC3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		3A6BC06F1401FE56000A8BC3 /* MusicalStar-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MusicalStar-Prefix.pch"; sourceTree = "<group>"; };
+		3A6BC0701401FE56000A8BC3 /* MusicalStarAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MusicalStarAppDelegate.h; sourceTree = "<group>"; };
+		3A6BC0711401FE56000A8BC3 /* MusicalStarAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MusicalStarAppDelegate.m; sourceTree = "<group>"; };
+		3A6BC0741401FE56000A8BC3 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
+		3A6BC0771401FE56000A8BC3 /* MusicalStar.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MusicalStar.xcdatamodel; sourceTree = "<group>"; };
+		3A6BC07E1401FE56000A8BC3 /* MusicalStarTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MusicalStarTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3A6BC07F1401FE56000A8BC3 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		3A6BC0891401FE56000A8BC3 /* MusicalStarTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MusicalStarTests-Info.plist"; sourceTree = "<group>"; };
+		3A6BC08B1401FE56000A8BC3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3A6BC08D1401FE56000A8BC3 /* MusicalStarTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MusicalStarTests.h; sourceTree = "<group>"; };
+		3A6BC08F1401FE56000A8BC3 /* MusicalStarTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MusicalStarTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3A6BC0581401FE56000A8BC3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3A6BC0601401FE56000A8BC3 /* UIKit.framework in Frameworks */,
+				3A6BC0621401FE56000A8BC3 /* Foundation.framework in Frameworks */,
+				3A6BC0641401FE56000A8BC3 /* CoreGraphics.framework in Frameworks */,
+				3A6BC0661401FE56000A8BC3 /* CoreData.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3A6BC07A1401FE56000A8BC3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3A6BC0801401FE56000A8BC3 /* SenTestingKit.framework in Frameworks */,
+				3A6BC0811401FE56000A8BC3 /* UIKit.framework in Frameworks */,
+				3A6BC0821401FE56000A8BC3 /* Foundation.framework in Frameworks */,
+				3A6BC0831401FE56000A8BC3 /* CoreGraphics.framework in Frameworks */,
+				3A6BC0841401FE56000A8BC3 /* CoreData.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3A6BC0501401FE56000A8BC3 = {
+			isa = PBXGroup;
+			children = (
+				3A6BC0671401FE56000A8BC3 /* MusicalStar */,
+				3A6BC0871401FE56000A8BC3 /* MusicalStarTests */,
+				3A6BC05E1401FE56000A8BC3 /* Frameworks */,
+				3A6BC05C1401FE56000A8BC3 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3A6BC05C1401FE56000A8BC3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3A6BC05B1401FE56000A8BC3 /* MusicalStar.app */,
+				3A6BC07E1401FE56000A8BC3 /* MusicalStarTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3A6BC05E1401FE56000A8BC3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3A6BC05F1401FE56000A8BC3 /* UIKit.framework */,
+				3A6BC0611401FE56000A8BC3 /* Foundation.framework */,
+				3A6BC0631401FE56000A8BC3 /* CoreGraphics.framework */,
+				3A6BC0651401FE56000A8BC3 /* CoreData.framework */,
+				3A6BC07F1401FE56000A8BC3 /* SenTestingKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3A6BC0671401FE56000A8BC3 /* MusicalStar */ = {
+			isa = PBXGroup;
+			children = (
+				3A6BC0701401FE56000A8BC3 /* MusicalStarAppDelegate.h */,
+				3A6BC0711401FE56000A8BC3 /* MusicalStarAppDelegate.m */,
+				3A6BC0731401FE56000A8BC3 /* MainWindow.xib */,
+				3A6BC0761401FE56000A8BC3 /* MusicalStar.xcdatamodeld */,
+				3A6BC0681401FE56000A8BC3 /* Supporting Files */,
+			);
+			path = MusicalStar;
+			sourceTree = "<group>";
+		};
+		3A6BC0681401FE56000A8BC3 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3A6BC0691401FE56000A8BC3 /* MusicalStar-Info.plist */,
+				3A6BC06A1401FE56000A8BC3 /* InfoPlist.strings */,
+				3A6BC06D1401FE56000A8BC3 /* main.m */,
+				3A6BC06F1401FE56000A8BC3 /* MusicalStar-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3A6BC0871401FE56000A8BC3 /* MusicalStarTests */ = {
+			isa = PBXGroup;
+			children = (
+				3A6BC08D1401FE56000A8BC3 /* MusicalStarTests.h */,
+				3A6BC08F1401FE56000A8BC3 /* MusicalStarTests.m */,
+				3A6BC0881401FE56000A8BC3 /* Supporting Files */,
+			);
+			path = MusicalStarTests;
+			sourceTree = "<group>";
+		};
+		3A6BC0881401FE56000A8BC3 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3A6BC0891401FE56000A8BC3 /* MusicalStarTests-Info.plist */,
+				3A6BC08A1401FE56000A8BC3 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3A6BC05A1401FE56000A8BC3 /* MusicalStar */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3A6BC0931401FE56000A8BC3 /* Build configuration list for PBXNativeTarget "MusicalStar" */;
+			buildPhases = (
+				3A6BC0571401FE56000A8BC3 /* Sources */,
+				3A6BC0581401FE56000A8BC3 /* Frameworks */,
+				3A6BC0591401FE56000A8BC3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MusicalStar;
+			productName = MusicalStar;
+			productReference = 3A6BC05B1401FE56000A8BC3 /* MusicalStar.app */;
+			productType = "com.apple.product-type.application";
+		};
+		3A6BC07D1401FE56000A8BC3 /* MusicalStarTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3A6BC0961401FE56000A8BC3 /* Build configuration list for PBXNativeTarget "MusicalStarTests" */;
+			buildPhases = (
+				3A6BC0791401FE56000A8BC3 /* Sources */,
+				3A6BC07A1401FE56000A8BC3 /* Frameworks */,
+				3A6BC07B1401FE56000A8BC3 /* Resources */,
+				3A6BC07C1401FE56000A8BC3 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3A6BC0861401FE56000A8BC3 /* PBXTargetDependency */,
+			);
+			name = MusicalStarTests;
+			productName = MusicalStarTests;
+			productReference = 3A6BC07E1401FE56000A8BC3 /* MusicalStarTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3A6BC0521401FE56000A8BC3 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 3A6BC0551401FE56000A8BC3 /* Build configuration list for PBXProject "MusicalStar" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 3A6BC0501401FE56000A8BC3;
+			productRefGroup = 3A6BC05C1401FE56000A8BC3 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3A6BC05A1401FE56000A8BC3 /* MusicalStar */,
+				3A6BC07D1401FE56000A8BC3 /* MusicalStarTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3A6BC0591401FE56000A8BC3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3A6BC06C1401FE56000A8BC3 /* InfoPlist.strings in Resources */,
+				3A6BC0751401FE56000A8BC3 /* MainWindow.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3A6BC07B1401FE56000A8BC3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3A6BC08C1401FE56000A8BC3 /* InfoPlist.strings in Resources */,
+				3A6BC08E1401FE56000A8BC3 /* MusicalStarTests.h in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3A6BC07C1401FE56000A8BC3 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3A6BC0571401FE56000A8BC3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3A6BC06E1401FE56000A8BC3 /* main.m in Sources */,
+				3A6BC0721401FE56000A8BC3 /* MusicalStarAppDelegate.m in Sources */,
+				3A6BC0781401FE56000A8BC3 /* MusicalStar.xcdatamodeld in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3A6BC0791401FE56000A8BC3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3A6BC0901401FE56000A8BC3 /* MusicalStarTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3A6BC0861401FE56000A8BC3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3A6BC05A1401FE56000A8BC3 /* MusicalStar */;
+			targetProxy = 3A6BC0851401FE56000A8BC3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		3A6BC06A1401FE56000A8BC3 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3A6BC06B1401FE56000A8BC3 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		3A6BC0731401FE56000A8BC3 /* MainWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3A6BC0741401FE56000A8BC3 /* en */,
+			);
+			name = MainWindow.xib;
+			sourceTree = "<group>";
+		};
+		3A6BC08A1401FE56000A8BC3 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3A6BC08B1401FE56000A8BC3 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3A6BC0911401FE56000A8BC3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		3A6BC0921401FE56000A8BC3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3A6BC0941401FE56000A8BC3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MusicalStar/MusicalStar-Prefix.pch";
+				INFOPLIST_FILE = "MusicalStar/MusicalStar-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		3A6BC0951401FE56000A8BC3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MusicalStar/MusicalStar-Prefix.pch";
+				INFOPLIST_FILE = "MusicalStar/MusicalStar-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		3A6BC0971401FE56000A8BC3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MusicalStar.app/MusicalStar";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MusicalStar/MusicalStar-Prefix.pch";
+				INFOPLIST_FILE = "MusicalStarTests/MusicalStarTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		3A6BC0981401FE56000A8BC3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MusicalStar.app/MusicalStar";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MusicalStar/MusicalStar-Prefix.pch";
+				INFOPLIST_FILE = "MusicalStarTests/MusicalStarTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3A6BC0551401FE56000A8BC3 /* Build configuration list for PBXProject "MusicalStar" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3A6BC0911401FE56000A8BC3 /* Debug */,
+				3A6BC0921401FE56000A8BC3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3A6BC0931401FE56000A8BC3 /* Build configuration list for PBXNativeTarget "MusicalStar" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3A6BC0941401FE56000A8BC3 /* Debug */,
+				3A6BC0951401FE56000A8BC3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		3A6BC0961401FE56000A8BC3 /* Build configuration list for PBXNativeTarget "MusicalStarTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3A6BC0971401FE56000A8BC3 /* Debug */,
+				3A6BC0981401FE56000A8BC3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		3A6BC0761401FE56000A8BC3 /* MusicalStar.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				3A6BC0771401FE56000A8BC3 /* MusicalStar.xcdatamodel */,
+			);
+			currentVersion = 3A6BC0771401FE56000A8BC3 /* MusicalStar.xcdatamodel */;
+			path = MusicalStar.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 3A6BC0521401FE56000A8BC3 /* Project object */;
+}

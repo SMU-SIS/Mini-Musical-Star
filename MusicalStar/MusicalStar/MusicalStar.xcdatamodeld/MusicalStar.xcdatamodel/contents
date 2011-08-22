@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="562" systemVersion="11A511" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Scene" parentEntity="Show">
+        <attribute name="meta_data" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="Show">
+        <relationship name="Scenes" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Scene"/>
+    </entity>
+    <elements>
+        <element name="Scene" positionX="-101" positionY="297" width="128" height="60"/>
+        <element name="Show" positionX="160" positionY="192" width="128" height="60"/>
+    </elements>
+</model>
