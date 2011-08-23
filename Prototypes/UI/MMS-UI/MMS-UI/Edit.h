@@ -10,6 +10,7 @@
 #import "ShowImage.h"
 #import "AudioMenu.h"
 #import "GraphicMenu.h"
+#import "Graphics.h"
 
 @interface Edit : UIViewController {
     IBOutlet UIView *toggleView;

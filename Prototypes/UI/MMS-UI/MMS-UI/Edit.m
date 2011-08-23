@@ -78,7 +78,7 @@
         GraphicMenu *graphicMenu = [GraphicMenu alloc];
         UIView *newView = [graphicMenu initWithFrame:rect];
         
-        [toggleView addSubview:newView];
+        [toggleView addSubview:graphicsMenu];
         [graphicMenu release];        
     }
     else if (segControl.selectedSegmentIndex == 1) {

@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ShowImage.h"
 
 
 @interface Graphics : UIViewController {
+    IBOutlet UIScrollView *scrollView;
     
+    ShowImage *showImage;
 }
 
 @end
