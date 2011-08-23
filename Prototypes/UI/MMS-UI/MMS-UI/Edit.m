@@ -43,14 +43,13 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    //[self setToggleMenu];    
-    CGRect rect = CGRectMake(0, 0, toggleView.frame.size.width, toggleView.frame.size.height);
+    leftView.image = [UIImage imageNamed:@"g1.png"];
+    [leftView release];
     
-    GraphicMenu *graphicMenu = [GraphicMenu alloc];
-    UIView *newView = [graphicMenu initWithFrame:rect];
+    Graphics *graphicMenu = [Graphics alloc];
     
-    [toggleView addSubview:newView];
-    [graphicMenu release];  
+    [toggleView addSubview:graphicMenu.view];
+    //[graphicMenu autorelease]; 
 }
 
 - (void)viewDidUnload
@@ -69,17 +68,14 @@
 
 -(IBAction)setToggleOption
 {
-    //int selection;
-	//election = segControl.selectedSegmentIndex;
-    
+    //Decision for Segment Index == 0, which is the Graphics in the scene
     if (segControl.selectedSegmentIndex == 0) {
-        CGRect rect = CGRectMake(0, 0, toggleView.frame.size.width, toggleView.frame.size.height);
         
-        GraphicMenu *graphicMenu = [GraphicMenu alloc];
-        UIView *newView = [graphicMenu initWithFrame:rect];
+        //Calling out the view controller and add into the toggleView
+        Graphics *graphicMenu = [Graphics alloc];
+        [toggleView addSubview:graphicMenu.view];
         
-        [toggleView addSubview:graphicsMenu];
-        [graphicMenu release];        
+        //[graphicMenu release];        
     }
     else if (segControl.selectedSegmentIndex == 1) {
         CGRect rect = CGRectMake(0, 0, toggleView.frame.size.width, toggleView.frame.size.height);
@@ -98,25 +94,9 @@
     [self dismissModalViewControllerAnimated:YES];  
 }
 
--(UIView *)getGraphics
+-(void)setImageToLeftView:(int)imgNum
 {
-    CGRect rect = CGRectMake(0, 0, toggleView.frame.size.width, toggleView.frame.size.height);
-    
-    ShowImage *images = [ShowImage alloc];
-    NSArray *array = [images getImagesInTheScene];
-    
-    graphicsMenu = [[UIView alloc] initWithFrame:rect];
-    
-    CGRect rect2 = CGRectMake(0, 0, 200, 150);
-    UIImageView *imgView = [[UIImageView alloc] initWithFrame:rect2];
-    
-    UIImage *img = [array objectAtIndex:0];
-    imgView.image = img;
-    
-    [graphicsMenu addSubview:imgView];
-    [imgView release];
-    
-    return [graphicsMenu autorelease];
+    leftView.image = [UIImage imageNamed:@"g4.png"];
 }
 
 

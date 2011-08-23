@@ -9,12 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "ShowImage.h"
 #import "AudioMenu.h"
-#import "GraphicMenu.h"
 #import "Graphics.h"
 
 @interface Edit : UIViewController {
-    IBOutlet UIView *toggleView;
+    IBOutlet UIScrollView *toggleView;
     IBOutlet UISegmentedControl *segControl;
+    IBOutlet UIImageView *leftView;
     
     UIImageView *imageView1;
     UIImageView *imageView2;
@@ -26,6 +26,6 @@
 
 -(IBAction)backToScene;
 
--(UIView *)getGraphics;
+-(void)setImageToLeftView:(int)imgNum;
 
 @end

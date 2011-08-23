@@ -35,7 +35,7 @@
 
 -(NSArray *)getImagesInTheScene
 {
-    imagesOfAScene = [[NSArray alloc] initWithObjects:[UIImage imageNamed:@"g1.png"], [UIImage imageNamed:@"g2.png"], [UIImage imageNamed:@"g3.png"], [UIImage imageNamed:@"g4.png"], [UIImage imageNamed:@"g5.png"], nil];
+    imagesOfAScene = [[NSArray alloc] initWithObjects:[UIImage imageNamed:@"g1.png"], [UIImage imageNamed:@"g2.png"], [UIImage imageNamed:@"g3.png"], [UIImage imageNamed:@"g4.png"], [UIImage imageNamed:@"g5.png"], [UIImage imageNamed:@"g6.png"], [UIImage imageNamed:@"g7.png"], [UIImage imageNamed:@"g8.png"], nil];
     
     return [imagesOfAScene autorelease];
 }

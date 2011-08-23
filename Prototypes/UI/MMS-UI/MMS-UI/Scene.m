@@ -109,6 +109,7 @@
     return imageNum;
 }
 
+/*
 -(IBAction)selectScene {
     Edit *editScene = [[Edit alloc] initWithNibName:nil bundle:nil];
     
@@ -117,6 +118,7 @@
     
     [editScene release];
 }
+ */
 
 -(void)selectScene:(id)sender
 {

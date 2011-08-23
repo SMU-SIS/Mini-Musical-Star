@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ShowImage.h"
+#import "Edit.h"
 
 
 @interface Graphics : UIViewController {
@@ -15,5 +16,7 @@
     
     ShowImage *showImage;
 }
+
+-(void)setImageToEdit:(id)sender;
 
 @end

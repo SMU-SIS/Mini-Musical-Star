@@ -25,7 +25,7 @@
 -(int)getImageNum;
 -(IBAction)backToMenu;
 
--(IBAction)selectScene;
+//-(IBAction)selectScene;
 -(void)selectScene:(id)sender;
 
 @end
