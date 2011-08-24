@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "XMLParser.h"
 
 @interface MusicalStarAppDelegate : NSObject <UIApplicationDelegate>
 

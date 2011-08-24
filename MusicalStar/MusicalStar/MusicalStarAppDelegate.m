@@ -18,33 +18,39 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     
-    NSManagedObjectContext *context = [self managedObjectContext];
-    NSManagedObject *failedBankInfo = [NSEntityDescription
-                                       insertNewObjectForEntityForName:@"Scene" 
-                                       inManagedObjectContext:context];
-    [failedBankInfo setValue:@"Test music woohooo!" forKey:@"music"];
-    NSManagedObject *failedBankDetails = [NSEntityDescription
-                                          insertNewObjectForEntityForName:@"Show" 
-                                          inManagedObjectContext:context];
-    [failedBankDetails setValue:@"Test json woohoo!" forKey:@"meta_json"];
-    [failedBankDetails setValue:failedBankInfo forKey:@"show_to_scenes"];
-    [failedBankInfo setValue:failedBankDetails forKey:@"scene_to_show"];
-    NSError *error;
-    if (![context save:&error]) {
-        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
-    }
+    XMLParser *parser = [[XMLParser alloc] init];
+    [parser parseShow];
+    [parser release];
     
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription 
-                                   entityForName:@"Scene" inManagedObjectContext:context];
-    [fetchRequest setEntity:entity];
-    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
-    for (NSManagedObject *info in fetchedObjects) {
-        NSLog(@"Name: %@", [info valueForKey:@"music"]);
-        NSManagedObject *details = [info valueForKey:@"scene_to_show"];
-        NSLog(@"Zip: %@", [details valueForKey:@"meta_json"]);
-    }        
-    [fetchRequest release];
+    
+//THIS IS TEMPORARY ONLY, TESTING FOR CRUD
+//    NSManagedObjectContext *context = [self managedObjectContext];
+//    NSManagedObject *failedBankInfo = [NSEntityDescription
+//                                       insertNewObjectForEntityForName:@"Scene" 
+//                                       inManagedObjectContext:context];
+//    [failedBankInfo setValue:@"Test music woohooo!" forKey:@"music"];
+//    NSManagedObject *failedBankDetails = [NSEntityDescription
+//                                          insertNewObjectForEntityForName:@"Show" 
+//                                          inManagedObjectContext:context];
+//    [failedBankDetails setValue:@"Test json woohoo!" forKey:@"meta_json"];
+//    [failedBankDetails setValue:failedBankInfo forKey:@"show_to_scenes"];
+//    [failedBankInfo setValue:failedBankDetails forKey:@"scene_to_show"];
+//    NSError *error;
+//    if (![context save:&error]) {
+//        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+//    }
+//    
+//    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+//    NSEntityDescription *entity = [NSEntityDescription 
+//                                   entityForName:@"Scene" inManagedObjectContext:context];
+//    [fetchRequest setEntity:entity];
+//    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
+//    for (NSManagedObject *info in fetchedObjects) {
+//        NSLog(@"Name: %@", [info valueForKey:@"music"]);
+//        NSManagedObject *details = [info valueForKey:@"scene_to_show"];
+//        NSLog(@"Zip: %@", [details valueForKey:@"meta_json"]);
+//    }        
+//    [fetchRequest release];
     
     // Override point for customization after application launch.
     [self.window makeKeyAndVisible];

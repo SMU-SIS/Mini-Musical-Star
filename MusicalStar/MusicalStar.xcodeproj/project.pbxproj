@@ -24,6 +24,22 @@
 		3A6BC08C1401FE56000A8BC3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3A6BC08A1401FE56000A8BC3 /* InfoPlist.strings */; };
 		3A6BC08E1401FE56000A8BC3 /* MusicalStarTests.h in Resources */ = {isa = PBXBuildFile; fileRef = 3A6BC08D1401FE56000A8BC3 /* MusicalStarTests.h */; };
 		3A6BC0901401FE56000A8BC3 /* MusicalStarTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6BC08F1401FE56000A8BC3 /* MusicalStarTests.m */; };
+		3AB0D42814052B3400056EA6 /* XMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AB0D42714052B3400056EA6 /* XMLParser.m */; };
+		3AB0D4471405414B00056EA6 /* front.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3AB0D4341405414B00056EA6 /* front.jpg */; };
+		3AB0D4481405414B00056EA6 /* adrianjeanasti.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3AB0D4371405414B00056EA6 /* adrianjeanasti.jpg */; };
+		3AB0D4491405414B00056EA6 /* antoni.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3AB0D4381405414B00056EA6 /* antoni.jpg */; };
+		3AB0D44A1405414B00056EA6 /* bass.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3AB0D4391405414B00056EA6 /* bass.mp3 */; };
+		3AB0D44B1405414B00056EA6 /* cue.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3AB0D43B1405414B00056EA6 /* cue.jpg */; };
+		3AB0D44C1405414B00056EA6 /* playingmd.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3AB0D43C1405414B00056EA6 /* playingmd.jpg */; };
+		3AB0D44D1405414B00056EA6 /* vocals.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3AB0D43D1405414B00056EA6 /* vocals.mp3 */; };
+		3AB0D44E1405414B00056EA6 /* cue.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3AB0D4401405414B00056EA6 /* cue.jpg */; };
+		3AB0D44F1405414B00056EA6 /* drums.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3AB0D4411405414B00056EA6 /* drums.mp3 */; };
+		3AB0D4501405414B00056EA6 /* food.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3AB0D4421405414B00056EA6 /* food.jpg */; };
+		3AB0D4511405414B00056EA6 /* guitar.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3AB0D4431405414B00056EA6 /* guitar.mp3 */; };
+		3AB0D4521405414B00056EA6 /* japan.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3AB0D4441405414B00056EA6 /* japan.jpg */; };
+		3AB0D4531405414B00056EA6 /* segroup.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3AB0D4451405414B00056EA6 /* segroup.jpg */; };
+		3AB0D4541405414B00056EA6 /* show.xml in Resources */ = {isa = PBXBuildFile; fileRef = 3AB0D4461405414B00056EA6 /* show.xml */; };
+		3AB0D456140544F300056EA6 /* Story of my Life.zip in Resources */ = {isa = PBXBuildFile; fileRef = 3AB0D455140544F300056EA6 /* Story of my Life.zip */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +72,23 @@
 		3A6BC08B1401FE56000A8BC3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3A6BC08D1401FE56000A8BC3 /* MusicalStarTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MusicalStarTests.h; sourceTree = "<group>"; };
 		3A6BC08F1401FE56000A8BC3 /* MusicalStarTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MusicalStarTests.m; sourceTree = "<group>"; };
+		3AB0D42614052B3400056EA6 /* XMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLParser.h; sourceTree = "<group>"; };
+		3AB0D42714052B3400056EA6 /* XMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParser.m; sourceTree = "<group>"; };
+		3AB0D4341405414B00056EA6 /* front.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = front.jpg; sourceTree = "<group>"; };
+		3AB0D4371405414B00056EA6 /* adrianjeanasti.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = adrianjeanasti.jpg; sourceTree = "<group>"; };
+		3AB0D4381405414B00056EA6 /* antoni.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = antoni.jpg; sourceTree = "<group>"; };
+		3AB0D4391405414B00056EA6 /* bass.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bass.mp3; sourceTree = "<group>"; };
+		3AB0D43B1405414B00056EA6 /* cue.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cue.jpg; sourceTree = "<group>"; };
+		3AB0D43C1405414B00056EA6 /* playingmd.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = playingmd.jpg; sourceTree = "<group>"; };
+		3AB0D43D1405414B00056EA6 /* vocals.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = vocals.mp3; sourceTree = "<group>"; };
+		3AB0D4401405414B00056EA6 /* cue.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cue.jpg; sourceTree = "<group>"; };
+		3AB0D4411405414B00056EA6 /* drums.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = drums.mp3; sourceTree = "<group>"; };
+		3AB0D4421405414B00056EA6 /* food.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = food.jpg; sourceTree = "<group>"; };
+		3AB0D4431405414B00056EA6 /* guitar.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = guitar.mp3; sourceTree = "<group>"; };
+		3AB0D4441405414B00056EA6 /* japan.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = japan.jpg; sourceTree = "<group>"; };
+		3AB0D4451405414B00056EA6 /* segroup.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = segroup.jpg; sourceTree = "<group>"; };
+		3AB0D4461405414B00056EA6 /* show.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = show.xml; sourceTree = "<group>"; };
+		3AB0D455140544F300056EA6 /* Story of my Life.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Story of my Life.zip"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,11 +152,15 @@
 		3A6BC0671401FE56000A8BC3 /* MusicalStar */ = {
 			isa = PBXGroup;
 			children = (
+				3AB0D455140544F300056EA6 /* Story of my Life.zip */,
+				3AB0D4331405414B00056EA6 /* Story of my Life */,
 				3A6BC0701401FE56000A8BC3 /* MusicalStarAppDelegate.h */,
 				3A6BC0711401FE56000A8BC3 /* MusicalStarAppDelegate.m */,
 				3A6BC0731401FE56000A8BC3 /* MainWindow.xib */,
 				3A6BC0761401FE56000A8BC3 /* MusicalStar.xcdatamodeld */,
 				3A6BC0681401FE56000A8BC3 /* Supporting Files */,
+				3AB0D42614052B3400056EA6 /* XMLParser.h */,
+				3AB0D42714052B3400056EA6 /* XMLParser.m */,
 			);
 			path = MusicalStar;
 			sourceTree = "<group>";
@@ -156,6 +193,67 @@
 				3A6BC08A1401FE56000A8BC3 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3AB0D4331405414B00056EA6 /* Story of my Life */ = {
+			isa = PBXGroup;
+			children = (
+				3AB0D4341405414B00056EA6 /* front.jpg */,
+				3AB0D4351405414B00056EA6 /* scenes */,
+				3AB0D4461405414B00056EA6 /* show.xml */,
+			);
+			path = "Story of my Life";
+			sourceTree = "<group>";
+		};
+		3AB0D4351405414B00056EA6 /* scenes */ = {
+			isa = PBXGroup;
+			children = (
+				3AB0D4361405414B00056EA6 /* 1 */,
+				3AB0D43E1405414B00056EA6 /* 2 */,
+			);
+			path = scenes;
+			sourceTree = "<group>";
+		};
+		3AB0D4361405414B00056EA6 /* 1 */ = {
+			isa = PBXGroup;
+			children = (
+				3AB0D4371405414B00056EA6 /* adrianjeanasti.jpg */,
+				3AB0D4381405414B00056EA6 /* antoni.jpg */,
+				3AB0D4391405414B00056EA6 /* bass.mp3 */,
+				3AB0D43A1405414B00056EA6 /* cues */,
+				3AB0D43C1405414B00056EA6 /* playingmd.jpg */,
+				3AB0D43D1405414B00056EA6 /* vocals.mp3 */,
+			);
+			path = 1;
+			sourceTree = "<group>";
+		};
+		3AB0D43A1405414B00056EA6 /* cues */ = {
+			isa = PBXGroup;
+			children = (
+				3AB0D43B1405414B00056EA6 /* cue.jpg */,
+			);
+			path = cues;
+			sourceTree = "<group>";
+		};
+		3AB0D43E1405414B00056EA6 /* 2 */ = {
+			isa = PBXGroup;
+			children = (
+				3AB0D43F1405414B00056EA6 /* cues */,
+				3AB0D4411405414B00056EA6 /* drums.mp3 */,
+				3AB0D4421405414B00056EA6 /* food.jpg */,
+				3AB0D4431405414B00056EA6 /* guitar.mp3 */,
+				3AB0D4441405414B00056EA6 /* japan.jpg */,
+				3AB0D4451405414B00056EA6 /* segroup.jpg */,
+			);
+			path = 2;
+			sourceTree = "<group>";
+		};
+		3AB0D43F1405414B00056EA6 /* cues */ = {
+			isa = PBXGroup;
+			children = (
+				3AB0D4401405414B00056EA6 /* cue.jpg */,
+			);
+			path = cues;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -227,6 +325,21 @@
 			files = (
 				3A6BC06C1401FE56000A8BC3 /* InfoPlist.strings in Resources */,
 				3A6BC0751401FE56000A8BC3 /* MainWindow.xib in Resources */,
+				3AB0D4471405414B00056EA6 /* front.jpg in Resources */,
+				3AB0D4481405414B00056EA6 /* adrianjeanasti.jpg in Resources */,
+				3AB0D4491405414B00056EA6 /* antoni.jpg in Resources */,
+				3AB0D44A1405414B00056EA6 /* bass.mp3 in Resources */,
+				3AB0D44B1405414B00056EA6 /* cue.jpg in Resources */,
+				3AB0D44C1405414B00056EA6 /* playingmd.jpg in Resources */,
+				3AB0D44D1405414B00056EA6 /* vocals.mp3 in Resources */,
+				3AB0D44E1405414B00056EA6 /* cue.jpg in Resources */,
+				3AB0D44F1405414B00056EA6 /* drums.mp3 in Resources */,
+				3AB0D4501405414B00056EA6 /* food.jpg in Resources */,
+				3AB0D4511405414B00056EA6 /* guitar.mp3 in Resources */,
+				3AB0D4521405414B00056EA6 /* japan.jpg in Resources */,
+				3AB0D4531405414B00056EA6 /* segroup.jpg in Resources */,
+				3AB0D4541405414B00056EA6 /* show.xml in Resources */,
+				3AB0D456140544F300056EA6 /* Story of my Life.zip in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,6 +378,7 @@
 				3A6BC06E1401FE56000A8BC3 /* main.m in Sources */,
 				3A6BC0721401FE56000A8BC3 /* MusicalStarAppDelegate.m in Sources */,
 				3A6BC0781401FE56000A8BC3 /* MusicalStar.xcdatamodeld in Sources */,
+				3AB0D42814052B3400056EA6 /* XMLParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -436,6 +550,7 @@
 				3A6BC0951401FE56000A8BC3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3A6BC0961401FE56000A8BC3 /* Build configuration list for PBXNativeTarget "MusicalStarTests" */ = {
 			isa = XCConfigurationList;
@@ -444,6 +559,7 @@
 				3A6BC0981401FE56000A8BC3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
