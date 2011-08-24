@@ -23,6 +23,10 @@
         <relationship name="scene_to_show" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Show" inverseName="show_to_scenes" inverseEntity="Show"/>
     </entity>
     <entity name="Show">
+        <attribute name="author" optional="YES" attributeType="String"/>
+        <attribute name="cover_picture" optional="YES" attributeType="String"/>
+        <attribute name="created" optional="YES" attributeType="Date"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
         <relationship name="show_to_scenes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Scene" inverseName="scene_to_show" inverseEntity="Scene"/>
     </entity>
     <elements>
@@ -30,6 +34,6 @@
         <element name="Cues" positionX="160" positionY="192" width="128" height="90"/>
         <element name="Pictures" positionX="160" positionY="192" width="128" height="90"/>
         <element name="Scene" positionX="-101" positionY="297" width="128" height="120"/>
-        <element name="Show" positionX="160" positionY="192" width="128" height="60"/>
+        <element name="Show" positionX="160" positionY="192" width="128" height="120"/>
     </elements>
 </model>

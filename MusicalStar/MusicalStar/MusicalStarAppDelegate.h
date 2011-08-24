@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "XMLParser.h"
+#import "ZipUtility.h"
 
 @interface MusicalStarAppDelegate : NSObject <UIApplicationDelegate>
 

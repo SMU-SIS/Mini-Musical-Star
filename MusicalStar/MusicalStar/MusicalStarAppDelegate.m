@@ -22,6 +22,10 @@
     [parser parseShow];
     [parser release];
     
+    ZipUtility *zipUtil = [[ZipUtility alloc] init];
+    [zipUtil unpackageMusical];
+    [zipUtil release];
+    
     
 //THIS IS TEMPORARY ONLY, TESTING FOR CRUD
 //    NSManagedObjectContext *context = [self managedObjectContext];

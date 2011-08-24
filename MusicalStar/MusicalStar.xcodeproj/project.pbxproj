@@ -40,6 +40,13 @@
 		3AB0D4531405414B00056EA6 /* segroup.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3AB0D4451405414B00056EA6 /* segroup.jpg */; };
 		3AB0D4541405414B00056EA6 /* show.xml in Resources */ = {isa = PBXBuildFile; fileRef = 3AB0D4461405414B00056EA6 /* show.xml */; };
 		3AB0D456140544F300056EA6 /* Story of my Life.zip in Resources */ = {isa = PBXBuildFile; fileRef = 3AB0D455140544F300056EA6 /* Story of my Life.zip */; };
+		3AB0D4641405461900056EA6 /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 3AB0D45A1405461900056EA6 /* ioapi.c */; };
+		3AB0D4651405461900056EA6 /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = 3AB0D45C1405461900056EA6 /* mztools.c */; };
+		3AB0D4661405461900056EA6 /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = 3AB0D45E1405461900056EA6 /* unzip.c */; };
+		3AB0D4671405461900056EA6 /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = 3AB0D4601405461900056EA6 /* zip.c */; };
+		3AB0D4681405461900056EA6 /* ZipArchive.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3AB0D4631405461900056EA6 /* ZipArchive.mm */; };
+		3AB0D46A1405465000056EA6 /* libz.1.2.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AB0D4691405465000056EA6 /* libz.1.2.3.dylib */; };
+		3AB0D46D1405469700056EA6 /* ZipUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AB0D46C1405469700056EA6 /* ZipUtility.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +96,20 @@
 		3AB0D4451405414B00056EA6 /* segroup.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = segroup.jpg; sourceTree = "<group>"; };
 		3AB0D4461405414B00056EA6 /* show.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = show.xml; sourceTree = "<group>"; };
 		3AB0D455140544F300056EA6 /* Story of my Life.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Story of my Life.zip"; sourceTree = "<group>"; };
+		3AB0D4591405461900056EA6 /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
+		3AB0D45A1405461900056EA6 /* ioapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ioapi.c; sourceTree = "<group>"; };
+		3AB0D45B1405461900056EA6 /* ioapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ioapi.h; sourceTree = "<group>"; };
+		3AB0D45C1405461900056EA6 /* mztools.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mztools.c; sourceTree = "<group>"; };
+		3AB0D45D1405461900056EA6 /* mztools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mztools.h; sourceTree = "<group>"; };
+		3AB0D45E1405461900056EA6 /* unzip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = unzip.c; sourceTree = "<group>"; };
+		3AB0D45F1405461900056EA6 /* unzip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = unzip.h; sourceTree = "<group>"; };
+		3AB0D4601405461900056EA6 /* zip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zip.c; sourceTree = "<group>"; };
+		3AB0D4611405461900056EA6 /* zip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zip.h; sourceTree = "<group>"; };
+		3AB0D4621405461900056EA6 /* ZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZipArchive.h; sourceTree = "<group>"; };
+		3AB0D4631405461900056EA6 /* ZipArchive.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ZipArchive.mm; sourceTree = "<group>"; };
+		3AB0D4691405465000056EA6 /* libz.1.2.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.3.dylib; path = usr/lib/libz.1.2.3.dylib; sourceTree = SDKROOT; };
+		3AB0D46B1405469700056EA6 /* ZipUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZipUtility.h; sourceTree = "<group>"; };
+		3AB0D46C1405469700056EA6 /* ZipUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZipUtility.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +117,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3AB0D46A1405465000056EA6 /* libz.1.2.3.dylib in Frameworks */,
 				3A6BC0601401FE56000A8BC3 /* UIKit.framework in Frameworks */,
 				3A6BC0621401FE56000A8BC3 /* Foundation.framework in Frameworks */,
 				3A6BC0641401FE56000A8BC3 /* CoreGraphics.framework in Frameworks */,
@@ -140,6 +162,7 @@
 		3A6BC05E1401FE56000A8BC3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3AB0D4691405465000056EA6 /* libz.1.2.3.dylib */,
 				3A6BC05F1401FE56000A8BC3 /* UIKit.framework */,
 				3A6BC0611401FE56000A8BC3 /* Foundation.framework */,
 				3A6BC0631401FE56000A8BC3 /* CoreGraphics.framework */,
@@ -161,6 +184,8 @@
 				3A6BC0681401FE56000A8BC3 /* Supporting Files */,
 				3AB0D42614052B3400056EA6 /* XMLParser.h */,
 				3AB0D42714052B3400056EA6 /* XMLParser.m */,
+				3AB0D46B1405469700056EA6 /* ZipUtility.h */,
+				3AB0D46C1405469700056EA6 /* ZipUtility.m */,
 			);
 			path = MusicalStar;
 			sourceTree = "<group>";
@@ -168,6 +193,7 @@
 		3A6BC0681401FE56000A8BC3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				3AB0D4571405461900056EA6 /* ZipArchive */,
 				3A6BC0691401FE56000A8BC3 /* MusicalStar-Info.plist */,
 				3A6BC06A1401FE56000A8BC3 /* InfoPlist.strings */,
 				3A6BC06D1401FE56000A8BC3 /* main.m */,
@@ -254,6 +280,32 @@
 				3AB0D4401405414B00056EA6 /* cue.jpg */,
 			);
 			path = cues;
+			sourceTree = "<group>";
+		};
+		3AB0D4571405461900056EA6 /* ZipArchive */ = {
+			isa = PBXGroup;
+			children = (
+				3AB0D4581405461900056EA6 /* minizip */,
+				3AB0D4621405461900056EA6 /* ZipArchive.h */,
+				3AB0D4631405461900056EA6 /* ZipArchive.mm */,
+			);
+			path = ZipArchive;
+			sourceTree = "<group>";
+		};
+		3AB0D4581405461900056EA6 /* minizip */ = {
+			isa = PBXGroup;
+			children = (
+				3AB0D4591405461900056EA6 /* crypt.h */,
+				3AB0D45A1405461900056EA6 /* ioapi.c */,
+				3AB0D45B1405461900056EA6 /* ioapi.h */,
+				3AB0D45C1405461900056EA6 /* mztools.c */,
+				3AB0D45D1405461900056EA6 /* mztools.h */,
+				3AB0D45E1405461900056EA6 /* unzip.c */,
+				3AB0D45F1405461900056EA6 /* unzip.h */,
+				3AB0D4601405461900056EA6 /* zip.c */,
+				3AB0D4611405461900056EA6 /* zip.h */,
+			);
+			path = minizip;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -379,6 +431,12 @@
 				3A6BC0721401FE56000A8BC3 /* MusicalStarAppDelegate.m in Sources */,
 				3A6BC0781401FE56000A8BC3 /* MusicalStar.xcdatamodeld in Sources */,
 				3AB0D42814052B3400056EA6 /* XMLParser.m in Sources */,
+				3AB0D4641405461900056EA6 /* ioapi.c in Sources */,
+				3AB0D4651405461900056EA6 /* mztools.c in Sources */,
+				3AB0D4661405461900056EA6 /* unzip.c in Sources */,
+				3AB0D4671405461900056EA6 /* zip.c in Sources */,
+				3AB0D4681405461900056EA6 /* ZipArchive.mm in Sources */,
+				3AB0D46D1405469700056EA6 /* ZipUtility.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
