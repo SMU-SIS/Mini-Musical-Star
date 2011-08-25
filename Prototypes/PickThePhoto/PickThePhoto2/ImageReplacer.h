@@ -28,9 +28,11 @@
 
 @property (nonatomic, retain) NSMutableArray *imagesArray;
 
+- (id)initWithArrayAndIndex:(NSMutableArray*)anArray indexOfImage:(NSInteger)anIndex;
+
 - (IBAction)useCamera: (id)sender;
 - (IBAction)useCameraRoll: (id)sender;
-- (void) replaceImage:(NSInteger*)imageIndex newImage:(UIImage*)anImage;
+- (void) replaceImage:(NSInteger)imageIndex newImage:(UIImage*)anImage;
 - (void) refreshImageView;
 
 @end

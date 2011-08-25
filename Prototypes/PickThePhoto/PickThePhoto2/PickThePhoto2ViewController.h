@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ImageReplacer.h"
 
 @interface PickThePhoto2ViewController : UIViewController
 {

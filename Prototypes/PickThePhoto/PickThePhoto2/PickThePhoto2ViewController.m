@@ -48,7 +48,13 @@
 }
 
 - (IBAction)callModal {
-    NSLog(@"test");
+    //NSLog(@"test");
+    
+    ImageReplacer *imageReplacerView = [[ImageReplacer alloc] initWithArrayAndIndex:imagesArray indexOfImage:1];
+    
+    [self presentModalViewController:imageReplacerView animated:YES];
+    
+    [imageReplacerView release];
 }
 
 @end

@@ -46,6 +46,25 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    UIBarButtonItem *cameraButton = [[UIBarButtonItem alloc] 
+                                     initWithTitle:@"Camera"
+                                     style:UIBarButtonItemStyleBordered
+                                     target:self
+                                     action:@selector(useCamera:)];
+    UIBarButtonItem *cameraRollButton = [[UIBarButtonItem alloc] 
+                                         initWithTitle:@"Camera Roll"
+                                         style:UIBarButtonItemStyleBordered
+                                         target:self
+                                         action:@selector(useCameraRoll:)];
+    NSArray *items = [NSArray arrayWithObjects: cameraButton,
+                      cameraRollButton, nil];
+    [toolbar setItems:items animated:NO];
+    [cameraButton release];
+    [cameraRollButton release];
+
+    //load the choosen image that is supposed to be replace
+    [imageView setImage:[imagesArray objectAtIndex:indexOfImageToChange]];
 }
 
 - (void)viewDidUnload
@@ -134,7 +153,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
         //imageView.image = image;
         
         //replace image from imagesArray index 0 with new image
-        [self replaceImage:0 newImage:image];
+        [self replaceImage:indexOfImageToChange newImage:image];
         
         //save to the photos album
         /* if (newMedia)
@@ -172,5 +191,14 @@ finishedSavingWithError:(NSError *)error
 {
     [self dismissModalViewControllerAnimated:YES];
 }
+
+- (void) replaceImage:(NSInteger)imageIndex newImage:(UIImage*)anImage {
+    
+    [imagesArray replaceObjectAtIndex:imageIndex withObject:anImage];
+}
+
+- (void)refreshImageView {
+    [imageView setImage:[imagesArray objectAtIndex:indexOfImageToChange]];
+} 
 
 @end
