@@ -22,6 +22,21 @@
 		6448020C13FEB87C0048930E /* glee2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6448020713FEB87C0048930E /* glee2.jpg */; };
 		6448020D13FEB87C0048930E /* glee3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6448020813FEB87C0048930E /* glee3.jpg */; };
 		6448020E13FEB87C0048930E /* glee3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6448020813FEB87C0048930E /* glee3.jpg */; };
+		6481B6FD14063B5800B53612 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 649A2CA813FDFA1F005F2EB5 /* UIKit.framework */; };
+		6481B6FE14063B5800B53612 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 649A2CAA13FDFA1F005F2EB5 /* Foundation.framework */; };
+		6481B6FF14063B5800B53612 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 649A2CAC13FDFA1F005F2EB5 /* CoreGraphics.framework */; };
+		6481B70514063B5900B53612 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6481B70314063B5900B53612 /* InfoPlist.strings */; };
+		6481B70714063B5900B53612 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6481B70614063B5900B53612 /* main.m */; };
+		6481B70B14063B5900B53612 /* PickThePhoto2AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6481B70A14063B5900B53612 /* PickThePhoto2AppDelegate.m */; };
+		6481B70E14063B5900B53612 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6481B70C14063B5900B53612 /* MainWindow.xib */; };
+		6481B71114063B5900B53612 /* PickThePhoto2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6481B71014063B5900B53612 /* PickThePhoto2ViewController.m */; };
+		6481B71414063B5900B53612 /* PickThePhoto2ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6481B71214063B5900B53612 /* PickThePhoto2ViewController.xib */; };
+		6481B71C14063B9500B53612 /* ImageReplacer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6481B71A14063B9500B53612 /* ImageReplacer.m */; };
+		6481B71D14063B9500B53612 /* ImageReplacer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6481B71B14063B9500B53612 /* ImageReplacer.xib */; };
+		6481B71F14063C5F00B53612 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6481B71E14063C5F00B53612 /* MobileCoreServices.framework */; };
+		6481B72314063DC500B53612 /* glee1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6481B72014063DC500B53612 /* glee1.jpg */; };
+		6481B72414063DC500B53612 /* glee2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6481B72114063DC500B53612 /* glee2.jpg */; };
+		6481B72514063DC500B53612 /* glee3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6481B72214063DC500B53612 /* glee3.jpg */; };
 		6488CE0113FF7C1200B99BAC /* ImageReplacer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6488CE0013FF7C1200B99BAC /* ImageReplacer.m */; };
 		649A2CA913FDFA1F005F2EB5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 649A2CA813FDFA1F005F2EB5 /* UIKit.framework */; };
 		649A2CAB13FDFA1F005F2EB5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 649A2CAA13FDFA1F005F2EB5 /* Foundation.framework */; };
@@ -82,6 +97,24 @@
 		6448020613FEB87C0048930E /* glee1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = glee1.jpg; sourceTree = "<group>"; };
 		6448020713FEB87C0048930E /* glee2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = glee2.jpg; sourceTree = "<group>"; };
 		6448020813FEB87C0048930E /* glee3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = glee3.jpg; sourceTree = "<group>"; };
+		6481B6FB14063B5800B53612 /* PickThePhoto2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PickThePhoto2.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6481B70214063B5900B53612 /* PickThePhoto2-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PickThePhoto2-Info.plist"; sourceTree = "<group>"; };
+		6481B70414063B5900B53612 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		6481B70614063B5900B53612 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		6481B70814063B5900B53612 /* PickThePhoto2-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PickThePhoto2-Prefix.pch"; sourceTree = "<group>"; };
+		6481B70914063B5900B53612 /* PickThePhoto2AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PickThePhoto2AppDelegate.h; sourceTree = "<group>"; };
+		6481B70A14063B5900B53612 /* PickThePhoto2AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PickThePhoto2AppDelegate.m; sourceTree = "<group>"; };
+		6481B70D14063B5900B53612 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
+		6481B70F14063B5900B53612 /* PickThePhoto2ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PickThePhoto2ViewController.h; sourceTree = "<group>"; };
+		6481B71014063B5900B53612 /* PickThePhoto2ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PickThePhoto2ViewController.m; sourceTree = "<group>"; };
+		6481B71314063B5900B53612 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/PickThePhoto2ViewController.xib; sourceTree = "<group>"; };
+		6481B71914063B9500B53612 /* ImageReplacer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageReplacer.h; sourceTree = "<group>"; };
+		6481B71A14063B9500B53612 /* ImageReplacer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageReplacer.m; sourceTree = "<group>"; };
+		6481B71B14063B9500B53612 /* ImageReplacer.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageReplacer.xib; sourceTree = "<group>"; };
+		6481B71E14063C5F00B53612 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		6481B72014063DC500B53612 /* glee1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = glee1.jpg; sourceTree = "<group>"; };
+		6481B72114063DC500B53612 /* glee2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = glee2.jpg; sourceTree = "<group>"; };
+		6481B72214063DC500B53612 /* glee3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = glee3.jpg; sourceTree = "<group>"; };
 		6488CDFF13FF7C1200B99BAC /* ImageReplacer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageReplacer.h; sourceTree = "<group>"; };
 		6488CE0013FF7C1200B99BAC /* ImageReplacer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageReplacer.m; sourceTree = "<group>"; };
 		649A2CA413FDFA1F005F2EB5 /* PickThePhoto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PickThePhoto.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -135,6 +168,17 @@
 				644801E913FEB7CC0048930E /* UIKit.framework in Frameworks */,
 				644801EA13FEB7CC0048930E /* Foundation.framework in Frameworks */,
 				644801EB13FEB7CC0048930E /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6481B6F814063B5800B53612 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6481B71F14063C5F00B53612 /* MobileCoreServices.framework in Frameworks */,
+				6481B6FD14063B5800B53612 /* UIKit.framework in Frameworks */,
+				6481B6FE14063B5800B53612 /* Foundation.framework in Frameworks */,
+				6481B6FF14063B5800B53612 /* CoreGraphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -211,15 +255,48 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+		6481B70014063B5900B53612 /* PickThePhoto2 */ = {
+			isa = PBXGroup;
+			children = (
+				6481B72014063DC500B53612 /* glee1.jpg */,
+				6481B72114063DC500B53612 /* glee2.jpg */,
+				6481B72214063DC500B53612 /* glee3.jpg */,
+				6481B70914063B5900B53612 /* PickThePhoto2AppDelegate.h */,
+				6481B70A14063B5900B53612 /* PickThePhoto2AppDelegate.m */,
+				6481B70C14063B5900B53612 /* MainWindow.xib */,
+				6481B70F14063B5900B53612 /* PickThePhoto2ViewController.h */,
+				6481B71014063B5900B53612 /* PickThePhoto2ViewController.m */,
+				6481B71214063B5900B53612 /* PickThePhoto2ViewController.xib */,
+				6481B70114063B5900B53612 /* Supporting Files */,
+				6481B71914063B9500B53612 /* ImageReplacer.h */,
+				6481B71A14063B9500B53612 /* ImageReplacer.m */,
+				6481B71B14063B9500B53612 /* ImageReplacer.xib */,
+			);
+			path = PickThePhoto2;
+			sourceTree = "<group>";
+		};
+		6481B70114063B5900B53612 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				6481B70214063B5900B53612 /* PickThePhoto2-Info.plist */,
+				6481B70314063B5900B53612 /* InfoPlist.strings */,
+				6481B70614063B5900B53612 /* main.m */,
+				6481B70814063B5900B53612 /* PickThePhoto2-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		649A2C9913FDFA1F005F2EB5 = {
 			isa = PBXGroup;
 			children = (
+				6481B71E14063C5F00B53612 /* MobileCoreServices.framework */,
 				6448020513FEB84C0048930E /* Resources */,
 				64CCC98B13FE0306004BF024 /* MobileCoreServices.framework */,
 				649A2CAE13FDFA1F005F2EB5 /* PickThePhoto */,
 				649A2CD013FDFA1F005F2EB5 /* PickThePhotoTests */,
 				644801EC13FEB7CC0048930E /* ChangeThePhoto */,
 				64DC3F5813FFB0B700F9CBC0 /* PlayWithViews */,
+				6481B70014063B5900B53612 /* PickThePhoto2 */,
 				649A2CA713FDFA1F005F2EB5 /* Frameworks */,
 				649A2CA513FDFA1F005F2EB5 /* Products */,
 			);
@@ -232,6 +309,7 @@
 				649A2CC813FDFA1F005F2EB5 /* PickThePhotoTests.octest */,
 				644801E713FEB7CC0048930E /* ChangeThePhoto.app */,
 				64DC3F5313FFB0B700F9CBC0 /* PlayWithViews.app */,
+				6481B6FB14063B5800B53612 /* PickThePhoto2.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -344,6 +422,23 @@
 			productReference = 644801E713FEB7CC0048930E /* ChangeThePhoto.app */;
 			productType = "com.apple.product-type.application";
 		};
+		6481B6FA14063B5800B53612 /* PickThePhoto2 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6481B71714063B5900B53612 /* Build configuration list for PBXNativeTarget "PickThePhoto2" */;
+			buildPhases = (
+				6481B6F714063B5800B53612 /* Sources */,
+				6481B6F814063B5800B53612 /* Frameworks */,
+				6481B6F914063B5800B53612 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PickThePhoto2;
+			productName = PickThePhoto2;
+			productReference = 6481B6FB14063B5800B53612 /* PickThePhoto2.app */;
+			productType = "com.apple.product-type.application";
+		};
 		649A2CA313FDFA1F005F2EB5 /* PickThePhoto */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 649A2CDC13FDFA1F005F2EB5 /* Build configuration list for PBXNativeTarget "PickThePhoto" */;
@@ -418,6 +513,7 @@
 				649A2CC713FDFA1F005F2EB5 /* PickThePhotoTests */,
 				644801E613FEB7CC0048930E /* ChangeThePhoto */,
 				64DC3F5213FFB0B700F9CBC0 /* PlayWithViews */,
+				6481B6FA14063B5800B53612 /* PickThePhoto2 */,
 			);
 		};
 /* End PBXProject section */
@@ -434,6 +530,20 @@
 				6448020C13FEB87C0048930E /* glee2.jpg in Resources */,
 				6448020E13FEB87C0048930E /* glee3.jpg in Resources */,
 				64DC3F4E13FFAF6D00F9CBC0 /* SecondViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6481B6F914063B5800B53612 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6481B70514063B5900B53612 /* InfoPlist.strings in Resources */,
+				6481B70E14063B5900B53612 /* MainWindow.xib in Resources */,
+				6481B71414063B5900B53612 /* PickThePhoto2ViewController.xib in Resources */,
+				6481B71D14063B9500B53612 /* ImageReplacer.xib in Resources */,
+				6481B72314063DC500B53612 /* glee1.jpg in Resources */,
+				6481B72414063DC500B53612 /* glee2.jpg in Resources */,
+				6481B72514063DC500B53612 /* glee3.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -501,6 +611,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		6481B6F714063B5800B53612 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6481B70714063B5900B53612 /* main.m in Sources */,
+				6481B70B14063B5900B53612 /* PickThePhoto2AppDelegate.m in Sources */,
+				6481B71114063B5900B53612 /* PickThePhoto2ViewController.m in Sources */,
+				6481B71C14063B9500B53612 /* ImageReplacer.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		649A2CA013FDFA1F005F2EB5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -565,6 +686,30 @@
 				644801FF13FEB7CD0048930E /* en */,
 			);
 			name = ChangeThePhotoViewController.xib;
+			sourceTree = "<group>";
+		};
+		6481B70314063B5900B53612 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6481B70414063B5900B53612 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		6481B70C14063B5900B53612 /* MainWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6481B70D14063B5900B53612 /* en */,
+			);
+			name = MainWindow.xib;
+			sourceTree = "<group>";
+		};
+		6481B71214063B5900B53612 /* PickThePhoto2ViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6481B71314063B5900B53612 /* en */,
+			);
+			name = PickThePhoto2ViewController.xib;
 			sourceTree = "<group>";
 		};
 		649A2CB113FDFA1F005F2EB5 /* InfoPlist.strings */ = {
@@ -647,6 +792,32 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ChangeThePhoto/ChangeThePhoto-Prefix.pch";
 				INFOPLIST_FILE = "ChangeThePhoto/ChangeThePhoto-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		6481B71514063B5900B53612 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PickThePhoto2/PickThePhoto2-Prefix.pch";
+				INFOPLIST_FILE = "PickThePhoto2/PickThePhoto2-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		6481B71614063B5900B53612 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PickThePhoto2/PickThePhoto2-Prefix.pch";
+				INFOPLIST_FILE = "PickThePhoto2/PickThePhoto2-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -794,6 +965,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		6481B71714063B5900B53612 /* Build configuration list for PBXNativeTarget "PickThePhoto2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6481B71514063B5900B53612 /* Debug */,
+				6481B71614063B5900B53612 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 		649A2C9E13FDFA1F005F2EB5 /* Build configuration list for PBXProject "PickThePhoto" */ = {
 			isa = XCConfigurationList;
