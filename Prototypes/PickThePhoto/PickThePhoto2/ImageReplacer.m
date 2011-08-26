@@ -140,6 +140,8 @@
 -(void)imagePickerController:(UIImagePickerController *)picker
 didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
+    NSLog(@"I'm in didFinishPickingMediaWithInfo");
+    
     [self.popoverController dismissPopoverAnimated:true];
     [popoverController release];
     
@@ -155,25 +157,17 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
         //replace image from imagesArray index 0 with new image
         [self replaceImage:indexOfImageToChange newImage:image];
         
-        //save to the photos album
-        /* if (newMedia)
-         UIImageWriteToSavedPhotosAlbum(image,
-         self,  
-         @selector(image:finishedSavingWithError:contextInfo:),
-         nil); */
+        //removed codes that save photo to photo library
     }
     else if ([mediaType isEqualToString:(NSString *)kUTTypeMovie])
     {
         // Code here to support video if enabled
     }
     
-    //refresh the imageView
-    [self refreshImageView];
+    [self refreshImageView]; //refresh the imageView
 }
 
--(void)image:(UIImage *)image
-finishedSavingWithError:(NSError *)error
- contextInfo:(void *)contextInfo
+-(void)image:(UIImage *)image finishedSavingWithError:(NSError *)error contextInfo:(void *)contextInfo
 {
     if (error) {
         UIAlertView *alert = [[UIAlertView alloc]
@@ -190,14 +184,17 @@ finishedSavingWithError:(NSError *)error
 -(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
     [self dismissModalViewControllerAnimated:YES];
+    
+    NSLog(@"I'm in imagePickerControllerDidCancel");
 }
 
-- (void) replaceImage:(NSInteger)imageIndex newImage:(UIImage*)anImage {
-    
+- (void) replaceImage:(NSInteger)imageIndex newImage:(UIImage*)anImage 
+{
     [imagesArray replaceObjectAtIndex:imageIndex withObject:anImage];
 }
 
-- (void)refreshImageView {
+- (void)refreshImageView 
+{
     [imageView setImage:[imagesArray objectAtIndex:indexOfImageToChange]];
 } 
 
