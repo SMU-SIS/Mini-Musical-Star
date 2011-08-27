@@ -53,30 +53,11 @@
         frame.size.width = 280;
         frame.size.height = scrollView.frame.size.height;
         
-        NSLog(@"Width is %g", frame.size.width);
-        NSLog(@"Length is %g", frame.size.height);
-        
-        UIImage *img = [images objectAtIndex:i];
-        
-        //resizing the image
-        /*
-         UIGraphicsBeginImageContext(img.size);
-         [img drawInRect:CGRectMake(0, 0, scrollView.frame.size.width, scrollView.frame.size.height)];
-         UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
-         */
-        
+        UIImage *img = [images objectAtIndex:i];        
         
         //creating an ImageView and insert into scrollView as a subview
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:frame];
         imageView.image = img;
-        
-        /*
-         UIView *subview = [[UIView alloc] initWithFrame:frame];
-         
-         //subview.backgroundColor = [colors objectAtIndex:i];
-         //subview.backgroundColor = [[UIColor alloc] initWithPatternImage:newImage];
-         [subview center];
-         */
         
         [scrollView addSubview:imageView];
         [imageView release];

@@ -63,9 +63,6 @@
         frame.size.width = 200;
         frame.size.height = 150;
         
-        NSLog(@"Width is %g", frame.size.width);
-        NSLog(@"Length is %g", frame.size.height);
-        
         UIImage *img = [sceneImages objectAtIndex:i];
         
         //creating an ImageView and insert into scrollView as a subview
