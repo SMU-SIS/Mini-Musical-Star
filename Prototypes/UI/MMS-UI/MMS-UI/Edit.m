@@ -42,14 +42,9 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    
     leftView.image = [UIImage imageNamed:@"g1.png"];
-    [leftView release];
     
-    Graphics *graphicMenu = [Graphics alloc];
-    
-    [toggleView addSubview:graphicMenu.view];
-    //[graphicMenu autorelease]; 
+    [toggleView addSubview:[self graphicsView]];  
 }
 
 - (void)viewDidUnload
@@ -70,12 +65,8 @@
 {
     //Decision for Segment Index == 0, which is the Graphics in the scene
     if (segControl.selectedSegmentIndex == 0) {
-        
-        //Calling out the view controller and add into the toggleView
-        Graphics *graphicMenu = [Graphics alloc];
-        [toggleView addSubview:graphicMenu.view];
-        
-        //[graphicMenu release];        
+
+        [toggleView addSubview:[self graphicsView]];    
     }
     else if (segControl.selectedSegmentIndex == 1) {
         CGRect rect = CGRectMake(0, 0, toggleView.frame.size.width, toggleView.frame.size.height);
@@ -94,9 +85,119 @@
     [self dismissModalViewControllerAnimated:YES];  
 }
 
--(void)setImageToLeftView:(int)imgNum
+-(void)setImageToLeftView:(id)sender
 {
-    leftView.image = [UIImage imageNamed:@"g4.png"];
+    ShowImage *showImage = [ShowImage alloc];
+    NSArray *images = [showImage getImagesInTheScene];
+    
+    UIButton *button = (UIButton *)sender;
+    
+    UIImage *img = [images objectAtIndex:button.tag];
+    leftView.image = img;
+    
+    [self callGraphicsOption:button.tag];
+}
+
+-(UIView *)graphicsView
+{
+    CGRect rect = CGRectMake(0, 0, 480, 600);
+    scrollView = [[UIScrollView alloc] initWithFrame:rect];
+    
+    ShowImage *showImage = [ShowImage alloc];
+    NSArray *imagesInTheScene = [showImage getImagesInTheScene];
+    
+    BOOL odd = TRUE;
+    
+    for (int i = 0; i<imagesInTheScene.count; i++) {
+        UIImage *img = [imagesInTheScene objectAtIndex:i];
+        if (odd == TRUE) {
+            CGRect left;
+            left.origin.x=scrollView.frame.origin.x + 25;
+            left.origin.y=scrollView.frame.origin.y + (i * 100) +25;	
+            left.size.width = 200;
+            left.size.height = 150;
+            
+            UIButton *button = [[UIButton alloc] initWithFrame:left];
+            [button setImage:img forState:(UIControlStateNormal)];
+            [button setTag:i];
+
+            [button addTarget:self action:@selector(setImageToLeftView:) forControlEvents:UIControlEventTouchUpInside];
+            
+            odd = FALSE;
+            
+            [scrollView addSubview:button];
+            [button release];
+        }
+        else {
+            CGRect right;
+            right.origin.x=scrollView.frame.origin.x + 255;
+            right.origin.y=scrollView.frame.origin.y + ((i-1) * 100) +25;
+            right.size.width = 200;
+            right.size.height = 150;
+            
+            UIButton *button = [[UIButton alloc] initWithFrame:right];
+            [button setImage:img forState:(UIControlStateNormal)];
+            [button setTag:i];
+            
+            [button addTarget:self action:@selector(setImageToLeftView:) forControlEvents:UIControlEventTouchUpInside];            
+            odd = TRUE; 
+            
+            [scrollView addSubview:button];
+            [button release];
+        }
+        
+    }
+    [scrollView setContentSize:CGSizeMake(480, 600 + (imagesInTheScene.count-6)/2 * 175 + 100)];
+    
+    [scrollView setScrollEnabled:YES];
+    [scrollView setShowsHorizontalScrollIndicator:NO];
+    [scrollView setShowsVerticalScrollIndicator:NO];
+    [scrollView setPagingEnabled:YES]; 
+    scrollView.clipsToBounds = YES;
+    //[scrollView setZoomScale:1.5 animated:YES];
+    [scrollView setBackgroundColor:[UIColor blackColor]];
+    [scrollView setScrollsToTop:NO];
+    
+    [showImage release];
+
+    return [scrollView autorelease];
+
+}
+
+-(void)callGraphicsOption:(NSInteger)buttonNumber
+{
+    NSInteger imageNum = buttonNumber +1;
+    
+    if (imageNum/2 == 1) {
+        [imageView removeFromSuperview];
+        
+        CGRect frame = CGRectMake(55, buttonNumber/2*100, 200, 250);
+        
+        imageView = [[UIImageView alloc] initWithFrame:frame];
+        imageView.image = [UIImage imageNamed:@"gfxoption.png"];
+        
+        imageView.transform = CGAffineTransformMakeScale(-1, 1);
+        
+        
+        [scrollView addSubview:imageView];
+        [imageView release];
+    }
+    else
+    {
+        [imageView removeFromSuperview];
+        
+        CGRect frame = CGRectMake(225, buttonNumber*100, 200, 250);
+        
+        imageView = [[UIImageView alloc] initWithFrame:frame];
+        imageView.image = [UIImage imageNamed:@"gfxoption.png"];
+        
+        [scrollView addSubview:imageView];
+        [imageView release];
+    }
+    
+    
+    
+    
 }
 
 

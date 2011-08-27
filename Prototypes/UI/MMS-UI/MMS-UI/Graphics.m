@@ -96,7 +96,7 @@
     [scrollView setShowsHorizontalScrollIndicator:NO];
     [scrollView setShowsVerticalScrollIndicator:NO];
     [scrollView setPagingEnabled:YES]; 
-    scrollView.clipsToBounds = NO;
+    scrollView.clipsToBounds = YES;
     [scrollView setZoomScale:1.5 animated:YES];
     [scrollView setBackgroundColor:[UIColor blackColor]];
     [showImage release];    
@@ -121,9 +121,9 @@
     
     NSLog(@"image2 Number is %g", imgNum);
     
-    Edit *edit = [Edit alloc];
-    [edit setImageToLeftView:imgNum];
-    [edit release];
+    //Edit *edit = [Edit alloc];
+    //[edit setImageToLeftView];
+    //[edit release];
 }
 
 @end

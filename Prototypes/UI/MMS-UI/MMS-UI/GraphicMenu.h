@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ShowImage.h"
+#import "Edit.h"
 
 
 @interface GraphicMenu : UIView {
-    
+    ShowImage *showImage;
 }
 
 @end

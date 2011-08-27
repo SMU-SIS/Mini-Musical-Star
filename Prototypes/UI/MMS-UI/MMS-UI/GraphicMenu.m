@@ -15,12 +15,14 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        CGRect rect1 = CGRectMake(0, 0, 480, 600);
+        /*
+         CGRect rect1 = CGRectMake(0, 0, 480, 600);
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:rect1];
         imageView.image = [UIImage imageNamed:@"glee1.jpg"];
         
         [self addSubview:imageView];
         [imageView release];
+         */
     }
     return self;
 }

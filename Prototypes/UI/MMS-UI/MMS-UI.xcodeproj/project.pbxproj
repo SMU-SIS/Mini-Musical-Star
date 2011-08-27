@@ -10,6 +10,7 @@
 		820511BF13F3BB9B0016F87E /* Scene.m in Sources */ = {isa = PBXBuildFile; fileRef = 820511BD13F3BB9B0016F87E /* Scene.m */; };
 		820511C013F3BB9B0016F87E /* Scene.xib in Resources */ = {isa = PBXBuildFile; fileRef = 820511BE13F3BB9B0016F87E /* Scene.xib */; };
 		ED75B7F913FE9C9700AFA08B /* scene.png in Resources */ = {isa = PBXBuildFile; fileRef = ED75B7F713FE9C9700AFA08B /* scene.png */; };
+		ED8310D614090B280093BFF9 /* gfxoption.png in Resources */ = {isa = PBXBuildFile; fileRef = ED8310D514090B280093BFF9 /* gfxoption.png */; };
 		EDA06CA013FEA5BA00ED4771 /* g1.png in Resources */ = {isa = PBXBuildFile; fileRef = EDA06C9813FEA5BA00ED4771 /* g1.png */; };
 		EDA06CA113FEA5BA00ED4771 /* g2.png in Resources */ = {isa = PBXBuildFile; fileRef = EDA06C9913FEA5BA00ED4771 /* g2.png */; };
 		EDA06CA213FEA5BA00ED4771 /* g3.png in Resources */ = {isa = PBXBuildFile; fileRef = EDA06C9A13FEA5BA00ED4771 /* g3.png */; };
@@ -85,6 +86,7 @@
 		820511BD13F3BB9B0016F87E /* Scene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Scene.m; sourceTree = "<group>"; };
 		820511BE13F3BB9B0016F87E /* Scene.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Scene.xib; sourceTree = "<group>"; };
 		ED75B7F713FE9C9700AFA08B /* scene.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = scene.png; path = Images/Buttons/scene.png; sourceTree = SOURCE_ROOT; };
+		ED8310D514090B280093BFF9 /* gfxoption.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = gfxoption.png; path = Images/Buttons/gfxoption.png; sourceTree = SOURCE_ROOT; };
 		EDA06C9813FEA5BA00ED4771 /* g1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = g1.png; path = "Images/Scene Images/g1.png"; sourceTree = SOURCE_ROOT; };
 		EDA06C9913FEA5BA00ED4771 /* g2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = g2.png; path = "Images/Scene Images/g2.png"; sourceTree = SOURCE_ROOT; };
 		EDA06C9A13FEA5BA00ED4771 /* g3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = g3.png; path = "Images/Scene Images/g3.png"; sourceTree = SOURCE_ROOT; };
@@ -306,6 +308,7 @@
 		EDA2A1FE13F2713000B64EA5 /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
+				ED8310D514090B280093BFF9 /* gfxoption.png */,
 				EDB9C5ED1402651500434223 /* picture.png */,
 				EDA363A8140230FC00E93779 /* home.png */,
 				ED75B7F713FE9C9700AFA08B /* scene.png */,
@@ -457,6 +460,7 @@
 				EDA363A9140230FC00E93779 /* home.png in Resources */,
 				EDB9C5EE1402651500434223 /* picture.png in Resources */,
 				EDB9C60414026C7C00434223 /* Graphics.xib in Resources */,
+				ED8310D614090B280093BFF9 /* gfxoption.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
