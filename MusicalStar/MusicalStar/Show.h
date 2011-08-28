@@ -7,16 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Scene.h"
 
 @interface Show : NSObject {
 
 }
 
 @property (retain, nonatomic) NSDictionary *data;
-@property (retain, nonatomic) NSArray *scenes;
+@property (retain, nonatomic) NSMutableArray *scenes;
 @property (retain, nonatomic) NSString *title;
 @property (retain, nonatomic) NSString *author;
-@property (retain, nonatomic) UIImage *coverPhoto;
+@property (retain, nonatomic) UIImage *coverPicture;
 @property (retain, nonatomic) NSDate *createdDate;
 
 -(Show *)initWithPropertyListFile: (NSString *)pListFilePath;

@@ -9,7 +9,7 @@
 #import "Show.h"
 
 @implementation Show
-@synthesize data, scenes, title, author, coverPhoto, createdDate;
+@synthesize data, scenes, title, author, coverPicture, createdDate;
 
 - (Show *)initWithPropertyListFile: (NSString *)pListFilePath
 {
@@ -30,16 +30,34 @@
         
         NSLog(@"%@",data);
         
+        //populate the properties of the Show model
+        title = [data objectForKey:@"title"];
+        author = [data objectForKey:@"author"];
+        coverPicture = [data objectForKey:@"cover-picture"];
+        createdDate = [data objectForKey:@"created"];
+        
+        //get the scene data
+        NSArray *scenesArray = [data objectForKey:@"scenes"];
+        scenes = [[NSMutableArray alloc] initWithCapacity:scenesArray.count];
+        
+        [scenesArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            NSDictionary *sceneDict = (NSDictionary *)obj;
+            
+            Scene *scene = [[Scene alloc] initWithPropertyDictionary: sceneDict];
+            [scenes addObject:scene];
+            [scene release];
+        }];
     }
     
     return self;
 }
 
 
+
 - (void)dealloc
 {
     [data release];
-    [coverPhoto release];
+    [coverPicture release];
     [author release];
     [title release];
     [scenes release];
