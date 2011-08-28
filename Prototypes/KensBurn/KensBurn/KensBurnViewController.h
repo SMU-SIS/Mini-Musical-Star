@@ -12,8 +12,6 @@
 {
     IBOutlet UIImageView* imageView;
     IBOutlet UIButton* startStopButton;
-    
-    Boolean isKensBurning;
 }
 
 @property (nonatomic, retain) UIImageView *imageView;
@@ -21,8 +19,5 @@
 
 - (IBAction)startStopButtonClicked;
 - (void)startKensBurn;
-- (void)stopKensBurn;
-- (void)startKensZooming;
-- (void)startKensBurnPanning;
 
 @end

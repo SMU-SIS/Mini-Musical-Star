@@ -27,10 +27,7 @@
 {
     [super viewDidLoad];
     
-    //set the default value
-    isKensBurning = NO;
-    
-    UIImage* anImage = [UIImage imageNamed:@"glee2.jpg"];
+    UIImage* anImage = [UIImage imageNamed:@"glee1.jpg"];
     [imageView setImage:anImage];
 
 }
@@ -50,77 +47,34 @@
 
 - (IBAction)startStopButtonClicked
 {
-    if (isKensBurning == NO)
-    {
-        [self startKensBurn];
-    }
-    else
-    {
-        [self stopKensBurn];
-    }
+    [self startKensBurn];
 }
 
 - (void)startKensBurn
 {
-//    [UIView beginAnimations:@"panning" context:NULL];
-//    [UIView setAnimationDelegate:self];
-//	[UIView setAnimationDuration:5];
-//	[UIView setAnimationCurve:UIViewAnimationCurveEaseIn]; //what is this
-//    
-//    CGAffineTransform rotate = CGAffineTransformMakeRotation(0.95);
-//	//CGAffineTransform moveRight = CGAffineTransformMakeTranslation(100, 200);
-//	CGAffineTransform moveRight = CGAffineTransformMakeTranslation(100, 0);
-//    CGAffineTransform combo1 = CGAffineTransformConcat(rotate, moveRight);
-//	CGAffineTransform zoomIn = CGAffineTransformMakeScale(5.8, 5.8);
-//	CGAffineTransform transform = CGAffineTransformConcat(zoomIn, combo1);
-//    
-//    
-//    imageView.transform = moveRight;
-//	[UIView commitAnimations];
+    [UIView animateWithDuration:8 animations:^(void) {
+        CGAffineTransform zoomIn = CGAffineTransformMakeScale(1.9, 1.9);
+        CGAffineTransform moveRight = CGAffineTransformMakeTranslation(-200, 0);
+        CGAffineTransform combo1 = CGAffineTransformConcat(zoomIn, moveRight);
+        imageView.transform = combo1;
+    }];
     
-    [self startKensZooming];
+    /* FOR REFERENCE
+     [UIView animateWithDuration:8 animations:^(void) {
+     CGAffineTransform zoomIn = CGAffineTransformMakeScale(1.9, 1.9);
+     CGAffineTransform moveRight = CGAffineTransformMakeTranslation(-200, 0);
+     CGAffineTransform combo1 = CGAffineTransformConcat(zoomIn, moveRight);
+     imageView.transform = combo1;
+     }
+     completion:^(BOOL finished) {
+     [UIView animateWithDuration:7 animations:^(void) {
+     CGAffineTransform moveRight = CGAffineTransformTranslate(imageView.transform, -200, 0);
+     imageView.transform = moveRight;
+     }];
+     }];
+     */
     
-}
-
-- (void)startKensZooming
-{
-    [UIView beginAnimations:@"zoomin" context:NULL];
-    [UIView setAnimationDelegate:self];
-    [UIView setAnimationDuration:5];
     
-    CGAffineTransform zoomIn = CGAffineTransformMakeScale(5.8, 5.8);
-    
-    imageView.transform = zoomIn;
-	
-    [UIView commitAnimations];
-}
-
-- (void)startKensBurnPanning
-{
-    [UIView beginAnimations:@"panning" context:NULL];
-    [UIView setAnimationDelegate:self];
-    [UIView setAnimationDuration:5];
-    
-    CGAffineTransform moveRight = CGAffineTransformMakeTranslation(200, 0);
-    
-    imageView.transform = moveRight;
-	
-    [UIView commitAnimations];
-
-}
-
-- (void)animationDidStop:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context
-{
-    if ([animationID isEqualToString:@"zoomin"])
-    {
-        NSLog(@"zooming has ended");
-        
-        [self startKensBurnPanning];
-    }
-    else if ([animationID isEqualToString:@"panning"])
-    {
-        NSLog(@"panning has ended");
-    }
 }
 
 @end
