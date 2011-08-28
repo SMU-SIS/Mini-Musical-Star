@@ -57,6 +57,7 @@
     [[self graphicsView] release];
     //[audioview release];
     [super viewDidUnload];
+    [options release];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
@@ -108,7 +109,7 @@
     [self dismissModalViewControllerAnimated:YES];  
 }
 
--(void)setImageToLeftView:(id)sender
+-(void)setImageToLeftView:(UIButton *)sender
 {
     ShowImage *showImage = [ShowImage alloc];
     NSArray *images = [showImage getImagesInTheScene];
@@ -189,39 +190,57 @@
 
 -(void)callGraphicsOption:(NSInteger)buttonNumber
 {
+    [options removeFromSuperview];
     NSInteger imageNum = buttonNumber +1;
     
-    if (imageNum%2 == 0) {
-        [imageView removeFromSuperview];
-        
+    CGRect rect = CGRectMake(0, 0, 200, 250);
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:rect];
+    
+    CGRect rectLabel = CGRectMake(0, 0, 200, 20);
+    UILabel *label = [[UILabel alloc] initWithFrame:rectLabel];
+    label.text = @"Select Option";
+    label.font = [UIFont fontWithName:@"Arial" size:14];
+    label.backgroundColor = [UIColor clearColor];
+    label.textColor = [UIColor whiteColor];
+    label.textAlignment = UITextAlignmentCenter;
+    
+    CGRect rectButton = CGRectMake(0, 20, 200, 75);
+    UIButton *button1 = [[UIButton alloc] initWithFrame:rectButton];
+    [button1 setImage:[UIImage imageNamed:@"camera.png"] forState:UIControlStateNormal];
+    CGRect rectButton2 = CGRectMake(0, 95, 200, 75);
+    UIButton *button2 = [[UIButton alloc] initWithFrame:rectButton2];
+    [button2 setImage:[UIImage imageNamed:@"folder.png"] forState:UIControlStateNormal];
+    CGRect rectButton3 = CGRectMake(0, 170, 200, 75);
+    UIButton *button3 = [[UIButton alloc] initWithFrame:rectButton3];
+    [button3 setImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
+    [button3 addTarget:self action:@selector(closeOptionMenu:) forControlEvents:UIControlEventTouchUpInside];
+    
+    if (imageNum%2==0) {
         CGRect frame = CGRectMake(55, (buttonNumber-1)*100, 200, 250);
-        
-        imageView = [[UIImageView alloc] initWithFrame:frame];
-        imageView.image = [UIImage imageNamed:@"gfxoption.png"];
-        
-        imageView.transform = CGAffineTransformMakeScale(-1, 1);
-        
-        
-        [scrollView addSubview:imageView];
-        [imageView release];
+        options = [[UIView alloc] initWithFrame:frame];    
+        imageView.image = [UIImage imageNamed:@"empty textbox right.png"];    
     }
-    else
-    {
-        [imageView removeFromSuperview];
-        
+    else {
         CGRect frame = CGRectMake(225, buttonNumber*100, 200, 250);
-        
-        imageView = [[UIImageView alloc] initWithFrame:frame];
-        imageView.image = [UIImage imageNamed:@"gfxoption.png"];
-        
-        [scrollView addSubview:imageView];
-        [imageView release];
+        options = [[UIView alloc] initWithFrame:frame];    
+        imageView.image = [UIImage imageNamed:@"empty textbox.png"];
     }
     
-    
-    
-    
+    [options addSubview:imageView];
+    [options addSubview:label];
+    [options addSubview:button1];
+    [options addSubview:button2];
+    [options addSubview:button3];
+    [scrollView addSubview:options];
+    [imageView release];
+    [label release];
+    [button1 release];
+    [button2 release];
+    [button3 release];
+    //[options release];    
 }
-
-
+-(void)closeOptionMenu:(id)sender
+{
+    [options removeFromSuperview];
+}
 @end

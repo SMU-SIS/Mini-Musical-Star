@@ -47,13 +47,13 @@
     
     for (int i=0; i<images.count; i++) {
         CGRect frame;
-        frame.origin.x = scrollView.frame.size.width * i +10;
+        frame.origin.x = 320+i*300;
         frame.origin.y = 0;
         //frame.size = scrollView.frame.size;
         frame.size.width = 280;
         frame.size.height = scrollView.frame.size.height;
         
-        NSLog(@"Width is %g", frame.size.width);
+        NSLog(@"Width is %g", scrollView.frame.size.width *i+320);
         NSLog(@"Length is %g", frame.size.height);
         
         UIImage *img = [images objectAtIndex:i];
@@ -83,7 +83,7 @@
         
     }
     
-    [scrollView setContentSize:CGSizeMake(scrollView.frame.size.width * images.count, scrollView.frame.size.height)];
+    [scrollView setContentSize:CGSizeMake(scrollView.frame.size.width + images.count* 280, scrollView.frame.size.height)];
 }
 
 
