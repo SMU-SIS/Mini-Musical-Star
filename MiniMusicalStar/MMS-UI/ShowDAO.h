@@ -11,4 +11,7 @@
 
 @interface ShowDAO : NSObject
 
++ (void)loadLocalShows;
++ (NSArray *)shows;
+
 @end

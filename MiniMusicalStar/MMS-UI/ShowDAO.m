@@ -43,7 +43,7 @@ static bool initialized = NO;
         
         //get a reference to showMetaData.plist url
         NSURL *metadataURL = [showDirectoryURL URLByAppendingPathComponent:@"showMetaData.plist"];
-        NSString *metadataString = [metadataURL absoluteString];
+        NSString *metadataString = [metadataURL path];
         NSLog(@"metadataString is %@\n", metadataString);
         
         Show *show = [[Show alloc] initWithPropertyListFile:metadataString];

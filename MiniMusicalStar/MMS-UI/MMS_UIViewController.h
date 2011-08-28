@@ -9,6 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "ShowImage.h"
 #import "Edit.h"
+#import "SceneUI.h"
+#import "Playback.h"
+#import "Cover.h"
+#import "ShowDAO.h"
 
 @interface MMS_UIViewController : UIViewController {
     IBOutlet UIScrollView *scrollView;

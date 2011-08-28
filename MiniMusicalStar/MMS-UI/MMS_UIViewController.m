@@ -7,10 +7,7 @@
 //
 
 #import "MMS_UIViewController.h"
-#import "Edit.h"
-#import "SceneUI.h"
-#import "Playback.h"
-#import "Cover.h"
+
 
 @implementation MMS_UIViewController
 
@@ -34,6 +31,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    //load the shows on the local disk
+    [ShowDAO loadLocalShows];
+    NSArray *shows = [ShowDAO shows];
+    NSLog(@"shows are %@\n", shows);
     
     [scrollView setScrollEnabled:YES];
     [scrollView setShowsHorizontalScrollIndicator:NO];
