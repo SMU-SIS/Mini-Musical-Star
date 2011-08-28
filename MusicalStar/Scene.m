@@ -46,4 +46,12 @@
     return self;
 }
 
+- (void)dealloc
+{
+    [title release];
+    [duration release];
+    [audioList release];
+    [pictureList release];
+    [super dealloc];
+}
 @end
