@@ -18,11 +18,6 @@
 		820E2A30140A0A3E00B80BBC /* TPCircularBuffer.c in Sources */ = {isa = PBXBuildFile; fileRef = 820E2A29140A0A3E00B80BBC /* TPCircularBuffer.c */; };
 		820E2A35140A0A8E00B80BBC /* FourthAttemptViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 820E2A32140A0A8E00B80BBC /* FourthAttemptViewController.m */; };
 		820E2A36140A0A8E00B80BBC /* FourthAttemptViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 820E2A33140A0A8E00B80BBC /* FourthAttemptViewController.xib */; };
-		82A21EA9140A3681008C26FB /* bass.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 82A21EA4140A3681008C26FB /* bass.mp3 */; };
-		82A21EAA140A3681008C26FB /* drums.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 82A21EA5140A3681008C26FB /* drums.mp3 */; };
-		82A21EAB140A3681008C26FB /* guitar.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 82A21EA6140A3681008C26FB /* guitar.mp3 */; };
-		82A21EAC140A3681008C26FB /* keys.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 82A21EA7140A3681008C26FB /* keys.mp3 */; };
-		82A21EAD140A3681008C26FB /* vocals.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 82A21EA8140A3681008C26FB /* vocals.mp3 */; };
 		ED75B7F913FE9C9700AFA08B /* scene.png in Resources */ = {isa = PBXBuildFile; fileRef = ED75B7F713FE9C9700AFA08B /* scene.png */; };
 		ED8310D614090B280093BFF9 /* gfxoption.png in Resources */ = {isa = PBXBuildFile; fileRef = ED8310D514090B280093BFF9 /* gfxoption.png */; };
 		EDA06CA013FEA5BA00ED4771 /* g1.png in Resources */ = {isa = PBXBuildFile; fileRef = EDA06C9813FEA5BA00ED4771 /* g1.png */; };
@@ -56,6 +51,12 @@
 		EDA2A20B13F2726B00B64EA5 /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = EDA2A20813F2726B00B64EA5 /* play.png */; };
 		EDA2A20E13F272BF00B64EA5 /* ShowImage.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA2A20D13F272BF00B64EA5 /* ShowImage.m */; };
 		EDA363A9140230FC00E93779 /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = EDA363A8140230FC00E93779 /* home.png */; };
+		EDAB95AD140A27800088C1CE /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = EDAB95A7140A27800088C1CE /* back.png */; };
+		EDAB95AE140A27800088C1CE /* camera.png in Resources */ = {isa = PBXBuildFile; fileRef = EDAB95A8140A27800088C1CE /* camera.png */; };
+		EDAB95AF140A27800088C1CE /* empty textbox right.png in Resources */ = {isa = PBXBuildFile; fileRef = EDAB95A9140A27800088C1CE /* empty textbox right.png */; };
+		EDAB95B0140A27800088C1CE /* empty textbox.png in Resources */ = {isa = PBXBuildFile; fileRef = EDAB95AA140A27800088C1CE /* empty textbox.png */; };
+		EDAB95B1140A27800088C1CE /* folder.png in Resources */ = {isa = PBXBuildFile; fileRef = EDAB95AB140A27800088C1CE /* folder.png */; };
+		EDAB95B2140A27800088C1CE /* vocal.png in Resources */ = {isa = PBXBuildFile; fileRef = EDAB95AC140A27800088C1CE /* vocal.png */; };
 		EDACF6291400308D00A478C8 /* AudioMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = EDACF6281400308D00A478C8 /* AudioMenu.m */; };
 		EDACF62C140030AB00A478C8 /* GraphicMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = EDACF62B140030AB00A478C8 /* GraphicMenu.m */; };
 		EDAEB37413FE713E0064F8C3 /* gleeCover.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EDAEB37113FE713E0064F8C3 /* gleeCover.jpg */; };
@@ -115,11 +116,6 @@
 		820E2A31140A0A8E00B80BBC /* FourthAttemptViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FourthAttemptViewController.h; path = ../../../FourthAttempt/FourthAttempt/FourthAttemptViewController.h; sourceTree = "<group>"; };
 		820E2A32140A0A8E00B80BBC /* FourthAttemptViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FourthAttemptViewController.m; path = ../../../FourthAttempt/FourthAttempt/FourthAttemptViewController.m; sourceTree = "<group>"; };
 		820E2A34140A0A8E00B80BBC /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = ../../../FourthAttempt/FourthAttempt/en.lproj/FourthAttemptViewController.xib; sourceTree = "<group>"; };
-		82A21EA4140A3681008C26FB /* bass.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = bass.mp3; path = ../../../SampleMedia/bass.mp3; sourceTree = "<group>"; };
-		82A21EA5140A3681008C26FB /* drums.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = drums.mp3; path = ../../../SampleMedia/drums.mp3; sourceTree = "<group>"; };
-		82A21EA6140A3681008C26FB /* guitar.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = guitar.mp3; path = ../../../SampleMedia/guitar.mp3; sourceTree = "<group>"; };
-		82A21EA7140A3681008C26FB /* keys.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = keys.mp3; path = ../../../SampleMedia/keys.mp3; sourceTree = "<group>"; };
-		82A21EA8140A3681008C26FB /* vocals.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = vocals.mp3; path = ../../../SampleMedia/vocals.mp3; sourceTree = "<group>"; };
 		ED75B7F713FE9C9700AFA08B /* scene.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = scene.png; path = Images/Buttons/scene.png; sourceTree = SOURCE_ROOT; };
 		ED8310D514090B280093BFF9 /* gfxoption.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = gfxoption.png; path = Images/Buttons/gfxoption.png; sourceTree = SOURCE_ROOT; };
 		EDA06C9813FEA5BA00ED4771 /* g1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = g1.png; path = "Images/Scene Images/g1.png"; sourceTree = SOURCE_ROOT; };
@@ -159,6 +155,12 @@
 		EDA2A20C13F272BF00B64EA5 /* ShowImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowImage.h; sourceTree = "<group>"; };
 		EDA2A20D13F272BF00B64EA5 /* ShowImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowImage.m; sourceTree = "<group>"; };
 		EDA363A8140230FC00E93779 /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = home.png; path = Images/Buttons/home.png; sourceTree = SOURCE_ROOT; };
+		EDAB95A7140A27800088C1CE /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = back.png; path = Images/Buttons/breakdown/back.png; sourceTree = SOURCE_ROOT; };
+		EDAB95A8140A27800088C1CE /* camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = camera.png; path = Images/Buttons/breakdown/camera.png; sourceTree = SOURCE_ROOT; };
+		EDAB95A9140A27800088C1CE /* empty textbox right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "empty textbox right.png"; path = "Images/Buttons/breakdown/empty textbox right.png"; sourceTree = SOURCE_ROOT; };
+		EDAB95AA140A27800088C1CE /* empty textbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "empty textbox.png"; path = "Images/Buttons/breakdown/empty textbox.png"; sourceTree = SOURCE_ROOT; };
+		EDAB95AB140A27800088C1CE /* folder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = folder.png; path = Images/Buttons/breakdown/folder.png; sourceTree = SOURCE_ROOT; };
+		EDAB95AC140A27800088C1CE /* vocal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = vocal.png; path = Images/Buttons/breakdown/vocal.png; sourceTree = SOURCE_ROOT; };
 		EDACF6271400308D00A478C8 /* AudioMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioMenu.h; sourceTree = "<group>"; };
 		EDACF6281400308D00A478C8 /* AudioMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioMenu.m; sourceTree = "<group>"; };
 		EDACF62A140030AB00A478C8 /* GraphicMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphicMenu.h; sourceTree = "<group>"; };
@@ -238,18 +240,6 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
-		82A21EA2140A366C008C26FB /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				82A21EA4140A3681008C26FB /* bass.mp3 */,
-				82A21EA5140A3681008C26FB /* drums.mp3 */,
-				82A21EA6140A3681008C26FB /* guitar.mp3 */,
-				82A21EA7140A3681008C26FB /* keys.mp3 */,
-				82A21EA8140A3681008C26FB /* vocals.mp3 */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-		};
 		EDA06C9613FEA5A000ED4771 /* Images */ = {
 			isa = PBXGroup;
 			children = (
@@ -268,7 +258,6 @@
 		EDA2A1B513F26F8300B64EA5 = {
 			isa = PBXGroup;
 			children = (
-				82A21EA2140A366C008C26FB /* Resources */,
 				820E2A1E140A0A2A00B80BBC /* Resources */,
 				EDA2A1CA13F26F8400B64EA5 /* MMS-UI */,
 				EDA2A1EA13F26F8400B64EA5 /* MMS-UITests */,
@@ -381,6 +370,7 @@
 		EDA2A1FE13F2713000B64EA5 /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
+				EDAB95A5140A276A0088C1CE /* Bits */,
 				ED8310D514090B280093BFF9 /* gfxoption.png */,
 				EDB9C5ED1402651500434223 /* picture.png */,
 				EDA363A8140230FC00E93779 /* home.png */,
@@ -403,6 +393,19 @@
 				EDA2A20213F2726100B64EA5 /* glee3.jpg */,
 			);
 			name = "Show Images";
+			sourceTree = "<group>";
+		};
+		EDAB95A5140A276A0088C1CE /* Bits */ = {
+			isa = PBXGroup;
+			children = (
+				EDAB95A7140A27800088C1CE /* back.png */,
+				EDAB95A8140A27800088C1CE /* camera.png */,
+				EDAB95A9140A27800088C1CE /* empty textbox right.png */,
+				EDAB95AA140A27800088C1CE /* empty textbox.png */,
+				EDAB95AB140A27800088C1CE /* folder.png */,
+				EDAB95AC140A27800088C1CE /* vocal.png */,
+			);
+			name = Bits;
 			sourceTree = "<group>";
 		};
 		EDAEB37813FE75650064F8C3 /* Scene Images */ = {
@@ -535,11 +538,12 @@
 				EDB9C60414026C7C00434223 /* Graphics.xib in Resources */,
 				ED8310D614090B280093BFF9 /* gfxoption.png in Resources */,
 				820E2A36140A0A8E00B80BBC /* FourthAttemptViewController.xib in Resources */,
-				82A21EA9140A3681008C26FB /* bass.mp3 in Resources */,
-				82A21EAA140A3681008C26FB /* drums.mp3 in Resources */,
-				82A21EAB140A3681008C26FB /* guitar.mp3 in Resources */,
-				82A21EAC140A3681008C26FB /* keys.mp3 in Resources */,
-				82A21EAD140A3681008C26FB /* vocals.mp3 in Resources */,
+				EDAB95AD140A27800088C1CE /* back.png in Resources */,
+				EDAB95AE140A27800088C1CE /* camera.png in Resources */,
+				EDAB95AF140A27800088C1CE /* empty textbox right.png in Resources */,
+				EDAB95B0140A27800088C1CE /* empty textbox.png in Resources */,
+				EDAB95B1140A27800088C1CE /* folder.png in Resources */,
+				EDAB95B2140A27800088C1CE /* vocal.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

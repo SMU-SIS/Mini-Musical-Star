@@ -19,7 +19,8 @@
     IBOutlet UISegmentedControl *segControl;
     IBOutlet UIImageView *leftView;
     FourthAttemptViewController *audioview;
-    UIImageView *imageView;
+
+    UIView *options;
     UIScrollView *scrollView;
     
     UIView *graphicsMenu;
@@ -29,11 +30,13 @@
 
 -(IBAction)backToScene;
 
--(void)setImageToLeftView:(id)sender;
+-(void)setImageToLeftView:(UIButton *)sender;
 
 -(UIView *)graphicsView;
 
 -(void)callGraphicsOption:(NSInteger)buttonNum;
+
+-(void)closeOptionMenu:(id)sender;
 
 @property(retain, nonatomic) FourthAttemptViewController *audioview;
 
