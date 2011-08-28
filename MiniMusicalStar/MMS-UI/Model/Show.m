@@ -34,7 +34,7 @@
         //populate the properties of the Show model
         title = [root objectForKey:@"title"];
         author = [root objectForKey:@"author"];
-        coverPicture = [root objectForKey:@"cover-picture"];
+        coverPicture = [UIImage imageNamed:[root objectForKey:@"cover-picture"]];
         createdDate = [root objectForKey:@"created"];
         
         //get the scene data

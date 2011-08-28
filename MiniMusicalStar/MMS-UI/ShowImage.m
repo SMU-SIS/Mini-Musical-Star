@@ -7,13 +7,18 @@
 //
 
 #import "ShowImage.h"
+#import "Show.h"
 
 
 @implementation ShowImage
 
 -(NSArray *)getShowImages
 {
-    showImages = [[NSArray alloc] initWithObjects:[UIImage imageNamed:@"wickedCover.jpg"], [UIImage imageNamed:@"gleeCover.jpg"], [UIImage imageNamed:@"hsmCover.jpg"], nil];
+    //TEMP ONLY OK, later populate with downloaded one
+    NSString *pListFilePath = [[NSBundle mainBundle] pathForResource:@"showMetaData" ofType:@"plist"];
+    Show *show = [[Show alloc] initWithPropertyListFile: pListFilePath];
+    showImages = [[NSArray alloc] initWithObjects:show.coverPicture, nil];
+//    showImages = [[NSArray alloc] initWithObjects:[UIImage imageNamed:@"wickedCover.jpg"], [UIImage imageNamed:@"gleeCover.jpg"], [UIImage imageNamed:@"hsmCover.jpg"], nil];
     
     return [showImages autorelease];
 }
