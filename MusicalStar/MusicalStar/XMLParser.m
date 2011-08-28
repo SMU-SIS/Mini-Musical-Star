@@ -23,7 +23,7 @@
 - (void)parseShow
 {
     NSString *xmlFilePath = [[NSBundle mainBundle] pathForResource:@"show" ofType:@"xml"];
-    NSLog(@"%@",xmlFilePath);
+//    NSLog(@"%@",xmlFilePath);
     NSURL *xmlURL = [NSURL fileURLWithPath:xmlFilePath];
     NSXMLParser *parser = [[NSXMLParser alloc] initWithContentsOfURL:xmlURL];
     [parser setDelegate:self];
@@ -32,11 +32,11 @@
 
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict
 {
-    NSLog(@"element is %@\n", elementName);
+//    NSLog(@"element is %@\n", elementName);
 }
 
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string {
-    NSLog(@"value is %@",string);
+//    NSLog(@"value is %@",string);
 }
 
 @end
