@@ -48,6 +48,8 @@
 		3AB0D4681405461900056EA6 /* ZipArchive.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3AB0D4631405461900056EA6 /* ZipArchive.mm */; };
 		3AB0D46A1405465000056EA6 /* libz.1.2.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AB0D4691405465000056EA6 /* libz.1.2.3.dylib */; };
 		3AB0D46D1405469700056EA6 /* ZipUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AB0D46C1405469700056EA6 /* ZipUtility.m */; };
+		957E3B2B140A0AE800ED06BD /* Show.m in Sources */ = {isa = PBXBuildFile; fileRef = 957E3B2A140A0AE800ED06BD /* Show.m */; };
+		957E3B2C140A0AE800ED06BD /* Show.m in Sources */ = {isa = PBXBuildFile; fileRef = 957E3B2A140A0AE800ED06BD /* Show.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,6 +114,8 @@
 		3AB0D4691405465000056EA6 /* libz.1.2.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.3.dylib; path = usr/lib/libz.1.2.3.dylib; sourceTree = SDKROOT; };
 		3AB0D46B1405469700056EA6 /* ZipUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZipUtility.h; sourceTree = "<group>"; };
 		3AB0D46C1405469700056EA6 /* ZipUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZipUtility.m; sourceTree = "<group>"; };
+		957E3B29140A0AE800ED06BD /* Show.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Show.h; sourceTree = "<group>"; };
+		957E3B2A140A0AE800ED06BD /* Show.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Show.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -197,6 +201,8 @@
 				3AB0D42714052B3400056EA6 /* XMLParser.m */,
 				3AB0D46B1405469700056EA6 /* ZipUtility.h */,
 				3AB0D46C1405469700056EA6 /* ZipUtility.m */,
+				957E3B29140A0AE800ED06BD /* Show.h */,
+				957E3B2A140A0AE800ED06BD /* Show.m */,
 			);
 			path = MusicalStar;
 			sourceTree = "<group>";
@@ -450,6 +456,7 @@
 				3AB0D4671405461900056EA6 /* zip.c in Sources */,
 				3AB0D4681405461900056EA6 /* ZipArchive.mm in Sources */,
 				3AB0D46D1405469700056EA6 /* ZipUtility.m in Sources */,
+				957E3B2B140A0AE800ED06BD /* Show.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -458,6 +465,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3A6BC0901401FE56000A8BC3 /* MusicalStarTests.m in Sources */,
+				957E3B2C140A0AE800ED06BD /* Show.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
