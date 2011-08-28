@@ -24,7 +24,6 @@
 		3A6BC08C1401FE56000A8BC3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3A6BC08A1401FE56000A8BC3 /* InfoPlist.strings */; };
 		3A6BC08E1401FE56000A8BC3 /* MusicalStarTests.h in Resources */ = {isa = PBXBuildFile; fileRef = 3A6BC08D1401FE56000A8BC3 /* MusicalStarTests.h */; };
 		3A6BC0901401FE56000A8BC3 /* MusicalStarTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6BC08F1401FE56000A8BC3 /* MusicalStarTests.m */; };
-		3A85291D140629FB002A751F /* showMetaData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3A85291C140629FB002A751F /* showMetaData.plist */; };
 		3AB0D42814052B3400056EA6 /* XMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AB0D42714052B3400056EA6 /* XMLParser.m */; };
 		3AB0D4471405414B00056EA6 /* front.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3AB0D4341405414B00056EA6 /* front.jpg */; };
 		3AB0D4481405414B00056EA6 /* adrianjeanasti.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3AB0D4371405414B00056EA6 /* adrianjeanasti.jpg */; };
@@ -50,6 +49,7 @@
 		3AB0D46D1405469700056EA6 /* ZipUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AB0D46C1405469700056EA6 /* ZipUtility.m */; };
 		957E3B2B140A0AE800ED06BD /* Show.m in Sources */ = {isa = PBXBuildFile; fileRef = 957E3B2A140A0AE800ED06BD /* Show.m */; };
 		957E3B2C140A0AE800ED06BD /* Show.m in Sources */ = {isa = PBXBuildFile; fileRef = 957E3B2A140A0AE800ED06BD /* Show.m */; };
+		957E3B34140A0E4600ED06BD /* showMetaData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 957E3B33140A0E4600ED06BD /* showMetaData.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,7 +82,6 @@
 		3A6BC08B1401FE56000A8BC3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3A6BC08D1401FE56000A8BC3 /* MusicalStarTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MusicalStarTests.h; sourceTree = "<group>"; };
 		3A6BC08F1401FE56000A8BC3 /* MusicalStarTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MusicalStarTests.m; sourceTree = "<group>"; };
-		3A85291C140629FB002A751F /* showMetaData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = showMetaData.plist; path = ../../../../Locations/showMetaData.plist; sourceTree = "<group>"; };
 		3AB0D42614052B3400056EA6 /* XMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLParser.h; sourceTree = "<group>"; };
 		3AB0D42714052B3400056EA6 /* XMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParser.m; sourceTree = "<group>"; };
 		3AB0D4341405414B00056EA6 /* front.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = front.jpg; sourceTree = "<group>"; };
@@ -116,6 +115,7 @@
 		3AB0D46C1405469700056EA6 /* ZipUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZipUtility.m; sourceTree = "<group>"; };
 		957E3B29140A0AE800ED06BD /* Show.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Show.h; sourceTree = "<group>"; };
 		957E3B2A140A0AE800ED06BD /* Show.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Show.m; sourceTree = "<group>"; };
+		957E3B33140A0E4600ED06BD /* showMetaData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = showMetaData.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -241,7 +241,7 @@
 		3AB0D4331405414B00056EA6 /* Story of my Life */ = {
 			isa = PBXGroup;
 			children = (
-				3A85291C140629FB002A751F /* showMetaData.plist */,
+				957E3B33140A0E4600ED06BD /* showMetaData.plist */,
 				3AB0D4341405414B00056EA6 /* front.jpg */,
 				3AB0D4351405414B00056EA6 /* scenes */,
 				3AB0D4461405414B00056EA6 /* show.xml */,
@@ -410,7 +410,7 @@
 				3AB0D4531405414B00056EA6 /* segroup.jpg in Resources */,
 				3AB0D4541405414B00056EA6 /* show.xml in Resources */,
 				3AB0D456140544F300056EA6 /* Story of my Life.zip in Resources */,
-				3A85291D140629FB002A751F /* showMetaData.plist in Resources */,
+				957E3B34140A0E4600ED06BD /* showMetaData.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

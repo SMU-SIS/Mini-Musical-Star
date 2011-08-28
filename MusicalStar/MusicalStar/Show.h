@@ -9,8 +9,12 @@
 #import <Foundation/Foundation.h>
 
 @interface Show : NSObject {
-    NSDictionary *data;
+    
 }
+
+@property (retain, nonatomic) NSArray *scenes;
+@property (retain, nonatomic) NSString *title;
+@property (retain, nonatomic) NSString *author;
 
 -(Show *)initWithPropertyListFile: (NSString *)pListFilePath;
 

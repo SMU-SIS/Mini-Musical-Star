@@ -9,6 +9,7 @@
 #import "Show.h"
 
 @implementation Show
+@synthesize scenes, title, author;
 
 - (Show *)initWithPropertyListFile: (NSString *)pListFilePath
 {
@@ -20,9 +21,11 @@
     return self;
 }
 
+
+
 - (void)dealloc
 {
-    [data release];
+    [scenes release];
 }
 
 @end
