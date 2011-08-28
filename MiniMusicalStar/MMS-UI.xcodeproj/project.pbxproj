@@ -124,18 +124,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		820511BC13F3BB9B0016F87E /* SceneUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneUI.h; sourceTree = "<group>"; };
-		820511BD13F3BB9B0016F87E /* SceneUI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SceneUI.m; sourceTree = "<group>"; };
-		820511BE13F3BB9B0016F87E /* SceneUI.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SceneUI.xib; sourceTree = "<group>"; };
+		820511BC13F3BB9B0016F87E /* SceneUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SceneUI.h; path = "MMS-UI/SceneUI.h"; sourceTree = "<group>"; };
+		820511BD13F3BB9B0016F87E /* SceneUI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SceneUI.m; path = "MMS-UI/SceneUI.m"; sourceTree = "<group>"; };
+		820511BE13F3BB9B0016F87E /* SceneUI.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SceneUI.xib; path = "MMS-UI/SceneUI.xib"; sourceTree = "<group>"; };
 		820E2A1B140A0A1E00B80BBC /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		82A21EB8140A388C008C26FB /* bass.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bass.mp3; sourceTree = "<group>"; };
 		82A21EB9140A388C008C26FB /* drums.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = drums.mp3; sourceTree = "<group>"; };
 		82A21EBA140A388C008C26FB /* guitar.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = guitar.mp3; sourceTree = "<group>"; };
 		82A21EBB140A388C008C26FB /* keys.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = keys.mp3; sourceTree = "<group>"; };
 		82A21EBC140A388C008C26FB /* vocals.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = vocals.mp3; sourceTree = "<group>"; };
-		82A21EC7140A3B81008C26FB /* FourthAttemptViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FourthAttemptViewController.h; sourceTree = "<group>"; };
-		82A21EC8140A3B81008C26FB /* FourthAttemptViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FourthAttemptViewController.m; sourceTree = "<group>"; };
-		82A21EC9140A3B81008C26FB /* FourthAttemptViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FourthAttemptViewController.xib; sourceTree = "<group>"; };
+		82A21EC7140A3B81008C26FB /* FourthAttemptViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FourthAttemptViewController.h; path = "MMS-UI/FourthAttemptViewController.h"; sourceTree = "<group>"; };
+		82A21EC8140A3B81008C26FB /* FourthAttemptViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FourthAttemptViewController.m; path = "MMS-UI/FourthAttemptViewController.m"; sourceTree = "<group>"; };
+		82A21EC9140A3B81008C26FB /* FourthAttemptViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FourthAttemptViewController.xib; path = "MMS-UI/FourthAttemptViewController.xib"; sourceTree = "<group>"; };
 		82A21ECC140A3BB8008C26FB /* MixPlayerRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MixPlayerRecorder.h; sourceTree = "<group>"; };
 		82A21ECD140A3BB8008C26FB /* MixPlayerRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MixPlayerRecorder.m; sourceTree = "<group>"; };
 		82A21ECE140A3BB8008C26FB /* ASBDHelper.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ASBDHelper.c; sourceTree = "<group>"; };
@@ -194,11 +194,11 @@
 		EDA2A1CE13F26F8400B64EA5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		EDA2A1D013F26F8400B64EA5 /* MMS-UI-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MMS-UI-Prefix.pch"; sourceTree = "<group>"; };
 		EDA2A1D113F26F8400B64EA5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		EDA2A1D313F26F8400B64EA5 /* MMS_UIAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MMS_UIAppDelegate.h; sourceTree = "<group>"; };
-		EDA2A1D413F26F8400B64EA5 /* MMS_UIAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MMS_UIAppDelegate.m; sourceTree = "<group>"; };
+		EDA2A1D313F26F8400B64EA5 /* MMS_UIAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MMS_UIAppDelegate.h; path = "MMS-UI/MMS_UIAppDelegate.h"; sourceTree = "<group>"; };
+		EDA2A1D413F26F8400B64EA5 /* MMS_UIAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MMS_UIAppDelegate.m; path = "MMS-UI/MMS_UIAppDelegate.m"; sourceTree = "<group>"; };
 		EDA2A1D713F26F8400B64EA5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
-		EDA2A1D913F26F8400B64EA5 /* MMS_UIViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MMS_UIViewController.h; sourceTree = "<group>"; };
-		EDA2A1DA13F26F8400B64EA5 /* MMS_UIViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MMS_UIViewController.m; sourceTree = "<group>"; };
+		EDA2A1D913F26F8400B64EA5 /* MMS_UIViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MMS_UIViewController.h; path = "MMS-UI/MMS_UIViewController.h"; sourceTree = "<group>"; };
+		EDA2A1DA13F26F8400B64EA5 /* MMS_UIViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MMS_UIViewController.m; path = "MMS-UI/MMS_UIViewController.m"; sourceTree = "<group>"; };
 		EDA2A1DD13F26F8400B64EA5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MMS_UIViewController.xib; sourceTree = "<group>"; };
 		EDA2A1E413F26F8400B64EA5 /* MMS-UITests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "MMS-UITests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDA2A1EC13F26F8400B64EA5 /* MMS-UITests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MMS-UITests-Info.plist"; sourceTree = "<group>"; };
@@ -212,8 +212,8 @@
 		EDA2A20613F2726B00B64EA5 /* edit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = edit.png; path = Images/Buttons/edit.png; sourceTree = SOURCE_ROOT; };
 		EDA2A20713F2726B00B64EA5 /* new.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = new.png; path = Images/Buttons/new.png; sourceTree = SOURCE_ROOT; };
 		EDA2A20813F2726B00B64EA5 /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = play.png; path = Images/Buttons/play.png; sourceTree = SOURCE_ROOT; };
-		EDA2A20C13F272BF00B64EA5 /* ShowImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowImage.h; sourceTree = "<group>"; };
-		EDA2A20D13F272BF00B64EA5 /* ShowImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowImage.m; sourceTree = "<group>"; };
+		EDA2A20C13F272BF00B64EA5 /* ShowImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShowImage.h; path = "MMS-UI/ShowImage.h"; sourceTree = "<group>"; };
+		EDA2A20D13F272BF00B64EA5 /* ShowImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShowImage.m; path = "MMS-UI/ShowImage.m"; sourceTree = "<group>"; };
 		EDA363A8140230FC00E93779 /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = home.png; path = Images/Buttons/home.png; sourceTree = SOURCE_ROOT; };
 		EDAB95A7140A27800088C1CE /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = back.png; path = Images/Buttons/breakdown/back.png; sourceTree = SOURCE_ROOT; };
 		EDAB95A8140A27800088C1CE /* camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = camera.png; path = Images/Buttons/breakdown/camera.png; sourceTree = SOURCE_ROOT; };
@@ -221,10 +221,10 @@
 		EDAB95AA140A27800088C1CE /* empty textbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "empty textbox.png"; path = "Images/Buttons/breakdown/empty textbox.png"; sourceTree = SOURCE_ROOT; };
 		EDAB95AB140A27800088C1CE /* folder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = folder.png; path = Images/Buttons/breakdown/folder.png; sourceTree = SOURCE_ROOT; };
 		EDAB95AC140A27800088C1CE /* vocal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = vocal.png; path = Images/Buttons/breakdown/vocal.png; sourceTree = SOURCE_ROOT; };
-		EDACF6271400308D00A478C8 /* AudioMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioMenu.h; sourceTree = "<group>"; };
-		EDACF6281400308D00A478C8 /* AudioMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioMenu.m; sourceTree = "<group>"; };
-		EDACF62A140030AB00A478C8 /* GraphicMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphicMenu.h; sourceTree = "<group>"; };
-		EDACF62B140030AB00A478C8 /* GraphicMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GraphicMenu.m; sourceTree = "<group>"; };
+		EDACF6271400308D00A478C8 /* AudioMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AudioMenu.h; path = "MMS-UI/AudioMenu.h"; sourceTree = "<group>"; };
+		EDACF6281400308D00A478C8 /* AudioMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AudioMenu.m; path = "MMS-UI/AudioMenu.m"; sourceTree = "<group>"; };
+		EDACF62A140030AB00A478C8 /* GraphicMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GraphicMenu.h; path = "MMS-UI/GraphicMenu.h"; sourceTree = "<group>"; };
+		EDACF62B140030AB00A478C8 /* GraphicMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GraphicMenu.m; path = "MMS-UI/GraphicMenu.m"; sourceTree = "<group>"; };
 		EDAEB37113FE713E0064F8C3 /* gleeCover.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = gleeCover.jpg; path = "Images/Musical Images/gleeCover.jpg"; sourceTree = SOURCE_ROOT; };
 		EDAEB37213FE713E0064F8C3 /* hsmCover.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = hsmCover.jpg; path = "Images/Musical Images/hsmCover.jpg"; sourceTree = SOURCE_ROOT; };
 		EDAEB37313FE713E0064F8C3 /* wickedCover.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = wickedCover.jpg; path = "Images/Musical Images/wickedCover.jpg"; sourceTree = SOURCE_ROOT; };
@@ -242,18 +242,18 @@
 		EDAEB38413FE75810064F8C3 /* wickedS4.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = wickedS4.jpeg; path = "Images/Musical Scenes/wickedS4.jpeg"; sourceTree = SOURCE_ROOT; };
 		EDAEB38513FE75810064F8C3 /* wickedS5.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = wickedS5.jpeg; path = "Images/Musical Scenes/wickedS5.jpeg"; sourceTree = SOURCE_ROOT; };
 		EDB9C5ED1402651500434223 /* picture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = picture.png; path = Images/Buttons/picture.png; sourceTree = SOURCE_ROOT; };
-		EDB9C60014026C7C00434223 /* Graphics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Graphics.h; sourceTree = "<group>"; };
-		EDB9C60114026C7C00434223 /* Graphics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Graphics.m; sourceTree = "<group>"; };
-		EDB9C60214026C7C00434223 /* Graphics.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Graphics.xib; sourceTree = "<group>"; };
-		EDC5CC2F13F6260400EAF813 /* Playback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Playback.h; sourceTree = "<group>"; };
-		EDC5CC3013F6260400EAF813 /* Playback.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Playback.m; sourceTree = "<group>"; };
-		EDC5CC3113F6260400EAF813 /* Playback.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Playback.xib; sourceTree = "<group>"; };
-		EDC5CC3513F6261500EAF813 /* Cover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cover.h; sourceTree = "<group>"; };
-		EDC5CC3613F6261500EAF813 /* Cover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cover.m; sourceTree = "<group>"; };
-		EDC5CC3713F6261500EAF813 /* Cover.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Cover.xib; sourceTree = "<group>"; };
-		EDC5CC3A13F6269300EAF813 /* Edit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Edit.h; sourceTree = "<group>"; };
-		EDC5CC3B13F6269300EAF813 /* Edit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Edit.m; sourceTree = "<group>"; };
-		EDC5CC3C13F6269300EAF813 /* Edit.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Edit.xib; sourceTree = "<group>"; };
+		EDB9C60014026C7C00434223 /* Graphics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Graphics.h; path = "MMS-UI/Graphics.h"; sourceTree = "<group>"; };
+		EDB9C60114026C7C00434223 /* Graphics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Graphics.m; path = "MMS-UI/Graphics.m"; sourceTree = "<group>"; };
+		EDB9C60214026C7C00434223 /* Graphics.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = Graphics.xib; path = "MMS-UI/Graphics.xib"; sourceTree = "<group>"; };
+		EDC5CC2F13F6260400EAF813 /* Playback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Playback.h; path = "MMS-UI/Playback.h"; sourceTree = "<group>"; };
+		EDC5CC3013F6260400EAF813 /* Playback.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Playback.m; path = "MMS-UI/Playback.m"; sourceTree = "<group>"; };
+		EDC5CC3113F6260400EAF813 /* Playback.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = Playback.xib; path = "MMS-UI/Playback.xib"; sourceTree = "<group>"; };
+		EDC5CC3513F6261500EAF813 /* Cover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Cover.h; path = "MMS-UI/Cover.h"; sourceTree = "<group>"; };
+		EDC5CC3613F6261500EAF813 /* Cover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Cover.m; path = "MMS-UI/Cover.m"; sourceTree = "<group>"; };
+		EDC5CC3713F6261500EAF813 /* Cover.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = Cover.xib; path = "MMS-UI/Cover.xib"; sourceTree = "<group>"; };
+		EDC5CC3A13F6269300EAF813 /* Edit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Edit.h; path = "MMS-UI/Edit.h"; sourceTree = "<group>"; };
+		EDC5CC3B13F6269300EAF813 /* Edit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Edit.m; path = "MMS-UI/Edit.m"; sourceTree = "<group>"; };
+		EDC5CC3C13F6269300EAF813 /* Edit.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = Edit.xib; path = "MMS-UI/Edit.xib"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -394,6 +394,45 @@
 			path = cues;
 			sourceTree = "<group>";
 		};
+		82A21F17140A4016008C26FB /* UI Folder */ = {
+			isa = PBXGroup;
+			children = (
+				EDA2A1FD13F2712000B64EA5 /* Images */,
+				EDA2A1DC13F26F8400B64EA5 /* MMS_UIViewController.xib */,
+				EDC5CC3113F6260400EAF813 /* Playback.xib */,
+				820511BE13F3BB9B0016F87E /* SceneUI.xib */,
+				EDC5CC3713F6261500EAF813 /* Cover.xib */,
+				EDC5CC3C13F6269300EAF813 /* Edit.xib */,
+				EDACF6271400308D00A478C8 /* AudioMenu.h */,
+				EDACF6281400308D00A478C8 /* AudioMenu.m */,
+				EDACF62A140030AB00A478C8 /* GraphicMenu.h */,
+				EDACF62B140030AB00A478C8 /* GraphicMenu.m */,
+				EDB9C60014026C7C00434223 /* Graphics.h */,
+				EDB9C60114026C7C00434223 /* Graphics.m */,
+				EDB9C60214026C7C00434223 /* Graphics.xib */,
+				EDC5CC3513F6261500EAF813 /* Cover.h */,
+				EDC5CC3613F6261500EAF813 /* Cover.m */,
+				EDC5CC3A13F6269300EAF813 /* Edit.h */,
+				EDC5CC3B13F6269300EAF813 /* Edit.m */,
+				82A21EC7140A3B81008C26FB /* FourthAttemptViewController.h */,
+				82A21EC8140A3B81008C26FB /* FourthAttemptViewController.m */,
+				82A21EC9140A3B81008C26FB /* FourthAttemptViewController.xib */,
+				EDA2A20D13F272BF00B64EA5 /* ShowImage.m */,
+				820511BC13F3BB9B0016F87E /* SceneUI.h */,
+				820511BD13F3BB9B0016F87E /* SceneUI.m */,
+				EDC5CC2F13F6260400EAF813 /* Playback.h */,
+				EDC5CC3013F6260400EAF813 /* Playback.m */,
+				EDA2A1D313F26F8400B64EA5 /* MMS_UIAppDelegate.h */,
+				EDA2A1D413F26F8400B64EA5 /* MMS_UIAppDelegate.m */,
+				EDA2A1D613F26F8400B64EA5 /* MainWindow.xib */,
+				EDA2A1D913F26F8400B64EA5 /* MMS_UIViewController.h */,
+				EDA2A1DA13F26F8400B64EA5 /* MMS_UIViewController.m */,
+				EDA2A20C13F272BF00B64EA5 /* ShowImage.h */,
+			);
+			name = "UI Folder";
+			path = ..;
+			sourceTree = "<group>";
+		};
 		EDA06C9613FEA5A000ED4771 /* Images */ = {
 			isa = PBXGroup;
 			children = (
@@ -445,40 +484,10 @@
 		EDA2A1CA13F26F8400B64EA5 /* MMS-UI */ = {
 			isa = PBXGroup;
 			children = (
-				EDA2A1FD13F2712000B64EA5 /* Images */,
-				EDA2A1D313F26F8400B64EA5 /* MMS_UIAppDelegate.h */,
-				EDA2A1D413F26F8400B64EA5 /* MMS_UIAppDelegate.m */,
-				EDA2A1D613F26F8400B64EA5 /* MainWindow.xib */,
-				EDA2A1D913F26F8400B64EA5 /* MMS_UIViewController.h */,
-				EDA2A1DA13F26F8400B64EA5 /* MMS_UIViewController.m */,
-				EDA2A20C13F272BF00B64EA5 /* ShowImage.h */,
+				82A21F17140A4016008C26FB /* UI Folder */,
 				82A21EDE140A3DF0008C26FB /* Model */,
-				EDA2A20D13F272BF00B64EA5 /* ShowImage.m */,
-				820511BC13F3BB9B0016F87E /* SceneUI.h */,
-				820511BD13F3BB9B0016F87E /* SceneUI.m */,
-				EDC5CC2F13F6260400EAF813 /* Playback.h */,
-				EDC5CC3013F6260400EAF813 /* Playback.m */,
 				82A21EF1140A3DFA008C26FB /* Story of my Life */,
-				EDC5CC3513F6261500EAF813 /* Cover.h */,
-				EDC5CC3613F6261500EAF813 /* Cover.m */,
-				EDC5CC3A13F6269300EAF813 /* Edit.h */,
-				EDC5CC3B13F6269300EAF813 /* Edit.m */,
-				82A21EC7140A3B81008C26FB /* FourthAttemptViewController.h */,
-				82A21EC8140A3B81008C26FB /* FourthAttemptViewController.m */,
-				82A21EC9140A3B81008C26FB /* FourthAttemptViewController.xib */,
 				EDA2A1CB13F26F8400B64EA5 /* Supporting Files */,
-				EDA2A1DC13F26F8400B64EA5 /* MMS_UIViewController.xib */,
-				EDC5CC3113F6260400EAF813 /* Playback.xib */,
-				820511BE13F3BB9B0016F87E /* SceneUI.xib */,
-				EDC5CC3713F6261500EAF813 /* Cover.xib */,
-				EDC5CC3C13F6269300EAF813 /* Edit.xib */,
-				EDACF6271400308D00A478C8 /* AudioMenu.h */,
-				EDACF6281400308D00A478C8 /* AudioMenu.m */,
-				EDACF62A140030AB00A478C8 /* GraphicMenu.h */,
-				EDACF62B140030AB00A478C8 /* GraphicMenu.m */,
-				EDB9C60014026C7C00434223 /* Graphics.h */,
-				EDB9C60114026C7C00434223 /* Graphics.m */,
-				EDB9C60214026C7C00434223 /* Graphics.xib */,
 			);
 			path = "MMS-UI";
 			sourceTree = "<group>";
@@ -523,6 +532,7 @@
 				EDA2A1FE13F2713000B64EA5 /* Buttons */,
 			);
 			name = Images;
+			path = "MMS-UI";
 			sourceTree = "<group>";
 		};
 		EDA2A1FE13F2713000B64EA5 /* Buttons */ = {
@@ -817,6 +827,7 @@
 				EDA2A1D713F26F8400B64EA5 /* en */,
 			);
 			name = MainWindow.xib;
+			path = "MMS-UI";
 			sourceTree = "<group>";
 		};
 		EDA2A1DC13F26F8400B64EA5 /* MMS_UIViewController.xib */ = {
@@ -825,6 +836,7 @@
 				EDA2A1DD13F26F8400B64EA5 /* en */,
 			);
 			name = MMS_UIViewController.xib;
+			path = "MMS-UI";
 			sourceTree = "<group>";
 		};
 		EDA2A1ED13F26F8400B64EA5 /* InfoPlist.strings */ = {
