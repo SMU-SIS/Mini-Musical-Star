@@ -191,10 +191,10 @@
 {
     NSInteger imageNum = buttonNumber +1;
     
-    if (imageNum/2 == 1) {
+    if (imageNum%2 == 0) {
         [imageView removeFromSuperview];
         
-        CGRect frame = CGRectMake(55, buttonNumber/2*100, 200, 250);
+        CGRect frame = CGRectMake(55, (buttonNumber-1)*100, 200, 250);
         
         imageView = [[UIImageView alloc] initWithFrame:frame];
         imageView.image = [UIImage imageNamed:@"gfxoption.png"];
