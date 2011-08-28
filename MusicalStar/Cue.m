@@ -21,4 +21,14 @@
     return self;
 }
 
+- (void)dealloc
+{
+    [content release];
+    [time release];
+    [duration release];
+    [type release];
+    [super dealloc];
+}
+
+
 @end

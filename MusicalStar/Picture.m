@@ -21,4 +21,15 @@
     return self;
 }
 
+- (void)dealloc
+{
+    [title release];
+    [path release];
+    [startTime release];
+    [duration release];
+    [cueList release];
+    [super dealloc];
+}
+
+
 @end
