@@ -9,7 +9,7 @@
 #import "Audio.h"
 
 @implementation Audio
-@synthesize title, path, replaceable, duration, cueList;
+@synthesize title, path, replaceable, duration, audioCueList;
 
 - (Audio *)initWithPropertyDictionary: (NSDictionary *) pDictionary
 {
@@ -20,13 +20,13 @@
         replaceable = [pDictionary objectForKey:@"repleaceable"];
         duration = [pDictionary objectForKey:@"duration"];
         NSArray *cueArray = [pDictionary objectForKey:@"cues"];
-        cueList = [[NSMutableArray alloc] initWithCapacity:cueArray.count];
+        audioCueList = [[NSMutableArray alloc] initWithCapacity:cueArray.count];
         
         [cueArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             NSDictionary *cueObjectDict = (NSDictionary *)obj;
-            Cue *cue = [[Cue alloc] initWithPropertyDictionary:cueObjectDict];
-            [cueList addObject:cue];
-            [cue release];
+            AudioCue *audioCue = [[AudioCue alloc] initWithPropertyDictionary:cueObjectDict];
+            [audioCueList addObject:audioCue];
+            [audioCue release];
         }];
         
     }
@@ -39,7 +39,7 @@
     [title release];
     [path release];
     [duration release];
-    [cueList release];
+    [audioCueList release];
     [super dealloc];
 }
 

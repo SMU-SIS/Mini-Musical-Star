@@ -9,7 +9,7 @@
 #import "Picture.h"
 
 @implementation Picture
-@synthesize title, path, startTime, duration, cueList;
+@synthesize title, path, startTime, duration, pictureCueList;
 
 - (Picture *)initWithPropertyDictionary: (NSDictionary *) pDictionary
 {
@@ -20,14 +20,14 @@
         startTime = [pDictionary objectForKey:@"startTime"];
         duration = [pDictionary objectForKey:@"duration"];
         NSArray *cueArray = [pDictionary objectForKey:@"cues"];
-        cueList = [[NSMutableArray alloc] initWithCapacity:cueArray.count];
+        pictureCueList = [[NSMutableArray alloc] initWithCapacity:cueArray.count];
         
         [cueArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             NSDictionary *cueObjectDict = (NSDictionary *)obj;
             
-            Cue *cue = [[Cue alloc] initWithPropertyDictionary:cueObjectDict];
-            [cueList addObject:cue];
-            [cue release];
+            PictureCue *pictureCue = [[PictureCue alloc] initWithPropertyDictionary:cueObjectDict];
+            [pictureCueList addObject:pictureCue];
+            [pictureCue release];
             
         }];
         
@@ -42,7 +42,7 @@
     [path release];
     [startTime release];
     [duration release];
-    [cueList release];
+    [pictureCueList release];
     [super dealloc];
 }
 

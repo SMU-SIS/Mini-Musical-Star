@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Cue.h"
+#import "PictureCue.h"
 
 @interface Picture : NSObject
 
@@ -15,7 +15,7 @@
 @property (retain, nonatomic) NSURL *path;
 @property (retain, nonatomic) NSNumber *startTime;
 @property (retain, nonatomic) NSNumber *duration;
-@property (retain, nonatomic) NSArray *cueList;
+@property (retain, nonatomic) NSArray *pictureCueList;
 
 - (Picture *)initWithPropertyDictionary: (NSDictionary *) pDictionary;
 

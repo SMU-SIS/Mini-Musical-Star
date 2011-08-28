@@ -28,12 +28,13 @@
 
     NSString *pListFilePath = [[NSBundle mainBundle] pathForResource:@"showMetaData" ofType:@"plist"];
 //    NSURL *pListFileUrl = [ NSURL fileURLWithPath : pListFilePath];
-//    Show *show = [[Show alloc] initWithPropertyListFile: pListFilePath];
-//    Scene *scene = [show.scenes objectAtIndex:0];
-//    Audio *audio = [scene.audioList objectAtIndex:0];
-//    Picture *picture = [scene.pictureList objectAtIndex:1];
-//    Cue *cue = [picture.cueList objectAtIndex:0];
-//    NSLog(@"%@ %@",picture.title,cue.);
+    Show *show = [[Show alloc] initWithPropertyListFile: pListFilePath];
+    Scene *scene = [show.scenes objectAtIndex:0];
+    Audio *audio = [scene.audioList objectAtIndex:0];
+    AudioCue *audioCue = [audio.audioCueList objectAtIndex:0];
+    Picture *picture = [scene.pictureList objectAtIndex:1];
+    PictureCue *pictureCue = [picture.pictureCueList objectAtIndex:0];
+    NSLog(@"%@ %@",picture.title,audioCue.content);
     
 //    NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:
 //                          @"hiiiii!", @"title", @"path", @"guguugu", nil];
