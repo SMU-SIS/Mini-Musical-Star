@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A493DBC140A0D97009E261F /* showMetaData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3A493DBB140A0D97009E261F /* showMetaData.plist */; };
 		3A6BC0601401FE56000A8BC3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A6BC05F1401FE56000A8BC3 /* UIKit.framework */; };
 		3A6BC0621401FE56000A8BC3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A6BC0611401FE56000A8BC3 /* Foundation.framework */; };
 		3A6BC0641401FE56000A8BC3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A6BC0631401FE56000A8BC3 /* CoreGraphics.framework */; };
@@ -24,7 +25,6 @@
 		3A6BC08C1401FE56000A8BC3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3A6BC08A1401FE56000A8BC3 /* InfoPlist.strings */; };
 		3A6BC08E1401FE56000A8BC3 /* MusicalStarTests.h in Resources */ = {isa = PBXBuildFile; fileRef = 3A6BC08D1401FE56000A8BC3 /* MusicalStarTests.h */; };
 		3A6BC0901401FE56000A8BC3 /* MusicalStarTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6BC08F1401FE56000A8BC3 /* MusicalStarTests.m */; };
-		3A85291D140629FB002A751F /* showMetaData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3A85291C140629FB002A751F /* showMetaData.plist */; };
 		3AB0D42814052B3400056EA6 /* XMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AB0D42714052B3400056EA6 /* XMLParser.m */; };
 		3AB0D4471405414B00056EA6 /* front.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3AB0D4341405414B00056EA6 /* front.jpg */; };
 		3AB0D4481405414B00056EA6 /* adrianjeanasti.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3AB0D4371405414B00056EA6 /* adrianjeanasti.jpg */; };
@@ -63,6 +63,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3A493DBB140A0D97009E261F /* showMetaData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = showMetaData.plist; sourceTree = "<group>"; };
 		3A6BC05B1401FE56000A8BC3 /* MusicalStar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusicalStar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A6BC05F1401FE56000A8BC3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		3A6BC0611401FE56000A8BC3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -82,7 +83,6 @@
 		3A6BC08B1401FE56000A8BC3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3A6BC08D1401FE56000A8BC3 /* MusicalStarTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MusicalStarTests.h; sourceTree = "<group>"; };
 		3A6BC08F1401FE56000A8BC3 /* MusicalStarTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MusicalStarTests.m; sourceTree = "<group>"; };
-		3A85291C140629FB002A751F /* showMetaData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = showMetaData.plist; path = ../../../../Locations/showMetaData.plist; sourceTree = "<group>"; };
 		3AB0D42614052B3400056EA6 /* XMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLParser.h; sourceTree = "<group>"; };
 		3AB0D42714052B3400056EA6 /* XMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParser.m; sourceTree = "<group>"; };
 		3AB0D4341405414B00056EA6 /* front.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = front.jpg; sourceTree = "<group>"; };
@@ -241,7 +241,7 @@
 		3AB0D4331405414B00056EA6 /* Story of my Life */ = {
 			isa = PBXGroup;
 			children = (
-				3A85291C140629FB002A751F /* showMetaData.plist */,
+				3A493DBB140A0D97009E261F /* showMetaData.plist */,
 				3AB0D4341405414B00056EA6 /* front.jpg */,
 				3AB0D4351405414B00056EA6 /* scenes */,
 				3AB0D4461405414B00056EA6 /* show.xml */,
@@ -410,7 +410,7 @@
 				3AB0D4531405414B00056EA6 /* segroup.jpg in Resources */,
 				3AB0D4541405414B00056EA6 /* show.xml in Resources */,
 				3AB0D456140544F300056EA6 /* Story of my Life.zip in Resources */,
-				3A85291D140629FB002A751F /* showMetaData.plist in Resources */,
+				3A493DBC140A0D97009E261F /* showMetaData.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
