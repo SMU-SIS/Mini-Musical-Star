@@ -7,22 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ShowImage.h"
+#import "Show.h"
 
 @interface SceneUI : UIViewController{
     IBOutlet UIButton *sceneButton;
     IBOutlet UIScrollView *sceneMenu;
-
-    int imageNum;
-    ShowImage *menuImages;
-    ShowImage *scenes;
-
 }
 
-@property (nonatomic, assign) int imageNum;
+@property (retain, nonatomic) Show *theShow;
 
--(void)setImageNum:(int)num;
--(int)getImageNum;
+-(SceneUI *)initWithScenesFromShow:(Show *)aShow;
 -(IBAction)backToMenu;
 
 //-(IBAction)selectScene;

@@ -18,5 +18,5 @@
 @property (retain, nonatomic) NSMutableArray *pictureList;
 
 -(Scene *) initSceneWithPropertyDictionary:(NSDictionary *)propertyDictonary;
-
+-(UIImage *)randomScenePicture;
 @end

@@ -47,6 +47,11 @@
     return self;
 }
 
+- (UIImage *)randomScenePicture
+{
+    return [[pictureList objectAtIndex:0] autorelease];
+}
+
 - (void)dealloc
 {
     [title release];

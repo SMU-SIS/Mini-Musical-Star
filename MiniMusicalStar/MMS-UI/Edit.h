@@ -13,31 +13,32 @@
 #import "GraphicMenu.h"
 #import "FourthAttemptViewController.h"
 #import "MixPlayerRecorder.h"
+#import "Show.h"
+#import "Scene.h"
+#import "Picture.h"
 
 @interface Edit : UIViewController {
     IBOutlet UIScrollView *toggleView;
     IBOutlet UISegmentedControl *segControl;
     IBOutlet UIImageView *leftView;
-    FourthAttemptViewController *audioview;
 
     UIView *options;
     UIScrollView *scrollView;
     
     UIView *graphicsMenu;
+    
 }
 
--(IBAction)setToggleOption;
-
--(IBAction)backToScene;
-
--(void)setImageToLeftView:(UIButton *)sender;
-
--(UIView *)graphicsView;
-
--(void)callGraphicsOption:(NSInteger)buttonNum;
-
--(void)closeOptionMenu:(id)sender;
-
 @property(retain, nonatomic) FourthAttemptViewController *audioview;
+@property(retain, nonatomic) Show *theShow;
+@property(retain, nonatomic) Scene *theScene;
+
+-(Edit *)initWithShow:(Show *)aShow Scene:(Scene *)aScene;
+-(IBAction)setToggleOption;
+-(IBAction)backToScene;
+-(void)setImageToLeftView:(UIButton *)sender;
+-(UIView *)graphicsView;
+-(void)callGraphicsOption:(NSInteger)buttonNum;
+-(void)closeOptionMenu:(id)sender;
 
 @end

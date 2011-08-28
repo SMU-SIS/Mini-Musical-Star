@@ -118,16 +118,26 @@
 
 //Button action for creating new musical
 - (IBAction)createMusical {
-    SceneUI *sceneView = [[SceneUI alloc] initWithNibName:nil bundle:nil];
-    
-    //find out which musical is currently selected
-    int current = [self currentPage];    
-    [sceneView setImageNum:current];
+//    SceneUI *sceneView = [[SceneUI alloc] initWithNibName:nil bundle:nil];
+//    
+//    //find out which musical is currently selected
+//    int current = [self currentPage];    
+//    [sceneView setImageNum:current];
+//    
+//    sceneView.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+//    [self presentModalViewController:sceneView animated:YES];
+//    
+//    [sceneView release];
+
+    //find out which show is currently selected
+    int currentSelection = [self currentPage];
+    SceneUI *sceneView = [[SceneUI alloc] initWithScenesFromShow:[shows objectAtIndex:currentSelection]];
     
     sceneView.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     [self presentModalViewController:sceneView animated:YES];
     
     [sceneView release];
+    
 }
 
 -(int)currentPage

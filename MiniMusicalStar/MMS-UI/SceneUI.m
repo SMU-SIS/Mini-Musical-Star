@@ -10,10 +10,13 @@
 #import "Edit.h"
 
 @implementation SceneUI
-@synthesize imageNum;
+@synthesize theShow;
 
 - (void)dealloc
 {
+    [theShow release];
+    [sceneButton release];
+    [sceneMenu release];
     [super dealloc];
 }
 
@@ -26,6 +29,15 @@
 }
 
 #pragma mark - View lifecycle
+
+-(SceneUI *)initWithScenesFromShow:(Show *)aShow
+{
+    [super init];
+    //store the current show as an ivar
+    self.theShow = aShow;
+    
+    return self;
+}
 
 - (void)viewDidLoad
 {
@@ -41,19 +53,25 @@
     //[sceneMenu  setZoomScale:1.5 animated:YES];   
     
     //Codes to disply the picture of the musical above on the scene selection page
+    /*
     menuImages = [ShowImage alloc];
     NSArray *images = [menuImages getShowImages];
     [menuImages autorelease];
+    */
     
-    
-    UIImage *img = [images objectAtIndex:imageNum];
-    [sceneButton setBackgroundImage:img forState:UIControlStateNormal];
+    //UIImage *img = [images objectAtIndex:imageNum];
+    [sceneButton setBackgroundImage:theShow.coverPicture forState:UIControlStateNormal];
     
     
     //For the scene selection page. Scrollable.
-    scenes = [ShowImage alloc];
-    NSArray *sceneImages = [scenes getSceneImages:(imageNum)];
-    [scenes autorelease];
+    
+    //get the scene images out of the show
+    NSMutableArray *sceneImages = [[NSMutableArray alloc]initWithCapacity:theShow.scenes.count];
+    [theShow.scenes enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        Scene *scene = (Scene *)obj;
+        [sceneImages addObject:[scene randomScenePicture]];
+        
+    }];
     
     for (int i=0; i<sceneImages.count; i++) {
         CGRect frame;
@@ -99,15 +117,6 @@
     [self dismissModalViewControllerAnimated:YES];    
 }
 
-- (void)setImageNum:(int)num 
-{
-    imageNum=num;
-}
-
-- (int) getImageNum
-{
-    return imageNum;
-}
 
 /*
 -(IBAction)selectScene {
@@ -122,7 +131,10 @@
 
 -(void)selectScene:(id)sender
 {
-    Edit *editScene = [[Edit alloc] initWithNibName:nil bundle:nil];
+    //Wei Jie, Asti - need you guys to find out which scene was selected - HARD CODE AT INDEX 0 FOR NOW
+    int sceneSelection = 0;
+    
+    Edit *editScene = [[Edit alloc] initWithShow:theShow Scene:[theShow.scenes objectAtIndex:sceneSelection]];
     
     editScene.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     [self presentModalViewController:editScene animated:YES];

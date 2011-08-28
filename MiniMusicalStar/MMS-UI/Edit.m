@@ -7,28 +7,23 @@
 //
 
 #import "Edit.h"
-#import "Scene.h"
-
 
 @implementation Edit
+@synthesize audioview, theShow, theScene;
 
-
-@synthesize audioview;
-
-/*
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (Edit *)initWithShow:(Show *)aShow Scene:(Scene *)aScene
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
+    [super init];
+    self.theShow = aShow;
+    self.theScene = aScene;
+    
     return self;
 }
- */
 
 - (void)dealloc
 {
-    
+    [theShow release];
+    [theScene release];
     [audioview release];
     [super dealloc];
 }
@@ -47,7 +42,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    leftView.image = [UIImage imageNamed:@"g1.png"];
+    leftView.image = [theScene randomScenePicture];
     audioview = [[FourthAttemptViewController alloc] init];
     [toggleView addSubview:[self graphicsView]];  
 }
@@ -127,8 +122,14 @@
     CGRect rect = CGRectMake(0, 0, 480, 600);
     scrollView = [[UIScrollView alloc] initWithFrame:rect];
     
-    ShowImage *showImage = [ShowImage alloc];
-    NSArray *imagesInTheScene = [showImage getImagesInTheScene];
+    //ShowImage *showImage = [ShowImage alloc];
+    //NSArray *imagesInTheScene = [showImage getImagesInTheScene];
+    
+    NSMutableArray *imagesInTheScene = [[NSMutableArray alloc] initWithCapacity:theScene.pictureList.count];
+    [theScene.pictureList enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        Picture *thePicture = (Picture *)obj;
+        [imagesInTheScene addObject:[UIImage imageWithContentsOfFile:[thePicture relativePath]];
+    }];
     
     BOOL odd = TRUE;
     
