@@ -7,12 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Audio.h"
+#import "Picture.h"
 
 @interface Scene : NSObject
 
 @property (retain, nonatomic) NSString *title;
 @property (retain, nonatomic) NSNumber *duration;
-@property (retain, nonatomic) NSArray *audioList;
-@property (retain, nonatomic) NSArray *pictureList;
+@property (retain, nonatomic) NSMutableArray *audioList;
+@property (retain, nonatomic) NSMutableArray *pictureList;
+
+-(Scene *) initWithPropertyDictionary:(NSDictionary *)propertyDictonary;
 
 @end
