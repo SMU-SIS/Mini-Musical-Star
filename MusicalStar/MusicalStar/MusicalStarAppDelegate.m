@@ -34,7 +34,7 @@
     AudioCue *audioCue = [audio.audioCueList objectAtIndex:0];
     Picture *picture = [scene.pictureList objectAtIndex:1];
     PictureCue *pictureCue = [picture.pictureCueList objectAtIndex:0];
-    NSLog(@"%@ %@",picture.title,audioCue.content);
+    NSLog(@"%@ %@",show.coverPicture,audioCue.content);
     
 //    NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:
 //                          @"hiiiii!", @"title", @"path", @"guguugu", nil];
