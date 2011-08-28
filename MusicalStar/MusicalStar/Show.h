@@ -16,7 +16,10 @@
 @property (retain, nonatomic) NSArray *scenes;
 @property (retain, nonatomic) NSString *title;
 @property (retain, nonatomic) NSString *author;
+@property (retain, nonatomic) UIImage *coverPhoto;
+@property (retain, nonatomic) NSDate *createdDate;
 
 -(Show *)initWithPropertyListFile: (NSString *)pListFilePath;
+
 
 @end

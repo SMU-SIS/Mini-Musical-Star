@@ -142,6 +142,7 @@
     [progressSlider release];
     [segmentedControl release];
     [togglePlaybackButton release];
+    [player stop];
     [player release];
     [super dealloc];
 }
