@@ -12,8 +12,10 @@
 
 @property (retain, nonatomic) NSString *title;
 @property (retain, nonatomic) NSURL *path;
-@property (nonatomic) BOOL *replaceable;
+@property (retain, nonatomic) NSNumber *replaceable;
 @property (retain, nonatomic) NSNumber *duration;
 @property (retain, nonatomic) NSArray *cueList;
+
+- (Audio *)initWithPropertyDictionary: (NSDictionary *) pDictionary;
 
 @end

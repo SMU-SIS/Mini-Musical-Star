@@ -30,6 +30,11 @@
 //    NSURL *pListFileUrl = [ NSURL fileURLWithPath : pListFilePath];
     Show *show = [[Show alloc] initWithPropertyListFile: pListFilePath];
     
+    NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:
+                          @"hiiiii!", @"title", @"path", @"guguugu", nil];
+    Audio *audio = [ [Audio alloc] initWithPropertyDictionary:dict];
+    
+    
     // Override point for customization after application launch.
     [self.window makeKeyAndVisible];
     return YES;

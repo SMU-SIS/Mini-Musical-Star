@@ -11,14 +11,27 @@
 @implementation Cue
 @synthesize content, time, duration, type;
 
-- (id)init
+- (Cue *)initWithPropertyDictionary: (NSDictionary *) pDictionary
 {
     self = [super init];
     if (self) {
-        // Initialization code here.
+        content = [pDictionary objectForKey:@"content"];
+        time = [pDictionary objectForKey:@"time"];
+        type= [pDictionary objectForKey:@"type"];
+        duration = [pDictionary objectForKey:@"duration"];
     }
     
     return self;
 }
+
+- (void)dealloc
+{
+    [content release];
+    [time release];
+    [duration release];
+    [type release];
+    [super dealloc];
+}
+
 
 @end
