@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ShowImage.h"
 
-@interface Scene : UIViewController{
+@interface SceneUI : UIViewController{
     IBOutlet UIButton *sceneButton;
     IBOutlet UIScrollView *sceneMenu;
 

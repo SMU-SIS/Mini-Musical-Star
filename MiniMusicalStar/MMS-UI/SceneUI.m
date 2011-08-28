@@ -6,10 +6,10 @@
 //  Copyright 2011 Singapore Management University. All rights reserved.
 //
 
-#import "Scene.h"
+#import "SceneUI.h"
 #import "Edit.h"
 
-@implementation Scene
+@implementation SceneUI
 @synthesize imageNum;
 
 - (void)dealloc

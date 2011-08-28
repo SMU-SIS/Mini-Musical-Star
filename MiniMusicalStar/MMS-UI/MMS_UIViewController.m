@@ -8,7 +8,7 @@
 
 #import "MMS_UIViewController.h"
 #import "Edit.h"
-#import "Scene.h"
+#import "SceneUI.h"
 #import "Playback.h"
 #import "Cover.h"
 
@@ -105,7 +105,7 @@
 
 //Button action for creating new musical
 - (IBAction)createMusical {
-    Scene *sceneView = [[Scene alloc] initWithNibName:nil bundle:nil];
+    SceneUI *sceneView = [[SceneUI alloc] initWithNibName:nil bundle:nil];
     
     int current = [self currentPage];    
     [sceneView setImageNum:current];
