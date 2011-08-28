@@ -135,6 +135,11 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+-(void)stopPlayer
+{
+    [player stop];
+}
+
 - (void)dealloc
 {
     

@@ -12,6 +12,7 @@
 #import "Graphics.h"
 #import "GraphicMenu.h"
 #import "FourthAttemptViewController.h"
+#import "MixPlayerRecorder.h"
 
 @interface Edit : UIViewController {
     IBOutlet UIScrollView *toggleView;

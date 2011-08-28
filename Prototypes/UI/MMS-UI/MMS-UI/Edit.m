@@ -55,7 +55,7 @@
 - (void)viewDidUnload
 {
     [[self graphicsView] release];
-    [audioview release];
+    //[audioview release];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -74,7 +74,15 @@
     if (segControl.selectedSegmentIndex == 0) {
 
         [toggleView addSubview:[self graphicsView]];
-        [[self graphicsView] release];
+        //[audioview release];
+       /* 
+        MixPlayerRecorder *mix = [MixPlayerRecorder alloc];
+        [mix stop];
+        [mix release];
+        */
+        //[[self graphicsView] release];
+        //[audioview release];
+        [audioview stopPlayer];
         [audioview.view removeFromSuperview];
     }
     else if (segControl.selectedSegmentIndex == 1) {
@@ -88,6 +96,7 @@
         
         [toggleView addSubview:audioview.view];
         [self.graphicsView removeFromSuperview];
+        
         //[audioview release];
         //[scrollView removeFromSuperview];
     }
