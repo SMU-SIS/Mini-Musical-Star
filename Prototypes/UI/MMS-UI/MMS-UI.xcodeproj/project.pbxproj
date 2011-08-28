@@ -9,6 +9,15 @@
 /* Begin PBXBuildFile section */
 		820511BF13F3BB9B0016F87E /* Scene.m in Sources */ = {isa = PBXBuildFile; fileRef = 820511BD13F3BB9B0016F87E /* Scene.m */; };
 		820511C013F3BB9B0016F87E /* Scene.xib in Resources */ = {isa = PBXBuildFile; fileRef = 820511BE13F3BB9B0016F87E /* Scene.xib */; };
+		820E2A1C140A0A1E00B80BBC /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 820E2A1B140A0A1E00B80BBC /* AudioToolbox.framework */; };
+		820E2A2B140A0A3E00B80BBC /* MixPlayerRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 820E2A20140A0A3E00B80BBC /* MixPlayerRecorder.m */; };
+		820E2A2C140A0A3E00B80BBC /* ASBDHelper.c in Sources */ = {isa = PBXBuildFile; fileRef = 820E2A21140A0A3E00B80BBC /* ASBDHelper.c */; };
+		820E2A2D140A0A3E00B80BBC /* AudioFileRingBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 820E2A24140A0A3E00B80BBC /* AudioFileRingBuffer.m */; };
+		820E2A2E140A0A3E00B80BBC /* BoomzAUOutputCapturer.m in Sources */ = {isa = PBXBuildFile; fileRef = 820E2A26140A0A3E00B80BBC /* BoomzAUOutputCapturer.m */; };
+		820E2A2F140A0A3E00B80BBC /* CAErrorHandling.c in Sources */ = {isa = PBXBuildFile; fileRef = 820E2A27140A0A3E00B80BBC /* CAErrorHandling.c */; };
+		820E2A30140A0A3E00B80BBC /* TPCircularBuffer.c in Sources */ = {isa = PBXBuildFile; fileRef = 820E2A29140A0A3E00B80BBC /* TPCircularBuffer.c */; };
+		820E2A35140A0A8E00B80BBC /* FourthAttemptViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 820E2A32140A0A8E00B80BBC /* FourthAttemptViewController.m */; };
+		820E2A36140A0A8E00B80BBC /* FourthAttemptViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 820E2A33140A0A8E00B80BBC /* FourthAttemptViewController.xib */; };
 		ED75B7F913FE9C9700AFA08B /* scene.png in Resources */ = {isa = PBXBuildFile; fileRef = ED75B7F713FE9C9700AFA08B /* scene.png */; };
 		ED8310D614090B280093BFF9 /* gfxoption.png in Resources */ = {isa = PBXBuildFile; fileRef = ED8310D514090B280093BFF9 /* gfxoption.png */; };
 		EDA06CA013FEA5BA00ED4771 /* g1.png in Resources */ = {isa = PBXBuildFile; fileRef = EDA06C9813FEA5BA00ED4771 /* g1.png */; };
@@ -85,6 +94,22 @@
 		820511BC13F3BB9B0016F87E /* Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scene.h; sourceTree = "<group>"; };
 		820511BD13F3BB9B0016F87E /* Scene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Scene.m; sourceTree = "<group>"; };
 		820511BE13F3BB9B0016F87E /* Scene.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Scene.xib; sourceTree = "<group>"; };
+		820E2A1B140A0A1E00B80BBC /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		820E2A1F140A0A3E00B80BBC /* MixPlayerRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MixPlayerRecorder.h; path = ../../../Libraries/MixPlayerRecorder.h; sourceTree = "<group>"; };
+		820E2A20140A0A3E00B80BBC /* MixPlayerRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MixPlayerRecorder.m; path = ../../../Libraries/MixPlayerRecorder.m; sourceTree = "<group>"; };
+		820E2A21140A0A3E00B80BBC /* ASBDHelper.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ASBDHelper.c; path = ../../../Libraries/ASBDHelper.c; sourceTree = "<group>"; };
+		820E2A22140A0A3E00B80BBC /* ASBDHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASBDHelper.h; path = ../../../Libraries/ASBDHelper.h; sourceTree = "<group>"; };
+		820E2A23140A0A3E00B80BBC /* AudioFileRingBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AudioFileRingBuffer.h; path = ../../../Libraries/AudioFileRingBuffer.h; sourceTree = "<group>"; };
+		820E2A24140A0A3E00B80BBC /* AudioFileRingBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AudioFileRingBuffer.m; path = ../../../Libraries/AudioFileRingBuffer.m; sourceTree = "<group>"; };
+		820E2A25140A0A3E00B80BBC /* BoomzAUOutputCapturer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BoomzAUOutputCapturer.h; path = ../../../Libraries/BoomzAUOutputCapturer.h; sourceTree = "<group>"; };
+		820E2A26140A0A3E00B80BBC /* BoomzAUOutputCapturer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BoomzAUOutputCapturer.m; path = ../../../Libraries/BoomzAUOutputCapturer.m; sourceTree = "<group>"; };
+		820E2A27140A0A3E00B80BBC /* CAErrorHandling.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = CAErrorHandling.c; path = ../../../Libraries/CAErrorHandling.c; sourceTree = "<group>"; };
+		820E2A28140A0A3E00B80BBC /* CAErrorHandling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CAErrorHandling.h; path = ../../../Libraries/CAErrorHandling.h; sourceTree = "<group>"; };
+		820E2A29140A0A3E00B80BBC /* TPCircularBuffer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = TPCircularBuffer.c; path = ../../../Libraries/TPCircularBuffer.c; sourceTree = "<group>"; };
+		820E2A2A140A0A3E00B80BBC /* TPCircularBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TPCircularBuffer.h; path = ../../../Libraries/TPCircularBuffer.h; sourceTree = "<group>"; };
+		820E2A31140A0A8E00B80BBC /* FourthAttemptViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FourthAttemptViewController.h; path = ../../../FourthAttempt/FourthAttempt/FourthAttemptViewController.h; sourceTree = "<group>"; };
+		820E2A32140A0A8E00B80BBC /* FourthAttemptViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FourthAttemptViewController.m; path = ../../../FourthAttempt/FourthAttempt/FourthAttemptViewController.m; sourceTree = "<group>"; };
+		820E2A34140A0A8E00B80BBC /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = ../../../FourthAttempt/FourthAttempt/en.lproj/FourthAttemptViewController.xib; sourceTree = "<group>"; };
 		ED75B7F713FE9C9700AFA08B /* scene.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = scene.png; path = Images/Buttons/scene.png; sourceTree = SOURCE_ROOT; };
 		ED8310D514090B280093BFF9 /* gfxoption.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = gfxoption.png; path = Images/Buttons/gfxoption.png; sourceTree = SOURCE_ROOT; };
 		EDA06C9813FEA5BA00ED4771 /* g1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = g1.png; path = "Images/Scene Images/g1.png"; sourceTree = SOURCE_ROOT; };
@@ -164,6 +189,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				820E2A1C140A0A1E00B80BBC /* AudioToolbox.framework in Frameworks */,
 				EDA2A1C513F26F8400B64EA5 /* UIKit.framework in Frameworks */,
 				EDA2A1C713F26F8400B64EA5 /* Foundation.framework in Frameworks */,
 				EDA2A1C913F26F8400B64EA5 /* CoreGraphics.framework in Frameworks */,
@@ -183,6 +209,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		820E2A1E140A0A2A00B80BBC /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				820E2A1F140A0A3E00B80BBC /* MixPlayerRecorder.h */,
+				820E2A20140A0A3E00B80BBC /* MixPlayerRecorder.m */,
+				820E2A21140A0A3E00B80BBC /* ASBDHelper.c */,
+				820E2A22140A0A3E00B80BBC /* ASBDHelper.h */,
+				820E2A23140A0A3E00B80BBC /* AudioFileRingBuffer.h */,
+				820E2A24140A0A3E00B80BBC /* AudioFileRingBuffer.m */,
+				820E2A25140A0A3E00B80BBC /* BoomzAUOutputCapturer.h */,
+				820E2A26140A0A3E00B80BBC /* BoomzAUOutputCapturer.m */,
+				820E2A27140A0A3E00B80BBC /* CAErrorHandling.c */,
+				820E2A28140A0A3E00B80BBC /* CAErrorHandling.h */,
+				820E2A29140A0A3E00B80BBC /* TPCircularBuffer.c */,
+				820E2A2A140A0A3E00B80BBC /* TPCircularBuffer.h */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		EDA06C9613FEA5A000ED4771 /* Images */ = {
 			isa = PBXGroup;
 			children = (
@@ -201,6 +246,7 @@
 		EDA2A1B513F26F8300B64EA5 = {
 			isa = PBXGroup;
 			children = (
+				820E2A1E140A0A2A00B80BBC /* Resources */,
 				EDA2A1CA13F26F8400B64EA5 /* MMS-UI */,
 				EDA2A1EA13F26F8400B64EA5 /* MMS-UITests */,
 				EDA2A1C313F26F8400B64EA5 /* Frameworks */,
@@ -220,6 +266,7 @@
 		EDA2A1C313F26F8400B64EA5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				820E2A1B140A0A1E00B80BBC /* AudioToolbox.framework */,
 				EDA2A1C413F26F8400B64EA5 /* UIKit.framework */,
 				EDA2A1C613F26F8400B64EA5 /* Foundation.framework */,
 				EDA2A1C813F26F8400B64EA5 /* CoreGraphics.framework */,
@@ -246,6 +293,9 @@
 				EDC5CC3613F6261500EAF813 /* Cover.m */,
 				EDC5CC3A13F6269300EAF813 /* Edit.h */,
 				EDC5CC3B13F6269300EAF813 /* Edit.m */,
+				820E2A31140A0A8E00B80BBC /* FourthAttemptViewController.h */,
+				820E2A32140A0A8E00B80BBC /* FourthAttemptViewController.m */,
+				820E2A33140A0A8E00B80BBC /* FourthAttemptViewController.xib */,
 				EDA2A1CB13F26F8400B64EA5 /* Supporting Files */,
 				EDA2A1DC13F26F8400B64EA5 /* MMS_UIViewController.xib */,
 				EDC5CC3113F6260400EAF813 /* Playback.xib */,
@@ -461,6 +511,7 @@
 				EDB9C5EE1402651500434223 /* picture.png in Resources */,
 				EDB9C60414026C7C00434223 /* Graphics.xib in Resources */,
 				ED8310D614090B280093BFF9 /* gfxoption.png in Resources */,
+				820E2A36140A0A8E00B80BBC /* FourthAttemptViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -507,6 +558,13 @@
 				EDACF6291400308D00A478C8 /* AudioMenu.m in Sources */,
 				EDACF62C140030AB00A478C8 /* GraphicMenu.m in Sources */,
 				EDB9C60314026C7C00434223 /* Graphics.m in Sources */,
+				820E2A2B140A0A3E00B80BBC /* MixPlayerRecorder.m in Sources */,
+				820E2A2C140A0A3E00B80BBC /* ASBDHelper.c in Sources */,
+				820E2A2D140A0A3E00B80BBC /* AudioFileRingBuffer.m in Sources */,
+				820E2A2E140A0A3E00B80BBC /* BoomzAUOutputCapturer.m in Sources */,
+				820E2A2F140A0A3E00B80BBC /* CAErrorHandling.c in Sources */,
+				820E2A30140A0A3E00B80BBC /* TPCircularBuffer.c in Sources */,
+				820E2A35140A0A8E00B80BBC /* FourthAttemptViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -529,6 +587,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		820E2A33140A0A8E00B80BBC /* FourthAttemptViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				820E2A34140A0A8E00B80BBC /* en */,
+			);
+			name = FourthAttemptViewController.xib;
+			sourceTree = "<group>";
+		};
 		EDA2A1CD13F26F8400B64EA5 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
