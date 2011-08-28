@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		647A48CC140A3BD000B3F01F /* KensBurner.m in Sources */ = {isa = PBXBuildFile; fileRef = 647A48CB140A3BD000B3F01F /* KensBurner.m */; };
 		64FF64CD140A0C490012B1EF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64FF64CC140A0C490012B1EF /* UIKit.framework */; };
 		64FF64CF140A0C490012B1EF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64FF64CE140A0C490012B1EF /* Foundation.framework */; };
 		64FF64D1140A0C490012B1EF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64FF64D0140A0C490012B1EF /* CoreGraphics.framework */; };
@@ -22,6 +23,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		647A48CA140A3BD000B3F01F /* KensBurner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KensBurner.h; sourceTree = "<group>"; };
+		647A48CB140A3BD000B3F01F /* KensBurner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KensBurner.m; sourceTree = "<group>"; };
 		64FF64C8140A0C490012B1EF /* KensBurn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KensBurn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64FF64CC140A0C490012B1EF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		64FF64CE140A0C490012B1EF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -93,6 +96,8 @@
 				64FF64E2140A0C490012B1EF /* KensBurnViewController.m */,
 				64FF64E4140A0C490012B1EF /* KensBurnViewController.xib */,
 				64FF64D3140A0C490012B1EF /* Supporting Files */,
+				647A48CA140A3BD000B3F01F /* KensBurner.h */,
+				647A48CB140A3BD000B3F01F /* KensBurner.m */,
 			);
 			path = KensBurn;
 			sourceTree = "<group>";
@@ -184,6 +189,7 @@
 				64FF64D9140A0C490012B1EF /* main.m in Sources */,
 				64FF64DD140A0C490012B1EF /* KensBurnAppDelegate.m in Sources */,
 				64FF64E3140A0C490012B1EF /* KensBurnViewController.m in Sources */,
+				647A48CC140A3BD000B3F01F /* KensBurner.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -303,6 +309,7 @@
 				64FF64EB140A0C490012B1EF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

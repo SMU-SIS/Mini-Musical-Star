@@ -13,4 +13,3 @@ This class will contain different set of instructions to to produce kens burns e
 The animation of the UIImageView will be decided by randomness.
 
 This class will be able to animate the UIImageView.
-

@@ -7,6 +7,7 @@
 //
 
 #import "KensBurnViewController.h"
+#import "KensBurner.h"
 
 @implementation KensBurnViewController
 
@@ -29,6 +30,9 @@
     
     UIImage* anImage = [UIImage imageNamed:@"glee1.jpg"];
     [imageView setImage:anImage];
+    
+    KensBurner *kensBurner = [[KensBurner alloc] initWithImageView:imageView];
+    [kensBurner animateImageView];
 
 }
 
@@ -37,6 +41,11 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+    
+    [imageView release];
+    [startStopButton release];
+    [KensBurner release];
+    
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
