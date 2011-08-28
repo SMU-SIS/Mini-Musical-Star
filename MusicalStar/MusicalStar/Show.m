@@ -15,7 +15,22 @@
 {
     self = [super init];
     if (self) {
-        // Initialization code here. Adrian please populate the NSDictionary *data instance variable.
+        
+        NSString *errorDesc = nil;
+        NSPropertyListFormat format;
+        NSString *plistPath;
+        NSData *plistXML = [[NSFileManager defaultManager] contentsAtPath:pListFilePath];
+        NSDictionary *data = (NSDictionary *)[NSPropertyListSerialization
+                                              propertyListFromData:plistXML
+                                              mutabilityOption:NSPropertyListMutableContainersAndLeaves
+                                              format:&format
+                                              errorDescription:&errorDesc];
+        if (!data) {
+            NSLog(@"Error reading plist: %@, format: %d", errorDesc, format);
+        }
+        
+        NSLog(@"%@",data);
+        
     }
     
     return self;

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A493DBC140A0D97009E261F /* showMetaData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3A493DBB140A0D97009E261F /* showMetaData.plist */; };
 		3A6BC0601401FE56000A8BC3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A6BC05F1401FE56000A8BC3 /* UIKit.framework */; };
 		3A6BC0621401FE56000A8BC3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A6BC0611401FE56000A8BC3 /* Foundation.framework */; };
 		3A6BC0641401FE56000A8BC3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A6BC0631401FE56000A8BC3 /* CoreGraphics.framework */; };
@@ -49,7 +50,6 @@
 		3AB0D46D1405469700056EA6 /* ZipUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AB0D46C1405469700056EA6 /* ZipUtility.m */; };
 		957E3B2B140A0AE800ED06BD /* Show.m in Sources */ = {isa = PBXBuildFile; fileRef = 957E3B2A140A0AE800ED06BD /* Show.m */; };
 		957E3B2C140A0AE800ED06BD /* Show.m in Sources */ = {isa = PBXBuildFile; fileRef = 957E3B2A140A0AE800ED06BD /* Show.m */; };
-		957E3B34140A0E4600ED06BD /* showMetaData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 957E3B33140A0E4600ED06BD /* showMetaData.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +63,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3A493DBB140A0D97009E261F /* showMetaData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = showMetaData.plist; sourceTree = "<group>"; };
 		3A6BC05B1401FE56000A8BC3 /* MusicalStar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusicalStar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A6BC05F1401FE56000A8BC3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		3A6BC0611401FE56000A8BC3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -115,7 +116,6 @@
 		3AB0D46C1405469700056EA6 /* ZipUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZipUtility.m; sourceTree = "<group>"; };
 		957E3B29140A0AE800ED06BD /* Show.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Show.h; sourceTree = "<group>"; };
 		957E3B2A140A0AE800ED06BD /* Show.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Show.m; sourceTree = "<group>"; };
-		957E3B33140A0E4600ED06BD /* showMetaData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = showMetaData.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -241,7 +241,7 @@
 		3AB0D4331405414B00056EA6 /* Story of my Life */ = {
 			isa = PBXGroup;
 			children = (
-				957E3B33140A0E4600ED06BD /* showMetaData.plist */,
+				3A493DBB140A0D97009E261F /* showMetaData.plist */,
 				3AB0D4341405414B00056EA6 /* front.jpg */,
 				3AB0D4351405414B00056EA6 /* scenes */,
 				3AB0D4461405414B00056EA6 /* show.xml */,
@@ -410,7 +410,7 @@
 				3AB0D4531405414B00056EA6 /* segroup.jpg in Resources */,
 				3AB0D4541405414B00056EA6 /* show.xml in Resources */,
 				3AB0D456140544F300056EA6 /* Story of my Life.zip in Resources */,
-				957E3B34140A0E4600ED06BD /* showMetaData.plist in Resources */,
+				3A493DBC140A0D97009E261F /* showMetaData.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
