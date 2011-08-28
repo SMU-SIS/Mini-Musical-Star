@@ -11,7 +11,7 @@
 @implementation Picture
 @synthesize title, path, startTime, duration, pictureCueList;
 
-- (Picture *)initWithPropertyDictionary: (NSDictionary *) pDictionary
+- (Picture *)initPictureWithPropertyDictionary: (NSDictionary *) pDictionary
 {
     self = [super init];
     if (self) {
@@ -25,7 +25,7 @@
         [cueArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             NSDictionary *cueObjectDict = (NSDictionary *)obj;
             
-            PictureCue *pictureCue = [[PictureCue alloc] initWithPropertyDictionary:cueObjectDict];
+            PictureCue *pictureCue = [[PictureCue alloc] initPictureCueWithPropertyDictionary:cueObjectDict];
             [pictureCueList addObject:pictureCue];
             [pictureCue release];
             

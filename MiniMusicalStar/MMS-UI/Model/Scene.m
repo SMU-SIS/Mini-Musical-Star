@@ -11,7 +11,7 @@
 @implementation Scene
 @synthesize title, duration, audioList, pictureList;
 
--(Scene *) initWithPropertyDictionary:(NSDictionary *)propertyDictionary
+-(Scene *) initSceneWithPropertyDictionary:(NSDictionary *)propertyDictionary
 {
     self = [super init];
     if (self) {
@@ -25,7 +25,8 @@
         [audioArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             NSDictionary *audioObjectDict = (NSDictionary *)obj;
             
-            Audio *audioTrack = [[Audio alloc] initWithPropertyDictionary:audioObjectDict];
+            //Audio *audioTrack = [[Audio alloc] initWithPropertyDictionary:audioObjectDict];
+            Audio *audioTrack = [[Audio alloc] initAudioWithPropertyDictionary:audioObjectDict];
             [audioList addObject:audioTrack];
             [audioTrack release];
             
@@ -37,7 +38,7 @@
         [pictureArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             NSDictionary *pictureObjectDict = (NSDictionary *)obj;
             
-            Picture *scenePicture = [[Picture alloc] initWithPropertyDictionary:pictureObjectDict];
+            Picture *scenePicture = [[Picture alloc] initPictureWithPropertyDictionary:pictureObjectDict];
             [pictureList addObject:scenePicture];
             [scenePicture release];
         }];

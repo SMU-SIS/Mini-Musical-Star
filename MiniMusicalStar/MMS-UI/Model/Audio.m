@@ -11,7 +11,7 @@
 @implementation Audio
 @synthesize title, path, replaceable, duration, audioCueList;
 
-- (Audio *)initWithPropertyDictionary: (NSDictionary *) pDictionary
+- (Audio *)initAudioWithPropertyDictionary: (NSDictionary *) pDictionary
 {
     self = [super init];
     if (self) {
@@ -24,7 +24,7 @@
         
         [cueArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             NSDictionary *cueObjectDict = (NSDictionary *)obj;
-            AudioCue *audioCue = [[AudioCue alloc] initWithPropertyDictionary:cueObjectDict];
+            AudioCue *audioCue = [[AudioCue alloc] initAudioCueWithPropertyDictionary:cueObjectDict];
             [audioCueList addObject:audioCue];
             [audioCue release];
         }];

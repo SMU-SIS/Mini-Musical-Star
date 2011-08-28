@@ -11,7 +11,7 @@
 @implementation Show
 @synthesize data, scenes, title, author, coverPicture, createdDate;
 
-- (Show *)initWithPropertyListFile: (NSString *)pListFilePath
+- (Show *)initShowWithPropertyListFile: (NSString *)pListFilePath
 {
     self = [super init];
     if (self) {
@@ -44,7 +44,7 @@
         [scenesArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             NSDictionary *sceneDict = (NSDictionary *)obj;
             
-            Scene *scene = [[Scene alloc] initWithPropertyDictionary: sceneDict];
+            Scene *scene = [[Scene alloc] initSceneWithPropertyDictionary: sceneDict];
             [scenes addObject:scene];
             [scene release];
         }];

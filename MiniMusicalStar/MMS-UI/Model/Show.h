@@ -20,7 +20,7 @@
 @property (retain, nonatomic) UIImage *coverPicture;
 @property (retain, nonatomic) NSDate *createdDate;
 
--(Show *)initWithPropertyListFile: (NSString *)pListFilePath;
+-(Show *)initShowWithPropertyListFile: (NSString *)pListFilePath;
 
 
 @end

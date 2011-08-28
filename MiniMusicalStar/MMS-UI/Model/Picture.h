@@ -15,8 +15,8 @@
 @property (retain, nonatomic) NSURL *path;
 @property (retain, nonatomic) NSNumber *startTime;
 @property (retain, nonatomic) NSNumber *duration;
-@property (retain, nonatomic) NSArray *pictureCueList;
+@property (retain, nonatomic) NSMutableArray *pictureCueList;
 
-- (Picture *)initWithPropertyDictionary: (NSDictionary *) pDictionary;
+- (Picture *)initPictureWithPropertyDictionary: (NSDictionary *) pDictionary;
 
 @end

@@ -13,6 +13,6 @@
 @property (retain, nonatomic) NSString *path;
 @property (retain, nonatomic) NSString *type;
 
-- (PictureCue *)initWithPropertyDictionary: (NSDictionary *) pDictionary;
+- (PictureCue *)initPictureCueWithPropertyDictionary: (NSDictionary *) pDictionary;
 
 @end

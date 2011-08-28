@@ -35,6 +35,7 @@
     //load the shows on the local disk
     [ShowDAO loadLocalShows];
     NSArray *shows = [ShowDAO shows];
+    [shows retain];
     NSLog(@"shows are %@\n", shows);
     
     [scrollView setScrollEnabled:YES];

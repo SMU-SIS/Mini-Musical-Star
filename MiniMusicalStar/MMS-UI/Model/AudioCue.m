@@ -11,7 +11,7 @@
 @implementation AudioCue
 @synthesize content, time, duration, type;
 
-- (AudioCue *)initWithPropertyDictionary: (NSDictionary *) pDictionary
+- (AudioCue *)initAudioCueWithPropertyDictionary: (NSDictionary *) pDictionary
 {
     self = [super init];
     if (self) {
