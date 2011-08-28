@@ -10,4 +10,10 @@
 
 @interface Picture : NSObject
 
+@property (retain, nonatomic) NSString *title;
+@property (retain, nonatomic) NSURL *path;
+@property (retain, nonatomic) NSNumber *startTime;
+@property (retain, nonatomic) NSNumber *duration;
+@property (retain, nonatomic) NSArray *cueList;
+
 @end

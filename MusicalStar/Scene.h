@@ -10,4 +10,9 @@
 
 @interface Scene : NSObject
 
+@property (retain, nonatomic) NSString *title;
+@property (retain, nonatomic) NSNumber *duration;
+@property (retain, nonatomic) NSArray *audioList;
+@property (retain, nonatomic) NSArray *pictureList;
+
 @end

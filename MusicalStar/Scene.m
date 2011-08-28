@@ -9,6 +9,7 @@
 #import "Scene.h"
 
 @implementation Scene
+@synthesize title, duration, audioList, pictureList;
 
 - (id)init
 {

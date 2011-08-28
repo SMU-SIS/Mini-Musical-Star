@@ -10,4 +10,9 @@
 
 @interface Cue : NSObject
 
+@property (retain, nonatomic) NSString *content;
+@property (retain, nonatomic) NSNumber *time;
+@property (retain, nonatomic) NSString *type;
+@property (retain, nonatomic) NSNumber *duration;
+
 @end

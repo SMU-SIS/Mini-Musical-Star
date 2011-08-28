@@ -9,6 +9,7 @@
 #import "Picture.h"
 
 @implementation Picture
+@synthesize title, path, startTime, duration, cueList;
 
 - (id)init
 {

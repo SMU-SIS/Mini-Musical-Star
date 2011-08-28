@@ -9,6 +9,7 @@
 #import "Cue.h"
 
 @implementation Cue
+@synthesize content, time, duration, type;
 
 - (id)init
 {

@@ -9,12 +9,13 @@
 #import "Audio.h"
 
 @implementation Audio
+@synthesize title, path, replaceable, duration, cueList;
 
-- (id)init
+- (id)initWithProperty 
 {
     self = [super init];
     if (self) {
-        // Initialization code here.
+        
     }
     
     return self;
