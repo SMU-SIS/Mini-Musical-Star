@@ -44,7 +44,6 @@
     // Do any additional setup after loading the view from its nib.
     leftView.image = [UIImage imageNamed:@"g1.png"];
     
-    [toggleView setScrollsToTop:NO];
     [toggleView addSubview:[self graphicsView]];  
 }
 
@@ -98,7 +97,6 @@
     
     [self callGraphicsOption:button.tag];
 }
-
 
 -(UIView *)graphicsView
 {
@@ -156,24 +154,24 @@
     [scrollView setShowsVerticalScrollIndicator:NO];
     [scrollView setPagingEnabled:YES]; 
     scrollView.clipsToBounds = YES;
+    //[scrollView setZoomScale:1.5 animated:YES];
     [scrollView setBackgroundColor:[UIColor blackColor]];
     [scrollView setScrollsToTop:NO];
-    [scrollView setContentOffset:scrollView.contentOffset animated:NO];
+    
     [showImage release];
 
     return [scrollView autorelease];
 
 }
- 
 
 -(void)callGraphicsOption:(NSInteger)buttonNumber
-{    
-    NSInteger num = buttonNumber+1;
+{
+    NSInteger imageNum = buttonNumber +1;
     
-    if (num%2 == 0) {
+    if (imageNum/2 == 1) {
         [imageView removeFromSuperview];
         
-        CGRect frame = CGRectMake(55, (buttonNumber-2)*100+100, 200, 250);
+        CGRect frame = CGRectMake(55, buttonNumber/2*100, 200, 250);
         
         imageView = [[UIImageView alloc] initWithFrame:frame];
         imageView.image = [UIImage imageNamed:@"gfxoption.png"];
@@ -196,6 +194,11 @@
         [scrollView addSubview:imageView];
         [imageView release];
     }
-}
     
+    
+    
+    
+}
+
+
 @end
