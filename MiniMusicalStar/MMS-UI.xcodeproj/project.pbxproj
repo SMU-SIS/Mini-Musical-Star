@@ -45,6 +45,7 @@
 		82A21F13140A3DFA008C26FB /* show.xml in Resources */ = {isa = PBXBuildFile; fileRef = 82A21F04140A3DFA008C26FB /* show.xml */; };
 		82A21F14140A3DFA008C26FB /* showMetaData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 82A21F05140A3DFA008C26FB /* showMetaData.plist */; };
 		82A21F16140A3E28008C26FB /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82A21F15140A3E28008C26FB /* CoreData.framework */; };
+		957E3B69140A41FB00ED06BD /* ShowDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 957E3B68140A41FB00ED06BD /* ShowDAO.m */; };
 		ED75B7F913FE9C9700AFA08B /* scene.png in Resources */ = {isa = PBXBuildFile; fileRef = ED75B7F713FE9C9700AFA08B /* scene.png */; };
 		ED8310D614090B280093BFF9 /* gfxoption.png in Resources */ = {isa = PBXBuildFile; fileRef = ED8310D514090B280093BFF9 /* gfxoption.png */; };
 		EDA06CA013FEA5BA00ED4771 /* g1.png in Resources */ = {isa = PBXBuildFile; fileRef = EDA06C9813FEA5BA00ED4771 /* g1.png */; };
@@ -176,6 +177,8 @@
 		82A21F04140A3DFA008C26FB /* show.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = show.xml; sourceTree = "<group>"; };
 		82A21F05140A3DFA008C26FB /* showMetaData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = showMetaData.plist; sourceTree = "<group>"; };
 		82A21F15140A3E28008C26FB /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		957E3B67140A41FB00ED06BD /* ShowDAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowDAO.h; sourceTree = "<group>"; };
+		957E3B68140A41FB00ED06BD /* ShowDAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowDAO.m; sourceTree = "<group>"; };
 		ED75B7F713FE9C9700AFA08B /* scene.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = scene.png; path = Images/Buttons/scene.png; sourceTree = SOURCE_ROOT; };
 		ED8310D514090B280093BFF9 /* gfxoption.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = gfxoption.png; path = Images/Buttons/gfxoption.png; sourceTree = SOURCE_ROOT; };
 		EDA06C9813FEA5BA00ED4771 /* g1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = g1.png; path = "Images/Scene Images/g1.png"; sourceTree = SOURCE_ROOT; };
@@ -433,6 +436,15 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
+		957E3B65140A41E800ED06BD /* DAO */ = {
+			isa = PBXGroup;
+			children = (
+				957E3B67140A41FB00ED06BD /* ShowDAO.h */,
+				957E3B68140A41FB00ED06BD /* ShowDAO.m */,
+			);
+			name = DAO;
+			sourceTree = "<group>";
+		};
 		EDA06C9613FEA5A000ED4771 /* Images */ = {
 			isa = PBXGroup;
 			children = (
@@ -484,6 +496,7 @@
 		EDA2A1CA13F26F8400B64EA5 /* MMS-UI */ = {
 			isa = PBXGroup;
 			children = (
+				957E3B65140A41E800ED06BD /* DAO */,
 				82A21F17140A4016008C26FB /* UI Folder */,
 				82A21EDE140A3DF0008C26FB /* Model */,
 				82A21EF1140A3DFA008C26FB /* Story of my Life */,
@@ -791,6 +804,7 @@
 				82A21EEE140A3DF0008C26FB /* PictureCue.m in Sources */,
 				82A21EEF140A3DF0008C26FB /* Scene.m in Sources */,
 				82A21EF0140A3DF0008C26FB /* Show.m in Sources */,
+				957E3B69140A41FB00ED06BD /* ShowDAO.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
