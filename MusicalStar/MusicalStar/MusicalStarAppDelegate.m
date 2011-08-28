@@ -25,36 +25,10 @@
     ZipUtility *zipUtil = [[ZipUtility alloc] init];
     [zipUtil unpackageMusical];
     [zipUtil release];
-    
-    
-//THIS IS TEMPORARY ONLY, TESTING FOR CRUD
-//    NSManagedObjectContext *context = [self managedObjectContext];
-//    NSManagedObject *failedBankInfo = [NSEntityDescription
-//                                       insertNewObjectForEntityForName:@"Scene" 
-//                                       inManagedObjectContext:context];
-//    [failedBankInfo setValue:@"Test music woohooo!" forKey:@"music"];
-//    NSManagedObject *failedBankDetails = [NSEntityDescription
-//                                          insertNewObjectForEntityForName:@"Show" 
-//                                          inManagedObjectContext:context];
-//    [failedBankDetails setValue:@"Test json woohoo!" forKey:@"meta_json"];
-//    [failedBankDetails setValue:failedBankInfo forKey:@"show_to_scenes"];
-//    [failedBankInfo setValue:failedBankDetails forKey:@"scene_to_show"];
-//    NSError *error;
-//    if (![context save:&error]) {
-//        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
-//    }
-//    
-//    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-//    NSEntityDescription *entity = [NSEntityDescription 
-//                                   entityForName:@"Scene" inManagedObjectContext:context];
-//    [fetchRequest setEntity:entity];
-//    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
-//    for (NSManagedObject *info in fetchedObjects) {
-//        NSLog(@"Name: %@", [info valueForKey:@"music"]);
-//        NSManagedObject *details = [info valueForKey:@"scene_to_show"];
-//        NSLog(@"Zip: %@", [details valueForKey:@"meta_json"]);
-//    }        
-//    [fetchRequest release];
+
+    NSString *pListFilePath = [[NSBundle mainBundle] pathForResource:@"showMetaData" ofType:@"plist"];
+//    NSURL *pListFileUrl = [ NSURL fileURLWithPath : pListFilePath];
+    Show *show = [[Show alloc] initWithPropertyListFile: pListFilePath];
     
     // Override point for customization after application launch.
     [self.window makeKeyAndVisible];
