@@ -20,6 +20,8 @@
     ShowImage *showImages;
 }
 
+@property (retain, nonatomic) NSArray *shows;
+
 -(IBAction)createMusical;
 -(IBAction)playBackMusical;
 -(IBAction)coverMusical;

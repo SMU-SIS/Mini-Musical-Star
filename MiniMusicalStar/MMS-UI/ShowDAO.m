@@ -33,7 +33,7 @@ static bool initialized = NO;
     [manager createDirectoryAtPath:showsDirectory withIntermediateDirectories:NO attributes:nil error:&error];
     
     //list the directory structure
-    NSArray *showsDirectoryListing = [manager contentsOfDirectoryAtURL:[NSURL fileURLWithPath:showsDirectory] includingPropertiesForKeys:[NSArray arrayWithObject:NSURLIsDirectoryKey] options:0 error:&error];
+    NSArray *showsDirectoryListing = [manager contentsOfDirectoryAtURL:[NSURL fileURLWithPath:showsDirectory] includingPropertiesForKeys:[NSArray arrayWithObject:NSURLIsDirectoryKey] options:NSDirectoryEnumerationSkipsHiddenFiles error:&error];
     
     loadedShows = [[NSMutableArray alloc] initWithCapacity:showsDirectoryListing.count]; 
     
@@ -46,7 +46,7 @@ static bool initialized = NO;
         NSString *metadataString = [metadataURL path];
         NSLog(@"metadataString is %@\n", metadataString);
         
-        Show *show = [[Show alloc] initShowWithPropertyListFile:metadataString];
+        Show *show = [[Show alloc] initShowWithPropertyListFile:metadataString atPath:showDirectoryURL];
         [loadedShows addObject:show];
         [show release];
         

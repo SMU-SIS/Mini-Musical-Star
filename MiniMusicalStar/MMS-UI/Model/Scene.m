@@ -16,8 +16,8 @@
     self = [super init];
     if (self) {
         // Initialization code here.
-        title = [propertyDictionary objectForKey:@"title"];
-        duration = [propertyDictionary objectForKey:@"duration"];
+        self.title = [propertyDictionary objectForKey:@"title"];
+        self.duration = [propertyDictionary objectForKey:@"duration"];
         
         NSArray *audioArray = [propertyDictionary objectForKey:@"audio"];
         audioList = [[NSMutableArray alloc] initWithCapacity:audioArray.count];

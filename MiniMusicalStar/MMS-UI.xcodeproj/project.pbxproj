@@ -28,21 +28,6 @@
 		82A21EEE140A3DF0008C26FB /* PictureCue.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A21EE6140A3DF0008C26FB /* PictureCue.m */; };
 		82A21EEF140A3DF0008C26FB /* Scene.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A21EE8140A3DF0008C26FB /* Scene.m */; };
 		82A21EF0140A3DF0008C26FB /* Show.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A21EEA140A3DF0008C26FB /* Show.m */; };
-		82A21F06140A3DFA008C26FB /* front.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 82A21EF2140A3DFA008C26FB /* front.jpg */; };
-		82A21F07140A3DFA008C26FB /* adrianjeanasti.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 82A21EF5140A3DFA008C26FB /* adrianjeanasti.jpg */; };
-		82A21F08140A3DFA008C26FB /* antoni.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 82A21EF6140A3DFA008C26FB /* antoni.jpg */; };
-		82A21F09140A3DFA008C26FB /* bass.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 82A21EF7140A3DFA008C26FB /* bass.mp3 */; };
-		82A21F0A140A3DFA008C26FB /* cue.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 82A21EF9140A3DFA008C26FB /* cue.jpg */; };
-		82A21F0B140A3DFA008C26FB /* playingmd.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 82A21EFA140A3DFA008C26FB /* playingmd.jpg */; };
-		82A21F0C140A3DFA008C26FB /* vocals.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 82A21EFB140A3DFA008C26FB /* vocals.mp3 */; };
-		82A21F0D140A3DFA008C26FB /* cue.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 82A21EFE140A3DFA008C26FB /* cue.jpg */; };
-		82A21F0E140A3DFA008C26FB /* drums.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 82A21EFF140A3DFA008C26FB /* drums.mp3 */; };
-		82A21F0F140A3DFA008C26FB /* food.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 82A21F00140A3DFA008C26FB /* food.jpg */; };
-		82A21F10140A3DFA008C26FB /* guitar.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 82A21F01140A3DFA008C26FB /* guitar.mp3 */; };
-		82A21F11140A3DFA008C26FB /* japan.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 82A21F02140A3DFA008C26FB /* japan.jpg */; };
-		82A21F12140A3DFA008C26FB /* segroup.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 82A21F03140A3DFA008C26FB /* segroup.jpg */; };
-		82A21F13140A3DFA008C26FB /* show.xml in Resources */ = {isa = PBXBuildFile; fileRef = 82A21F04140A3DFA008C26FB /* show.xml */; };
-		82A21F14140A3DFA008C26FB /* showMetaData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 82A21F05140A3DFA008C26FB /* showMetaData.plist */; };
 		82A21F16140A3E28008C26FB /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82A21F15140A3E28008C26FB /* CoreData.framework */; };
 		957E3B69140A41FB00ED06BD /* ShowDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 957E3B68140A41FB00ED06BD /* ShowDAO.m */; };
 		957E3B71140A488800ED06BD /* AudioCue.m in Sources */ = {isa = PBXBuildFile; fileRef = 957E3B70140A488700ED06BD /* AudioCue.m */; };
@@ -159,21 +144,6 @@
 		82A21EE8140A3DF0008C26FB /* Scene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Scene.m; sourceTree = "<group>"; };
 		82A21EE9140A3DF0008C26FB /* Show.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Show.h; sourceTree = "<group>"; };
 		82A21EEA140A3DF0008C26FB /* Show.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Show.m; sourceTree = "<group>"; };
-		82A21EF2140A3DFA008C26FB /* front.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = front.jpg; sourceTree = "<group>"; };
-		82A21EF5140A3DFA008C26FB /* adrianjeanasti.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = adrianjeanasti.jpg; sourceTree = "<group>"; };
-		82A21EF6140A3DFA008C26FB /* antoni.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = antoni.jpg; sourceTree = "<group>"; };
-		82A21EF7140A3DFA008C26FB /* bass.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bass.mp3; sourceTree = "<group>"; };
-		82A21EF9140A3DFA008C26FB /* cue.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cue.jpg; sourceTree = "<group>"; };
-		82A21EFA140A3DFA008C26FB /* playingmd.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = playingmd.jpg; sourceTree = "<group>"; };
-		82A21EFB140A3DFA008C26FB /* vocals.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = vocals.mp3; sourceTree = "<group>"; };
-		82A21EFE140A3DFA008C26FB /* cue.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cue.jpg; sourceTree = "<group>"; };
-		82A21EFF140A3DFA008C26FB /* drums.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = drums.mp3; sourceTree = "<group>"; };
-		82A21F00140A3DFA008C26FB /* food.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = food.jpg; sourceTree = "<group>"; };
-		82A21F01140A3DFA008C26FB /* guitar.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = guitar.mp3; sourceTree = "<group>"; };
-		82A21F02140A3DFA008C26FB /* japan.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = japan.jpg; sourceTree = "<group>"; };
-		82A21F03140A3DFA008C26FB /* segroup.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = segroup.jpg; sourceTree = "<group>"; };
-		82A21F04140A3DFA008C26FB /* show.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = show.xml; sourceTree = "<group>"; };
-		82A21F05140A3DFA008C26FB /* showMetaData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = showMetaData.plist; sourceTree = "<group>"; };
 		82A21F15140A3E28008C26FB /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		957E3B67140A41FB00ED06BD /* ShowDAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowDAO.h; sourceTree = "<group>"; };
 		957E3B68140A41FB00ED06BD /* ShowDAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowDAO.m; sourceTree = "<group>"; };
@@ -335,68 +305,6 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		82A21EF1140A3DFA008C26FB /* Story of my Life */ = {
-			isa = PBXGroup;
-			children = (
-				82A21EF2140A3DFA008C26FB /* front.jpg */,
-				82A21EF3140A3DFA008C26FB /* scenes */,
-				82A21F04140A3DFA008C26FB /* show.xml */,
-				82A21F05140A3DFA008C26FB /* showMetaData.plist */,
-			);
-			path = "Story of my Life";
-			sourceTree = "<group>";
-		};
-		82A21EF3140A3DFA008C26FB /* scenes */ = {
-			isa = PBXGroup;
-			children = (
-				82A21EF4140A3DFA008C26FB /* 1 */,
-				82A21EFC140A3DFA008C26FB /* 2 */,
-			);
-			path = scenes;
-			sourceTree = "<group>";
-		};
-		82A21EF4140A3DFA008C26FB /* 1 */ = {
-			isa = PBXGroup;
-			children = (
-				82A21EF5140A3DFA008C26FB /* adrianjeanasti.jpg */,
-				82A21EF6140A3DFA008C26FB /* antoni.jpg */,
-				82A21EF7140A3DFA008C26FB /* bass.mp3 */,
-				82A21EF8140A3DFA008C26FB /* cues */,
-				82A21EFA140A3DFA008C26FB /* playingmd.jpg */,
-				82A21EFB140A3DFA008C26FB /* vocals.mp3 */,
-			);
-			path = 1;
-			sourceTree = "<group>";
-		};
-		82A21EF8140A3DFA008C26FB /* cues */ = {
-			isa = PBXGroup;
-			children = (
-				82A21EF9140A3DFA008C26FB /* cue.jpg */,
-			);
-			path = cues;
-			sourceTree = "<group>";
-		};
-		82A21EFC140A3DFA008C26FB /* 2 */ = {
-			isa = PBXGroup;
-			children = (
-				82A21EFD140A3DFA008C26FB /* cues */,
-				82A21EFF140A3DFA008C26FB /* drums.mp3 */,
-				82A21F00140A3DFA008C26FB /* food.jpg */,
-				82A21F01140A3DFA008C26FB /* guitar.mp3 */,
-				82A21F02140A3DFA008C26FB /* japan.jpg */,
-				82A21F03140A3DFA008C26FB /* segroup.jpg */,
-			);
-			path = 2;
-			sourceTree = "<group>";
-		};
-		82A21EFD140A3DFA008C26FB /* cues */ = {
-			isa = PBXGroup;
-			children = (
-				82A21EFE140A3DFA008C26FB /* cue.jpg */,
-			);
-			path = cues;
-			sourceTree = "<group>";
-		};
 		82A21F17140A4016008C26FB /* UI Folder */ = {
 			isa = PBXGroup;
 			children = (
@@ -499,7 +407,6 @@
 				957E3B65140A41E800ED06BD /* DAO */,
 				82A21F17140A4016008C26FB /* UI Folder */,
 				82A21EDE140A3DF0008C26FB /* Model */,
-				82A21EF1140A3DFA008C26FB /* Story of my Life */,
 				EDA2A1CB13F26F8400B64EA5 /* Supporting Files */,
 			);
 			path = "MMS-UI";
@@ -730,21 +637,6 @@
 				82A21EC0140A388C008C26FB /* keys.mp3 in Resources */,
 				82A21EC1140A388C008C26FB /* vocals.mp3 in Resources */,
 				82A21ECB140A3B81008C26FB /* FourthAttemptViewController.xib in Resources */,
-				82A21F06140A3DFA008C26FB /* front.jpg in Resources */,
-				82A21F07140A3DFA008C26FB /* adrianjeanasti.jpg in Resources */,
-				82A21F08140A3DFA008C26FB /* antoni.jpg in Resources */,
-				82A21F09140A3DFA008C26FB /* bass.mp3 in Resources */,
-				82A21F0A140A3DFA008C26FB /* cue.jpg in Resources */,
-				82A21F0B140A3DFA008C26FB /* playingmd.jpg in Resources */,
-				82A21F0C140A3DFA008C26FB /* vocals.mp3 in Resources */,
-				82A21F0D140A3DFA008C26FB /* cue.jpg in Resources */,
-				82A21F0E140A3DFA008C26FB /* drums.mp3 in Resources */,
-				82A21F0F140A3DFA008C26FB /* food.jpg in Resources */,
-				82A21F10140A3DFA008C26FB /* guitar.mp3 in Resources */,
-				82A21F11140A3DFA008C26FB /* japan.jpg in Resources */,
-				82A21F12140A3DFA008C26FB /* segroup.jpg in Resources */,
-				82A21F13140A3DFA008C26FB /* show.xml in Resources */,
-				82A21F14140A3DFA008C26FB /* showMetaData.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
