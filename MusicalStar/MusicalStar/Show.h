@@ -9,9 +9,10 @@
 #import <Foundation/Foundation.h>
 
 @interface Show : NSObject {
-    
+
 }
 
+@property (retain, nonatomic) NSDictionary *data;
 @property (retain, nonatomic) NSArray *scenes;
 @property (retain, nonatomic) NSString *title;
 @property (retain, nonatomic) NSString *author;

@@ -9,7 +9,7 @@
 #import "Show.h"
 
 @implementation Show
-@synthesize scenes, title, author;
+@synthesize data, scenes, title, author;
 
 - (Show *)initWithPropertyListFile: (NSString *)pListFilePath
 {
@@ -18,9 +18,8 @@
         
         NSString *errorDesc = nil;
         NSPropertyListFormat format;
-        NSString *plistPath;
         NSData *plistXML = [[NSFileManager defaultManager] contentsAtPath:pListFilePath];
-        NSDictionary *data = (NSDictionary *)[NSPropertyListSerialization
+        data = (NSDictionary *)[NSPropertyListSerialization
                                               propertyListFromData:plistXML
                                               mutabilityOption:NSPropertyListMutableContainersAndLeaves
                                               format:&format
@@ -40,7 +39,8 @@
 
 - (void)dealloc
 {
-    [scenes release];
+    [data release];
+    [super dealloc];
 }
 
 @end
