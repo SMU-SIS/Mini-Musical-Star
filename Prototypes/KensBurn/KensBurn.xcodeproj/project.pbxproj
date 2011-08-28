@@ -17,8 +17,6 @@
 		64FF64E0140A0C490012B1EF /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64FF64DE140A0C490012B1EF /* MainWindow.xib */; };
 		64FF64E3140A0C490012B1EF /* KensBurnViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64FF64E2140A0C490012B1EF /* KensBurnViewController.m */; };
 		64FF64E6140A0C490012B1EF /* KensBurnViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64FF64E4140A0C490012B1EF /* KensBurnViewController.xib */; };
-		64FF64F7140A0CB70012B1EF /* glee1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 64FF64F4140A0CB70012B1EF /* glee1.jpg */; };
-		64FF64F8140A0CB70012B1EF /* glee2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 64FF64F5140A0CB70012B1EF /* glee2.jpg */; };
 		64FF64F9140A0CB70012B1EF /* glee3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 64FF64F6140A0CB70012B1EF /* glee3.jpg */; };
 /* End PBXBuildFile section */
 
@@ -39,8 +37,6 @@
 		64FF64E1140A0C490012B1EF /* KensBurnViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KensBurnViewController.h; sourceTree = "<group>"; };
 		64FF64E2140A0C490012B1EF /* KensBurnViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KensBurnViewController.m; sourceTree = "<group>"; };
 		64FF64E5140A0C490012B1EF /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/KensBurnViewController.xib; sourceTree = "<group>"; };
-		64FF64F4140A0CB70012B1EF /* glee1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = glee1.jpg; sourceTree = "<group>"; };
-		64FF64F5140A0CB70012B1EF /* glee2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = glee2.jpg; sourceTree = "<group>"; };
 		64FF64F6140A0CB70012B1EF /* glee3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = glee3.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -116,8 +112,6 @@
 		64FF64F3140A0CA20012B1EF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				64FF64F4140A0CB70012B1EF /* glee1.jpg */,
-				64FF64F5140A0CB70012B1EF /* glee2.jpg */,
 				64FF64F6140A0CB70012B1EF /* glee3.jpg */,
 			);
 			name = Resources;
@@ -173,8 +167,6 @@
 				64FF64D7140A0C490012B1EF /* InfoPlist.strings in Resources */,
 				64FF64E0140A0C490012B1EF /* MainWindow.xib in Resources */,
 				64FF64E6140A0C490012B1EF /* KensBurnViewController.xib in Resources */,
-				64FF64F7140A0CB70012B1EF /* glee1.jpg in Resources */,
-				64FF64F8140A0CB70012B1EF /* glee2.jpg in Resources */,
 				64FF64F9140A0CB70012B1EF /* glee3.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

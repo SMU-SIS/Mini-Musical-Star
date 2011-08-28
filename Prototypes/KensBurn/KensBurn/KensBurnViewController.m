@@ -11,7 +11,7 @@
 
 @implementation KensBurnViewController
 
-@synthesize imageView, startStopButton;
+@synthesize imageView;
 
 - (void)didReceiveMemoryWarning
 {
@@ -28,12 +28,12 @@
 {
     [super viewDidLoad];
     
-    UIImage* anImage = [UIImage imageNamed:@"glee1.jpg"];
+    UIImage* anImage = [UIImage imageNamed:@"glee3.jpg"];
     [imageView setImage:anImage];
     
     KensBurner *kensBurner = [[KensBurner alloc] initWithImageView:imageView];
-    [kensBurner animateImageView];
-
+    [kensBurner startAnimation];
+    [kensBurner release];
 }
 
 - (void)viewDidUnload
@@ -42,10 +42,7 @@
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
     
-    [imageView release];
-    [startStopButton release];
-    [KensBurner release];
-    
+    [imageView release];    
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

@@ -11,11 +11,9 @@
 @interface KensBurnViewController : UIViewController
 {
     IBOutlet UIImageView* imageView;
-    IBOutlet UIButton* startStopButton;
 }
 
 @property (nonatomic, retain) UIImageView *imageView;
-@property (nonatomic, retain) UIButton *startStopButton;
 
 - (IBAction)startStopButtonClicked;
 - (void)startKensBurn;

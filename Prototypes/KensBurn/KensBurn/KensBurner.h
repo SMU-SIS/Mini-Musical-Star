@@ -6,6 +6,11 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
+//This class helps you to implement kens burn effect on your UIImageView.
+//To use this class:
+//1. Use initWithImageView
+//2. Call startAnimation
+
 #import <Foundation/Foundation.h>
 
 @interface KensBurner : NSObject {
@@ -14,17 +19,15 @@
 
 @property (nonatomic, retain) UIImageView *imageViewForKensBurning;
 
-//constructor
+//constructo
 - (id)initWithImageView:(UIImageView*)anImageView;
 
-- (void)animateImageView;
+- (void)startAnimation;
 - (void)randomGenerateKensBurnNumbers;
-- (float)randFloatBetween:(float)low and:(float)high;
+- (NSInteger)getRandFrom:(NSInteger)min to:(NSInteger)max;
 
+/* C methods */
 float randomFloat();
 float randomFloatWithRange(float a, float b);
 
--(NSInteger)getRandFrom:(NSInteger)min to:(NSInteger)max;
-
 @end
-    
