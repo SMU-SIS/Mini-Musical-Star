@@ -15,11 +15,11 @@
 {
     self = [super init];
     if (self) {
-        title = [pDictionary valueForKey:@"title"];
-        path = [pDictionary valueForKey:@"path"];
-        replaceable = [pDictionary valueForKey:@"repleaceable"];
-        duration = [pDictionary valueForKey:@"duration"];
-        cueList = [pDictionary valueForKey:@"cueList"];
+        title = [pDictionary objectForKey:@"title"];
+        path = [pDictionary objectForKey:@"path"];
+        replaceable = [pDictionary objectForKey:@"repleaceable"];
+        duration = [pDictionary objectForKey:@"duration"];
+        cueList = [pDictionary objectForKey:@"cueList"];
         
     }
     

@@ -15,4 +15,6 @@
 @property (retain, nonatomic) NSString *type;
 @property (retain, nonatomic) NSNumber *duration;
 
+- (Cue *)initWithPropertyDictionary: (NSDictionary *) pDictionary;
+
 @end
