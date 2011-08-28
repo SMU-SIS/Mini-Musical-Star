@@ -9,9 +9,9 @@
 #import "Show.h"
 
 @implementation Show
-@synthesize data, scenes, title, author, coverPicture, createdDate;
+@synthesize data, scenes, title, author, coverPicture, createdDate, showLocation;
 
-- (Show *)initWithPropertyListFile: (NSString *)pListFilePath
+- (Show *)initShowWithPropertyListFile: (NSString *)pListFilePath atPath:(NSURL *)showPath
 {
     self = [super init];
     if (self) {
@@ -32,10 +32,18 @@
         
         NSDictionary *root = [data objectForKey:@"root"];
         //populate the properties of the Show model
-        title = [root objectForKey:@"title"];
-        author = [root objectForKey:@"author"];
-        coverPicture = [UIImage imageNamed:[root objectForKey:@"cover-picture"]];
-        createdDate = [root objectForKey:@"created"];
+        showLocation = showPath;
+        self.title = [root objectForKey:@"title"];
+        self.author = [root objectForKey:@"author"];
+        
+        
+        NSString *coverPicturePath = [[showLocation path] stringByAppendingPathComponent:[root objectForKey:@"cover-picture"]];
+        NSLog(@"coverPicturePath is %@\n", coverPicturePath);
+        self.coverPicture = [UIImage imageWithContentsOfFile:coverPicturePath];
+        
+        NSLog(@"cover picture is %@\n", coverPicture);
+        self.createdDate = [root objectForKey:@"created"];
+        
         
         //get the scene data
         NSArray *scenesArray = [root objectForKey:@"scenes"];
@@ -44,7 +52,8 @@
         [scenesArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             NSDictionary *sceneDict = (NSDictionary *)obj;
             
-            Scene *scene = [[Scene alloc] initWithPropertyDictionary: sceneDict];
+            Scene *scene = [[Scene alloc] initSceneWithPropertyDictionary: sceneDict];
+            
             [scenes addObject:scene];
             [scene release];
         }];
@@ -63,6 +72,7 @@
     [title release];
     [scenes release];
     [createdDate release];
+    [showLocation release];
     [super dealloc];
 }
 

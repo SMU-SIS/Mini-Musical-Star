@@ -17,6 +17,6 @@
 @property (retain, nonatomic) NSMutableArray *audioList;
 @property (retain, nonatomic) NSMutableArray *pictureList;
 
--(Scene *) initWithPropertyDictionary:(NSDictionary *)propertyDictonary;
+-(Scene *) initSceneWithPropertyDictionary:(NSDictionary *)propertyDictonary;
 
 @end

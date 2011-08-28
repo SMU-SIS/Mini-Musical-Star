@@ -11,7 +11,7 @@
 @implementation PictureCue
 @synthesize path, type;
 
-- (PictureCue *)initWithPropertyDictionary: (NSDictionary *) pDictionary
+- (PictureCue *)initPictureCueWithPropertyDictionary: (NSDictionary *) pDictionary
 {
     self = [super init];
     if (self) {

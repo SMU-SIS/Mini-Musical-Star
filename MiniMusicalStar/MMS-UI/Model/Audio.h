@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import "AudioCue.h"
-
 @interface Audio : NSObject
 
 @property (retain, nonatomic) NSString *title;
@@ -17,6 +16,6 @@
 @property (retain, nonatomic) NSNumber *duration;
 @property (retain, nonatomic) NSMutableArray *audioCueList;
 
-- (Audio *)initWithPropertyDictionary: (NSDictionary *) pDictionary;
+- (Audio *)initAudioWithPropertyDictionary: (NSDictionary *) pDictionary;
 
 @end

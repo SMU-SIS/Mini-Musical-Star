@@ -19,8 +19,9 @@
 @property (retain, nonatomic) NSString *author;
 @property (retain, nonatomic) UIImage *coverPicture;
 @property (retain, nonatomic) NSDate *createdDate;
+@property (retain, nonatomic) NSURL *showLocation;
 
--(Show *)initWithPropertyListFile: (NSString *)pListFilePath;
+- (Show *)initShowWithPropertyListFile: (NSString *)pListFilePath atPath:(NSURL *)showPath;
 
 
 @end

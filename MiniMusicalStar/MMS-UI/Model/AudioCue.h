@@ -15,6 +15,6 @@
 @property (retain, nonatomic) NSString *type;
 @property (retain, nonatomic) NSNumber *duration;
 
-- (AudioCue *)initWithPropertyDictionary: (NSDictionary *) pDictionary;
+- (AudioCue *)initAudioCueWithPropertyDictionary: (NSDictionary *) pDictionary;
 
 @end

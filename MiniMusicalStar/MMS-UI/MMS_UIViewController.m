@@ -7,15 +7,13 @@
 //
 
 #import "MMS_UIViewController.h"
-#import "Edit.h"
-#import "SceneUI.h"
-#import "Playback.h"
-#import "Cover.h"
+
 
 @implementation MMS_UIViewController
-
+@synthesize shows;
 - (void)dealloc
 {
+    [shows release];
     [super dealloc];
 }
 
@@ -35,6 +33,12 @@
 {
     [super viewDidLoad];
     
+    //load the shows on the local disk
+    [ShowDAO loadLocalShows];
+    shows = [[ShowDAO shows] retain];
+    
+    NSLog(@"shows are %@\n", shows);
+    
     [scrollView setScrollEnabled:YES];
     [scrollView setShowsHorizontalScrollIndicator:NO];
     [scrollView setShowsVerticalScrollIndicator:NO];
@@ -42,8 +46,18 @@
     scrollView.clipsToBounds = NO;
     [scrollView setZoomScale:1.5 animated:YES];
    // CGFloat contentOffset = 0.0f;
+    
+    /* HARD CODED
     showImages = [ShowImage alloc];
     NSArray *images = [showImages getShowImages];    
+    */
+    
+    NSMutableArray *images = [[NSMutableArray alloc] initWithCapacity:shows.count];
+    [shows enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        Show *show = (Show *)obj;
+        NSLog(@"ASFJIJSSDFHJFHJSF %@ %@\n", show.title, show.author);
+        [images addObject:show.coverPicture];
+    }];
     
     for (int i=0; i<images.count; i++) {
         CGRect frame;

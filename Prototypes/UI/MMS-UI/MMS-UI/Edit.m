@@ -189,7 +189,7 @@
 }
 
 -(void)callGraphicsOption:(NSInteger)buttonNumber
-{
+{  
     [options removeFromSuperview];
     NSInteger imageNum = buttonNumber +1;
     
@@ -217,11 +217,12 @@
     
     if (imageNum%2==0) {
         CGRect frame = CGRectMake(55, (buttonNumber-1)*100, 200, 250);
-        options = [[UIView alloc] initWithFrame:frame];    
-        imageView.image = [UIImage imageNamed:@"empty textbox right.png"];    
+        [scrollView setContentOffset:(CGPointMake(0, (buttonNumber-1)*100)) animated:YES];        options = [[UIView alloc] initWithFrame:frame];    
+        imageView.image = [UIImage imageNamed:@"empty textbox right.png"];
     }
     else {
         CGRect frame = CGRectMake(225, buttonNumber*100, 200, 250);
+        [scrollView setContentOffset:(CGPointMake(0, buttonNumber*100)) animated:YES];
         options = [[UIView alloc] initWithFrame:frame];    
         imageView.image = [UIImage imageNamed:@"empty textbox.png"];
     }
