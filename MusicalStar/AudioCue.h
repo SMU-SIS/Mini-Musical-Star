@@ -8,13 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Cue : NSObject
+@interface AudioCue : NSObject
 
 @property (retain, nonatomic) NSString *content;
 @property (retain, nonatomic) NSNumber *time;
 @property (retain, nonatomic) NSString *type;
 @property (retain, nonatomic) NSNumber *duration;
 
-- (Cue *)initWithPropertyDictionary: (NSDictionary *) pDictionary;
+- (AudioCue *)initWithPropertyDictionary: (NSDictionary *) pDictionary;
 
 @end

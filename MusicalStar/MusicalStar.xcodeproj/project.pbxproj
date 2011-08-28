@@ -10,7 +10,7 @@
 		3A493DBC140A0D97009E261F /* showMetaData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3A493DBB140A0D97009E261F /* showMetaData.plist */; };
 		3A493DC0140A11C0009E261F /* Picture.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A493DBF140A11C0009E261F /* Picture.m */; };
 		3A493DC3140A1201009E261F /* Audio.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A493DC2140A1201009E261F /* Audio.m */; };
-		3A493DC6140A120E009E261F /* Cue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A493DC5140A120E009E261F /* Cue.m */; };
+		3A493DC6140A120E009E261F /* AudioCue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A493DC5140A120E009E261F /* AudioCue.m */; };
 		3A493DC9140A16D2009E261F /* Scene.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A493DC8140A16D2009E261F /* Scene.m */; };
 		3A6BC0601401FE56000A8BC3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A6BC05F1401FE56000A8BC3 /* UIKit.framework */; };
 		3A6BC0621401FE56000A8BC3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A6BC0611401FE56000A8BC3 /* Foundation.framework */; };
@@ -52,6 +52,7 @@
 		3AB0D4681405461900056EA6 /* ZipArchive.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3AB0D4631405461900056EA6 /* ZipArchive.mm */; };
 		3AB0D46A1405465000056EA6 /* libz.1.2.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AB0D4691405465000056EA6 /* libz.1.2.3.dylib */; };
 		3AB0D46D1405469700056EA6 /* ZipUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AB0D46C1405469700056EA6 /* ZipUtility.m */; };
+		3AEDFFA6140A32FE00A22267 /* PictureCue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AEDFFA5140A32FE00A22267 /* PictureCue.m */; };
 		957E3B2B140A0AE800ED06BD /* Show.m in Sources */ = {isa = PBXBuildFile; fileRef = 957E3B2A140A0AE800ED06BD /* Show.m */; };
 		957E3B2C140A0AE800ED06BD /* Show.m in Sources */ = {isa = PBXBuildFile; fileRef = 957E3B2A140A0AE800ED06BD /* Show.m */; };
 /* End PBXBuildFile section */
@@ -72,8 +73,8 @@
 		3A493DBF140A11C0009E261F /* Picture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Picture.m; sourceTree = "<group>"; };
 		3A493DC1140A1201009E261F /* Audio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Audio.h; sourceTree = "<group>"; };
 		3A493DC2140A1201009E261F /* Audio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Audio.m; sourceTree = "<group>"; };
-		3A493DC4140A120E009E261F /* Cue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cue.h; sourceTree = "<group>"; };
-		3A493DC5140A120E009E261F /* Cue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cue.m; sourceTree = "<group>"; };
+		3A493DC4140A120E009E261F /* AudioCue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioCue.h; sourceTree = "<group>"; };
+		3A493DC5140A120E009E261F /* AudioCue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioCue.m; sourceTree = "<group>"; };
 		3A493DC7140A16D1009E261F /* Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scene.h; sourceTree = "<group>"; };
 		3A493DC8140A16D2009E261F /* Scene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Scene.m; sourceTree = "<group>"; };
 		3A6BC05B1401FE56000A8BC3 /* MusicalStar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusicalStar.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -126,6 +127,8 @@
 		3AB0D4691405465000056EA6 /* libz.1.2.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.3.dylib; path = usr/lib/libz.1.2.3.dylib; sourceTree = SDKROOT; };
 		3AB0D46B1405469700056EA6 /* ZipUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZipUtility.h; sourceTree = "<group>"; };
 		3AB0D46C1405469700056EA6 /* ZipUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZipUtility.m; sourceTree = "<group>"; };
+		3AEDFFA4140A32FE00A22267 /* PictureCue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PictureCue.h; sourceTree = "<group>"; };
+		3AEDFFA5140A32FE00A22267 /* PictureCue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PictureCue.m; sourceTree = "<group>"; };
 		957E3B29140A0AE800ED06BD /* Show.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Show.h; path = MusicalStar/Show.h; sourceTree = "<group>"; };
 		957E3B2A140A0AE800ED06BD /* Show.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Show.m; path = MusicalStar/Show.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -167,10 +170,12 @@
 				3A493DBF140A11C0009E261F /* Picture.m */,
 				3A493DC1140A1201009E261F /* Audio.h */,
 				3A493DC2140A1201009E261F /* Audio.m */,
-				3A493DC4140A120E009E261F /* Cue.h */,
-				3A493DC5140A120E009E261F /* Cue.m */,
+				3A493DC4140A120E009E261F /* AudioCue.h */,
+				3A493DC5140A120E009E261F /* AudioCue.m */,
 				3A493DC7140A16D1009E261F /* Scene.h */,
 				3A493DC8140A16D2009E261F /* Scene.m */,
+				3AEDFFA4140A32FE00A22267 /* PictureCue.h */,
+				3AEDFFA5140A32FE00A22267 /* PictureCue.m */,
 			);
 			name = Models;
 			path = ..;
@@ -479,8 +484,9 @@
 				957E3B2B140A0AE800ED06BD /* Show.m in Sources */,
 				3A493DC0140A11C0009E261F /* Picture.m in Sources */,
 				3A493DC3140A1201009E261F /* Audio.m in Sources */,
-				3A493DC6140A120E009E261F /* Cue.m in Sources */,
+				3A493DC6140A120E009E261F /* AudioCue.m in Sources */,
 				3A493DC9140A16D2009E261F /* Scene.m in Sources */,
+				3AEDFFA6140A32FE00A22267 /* PictureCue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
