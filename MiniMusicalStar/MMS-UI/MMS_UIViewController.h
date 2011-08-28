@@ -17,7 +17,7 @@
 @interface MMS_UIViewController : UIViewController {
     IBOutlet UIScrollView *scrollView;
     
-    ShowImage *showImages;
+    ShowImage *showImages; //this is for the hardcoded stuffs
 }
 
 @property (retain, nonatomic) NSArray *shows;

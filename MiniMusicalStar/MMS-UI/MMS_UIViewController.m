@@ -35,7 +35,7 @@
     
     //load the shows on the local disk
     [ShowDAO loadLocalShows];
-    shows = [[ShowDAO shows] retain];
+    self.shows = [ShowDAO shows];
     
     NSLog(@"shows are %@\n", shows);
     
@@ -52,14 +52,15 @@
     NSArray *images = [showImages getShowImages];    
     */
     
+    //add the images of the shows to an array to display to user
     NSMutableArray *images = [[NSMutableArray alloc] initWithCapacity:shows.count];
     [shows enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         Show *show = (Show *)obj;
-        NSLog(@"ASFJIJSSDFHJFHJSF %@ %@\n", show.title, show.author);
         [images addObject:show.coverPicture];
     }];
     
-    for (int i=0; i<images.count; i++) {
+    //Jun Kit: Wei Jie, I replaced your for loop with a block
+    [images enumerateObjectsUsingBlock:^(id obj, NSUInteger i, BOOL *stop) {
         CGRect frame;
         frame.origin.x = scrollView.frame.size.width * i + 10;
         frame.origin.y = 0;
@@ -70,7 +71,7 @@
         NSLog(@"Width is %g", scrollView.frame.size.width *i+320);
         NSLog(@"Length is %g", frame.size.height);
         
-        UIImage *img = [images objectAtIndex:i];
+        UIImage *img = (UIImage *)obj;
         
         //resizing the image
         /*
@@ -96,9 +97,7 @@
 		//scrollView.contentSize = CGSizeMake(contentOffset, scrollView.frame.size.height);
         [scrollView addSubview:imageView];
         [imageView release];
-
-        
-    }
+    }];
     
    [scrollView setContentSize:CGSizeMake(scrollView.frame.size.width + images.count* 280, scrollView.frame.size.height)];
 }
@@ -121,6 +120,7 @@
 - (IBAction)createMusical {
     SceneUI *sceneView = [[SceneUI alloc] initWithNibName:nil bundle:nil];
     
+    //find out which musical is currently selected
     int current = [self currentPage];    
     [sceneView setImageNum:current];
     
