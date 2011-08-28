@@ -11,12 +11,13 @@
 #import "AudioMenu.h"
 #import "Graphics.h"
 #import "GraphicMenu.h"
+#import "FourthAttemptViewController.h"
 
 @interface Edit : UIViewController {
     IBOutlet UIScrollView *toggleView;
     IBOutlet UISegmentedControl *segControl;
     IBOutlet UIImageView *leftView;
-    
+    FourthAttemptViewController *audioview;
     UIImageView *imageView;
     UIScrollView *scrollView;
     
@@ -33,5 +34,6 @@
 
 -(void)callGraphicsOption:(NSInteger)buttonNum;
 
+@property(retain, nonatomic) FourthAttemptViewController *audioview;
 
 @end
