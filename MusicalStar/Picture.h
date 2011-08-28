@@ -16,6 +16,6 @@
 @property (retain, nonatomic) NSNumber *duration;
 @property (retain, nonatomic) NSArray *cueList;
 
-- (Picture *)initWithPropertyDictionary: (NSDictionary *) pDictionary
+- (Picture *)initWithPropertyDictionary: (NSDictionary *) pDictionary;
 
 @end
