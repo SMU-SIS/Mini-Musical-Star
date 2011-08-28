@@ -55,7 +55,7 @@
 - (void)viewDidUnload
 {
     [[self graphicsView] release];
-    [audioview release];
+    //[audioview release];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -74,7 +74,15 @@
     if (segControl.selectedSegmentIndex == 0) {
 
         [toggleView addSubview:[self graphicsView]];
-        [[self graphicsView] release];
+        //[audioview release];
+       /* 
+        MixPlayerRecorder *mix = [MixPlayerRecorder alloc];
+        [mix stop];
+        [mix release];
+        */
+        //[[self graphicsView] release];
+        //[audioview release];
+        [audioview stopPlayer];
         [audioview.view removeFromSuperview];
     }
     else if (segControl.selectedSegmentIndex == 1) {
@@ -88,6 +96,7 @@
         
         [toggleView addSubview:audioview.view];
         [self.graphicsView removeFromSuperview];
+        
         //[audioview release];
         //[scrollView removeFromSuperview];
     }
@@ -182,10 +191,10 @@
 {
     NSInteger imageNum = buttonNumber +1;
     
-    if (imageNum/2 == 1) {
+    if (imageNum%2 == 0) {
         [imageView removeFromSuperview];
         
-        CGRect frame = CGRectMake(55, buttonNumber/2*100, 200, 250);
+        CGRect frame = CGRectMake(55, (buttonNumber-1)*100, 200, 250);
         
         imageView = [[UIImageView alloc] initWithFrame:frame];
         imageView.image = [UIImage imageNamed:@"gfxoption.png"];
