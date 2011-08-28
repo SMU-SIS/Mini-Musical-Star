@@ -78,7 +78,7 @@
 					<object class="IBUIScrollView" id="1067273062">
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{52, 191}, {952, 400}}</string>
+						<string key="NSFrame">{{320, 174}, {374, 400}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="923062643"/>
@@ -145,7 +145,6 @@
 						<string key="NSFrame">{{594, 641}, {30, 30}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>

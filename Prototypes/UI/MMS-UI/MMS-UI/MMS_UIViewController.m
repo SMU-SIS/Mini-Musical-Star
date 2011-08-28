@@ -41,18 +41,18 @@
     [scrollView setPagingEnabled:YES]; 
     scrollView.clipsToBounds = NO;
     [scrollView setZoomScale:1.5 animated:YES];
-    
+   // CGFloat contentOffset = 0.0f;
     showImages = [ShowImage alloc];
     NSArray *images = [showImages getShowImages];    
     
     for (int i=0; i<images.count; i++) {
         CGRect frame;
-        frame.origin.x = 320+i*300;
+        frame.origin.x = scrollView.frame.size.width * i + 10;
         frame.origin.y = 0;
         //frame.size = scrollView.frame.size;
         frame.size.width = 280;
         frame.size.height = scrollView.frame.size.height;
-        
+        //CGRect imageViewFrame = CGRectMake(contentOffset, 0.0f, scrollView.frame.size.width-600, scrollView.frame.size.height);
         NSLog(@"Width is %g", scrollView.frame.size.width *i+320);
         NSLog(@"Length is %g", frame.size.height);
         
@@ -78,12 +78,15 @@
          [subview center];
          */
         
+        //contentOffset += imageView.frame.size.width;
+		//scrollView.contentSize = CGSizeMake(contentOffset, scrollView.frame.size.height);
         [scrollView addSubview:imageView];
         [imageView release];
+
         
     }
     
-    [scrollView setContentSize:CGSizeMake(scrollView.frame.size.width + images.count* 280, scrollView.frame.size.height)];
+   [scrollView setContentSize:CGSizeMake(scrollView.frame.size.width + images.count* 280, scrollView.frame.size.height)];
 }
 
 
