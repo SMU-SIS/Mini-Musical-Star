@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Cue.h"
 
 @interface Audio : NSObject
 
@@ -14,7 +15,7 @@
 @property (retain, nonatomic) NSURL *path;
 @property (retain, nonatomic) NSNumber *replaceable;
 @property (retain, nonatomic) NSNumber *duration;
-@property (retain, nonatomic) NSArray *cueList;
+@property (retain, nonatomic) NSMutableArray *cueList;
 
 - (Audio *)initWithPropertyDictionary: (NSDictionary *) pDictionary;
 

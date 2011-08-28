@@ -28,11 +28,16 @@
 
     NSString *pListFilePath = [[NSBundle mainBundle] pathForResource:@"showMetaData" ofType:@"plist"];
 //    NSURL *pListFileUrl = [ NSURL fileURLWithPath : pListFilePath];
-    Show *show = [[Show alloc] initWithPropertyListFile: pListFilePath];
+//    Show *show = [[Show alloc] initWithPropertyListFile: pListFilePath];
+//    Scene *scene = [show.scenes objectAtIndex:0];
+//    Audio *audio = [scene.audioList objectAtIndex:0];
+//    Picture *picture = [scene.pictureList objectAtIndex:1];
+//    Cue *cue = [picture.cueList objectAtIndex:0];
+//    NSLog(@"%@ %@",picture.title,cue.);
     
-    NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:
-                          @"hiiiii!", @"title", @"path", @"guguugu", nil];
-    Audio *audio = [ [Audio alloc] initWithPropertyDictionary:dict];
+//    NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:
+//                          @"hiiiii!", @"title", @"path", @"guguugu", nil];
+//    Audio *audio = [ [Audio alloc] initWithPropertyDictionary:dict];
     
     
     // Override point for customization after application launch.

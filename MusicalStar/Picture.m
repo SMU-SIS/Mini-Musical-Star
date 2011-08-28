@@ -19,7 +19,17 @@
         path = [pDictionary objectForKey:@"path"];
         startTime = [pDictionary objectForKey:@"startTime"];
         duration = [pDictionary objectForKey:@"duration"];
-        cueList = [pDictionary objectForKey:@"cueList"];
+        NSArray *cueArray = [pDictionary objectForKey:@"cues"];
+        cueList = [[NSMutableArray alloc] initWithCapacity:cueArray.count];
+        
+        [cueArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            NSDictionary *cueObjectDict = (NSDictionary *)obj;
+            
+            Cue *cue = [[Cue alloc] initWithPropertyDictionary:cueObjectDict];
+            [cueList addObject:cue];
+            [cue release];
+            
+        }];
         
     }
     

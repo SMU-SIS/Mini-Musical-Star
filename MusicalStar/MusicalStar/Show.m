@@ -28,16 +28,17 @@
             NSLog(@"Error reading plist: %@, format: %d", errorDesc, format);
         }
         
-        NSLog(@"%@",data);
+//        NSLog(@"%@",data);
         
+        NSDictionary *root = [data objectForKey:@"root"];
         //populate the properties of the Show model
-        title = [data objectForKey:@"title"];
-        author = [data objectForKey:@"author"];
-        coverPicture = [data objectForKey:@"cover-picture"];
-        createdDate = [data objectForKey:@"created"];
+        title = [root objectForKey:@"title"];
+        author = [root objectForKey:@"author"];
+        coverPicture = [root objectForKey:@"cover-picture"];
+        createdDate = [root objectForKey:@"created"];
         
         //get the scene data
-        NSArray *scenesArray = [data objectForKey:@"scenes"];
+        NSArray *scenesArray = [root objectForKey:@"scenes"];
         scenes = [[NSMutableArray alloc] initWithCapacity:scenesArray.count];
         
         [scenesArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {

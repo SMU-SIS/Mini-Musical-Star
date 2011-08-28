@@ -6,12 +6,12 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "Cue.h"
+#import "AudioCue.h"
 
-@implementation Cue
+@implementation AudioCue
 @synthesize content, time, duration, type;
 
-- (Cue *)initWithPropertyDictionary: (NSDictionary *) pDictionary
+- (AudioCue *)initWithPropertyDictionary: (NSDictionary *) pDictionary
 {
     self = [super init];
     if (self) {

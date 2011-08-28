@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Cue.h"
 
 @interface Picture : NSObject
 
