@@ -22,5 +22,6 @@
 - (IBAction)segmentedControlDidChange:(UISegmentedControl *)sender;
 - (IBAction)togglePlaybackButtonDidPress:(UIButton *)sender;
 -(void)updateProgressSliderWithTime:(NSNumber *)elapsedTime;
+-(void)stopPlayer;
 
 @end
