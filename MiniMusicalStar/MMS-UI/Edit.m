@@ -128,7 +128,7 @@
     NSMutableArray *imagesInTheScene = [[NSMutableArray alloc] initWithCapacity:theScene.pictureList.count];
     [theScene.pictureList enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         Picture *thePicture = (Picture *)obj;
-        [imagesInTheScene addObject:[UIImage imageWithContentsOfFile:[thePicture relativePath]];
+//        [imagesInTheScene addObject:[UIImage imageWithContentsOfFile:[thePicture relativePath]];
     }];
     
     BOOL odd = TRUE;
@@ -183,7 +183,7 @@
     [scrollView setBackgroundColor:[UIColor blackColor]];
     [scrollView setScrollsToTop:NO];
     
-    [showImage release];
+    [scrollView release];
 
     return [scrollView autorelease];
 

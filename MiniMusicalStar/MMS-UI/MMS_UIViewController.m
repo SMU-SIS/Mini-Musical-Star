@@ -56,6 +56,7 @@
     NSMutableArray *images = [[NSMutableArray alloc] initWithCapacity:shows.count];
     [shows enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         Show *show = (Show *)obj;
+        NSLog(@"ASDASD %@",show.title);
         [images addObject:show.coverPicture];
     }];
     
@@ -131,7 +132,10 @@
 
     //find out which show is currently selected
     int currentSelection = [self currentPage];
+    Show *show = [shows objectAtIndex:currentSelection];
+    NSLog(@"shows woooo: %@",show.scenes);
     SceneUI *sceneView = [[SceneUI alloc] initWithScenesFromShow:[shows objectAtIndex:currentSelection]];
+    NSLog(@"THE NUMBER IS %i",[self currentPage]);
     
     sceneView.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     [self presentModalViewController:sceneView animated:YES];

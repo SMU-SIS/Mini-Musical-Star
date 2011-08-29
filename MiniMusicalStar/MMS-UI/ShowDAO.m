@@ -40,6 +40,7 @@ static bool initialized = NO;
     //read the showMetaData.plist file for every Show
     [showsDirectoryListing enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         NSURL *showDirectoryURL = (NSURL *)obj;
+        NSLog(@"showDirectoryURL: %@",showDirectoryURL);
         
         //get a reference to showMetaData.plist url
         NSURL *metadataURL = [showDirectoryURL URLByAppendingPathComponent:@"showMetaData.plist"];

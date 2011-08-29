@@ -8,6 +8,7 @@
 
 #import "ShowImage.h"
 #import "Show.h"
+#import "ShowDAO.h"
 
 
 @implementation ShowImage
@@ -15,8 +16,8 @@
 -(NSArray *)getShowImages
 {
     //TEMP ONLY OK, later populate with downloaded one
-    NSString *pListFilePath = [[NSBundle mainBundle] pathForResource:@"showMetaData" ofType:@"plist"];
-    Show *show = [[Show alloc] initWithPropertyListFile: pListFilePath];
+    [ShowDAO loadLocalShows];
+    Show *show = [[ShowDAO shows] objectAtIndex:0];
     showImages = [[NSArray alloc] initWithObjects:show.coverPicture, nil];
 //    showImages = [[NSArray alloc] initWithObjects:[UIImage imageNamed:@"wickedCover.jpg"], [UIImage imageNamed:@"gleeCover.jpg"], [UIImage imageNamed:@"hsmCover.jpg"], nil];
     
