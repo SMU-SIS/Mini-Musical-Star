@@ -9,16 +9,17 @@
 #import "Scene.h"
 
 @implementation Scene
-@synthesize title, duration, audioList, pictureList;
+@synthesize title, duration, audioList, pictureList, coverPicture, sceneNumber;
 
--(Scene *) initSceneWithPropertyDictionary:(NSDictionary *)propertyDictionary
+-(Scene *) initSceneWithPropertyDictionary:(NSDictionary *)propertyDictionary atPath:(NSString *)scenePath
 {
     self = [super init];
     if (self) {
         // Initialization code here.
         self.title = [propertyDictionary objectForKey:@"title"];
         self.duration = [propertyDictionary objectForKey:@"duration"];
-        
+        self.coverPicture = [[UIImage alloc] initWithContentsOfFile:[scenePath stringByAppendingString:[propertyDictionary objectForKey:@"cover-picture"]]];
+        self.sceneNumber = [propertyDictionary objectForKey:@"scene-number"];
         NSArray *audioArray = [propertyDictionary objectForKey:@"audio"];
         audioList = [[NSMutableArray alloc] initWithCapacity:audioArray.count];
         

@@ -16,7 +16,9 @@
 @property (retain, nonatomic) NSNumber *duration;
 @property (retain, nonatomic) NSMutableArray *audioList;
 @property (retain, nonatomic) NSMutableArray *pictureList;
+@property (retain, nonatomic) UIImage *coverPicture;
+@property (retain, nonatomic) NSNumber *sceneNumber;
 
--(Scene *) initSceneWithPropertyDictionary:(NSDictionary *)propertyDictonary;
+-(Scene *) initSceneWithPropertyDictionary:(NSDictionary *)propertyDictonary atPath:(NSURL *)scenePath;
 -(UIImage *)randomScenePicture;
 @end

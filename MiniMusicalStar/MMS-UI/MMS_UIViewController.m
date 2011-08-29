@@ -122,7 +122,8 @@
     //find out which show is currently selected
     int currentSelection = [self currentPage];
     Show *show = [shows objectAtIndex:currentSelection];
-    NSLog(@"shows woooo: %@",show.scenes);
+    Scene *scene = [show.scenes objectAtIndex:currentSelection];
+    NSLog(@"shows woooo: %@",scene.coverPicture);
     SceneUI *sceneView = [[SceneUI alloc] initWithScenesFromShow:[shows objectAtIndex:currentSelection]];
     NSLog(@"THE NUMBER IS %i",[self currentPage]);
     

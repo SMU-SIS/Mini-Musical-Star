@@ -69,7 +69,7 @@
     NSMutableArray *sceneImages = [[NSMutableArray alloc]initWithCapacity:theShow.scenes.count];
     [theShow.scenes enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         Scene *scene = (Scene *)obj;
-        [sceneImages addObject:[scene randomScenePicture]];
+        [sceneImages addObject:scene.coverPicture];
         
     }];
     

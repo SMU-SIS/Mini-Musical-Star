@@ -28,8 +28,6 @@
             NSLog(@"Error reading plist: %@, format: %d", errorDesc, format);
         }
         
-//        NSLog(@"%@",data);
-        
         NSDictionary *root = [data objectForKey:@"root"];
         //populate the properties of the Show model
         showLocation = showPath;
@@ -44,15 +42,16 @@
         NSLog(@"cover picture is %@\n", coverPicture);
         self.createdDate = [root objectForKey:@"created"];
         
-        
         //get the scene data
         NSArray *scenesArray = [root objectForKey:@"scenes"];
         scenes = [[NSMutableArray alloc] initWithCapacity:scenesArray.count];
         
         [scenesArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             NSDictionary *sceneDict = (NSDictionary *)obj;
-            
-            Scene *scene = [[Scene alloc] initSceneWithPropertyDictionary: sceneDict];
+            NSString *sceneNumber = [sceneDict objectForKey:@"scene-number"];
+            NSString *scenePath = [[[[showPath path] stringByAppendingString: @"/scenes/"] stringByAppendingString: sceneNumber] stringByAppendingString: @"/"];
+            NSLog(@"WOOOOHOOOO ASDASDASD : %@",scenePath);
+            Scene *scene = [[Scene alloc] initSceneWithPropertyDictionary: sceneDict atPath:scenePath];
             
             [scenes addObject:scene];
             [scene release];
