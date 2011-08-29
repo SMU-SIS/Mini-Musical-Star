@@ -8,10 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "ShowImage.h"
-#import "Edit.h"
+#import "EditViewController.h"
+#import "SceneViewController.h"
+#import "PlaybackViewController.h"
+#import "CoverViewController.h"
 
 @interface MMS_UIViewController : UIViewController {
-    IBOutlet UIScrollView *scrollView;
+    IBOutlet UIScrollView *scrollView; 
     
     ShowImage *showImages;
 }
@@ -21,5 +24,6 @@
 -(IBAction)coverMusical;
 
 -(int)currentPage;
+-(void)displayShowImages:(NSArray *)images;
 
 @end

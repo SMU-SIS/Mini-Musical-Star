@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "MixPlayerRecorder.h"
 
-@interface FourthAttemptViewController : UIViewController {
+@interface AudioViewController : UIViewController {
     MixPlayerRecorder *player;
 }
 

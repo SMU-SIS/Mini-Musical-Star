@@ -8,18 +8,18 @@
 
 #import <UIKit/UIKit.h>
 #import "ShowImage.h"
-#import "AudioMenu.h"
-#import "Graphics.h"
-#import "GraphicMenu.h"
-#import "FourthAttemptViewController.h"
+#import "AudioViewController.h"
 #import "MixPlayerRecorder.h"
+#import "SceneViewController.h"
+#import "VideoViewController.h"
 
-@interface Edit : UIViewController {
+@interface EditViewController : UIViewController {
     IBOutlet UIScrollView *toggleView;
     IBOutlet UISegmentedControl *segControl;
     IBOutlet UIImageView *leftView;
-    FourthAttemptViewController *audioview;
-
+    AudioViewController *audioview;
+    //VideoViewController *videoView;
+    
     UIView *options;
     UIScrollView *scrollView;
     
@@ -31,6 +31,7 @@
 -(IBAction)backToScene;
 
 -(void)setImageToLeftView:(UIButton *)sender;
+//-(void)setImageToLeftView:(UIImage *)img;
 
 -(UIView *)graphicsView;
 
@@ -38,6 +39,6 @@
 
 -(void)closeOptionMenu:(id)sender;
 
-@property(retain, nonatomic) FourthAttemptViewController *audioview;
+@property(retain, nonatomic) AudioViewController *audioview;
 
 @end

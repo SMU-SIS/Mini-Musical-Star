@@ -10,7 +10,7 @@
 #import "ShowImage.h"
 
 
-@interface Cover : UIViewController {
+@interface CoverViewController : UIViewController {
     IBOutlet UIImageView *covers;
     
     int imageNum;

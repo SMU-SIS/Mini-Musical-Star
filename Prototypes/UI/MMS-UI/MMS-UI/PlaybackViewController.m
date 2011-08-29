@@ -1,15 +1,15 @@
 //
-//  Cover.m
+//  Playback.m
 //  MMS-UI
 //
 //  Created by Weijie Tan on 8/13/11.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "Cover.h"
+#import "PlaybackViewController.h"
 
 
-@implementation Cover
+@implementation PlaybackViewController
 
 /*
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -49,7 +49,7 @@
     
     UIImage *img = [images objectAtIndex:imageNum];
     
-    [covers setImage:img]; 
+    [playBack setImage:img]; 
 }
 
 - (void)viewDidUnload

@@ -10,7 +10,7 @@
 #import "ShowImage.h"
 
 
-@interface Playback : UIViewController {
+@interface PlaybackViewController : UIViewController {
     IBOutlet UIImageView *playBack;
     
     int imageNum;

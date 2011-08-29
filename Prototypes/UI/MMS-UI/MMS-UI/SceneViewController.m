@@ -6,10 +6,10 @@
 //  Copyright 2011 Singapore Management University. All rights reserved.
 //
 
-#import "Scene.h"
-#import "Edit.h"
+#import "SceneViewController.h"
+#import "EditViewController.h"
 
-@implementation Scene
+@implementation SceneViewController
 @synthesize imageNum;
 
 - (void)dealloc
@@ -37,17 +37,16 @@
     [sceneMenu setShowsHorizontalScrollIndicator:NO];
     [sceneMenu setShowsVerticalScrollIndicator:NO];
     [sceneMenu setPagingEnabled:NO]; 
-    sceneMenu.clipsToBounds = NO;
-    //[sceneMenu  setZoomScale:1.5 animated:YES];   
+    sceneMenu.clipsToBounds = NO;   
     
     //Codes to disply the picture of the musical above on the scene selection page
     menuImages = [ShowImage alloc];
     NSArray *images = [menuImages getShowImages];
     [menuImages autorelease];
     
-    
+    //setting the Show's cover image at the yop of the scene
     UIImage *img = [images objectAtIndex:imageNum];
-    [sceneButton setBackgroundImage:img forState:UIControlStateNormal];
+    showCover.image = img;
     
     
     //For the scene selection page. Scrollable.
@@ -55,38 +54,10 @@
     NSArray *sceneImages = [scenes getSceneImages:(imageNum)];
     [scenes autorelease];
     
-    for (int i=0; i<sceneImages.count; i++) {
-        CGRect frame;
-        frame.origin.x = sceneMenu.frame.origin.x + i * 230;
-        frame.origin.y = 10;
-        //frame.size = scrollView.frame.size;
-        frame.size.width = 200;
-        frame.size.height = 150;
-        
-        NSLog(@"Width is %g", frame.size.width);
-        NSLog(@"Length is %g", frame.size.height);
-        
-        UIImage *img = [sceneImages objectAtIndex:i];
-        
-        //creating an ImageView and insert into scrollView as a subview
-        /*
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame:frame];
-        imageView.image = img;
-        
-        [sceneMenu addSubview:imageView];
-        [imageView release];
-         */
-        
-        UIButton *button = [[UIButton alloc] initWithFrame:frame];
-        [button setImage:img forState:(UIControlStateNormal)];
-        [button addTarget:self action:@selector(selectScene:) forControlEvents:UIControlEventTouchUpInside];
-        [sceneMenu addSubview:button];
-        [button release];
-        
-    }
-    
-    int extend = 0;
-    
+    [self displaySceneImages:sceneImages];
+
+    //setting the content size of the scrollview
+    int extend = 0;    
     if (sceneImages.count>4) {
         extend = sceneImages.count -4;
     }
@@ -109,25 +80,35 @@
     return imageNum;
 }
 
-/*
--(IBAction)selectScene {
-    Edit *editScene = [[Edit alloc] initWithNibName:nil bundle:nil];
+-(void)selectScene:(id)sender
+{
+    EditViewController *editScene = [[EditViewController alloc] initWithNibName:nil bundle:nil];
     
     editScene.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     [self presentModalViewController:editScene animated:YES];
     
     [editScene release];
 }
- */
 
--(void)selectScene:(id)sender
-{
-    Edit *editScene = [[Edit alloc] initWithNibName:nil bundle:nil];
-    
-    editScene.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-    [self presentModalViewController:editScene animated:YES];
-    
-    [editScene release];
+-(void)displaySceneImages:(NSArray *)images{
+    for (int i=0; i<images.count; i++) {
+        CGRect frame;
+        frame.origin.x = sceneMenu.frame.origin.x + i * 230;
+        frame.origin.y = 10;
+        frame.size.width = 200;
+        frame.size.height = 150;
+        
+        NSLog(@"Width is %g", frame.size.width);
+        NSLog(@"Length is %g", frame.size.height);
+        
+        UIImage *img = [images objectAtIndex:i];
+        
+        UIButton *button = [[UIButton alloc] initWithFrame:frame];
+        [button setImage:img forState:(UIControlStateNormal)];
+        [button addTarget:self action:@selector(selectScene:) forControlEvents:UIControlEventTouchUpInside];
+        [sceneMenu addSubview:button];
+        [button release];
+    }
 }
 
 - (void)viewDidUnload
@@ -135,8 +116,6 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
-    //[imageView1 release];
-    //[imageView2 release];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
