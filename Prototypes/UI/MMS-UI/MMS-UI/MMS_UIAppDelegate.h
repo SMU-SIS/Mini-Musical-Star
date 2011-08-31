@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@class MMS_UIViewController;
+@class MenuViewController;
 
 @interface MMS_UIAppDelegate : NSObject <UIApplicationDelegate> {
 
@@ -16,6 +16,6 @@
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 
-@property (nonatomic, retain) IBOutlet MMS_UIViewController *viewController;
+@property (nonatomic, retain) IBOutlet MenuViewController *viewController;
 
 @end

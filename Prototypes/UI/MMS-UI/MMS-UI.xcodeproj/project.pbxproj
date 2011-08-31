@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		820511BF13F3BB9B0016F87E /* Scene.m in Sources */ = {isa = PBXBuildFile; fileRef = 820511BD13F3BB9B0016F87E /* Scene.m */; };
-		820511C013F3BB9B0016F87E /* Scene.xib in Resources */ = {isa = PBXBuildFile; fileRef = 820511BE13F3BB9B0016F87E /* Scene.xib */; };
+		820511BF13F3BB9B0016F87E /* SceneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 820511BD13F3BB9B0016F87E /* SceneViewController.m */; };
+		820511C013F3BB9B0016F87E /* SceneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 820511BE13F3BB9B0016F87E /* SceneViewController.xib */; };
 		820E2A1C140A0A1E00B80BBC /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 820E2A1B140A0A1E00B80BBC /* AudioToolbox.framework */; };
 		820E2A2B140A0A3E00B80BBC /* MixPlayerRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 820E2A20140A0A3E00B80BBC /* MixPlayerRecorder.m */; };
 		820E2A2C140A0A3E00B80BBC /* ASBDHelper.c in Sources */ = {isa = PBXBuildFile; fileRef = 820E2A21140A0A3E00B80BBC /* ASBDHelper.c */; };
@@ -16,8 +16,8 @@
 		820E2A2E140A0A3E00B80BBC /* BoomzAUOutputCapturer.m in Sources */ = {isa = PBXBuildFile; fileRef = 820E2A26140A0A3E00B80BBC /* BoomzAUOutputCapturer.m */; };
 		820E2A2F140A0A3E00B80BBC /* CAErrorHandling.c in Sources */ = {isa = PBXBuildFile; fileRef = 820E2A27140A0A3E00B80BBC /* CAErrorHandling.c */; };
 		820E2A30140A0A3E00B80BBC /* TPCircularBuffer.c in Sources */ = {isa = PBXBuildFile; fileRef = 820E2A29140A0A3E00B80BBC /* TPCircularBuffer.c */; };
-		820E2A35140A0A8E00B80BBC /* FourthAttemptViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 820E2A32140A0A8E00B80BBC /* FourthAttemptViewController.m */; };
-		820E2A36140A0A8E00B80BBC /* FourthAttemptViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 820E2A33140A0A8E00B80BBC /* FourthAttemptViewController.xib */; };
+		820E2A35140A0A8E00B80BBC /* AudioViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 820E2A32140A0A8E00B80BBC /* AudioViewController.m */; };
+		820E2A36140A0A8E00B80BBC /* AudioViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 820E2A33140A0A8E00B80BBC /* AudioViewController.xib */; };
 		82A21EBD140A388C008C26FB /* bass.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 82A21EB8140A388C008C26FB /* bass.mp3 */; };
 		82A21EBE140A388C008C26FB /* drums.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 82A21EB9140A388C008C26FB /* drums.mp3 */; };
 		82A21EBF140A388C008C26FB /* guitar.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 82A21EBA140A388C008C26FB /* guitar.mp3 */; };
@@ -25,6 +25,8 @@
 		82A21EC1140A388C008C26FB /* vocals.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 82A21EBC140A388C008C26FB /* vocals.mp3 */; };
 		ED75B7F913FE9C9700AFA08B /* scene.png in Resources */ = {isa = PBXBuildFile; fileRef = ED75B7F713FE9C9700AFA08B /* scene.png */; };
 		ED8310D614090B280093BFF9 /* gfxoption.png in Resources */ = {isa = PBXBuildFile; fileRef = ED8310D514090B280093BFF9 /* gfxoption.png */; };
+		EDA02935140BE83000358173 /* VideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA02933140BE83000358173 /* VideoViewController.m */; };
+		EDA02936140BE83000358173 /* VideoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDA02934140BE83000358173 /* VideoViewController.xib */; };
 		EDA06CA013FEA5BA00ED4771 /* g1.png in Resources */ = {isa = PBXBuildFile; fileRef = EDA06C9813FEA5BA00ED4771 /* g1.png */; };
 		EDA06CA113FEA5BA00ED4771 /* g2.png in Resources */ = {isa = PBXBuildFile; fileRef = EDA06C9913FEA5BA00ED4771 /* g2.png */; };
 		EDA06CA213FEA5BA00ED4771 /* g3.png in Resources */ = {isa = PBXBuildFile; fileRef = EDA06C9A13FEA5BA00ED4771 /* g3.png */; };
@@ -40,8 +42,8 @@
 		EDA2A1D213F26F8400B64EA5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA2A1D113F26F8400B64EA5 /* main.m */; };
 		EDA2A1D513F26F8400B64EA5 /* MMS_UIAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA2A1D413F26F8400B64EA5 /* MMS_UIAppDelegate.m */; };
 		EDA2A1D813F26F8400B64EA5 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDA2A1D613F26F8400B64EA5 /* MainWindow.xib */; };
-		EDA2A1DB13F26F8400B64EA5 /* MMS_UIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA2A1DA13F26F8400B64EA5 /* MMS_UIViewController.m */; };
-		EDA2A1DE13F26F8400B64EA5 /* MMS_UIViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDA2A1DC13F26F8400B64EA5 /* MMS_UIViewController.xib */; };
+		EDA2A1DB13F26F8400B64EA5 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA2A1DA13F26F8400B64EA5 /* MenuViewController.m */; };
+		EDA2A1DE13F26F8400B64EA5 /* MenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDA2A1DC13F26F8400B64EA5 /* MenuViewController.xib */; };
 		EDA2A1E513F26F8400B64EA5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDA2A1C413F26F8400B64EA5 /* UIKit.framework */; };
 		EDA2A1E613F26F8400B64EA5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDA2A1C613F26F8400B64EA5 /* Foundation.framework */; };
 		EDA2A1E713F26F8400B64EA5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDA2A1C813F26F8400B64EA5 /* CoreGraphics.framework */; };
@@ -62,8 +64,6 @@
 		EDAB95B0140A27800088C1CE /* empty textbox.png in Resources */ = {isa = PBXBuildFile; fileRef = EDAB95AA140A27800088C1CE /* empty textbox.png */; };
 		EDAB95B1140A27800088C1CE /* folder.png in Resources */ = {isa = PBXBuildFile; fileRef = EDAB95AB140A27800088C1CE /* folder.png */; };
 		EDAB95B2140A27800088C1CE /* vocal.png in Resources */ = {isa = PBXBuildFile; fileRef = EDAB95AC140A27800088C1CE /* vocal.png */; };
-		EDACF6291400308D00A478C8 /* AudioMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = EDACF6281400308D00A478C8 /* AudioMenu.m */; };
-		EDACF62C140030AB00A478C8 /* GraphicMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = EDACF62B140030AB00A478C8 /* GraphicMenu.m */; };
 		EDAEB37413FE713E0064F8C3 /* gleeCover.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EDAEB37113FE713E0064F8C3 /* gleeCover.jpg */; };
 		EDAEB37513FE713E0064F8C3 /* hsmCover.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EDAEB37213FE713E0064F8C3 /* hsmCover.jpg */; };
 		EDAEB37613FE713E0064F8C3 /* wickedCover.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EDAEB37313FE713E0064F8C3 /* wickedCover.jpg */; };
@@ -81,14 +81,12 @@
 		EDAEB39113FE75810064F8C3 /* wickedS4.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = EDAEB38413FE75810064F8C3 /* wickedS4.jpeg */; };
 		EDAEB39213FE75810064F8C3 /* wickedS5.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = EDAEB38513FE75810064F8C3 /* wickedS5.jpeg */; };
 		EDB9C5EE1402651500434223 /* picture.png in Resources */ = {isa = PBXBuildFile; fileRef = EDB9C5ED1402651500434223 /* picture.png */; };
-		EDB9C60314026C7C00434223 /* Graphics.m in Sources */ = {isa = PBXBuildFile; fileRef = EDB9C60114026C7C00434223 /* Graphics.m */; };
-		EDB9C60414026C7C00434223 /* Graphics.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDB9C60214026C7C00434223 /* Graphics.xib */; };
-		EDC5CC3213F6260400EAF813 /* Playback.m in Sources */ = {isa = PBXBuildFile; fileRef = EDC5CC3013F6260400EAF813 /* Playback.m */; };
-		EDC5CC3313F6260400EAF813 /* Playback.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDC5CC3113F6260400EAF813 /* Playback.xib */; };
-		EDC5CC3813F6261500EAF813 /* Cover.m in Sources */ = {isa = PBXBuildFile; fileRef = EDC5CC3613F6261500EAF813 /* Cover.m */; };
-		EDC5CC3913F6261500EAF813 /* Cover.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDC5CC3713F6261500EAF813 /* Cover.xib */; };
-		EDC5CC3D13F6269300EAF813 /* Edit.m in Sources */ = {isa = PBXBuildFile; fileRef = EDC5CC3B13F6269300EAF813 /* Edit.m */; };
-		EDC5CC3E13F6269300EAF813 /* Edit.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDC5CC3C13F6269300EAF813 /* Edit.xib */; };
+		EDC5CC3213F6260400EAF813 /* PlaybackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDC5CC3013F6260400EAF813 /* PlaybackViewController.m */; };
+		EDC5CC3313F6260400EAF813 /* PlaybackViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDC5CC3113F6260400EAF813 /* PlaybackViewController.xib */; };
+		EDC5CC3813F6261500EAF813 /* CoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDC5CC3613F6261500EAF813 /* CoverViewController.m */; };
+		EDC5CC3913F6261500EAF813 /* CoverViewConroller.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDC5CC3713F6261500EAF813 /* CoverViewConroller.xib */; };
+		EDC5CC3D13F6269300EAF813 /* EditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDC5CC3B13F6269300EAF813 /* EditViewController.m */; };
+		EDC5CC3E13F6269300EAF813 /* EditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDC5CC3C13F6269300EAF813 /* EditViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -102,9 +100,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		820511BC13F3BB9B0016F87E /* Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scene.h; sourceTree = "<group>"; };
-		820511BD13F3BB9B0016F87E /* Scene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Scene.m; sourceTree = "<group>"; };
-		820511BE13F3BB9B0016F87E /* Scene.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Scene.xib; sourceTree = "<group>"; };
+		820511BC13F3BB9B0016F87E /* SceneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneViewController.h; sourceTree = "<group>"; };
+		820511BD13F3BB9B0016F87E /* SceneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SceneViewController.m; sourceTree = "<group>"; };
+		820511BE13F3BB9B0016F87E /* SceneViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SceneViewController.xib; sourceTree = "<group>"; };
 		820E2A1B140A0A1E00B80BBC /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		820E2A1F140A0A3E00B80BBC /* MixPlayerRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MixPlayerRecorder.h; path = ../../../Libraries/MixPlayerRecorder.h; sourceTree = "<group>"; };
 		820E2A20140A0A3E00B80BBC /* MixPlayerRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MixPlayerRecorder.m; path = ../../../Libraries/MixPlayerRecorder.m; sourceTree = "<group>"; };
@@ -118,9 +116,9 @@
 		820E2A28140A0A3E00B80BBC /* CAErrorHandling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CAErrorHandling.h; path = ../../../Libraries/CAErrorHandling.h; sourceTree = "<group>"; };
 		820E2A29140A0A3E00B80BBC /* TPCircularBuffer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = TPCircularBuffer.c; path = ../../../Libraries/TPCircularBuffer.c; sourceTree = "<group>"; };
 		820E2A2A140A0A3E00B80BBC /* TPCircularBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TPCircularBuffer.h; path = ../../../Libraries/TPCircularBuffer.h; sourceTree = "<group>"; };
-		820E2A31140A0A8E00B80BBC /* FourthAttemptViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FourthAttemptViewController.h; path = ../../../FourthAttempt/FourthAttempt/FourthAttemptViewController.h; sourceTree = "<group>"; };
-		820E2A32140A0A8E00B80BBC /* FourthAttemptViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FourthAttemptViewController.m; path = ../../../FourthAttempt/FourthAttempt/FourthAttemptViewController.m; sourceTree = "<group>"; };
-		820E2A34140A0A8E00B80BBC /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = ../../../FourthAttempt/FourthAttempt/en.lproj/FourthAttemptViewController.xib; sourceTree = "<group>"; };
+		820E2A31140A0A8E00B80BBC /* AudioViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AudioViewController.h; path = ../../../FourthAttempt/FourthAttempt/AudioViewController.h; sourceTree = "<group>"; };
+		820E2A32140A0A8E00B80BBC /* AudioViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AudioViewController.m; path = ../../../FourthAttempt/FourthAttempt/AudioViewController.m; sourceTree = "<group>"; };
+		820E2A34140A0A8E00B80BBC /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = ../../../FourthAttempt/FourthAttempt/en.lproj/AudioViewController.xib; sourceTree = "<group>"; };
 		82A21EB8140A388C008C26FB /* bass.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bass.mp3; sourceTree = "<group>"; };
 		82A21EB9140A388C008C26FB /* drums.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = drums.mp3; sourceTree = "<group>"; };
 		82A21EBA140A388C008C26FB /* guitar.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = guitar.mp3; sourceTree = "<group>"; };
@@ -128,6 +126,9 @@
 		82A21EBC140A388C008C26FB /* vocals.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = vocals.mp3; sourceTree = "<group>"; };
 		ED75B7F713FE9C9700AFA08B /* scene.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = scene.png; path = Images/Buttons/scene.png; sourceTree = SOURCE_ROOT; };
 		ED8310D514090B280093BFF9 /* gfxoption.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = gfxoption.png; path = Images/Buttons/gfxoption.png; sourceTree = SOURCE_ROOT; };
+		EDA02932140BE83000358173 /* VideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoViewController.h; sourceTree = "<group>"; };
+		EDA02933140BE83000358173 /* VideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoViewController.m; sourceTree = "<group>"; };
+		EDA02934140BE83000358173 /* VideoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoViewController.xib; sourceTree = "<group>"; };
 		EDA06C9813FEA5BA00ED4771 /* g1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = g1.png; path = "Images/Scene Images/g1.png"; sourceTree = SOURCE_ROOT; };
 		EDA06C9913FEA5BA00ED4771 /* g2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = g2.png; path = "Images/Scene Images/g2.png"; sourceTree = SOURCE_ROOT; };
 		EDA06C9A13FEA5BA00ED4771 /* g3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = g3.png; path = "Images/Scene Images/g3.png"; sourceTree = SOURCE_ROOT; };
@@ -147,9 +148,9 @@
 		EDA2A1D313F26F8400B64EA5 /* MMS_UIAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MMS_UIAppDelegate.h; sourceTree = "<group>"; };
 		EDA2A1D413F26F8400B64EA5 /* MMS_UIAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MMS_UIAppDelegate.m; sourceTree = "<group>"; };
 		EDA2A1D713F26F8400B64EA5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
-		EDA2A1D913F26F8400B64EA5 /* MMS_UIViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MMS_UIViewController.h; sourceTree = "<group>"; };
-		EDA2A1DA13F26F8400B64EA5 /* MMS_UIViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MMS_UIViewController.m; sourceTree = "<group>"; };
-		EDA2A1DD13F26F8400B64EA5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MMS_UIViewController.xib; sourceTree = "<group>"; };
+		EDA2A1D913F26F8400B64EA5 /* MenuViewController.h */ = {isa = PBXFileReference; path = MenuViewController.h; sourceTree = "<group>"; };
+		EDA2A1DA13F26F8400B64EA5 /* MenuViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
+		EDA2A1DD13F26F8400B64EA5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MenuViewController.xib; sourceTree = "<group>"; };
 		EDA2A1E413F26F8400B64EA5 /* MMS-UITests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "MMS-UITests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDA2A1EC13F26F8400B64EA5 /* MMS-UITests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MMS-UITests-Info.plist"; sourceTree = "<group>"; };
 		EDA2A1EE13F26F8400B64EA5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -171,10 +172,6 @@
 		EDAB95AA140A27800088C1CE /* empty textbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "empty textbox.png"; path = "Images/Buttons/breakdown/empty textbox.png"; sourceTree = SOURCE_ROOT; };
 		EDAB95AB140A27800088C1CE /* folder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = folder.png; path = Images/Buttons/breakdown/folder.png; sourceTree = SOURCE_ROOT; };
 		EDAB95AC140A27800088C1CE /* vocal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = vocal.png; path = Images/Buttons/breakdown/vocal.png; sourceTree = SOURCE_ROOT; };
-		EDACF6271400308D00A478C8 /* AudioMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioMenu.h; sourceTree = "<group>"; };
-		EDACF6281400308D00A478C8 /* AudioMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioMenu.m; sourceTree = "<group>"; };
-		EDACF62A140030AB00A478C8 /* GraphicMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphicMenu.h; sourceTree = "<group>"; };
-		EDACF62B140030AB00A478C8 /* GraphicMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GraphicMenu.m; sourceTree = "<group>"; };
 		EDAEB37113FE713E0064F8C3 /* gleeCover.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = gleeCover.jpg; path = "Images/Musical Images/gleeCover.jpg"; sourceTree = SOURCE_ROOT; };
 		EDAEB37213FE713E0064F8C3 /* hsmCover.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = hsmCover.jpg; path = "Images/Musical Images/hsmCover.jpg"; sourceTree = SOURCE_ROOT; };
 		EDAEB37313FE713E0064F8C3 /* wickedCover.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = wickedCover.jpg; path = "Images/Musical Images/wickedCover.jpg"; sourceTree = SOURCE_ROOT; };
@@ -192,18 +189,15 @@
 		EDAEB38413FE75810064F8C3 /* wickedS4.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = wickedS4.jpeg; path = "Images/Musical Scenes/wickedS4.jpeg"; sourceTree = SOURCE_ROOT; };
 		EDAEB38513FE75810064F8C3 /* wickedS5.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = wickedS5.jpeg; path = "Images/Musical Scenes/wickedS5.jpeg"; sourceTree = SOURCE_ROOT; };
 		EDB9C5ED1402651500434223 /* picture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = picture.png; path = Images/Buttons/picture.png; sourceTree = SOURCE_ROOT; };
-		EDB9C60014026C7C00434223 /* Graphics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Graphics.h; sourceTree = "<group>"; };
-		EDB9C60114026C7C00434223 /* Graphics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Graphics.m; sourceTree = "<group>"; };
-		EDB9C60214026C7C00434223 /* Graphics.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Graphics.xib; sourceTree = "<group>"; };
-		EDC5CC2F13F6260400EAF813 /* Playback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Playback.h; sourceTree = "<group>"; };
-		EDC5CC3013F6260400EAF813 /* Playback.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Playback.m; sourceTree = "<group>"; };
-		EDC5CC3113F6260400EAF813 /* Playback.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Playback.xib; sourceTree = "<group>"; };
-		EDC5CC3513F6261500EAF813 /* Cover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cover.h; sourceTree = "<group>"; };
-		EDC5CC3613F6261500EAF813 /* Cover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cover.m; sourceTree = "<group>"; };
-		EDC5CC3713F6261500EAF813 /* Cover.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Cover.xib; sourceTree = "<group>"; };
-		EDC5CC3A13F6269300EAF813 /* Edit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Edit.h; sourceTree = "<group>"; };
-		EDC5CC3B13F6269300EAF813 /* Edit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Edit.m; sourceTree = "<group>"; };
-		EDC5CC3C13F6269300EAF813 /* Edit.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Edit.xib; sourceTree = "<group>"; };
+		EDC5CC2F13F6260400EAF813 /* PlaybackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaybackViewController.h; sourceTree = "<group>"; };
+		EDC5CC3013F6260400EAF813 /* PlaybackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaybackViewController.m; sourceTree = "<group>"; };
+		EDC5CC3113F6260400EAF813 /* PlaybackViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlaybackViewController.xib; sourceTree = "<group>"; };
+		EDC5CC3513F6261500EAF813 /* CoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoverViewController.h; sourceTree = "<group>"; };
+		EDC5CC3613F6261500EAF813 /* CoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoverViewController.m; sourceTree = "<group>"; };
+		EDC5CC3713F6261500EAF813 /* CoverViewConroller.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CoverViewConroller.xib; sourceTree = "<group>"; };
+		EDC5CC3A13F6269300EAF813 /* EditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditViewController.h; sourceTree = "<group>"; };
+		EDC5CC3B13F6269300EAF813 /* EditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditViewController.m; sourceTree = "<group>"; };
+		EDC5CC3C13F6269300EAF813 /* EditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -250,7 +244,7 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
-		82A21EB6140A387A008C26FB /* Resources */ = {
+		82A21EB6140A387A008C26FB /* mp3 */ = {
 			isa = PBXGroup;
 			children = (
 				82A21EB8140A388C008C26FB /* bass.mp3 */,
@@ -259,7 +253,51 @@
 				82A21EBB140A388C008C26FB /* keys.mp3 */,
 				82A21EBC140A388C008C26FB /* vocals.mp3 */,
 			);
-			name = Resources;
+			name = mp3;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		ED885C2E140BC11E00209530 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				82A21EB6140A387A008C26FB /* mp3 */,
+				ED885C2F140BC13100209530 /* XIB */,
+				EDA2A1FD13F2712000B64EA5 /* Images */,
+				EDA2A1D913F26F8400B64EA5 /* MenuViewController.h */,
+				EDA2A1DA13F26F8400B64EA5 /* MenuViewController.m */,
+				EDA02932140BE83000358173 /* VideoViewController.h */,
+				EDA02933140BE83000358173 /* VideoViewController.m */,
+				EDA2A20C13F272BF00B64EA5 /* ShowImage.h */,
+				EDA2A20D13F272BF00B64EA5 /* ShowImage.m */,
+				820511BC13F3BB9B0016F87E /* SceneViewController.h */,
+				820511BD13F3BB9B0016F87E /* SceneViewController.m */,
+				EDC5CC2F13F6260400EAF813 /* PlaybackViewController.h */,
+				EDC5CC3013F6260400EAF813 /* PlaybackViewController.m */,
+				EDC5CC3513F6261500EAF813 /* CoverViewController.h */,
+				EDC5CC3613F6261500EAF813 /* CoverViewController.m */,
+				EDC5CC3A13F6269300EAF813 /* EditViewController.h */,
+				EDC5CC3B13F6269300EAF813 /* EditViewController.m */,
+				820E2A31140A0A8E00B80BBC /* AudioViewController.h */,
+				820E2A32140A0A8E00B80BBC /* AudioViewController.m */,
+				EDA2A1D313F26F8400B64EA5 /* MMS_UIAppDelegate.h */,
+				EDA2A1D413F26F8400B64EA5 /* MMS_UIAppDelegate.m */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		ED885C2F140BC13100209530 /* XIB */ = {
+			isa = PBXGroup;
+			children = (
+				EDA2A1D613F26F8400B64EA5 /* MainWindow.xib */,
+				EDA2A1DC13F26F8400B64EA5 /* MenuViewController.xib */,
+				EDC5CC3113F6260400EAF813 /* PlaybackViewController.xib */,
+				820511BE13F3BB9B0016F87E /* SceneViewController.xib */,
+				EDC5CC3713F6261500EAF813 /* CoverViewConroller.xib */,
+				EDC5CC3C13F6269300EAF813 /* EditViewController.xib */,
+				820E2A33140A0A8E00B80BBC /* AudioViewController.xib */,
+				EDA02934140BE83000358173 /* VideoViewController.xib */,
+			);
+			name = XIB;
 			sourceTree = "<group>";
 		};
 		EDA06C9613FEA5A000ED4771 /* Images */ = {
@@ -280,7 +318,6 @@
 		EDA2A1B513F26F8300B64EA5 = {
 			isa = PBXGroup;
 			children = (
-				82A21EB6140A387A008C26FB /* Resources */,
 				820E2A1E140A0A2A00B80BBC /* Resources */,
 				EDA2A1CA13F26F8400B64EA5 /* MMS-UI */,
 				EDA2A1EA13F26F8400B64EA5 /* MMS-UITests */,
@@ -312,38 +349,8 @@
 		EDA2A1CA13F26F8400B64EA5 /* MMS-UI */ = {
 			isa = PBXGroup;
 			children = (
-				EDA2A1FD13F2712000B64EA5 /* Images */,
-				EDA2A1D313F26F8400B64EA5 /* MMS_UIAppDelegate.h */,
-				EDA2A1D413F26F8400B64EA5 /* MMS_UIAppDelegate.m */,
-				EDA2A1D613F26F8400B64EA5 /* MainWindow.xib */,
-				EDA2A1D913F26F8400B64EA5 /* MMS_UIViewController.h */,
-				EDA2A1DA13F26F8400B64EA5 /* MMS_UIViewController.m */,
-				EDA2A20C13F272BF00B64EA5 /* ShowImage.h */,
-				EDA2A20D13F272BF00B64EA5 /* ShowImage.m */,
-				820511BC13F3BB9B0016F87E /* Scene.h */,
-				820511BD13F3BB9B0016F87E /* Scene.m */,
-				EDC5CC2F13F6260400EAF813 /* Playback.h */,
-				EDC5CC3013F6260400EAF813 /* Playback.m */,
-				EDC5CC3513F6261500EAF813 /* Cover.h */,
-				EDC5CC3613F6261500EAF813 /* Cover.m */,
-				EDC5CC3A13F6269300EAF813 /* Edit.h */,
-				EDC5CC3B13F6269300EAF813 /* Edit.m */,
-				820E2A31140A0A8E00B80BBC /* FourthAttemptViewController.h */,
-				820E2A32140A0A8E00B80BBC /* FourthAttemptViewController.m */,
-				820E2A33140A0A8E00B80BBC /* FourthAttemptViewController.xib */,
+				ED885C2E140BC11E00209530 /* ViewControllers */,
 				EDA2A1CB13F26F8400B64EA5 /* Supporting Files */,
-				EDA2A1DC13F26F8400B64EA5 /* MMS_UIViewController.xib */,
-				EDC5CC3113F6260400EAF813 /* Playback.xib */,
-				820511BE13F3BB9B0016F87E /* Scene.xib */,
-				EDC5CC3713F6261500EAF813 /* Cover.xib */,
-				EDC5CC3C13F6269300EAF813 /* Edit.xib */,
-				EDACF6271400308D00A478C8 /* AudioMenu.h */,
-				EDACF6281400308D00A478C8 /* AudioMenu.m */,
-				EDACF62A140030AB00A478C8 /* GraphicMenu.h */,
-				EDACF62B140030AB00A478C8 /* GraphicMenu.m */,
-				EDB9C60014026C7C00434223 /* Graphics.h */,
-				EDB9C60114026C7C00434223 /* Graphics.m */,
-				EDB9C60214026C7C00434223 /* Graphics.xib */,
 			);
 			path = "MMS-UI";
 			sourceTree = "<group>";
@@ -520,17 +527,17 @@
 			files = (
 				EDA2A1CF13F26F8400B64EA5 /* InfoPlist.strings in Resources */,
 				EDA2A1D813F26F8400B64EA5 /* MainWindow.xib in Resources */,
-				EDA2A1DE13F26F8400B64EA5 /* MMS_UIViewController.xib in Resources */,
+				EDA2A1DE13F26F8400B64EA5 /* MenuViewController.xib in Resources */,
 				EDA2A20313F2726100B64EA5 /* glee1.jpg in Resources */,
 				EDA2A20413F2726100B64EA5 /* glee2.jpg in Resources */,
 				EDA2A20513F2726100B64EA5 /* glee3.jpg in Resources */,
 				EDA2A20913F2726B00B64EA5 /* edit.png in Resources */,
 				EDA2A20A13F2726B00B64EA5 /* new.png in Resources */,
 				EDA2A20B13F2726B00B64EA5 /* play.png in Resources */,
-				820511C013F3BB9B0016F87E /* Scene.xib in Resources */,
-				EDC5CC3313F6260400EAF813 /* Playback.xib in Resources */,
-				EDC5CC3913F6261500EAF813 /* Cover.xib in Resources */,
-				EDC5CC3E13F6269300EAF813 /* Edit.xib in Resources */,
+				820511C013F3BB9B0016F87E /* SceneViewController.xib in Resources */,
+				EDC5CC3313F6260400EAF813 /* PlaybackViewController.xib in Resources */,
+				EDC5CC3913F6261500EAF813 /* CoverViewConroller.xib in Resources */,
+				EDC5CC3E13F6269300EAF813 /* EditViewController.xib in Resources */,
 				EDAEB37413FE713E0064F8C3 /* gleeCover.jpg in Resources */,
 				EDAEB37513FE713E0064F8C3 /* hsmCover.jpg in Resources */,
 				EDAEB37613FE713E0064F8C3 /* wickedCover.jpg in Resources */,
@@ -558,9 +565,8 @@
 				EDA06CA713FEA5BA00ED4771 /* g8.png in Resources */,
 				EDA363A9140230FC00E93779 /* home.png in Resources */,
 				EDB9C5EE1402651500434223 /* picture.png in Resources */,
-				EDB9C60414026C7C00434223 /* Graphics.xib in Resources */,
 				ED8310D614090B280093BFF9 /* gfxoption.png in Resources */,
-				820E2A36140A0A8E00B80BBC /* FourthAttemptViewController.xib in Resources */,
+				820E2A36140A0A8E00B80BBC /* AudioViewController.xib in Resources */,
 				EDAB95AD140A27800088C1CE /* back.png in Resources */,
 				EDAB95AE140A27800088C1CE /* camera.png in Resources */,
 				EDAB95AF140A27800088C1CE /* empty textbox right.png in Resources */,
@@ -572,6 +578,7 @@
 				82A21EBF140A388C008C26FB /* guitar.mp3 in Resources */,
 				82A21EC0140A388C008C26FB /* keys.mp3 in Resources */,
 				82A21EC1140A388C008C26FB /* vocals.mp3 in Resources */,
+				EDA02936140BE83000358173 /* VideoViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -609,22 +616,20 @@
 			files = (
 				EDA2A1D213F26F8400B64EA5 /* main.m in Sources */,
 				EDA2A1D513F26F8400B64EA5 /* MMS_UIAppDelegate.m in Sources */,
-				EDA2A1DB13F26F8400B64EA5 /* MMS_UIViewController.m in Sources */,
+				EDA2A1DB13F26F8400B64EA5 /* MenuViewController.m in Sources */,
 				EDA2A20E13F272BF00B64EA5 /* ShowImage.m in Sources */,
-				820511BF13F3BB9B0016F87E /* Scene.m in Sources */,
-				EDC5CC3213F6260400EAF813 /* Playback.m in Sources */,
-				EDC5CC3813F6261500EAF813 /* Cover.m in Sources */,
-				EDC5CC3D13F6269300EAF813 /* Edit.m in Sources */,
-				EDACF6291400308D00A478C8 /* AudioMenu.m in Sources */,
-				EDACF62C140030AB00A478C8 /* GraphicMenu.m in Sources */,
-				EDB9C60314026C7C00434223 /* Graphics.m in Sources */,
+				820511BF13F3BB9B0016F87E /* SceneViewController.m in Sources */,
+				EDC5CC3213F6260400EAF813 /* PlaybackViewController.m in Sources */,
+				EDC5CC3813F6261500EAF813 /* CoverViewController.m in Sources */,
+				EDC5CC3D13F6269300EAF813 /* EditViewController.m in Sources */,
 				820E2A2B140A0A3E00B80BBC /* MixPlayerRecorder.m in Sources */,
 				820E2A2C140A0A3E00B80BBC /* ASBDHelper.c in Sources */,
 				820E2A2D140A0A3E00B80BBC /* AudioFileRingBuffer.m in Sources */,
 				820E2A2E140A0A3E00B80BBC /* BoomzAUOutputCapturer.m in Sources */,
 				820E2A2F140A0A3E00B80BBC /* CAErrorHandling.c in Sources */,
 				820E2A30140A0A3E00B80BBC /* TPCircularBuffer.c in Sources */,
-				820E2A35140A0A8E00B80BBC /* FourthAttemptViewController.m in Sources */,
+				820E2A35140A0A8E00B80BBC /* AudioViewController.m in Sources */,
+				EDA02935140BE83000358173 /* VideoViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -647,12 +652,12 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		820E2A33140A0A8E00B80BBC /* FourthAttemptViewController.xib */ = {
+		820E2A33140A0A8E00B80BBC /* AudioViewController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				820E2A34140A0A8E00B80BBC /* en */,
 			);
-			name = FourthAttemptViewController.xib;
+			name = AudioViewController.xib;
 			sourceTree = "<group>";
 		};
 		EDA2A1CD13F26F8400B64EA5 /* InfoPlist.strings */ = {
@@ -671,12 +676,12 @@
 			name = MainWindow.xib;
 			sourceTree = "<group>";
 		};
-		EDA2A1DC13F26F8400B64EA5 /* MMS_UIViewController.xib */ = {
+		EDA2A1DC13F26F8400B64EA5 /* MenuViewController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				EDA2A1DD13F26F8400B64EA5 /* en */,
 			);
-			name = MMS_UIViewController.xib;
+			name = MenuViewController.xib;
 			sourceTree = "<group>";
 		};
 		EDA2A1ED13F26F8400B64EA5 /* InfoPlist.strings */ = {

@@ -6,9 +6,9 @@
 //  Copyright 2011 mohawk.riceball@gmail.com. All rights reserved.
 //
 
-#import "FourthAttemptViewController.h"
+#import "AudioViewController.h"
 
-@implementation FourthAttemptViewController
+@implementation AudioViewController
 @synthesize slider, segmentedControl, togglePlaybackButton, progressSlider;
 
 - (void)didReceiveMemoryWarning

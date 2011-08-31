@@ -9,8 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "ShowImage.h"
 
-@interface Scene : UIViewController{
-    IBOutlet UIButton *sceneButton;
+@interface SceneViewController : UIViewController{
+    IBOutlet UIImageView *showCover;
     IBOutlet UIScrollView *sceneMenu;
 
     int imageNum;
@@ -25,7 +25,7 @@
 -(int)getImageNum;
 -(IBAction)backToMenu;
 
-//-(IBAction)selectScene;
 -(void)selectScene:(id)sender;
+-(void)displaySceneImages:(NSArray *)images;
 
 @end
