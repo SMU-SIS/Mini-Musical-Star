@@ -6,9 +6,9 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "MMS_UIViewController.h"
+#import "MenuViewController.h"
 
-@implementation MMS_UIViewController
+@implementation MenuViewController
 
 - (void)dealloc
 {

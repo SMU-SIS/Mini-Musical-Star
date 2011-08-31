@@ -42,8 +42,8 @@
 		EDA2A1D213F26F8400B64EA5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA2A1D113F26F8400B64EA5 /* main.m */; };
 		EDA2A1D513F26F8400B64EA5 /* MMS_UIAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA2A1D413F26F8400B64EA5 /* MMS_UIAppDelegate.m */; };
 		EDA2A1D813F26F8400B64EA5 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDA2A1D613F26F8400B64EA5 /* MainWindow.xib */; };
-		EDA2A1DB13F26F8400B64EA5 /* MMS_UIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA2A1DA13F26F8400B64EA5 /* MMS_UIViewController.m */; };
-		EDA2A1DE13F26F8400B64EA5 /* MMS_UIViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDA2A1DC13F26F8400B64EA5 /* MMS_UIViewController.xib */; };
+		EDA2A1DB13F26F8400B64EA5 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA2A1DA13F26F8400B64EA5 /* MenuViewController.m */; };
+		EDA2A1DE13F26F8400B64EA5 /* MenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDA2A1DC13F26F8400B64EA5 /* MenuViewController.xib */; };
 		EDA2A1E513F26F8400B64EA5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDA2A1C413F26F8400B64EA5 /* UIKit.framework */; };
 		EDA2A1E613F26F8400B64EA5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDA2A1C613F26F8400B64EA5 /* Foundation.framework */; };
 		EDA2A1E713F26F8400B64EA5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDA2A1C813F26F8400B64EA5 /* CoreGraphics.framework */; };
@@ -148,9 +148,9 @@
 		EDA2A1D313F26F8400B64EA5 /* MMS_UIAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MMS_UIAppDelegate.h; sourceTree = "<group>"; };
 		EDA2A1D413F26F8400B64EA5 /* MMS_UIAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MMS_UIAppDelegate.m; sourceTree = "<group>"; };
 		EDA2A1D713F26F8400B64EA5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
-		EDA2A1D913F26F8400B64EA5 /* MMS_UIViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MMS_UIViewController.h; sourceTree = "<group>"; };
-		EDA2A1DA13F26F8400B64EA5 /* MMS_UIViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MMS_UIViewController.m; sourceTree = "<group>"; };
-		EDA2A1DD13F26F8400B64EA5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MMS_UIViewController.xib; sourceTree = "<group>"; };
+		EDA2A1D913F26F8400B64EA5 /* MenuViewController.h */ = {isa = PBXFileReference; path = MenuViewController.h; sourceTree = "<group>"; };
+		EDA2A1DA13F26F8400B64EA5 /* MenuViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
+		EDA2A1DD13F26F8400B64EA5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MenuViewController.xib; sourceTree = "<group>"; };
 		EDA2A1E413F26F8400B64EA5 /* MMS-UITests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "MMS-UITests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDA2A1EC13F26F8400B64EA5 /* MMS-UITests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MMS-UITests-Info.plist"; sourceTree = "<group>"; };
 		EDA2A1EE13F26F8400B64EA5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -263,8 +263,8 @@
 				82A21EB6140A387A008C26FB /* mp3 */,
 				ED885C2F140BC13100209530 /* XIB */,
 				EDA2A1FD13F2712000B64EA5 /* Images */,
-				EDA2A1D913F26F8400B64EA5 /* MMS_UIViewController.h */,
-				EDA2A1DA13F26F8400B64EA5 /* MMS_UIViewController.m */,
+				EDA2A1D913F26F8400B64EA5 /* MenuViewController.h */,
+				EDA2A1DA13F26F8400B64EA5 /* MenuViewController.m */,
 				EDA02932140BE83000358173 /* VideoViewController.h */,
 				EDA02933140BE83000358173 /* VideoViewController.m */,
 				EDA2A20C13F272BF00B64EA5 /* ShowImage.h */,
@@ -289,7 +289,7 @@
 			isa = PBXGroup;
 			children = (
 				EDA2A1D613F26F8400B64EA5 /* MainWindow.xib */,
-				EDA2A1DC13F26F8400B64EA5 /* MMS_UIViewController.xib */,
+				EDA2A1DC13F26F8400B64EA5 /* MenuViewController.xib */,
 				EDC5CC3113F6260400EAF813 /* PlaybackViewController.xib */,
 				820511BE13F3BB9B0016F87E /* SceneViewController.xib */,
 				EDC5CC3713F6261500EAF813 /* CoverViewConroller.xib */,
@@ -527,7 +527,7 @@
 			files = (
 				EDA2A1CF13F26F8400B64EA5 /* InfoPlist.strings in Resources */,
 				EDA2A1D813F26F8400B64EA5 /* MainWindow.xib in Resources */,
-				EDA2A1DE13F26F8400B64EA5 /* MMS_UIViewController.xib in Resources */,
+				EDA2A1DE13F26F8400B64EA5 /* MenuViewController.xib in Resources */,
 				EDA2A20313F2726100B64EA5 /* glee1.jpg in Resources */,
 				EDA2A20413F2726100B64EA5 /* glee2.jpg in Resources */,
 				EDA2A20513F2726100B64EA5 /* glee3.jpg in Resources */,
@@ -616,7 +616,7 @@
 			files = (
 				EDA2A1D213F26F8400B64EA5 /* main.m in Sources */,
 				EDA2A1D513F26F8400B64EA5 /* MMS_UIAppDelegate.m in Sources */,
-				EDA2A1DB13F26F8400B64EA5 /* MMS_UIViewController.m in Sources */,
+				EDA2A1DB13F26F8400B64EA5 /* MenuViewController.m in Sources */,
 				EDA2A20E13F272BF00B64EA5 /* ShowImage.m in Sources */,
 				820511BF13F3BB9B0016F87E /* SceneViewController.m in Sources */,
 				EDC5CC3213F6260400EAF813 /* PlaybackViewController.m in Sources */,
@@ -676,12 +676,12 @@
 			name = MainWindow.xib;
 			sourceTree = "<group>";
 		};
-		EDA2A1DC13F26F8400B64EA5 /* MMS_UIViewController.xib */ = {
+		EDA2A1DC13F26F8400B64EA5 /* MenuViewController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				EDA2A1DD13F26F8400B64EA5 /* en */,
 			);
-			name = MMS_UIViewController.xib;
+			name = MenuViewController.xib;
 			sourceTree = "<group>";
 		};
 		EDA2A1ED13F26F8400B64EA5 /* InfoPlist.strings */ = {

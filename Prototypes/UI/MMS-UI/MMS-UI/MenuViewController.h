@@ -13,7 +13,7 @@
 #import "PlaybackViewController.h"
 #import "CoverViewController.h"
 
-@interface MMS_UIViewController : UIViewController {
+@interface MenuViewController : UIViewController {
     IBOutlet UIScrollView *scrollView; 
     
     ShowImage *showImages;
