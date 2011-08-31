@@ -13,11 +13,6 @@
 static NSMutableArray *loadedShows;
 static bool initialized = NO;
 
-//+ (void)initialize
-//{
-//    
-//}
-
 + (void)loadLocalShows
 {
     NSError *error;

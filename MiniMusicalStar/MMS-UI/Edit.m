@@ -42,7 +42,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    leftView.image = [theScene randomScenePicture];
+    leftView.image = theScene.coverPicture;
     audioview = [[FourthAttemptViewController alloc] init];
     [toggleView addSubview:[self graphicsView]];  
 }

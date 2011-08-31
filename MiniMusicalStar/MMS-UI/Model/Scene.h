@@ -20,5 +20,4 @@
 @property (retain, nonatomic) NSNumber *sceneNumber;
 
 -(Scene *) initSceneWithPropertyDictionary:(NSDictionary *)propertyDictonary atPath:(NSURL *)scenePath;
--(UIImage *)randomScenePicture;
 @end

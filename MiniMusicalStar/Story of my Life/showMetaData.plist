@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>root</key>
+	<dict>
+		<key>author</key>
+		<string>Adrian Cheng</string>
+		<key>created</key>
+		<string>24032011</string>
+		<key>cover-picture</key>
+		<string>front.jpg</string>
+		<key>title</key>
+		<string>Story of My Life</string>
+		<key>scenes</key>
+		<array>
+			<dict>
+				<key>scene-number</key>
+				<string>1</string>
+				<key>cover-picture</key>
+				<string>adrianjeanasti.jpg</string>
+				<key>pictures</key>
+				<array>
+					<dict>
+						<key>title</key>
+						<string>Adrian naked in toilet</string>
+						<key>path</key>
+						<string>antoni.jpg</string>
+						<key>start-time</key>
+						<integer>45</integer>
+						<key>duration</key>
+						<integer>15</integer>
+					</dict>
+					<dict>
+						<key>cues</key>
+						<array>
+							<dict>
+								<key>type</key>
+								<string>picture</string>
+								<key>path</key>
+								<string>cue.jpg</string>
+							</dict>
+						</array>
+						<key>title</key>
+						<string>Cute Baby Photo</string>
+						<key>path</key>
+						<string>adrianjeanasti.jpg</string>
+						<key>start-time</key>
+						<integer>0</integer>
+						<key>duration</key>
+						<integer>15</integer>
+					</dict>
+					<dict>
+						<key>title</key>
+						<string>Photo of Adrian biting mummy&apos;s finger</string>
+						<key>path</key>
+						<string>playingmd.jpg</string>
+						<key>start-time</key>
+						<integer>15</integer>
+						<key>duration</key>
+						<integer>30</integer>
+					</dict>
+				</array>
+				<key>audio</key>
+				<array>
+					<dict>
+						<key>cues</key>
+						<array>
+							<dict>
+								<key>time</key>
+								<integer>10</integer>
+								<key>duration</key>
+								<integer>10</integer>
+								<key>content</key>
+								<string>Scream like a hyena!</string>
+								<key>type</key>
+								<string>text</string>
+							</dict>
+						</array>
+						<key>replaceable</key>
+						<true/>
+						<key>path</key>
+						<string>scenes/1/vocals.mp3</string>
+						<key>duration</key>
+						<integer>30</integer>
+						<key>title</key>
+						<string>Adrian Howling</string>
+					</dict>
+					<dict>
+						<key>replaceable</key>
+						<false/>
+						<key>path</key>
+						<string>scenes/1/base.mp3</string>
+						<key>duration</key>
+						<integer>30</integer>
+						<key>title</key>
+						<string>Music</string>
+					</dict>
+				</array>
+				<key>title</key>
+				<string>When Adrian was a Baby</string>
+				<key>duration</key>
+				<integer>30</integer>
+			</dict>
+			<dict>
+				<key>scene-number</key>
+				<string>2</string>
+				<key>cover-picture</key>
+				<string>food.jpg</string>
+				<key>pictures</key>
+				<array>
+					<dict>
+						<key>title</key>
+						<string>Adrian in chinese class</string>
+						<key>path</key>
+						<string>segroup.jpg</string>
+						<key>start-time</key>
+						<integer>0</integer>
+						<key>duration</key>
+						<integer>10</integer>
+					</dict>
+					<dict>
+						<key>cues</key>
+						<array>
+							<dict>
+								<key>type</key>
+								<string>picture</string>
+								<key>path</key>
+								<string>path.jpg</string>
+							</dict>
+						</array>
+						<key>title</key>
+						<string>Adrian in english class</string>
+						<key>path</key>
+						<string>food.jpg</string>
+						<key>start-time</key>
+						<integer>10</integer>
+						<key>duration</key>
+						<integer>10</integer>
+					</dict>
+					<dict>
+						<key>title</key>
+						<string>adrian bullying friend in PE</string>
+						<key>path</key>
+						<string>japan.jpg</string>
+						<key>start-time</key>
+						<integer>20</integer>
+						<key>duration</key>
+						<integer>10</integer>
+					</dict>
+				</array>
+				<key>audio</key>
+				<array>
+					<dict>
+						<key>cues</key>
+						<array>
+							<dict>
+								<key>type</key>
+								<string>text</string>
+								<key>content</key>
+								<string>Imagine Adrian wearing shorts! sexy!</string>
+								<key>time</key>
+								<integer>10</integer>
+								<key>duration</key>
+								<integer>15</integer>
+							</dict>
+						</array>
+						<key>replaceable</key>
+						<true/>
+						<key>path</key>
+						<string>guitar.mp3</string>
+						<key>duration</key>
+						<integer>30</integer>
+						<key>title</key>
+						<string>Guitar</string>
+					</dict>
+					<dict>
+						<key>replaceable</key>
+						<false/>
+						<key>path</key>
+						<string>drums.mp3</string>
+						<key>duration</key>
+						<integer>30</integer>
+						<key>title</key>
+						<string>Drums</string>
+					</dict>
+				</array>
+				<key>title</key>
+				<string>When Adrian was a Primary School Boy</string>
+				<key>duration</key>
+				<integer>30</integer>
+			</dict>
+		</array>
+	</dict>
+</dict>
+</plist>

@@ -121,11 +121,11 @@
 
     //find out which show is currently selected
     int currentSelection = [self currentPage];
-    Show *show = [shows objectAtIndex:currentSelection];
-    Scene *scene = [show.scenes objectAtIndex:currentSelection];
-    NSLog(@"shows woooo: %@",scene.coverPicture);
+//    Show *show = [shows objectAtIndex:currentSelection];
+//    Scene *scene = [show.scenes objectAtIndex:currentSelection];
+//    NSLog(@"shows woooo: %@",scene.coverPicture);
     SceneUI *sceneView = [[SceneUI alloc] initWithScenesFromShow:[shows objectAtIndex:currentSelection]];
-    NSLog(@"THE NUMBER IS %i",[self currentPage]);
+//    NSLog(@"THE NUMBER IS %i",[self currentPage]);
     
     sceneView.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     [self presentModalViewController:sceneView animated:YES];
