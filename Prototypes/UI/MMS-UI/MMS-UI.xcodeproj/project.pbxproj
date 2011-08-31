@@ -23,6 +23,13 @@
 		82A21EBF140A388C008C26FB /* guitar.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 82A21EBA140A388C008C26FB /* guitar.mp3 */; };
 		82A21EC0140A388C008C26FB /* keys.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 82A21EBB140A388C008C26FB /* keys.mp3 */; };
 		82A21EC1140A388C008C26FB /* vocals.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 82A21EBC140A388C008C26FB /* vocals.mp3 */; };
+		9572E0D7140E118400713F45 /* AudioCue.m in Sources */ = {isa = PBXBuildFile; fileRef = 9572E0CC140E118400713F45 /* AudioCue.m */; };
+		9572E0D8140E118400713F45 /* Audio.m in Sources */ = {isa = PBXBuildFile; fileRef = 9572E0CE140E118400713F45 /* Audio.m */; };
+		9572E0D9140E118400713F45 /* Picture.m in Sources */ = {isa = PBXBuildFile; fileRef = 9572E0D0140E118400713F45 /* Picture.m */; };
+		9572E0DA140E118400713F45 /* PictureCue.m in Sources */ = {isa = PBXBuildFile; fileRef = 9572E0D2140E118400713F45 /* PictureCue.m */; };
+		9572E0DB140E118400713F45 /* Scene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9572E0D4140E118400713F45 /* Scene.m */; };
+		9572E0DC140E118400713F45 /* Show.m in Sources */ = {isa = PBXBuildFile; fileRef = 9572E0D6140E118400713F45 /* Show.m */; };
+		9572E0E0140E11FF00713F45 /* ShowDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 9572E0DF140E11FF00713F45 /* ShowDAO.m */; };
 		ED75B7F913FE9C9700AFA08B /* scene.png in Resources */ = {isa = PBXBuildFile; fileRef = ED75B7F713FE9C9700AFA08B /* scene.png */; };
 		ED8310D614090B280093BFF9 /* gfxoption.png in Resources */ = {isa = PBXBuildFile; fileRef = ED8310D514090B280093BFF9 /* gfxoption.png */; };
 		EDA02935140BE83000358173 /* VideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA02933140BE83000358173 /* VideoViewController.m */; };
@@ -124,6 +131,20 @@
 		82A21EBA140A388C008C26FB /* guitar.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = guitar.mp3; sourceTree = "<group>"; };
 		82A21EBB140A388C008C26FB /* keys.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = keys.mp3; sourceTree = "<group>"; };
 		82A21EBC140A388C008C26FB /* vocals.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = vocals.mp3; sourceTree = "<group>"; };
+		9572E0CB140E118400713F45 /* AudioCue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioCue.h; sourceTree = "<group>"; };
+		9572E0CC140E118400713F45 /* AudioCue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioCue.m; sourceTree = "<group>"; };
+		9572E0CD140E118400713F45 /* Audio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Audio.h; sourceTree = "<group>"; };
+		9572E0CE140E118400713F45 /* Audio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Audio.m; sourceTree = "<group>"; };
+		9572E0CF140E118400713F45 /* Picture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Picture.h; sourceTree = "<group>"; };
+		9572E0D0140E118400713F45 /* Picture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Picture.m; sourceTree = "<group>"; };
+		9572E0D1140E118400713F45 /* PictureCue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PictureCue.h; sourceTree = "<group>"; };
+		9572E0D2140E118400713F45 /* PictureCue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PictureCue.m; sourceTree = "<group>"; };
+		9572E0D3140E118400713F45 /* Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scene.h; sourceTree = "<group>"; };
+		9572E0D4140E118400713F45 /* Scene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Scene.m; sourceTree = "<group>"; };
+		9572E0D5140E118400713F45 /* Show.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Show.h; sourceTree = "<group>"; };
+		9572E0D6140E118400713F45 /* Show.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Show.m; sourceTree = "<group>"; };
+		9572E0DE140E11FF00713F45 /* ShowDAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowDAO.h; sourceTree = "<group>"; };
+		9572E0DF140E11FF00713F45 /* ShowDAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowDAO.m; sourceTree = "<group>"; };
 		ED75B7F713FE9C9700AFA08B /* scene.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = scene.png; path = Images/Buttons/scene.png; sourceTree = SOURCE_ROOT; };
 		ED8310D514090B280093BFF9 /* gfxoption.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = gfxoption.png; path = Images/Buttons/gfxoption.png; sourceTree = SOURCE_ROOT; };
 		EDA02932140BE83000358173 /* VideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoViewController.h; sourceTree = "<group>"; };
@@ -148,7 +169,7 @@
 		EDA2A1D313F26F8400B64EA5 /* MMS_UIAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MMS_UIAppDelegate.h; sourceTree = "<group>"; };
 		EDA2A1D413F26F8400B64EA5 /* MMS_UIAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MMS_UIAppDelegate.m; sourceTree = "<group>"; };
 		EDA2A1D713F26F8400B64EA5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
-		EDA2A1D913F26F8400B64EA5 /* MenuViewController.h */ = {isa = PBXFileReference; path = MenuViewController.h; sourceTree = "<group>"; };
+		EDA2A1D913F26F8400B64EA5 /* MenuViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
 		EDA2A1DA13F26F8400B64EA5 /* MenuViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
 		EDA2A1DD13F26F8400B64EA5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MenuViewController.xib; sourceTree = "<group>"; };
 		EDA2A1E413F26F8400B64EA5 /* MMS-UITests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "MMS-UITests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -257,6 +278,34 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
+		9572E0C9140E117200713F45 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				9572E0CB140E118400713F45 /* AudioCue.h */,
+				9572E0CC140E118400713F45 /* AudioCue.m */,
+				9572E0CD140E118400713F45 /* Audio.h */,
+				9572E0CE140E118400713F45 /* Audio.m */,
+				9572E0CF140E118400713F45 /* Picture.h */,
+				9572E0D0140E118400713F45 /* Picture.m */,
+				9572E0D1140E118400713F45 /* PictureCue.h */,
+				9572E0D2140E118400713F45 /* PictureCue.m */,
+				9572E0D3140E118400713F45 /* Scene.h */,
+				9572E0D4140E118400713F45 /* Scene.m */,
+				9572E0D5140E118400713F45 /* Show.h */,
+				9572E0D6140E118400713F45 /* Show.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		9572E0DD140E119100713F45 /* DAOs */ = {
+			isa = PBXGroup;
+			children = (
+				9572E0DE140E11FF00713F45 /* ShowDAO.h */,
+				9572E0DF140E11FF00713F45 /* ShowDAO.m */,
+			);
+			name = DAOs;
+			sourceTree = "<group>";
+		};
 		ED885C2E140BC11E00209530 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -349,6 +398,8 @@
 		EDA2A1CA13F26F8400B64EA5 /* MMS-UI */ = {
 			isa = PBXGroup;
 			children = (
+				9572E0DD140E119100713F45 /* DAOs */,
+				9572E0C9140E117200713F45 /* Models */,
 				ED885C2E140BC11E00209530 /* ViewControllers */,
 				EDA2A1CB13F26F8400B64EA5 /* Supporting Files */,
 			);
@@ -630,6 +681,13 @@
 				820E2A30140A0A3E00B80BBC /* TPCircularBuffer.c in Sources */,
 				820E2A35140A0A8E00B80BBC /* AudioViewController.m in Sources */,
 				EDA02935140BE83000358173 /* VideoViewController.m in Sources */,
+				9572E0D7140E118400713F45 /* AudioCue.m in Sources */,
+				9572E0D8140E118400713F45 /* Audio.m in Sources */,
+				9572E0D9140E118400713F45 /* Picture.m in Sources */,
+				9572E0DA140E118400713F45 /* PictureCue.m in Sources */,
+				9572E0DB140E118400713F45 /* Scene.m in Sources */,
+				9572E0DC140E118400713F45 /* Show.m in Sources */,
+				9572E0E0140E11FF00713F45 /* ShowDAO.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
