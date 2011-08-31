@@ -19,5 +19,5 @@
 @property (retain, nonatomic) UIImage *coverPicture;
 @property (retain, nonatomic) NSNumber *sceneNumber;
 
--(Scene *) initSceneWithPropertyDictionary:(NSDictionary *)propertyDictonary atPath:(NSURL *)scenePath;
+-(Scene *) initSceneWithPropertyDictionary:(NSDictionary *)propertyDictonary atPath:(NSString *)scenePath;
 @end

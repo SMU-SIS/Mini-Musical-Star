@@ -58,6 +58,20 @@ static bool initialized = NO;
     return [loadedShows autorelease];
 }
 
++ (NSArray *)imagesForShows
+{
+    if (!initialized) [self loadLocalShows];
+    
+    NSMutableArray *imagesArray = [[NSMutableArray alloc] initWithCapacity:loadedShows.count];
+    [loadedShows enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        Show *show = (Show *)obj;
+        [imagesArray addObject:show.coverPicture];
+        
+    }];
+    
+    return [imagesArray autorelease];
+}
+
 + (void)retrieveNewShowsFromServer
 {
     

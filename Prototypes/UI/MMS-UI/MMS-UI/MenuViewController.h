@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "ShowImage.h"
+#import "ShowDAO.h"
+#import "Show.h"
+
 #import "EditViewController.h"
 #import "SceneViewController.h"
 #import "PlaybackViewController.h"

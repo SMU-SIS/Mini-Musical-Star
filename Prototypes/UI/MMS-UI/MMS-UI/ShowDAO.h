@@ -13,5 +13,5 @@
 
 + (void)loadLocalShows;
 + (NSArray *)shows;
-
++ (NSArray *)imagesForShows;
 @end

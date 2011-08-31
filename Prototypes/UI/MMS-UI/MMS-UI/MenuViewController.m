@@ -25,6 +25,13 @@
 
 #pragma mark - View lifecycle
 
+- (void)loadShows
+{
+    //load the shows on the local disk
+    [ShowDAO loadLocalShows];
+    
+}
+
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
@@ -32,8 +39,10 @@
     [super viewDidLoad];
 
     //return the array of show images; reason being, i need to get the scrollview content size based on the image count.
-    showImages = [ShowImage alloc];
-    NSArray *images = showImages.getShowImages; 
+    //showImages = [ShowImage alloc];
+    //NSArray *images = showImages.getShowImages; 
+    
+    NSArray *images = [ShowDAO imagesForShows];
     
     //display the show images.
     [self displayShowImages:images];
