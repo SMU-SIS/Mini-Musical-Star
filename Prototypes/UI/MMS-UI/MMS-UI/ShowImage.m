@@ -7,13 +7,17 @@
 //
 
 #import "ShowImage.h"
+#import "Show.h"
+#import "ShowDAO.h"
 
 
 @implementation ShowImage
 
 -(NSArray *)getShowImages
 {
-    showImages = [[NSArray alloc] initWithObjects:[UIImage imageNamed:@"wickedCover.jpg"], [UIImage imageNamed:@"gleeCover.jpg"], [UIImage imageNamed:@"hsmCover.jpg"], nil];
+//    showImages = [[NSArray alloc] initWithObjects:[UIImage imageNamed:@"wickedCover.jpg"], [UIImage imageNamed:@"gleeCover.jpg"], [UIImage imageNamed:@"hsmCover.jpg"], nil];
+    Show *show = [[ShowDAO shows] objectAtIndex:0];
+    showImages = [[NSArray alloc] initWithObjects:show.coverPicture, nil];
     
     return [showImages autorelease];
 }

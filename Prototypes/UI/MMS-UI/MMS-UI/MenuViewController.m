@@ -9,9 +9,11 @@
 #import "MenuViewController.h"
 
 @implementation MenuViewController
+@synthesize shows;
 
 - (void)dealloc
 {
+    [shows release];
     [super dealloc];
 }
 
@@ -37,6 +39,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    //load the shows on the local disk
+    [ShowDAO loadLocalShows];
+    self.shows = [ShowDAO shows];
+    
+//    NSLog(@"shows are %@\n", shows);
+    
 
     //return the array of show images; reason being, i need to get the scrollview content size based on the image count.
     //showImages = [ShowImage alloc];
@@ -74,10 +83,12 @@
 
 //Button action for creating new musical
 - (IBAction)createMusical {
-    SceneViewController *sceneView = [[SceneViewController alloc] initWithNibName:nil bundle:nil];
+//    SceneViewController *sceneView = [[SceneViewController alloc] initWithNibName:nil bundle:nil];
     
     int current = [self currentPage]; 
 
+    int currentSelection = [self currentPage];
+    SceneViewController *sceneView = [[SceneViewController alloc] initWithScenesFromShow:[shows objectAtIndex:currentSelection]];
         [sceneView setImageNum:current];
         
         sceneView.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;

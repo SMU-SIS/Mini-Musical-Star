@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ShowImage.h"
+#import "Show.h"
 
 @interface SceneViewController : UIViewController{
     IBOutlet UIImageView *showCover;
@@ -20,6 +21,7 @@
 }
 
 @property (nonatomic, assign) int imageNum;
+@property (retain, nonatomic) Show *theShow;
 
 -(void)setImageNum:(int)num;
 -(int)getImageNum;

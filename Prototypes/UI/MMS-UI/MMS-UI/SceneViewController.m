@@ -11,6 +11,7 @@
 
 @implementation SceneViewController
 @synthesize imageNum;
+@synthesize theShow;
 
 - (void)dealloc
 {
@@ -50,9 +51,13 @@
     
     
     //For the scene selection page. Scrollable.
-    scenes = [ShowImage alloc];
-    NSArray *sceneImages = [scenes getSceneImages:(imageNum)];
-    [scenes autorelease];
+    //get the scene images out of the show
+    NSMutableArray *sceneImages = [[NSMutableArray alloc]initWithCapacity:theShow.scenes.count];
+    [theShow.scenes enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        Scene *scene = (Scene *)obj;
+        [sceneImages addObject:scene.coverPicture];
+        
+    }];
     
     [self displaySceneImages:sceneImages];
 
@@ -123,6 +128,15 @@
     // Return YES for supported orientations
     //return (interfaceOrientation == UIInterfaceOrientationPortrait);
     return YES;
+}
+
+-(SceneViewController *)initWithScenesFromShow:(Show *)aShow
+{
+    [super init];
+    //store the current show as an ivar
+    self.theShow = aShow;
+    
+    return self;
 }
 
 @end
