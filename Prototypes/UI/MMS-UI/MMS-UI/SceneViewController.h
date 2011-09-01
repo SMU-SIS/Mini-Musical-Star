@@ -24,6 +24,8 @@
 @property (retain, nonatomic) Show *theShow;
 @property (retain, nonatomic) Scene *chosenScene;
 
+-(SceneViewController *)initWithScenesFromShow:(Show *)aShow;
+
 -(void)setImageNum:(int)num;
 -(int)getImageNum;
 -(IBAction)backToMenu;
