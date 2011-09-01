@@ -39,7 +39,7 @@
         [pictureArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             NSDictionary *pictureObjectDict = (NSDictionary *)obj;
             
-            Picture *scenePicture = [[Picture alloc] initPictureWithPropertyDictionary:pictureObjectDict];
+            Picture *scenePicture = [[Picture alloc] initPictureWithPropertyDictionary:pictureObjectDict : scenePath];
             [pictureList addObject:scenePicture];
             [scenePicture release];
         }];

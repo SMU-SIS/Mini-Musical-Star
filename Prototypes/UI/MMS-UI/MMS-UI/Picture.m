@@ -9,14 +9,14 @@
 #import "Picture.h"
 
 @implementation Picture
-@synthesize title, path, startTime, duration, pictureCueList;
+@synthesize title, image, startTime, duration, pictureCueList;
 
-- (Picture *)initPictureWithPropertyDictionary: (NSDictionary *) pDictionary
+- (Picture *)initPictureWithPropertyDictionary: (NSDictionary *) pDictionary: (NSString *) scenePath
 {
     self = [super init];
     if (self) {
         title = [pDictionary objectForKey:@"title"];
-        path = [pDictionary objectForKey:@"path"];
+        image = [[UIImage alloc] initWithContentsOfFile:[scenePath stringByAppendingString:[pDictionary objectForKey:@"path"]]];
         startTime = [pDictionary objectForKey:@"startTime"];
         duration = [pDictionary objectForKey:@"duration"];
         NSArray *cueArray = [pDictionary objectForKey:@"cues"];
@@ -39,7 +39,7 @@
 - (void)dealloc
 {
     [title release];
-    [path release];
+    [image release];
     [startTime release];
     [duration release];
     [pictureCueList release];

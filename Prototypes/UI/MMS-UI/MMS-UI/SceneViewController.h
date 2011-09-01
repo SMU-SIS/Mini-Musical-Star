@@ -22,6 +22,7 @@
 
 @property (nonatomic, assign) int imageNum;
 @property (retain, nonatomic) Show *theShow;
+@property (retain, nonatomic) Scene *chosenScene;
 
 -(SceneViewController *)initWithScenesFromShow:(Show *)aShow;
 

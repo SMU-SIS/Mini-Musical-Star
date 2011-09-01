@@ -37,9 +37,18 @@
     return [sceneImages autorelease];
 }
 
--(NSArray *)getImagesInTheScene
+-(NSMutableArray *)getImagesInTheScene: (Scene *) scene
 {
-    imagesOfAScene = [[NSArray alloc] initWithObjects:[UIImage imageNamed:@"g1.png"], [UIImage imageNamed:@"g2.png"], [UIImage imageNamed:@"g3.png"], [UIImage imageNamed:@"g4.png"], [UIImage imageNamed:@"g5.png"], [UIImage imageNamed:@"g6.png"], [UIImage imageNamed:@"g7.png"], [UIImage imageNamed:@"g8.png"], nil];
+//    imagesOfAScene = [[NSArray alloc] initWithObjects:[UIImage imageNamed:@"g1.png"], [UIImage imageNamed:@"g2.png"], [UIImage imageNamed:@"g3.png"], [UIImage imageNamed:@"g4.png"], [UIImage imageNamed:@"g5.png"], [UIImage imageNamed:@"g6.png"], [UIImage imageNamed:@"g7.png"], [UIImage imageNamed:@"g8.png"], nil];
+    
+    NSMutableArray *imagesOfAScene = [[NSMutableArray alloc] init];
+//    NSLog(@"WOOHOO : %@",scene.pictureList);
+    for(int i=0; i< [scene.pictureList count]; i++){
+//        NSLog(@"path : %@",[scene.pictureList objectAtIndex:i]);
+        Picture *pic = [scene.pictureList objectAtIndex:i];
+//        NSLog(@"path : %@",pic.image);
+        [imagesOfAScene addObject:pic.image];
+    }
     
     return [imagesOfAScene autorelease];
 }

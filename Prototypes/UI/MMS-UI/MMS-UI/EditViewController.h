@@ -39,6 +39,11 @@
 
 -(void)closeOptionMenu:(id)sender;
 
+-(EditViewController *)initWithImagesFromScene:(Scene *)aScene;
+
+
+@property(retain, nonatomic) Scene *chosenScene;
+
 @property(retain, nonatomic) AudioViewController *audioview;
 
 @end
