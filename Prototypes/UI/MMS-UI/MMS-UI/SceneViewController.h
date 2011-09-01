@@ -23,6 +23,8 @@
 @property (nonatomic, assign) int imageNum;
 @property (retain, nonatomic) Show *theShow;
 
+-(SceneViewController *)initWithScenesFromShow:(Show *)aShow;
+
 -(void)setImageNum:(int)num;
 -(int)getImageNum;
 -(IBAction)backToMenu;
