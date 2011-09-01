@@ -10,7 +10,7 @@
 
 @implementation EditViewController
 
-
+@synthesize chosenScene;
 @synthesize audioview;
 
 /*
@@ -99,7 +99,7 @@
     UIButton *button = (UIButton *)sender;
     
     ShowImage *showImage = [ShowImage alloc];
-    NSArray *images = [showImage getImagesInTheScene];
+    NSArray *images = [showImage getImagesInTheScene:chosenScene];
     
     
     
@@ -122,8 +122,9 @@
     scrollView = [[UIScrollView alloc] initWithFrame:rect];
     
     ShowImage *showImage = [ShowImage alloc];
-    NSArray *imagesInTheScene = [showImage getImagesInTheScene];
-    
+    NSLog(@"closer nowwwww... %@", chosenScene);
+    NSMutableArray *imagesInTheScene = [showImage getImagesInTheScene:chosenScene];
+    NSLog(@"HELO!");
     BOOL odd = TRUE;
     
     for (int i = 0; i<imagesInTheScene.count; i++) {
@@ -241,4 +242,15 @@
 {
     [options removeFromSuperview];
 }
+
+-(EditViewController *)initWithImagesFromScene:(Scene *)aScene
+{
+    [super init];
+    //store the current show as an ivar
+    self.chosenScene = aScene;
+    NSLog(@"lalalala %@", self.chosenScene);
+    
+    return self;
+}
+
 @end

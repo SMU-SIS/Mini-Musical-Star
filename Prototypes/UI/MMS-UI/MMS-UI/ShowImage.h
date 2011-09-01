@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "Scene.h"
 
 @interface ShowImage : NSObject {
     NSArray *showImages;
@@ -17,6 +17,6 @@
 
 -(NSArray *)getShowImages;
 -(NSArray *)getSceneImages:(int)musical;
--(NSArray *)getImagesInTheScene;
+-(NSMutableArray *)getImagesInTheScene:(Scene *) scene;
 
 @end

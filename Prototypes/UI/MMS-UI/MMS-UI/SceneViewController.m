@@ -12,6 +12,7 @@
 @implementation SceneViewController
 @synthesize imageNum;
 @synthesize theShow;
+@synthesize chosenScene;
 
 - (void)dealloc
 {
@@ -87,11 +88,13 @@
 
 -(void)selectScene:(id)sender
 {
-    EditViewController *editScene = [[EditViewController alloc] initWithNibName:nil bundle:nil];
+    //wei jie, I don't know how to get the value for selected scene so i hardcode first ok? help me change - Adrian
+    NSLog(@"TMD : %@",theShow.scenes);
+    EditViewController *editScene = [[EditViewController alloc] initWithImagesFromScene:[theShow.scenes objectAtIndex:0]];
+    
     
     editScene.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     [self presentModalViewController:editScene animated:YES];
-    
     [editScene release];
 }
 
