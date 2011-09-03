@@ -1,0 +1,10 @@
+Read http://developer.apple.com/library/ios/#documentation/WindowsViews/Conceptual/UIScrollView_pg/CreatingBasicScrollViews/CreatingBasicScrollViews.html#//apple_ref/doc/uid/TP40008179-CH101-SW1
+ 
+PlayScroll project
+LayoutScrollImages is affecting the positioning of the subviews
+
+Check scrollView setContentSize:
+Does the size of the content view affect the amount of scrollable spaces?
+
+
+
