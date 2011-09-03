@@ -9,5 +9,14 @@
 #import <UIKit/UIKit.h>
 
 @interface PlayScrollViewController : UIViewController
+{
+    IBOutlet UIScrollView *scrollView1;
+    IBOutlet UIScrollView *superScrollView;
+}
+
+@property (nonatomic, retain) UIView *scrollView1;
+@property (nonatomic, retain) UIView *superScrollView;
+
+
 
 @end
