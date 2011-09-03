@@ -103,20 +103,20 @@ static bool initialized = NO;
     }];
 }
 
-+ (void)initiateDownloadOfShowFromServer:(NSURL *)zipFileURL andStoreInPath:(NSString *)localShowPath
-{
-    
-    __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:zipFileURL];
-    [request setDownloadDestinationPath:localShowPath];
-    [request setCompletionBlock:^{
-        NSLog(@"Download finished!");
-    }];
-    [request setFailedBlock:^{
-        NSError *error = [request error];
-        NSLog(@"Download Error: %@\n", error);
-    }];
-    
-}
+//+ (void)initiateDownloadOfShowFromServer:(NSURL *)zipFileURL andStoreInPath:(NSString *)localShowPath
+//{
+//    
+//    __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:zipFileURL];
+//    [request setDownloadDestinationPath:localShowPath];
+//    [request setCompletionBlock:^{
+//        NSLog(@"Download finished!");
+//    }];
+//    [request setFailedBlock:^{
+//        NSError *error = [request error];
+//        NSLog(@"Download Error: %@\n", error);
+//    }];
+//    
+//}
             
 + (BOOL)checkIfExistsLocally:(NSString *)showTitle
 {

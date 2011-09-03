@@ -65,6 +65,13 @@
     [scrollView setContentSize:CGSizeMake(scrollView.frame.size.width + (images.count+1)* 280, scrollView.frame.size.height)];
     
     [showImages release];
+    
+    
+    //set up the hidden frame to scroll the scrollView outside from outside it's rectangle
+    CGRect hiddenScrollViewFrame = CGRectMake(0, 174, 1024, scrollView.frame.size.height); //make a CGRect for HiddenView
+    HiddenView *hiddenView = [[[HiddenView alloc] initWithFrame:hiddenScrollViewFrame] autorelease]; //init new HiddenView which is a custom UIView
+    hiddenView.menuScrollView = scrollView;
+    [self.view addSubview:hiddenView]; //add to the MenuViewController
 }
 
 

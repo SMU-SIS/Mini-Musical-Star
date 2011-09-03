@@ -16,6 +16,8 @@
 #import "PlaybackViewController.h"
 #import "CoverViewController.h"
 
+#import "HiddenView.h"
+
 @interface MenuViewController : UIViewController {
     IBOutlet UIScrollView *scrollView; 
     
