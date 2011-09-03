@@ -1,1 +1,0 @@
-You can just extract KensBurner.h and KensBurner.m.
