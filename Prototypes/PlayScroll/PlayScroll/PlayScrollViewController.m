@@ -1,21 +1,19 @@
 //
 //  PlayScrollViewController.m
 //  PlayScroll
-//
-//  Created by Tommi on 1/9/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//.//  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
 #import "PlayScrollViewController.h"
-
+#import "HiddenView.h"
+        
 @implementation PlayScrollViewController
 
-@synthesize scrollView1, superScrollView;
+@synthesize scrollView1;
 
 const CGFloat kScrollObjHeight	= 400;
 const CGFloat kScrollObjWidth	= 280.0;
 const NSUInteger kNumImages		= 9;
-
 
 - (void)layoutScrollImages
 {
@@ -35,7 +33,7 @@ const NSUInteger kNumImages		= 9;
 			curXLoc += (kScrollObjWidth);
 		}
 	}
-	
+    
 	// set the content size so it can be scrollable
 	[scrollView1 setContentSize:CGSizeMake((kNumImages * kScrollObjWidth), [scrollView1 bounds].size.height)];
 }
@@ -96,21 +94,11 @@ const NSUInteger kNumImages		= 9;
 	[self layoutScrollImages];	// now place the photos in serial layout within the scrollview
     
     
+    CGRect magicFrame = CGRectMake(0, 200, 1024, kScrollObjHeight); //for HiddenView
     
-    superScrollView.frame = CGRectMake(0, 200, 1024, kScrollObjHeight);
-    superScrollView.backgroundColor = [UIColor greenColor];
-    superScrollView.clipsToBounds = YES;
-    
-    [superScrollView addSubview:scrollView1];
-
-}
-
-- (UIView*)hitTest:(CGPoint)point withEvent:(UIEvent *)event
-{
-    if ([self pointInside:point withEvent:event]) {
-        return scrollView1;
-    }
-    return nil;
+    HiddenView *hiddenView = [[[HiddenView alloc] initWithFrame:magicFrame] autorelease];
+    hiddenView.underneathButton = scrollView1;
+    [self.view addSubview:hiddenView];
 }
 
 - (void)viewDidUnload

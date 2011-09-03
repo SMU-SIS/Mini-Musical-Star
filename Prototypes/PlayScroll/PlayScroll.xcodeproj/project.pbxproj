@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		646E5BAF14121796004F460C /* HiddenView.m in Sources */ = {isa = PBXBuildFile; fileRef = 646E5BAE14121796004F460C /* HiddenView.m */; };
 		64892CDF140F9F56009212AC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64892CDE140F9F56009212AC /* UIKit.framework */; };
 		64892CE1140F9F56009212AC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64892CE0140F9F56009212AC /* Foundation.framework */; };
 		64892CE3140F9F56009212AC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64892CE2140F9F56009212AC /* CoreGraphics.framework */; };
@@ -28,6 +29,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		646E5BAD14121796004F460C /* HiddenView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HiddenView.h; sourceTree = "<group>"; };
+		646E5BAE14121796004F460C /* HiddenView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HiddenView.m; sourceTree = "<group>"; };
 		64892CDA140F9F56009212AC /* PlayScroll.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlayScroll.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64892CDE140F9F56009212AC /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		64892CE0140F9F56009212AC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -105,6 +108,8 @@
 				64892CF4140F9F56009212AC /* PlayScrollViewController.m */,
 				64892CF6140F9F56009212AC /* PlayScrollViewController.xib */,
 				64892CE5140F9F56009212AC /* Supporting Files */,
+				646E5BAD14121796004F460C /* HiddenView.h */,
+				646E5BAE14121796004F460C /* HiddenView.m */,
 			);
 			path = PlayScroll;
 			sourceTree = "<group>";
@@ -208,6 +213,7 @@
 				64892CEB140F9F56009212AC /* main.m in Sources */,
 				64892CEF140F9F56009212AC /* PlayScrollAppDelegate.m in Sources */,
 				64892CF5140F9F56009212AC /* PlayScrollViewController.m in Sources */,
+				646E5BAF14121796004F460C /* HiddenView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
