@@ -18,7 +18,6 @@ static bool initialized = NO;
 {
     [self loadLocalShows];
     [self checkForNewShowsFromServer];
-    [self loadLocalShows];
 }
 
 + (void)loadLocalShows
@@ -43,20 +42,24 @@ static bool initialized = NO;
     //read the showMetaData.plist file for every Show
     [showsDirectoryListing enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         NSURL *showDirectoryURL = (NSURL *)obj;
-        NSLog(@"showDirectoryURL: %@",showDirectoryURL);
-        
-        //get a reference to showMetaData.plist url
-        NSURL *metadataURL = [showDirectoryURL URLByAppendingPathComponent:@"showMetaData.plist"];
-        NSString *metadataString = [metadataURL path];
-        NSLog(@"metadataString is %@\n", metadataString);
-        
-        Show *show = [[Show alloc] initShowWithPropertyListFile:metadataString atPath:showDirectoryURL];
-        [loadedShows addObject:show];
-        [show release];
-        
+        [self loadSingleShowFromDirectoryURL:showDirectoryURL];
     }];
     
     initialized = YES;
+}
+
++ (void)loadSingleShowFromDirectoryURL:(NSURL *)showDirectoryURL
+{
+    NSLog(@"showDirectoryURL: %@",showDirectoryURL);
+    
+    //get a reference to showMetaData.plist url
+    NSURL *metadataURL = [showDirectoryURL URLByAppendingPathComponent:@"showMetaData.plist"];
+    NSString *metadataString = [metadataURL path];
+    NSLog(@"metadataString is %@\n", metadataString);
+    
+    Show *show = [[Show alloc] initShowWithPropertyListFile:metadataString atPath:showDirectoryURL];
+    [loadedShows addObject:show];
+    [show release];
 }
 
 + (NSArray *)shows
@@ -87,6 +90,7 @@ static bool initialized = NO;
                         (float)random()/RAND_MAX];
     NSURL *url = [NSURL URLWithString:urlStr];
     NSDictionary *root = [[NSDictionary alloc] initWithContentsOfURL:url];
+    NSLog(@"the dictionary is %@\n", root);
     
     NSArray *showCatalogue = [root objectForKey:@"shows"];
     
@@ -94,35 +98,43 @@ static bool initialized = NO;
     [showCatalogue enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         NSDictionary *showInCatalogue = (NSDictionary *)obj;
         NSString *showTitle = [showInCatalogue objectForKey:@"title"];
+        NSString *showTitleZip = [showTitle stringByAppendingPathExtension:@"zip"];
         if (![self checkIfExistsLocally:showTitle])
         {
             NSURL *showDownloadLocation = [NSURL URLWithString:[showInCatalogue objectForKey:@"zip_url"]];
-            NSString *downloadPath = [[userDocumentDirectory stringByAppendingPathComponent:@"shows"] stringByAppendingPathComponent:showTitle];
+            NSString *downloadPath = [[userDocumentDirectory stringByAppendingPathComponent:@"shows"] stringByAppendingPathComponent:showTitleZip];
             [self initiateDownloadOfShowFromServer:showDownloadLocation andStoreInPath:downloadPath];
         }
     }];
 }
 
-//+ (void)initiateDownloadOfShowFromServer:(NSURL *)zipFileURL andStoreInPath:(NSString *)localShowPath
-//{
-//    
-//    __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:zipFileURL];
-//    [request setDownloadDestinationPath:localShowPath];
-//    [request setCompletionBlock:^{
-//        NSLog(@"Download finished!");
-//    }];
-//    [request setFailedBlock:^{
-//        NSError *error = [request error];
-//        NSLog(@"Download Error: %@\n", error);
-//    }];
-//    
-//}
++ (void)initiateDownloadOfShowFromServer:(NSURL *)zipFileURL andStoreInPath:(NSString *)localShowPath
+{
+    
+    __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:zipFileURL];
+    [request setDownloadDestinationPath:localShowPath];
+    [request setCompletionBlock:^{
+        NSLog(@"Download finished! Unzipping show...\n");
+        [self unzipDownloadedShowURL:localShowPath toPath:[localShowPath stringByDeletingPathExtension]];
+        [self loadSingleShowFromDirectoryURL:
+            [NSURL fileURLWithPath:[localShowPath stringByDeletingPathExtension]]];
+        NSLog(@"Show at %@ loaded\n", [localShowPath stringByDeletingPathExtension]);
+    }];
+    [request setFailedBlock:^{
+        NSError *error = [request error];
+        NSLog(@"Download Error: %@\n", error);
+    }];
+    
+    [request startSynchronous];
+    
+}
             
 + (BOOL)checkIfExistsLocally:(NSString *)showTitle
 {
     for (int i = 0; i < loadedShows.count; i++)
     {
         Show *aShow = [loadedShows objectAtIndex:i];
+        NSLog(@"showTitle is [%@] and aShow.title is [%@]", showTitle, aShow.title); 
         if ([showTitle isEqualToString:aShow.title])
         {
             return YES;
@@ -130,6 +142,18 @@ static bool initialized = NO;
     }
     
     return NO;
+}
+
++ (void)unzipDownloadedShowURL:(NSString *)localShowZipPath toPath:(NSString *)unzipPath
+{
+    ZipArchive *zipArchive = [[ZipArchive alloc] init];
+    [zipArchive UnzipOpenFile:localShowZipPath];
+    [zipArchive UnzipFileTo:unzipPath overWrite:YES];
+    [zipArchive UnzipCloseFile];
+    [zipArchive release];
+    
+    //delete the zip file
+    unlink([localShowZipPath cStringUsingEncoding:NSUTF8StringEncoding]);
 }
             
 

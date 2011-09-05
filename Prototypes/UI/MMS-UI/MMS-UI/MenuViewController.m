@@ -41,7 +41,7 @@
     [super viewDidLoad];
     
     //load the shows on the local disk
-    [ShowDAO loadLocalShows];
+    [ShowDAO loadShows];
     self.shows = [ShowDAO shows];
     
 //    NSLog(@"shows are %@\n", shows);
