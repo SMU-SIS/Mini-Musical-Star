@@ -111,7 +111,10 @@
         
         UIImage *img = [images objectAtIndex:i];
         
+        
         UIButton *button = [[UIButton alloc] initWithFrame:frame];
+        //set tag number for each scene button
+        [button setTag:i];
         [button setImage:img forState:(UIControlStateNormal)];
         [button addTarget:self action:@selector(selectScene:) forControlEvents:UIControlEventTouchUpInside];
         [sceneMenu addSubview:button];

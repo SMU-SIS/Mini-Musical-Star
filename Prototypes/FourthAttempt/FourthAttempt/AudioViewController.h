@@ -11,6 +11,8 @@
 
 @interface AudioViewController : UIViewController {
     MixPlayerRecorder *player;
+    UITableView *tableView;
+    NSArray *audioFiles;
 }
 
 @property (nonatomic, retain) IBOutlet UISlider *slider;
@@ -23,5 +25,7 @@
 - (IBAction)togglePlaybackButtonDidPress:(UIButton *)sender;
 -(void)updateProgressSliderWithTime:(NSNumber *)elapsedTime;
 -(void)stopPlayer;
+
+-(void)makeAudioList;
 
 @end

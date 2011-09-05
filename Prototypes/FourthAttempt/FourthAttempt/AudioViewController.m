@@ -41,9 +41,11 @@
     NSString *keys = [[NSBundle mainBundle] pathForResource:@"keys" ofType:@"mp3"];
     NSString *vocals = [[NSBundle mainBundle] pathForResource:@"vocals" ofType:@"mp3"];
     
-    NSArray *audioFiles = [NSArray arrayWithObjects:[NSURL fileURLWithPath:bass], [NSURL fileURLWithPath:drums], [NSURL fileURLWithPath:guitar], [NSURL fileURLWithPath:keys], [NSURL fileURLWithPath:vocals], nil];
+    audioFiles = [NSArray arrayWithObjects:[NSURL fileURLWithPath:bass], [NSURL fileURLWithPath:drums], [NSURL fileURLWithPath:guitar], [NSURL fileURLWithPath:keys], [NSURL fileURLWithPath:vocals], nil];
     
     player = [[MixPlayerRecorder alloc] initWithAudioFileURLs:audioFiles];
+    
+    //[self makeAudioList];
     
     //create temp file for recording
     NSString *tempRecordingFile = [NSTemporaryDirectory() stringByAppendingString:@"recording.m4a"];
@@ -117,6 +119,36 @@
 -(void)didReceivePlayerStartedNotification:(NSNotification *)notification
 {
     [togglePlaybackButton setTitle:@"Stop" forState:UIControlStateNormal];
+}
+
+-(void)makeAudioList
+{
+    //Hard coded the names of the tracks. Is there a way to get the name of the tracks from the audio object?
+    NSArray *trackNames =[[NSArray alloc] initWithObjects:[NSString stringWithString:@"Bass"],[NSString stringWithString:@"Drums"],[NSString stringWithString:@"Guitar"], [NSString stringWithString:@"Keys"],[NSString stringWithString:@"Vocals"], nil];
+    
+    for (int i=0; i<trackNames.count; i++) {
+        //The display pf the tracks will always be centralized according to the number of tracks
+        CGRect frame = CGRectMake(0, (self.view.frame.size.height-trackNames.count*50)/2+(i*50), 480, 100);
+        UIButton *button = [[UIButton alloc] initWithFrame:frame];
+    
+        NSString *name = [trackNames objectAtIndex:i];
+        
+        //creating UIlabel to format the Track names
+        UILabel *titleLable = [[UILabel alloc] initWithFrame:CGRectMake(50, 0, 400, 50)];
+        [titleLable setText:name];
+        [titleLable setTextColor:[UIColor whiteColor]];
+        [titleLable setBackgroundColor:[UIColor blackColor]];
+        [titleLable setTextAlignment:UITextAlignmentLeft];
+        [titleLable setFont:[UIFont fontWithName:@"verdana" size:25]];
+
+        //adding the label to the button then to the main view
+        [button addSubview:titleLable];
+        [button setBackgroundColor:[UIColor blackColor]];
+        [self.view addSubview:button];
+        [button release];
+        [titleLable release];
+    }
+    [trackNames release];
 }
 
 

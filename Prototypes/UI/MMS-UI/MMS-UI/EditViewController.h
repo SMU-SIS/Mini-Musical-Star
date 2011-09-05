@@ -18,6 +18,7 @@
     IBOutlet UISegmentedControl *segControl;
     IBOutlet UIImageView *leftView;
     AudioViewController *audioview;
+
     //VideoViewController *videoView;
     
     UIView *options;
