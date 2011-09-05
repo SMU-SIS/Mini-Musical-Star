@@ -9,7 +9,7 @@
 #import "Show.h"
 
 @implementation Show
-@synthesize data, scenes, title, author, coverPicture, createdDate, showLocation;
+@synthesize data, scenes, title, author, coverPicture, createdDate, iTunesAlbumLink, iBooksBookLink, showLocation;
 
 - (Show *)initShowWithPropertyListFile: (NSString *)pListFilePath atPath:(NSURL *)showPath
 {
@@ -33,7 +33,10 @@
         showLocation = showPath;
         self.title = [root objectForKey:@"title"];
         self.author = [root objectForKey:@"author"];
+        self.iTunesAlbumLink = [root objectForKey:@"iTunesAlbumLink"];
+        self.iBooksBookLink = [root objectForKey:@"iBooksBookLink"];
         
+        NSLog(@"itunes album link is %@ and ibooks book link is %@\n", iTunesAlbumLink, iBooksBookLink);
         
         NSString *coverPicturePath = [[showLocation path] stringByAppendingPathComponent:[root objectForKey:@"cover-picture"]];
         NSLog(@"coverPicturePath is %@\n", coverPicturePath);
@@ -71,6 +74,8 @@
     [title release];
     [scenes release];
     [createdDate release];
+    [iTunesAlbumLink release];
+    [iBooksBookLink release];
     [showLocation release];
     [super dealloc];
 }

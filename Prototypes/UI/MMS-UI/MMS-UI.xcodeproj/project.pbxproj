@@ -53,6 +53,7 @@
 		95DAE8DC141495690039201D /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = 95DAE8D5141495690039201D /* zip.c */; };
 		95DAE8DD141495690039201D /* ZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = 95DAE8D8141495690039201D /* ZipArchive.m */; };
 		95DAE8EA1414A2AF0039201D /* DSActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 95DAE8E91414A2AF0039201D /* DSActivityView.m */; };
+		95DAE8F71414E8D50039201D /* ScenePlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 95DAE8F61414E8D50039201D /* ScenePlayer.m */; };
 		ED75B7F913FE9C9700AFA08B /* scene.png in Resources */ = {isa = PBXBuildFile; fileRef = ED75B7F713FE9C9700AFA08B /* scene.png */; };
 		ED8310D614090B280093BFF9 /* gfxoption.png in Resources */ = {isa = PBXBuildFile; fileRef = ED8310D514090B280093BFF9 /* gfxoption.png */; };
 		EDA02935140BE83000358173 /* VideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA02933140BE83000358173 /* VideoViewController.m */; };
@@ -130,24 +131,24 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		6472FC2B14127DDE00837069 /* HiddenView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HiddenView.h; path = "MMS-UI/HiddenView.h"; sourceTree = "<group>"; };
-		6472FC2C14127DDE00837069 /* HiddenView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HiddenView.m; path = "MMS-UI/HiddenView.m"; sourceTree = "<group>"; };
+		6472FC2B14127DDE00837069 /* HiddenView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HiddenView.h; sourceTree = "<group>"; };
+		6472FC2C14127DDE00837069 /* HiddenView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HiddenView.m; sourceTree = "<group>"; };
 		820511BC13F3BB9B0016F87E /* SceneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneViewController.h; sourceTree = "<group>"; };
 		820511BD13F3BB9B0016F87E /* SceneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SceneViewController.m; sourceTree = "<group>"; };
 		820511BE13F3BB9B0016F87E /* SceneViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SceneViewController.xib; sourceTree = "<group>"; };
 		820E2A1B140A0A1E00B80BBC /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		820E2A1F140A0A3E00B80BBC /* MixPlayerRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MixPlayerRecorder.h; path = ../../../Libraries/MixPlayerRecorder.h; sourceTree = "<group>"; };
-		820E2A20140A0A3E00B80BBC /* MixPlayerRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MixPlayerRecorder.m; path = ../../../Libraries/MixPlayerRecorder.m; sourceTree = "<group>"; };
-		820E2A21140A0A3E00B80BBC /* ASBDHelper.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ASBDHelper.c; path = ../../../Libraries/ASBDHelper.c; sourceTree = "<group>"; };
-		820E2A22140A0A3E00B80BBC /* ASBDHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASBDHelper.h; path = ../../../Libraries/ASBDHelper.h; sourceTree = "<group>"; };
-		820E2A23140A0A3E00B80BBC /* AudioFileRingBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AudioFileRingBuffer.h; path = ../../../Libraries/AudioFileRingBuffer.h; sourceTree = "<group>"; };
-		820E2A24140A0A3E00B80BBC /* AudioFileRingBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AudioFileRingBuffer.m; path = ../../../Libraries/AudioFileRingBuffer.m; sourceTree = "<group>"; };
-		820E2A25140A0A3E00B80BBC /* BoomzAUOutputCapturer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BoomzAUOutputCapturer.h; path = ../../../Libraries/BoomzAUOutputCapturer.h; sourceTree = "<group>"; };
-		820E2A26140A0A3E00B80BBC /* BoomzAUOutputCapturer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BoomzAUOutputCapturer.m; path = ../../../Libraries/BoomzAUOutputCapturer.m; sourceTree = "<group>"; };
-		820E2A27140A0A3E00B80BBC /* CAErrorHandling.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = CAErrorHandling.c; path = ../../../Libraries/CAErrorHandling.c; sourceTree = "<group>"; };
-		820E2A28140A0A3E00B80BBC /* CAErrorHandling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CAErrorHandling.h; path = ../../../Libraries/CAErrorHandling.h; sourceTree = "<group>"; };
-		820E2A29140A0A3E00B80BBC /* TPCircularBuffer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = TPCircularBuffer.c; path = ../../../Libraries/TPCircularBuffer.c; sourceTree = "<group>"; };
-		820E2A2A140A0A3E00B80BBC /* TPCircularBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TPCircularBuffer.h; path = ../../../Libraries/TPCircularBuffer.h; sourceTree = "<group>"; };
+		820E2A1F140A0A3E00B80BBC /* MixPlayerRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MixPlayerRecorder.h; path = ../../../../Libraries/MixPlayerRecorder.h; sourceTree = "<group>"; };
+		820E2A20140A0A3E00B80BBC /* MixPlayerRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MixPlayerRecorder.m; path = ../../../../Libraries/MixPlayerRecorder.m; sourceTree = "<group>"; };
+		820E2A21140A0A3E00B80BBC /* ASBDHelper.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ASBDHelper.c; path = ../../../../Libraries/ASBDHelper.c; sourceTree = "<group>"; };
+		820E2A22140A0A3E00B80BBC /* ASBDHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASBDHelper.h; path = ../../../../Libraries/ASBDHelper.h; sourceTree = "<group>"; };
+		820E2A23140A0A3E00B80BBC /* AudioFileRingBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AudioFileRingBuffer.h; path = ../../../../Libraries/AudioFileRingBuffer.h; sourceTree = "<group>"; };
+		820E2A24140A0A3E00B80BBC /* AudioFileRingBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AudioFileRingBuffer.m; path = ../../../../Libraries/AudioFileRingBuffer.m; sourceTree = "<group>"; };
+		820E2A25140A0A3E00B80BBC /* BoomzAUOutputCapturer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BoomzAUOutputCapturer.h; path = ../../../../Libraries/BoomzAUOutputCapturer.h; sourceTree = "<group>"; };
+		820E2A26140A0A3E00B80BBC /* BoomzAUOutputCapturer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BoomzAUOutputCapturer.m; path = ../../../../Libraries/BoomzAUOutputCapturer.m; sourceTree = "<group>"; };
+		820E2A27140A0A3E00B80BBC /* CAErrorHandling.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = CAErrorHandling.c; path = ../../../../Libraries/CAErrorHandling.c; sourceTree = "<group>"; };
+		820E2A28140A0A3E00B80BBC /* CAErrorHandling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CAErrorHandling.h; path = ../../../../Libraries/CAErrorHandling.h; sourceTree = "<group>"; };
+		820E2A29140A0A3E00B80BBC /* TPCircularBuffer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = TPCircularBuffer.c; path = ../../../../Libraries/TPCircularBuffer.c; sourceTree = "<group>"; };
+		820E2A2A140A0A3E00B80BBC /* TPCircularBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TPCircularBuffer.h; path = ../../../../Libraries/TPCircularBuffer.h; sourceTree = "<group>"; };
 		820E2A31140A0A8E00B80BBC /* AudioViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AudioViewController.h; path = ../../../FourthAttempt/FourthAttempt/AudioViewController.h; sourceTree = "<group>"; };
 		820E2A32140A0A8E00B80BBC /* AudioViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AudioViewController.m; path = ../../../FourthAttempt/FourthAttempt/AudioViewController.m; sourceTree = "<group>"; };
 		820E2A34140A0A8E00B80BBC /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = ../../../FourthAttempt/FourthAttempt/en.lproj/AudioViewController.xib; sourceTree = "<group>"; };
@@ -212,6 +213,8 @@
 		95DAE8D8141495690039201D /* ZipArchive.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZipArchive.m; sourceTree = "<group>"; };
 		95DAE8E81414A2AF0039201D /* DSActivityView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSActivityView.h; sourceTree = "<group>"; };
 		95DAE8E91414A2AF0039201D /* DSActivityView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSActivityView.m; sourceTree = "<group>"; };
+		95DAE8F51414E8D50039201D /* ScenePlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScenePlayer.h; sourceTree = "<group>"; };
+		95DAE8F61414E8D50039201D /* ScenePlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScenePlayer.m; sourceTree = "<group>"; };
 		ED75B7F713FE9C9700AFA08B /* scene.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = scene.png; path = Images/Buttons/scene.png; sourceTree = SOURCE_ROOT; };
 		ED8310D514090B280093BFF9 /* gfxoption.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = gfxoption.png; path = Images/Buttons/gfxoption.png; sourceTree = SOURCE_ROOT; };
 		EDA02932140BE83000358173 /* VideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoViewController.h; sourceTree = "<group>"; };
@@ -322,20 +325,6 @@
 		820E2A1E140A0A2A00B80BBC /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				6472FC2B14127DDE00837069 /* HiddenView.h */,
-				6472FC2C14127DDE00837069 /* HiddenView.m */,
-				820E2A1F140A0A3E00B80BBC /* MixPlayerRecorder.h */,
-				820E2A20140A0A3E00B80BBC /* MixPlayerRecorder.m */,
-				820E2A21140A0A3E00B80BBC /* ASBDHelper.c */,
-				820E2A22140A0A3E00B80BBC /* ASBDHelper.h */,
-				820E2A23140A0A3E00B80BBC /* AudioFileRingBuffer.h */,
-				820E2A24140A0A3E00B80BBC /* AudioFileRingBuffer.m */,
-				820E2A25140A0A3E00B80BBC /* BoomzAUOutputCapturer.h */,
-				820E2A26140A0A3E00B80BBC /* BoomzAUOutputCapturer.m */,
-				820E2A27140A0A3E00B80BBC /* CAErrorHandling.c */,
-				820E2A28140A0A3E00B80BBC /* CAErrorHandling.h */,
-				820E2A29140A0A3E00B80BBC /* TPCircularBuffer.c */,
-				820E2A2A140A0A3E00B80BBC /* TPCircularBuffer.h */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -462,6 +451,29 @@
 			name = DSActivityView;
 			sourceTree = "<group>";
 		};
+		95DAE8F31414DFD00039201D /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				6472FC2B14127DDE00837069 /* HiddenView.h */,
+				6472FC2C14127DDE00837069 /* HiddenView.m */,
+				820E2A1F140A0A3E00B80BBC /* MixPlayerRecorder.h */,
+				820E2A20140A0A3E00B80BBC /* MixPlayerRecorder.m */,
+				820E2A21140A0A3E00B80BBC /* ASBDHelper.c */,
+				820E2A22140A0A3E00B80BBC /* ASBDHelper.h */,
+				820E2A23140A0A3E00B80BBC /* AudioFileRingBuffer.h */,
+				820E2A24140A0A3E00B80BBC /* AudioFileRingBuffer.m */,
+				820E2A25140A0A3E00B80BBC /* BoomzAUOutputCapturer.h */,
+				820E2A26140A0A3E00B80BBC /* BoomzAUOutputCapturer.m */,
+				820E2A27140A0A3E00B80BBC /* CAErrorHandling.c */,
+				820E2A28140A0A3E00B80BBC /* CAErrorHandling.h */,
+				820E2A29140A0A3E00B80BBC /* TPCircularBuffer.c */,
+				820E2A2A140A0A3E00B80BBC /* TPCircularBuffer.h */,
+				95DAE8F51414E8D50039201D /* ScenePlayer.h */,
+				95DAE8F61414E8D50039201D /* ScenePlayer.m */,
+			);
+			name = Libraries;
+			sourceTree = "<group>";
+		};
 		ED885C2E140BC11E00209530 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -560,6 +572,7 @@
 		EDA2A1CA13F26F8400B64EA5 /* MMS-UI */ = {
 			isa = PBXGroup;
 			children = (
+				95DAE8F31414DFD00039201D /* Libraries */,
 				95DAE8E61414A2A40039201D /* DSActivityView */,
 				95DAE8CC141495370039201D /* ZipArchive */,
 				95C82544140FC4EB003C9E49 /* ASIHTTPRequest */,
@@ -870,6 +883,7 @@
 				95DAE8DC141495690039201D /* zip.c in Sources */,
 				95DAE8DD141495690039201D /* ZipArchive.m in Sources */,
 				95DAE8EA1414A2AF0039201D /* DSActivityView.m in Sources */,
+				95DAE8F71414E8D50039201D /* ScenePlayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

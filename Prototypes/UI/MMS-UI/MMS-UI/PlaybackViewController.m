@@ -8,22 +8,27 @@
 
 #import "PlaybackViewController.h"
 
-
 @implementation PlaybackViewController
+@synthesize theShow, theScene, playbackView, player;
 
-/*
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (PlaybackViewController *)initWithShow:(Show *)aShow
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
+    [super init];
+    self.theShow = aShow;
+    
+    self.theScene = [theShow.scenes objectAtIndex:0];
+    
+    
     return self;
+    
 }
- */
 
 - (void)dealloc
 {
+    [player release];
+    [theScene release];
+    [theShow release];
+    [playbackView release];
     [super dealloc];
 }
 
@@ -41,15 +46,9 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    self.player = [[ScenePlayer alloc] initWithScene:theScene andView:self.playbackView];
+    [player startPlayback];
     
-    menuImages = [ShowImage alloc];
-    NSArray *images = [menuImages getShowImages];
-    [menuImages autorelease];
-    
-    
-    UIImage *img = [images objectAtIndex:imageNum];
-    
-    [playBack setImage:img]; 
 }
 
 - (void)viewDidUnload
@@ -67,16 +66,6 @@
 
 - (IBAction)backToMenu {
     [self dismissModalViewControllerAnimated:YES];    
-}
-
-- (void)setImageNum:(int)num 
-{
-    imageNum=num;
-}
-
-- (int) getImageNum
-{
-    return imageNum;
 }
 
 @end

@@ -22,20 +22,20 @@
     return [showImages autorelease];
 }
 
--(NSArray *)getSceneImages:(int)musical
-{
-    if (musical == 0) {
-        sceneImages = [[NSArray alloc] initWithObjects:[UIImage imageNamed:@"wickedS1.jpeg"], [UIImage imageNamed:@"wickedS2.jpeg"], [UIImage imageNamed:@"wickedS3.jpeg"], [UIImage imageNamed:@"wickedS4.jpeg"], nil];
-    } 
-    else if (musical == 1) {
-        sceneImages = [[NSArray alloc] initWithObjects:[UIImage imageNamed:@"gleeS1.jpeg"], [UIImage imageNamed:@"gleeS2.jpeg"], [UIImage imageNamed:@"gleeS3.jpeg"], [UIImage imageNamed:@"gleeS4.jpeg"], [UIImage imageNamed:@"gleeS5.jpeg"], nil];
-    }
-    else {
-        sceneImages = [[NSArray alloc] initWithObjects:[UIImage imageNamed:@"hsmS1.jpeg"], [UIImage imageNamed:@"hsmS2.jpeg"], [UIImage imageNamed:@"hsmS3.jpeg"], nil];
-    }
-    
-    return [sceneImages autorelease];
-}
+//-(NSArray *)getSceneImages:(int)musical
+//{
+//    if (musical == 0) {
+//        sceneImages = [[NSArray alloc] initWithObjects:[UIImage imageNamed:@"wickedS1.jpeg"], [UIImage imageNamed:@"wickedS2.jpeg"], [UIImage imageNamed:@"wickedS3.jpeg"], [UIImage imageNamed:@"wickedS4.jpeg"], nil];
+//    } 
+//    else if (musical == 1) {
+//        sceneImages = [[NSArray alloc] initWithObjects:[UIImage imageNamed:@"gleeS1.jpeg"], [UIImage imageNamed:@"gleeS2.jpeg"], [UIImage imageNamed:@"gleeS3.jpeg"], [UIImage imageNamed:@"gleeS4.jpeg"], [UIImage imageNamed:@"gleeS5.jpeg"], nil];
+//    }
+//    else {
+//        sceneImages = [[NSArray alloc] initWithObjects:[UIImage imageNamed:@"hsmS1.jpeg"], [UIImage imageNamed:@"hsmS2.jpeg"], [UIImage imageNamed:@"hsmS3.jpeg"], nil];
+//    }
+//    
+//    return [sceneImages autorelease];
+//}
 
 -(NSMutableArray *)getImagesInTheScene: (Scene *) scene
 {

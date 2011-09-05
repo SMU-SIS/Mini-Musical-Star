@@ -11,11 +11,11 @@
 @interface Audio : NSObject
 
 @property (retain, nonatomic) NSString *title;
-@property (retain, nonatomic) NSURL *path;
+@property (retain, nonatomic) NSString *path;
 @property (retain, nonatomic) NSNumber *replaceable;
 @property (retain, nonatomic) NSNumber *duration;
 @property (retain, nonatomic) NSMutableArray *audioCueList;
 
-- (Audio *)initAudioWithPropertyDictionary: (NSDictionary *) pDictionary;
+- (Audio *)initAudioWithPropertyDictionary: (NSDictionary *) pDictionary withPath: (NSString *)showPath;
 
 @end

@@ -15,10 +15,17 @@
 {
     self = [super init];
     if (self) {
-        title = [pDictionary objectForKey:@"title"];
-        image = [[UIImage alloc] initWithContentsOfFile:[scenePath stringByAppendingString:[pDictionary objectForKey:@"path"]]];
-        startTime = [pDictionary objectForKey:@"startTime"];
-        duration = [pDictionary objectForKey:@"duration"];
+        self.title = [pDictionary objectForKey:@"title"];
+        self.image = [[UIImage alloc] initWithContentsOfFile:[scenePath stringByAppendingString:[pDictionary objectForKey:@"path"]]];
+        
+        NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
+        [f setNumberStyle:NSNumberFormatterDecimalStyle];
+        
+        self.startTime = [NSNumber numberWithInt:[pDictionary objectForKey:@"startTime"]];
+        self.duration = [NSNumber numberWithInt:[pDictionary objectForKey:@"duration"]];
+        
+        [f release];
+        
         NSArray *cueArray = [pDictionary objectForKey:@"cues"];
         pictureCueList = [[NSMutableArray alloc] initWithCapacity:cueArray.count];
         
