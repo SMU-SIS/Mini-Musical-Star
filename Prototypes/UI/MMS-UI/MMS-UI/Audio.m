@@ -11,17 +11,17 @@
 @implementation Audio
 @synthesize title, path, replaceable, duration, audioCueList;
 
-- (Audio *)initAudioWithPropertyDictionary: (NSDictionary *) pDictionary
+- (Audio *)initAudioWithPropertyDictionary: (NSDictionary *) pDictionary withPath: (NSString *)showPath
 {
     self = [super init];
     if (self) {
-        title = [pDictionary objectForKey:@"title"];
-        path = [pDictionary objectForKey:@"path"];
+        self.title = [pDictionary objectForKey:@"title"];
+        self.path = [showPath stringByAppendingString:[pDictionary objectForKey:@"path"]];
         NSLog(@"LOOKIE HERE! path is %@\n", path);
-        replaceable = [pDictionary objectForKey:@"repleaceable"];
-        duration = [pDictionary objectForKey:@"duration"];
+        self.replaceable = [pDictionary objectForKey:@"repleaceable"];
+        self.duration = [pDictionary objectForKey:@"duration"];
         NSArray *cueArray = [pDictionary objectForKey:@"cues"];
-        audioCueList = [[NSMutableArray alloc] initWithCapacity:cueArray.count];
+        self.audioCueList = [[NSMutableArray alloc] initWithCapacity:cueArray.count];
         
         [cueArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             NSDictionary *cueObjectDict = (NSDictionary *)obj;

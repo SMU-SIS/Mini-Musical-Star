@@ -9,15 +9,15 @@
 #import "PlaybackViewController.h"
 
 @implementation PlaybackViewController
-@synthesize theShow, theScene, playbackView;
+@synthesize theShow, theScene, playbackView, player;
 
 - (PlaybackViewController *)initWithShow:(Show *)aShow
 {
     [super init];
     self.theShow = aShow;
     
-    theScene = [theShow.scenes objectAtIndex:0];
-    player = [[ScenePlayer alloc] initWithScene:theScene andView:playbackView];
+    self.theScene = [theShow.scenes objectAtIndex:0];
+    
     
     return self;
     
@@ -46,6 +46,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    self.player = [[ScenePlayer alloc] initWithScene:theScene andView:self.playbackView];
     [player startPlayback];
     
 }

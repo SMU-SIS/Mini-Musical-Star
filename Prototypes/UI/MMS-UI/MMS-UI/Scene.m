@@ -27,7 +27,7 @@
             NSDictionary *audioObjectDict = (NSDictionary *)obj;
             
             //Audio *audioTrack = [[Audio alloc] initWithPropertyDictionary:audioObjectDict];
-            Audio *audioTrack = [[Audio alloc] initAudioWithPropertyDictionary:audioObjectDict];
+            Audio *audioTrack = [[Audio alloc] initAudioWithPropertyDictionary:audioObjectDict withPath:scenePath];
             [audioList addObject:audioTrack];
             [audioTrack release];
             

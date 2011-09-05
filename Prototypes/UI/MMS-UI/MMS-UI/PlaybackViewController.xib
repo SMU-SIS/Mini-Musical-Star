@@ -107,7 +107,7 @@
 							<string key="NSResourceName">home.png</string>
 						</object>
 					</object>
-					<object class="IBUIView" id="530745398">
+					<object class="IBUIView" id="552749673">
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{99, 86}, {826, 476}}</string>
@@ -164,9 +164,9 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">playbackView</string>
 						<reference key="source" ref="841351856"/>
-						<reference key="destination" ref="530745398"/>
+						<reference key="destination" ref="552749673"/>
 					</object>
-					<int key="connectionID">10</int>
+					<int key="connectionID">11</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -196,7 +196,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="771802693"/>
 							<reference ref="277285634"/>
-							<reference ref="530745398"/>
+							<reference ref="552749673"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -212,7 +212,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">9</int>
-						<reference key="object" ref="530745398"/>
+						<reference key="object" ref="552749673"/>
 						<reference key="parent" ref="766721923"/>
 					</object>
 				</object>
@@ -254,7 +254,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">10</int>
+			<int key="maxID">11</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">

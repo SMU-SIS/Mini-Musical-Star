@@ -20,6 +20,8 @@
 @property (retain, nonatomic) Show *theShow;
 @property (retain, nonatomic) Scene *theScene;
 @property (retain, nonatomic) UIView *playbackView;
+@property (retain, nonatomic) ScenePlayer *player;
+
 -(IBAction)backToMenu;
 
 @end

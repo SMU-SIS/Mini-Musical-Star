@@ -9,7 +9,7 @@
 #import "ScenePlayer.h"
 
 @implementation ScenePlayer
-@synthesize theScene, theView;
+@synthesize theScene, theView, audioPlayer;
 
 - (void)dealloc
 {
@@ -28,15 +28,15 @@
         self.theScene = aScene;
         self.theView = aView;
         
-        NSMutableArray *audioPaths = [[NSMutableArray alloc] initWithCapacity:theScene.audioList.count];
+        NSMutableArray *audioPathURLs = [[NSMutableArray alloc] initWithCapacity:theScene.audioList.count];
         //get the audio paths out of the audioList
         [theScene.audioList enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             Audio *theAudio = (Audio *)obj;
-            [audioPaths addObject:theAudio.path];
+            [audioPathURLs addObject:[NSURL fileURLWithPath:theAudio.path]];
         }];
         
-        audioPlayer = [[MixPlayerRecorder alloc] initWithAudioFileURLs:audioPaths];
-        [audioPaths release];
+        self.audioPlayer = [[MixPlayerRecorder alloc] initWithAudioFileURLs:audioPathURLs];
+        [audioPathURLs release];
         
         //register to receive notifications
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceivePlayerStartedNotification:) name:kMixPlayerRecorderPlaybackStarted object:nil];
@@ -59,15 +59,20 @@
         
         if (thePicture.startTime <= [NSNumber numberWithInt:currentSecond])
         {
+            int lala = [thePicture.startTime intValue];
+            int baba = [thePicture.duration intValue];
+            
+            int mama = lala + baba;
+            
             if (thePicture.startTime == [NSNumber numberWithInt:currentSecond])
             {
-                imageToReturn = thePicture.image;
+                imageToReturn = [thePicture.image retain];
                 *stop = YES;
             }
             
-            else if (([thePicture.startTime intValue] + [thePicture.duration intValue]) >= currentSecond)
+            else if (mama >= currentSecond)
             {
-                imageToReturn = thePicture.image;
+                imageToReturn = [thePicture.image retain];
                 *stop = YES;
             }
         }
@@ -99,6 +104,11 @@
 
 - (void)didReceiveElapsedTimeNotification:(NSNotification *)notification
 {
+    [self performSelectorOnMainThread:@selector(performUpdateOfImageInView) withObject:nil waitUntilDone:YES];
+}
+
+- (void)performUpdateOfImageInView
+{
     [theView addSubview:[[UIImageView alloc] initWithImage:[self imageForCurrentTimeInSeconds:audioPlayer.elapsedPlaybackTimeInSeconds]]];
     
     //clear the previous view, if any
@@ -108,6 +118,6 @@
         [oldView removeFromSuperview];
         [oldView release];
     }
-}
 
+}
 @end

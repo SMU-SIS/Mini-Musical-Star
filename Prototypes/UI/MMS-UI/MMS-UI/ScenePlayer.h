@@ -17,7 +17,9 @@
 
 @property (retain, nonatomic) Scene *theScene;
 @property (retain, nonatomic) UIView *theView;
+@property (retain, nonatomic) MixPlayerRecorder *audioPlayer;
 
 - (id)initWithScene: (Scene *)aScene andView: (UIView *)aView;
 - (void)startPlayback;
+- (void)performUpdateOfImageInView;
 @end
