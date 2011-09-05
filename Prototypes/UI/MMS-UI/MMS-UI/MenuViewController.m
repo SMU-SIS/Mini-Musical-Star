@@ -89,34 +89,25 @@
 
 //Button action for creating new musical
 - (IBAction)createMusical {
-//    SceneViewController *sceneView = [[SceneViewController alloc] initWithNibName:nil bundle:nil];
-    
-    int current = [self currentPage]; 
 
-    int currentSelection = [self currentPage];
-    SceneViewController *sceneView = [[SceneViewController alloc] initWithScenesFromShow:[shows objectAtIndex:currentSelection]];
-        [sceneView setImageNum:current];
-        
+    SceneViewController *sceneView = [[SceneViewController alloc] initWithScenesFromShow:[self returnCurrentSelectedShow]];        
         sceneView.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
         [self presentModalViewController:sceneView animated:YES];
         
         [sceneView release];
 }
 
--(int)currentPage
+-(Show *)returnCurrentSelectedShow
 {
 	// Calculate which page is visible 
 	CGFloat pageWidth = scrollView.frame.size.width;
 	int page = floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
     
-	return page;
+	return [shows objectAtIndex:page];
 }
 
 - (IBAction)playBackMusical {
-    PlaybackViewController *pBackMusical = [[PlaybackViewController alloc] initWithNibName:nil bundle:nil];
-    
-    int current = [self currentPage];    
-    [pBackMusical setImageNum:current];
+    PlaybackViewController *pBackMusical = [[PlaybackViewController alloc] initWithShow:[self returnCurrentSelectedShow]];
     
     pBackMusical.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     [self presentModalViewController:pBackMusical animated:YES];

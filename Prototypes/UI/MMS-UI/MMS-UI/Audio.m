@@ -17,6 +17,7 @@
     if (self) {
         title = [pDictionary objectForKey:@"title"];
         path = [pDictionary objectForKey:@"path"];
+        NSLog(@"LOOKIE HERE! path is %@\n", path);
         replaceable = [pDictionary objectForKey:@"repleaceable"];
         duration = [pDictionary objectForKey:@"duration"];
         NSArray *cueArray = [pDictionary objectForKey:@"cues"];
