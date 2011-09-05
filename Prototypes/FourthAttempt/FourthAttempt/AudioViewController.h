@@ -13,6 +13,8 @@
     MixPlayerRecorder *player;
     UITableView *tableView;
     NSArray *audioFiles;
+    
+    UIView *option;
 }
 
 @property (nonatomic, retain) IBOutlet UISlider *slider;
@@ -27,5 +29,6 @@
 -(void)stopPlayer;
 
 -(void)makeAudioList;
+-(void)callAudioOption:(UIButton *)sender;
 
 @end

@@ -26,6 +26,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+  
     
     //register notifications
     
@@ -45,7 +46,7 @@
     
     player = [[MixPlayerRecorder alloc] initWithAudioFileURLs:audioFiles];
     
-    //[self makeAudioList];
+    [self makeAudioList];
     
     //create temp file for recording
     NSString *tempRecordingFile = [NSTemporaryDirectory() stringByAppendingString:@"recording.m4a"];
@@ -126,11 +127,7 @@
     //Hard coded the names of the tracks. Is there a way to get the name of the tracks from the audio object?
     NSArray *trackNames =[[NSArray alloc] initWithObjects:[NSString stringWithString:@"Bass"],[NSString stringWithString:@"Drums"],[NSString stringWithString:@"Guitar"], [NSString stringWithString:@"Keys"],[NSString stringWithString:@"Vocals"], nil];
     
-    for (int i=0; i<trackNames.count; i++) {
-        //The display pf the tracks will always be centralized according to the number of tracks
-        CGRect frame = CGRectMake(0, (self.view.frame.size.height-trackNames.count*50)/2+(i*50), 480, 100);
-        UIButton *button = [[UIButton alloc] initWithFrame:frame];
-    
+    for (int i=0; i<trackNames.count; i++) {  
         NSString *name = [trackNames objectAtIndex:i];
         
         //creating UIlabel to format the Track names
@@ -141,6 +138,11 @@
         [titleLable setTextAlignment:UITextAlignmentLeft];
         [titleLable setFont:[UIFont fontWithName:@"verdana" size:25]];
 
+        //creating the button
+        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, (self.view.frame.size.height-audioFiles.count*50)/2+(i*50), 480, 100)];      
+        [button addTarget:self action:@selector(callAudioOption:) forControlEvents:UIControlEventTouchUpInside];
+        [button setTag:i];
+        
         //adding the label to the button then to the main view
         [button addSubview:titleLable];
         [button setBackgroundColor:[UIColor blackColor]];
@@ -151,6 +153,61 @@
     [trackNames release];
 }
 
+-(void)callAudioOption:(UIButton *)sender
+{
+    [option removeFromSuperview];
+    NSLog(@"LALAL WEIJIE 45");
+    
+    UIButton *button = (UIButton *)sender;
+    
+    NSInteger imageNum = button.tag;
+    
+    //drawing the frame of the option
+    CGRect rect = CGRectMake(0, 0, 200, 250);
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:rect];
+    CGRect frame = CGRectMake(240, 75+(imageNum*50), 200, 250);
+    option = [[UIView alloc] initWithFrame:frame];    
+    imageView.image = [UIImage imageNamed:@"empty textbox.png"];
+    
+    //setting the label for the options
+    CGRect rectLabel = CGRectMake(0, 0, 200, 20);
+    UILabel *label = [[UILabel alloc] initWithFrame:rectLabel];
+    label.text = @"Select Option";
+    label.font = [UIFont fontWithName:@"Arial" size:14];
+    label.backgroundColor = [UIColor clearColor];
+    label.textColor = [UIColor whiteColor];
+    label.textAlignment = UITextAlignmentCenter;
+    
+    //drawing each individual option
+    CGRect rectButton = CGRectMake(0, 20, 200, 75);
+    UIButton *button1 = [[UIButton alloc] initWithFrame:rectButton];
+    [button1 setImage:[UIImage imageNamed:@"vocal.png"] forState:UIControlStateNormal];
+    CGRect rectButton2 = CGRectMake(0, 95, 200, 75);
+    UIButton *button2 = [[UIButton alloc] initWithFrame:rectButton2];
+    [button2 setImage:[UIImage imageNamed:@"folder.png"] forState:UIControlStateNormal];
+    CGRect rectButton3 = CGRectMake(0, 170, 200, 75);
+    UIButton *button3 = [[UIButton alloc] initWithFrame:rectButton3];
+    [button3 setImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
+    [button3 addTarget:self action:@selector(closeAudioOptionMenu:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [option addSubview:imageView];
+    [option addSubview:label];
+    [option addSubview:button1];
+    [option addSubview:button2];
+    [option addSubview:button3];
+    [self.view addSubview:option];
+    [imageView release];
+    [label release];
+    [button1 release];
+    [button2 release];
+    [button3 release];
+}
+
+
+-(void)closeAudioOptionMenu:(id)sender
+{
+    [option removeFromSuperview];
+}
 
 - (void)viewDidUnload
 {
