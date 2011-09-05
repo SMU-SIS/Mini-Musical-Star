@@ -10,12 +10,15 @@
 
 @implementation ShowDAO
 
+static ASINetworkQueue *downloadQueue;
 static NSMutableArray *loadedShows;
 static NSString *userDocumentDirectory;
 static bool initialized = NO;
+static id delegate;
 
-+ (void)loadShows
++ (void)loadShowsWithDelegate:(id)aDelegate
 {
+    delegate = aDelegate;
     [self loadLocalShows];
     [self checkForNewShowsFromServer];
 }
@@ -85,6 +88,10 @@ static bool initialized = NO;
 
 + (void)checkForNewShowsFromServer
 {
+    downloadQueue = [[ASINetworkQueue alloc] init];
+    [downloadQueue setDelegate:delegate];
+    [downloadQueue setQueueDidFinishSelector:@selector(daoDownloadQueueFinished)];
+    
     NSString *urlStr = [[NSString alloc] 
                         initWithFormat:@"http://dl.dropbox.com/u/23645/shows.plist?seedVar=%f", 
                         (float)random()/RAND_MAX];
@@ -106,6 +113,18 @@ static bool initialized = NO;
             [self initiateDownloadOfShowFromServer:showDownloadLocation andStoreInPath:downloadPath];
         }
     }];
+    
+    if (downloadQueue.requestsCount > 0)
+    {
+        NSLog(@"Number of requests in the downloadQueue is %i\n", downloadQueue.requestsCount);
+        [downloadQueue go];
+    }
+    
+    else
+    {
+        [downloadQueue release];
+        [delegate performSelectorOnMainThread:@selector(daoDownloadQueueFinished) withObject:nil waitUntilDone:NO];
+    }
 }
 
 + (void)initiateDownloadOfShowFromServer:(NSURL *)zipFileURL andStoreInPath:(NSString *)localShowPath
@@ -125,7 +144,7 @@ static bool initialized = NO;
         NSLog(@"Download Error: %@\n", error);
     }];
     
-    [request startSynchronous];
+    [downloadQueue addOperation:request];
     
 }
             

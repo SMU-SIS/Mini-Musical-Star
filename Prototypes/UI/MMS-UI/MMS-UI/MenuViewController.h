@@ -15,7 +15,7 @@
 #import "SceneViewController.h"
 #import "PlaybackViewController.h"
 #import "CoverViewController.h"
-
+#import "DSActivityView.h"
 #import "HiddenView.h"
 
 @interface MenuViewController : UIViewController {
@@ -25,6 +25,8 @@
 }
 
 @property (retain, nonatomic) NSArray *shows;
+
+- (void)daoDownloadQueueFinished;
 
 -(IBAction)createMusical;
 -(IBAction)playBackMusical;

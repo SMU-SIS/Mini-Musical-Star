@@ -27,13 +27,6 @@
 
 #pragma mark - View lifecycle
 
-- (void)loadShows
-{
-    //load the shows on the local disk
-    [ShowDAO loadLocalShows];
-    
-}
-
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
@@ -41,12 +34,19 @@
     [super viewDidLoad];
     
     //load the shows on the local disk
-    [ShowDAO loadShows];
-    self.shows = [ShowDAO shows];
+    [ShowDAO loadShowsWithDelegate:self];
     
-//    NSLog(@"shows are %@\n", shows);
-    
+    [DSBezelActivityView newActivityViewForView:self.view withLabel:@"Downloading Shows..."];
+}
 
+- (void)daoDownloadQueueFinished
+{
+    self.shows = [ShowDAO shows];
+    [DSBezelActivityView removeViewAnimated:YES];
+    
+    //    NSLog(@"shows are %@\n", shows);
+    
+    
     //return the array of show images; reason being, i need to get the scrollview content size based on the image count.
     //showImages = [ShowImage alloc];
     //NSArray *images = showImages.getShowImages; 
@@ -73,7 +73,6 @@
     hiddenView.menuScrollView = scrollView;
     [self.view addSubview:hiddenView]; //add to the MenuViewController
 }
-
 
 - (void)viewDidUnload
 {

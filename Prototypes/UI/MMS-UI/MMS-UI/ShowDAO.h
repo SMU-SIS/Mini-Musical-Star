@@ -9,11 +9,12 @@
 #import <Foundation/Foundation.h>
 #import "Show.h"
 #import "ASIHTTPRequest.h"
+#import "ASINetworkQueue.h"
 #import "ZipArchive.h"
 
 @interface ShowDAO : NSObject
 
-+ (void)loadShows;
++ (void)loadShowsWithDelegate:(id)aDelegate;
 + (void)loadLocalShows;
 + (void)loadSingleShowFromDirectoryURL:(NSURL *)showDirectoryURL;
 + (NSArray *)shows;
