@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3AF1AAE01417AC0A00A7C913 /* PhotoEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AF1AADE1417AC0A00A7C913 /* PhotoEditViewController.xib */; };
 		6472FC2D14127DDE00837069 /* HiddenView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6472FC2C14127DDE00837069 /* HiddenView.m */; };
 		820511BF13F3BB9B0016F87E /* SceneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 820511BD13F3BB9B0016F87E /* SceneViewController.m */; };
 		820511C013F3BB9B0016F87E /* SceneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 820511BE13F3BB9B0016F87E /* SceneViewController.xib */; };
@@ -131,6 +132,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3AF1AADE1417AC0A00A7C913 /* PhotoEditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoEditViewController.xib; sourceTree = "<group>"; };
 		6472FC2B14127DDE00837069 /* HiddenView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HiddenView.h; sourceTree = "<group>"; };
 		6472FC2C14127DDE00837069 /* HiddenView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HiddenView.m; sourceTree = "<group>"; };
 		820511BC13F3BB9B0016F87E /* SceneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneViewController.h; sourceTree = "<group>"; };
@@ -510,6 +512,7 @@
 				EDC5CC3113F6260400EAF813 /* PlaybackViewController.xib */,
 				820511BE13F3BB9B0016F87E /* SceneViewController.xib */,
 				EDC5CC3713F6261500EAF813 /* CoverViewConroller.xib */,
+				3AF1AADE1417AC0A00A7C913 /* PhotoEditViewController.xib */,
 				9569E05D1418A2B10016DAF3 /* AudioEditorViewController.xib */,
 				9569E05E1418A2B10016DAF3 /* PhotoEditorViewController.xib */,
 				9569E0611418A2C90016DAF3 /* SceneEditViewController.xib */,
@@ -806,6 +809,7 @@
 				82A21EC0140A388C008C26FB /* keys.mp3 in Resources */,
 				82A21EC1140A388C008C26FB /* vocals.mp3 in Resources */,
 				95DAE876141480200039201D /* README-GHUnit in Resources */,
+				3AF1AAE01417AC0A00A7C913 /* PhotoEditViewController.xib in Resources */,
 				9569E05F1418A2B10016DAF3 /* AudioEditorViewController.xib in Resources */,
 				9569E0601418A2B10016DAF3 /* PhotoEditorViewController.xib in Resources */,
 				9569E0621418A2C90016DAF3 /* SceneEditViewController.xib in Resources */,
