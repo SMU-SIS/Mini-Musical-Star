@@ -30,6 +30,7 @@
 @property (retain, nonatomic) Scene *theScene;
 @property (retain, nonatomic) MixPlayerRecorder *thePlayer;
 
+- (SceneEditViewController *)initWithScene:(Scene *)aScene;
 - (void)loadChildViewControllers;
 
 @end

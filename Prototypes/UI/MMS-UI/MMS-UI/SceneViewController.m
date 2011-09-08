@@ -96,7 +96,10 @@
 //    editScene.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
 //    [self presentModalViewController:editScene animated:YES];
 //    [editScene release];
-    SceneEditViewController *editController = [[SceneEditViewController alloc] init];
+    
+    //wei jie, I don't know how to get the value for selected scene so i hardcode first ok? help me change - Adrian
+    
+    SceneEditViewController *editController = [[SceneEditViewController alloc] initWithScene:[theShow.scenes objectAtIndex:0]];
     editController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     [self presentModalViewController:editController animated:YES];
     

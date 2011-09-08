@@ -43,12 +43,22 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)registerNotifications
 {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceivePlayerStartedNotification:) name:kMixPlayerRecorderPlaybackStarted object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceivePlayerStoppedNotification:) name:kMixPlayerRecorderPlaybackStopped object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveElapsedTimeNotification:) name:kMixPlayerRecorderPlaybackElapsedTimeAdvanced object:nil];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    //update the total time label
+    [totalTimeLabel setText:[NSString stringWithFormat:@"%lu", thePlayer.totalPlaybackTimeInSeconds]];
+    
+    //update the song title
+    [songInfoLabel setText:theScene.title];
     
     // a page is the width of the scroll view
     scrollView.pagingEnabled = YES;
@@ -103,10 +113,13 @@
         //init the player with the audio tracks
         thePlayer = [[MixPlayerRecorder alloc] initWithAudioFileURLs:audioTracks];
         
+        [self registerNotifications];
     }
     
     return self;
 }
+
+#pragma mark IBActions
 
 - (IBAction)playPauseButtonPressed: (UIButton *)sender
 {
@@ -123,7 +136,45 @@
     }
 }
 
+- (IBAction)volumeSliderDidMove:(UISlider *)sender
+{
+    NSLog(@"This has no effect because I haven't found a way to change the master volume.\n");
+}
 
+- (IBAction)toggleSeek:(UISlider *)sender
+{
+    //convert the float value to seconds
+    int targetSeconds = sender.value * thePlayer.totalPlaybackTimeInSeconds;
+    [thePlayer seekTo:targetSeconds];
+    
+}
+
+#pragma mark notifys and callbacks
+
+-(void)didReceiveElapsedTimeNotification:(NSNotification *)notification
+{
+    //need to alloc the NSNumber because there is no autorelease pool in the secondary thread
+    [self performSelectorOnMainThread:@selector(updateProgressSliderWithTime) withObject:nil waitUntilDone:NO];
+    
+}
+
+//for the secondary thread to call on the main thread
+-(void)updateProgressSliderWithTime
+{
+    [elapsedTimeLabel setText:[NSString stringWithFormat:@"%i", thePlayer.elapsedPlaybackTimeInSeconds]];
+    float progressSliderValue = (float)thePlayer.elapsedPlaybackTimeInSeconds / (float)thePlayer.totalPlaybackTimeInSeconds;    
+    playPositionSlider.value = progressSliderValue;
+}
+
+-(void)didReceivePlayerStoppedNotification:(NSNotification *)notification
+{
+    [playPauseButton setTitle:@"Play" forState:UIControlStateNormal];
+}
+
+-(void)didReceivePlayerStartedNotification:(NSNotification *)notification
+{
+    [playPauseButton setTitle:@"Stop" forState:UIControlStateNormal];
+}
 
 - (void)scrollViewDidScroll:(UIScrollView *)sender
 {
