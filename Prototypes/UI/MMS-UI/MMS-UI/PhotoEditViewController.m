@@ -10,6 +10,8 @@
 
 @implementation PhotoEditViewController
 
+@synthesize mainPicture, leftPicture, rightPicture, centerPicture;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
