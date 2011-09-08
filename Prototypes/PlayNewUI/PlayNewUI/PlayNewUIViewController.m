@@ -38,11 +38,10 @@
     [handsomeArray addObject:@"tommi is really hot"];
     [handsomeArray addObject:@"tommi is sexy"];
     [handsomeArray addObject:@"tommi is really sexy"];
-    
 }
 
-- (void)loadView {
-	
+- (void)loadView
+{
 	//a sample code....
 	UITableView *tableView = [[UITableView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame] style:UITableViewStylePlain];//UITableViewStylePlain, UITableViewStyleGrouped
     
@@ -51,10 +50,8 @@
     
 	self.tableView = tableView;
 	self.view = tableView;
-	[tableView release];
-	
+	[tableView release];	
 }
-
 
 #pragma mark Table view methods
 
@@ -64,7 +61,7 @@
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 8;
+    return [handsomeArray count];
 }
 
 // This method is called for each cell in the table view.
@@ -75,27 +72,32 @@
     
     CustomCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
-    }
+        cell = [[[CustomCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
+    }    
     
     NSUInteger row = [indexPath row];   //get the index of each row
     NSLog(@"row: %i", row);
     
+    cell.primaryLabel.text = @"TOMMI IS HANDSOME";
+    cell.secondaryLabel.text = @"WOOHOO";
+    cell.myImageView.image = [UIImage imageNamed:@"23-bird.png"];
     
-    // Set up the cell...
-    
-    
-    NSString *cellLabel = [handsomeArray objectAtIndex:[indexPath row]];
-    [cell.textLabel setText:cellLabel];
-    [cell.detailTextLabel setText:@"you are wow"];
-    [cellLabel release]; //bye!
+
+//    //this is how you handle a original table view cell  
+//    NSString *cellLabel = [handsomeArray objectAtIndex:[indexPath row]];
+//    [cell.textLabel setText:cellLabel];
+//    [cell.detailTextLabel setText:@"you are wow"];
+//    [cellLabel release]; //bye!
     
     
     return cell;
 }
 
-
-
+//This method is for you to set the height of the table view.
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 100;
+}
 
 - (void)viewDidUnload
 {

@@ -25,8 +25,8 @@
         [self.contentView addSubview:primaryLabel];
         [self.contentView addSubview:secondaryLabel];
         [self.contentView addSubview:myImageView];
-        
     }
+    
     return self;
 }
 
@@ -35,13 +35,13 @@
     CGRect contentRect = self.contentView.bounds;
     CGFloat boundsX = contentRect.origin.x;
     CGRect frame;
-    frame= CGRectMake(boundsX+10 ,0, 50, 50);
+    frame= CGRectMake(boundsX+10 ,10, 80, 50);
     myImageView.frame = frame;
     
-    frame= CGRectMake(boundsX+70 ,5, 200, 25);
+    frame= CGRectMake(boundsX+70+30 ,5, 200, 25);
     primaryLabel.frame = frame;
     
-    frame= CGRectMake(boundsX+70 ,30, 100, 15);
+    frame= CGRectMake(boundsX+70+30 ,30, 100, 15);
     secondaryLabel.frame = frame;
 }
 

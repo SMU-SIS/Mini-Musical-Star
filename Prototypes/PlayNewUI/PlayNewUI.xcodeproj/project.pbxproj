@@ -16,8 +16,8 @@
 		6436B85C1418A1070059D432 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6436B85A1418A1070059D432 /* MainWindow.xib */; };
 		6436B85F1418A1070059D432 /* PlayNewUIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6436B85E1418A1070059D432 /* PlayNewUIViewController.m */; };
 		6436B8621418A1070059D432 /* PlayNewUIViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6436B8601418A1070059D432 /* PlayNewUIViewController.xib */; };
-		6436B8A91418D2390059D432 /* handsome.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6436B8A81418D2390059D432 /* handsome.jpg */; };
 		6436B8AC1418D3FE0059D432 /* CustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6436B8AB1418D3FE0059D432 /* CustomCell.m */; };
+		6436B8B31418F4670059D432 /* 23-bird.png in Resources */ = {isa = PBXBuildFile; fileRef = 6436B8B21418F4670059D432 /* 23-bird.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,9 +35,9 @@
 		6436B85D1418A1070059D432 /* PlayNewUIViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlayNewUIViewController.h; sourceTree = "<group>"; };
 		6436B85E1418A1070059D432 /* PlayNewUIViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlayNewUIViewController.m; sourceTree = "<group>"; };
 		6436B8611418A1070059D432 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/PlayNewUIViewController.xib; sourceTree = "<group>"; };
-		6436B8A81418D2390059D432 /* handsome.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = handsome.jpg; sourceTree = "<group>"; };
 		6436B8AA1418D3FE0059D432 /* CustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCell.h; sourceTree = "<group>"; };
 		6436B8AB1418D3FE0059D432 /* CustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCell.m; sourceTree = "<group>"; };
+		6436B8B21418F4670059D432 /* 23-bird.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "23-bird.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,7 +112,7 @@
 		6436B8A71418D2100059D432 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				6436B8A81418D2390059D432 /* handsome.jpg */,
+				6436B8B21418F4670059D432 /* 23-bird.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -167,7 +167,7 @@
 				6436B8531418A1070059D432 /* InfoPlist.strings in Resources */,
 				6436B85C1418A1070059D432 /* MainWindow.xib in Resources */,
 				6436B8621418A1070059D432 /* PlayNewUIViewController.xib in Resources */,
-				6436B8A91418D2390059D432 /* handsome.jpg in Resources */,
+				6436B8B31418F4670059D432 /* 23-bird.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
