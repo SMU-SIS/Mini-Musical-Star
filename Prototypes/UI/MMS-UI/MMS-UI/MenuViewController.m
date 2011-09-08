@@ -13,6 +13,7 @@
 
 - (void)dealloc
 {
+    NSLog(@"haha the shows is released now\n");
     [shows release];
     [super dealloc];
 }
@@ -41,7 +42,7 @@
 
 - (void)daoDownloadQueueFinished
 {
-    self.shows = [ShowDAO shows];
+    self.shows = [[ShowDAO shows] retain];
     [DSBezelActivityView removeViewAnimated:YES];
     
     //    NSLog(@"shows are %@\n", shows);
@@ -116,15 +117,15 @@
 }
 
 - (IBAction)coverMusical {
-    CoverViewController *covers = [[CoverViewController alloc] initWithNibName:nil bundle:nil];
-    
-    int current = [self currentPage];    
-    [covers setImageNum:current];
-    
-    covers.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-    [self presentModalViewController:covers animated:YES];
-    
-    [covers release];
+//    CoverViewController *covers = [[CoverViewController alloc] initWithNibName:nil bundle:nil];
+//    
+//    int current = [self currentPage];    
+//    [covers setImageNum:current];
+//    
+//    covers.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+//    [self presentModalViewController:covers animated:YES];
+//    
+//    [covers release];
 }
 
 -(void)displayShowImages:(NSArray *)images

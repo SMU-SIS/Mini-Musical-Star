@@ -69,7 +69,7 @@ static id delegate;
 {
     if (!initialized) [self loadLocalShows];
     
-    return [loadedShows autorelease];
+    return loadedShows;
 }
 
 + (NSArray *)imagesForShows
@@ -83,7 +83,7 @@ static id delegate;
         
     }];
     
-    return [imagesArray autorelease];
+    return imagesArray;
 }
 
 + (void)checkForNewShowsFromServer

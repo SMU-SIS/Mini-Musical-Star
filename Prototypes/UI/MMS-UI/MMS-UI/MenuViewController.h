@@ -32,7 +32,6 @@
 -(IBAction)playBackMusical;
 -(IBAction)coverMusical;
 
--(int)currentPage;
 -(Show *)returnCurrentSelectedShow;
 -(void)displayShowImages:(NSArray *)images;
 
