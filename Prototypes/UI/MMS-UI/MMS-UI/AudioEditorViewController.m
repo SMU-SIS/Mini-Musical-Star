@@ -1,16 +1,14 @@
 //
-//  PhotoEditViewController.m
-//  MMS-UI
+//  AudioEditorViewController.m
+//  CrollUI
 //
-//  Created by Adrian on 7/9/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Created by Jun Kit Lee on 8/9/11.
+//  Copyright 2011 mohawk.riceball@gmail.com. All rights reserved.
 //
 
-#import "PhotoEditViewController.h"
+#import "AudioEditorViewController.h"
 
-@implementation PhotoEditViewController
-
-@synthesize mainPicture, leftPicture, rightPicture, centerPicture;
+@implementation AudioEditorViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

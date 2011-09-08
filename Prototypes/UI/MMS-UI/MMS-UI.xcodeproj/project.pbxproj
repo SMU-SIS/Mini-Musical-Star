@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3AF1AADF1417AC0A00A7C913 /* PhotoEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF1AADD1417AC0A00A7C913 /* PhotoEditViewController.m */; };
 		3AF1AAE01417AC0A00A7C913 /* PhotoEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AF1AADE1417AC0A00A7C913 /* PhotoEditViewController.xib */; };
 		6472FC2D14127DDE00837069 /* HiddenView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6472FC2C14127DDE00837069 /* HiddenView.m */; };
 		820511BF13F3BB9B0016F87E /* SceneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 820511BD13F3BB9B0016F87E /* SceneViewController.m */; };
@@ -19,13 +18,17 @@
 		820E2A2E140A0A3E00B80BBC /* BoomzAUOutputCapturer.m in Sources */ = {isa = PBXBuildFile; fileRef = 820E2A26140A0A3E00B80BBC /* BoomzAUOutputCapturer.m */; };
 		820E2A2F140A0A3E00B80BBC /* CAErrorHandling.c in Sources */ = {isa = PBXBuildFile; fileRef = 820E2A27140A0A3E00B80BBC /* CAErrorHandling.c */; };
 		820E2A30140A0A3E00B80BBC /* TPCircularBuffer.c in Sources */ = {isa = PBXBuildFile; fileRef = 820E2A29140A0A3E00B80BBC /* TPCircularBuffer.c */; };
-		820E2A35140A0A8E00B80BBC /* AudioViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 820E2A32140A0A8E00B80BBC /* AudioViewController.m */; };
-		820E2A36140A0A8E00B80BBC /* AudioViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 820E2A33140A0A8E00B80BBC /* AudioViewController.xib */; };
 		82A21EBD140A388C008C26FB /* bass.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 82A21EB8140A388C008C26FB /* bass.mp3 */; };
 		82A21EBE140A388C008C26FB /* drums.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 82A21EB9140A388C008C26FB /* drums.mp3 */; };
 		82A21EBF140A388C008C26FB /* guitar.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 82A21EBA140A388C008C26FB /* guitar.mp3 */; };
 		82A21EC0140A388C008C26FB /* keys.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 82A21EBB140A388C008C26FB /* keys.mp3 */; };
 		82A21EC1140A388C008C26FB /* vocals.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 82A21EBC140A388C008C26FB /* vocals.mp3 */; };
+		9569E05B1418A2A80016DAF3 /* AudioEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9569E0581418A2A80016DAF3 /* AudioEditorViewController.m */; };
+		9569E05C1418A2A80016DAF3 /* PhotoEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9569E05A1418A2A80016DAF3 /* PhotoEditorViewController.m */; };
+		9569E05F1418A2B10016DAF3 /* AudioEditorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9569E05D1418A2B10016DAF3 /* AudioEditorViewController.xib */; };
+		9569E0601418A2B10016DAF3 /* PhotoEditorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9569E05E1418A2B10016DAF3 /* PhotoEditorViewController.xib */; };
+		9569E0621418A2C90016DAF3 /* SceneEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9569E0611418A2C90016DAF3 /* SceneEditViewController.xib */; };
+		9569E0651418A2D30016DAF3 /* SceneEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9569E0641418A2D30016DAF3 /* SceneEditViewController.m */; };
 		9572E0D7140E118400713F45 /* AudioCue.m in Sources */ = {isa = PBXBuildFile; fileRef = 9572E0CC140E118400713F45 /* AudioCue.m */; };
 		9572E0D8140E118400713F45 /* Audio.m in Sources */ = {isa = PBXBuildFile; fileRef = 9572E0CE140E118400713F45 /* Audio.m */; };
 		9572E0D9140E118400713F45 /* Picture.m in Sources */ = {isa = PBXBuildFile; fileRef = 9572E0D0140E118400713F45 /* Picture.m */; };
@@ -58,8 +61,6 @@
 		95DAE8F71414E8D50039201D /* ScenePlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 95DAE8F61414E8D50039201D /* ScenePlayer.m */; };
 		ED75B7F913FE9C9700AFA08B /* scene.png in Resources */ = {isa = PBXBuildFile; fileRef = ED75B7F713FE9C9700AFA08B /* scene.png */; };
 		ED8310D614090B280093BFF9 /* gfxoption.png in Resources */ = {isa = PBXBuildFile; fileRef = ED8310D514090B280093BFF9 /* gfxoption.png */; };
-		EDA02935140BE83000358173 /* VideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA02933140BE83000358173 /* VideoViewController.m */; };
-		EDA02936140BE83000358173 /* VideoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDA02934140BE83000358173 /* VideoViewController.xib */; };
 		EDA06CA013FEA5BA00ED4771 /* g1.png in Resources */ = {isa = PBXBuildFile; fileRef = EDA06C9813FEA5BA00ED4771 /* g1.png */; };
 		EDA06CA113FEA5BA00ED4771 /* g2.png in Resources */ = {isa = PBXBuildFile; fileRef = EDA06C9913FEA5BA00ED4771 /* g2.png */; };
 		EDA06CA213FEA5BA00ED4771 /* g3.png in Resources */ = {isa = PBXBuildFile; fileRef = EDA06C9A13FEA5BA00ED4771 /* g3.png */; };
@@ -118,8 +119,6 @@
 		EDC5CC3313F6260400EAF813 /* PlaybackViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDC5CC3113F6260400EAF813 /* PlaybackViewController.xib */; };
 		EDC5CC3813F6261500EAF813 /* CoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDC5CC3613F6261500EAF813 /* CoverViewController.m */; };
 		EDC5CC3913F6261500EAF813 /* CoverViewConroller.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDC5CC3713F6261500EAF813 /* CoverViewConroller.xib */; };
-		EDC5CC3D13F6269300EAF813 /* EditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDC5CC3B13F6269300EAF813 /* EditViewController.m */; };
-		EDC5CC3E13F6269300EAF813 /* EditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDC5CC3C13F6269300EAF813 /* EditViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -133,8 +132,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		3AF1AADC1417AC0A00A7C913 /* PhotoEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoEditViewController.h; sourceTree = "<group>"; };
-		3AF1AADD1417AC0A00A7C913 /* PhotoEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoEditViewController.m; sourceTree = "<group>"; };
 		3AF1AADE1417AC0A00A7C913 /* PhotoEditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoEditViewController.xib; sourceTree = "<group>"; };
 		6472FC2B14127DDE00837069 /* HiddenView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HiddenView.h; sourceTree = "<group>"; };
 		6472FC2C14127DDE00837069 /* HiddenView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HiddenView.m; sourceTree = "<group>"; };
@@ -154,14 +151,20 @@
 		820E2A28140A0A3E00B80BBC /* CAErrorHandling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CAErrorHandling.h; path = ../../../../Libraries/CAErrorHandling.h; sourceTree = "<group>"; };
 		820E2A29140A0A3E00B80BBC /* TPCircularBuffer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = TPCircularBuffer.c; path = ../../../../Libraries/TPCircularBuffer.c; sourceTree = "<group>"; };
 		820E2A2A140A0A3E00B80BBC /* TPCircularBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TPCircularBuffer.h; path = ../../../../Libraries/TPCircularBuffer.h; sourceTree = "<group>"; };
-		820E2A31140A0A8E00B80BBC /* AudioViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AudioViewController.h; path = ../../../FourthAttempt/FourthAttempt/AudioViewController.h; sourceTree = "<group>"; };
-		820E2A32140A0A8E00B80BBC /* AudioViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AudioViewController.m; path = ../../../FourthAttempt/FourthAttempt/AudioViewController.m; sourceTree = "<group>"; };
-		820E2A34140A0A8E00B80BBC /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = ../../../FourthAttempt/FourthAttempt/en.lproj/AudioViewController.xib; sourceTree = "<group>"; };
 		82A21EB8140A388C008C26FB /* bass.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bass.mp3; sourceTree = "<group>"; };
 		82A21EB9140A388C008C26FB /* drums.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = drums.mp3; sourceTree = "<group>"; };
 		82A21EBA140A388C008C26FB /* guitar.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = guitar.mp3; sourceTree = "<group>"; };
 		82A21EBB140A388C008C26FB /* keys.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = keys.mp3; sourceTree = "<group>"; };
 		82A21EBC140A388C008C26FB /* vocals.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = vocals.mp3; sourceTree = "<group>"; };
+		9569E0571418A2A80016DAF3 /* AudioEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioEditorViewController.h; sourceTree = "<group>"; };
+		9569E0581418A2A80016DAF3 /* AudioEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioEditorViewController.m; sourceTree = "<group>"; };
+		9569E0591418A2A80016DAF3 /* PhotoEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoEditorViewController.h; sourceTree = "<group>"; };
+		9569E05A1418A2A80016DAF3 /* PhotoEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoEditorViewController.m; sourceTree = "<group>"; };
+		9569E05D1418A2B10016DAF3 /* AudioEditorViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AudioEditorViewController.xib; sourceTree = "<group>"; };
+		9569E05E1418A2B10016DAF3 /* PhotoEditorViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoEditorViewController.xib; sourceTree = "<group>"; };
+		9569E0611418A2C90016DAF3 /* SceneEditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SceneEditViewController.xib; sourceTree = "<group>"; };
+		9569E0631418A2D30016DAF3 /* SceneEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; path = SceneEditViewController.h; sourceTree = "<group>"; };
+		9569E0641418A2D30016DAF3 /* SceneEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SceneEditViewController.m; sourceTree = "<group>"; };
 		9572E0CB140E118400713F45 /* AudioCue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioCue.h; sourceTree = "<group>"; };
 		9572E0CC140E118400713F45 /* AudioCue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioCue.m; sourceTree = "<group>"; };
 		9572E0CD140E118400713F45 /* Audio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Audio.h; sourceTree = "<group>"; };
@@ -222,9 +225,6 @@
 		95DAE8F61414E8D50039201D /* ScenePlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScenePlayer.m; sourceTree = "<group>"; };
 		ED75B7F713FE9C9700AFA08B /* scene.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = scene.png; path = Images/Buttons/scene.png; sourceTree = SOURCE_ROOT; };
 		ED8310D514090B280093BFF9 /* gfxoption.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = gfxoption.png; path = Images/Buttons/gfxoption.png; sourceTree = SOURCE_ROOT; };
-		EDA02932140BE83000358173 /* VideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoViewController.h; sourceTree = "<group>"; };
-		EDA02933140BE83000358173 /* VideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoViewController.m; sourceTree = "<group>"; };
-		EDA02934140BE83000358173 /* VideoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoViewController.xib; sourceTree = "<group>"; };
 		EDA06C9813FEA5BA00ED4771 /* g1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = g1.png; path = "Images/Scene Images/g1.png"; sourceTree = SOURCE_ROOT; };
 		EDA06C9913FEA5BA00ED4771 /* g2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = g2.png; path = "Images/Scene Images/g2.png"; sourceTree = SOURCE_ROOT; };
 		EDA06C9A13FEA5BA00ED4771 /* g3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = g3.png; path = "Images/Scene Images/g3.png"; sourceTree = SOURCE_ROOT; };
@@ -291,9 +291,6 @@
 		EDC5CC3513F6261500EAF813 /* CoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoverViewController.h; sourceTree = "<group>"; };
 		EDC5CC3613F6261500EAF813 /* CoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoverViewController.m; sourceTree = "<group>"; };
 		EDC5CC3713F6261500EAF813 /* CoverViewConroller.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CoverViewConroller.xib; sourceTree = "<group>"; };
-		EDC5CC3A13F6269300EAF813 /* EditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditViewController.h; sourceTree = "<group>"; };
-		EDC5CC3B13F6269300EAF813 /* EditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditViewController.m; sourceTree = "<group>"; };
-		EDC5CC3C13F6269300EAF813 /* EditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -487,22 +484,20 @@
 				EDA2A1FD13F2712000B64EA5 /* Images */,
 				EDA2A1D913F26F8400B64EA5 /* MenuViewController.h */,
 				EDA2A1DA13F26F8400B64EA5 /* MenuViewController.m */,
-				3AF1AADC1417AC0A00A7C913 /* PhotoEditViewController.h */,
-				3AF1AADD1417AC0A00A7C913 /* PhotoEditViewController.m */,
-				EDA02932140BE83000358173 /* VideoViewController.h */,
-				EDA02933140BE83000358173 /* VideoViewController.m */,
 				EDA2A20C13F272BF00B64EA5 /* ShowImage.h */,
+				9569E0571418A2A80016DAF3 /* AudioEditorViewController.h */,
+				9569E0581418A2A80016DAF3 /* AudioEditorViewController.m */,
+				9569E0591418A2A80016DAF3 /* PhotoEditorViewController.h */,
+				9569E05A1418A2A80016DAF3 /* PhotoEditorViewController.m */,
 				EDA2A20D13F272BF00B64EA5 /* ShowImage.m */,
 				820511BC13F3BB9B0016F87E /* SceneViewController.h */,
 				820511BD13F3BB9B0016F87E /* SceneViewController.m */,
 				EDC5CC2F13F6260400EAF813 /* PlaybackViewController.h */,
+				9569E0631418A2D30016DAF3 /* SceneEditViewController.h */,
+				9569E0641418A2D30016DAF3 /* SceneEditViewController.m */,
 				EDC5CC3013F6260400EAF813 /* PlaybackViewController.m */,
 				EDC5CC3513F6261500EAF813 /* CoverViewController.h */,
 				EDC5CC3613F6261500EAF813 /* CoverViewController.m */,
-				EDC5CC3A13F6269300EAF813 /* EditViewController.h */,
-				EDC5CC3B13F6269300EAF813 /* EditViewController.m */,
-				820E2A31140A0A8E00B80BBC /* AudioViewController.h */,
-				820E2A32140A0A8E00B80BBC /* AudioViewController.m */,
 				EDA2A1D313F26F8400B64EA5 /* MMS_UIAppDelegate.h */,
 				EDA2A1D413F26F8400B64EA5 /* MMS_UIAppDelegate.m */,
 			);
@@ -517,10 +512,10 @@
 				EDC5CC3113F6260400EAF813 /* PlaybackViewController.xib */,
 				820511BE13F3BB9B0016F87E /* SceneViewController.xib */,
 				EDC5CC3713F6261500EAF813 /* CoverViewConroller.xib */,
-				EDC5CC3C13F6269300EAF813 /* EditViewController.xib */,
-				820E2A33140A0A8E00B80BBC /* AudioViewController.xib */,
-				EDA02934140BE83000358173 /* VideoViewController.xib */,
 				3AF1AADE1417AC0A00A7C913 /* PhotoEditViewController.xib */,
+				9569E05D1418A2B10016DAF3 /* AudioEditorViewController.xib */,
+				9569E05E1418A2B10016DAF3 /* PhotoEditorViewController.xib */,
+				9569E0611418A2C90016DAF3 /* SceneEditViewController.xib */,
 			);
 			name = XIB;
 			sourceTree = "<group>";
@@ -774,7 +769,6 @@
 				820511C013F3BB9B0016F87E /* SceneViewController.xib in Resources */,
 				EDC5CC3313F6260400EAF813 /* PlaybackViewController.xib in Resources */,
 				EDC5CC3913F6261500EAF813 /* CoverViewConroller.xib in Resources */,
-				EDC5CC3E13F6269300EAF813 /* EditViewController.xib in Resources */,
 				EDAEB37413FE713E0064F8C3 /* gleeCover.jpg in Resources */,
 				EDAEB37513FE713E0064F8C3 /* hsmCover.jpg in Resources */,
 				EDAEB37613FE713E0064F8C3 /* wickedCover.jpg in Resources */,
@@ -803,7 +797,6 @@
 				EDA363A9140230FC00E93779 /* home.png in Resources */,
 				EDB9C5EE1402651500434223 /* picture.png in Resources */,
 				ED8310D614090B280093BFF9 /* gfxoption.png in Resources */,
-				820E2A36140A0A8E00B80BBC /* AudioViewController.xib in Resources */,
 				EDAB95AD140A27800088C1CE /* back.png in Resources */,
 				EDAB95AE140A27800088C1CE /* camera.png in Resources */,
 				EDAB95AF140A27800088C1CE /* empty textbox right.png in Resources */,
@@ -815,9 +808,11 @@
 				82A21EBF140A388C008C26FB /* guitar.mp3 in Resources */,
 				82A21EC0140A388C008C26FB /* keys.mp3 in Resources */,
 				82A21EC1140A388C008C26FB /* vocals.mp3 in Resources */,
-				EDA02936140BE83000358173 /* VideoViewController.xib in Resources */,
 				95DAE876141480200039201D /* README-GHUnit in Resources */,
 				3AF1AAE01417AC0A00A7C913 /* PhotoEditViewController.xib in Resources */,
+				9569E05F1418A2B10016DAF3 /* AudioEditorViewController.xib in Resources */,
+				9569E0601418A2B10016DAF3 /* PhotoEditorViewController.xib in Resources */,
+				9569E0621418A2C90016DAF3 /* SceneEditViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -860,15 +855,12 @@
 				820511BF13F3BB9B0016F87E /* SceneViewController.m in Sources */,
 				EDC5CC3213F6260400EAF813 /* PlaybackViewController.m in Sources */,
 				EDC5CC3813F6261500EAF813 /* CoverViewController.m in Sources */,
-				EDC5CC3D13F6269300EAF813 /* EditViewController.m in Sources */,
 				820E2A2B140A0A3E00B80BBC /* MixPlayerRecorder.m in Sources */,
 				820E2A2C140A0A3E00B80BBC /* ASBDHelper.c in Sources */,
 				820E2A2D140A0A3E00B80BBC /* AudioFileRingBuffer.m in Sources */,
 				820E2A2E140A0A3E00B80BBC /* BoomzAUOutputCapturer.m in Sources */,
 				820E2A2F140A0A3E00B80BBC /* CAErrorHandling.c in Sources */,
 				820E2A30140A0A3E00B80BBC /* TPCircularBuffer.c in Sources */,
-				820E2A35140A0A8E00B80BBC /* AudioViewController.m in Sources */,
-				EDA02935140BE83000358173 /* VideoViewController.m in Sources */,
 				9572E0D7140E118400713F45 /* AudioCue.m in Sources */,
 				9572E0D8140E118400713F45 /* Audio.m in Sources */,
 				9572E0D9140E118400713F45 /* Picture.m in Sources */,
@@ -893,7 +885,9 @@
 				95DAE8DD141495690039201D /* ZipArchive.m in Sources */,
 				95DAE8EA1414A2AF0039201D /* DSActivityView.m in Sources */,
 				95DAE8F71414E8D50039201D /* ScenePlayer.m in Sources */,
-				3AF1AADF1417AC0A00A7C913 /* PhotoEditViewController.m in Sources */,
+				9569E05B1418A2A80016DAF3 /* AudioEditorViewController.m in Sources */,
+				9569E05C1418A2A80016DAF3 /* PhotoEditorViewController.m in Sources */,
+				9569E0651418A2D30016DAF3 /* SceneEditViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -916,14 +910,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		820E2A33140A0A8E00B80BBC /* AudioViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				820E2A34140A0A8E00B80BBC /* en */,
-			);
-			name = AudioViewController.xib;
-			sourceTree = "<group>";
-		};
 		EDA2A1CD13F26F8400B64EA5 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
