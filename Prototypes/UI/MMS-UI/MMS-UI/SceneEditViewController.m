@@ -10,7 +10,21 @@
 #import "SceneEditViewController.h"
 
 @implementation SceneEditViewController
-@synthesize scrollView, pageControl;
+@synthesize scrollView, pageControl, playPauseButton, elapsedTimeLabel, totalTimeLabel, songInfoLabel, playPositionSlider, masterVolumeSlider;
+
+- (void)dealloc
+{
+    [scrollView release];
+    [pageControl release];
+    [playPauseButton release];
+    [elapsedTimeLabel release];
+    [totalTimeLabel release];
+    [songInfoLabel release];
+    [playPositionSlider release];
+    [masterVolumeSlider release];
+    
+    [super dealloc];
+}
 
 - (void)didReceiveMemoryWarning
 {
