@@ -17,6 +17,9 @@
     BOOL pageControlUsed;
 }
 
+@property (retain, nonatomic) AudioEditorViewController *audioView;
+@property (retain, nonatomic) PhotoEditorViewController *photoView;
+
 @property (retain, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (retain, nonatomic) IBOutlet UIPageControl *pageControl;
 
