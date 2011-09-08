@@ -20,8 +20,9 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-     
-    self.window.rootViewController = self.viewController;
+
+//    self.window.rootViewController = self.viewController;
+    self.window.rootViewController = [[PhotoEditViewController alloc] init];
     [self.window makeKeyAndVisible];
     return YES;
 }

@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @class MenuViewController;
+//temp
+@class PhotoEditViewController;
 
 @interface MMS_UIAppDelegate : NSObject <UIApplicationDelegate> {
 

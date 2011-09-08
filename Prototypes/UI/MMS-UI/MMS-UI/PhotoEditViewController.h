@@ -10,4 +10,13 @@
 
 @interface PhotoEditViewController : UIViewController
 
+@property(retain,nonatomic) IBOutlet UIImageView *mainPicture;
+@property(retain,nonatomic) IBOutlet UIImageView *leftPicture;
+@property(retain,nonatomic) IBOutlet UIImageView *rightPicture;
+@property(retain,nonatomic) IBOutlet UIImageView *centerPicture;
+
+-(IBAction)clickCenterPicture:(UIImageView *)sender;
+-(IBAction)clickRightPicture;
+-(IBAction)clickLeftPicture;
+
 @end

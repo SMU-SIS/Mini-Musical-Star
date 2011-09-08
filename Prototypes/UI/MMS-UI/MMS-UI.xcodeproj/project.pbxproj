@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3AF1AADF1417AC0A00A7C913 /* PhotoEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF1AADD1417AC0A00A7C913 /* PhotoEditViewController.m */; };
+		3AF1AAE01417AC0A00A7C913 /* PhotoEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AF1AADE1417AC0A00A7C913 /* PhotoEditViewController.xib */; };
 		6472FC2D14127DDE00837069 /* HiddenView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6472FC2C14127DDE00837069 /* HiddenView.m */; };
 		820511BF13F3BB9B0016F87E /* SceneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 820511BD13F3BB9B0016F87E /* SceneViewController.m */; };
 		820511C013F3BB9B0016F87E /* SceneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 820511BE13F3BB9B0016F87E /* SceneViewController.xib */; };
@@ -131,6 +133,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3AF1AADC1417AC0A00A7C913 /* PhotoEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoEditViewController.h; sourceTree = "<group>"; };
+		3AF1AADD1417AC0A00A7C913 /* PhotoEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoEditViewController.m; sourceTree = "<group>"; };
+		3AF1AADE1417AC0A00A7C913 /* PhotoEditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoEditViewController.xib; sourceTree = "<group>"; };
 		6472FC2B14127DDE00837069 /* HiddenView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HiddenView.h; sourceTree = "<group>"; };
 		6472FC2C14127DDE00837069 /* HiddenView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HiddenView.m; sourceTree = "<group>"; };
 		820511BC13F3BB9B0016F87E /* SceneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneViewController.h; sourceTree = "<group>"; };
@@ -482,6 +487,8 @@
 				EDA2A1FD13F2712000B64EA5 /* Images */,
 				EDA2A1D913F26F8400B64EA5 /* MenuViewController.h */,
 				EDA2A1DA13F26F8400B64EA5 /* MenuViewController.m */,
+				3AF1AADC1417AC0A00A7C913 /* PhotoEditViewController.h */,
+				3AF1AADD1417AC0A00A7C913 /* PhotoEditViewController.m */,
 				EDA02932140BE83000358173 /* VideoViewController.h */,
 				EDA02933140BE83000358173 /* VideoViewController.m */,
 				EDA2A20C13F272BF00B64EA5 /* ShowImage.h */,
@@ -513,6 +520,7 @@
 				EDC5CC3C13F6269300EAF813 /* EditViewController.xib */,
 				820E2A33140A0A8E00B80BBC /* AudioViewController.xib */,
 				EDA02934140BE83000358173 /* VideoViewController.xib */,
+				3AF1AADE1417AC0A00A7C913 /* PhotoEditViewController.xib */,
 			);
 			name = XIB;
 			sourceTree = "<group>";
@@ -809,6 +817,7 @@
 				82A21EC1140A388C008C26FB /* vocals.mp3 in Resources */,
 				EDA02936140BE83000358173 /* VideoViewController.xib in Resources */,
 				95DAE876141480200039201D /* README-GHUnit in Resources */,
+				3AF1AAE01417AC0A00A7C913 /* PhotoEditViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -884,6 +893,7 @@
 				95DAE8DD141495690039201D /* ZipArchive.m in Sources */,
 				95DAE8EA1414A2AF0039201D /* DSActivityView.m in Sources */,
 				95DAE8F71414E8D50039201D /* ScenePlayer.m in Sources */,
+				3AF1AADF1417AC0A00A7C913 /* PhotoEditViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
