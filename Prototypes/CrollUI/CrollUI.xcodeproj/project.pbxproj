@@ -1,0 +1,474 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		95DAE92714188B5A0039201D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95DAE92614188B5A0039201D /* UIKit.framework */; };
+		95DAE92914188B5A0039201D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95DAE92814188B5A0039201D /* Foundation.framework */; };
+		95DAE92B14188B5A0039201D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95DAE92A14188B5A0039201D /* CoreGraphics.framework */; };
+		95DAE93114188B5A0039201D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 95DAE92F14188B5A0039201D /* InfoPlist.strings */; };
+		95DAE93314188B5A0039201D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 95DAE93214188B5A0039201D /* main.m */; };
+		95DAE93714188B5A0039201D /* CrollUIAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 95DAE93614188B5A0039201D /* CrollUIAppDelegate.m */; };
+		95DAE93A14188B5A0039201D /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95DAE93814188B5A0039201D /* MainWindow.xib */; };
+		95DAE93D14188B5A0039201D /* CrollUIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95DAE93C14188B5A0039201D /* CrollUIViewController.m */; };
+		95DAE94814188B5A0039201D /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95DAE94714188B5A0039201D /* SenTestingKit.framework */; };
+		95DAE94914188B5A0039201D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95DAE92614188B5A0039201D /* UIKit.framework */; };
+		95DAE94A14188B5A0039201D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95DAE92814188B5A0039201D /* Foundation.framework */; };
+		95DAE94B14188B5A0039201D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95DAE92A14188B5A0039201D /* CoreGraphics.framework */; };
+		95DAE95314188B5A0039201D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 95DAE95114188B5A0039201D /* InfoPlist.strings */; };
+		95DAE95514188B5A0039201D /* CrollUITests.h in Resources */ = {isa = PBXBuildFile; fileRef = 95DAE95414188B5A0039201D /* CrollUITests.h */; };
+		95DAE95714188B5A0039201D /* CrollUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 95DAE95614188B5A0039201D /* CrollUITests.m */; };
+		95DAE96114188B780039201D /* CrollUIViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95DAE96014188B780039201D /* CrollUIViewController.xib */; };
+		95DAE96514188E140039201D /* AudioEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95DAE96314188E130039201D /* AudioEditorViewController.m */; };
+		95DAE96614188E140039201D /* AudioEditorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95DAE96414188E130039201D /* AudioEditorViewController.xib */; };
+		95DAE96A141893C30039201D /* PhotoEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95DAE968141893C20039201D /* PhotoEditorViewController.m */; };
+		95DAE96B141893C30039201D /* PhotoEditorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95DAE969141893C30039201D /* PhotoEditorViewController.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		95DAE94C14188B5A0039201D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 95DAE91914188B5A0039201D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 95DAE92114188B5A0039201D;
+			remoteInfo = CrollUI;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		95DAE92214188B5A0039201D /* CrollUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CrollUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		95DAE92614188B5A0039201D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		95DAE92814188B5A0039201D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		95DAE92A14188B5A0039201D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		95DAE92E14188B5A0039201D /* CrollUI-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CrollUI-Info.plist"; sourceTree = "<group>"; };
+		95DAE93014188B5A0039201D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		95DAE93214188B5A0039201D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		95DAE93414188B5A0039201D /* CrollUI-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CrollUI-Prefix.pch"; sourceTree = "<group>"; };
+		95DAE93514188B5A0039201D /* CrollUIAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CrollUIAppDelegate.h; sourceTree = "<group>"; };
+		95DAE93614188B5A0039201D /* CrollUIAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CrollUIAppDelegate.m; sourceTree = "<group>"; };
+		95DAE93914188B5A0039201D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
+		95DAE93B14188B5A0039201D /* CrollUIViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CrollUIViewController.h; sourceTree = "<group>"; };
+		95DAE93C14188B5A0039201D /* CrollUIViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CrollUIViewController.m; sourceTree = "<group>"; };
+		95DAE94614188B5A0039201D /* CrollUITests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CrollUITests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		95DAE94714188B5A0039201D /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		95DAE95014188B5A0039201D /* CrollUITests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CrollUITests-Info.plist"; sourceTree = "<group>"; };
+		95DAE95214188B5A0039201D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		95DAE95414188B5A0039201D /* CrollUITests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CrollUITests.h; sourceTree = "<group>"; };
+		95DAE95614188B5A0039201D /* CrollUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CrollUITests.m; sourceTree = "<group>"; };
+		95DAE96014188B780039201D /* CrollUIViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CrollUIViewController.xib; sourceTree = "<group>"; };
+		95DAE96214188E130039201D /* AudioEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioEditorViewController.h; sourceTree = "<group>"; };
+		95DAE96314188E130039201D /* AudioEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioEditorViewController.m; sourceTree = "<group>"; };
+		95DAE96414188E130039201D /* AudioEditorViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AudioEditorViewController.xib; sourceTree = "<group>"; };
+		95DAE967141893C20039201D /* PhotoEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoEditorViewController.h; sourceTree = "<group>"; };
+		95DAE968141893C20039201D /* PhotoEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoEditorViewController.m; sourceTree = "<group>"; };
+		95DAE969141893C30039201D /* PhotoEditorViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoEditorViewController.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		95DAE91F14188B5A0039201D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				95DAE92714188B5A0039201D /* UIKit.framework in Frameworks */,
+				95DAE92914188B5A0039201D /* Foundation.framework in Frameworks */,
+				95DAE92B14188B5A0039201D /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		95DAE94214188B5A0039201D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				95DAE94814188B5A0039201D /* SenTestingKit.framework in Frameworks */,
+				95DAE94914188B5A0039201D /* UIKit.framework in Frameworks */,
+				95DAE94A14188B5A0039201D /* Foundation.framework in Frameworks */,
+				95DAE94B14188B5A0039201D /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		95DAE91714188B5A0039201D = {
+			isa = PBXGroup;
+			children = (
+				95DAE92C14188B5A0039201D /* CrollUI */,
+				95DAE94E14188B5A0039201D /* CrollUITests */,
+				95DAE92514188B5A0039201D /* Frameworks */,
+				95DAE92314188B5A0039201D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		95DAE92314188B5A0039201D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				95DAE92214188B5A0039201D /* CrollUI.app */,
+				95DAE94614188B5A0039201D /* CrollUITests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		95DAE92514188B5A0039201D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				95DAE92614188B5A0039201D /* UIKit.framework */,
+				95DAE92814188B5A0039201D /* Foundation.framework */,
+				95DAE92A14188B5A0039201D /* CoreGraphics.framework */,
+				95DAE94714188B5A0039201D /* SenTestingKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		95DAE92C14188B5A0039201D /* CrollUI */ = {
+			isa = PBXGroup;
+			children = (
+				95DAE93514188B5A0039201D /* CrollUIAppDelegate.h */,
+				95DAE93614188B5A0039201D /* CrollUIAppDelegate.m */,
+				95DAE93814188B5A0039201D /* MainWindow.xib */,
+				95DAE93B14188B5A0039201D /* CrollUIViewController.h */,
+				95DAE93C14188B5A0039201D /* CrollUIViewController.m */,
+				95DAE96014188B780039201D /* CrollUIViewController.xib */,
+				95DAE92D14188B5A0039201D /* Supporting Files */,
+				95DAE96214188E130039201D /* AudioEditorViewController.h */,
+				95DAE96314188E130039201D /* AudioEditorViewController.m */,
+				95DAE96414188E130039201D /* AudioEditorViewController.xib */,
+				95DAE967141893C20039201D /* PhotoEditorViewController.h */,
+				95DAE968141893C20039201D /* PhotoEditorViewController.m */,
+				95DAE969141893C30039201D /* PhotoEditorViewController.xib */,
+			);
+			path = CrollUI;
+			sourceTree = "<group>";
+		};
+		95DAE92D14188B5A0039201D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				95DAE92E14188B5A0039201D /* CrollUI-Info.plist */,
+				95DAE92F14188B5A0039201D /* InfoPlist.strings */,
+				95DAE93214188B5A0039201D /* main.m */,
+				95DAE93414188B5A0039201D /* CrollUI-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		95DAE94E14188B5A0039201D /* CrollUITests */ = {
+			isa = PBXGroup;
+			children = (
+				95DAE95414188B5A0039201D /* CrollUITests.h */,
+				95DAE95614188B5A0039201D /* CrollUITests.m */,
+				95DAE94F14188B5A0039201D /* Supporting Files */,
+			);
+			path = CrollUITests;
+			sourceTree = "<group>";
+		};
+		95DAE94F14188B5A0039201D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				95DAE95014188B5A0039201D /* CrollUITests-Info.plist */,
+				95DAE95114188B5A0039201D /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		95DAE92114188B5A0039201D /* CrollUI */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 95DAE95A14188B5A0039201D /* Build configuration list for PBXNativeTarget "CrollUI" */;
+			buildPhases = (
+				95DAE91E14188B5A0039201D /* Sources */,
+				95DAE91F14188B5A0039201D /* Frameworks */,
+				95DAE92014188B5A0039201D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CrollUI;
+			productName = CrollUI;
+			productReference = 95DAE92214188B5A0039201D /* CrollUI.app */;
+			productType = "com.apple.product-type.application";
+		};
+		95DAE94514188B5A0039201D /* CrollUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 95DAE95D14188B5A0039201D /* Build configuration list for PBXNativeTarget "CrollUITests" */;
+			buildPhases = (
+				95DAE94114188B5A0039201D /* Sources */,
+				95DAE94214188B5A0039201D /* Frameworks */,
+				95DAE94314188B5A0039201D /* Resources */,
+				95DAE94414188B5A0039201D /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				95DAE94D14188B5A0039201D /* PBXTargetDependency */,
+			);
+			name = CrollUITests;
+			productName = CrollUITests;
+			productReference = 95DAE94614188B5A0039201D /* CrollUITests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		95DAE91914188B5A0039201D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = "mohawk.riceball@gmail.com";
+			};
+			buildConfigurationList = 95DAE91C14188B5A0039201D /* Build configuration list for PBXProject "CrollUI" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 95DAE91714188B5A0039201D;
+			productRefGroup = 95DAE92314188B5A0039201D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				95DAE92114188B5A0039201D /* CrollUI */,
+				95DAE94514188B5A0039201D /* CrollUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		95DAE92014188B5A0039201D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				95DAE93114188B5A0039201D /* InfoPlist.strings in Resources */,
+				95DAE93A14188B5A0039201D /* MainWindow.xib in Resources */,
+				95DAE96114188B780039201D /* CrollUIViewController.xib in Resources */,
+				95DAE96614188E140039201D /* AudioEditorViewController.xib in Resources */,
+				95DAE96B141893C30039201D /* PhotoEditorViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		95DAE94314188B5A0039201D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				95DAE95314188B5A0039201D /* InfoPlist.strings in Resources */,
+				95DAE95514188B5A0039201D /* CrollUITests.h in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		95DAE94414188B5A0039201D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		95DAE91E14188B5A0039201D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				95DAE93314188B5A0039201D /* main.m in Sources */,
+				95DAE93714188B5A0039201D /* CrollUIAppDelegate.m in Sources */,
+				95DAE93D14188B5A0039201D /* CrollUIViewController.m in Sources */,
+				95DAE96514188E140039201D /* AudioEditorViewController.m in Sources */,
+				95DAE96A141893C30039201D /* PhotoEditorViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		95DAE94114188B5A0039201D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				95DAE95714188B5A0039201D /* CrollUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		95DAE94D14188B5A0039201D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 95DAE92114188B5A0039201D /* CrollUI */;
+			targetProxy = 95DAE94C14188B5A0039201D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		95DAE92F14188B5A0039201D /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				95DAE93014188B5A0039201D /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		95DAE93814188B5A0039201D /* MainWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				95DAE93914188B5A0039201D /* en */,
+			);
+			name = MainWindow.xib;
+			sourceTree = "<group>";
+		};
+		95DAE95114188B5A0039201D /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				95DAE95214188B5A0039201D /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		95DAE95814188B5A0039201D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		95DAE95914188B5A0039201D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		95DAE95B14188B5A0039201D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CrollUI/CrollUI-Prefix.pch";
+				INFOPLIST_FILE = "CrollUI/CrollUI-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		95DAE95C14188B5A0039201D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CrollUI/CrollUI-Prefix.pch";
+				INFOPLIST_FILE = "CrollUI/CrollUI-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		95DAE95E14188B5A0039201D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/CrollUI.app/CrollUI";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CrollUI/CrollUI-Prefix.pch";
+				INFOPLIST_FILE = "CrollUITests/CrollUITests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		95DAE95F14188B5A0039201D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/CrollUI.app/CrollUI";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CrollUI/CrollUI-Prefix.pch";
+				INFOPLIST_FILE = "CrollUITests/CrollUITests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		95DAE91C14188B5A0039201D /* Build configuration list for PBXProject "CrollUI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				95DAE95814188B5A0039201D /* Debug */,
+				95DAE95914188B5A0039201D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		95DAE95A14188B5A0039201D /* Build configuration list for PBXNativeTarget "CrollUI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				95DAE95B14188B5A0039201D /* Debug */,
+				95DAE95C14188B5A0039201D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		95DAE95D14188B5A0039201D /* Build configuration list for PBXNativeTarget "CrollUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				95DAE95E14188B5A0039201D /* Debug */,
+				95DAE95F14188B5A0039201D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 95DAE91914188B5A0039201D /* Project object */;
+}
