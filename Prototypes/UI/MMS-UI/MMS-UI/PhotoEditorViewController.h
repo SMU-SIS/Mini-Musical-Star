@@ -8,6 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+#import "Show.h"
+#import "ShowDAO.h"
+#import "Picture.h"
+
 @interface PhotoEditorViewController : UIViewController
+
+@property(retain,nonatomic) IBOutlet UIImageView *leftPicture;
+@property(retain,nonatomic) IBOutlet UIImageView *rightPicture;
+@property(retain,nonatomic) IBOutlet UIImageView *centerPicture;
+
+- (void) setSliderImages:(UInt32)timeAt;
 
 @end

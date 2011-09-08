@@ -10,6 +10,8 @@
 
 @implementation PhotoEditorViewController
 
+@synthesize leftPicture, rightPicture, centerPicture;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -33,6 +35,28 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    [self setSliderImages: 15];
+}
+
+- (void) setSliderImages:(UInt32)timeAt
+{
+    Show *show = [[ShowDAO shows] objectAtIndex:0];
+    NSMutableArray *pictureList = [[[show scenes] objectAtIndex:0] pictureList];
+//    NSArray *slideShowPictureList = [[NSArray alloc] init];
+    
+    [pictureList enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        Picture *pic = (Picture*)obj;
+        UInt32 startTime = pic.startTime;
+//        NSLog(@"startTime123: %lu ", pic.startTime);
+        UInt32 endTime = pic.startTime + pic.duration;
+//        UInt32 endTime = 20;
+        if(startTime <= timeAt && endTime >= timeAt){
+            centerPicture.image = pic.image;
+            NSLog(@"startTime: %lu ",startTime);
+            NSLog(@"endTime: %lu",endTime);
+        }
+        
+    }];
 }
 
 - (void)viewDidUnload

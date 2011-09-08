@@ -13,8 +13,8 @@
 
 @property (retain, nonatomic) NSString *title;
 @property (retain, nonatomic) UIImage *image;
-@property (retain, nonatomic) NSNumber *startTime;
-@property (retain, nonatomic) NSNumber *duration;
+@property (assign, nonatomic) UInt32 startTime;
+@property (assign, nonatomic) UInt32 duration;
 @property (retain, nonatomic) NSMutableArray *pictureCueList;
 
 - (Picture *)initPictureWithPropertyDictionary: (NSDictionary *) pDictionary : (NSString *) scenePath;
