@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ShowImage.h"
 #import "Show.h"
+#import "SceneEditViewController.h"
 
 @interface SceneViewController : UIViewController{
     IBOutlet UIImageView *showCover;

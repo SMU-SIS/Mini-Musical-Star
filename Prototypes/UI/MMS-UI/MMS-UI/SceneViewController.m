@@ -7,7 +7,7 @@
 //
 
 #import "SceneViewController.h"
-#import "EditViewController.h"
+
 
 @implementation SceneViewController
 @synthesize imageNum;
@@ -89,13 +89,20 @@
 -(void)selectScene:(id)sender
 {
     //wei jie, I don't know how to get the value for selected scene so i hardcode first ok? help me change - Adrian
-    NSLog(@"TMD : %@",theShow.scenes);
-    EditViewController *editScene = [[EditViewController alloc] initWithImagesFromScene:[theShow.scenes objectAtIndex:0]];
+//    NSLog(@"TMD : %@",theShow.scenes);
+//    EditViewController *editScene = [[EditViewController alloc] initWithImagesFromScene:[theShow.scenes objectAtIndex:0]];
+//    
+//    
+//    editScene.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+//    [self presentModalViewController:editScene animated:YES];
+//    [editScene release];
+    SceneEditViewController *editController = [[SceneEditViewController alloc] init];
+    editController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    [self presentModalViewController:editController animated:YES];
+    
+    [editController release];
     
     
-    editScene.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-    [self presentModalViewController:editScene animated:YES];
-    [editScene release];
 }
 
 -(void)displaySceneImages:(NSArray *)images{

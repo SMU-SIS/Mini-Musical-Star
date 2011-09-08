@@ -11,7 +11,6 @@
 #import "ShowDAO.h"
 #import "Show.h"
 
-#import "EditViewController.h"
 #import "SceneViewController.h"
 #import "PlaybackViewController.h"
 #import "CoverViewController.h"
