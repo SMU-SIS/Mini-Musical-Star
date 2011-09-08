@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "AudioEditorViewController.h"
 #import "PhotoEditorViewController.h"
+#import "Scene.h"
+#import "MixPlayerRecorder.h"
 
 @interface SceneEditViewController : UIViewController <UIScrollViewDelegate> {
     // To be used when scrolls originate from the UIPageControl
@@ -24,5 +26,10 @@
 @property (retain, nonatomic) IBOutlet UILabel *songInfoLabel;
 @property (retain, nonatomic) IBOutlet UISlider *playPositionSlider;
 @property (retain, nonatomic) IBOutlet UISlider *masterVolumeSlider;
+
+@property (retain, nonatomic) Scene *theScene;
+@property (retain, nonatomic) MixPlayerRecorder *thePlayer;
+
+- (void)loadChildViewControllers;
 
 @end

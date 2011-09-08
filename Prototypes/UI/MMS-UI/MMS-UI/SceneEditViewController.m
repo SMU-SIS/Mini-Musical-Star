@@ -10,10 +10,13 @@
 #import "SceneEditViewController.h"
 
 @implementation SceneEditViewController
-@synthesize scrollView, pageControl, playPauseButton, elapsedTimeLabel, totalTimeLabel, songInfoLabel, playPositionSlider, masterVolumeSlider;
+@synthesize scrollView, pageControl, playPauseButton, elapsedTimeLabel, totalTimeLabel, songInfoLabel, playPositionSlider, masterVolumeSlider, theScene, thePlayer;
 
 - (void)dealloc
 {
+    [thePlayer stop];
+    [thePlayer release];
+    [theScene release];
     [scrollView release];
     [pageControl release];
     [playPauseButton release];
@@ -38,6 +41,11 @@
 
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
+- (void)registerNotifications
+{
+    
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -53,6 +61,12 @@
     pageControl.numberOfPages = kNumberOfPages;
     pageControl.currentPage = 0;
     
+    [self loadChildViewControllers];
+    
+}
+
+- (void)loadChildViewControllers
+{
     //load the audio view controller
     AudioEditorViewController *audioView = [[AudioEditorViewController alloc] init];
     int page = 0;
@@ -69,7 +83,47 @@
     frame.origin.y = 0;
     photoView.view.frame = frame;
     [scrollView addSubview:photoView.view];
+
 }
+
+- (SceneEditViewController *)initWithScene:(Scene *)aScene
+{
+    self = [super init];
+    if (self)
+    {
+        self.theScene = aScene;
+        
+        //get the array of audio tracks
+        __block NSMutableArray *audioTracks = [[NSMutableArray alloc] initWithCapacity:aScene.audioList.count];
+        [aScene.audioList enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            Audio *theAudio = (Audio *)obj;
+            [audioTracks addObject:[NSURL fileURLWithPath:theAudio.path]];
+        }];
+        
+        //init the player with the audio tracks
+        thePlayer = [[MixPlayerRecorder alloc] initWithAudioFileURLs:audioTracks];
+        
+    }
+    
+    return self;
+}
+
+- (IBAction)playPauseButtonPressed: (UIButton *)sender
+{
+    if (thePlayer.isPlaying)
+    {
+        [thePlayer stop];
+        [sender setTitle:@"Play" forState:UIControlStateNormal];
+    }
+    
+    else
+    {
+        [thePlayer play];
+        [sender setTitle:@"Stop" forState:UIControlStateNormal];
+    }
+}
+
+
 
 - (void)scrollViewDidScroll:(UIScrollView *)sender
 {
