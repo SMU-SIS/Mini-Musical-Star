@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3A8B90BC141907B50040938A /* PhotoEditorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A8B90BB141907B50040938A /* PhotoEditorViewController.xib */; };
 		6472FC2D14127DDE00837069 /* HiddenView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6472FC2C14127DDE00837069 /* HiddenView.m */; };
 		820511BF13F3BB9B0016F87E /* SceneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 820511BD13F3BB9B0016F87E /* SceneViewController.m */; };
 		820511C013F3BB9B0016F87E /* SceneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 820511BE13F3BB9B0016F87E /* SceneViewController.xib */; };
@@ -26,6 +25,7 @@
 		9569E05B1418A2A80016DAF3 /* AudioEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9569E0581418A2A80016DAF3 /* AudioEditorViewController.m */; };
 		9569E05C1418A2A80016DAF3 /* PhotoEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9569E05A1418A2A80016DAF3 /* PhotoEditorViewController.m */; };
 		9569E05F1418A2B10016DAF3 /* AudioEditorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9569E05D1418A2B10016DAF3 /* AudioEditorViewController.xib */; };
+		9569E0601418A2B10016DAF3 /* PhotoEditorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9569E05E1418A2B10016DAF3 /* PhotoEditorViewController.xib */; };
 		9569E0621418A2C90016DAF3 /* SceneEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9569E0611418A2C90016DAF3 /* SceneEditViewController.xib */; };
 		9569E0651418A2D30016DAF3 /* SceneEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9569E0641418A2D30016DAF3 /* SceneEditViewController.m */; };
 		9572E0D7140E118400713F45 /* AudioCue.m in Sources */ = {isa = PBXBuildFile; fileRef = 9572E0CC140E118400713F45 /* AudioCue.m */; };
@@ -131,7 +131,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		3A8B90BB141907B50040938A /* PhotoEditorViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoEditorViewController.xib; sourceTree = "<group>"; };
 		6472FC2B14127DDE00837069 /* HiddenView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HiddenView.h; sourceTree = "<group>"; };
 		6472FC2C14127DDE00837069 /* HiddenView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HiddenView.m; sourceTree = "<group>"; };
 		820511BC13F3BB9B0016F87E /* SceneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneViewController.h; sourceTree = "<group>"; };
@@ -160,6 +159,7 @@
 		9569E0591418A2A80016DAF3 /* PhotoEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoEditorViewController.h; sourceTree = "<group>"; };
 		9569E05A1418A2A80016DAF3 /* PhotoEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoEditorViewController.m; sourceTree = "<group>"; };
 		9569E05D1418A2B10016DAF3 /* AudioEditorViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AudioEditorViewController.xib; sourceTree = "<group>"; };
+		9569E05E1418A2B10016DAF3 /* PhotoEditorViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoEditorViewController.xib; sourceTree = "<group>"; };
 		9569E0611418A2C90016DAF3 /* SceneEditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SceneEditViewController.xib; sourceTree = "<group>"; };
 		9569E0631418A2D30016DAF3 /* SceneEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneEditViewController.h; sourceTree = "<group>"; };
 		9569E0641418A2D30016DAF3 /* SceneEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SceneEditViewController.m; sourceTree = "<group>"; };
@@ -508,10 +508,10 @@
 				EDA2A1D613F26F8400B64EA5 /* MainWindow.xib */,
 				EDA2A1DC13F26F8400B64EA5 /* MenuViewController.xib */,
 				EDC5CC3113F6260400EAF813 /* PlaybackViewController.xib */,
-				3A8B90BB141907B50040938A /* PhotoEditorViewController.xib */,
 				820511BE13F3BB9B0016F87E /* SceneViewController.xib */,
 				EDC5CC3713F6261500EAF813 /* CoverViewConroller.xib */,
 				9569E05D1418A2B10016DAF3 /* AudioEditorViewController.xib */,
+				9569E05E1418A2B10016DAF3 /* PhotoEditorViewController.xib */,
 				9569E0611418A2C90016DAF3 /* SceneEditViewController.xib */,
 			);
 			name = XIB;
@@ -807,8 +807,8 @@
 				82A21EC1140A388C008C26FB /* vocals.mp3 in Resources */,
 				95DAE876141480200039201D /* README-GHUnit in Resources */,
 				9569E05F1418A2B10016DAF3 /* AudioEditorViewController.xib in Resources */,
+				9569E0601418A2B10016DAF3 /* PhotoEditorViewController.xib in Resources */,
 				9569E0621418A2C90016DAF3 /* SceneEditViewController.xib in Resources */,
-				3A8B90BC141907B50040938A /* PhotoEditorViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

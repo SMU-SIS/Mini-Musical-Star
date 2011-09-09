@@ -10,7 +10,7 @@
 #import "SceneEditViewController.h"
 
 @implementation SceneEditViewController
-@synthesize scrollView, pageControl, playPauseButton, elapsedTimeLabel, totalTimeLabel, songInfoLabel, playPositionSlider, masterVolumeSlider, theScene, thePlayer;
+@synthesize audioView, photoView, scrollView, pageControl, playPauseButton, elapsedTimeLabel, totalTimeLabel, songInfoLabel, playPositionSlider, masterVolumeSlider, theScene, thePlayer;
 
 - (void)dealloc
 {
@@ -78,7 +78,7 @@
 - (void)loadChildViewControllers
 {
     //load the audio view controller
-    AudioEditorViewController *audioView = [[AudioEditorViewController alloc] init];
+    audioView = [[AudioEditorViewController alloc] init];
     int page = 0;
     CGRect frame = scrollView.frame;
     frame.origin.x = frame.size.width * page;
@@ -87,7 +87,7 @@
     [scrollView addSubview:audioView.view];
     
     //load the photo view controller
-    PhotoEditorViewController *photoView = [[PhotoEditorViewController alloc] init];
+    photoView = [[PhotoEditorViewController alloc] init];
     page = 1;
     frame.origin.x = frame.size.width * page;
     frame.origin.y = 0;
@@ -161,6 +161,10 @@
 //for the secondary thread to call on the main thread
 -(void)updateProgressSliderWithTime
 {
+    //inform the PhotoEditorViewController
+    [photoView setSliderImages:thePlayer.elapsedPlaybackTimeInSeconds];
+    
+    //update the playback labels
     [elapsedTimeLabel setText:[NSString stringWithFormat:@"%i", thePlayer.elapsedPlaybackTimeInSeconds]];
     float progressSliderValue = (float)thePlayer.elapsedPlaybackTimeInSeconds / (float)thePlayer.totalPlaybackTimeInSeconds;    
     playPositionSlider.value = progressSliderValue;
