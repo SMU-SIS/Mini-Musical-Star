@@ -9,7 +9,7 @@
 #import "Picture.h"
 
 @implementation Picture
-@synthesize title, image, startTime, duration, pictureCueList;
+@synthesize title, image, startTime, duration, pictureCueList, orderNumber;
 
 - (Picture *)initPictureWithPropertyDictionary: (NSDictionary *) pDictionary: (NSString *) scenePath
 {
@@ -21,6 +21,7 @@
         [f setNumberStyle:NSNumberFormatterDecimalStyle];
         self.startTime = (UInt32)[[pDictionary objectForKey:@"start-time"] intValue];
         self.duration = (UInt32) [[pDictionary objectForKey:@"duration"] intValue];
+        self.orderNumber = (UInt32) [[pDictionary objectForKey:@"order-number"] intValue];
         
         [f release];
         NSArray *cueArray = [pDictionary objectForKey:@"cues"];

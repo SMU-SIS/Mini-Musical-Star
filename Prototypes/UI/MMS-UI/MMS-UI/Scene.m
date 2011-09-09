@@ -43,6 +43,7 @@
             [pictureList addObject:scenePicture];
             [scenePicture release];
         }];
+        
     }
     
     return self;

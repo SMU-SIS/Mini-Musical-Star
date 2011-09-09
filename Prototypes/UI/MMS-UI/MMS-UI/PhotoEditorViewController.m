@@ -43,20 +43,35 @@
     Show *show = [[ShowDAO shows] objectAtIndex:0];
     NSMutableArray *pictureList = [[[show scenes] objectAtIndex:0] pictureList];
 //    NSArray *slideShowPictureList = [[NSArray alloc] init];
-    
+    __block UInt32 centerOrderNumber;
     [pictureList enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         Picture *pic = (Picture*)obj;
         UInt32 startTime = pic.startTime;
-//        NSLog(@"startTime123: %lu ", pic.startTime);
         UInt32 endTime = pic.startTime + pic.duration;
-//        UInt32 endTime = 20;
-        if(startTime <= timeAt && endTime >= timeAt){
+        if(startTime <= timeAt && endTime > timeAt){
             centerPicture.image = pic.image;
-            NSLog(@"startTime: %lu ",startTime);
-            NSLog(@"endTime: %lu",endTime);
+//            NSLog(@"startTime: %lu ",startTime);
+//            NSLog(@"endTime: %lu",endTime);
+            centerOrderNumber = pic.orderNumber;
+        }
+        
+        
+    }];
+
+    [pictureList enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        Picture *pic = (Picture*)obj;
+        UInt32 leftOrderNumber = centerOrderNumber - 1;
+        UInt32 rightOrderNumber = centerOrderNumber + 1;
+        if(pic.orderNumber == leftOrderNumber){
+            leftPicture.image = pic.image;
+        }
+        
+        if(pic.orderNumber == rightOrderNumber){
+            rightPicture.image = pic.image;
         }
         
     }];
+    
 }
 
 - (void)viewDidUnload

@@ -111,7 +111,7 @@
         }];
         
         //init the player with the audio tracks
-        thePlayer = [[MixPlayerRecorder alloc] initWithAudioFileURLs:audioTracks];
+        //thePlayer = [[MixPlayerRecorder alloc] initWithAudioFileURLs:audioTracks];
         
         [self registerNotifications];
     }
