@@ -7,6 +7,7 @@
 //
 
 #import "PlayNewUIViewController.h"
+#import "TrackPane.h"
 
 @implementation PlayNewUIViewController
 
@@ -82,6 +83,25 @@
     cell.secondaryLabel.text = @"WOOHOO";
     cell.myImageView.image = [UIImage imageNamed:@"23-bird.png"];
     
+    
+    UIView *trackPaneView = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 768, 100)] autorelease];
+    [trackPaneView setBackgroundColor:[UIColor blueColor]];
+    
+    UILabel *trackNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 100, 30)];
+    trackNameLabel.text = @"Vocal One";
+    [trackPaneView addSubview:trackNameLabel]; //add label to view
+    
+    UIButton *testButton = [[UIButton alloc] initWithFrame:CGRectMake(200, 10, 100, 30)];
+    [testButton addTarget:self action:@selector(buttonIsPressed:) forControlEvents:UIControlEventTouchDown];
+    [testButton setTitle:@"AWESOME" forState:UIControlStateNormal];
+    [testButton setBackgroundColor:[UIColor greenColor]];
+    [trackPaneView addSubview:testButton]; //add button to view
+    
+    //trackPaneView.tableViewCell = cell;
+    
+    [cell.contentView addSubview:trackPaneView]; //add entire view to content view of table cel view
+    
+    
 
 //    //this is how you handle a original table view cell  
 //    NSString *cellLabel = [handsomeArray objectAtIndex:[indexPath row]];
@@ -97,6 +117,11 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 100;
+}
+
+- (IBAction)buttonIsPressed:(id)sender 
+{
+    NSLog(@"fsfjsfj");
 }
 
 - (void)viewDidUnload

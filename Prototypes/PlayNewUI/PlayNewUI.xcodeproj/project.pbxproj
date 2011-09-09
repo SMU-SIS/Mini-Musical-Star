@@ -18,6 +18,7 @@
 		6436B8621418A1070059D432 /* PlayNewUIViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6436B8601418A1070059D432 /* PlayNewUIViewController.xib */; };
 		6436B8AC1418D3FE0059D432 /* CustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6436B8AB1418D3FE0059D432 /* CustomCell.m */; };
 		6436B8B31418F4670059D432 /* 23-bird.png in Resources */ = {isa = PBXBuildFile; fileRef = 6436B8B21418F4670059D432 /* 23-bird.png */; };
+		6436B8B61419BC320059D432 /* TrackPane.m in Sources */ = {isa = PBXBuildFile; fileRef = 6436B8B51419BC320059D432 /* TrackPane.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,8 @@
 		6436B8AA1418D3FE0059D432 /* CustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCell.h; sourceTree = "<group>"; };
 		6436B8AB1418D3FE0059D432 /* CustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCell.m; sourceTree = "<group>"; };
 		6436B8B21418F4670059D432 /* 23-bird.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "23-bird.png"; sourceTree = "<group>"; };
+		6436B8B41419BC320059D432 /* TrackPane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackPane.h; sourceTree = "<group>"; };
+		6436B8B51419BC320059D432 /* TrackPane.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackPane.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +97,8 @@
 				6436B85E1418A1070059D432 /* PlayNewUIViewController.m */,
 				6436B8601418A1070059D432 /* PlayNewUIViewController.xib */,
 				6436B84F1418A1070059D432 /* Supporting Files */,
+				6436B8B41419BC320059D432 /* TrackPane.h */,
+				6436B8B51419BC320059D432 /* TrackPane.m */,
 			);
 			path = PlayNewUI;
 			sourceTree = "<group>";
@@ -182,6 +187,7 @@
 				6436B8591418A1070059D432 /* PlayNewUIAppDelegate.m in Sources */,
 				6436B85F1418A1070059D432 /* PlayNewUIViewController.m in Sources */,
 				6436B8AC1418D3FE0059D432 /* CustomCell.m in Sources */,
+				6436B8B61419BC320059D432 /* TrackPane.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
