@@ -19,5 +19,6 @@
 @property (nonatomic, retain) UITableView *trackTableView;
 @property (nonatomic, retain) UIView *trackCellRightPanel;
 
+- (void)scrollToX;
 
 @end

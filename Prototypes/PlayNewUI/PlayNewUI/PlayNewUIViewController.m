@@ -60,7 +60,7 @@
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 2;
+    return 3;
 }
 
 // This method is called for each cell in the table view.
@@ -75,25 +75,47 @@
         cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
     }    
     
-    cell.contentView.backgroundColor = [UIColor blackColor];
-    [cell setSelectionStyle:UITableViewCellSelectionStyleNone]; //the cell cannot be selected
+    switch ([indexPath row]) {
+        case 0:
+            cell.contentView.backgroundColor = [UIColor blackColor];
+            [cell setSelectionStyle:UITableViewCellSelectionStyleNone]; //the cell cannot be selected
+
+            break;
+            
+        default:
+            cell.contentView.backgroundColor = [UIColor blackColor];
+            [cell setSelectionStyle:UITableViewCellSelectionStyleNone]; //the cell cannot be selected
+            
+            UILabel *trackNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(25, 30, 200, 30)];
+            trackNameLabel.text = @"Vocal 1";
+            trackNameLabel.backgroundColor = [UIColor blackColor];
+            trackNameLabel.textColor = [UIColor whiteColor];
+            [trackNameLabel setFont:[UIFont fontWithName:@"GillSans-Bold" size:18]];
+            [cell.contentView addSubview:trackNameLabel]; //add label to view
+            [trackNameLabel release];
+            
+            
+            UIButton *recordButton = [[UIButton alloc] initWithFrame:CGRectMake(100, 50, 40, 40)];
+            UIImage *recordImage = [UIImage imageNamed:@"record.png"];
+            [recordButton setImage:recordImage forState:UIControlStateNormal];
+            [cell.contentView addSubview:recordButton];
+            
+            trackCellRightPanel = [[UIView alloc] initWithFrame:CGRectMake(150, 0, 1024-150, 100)];
+            
+            /* draw gradient background */
+            CAGradientLayer *gradient = [CAGradientLayer layer];
+            gradient.frame = trackCellRightPanel.bounds;
+            gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor whiteColor] CGColor], (id)[[UIColor blackColor] CGColor], nil];
+            [trackCellRightPanel.layer insertSublayer:gradient atIndex:0];
+            [cell.contentView addSubview:trackCellRightPanel]; //add label to view
+            
+
+            
+            break;
+    }
     
-    UILabel *trackNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 35, 200, 30)];
-    trackNameLabel.text = @"Vocal 1";
-    trackNameLabel.backgroundColor = [UIColor blackColor];
-    trackNameLabel.textColor = [UIColor whiteColor];
-    [trackNameLabel setFont:[UIFont fontWithName:@"GillSans-Bold" size:18]];
-    [cell.contentView addSubview:trackNameLabel]; //add label to view
-    [trackNameLabel release];
-    
-    trackCellRightPanel = [[UIView alloc] initWithFrame:CGRectMake(150, 0, 1024-150, 100)];
-    
-    /* draw gradient background */
-    CAGradientLayer *gradient = [CAGradientLayer layer];
-    gradient.frame = trackCellRightPanel.bounds;
-    gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor whiteColor] CGColor], (id)[[UIColor blackColor] CGColor], nil];
-    [trackCellRightPanel.layer insertSublayer:gradient atIndex:0];
-    [cell.contentView addSubview:trackCellRightPanel]; //add label to view
+      
+    //WHICH VARIABLE I HAVE TO RELEASE?!!?!?!?!? 
     
     return cell;
 }
@@ -102,6 +124,11 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 100;
+}
+
+- (IBAction)scrollToX
+{
+    
 }
 
 - (void)viewDidUnload

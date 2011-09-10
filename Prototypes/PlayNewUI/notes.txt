@@ -23,3 +23,10 @@ NSUInteger row = [indexPath row];   //get the index of each row
 no. of rows must be dynamic
 
 able to draw different rows differently - use a switch
+
+
+
+use a button to trigger off  the table view to automatically scroll to a specific row
+this is needed when the user wants to fuck fuck fuck
+
+then also need to use another temp button to trigger off the lyrics pop over to come down.weeeee
