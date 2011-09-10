@@ -9,10 +9,11 @@
 #import "PlayNewUIViewController.h"
 #import "TrackPane.h"
 
+#import <QuartzCore/QuartzCore.h>
+
 @implementation PlayNewUIViewController
 
-@synthesize tableView;
-@synthesize handsomeArray;
+@synthesize trackTableView, trackCellRightPanel;
 
 - (void)didReceiveMemoryWarning
 {
@@ -28,87 +29,71 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    handsomeArray = [[NSMutableArray alloc] init];
     
-    [handsomeArray addObject:@"tommi is handsome"];
-    [handsomeArray addObject:@"tommi is really handsome"];
-    [handsomeArray addObject:@"tommi is awesome"];
-    [handsomeArray addObject:@"tommi is really awesome"];
-    [handsomeArray addObject:@"tommi is hot"];
-    [handsomeArray addObject:@"tommi is really hot"];
-    [handsomeArray addObject:@"tommi is sexy"];
-    [handsomeArray addObject:@"tommi is really sexy"];
+    self.view.backgroundColor = [UIColor blackColor];
+    
+    //0, 100, 1024, 300
+    // If you initialize the table view with the UIView method initWithFrame:,
+    //the UITableViewStylePlain style is used as a default.
+    trackTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 100, 1024, 300) style:UITableViewStylePlain];
+    
+    trackTableView.delegate = self;
+	trackTableView.dataSource = self;
+    
+    trackTableView.backgroundColor = [UIColor blackColor];
+
+    [self.view addSubview:trackTableView];
+    
+    trackTableView.separatorColor = [UIColor clearColor]; //remove borders
+    
+	[trackTableView release];
 }
 
-- (void)loadView
-{
-	//a sample code....
-	UITableView *tableView = [[UITableView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame] style:UITableViewStylePlain];//UITableViewStylePlain, UITableViewStyleGrouped
-    
-	tableView.delegate = self;
-	tableView.dataSource = self;
-    
-	self.tableView = tableView;
-	self.view = tableView;
-	[tableView release];	
-}
 
 #pragma mark Table view methods
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
     return 1;
 }
 
 // Customize the number of rows in the table view.
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [handsomeArray count];
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 2;
 }
 
 // This method is called for each cell in the table view.
+// This method is called whenever we are scrolling - try adding a NSLog to see.
 // Customize the appearance of table view cells.
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     static NSString *CellIdentifier = @"Cell";
     
-    CustomCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[CustomCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
     }    
     
-    NSUInteger row = [indexPath row];   //get the index of each row
-    NSLog(@"row: %i", row);
+    cell.contentView.backgroundColor = [UIColor blackColor];
+    [cell setSelectionStyle:UITableViewCellSelectionStyleNone]; //the cell cannot be selected
     
-    cell.primaryLabel.text = @"TOMMI IS HANDSOME";
-    cell.secondaryLabel.text = @"WOOHOO";
-    cell.myImageView.image = [UIImage imageNamed:@"23-bird.png"];
+    UILabel *trackNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 35, 200, 30)];
+    trackNameLabel.text = @"Vocal 1";
+    trackNameLabel.backgroundColor = [UIColor blackColor];
+    trackNameLabel.textColor = [UIColor whiteColor];
+    [trackNameLabel setFont:[UIFont fontWithName:@"GillSans-Bold" size:18]];
+    [cell.contentView addSubview:trackNameLabel]; //add label to view
+    [trackNameLabel release];
     
+    trackCellRightPanel = [[UIView alloc] initWithFrame:CGRectMake(150, 0, 1024-150, 100)];
     
-    UIView *trackPaneView = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 768, 100)] autorelease];
-    [trackPaneView setBackgroundColor:[UIColor blueColor]];
-    
-    UILabel *trackNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 100, 30)];
-    trackNameLabel.text = @"Vocal One";
-    [trackPaneView addSubview:trackNameLabel]; //add label to view
-    
-    UIButton *testButton = [[UIButton alloc] initWithFrame:CGRectMake(200, 10, 100, 30)];
-    [testButton addTarget:self action:@selector(buttonIsPressed:) forControlEvents:UIControlEventTouchDown];
-    [testButton setTitle:@"AWESOME" forState:UIControlStateNormal];
-    [testButton setBackgroundColor:[UIColor greenColor]];
-    [trackPaneView addSubview:testButton]; //add button to view
-    
-    //trackPaneView.tableViewCell = cell;
-    
-    [cell.contentView addSubview:trackPaneView]; //add entire view to content view of table cel view
-    
-    
-
-//    //this is how you handle a original table view cell  
-//    NSString *cellLabel = [handsomeArray objectAtIndex:[indexPath row]];
-//    [cell.textLabel setText:cellLabel];
-//    [cell.detailTextLabel setText:@"you are wow"];
-//    [cellLabel release]; //bye!
-    
+    /* draw gradient background */
+    CAGradientLayer *gradient = [CAGradientLayer layer];
+    gradient.frame = trackCellRightPanel.bounds;
+    gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor whiteColor] CGColor], (id)[[UIColor blackColor] CGColor], nil];
+    [trackCellRightPanel.layer insertSublayer:gradient atIndex:0];
+    [cell.contentView addSubview:trackCellRightPanel]; //add label to view
     
     return cell;
 }
@@ -119,18 +104,11 @@
     return 100;
 }
 
-- (IBAction)buttonIsPressed:(id)sender 
-{
-    NSLog(@"fsfjsfj");
-}
-
 - (void)viewDidUnload
 {
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
-    
-    [handsomeArray release];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

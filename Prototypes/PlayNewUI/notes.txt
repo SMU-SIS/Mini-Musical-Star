@@ -1,0 +1,25 @@
+//    //this is how you handle a original table view cell  
+//    NSString *cellLabel = [handsomeArray objectAtIndex:[indexPath row]];
+//    [cell.textLabel setText:cellLabel];
+//    [cell.detailTextLabel setText:@"you are wow"];
+//    [cellLabel release]; //bye!
+    
+
+
+How to configure a button to respond to a event
+[testButton addTarget:self action:@selector(buttonIsPressed:) forControlEvents:UIControlEventTouchDown];
+
+//get the row of the path
+NSUInteger row = [indexPath row];   //get the index of each row
+
+
+//set gradient
+ CAGradientLayer *gradient = [CAGradientLayer layer];
+ gradient.frame = view.bounds;
+ gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor blackColor] CGColor], (id)[[UIColor whiteColor] CGColor], nil];
+ [view.layer insertSublayer:gradient atIndex:0];
+
+
+no. of rows must be dynamic
+
+able to draw different rows differently - use a switch

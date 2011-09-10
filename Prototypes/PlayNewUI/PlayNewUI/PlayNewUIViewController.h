@@ -9,15 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "CustomCell.h"
 
-@interface PlayNewUIViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface PlayNewUIViewController : UIViewController 
+    <UITableViewDelegate, UITableViewDataSource>
 {
-    IBOutlet UITableView *tableView;
-    
-    NSMutableArray *handsomeArray;
+    UITableView *trackTableView;
+    UIView *trackCellRightPanel;
 }
 
-@property (nonatomic, retain) UITableView *tableView;
+@property (nonatomic, retain) UITableView *trackTableView;
+@property (nonatomic, retain) UIView *trackCellRightPanel;
 
-@property (nonatomic, retain) NSMutableArray *handsomeArray;
 
 @end
