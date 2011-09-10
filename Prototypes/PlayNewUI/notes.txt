@@ -27,6 +27,8 @@ able to draw different rows differently - use a switch
 
 
 use a button to trigger off  the table view to automatically scroll to a specific row
-this is needed when the user wants to fuck fuck fuck
+this is needed when the user wants 
 
 then also need to use another temp button to trigger off the lyrics pop over to come down.weeeee
+
+delete my photo and notes.txt from git

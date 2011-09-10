@@ -10,15 +10,18 @@
 #import "CustomCell.h"
 
 @interface PlayNewUIViewController : UIViewController 
-    <UITableViewDelegate, UITableViewDataSource>
+    <UITableViewDelegate, UITableViewDataSource, UIPopoverControllerDelegate>
 {
     UITableView *trackTableView;
     UIView *trackCellRightPanel;
+    UIPopoverController *lyricsPopoverController;
 }
 
 @property (nonatomic, retain) UITableView *trackTableView;
 @property (nonatomic, retain) UIView *trackCellRightPanel;
+@property (nonatomic, retain) UIPopoverController *lyricsPopoverController;
 
-- (void)scrollToX;
+- (IBAction)scrollToX; //to be deleted
+- (IBAction)lyricsAppear; //to be deleted
 
 @end

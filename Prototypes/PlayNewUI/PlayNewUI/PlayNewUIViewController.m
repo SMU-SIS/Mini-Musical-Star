@@ -8,12 +8,13 @@
 
 #import "PlayNewUIViewController.h"
 #import "TrackPane.h"
+#import "LyricsViewController.h"
 
 #import <QuartzCore/QuartzCore.h>
 
 @implementation PlayNewUIViewController
 
-@synthesize trackTableView, trackCellRightPanel;
+@synthesize trackTableView, trackCellRightPanel, lyricsPopoverController;
 
 - (void)didReceiveMemoryWarning
 {
@@ -60,7 +61,7 @@
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 3;
+    return 10;
 }
 
 // This method is called for each cell in the table view.
@@ -87,7 +88,7 @@
             [cell setSelectionStyle:UITableViewCellSelectionStyleNone]; //the cell cannot be selected
             
             UILabel *trackNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(25, 30, 200, 30)];
-            trackNameLabel.text = @"Vocal 1";
+            trackNameLabel.text = [NSString stringWithFormat:@"Vocal %d", [indexPath row]];
             trackNameLabel.backgroundColor = [UIColor blackColor];
             trackNameLabel.textColor = [UIColor whiteColor];
             [trackNameLabel setFont:[UIFont fontWithName:@"GillSans-Bold" size:18]];
@@ -128,6 +129,19 @@
 
 - (IBAction)scrollToX
 {
+    [trackTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:8 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+}
+
+
+- (IBAction)lyricsAppear
+{
+    //width: 1024-150
+    //height: 300 - 100 from the empty space on top, 200 from the first 2 roles
+    UIView *lyricsView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1024-150, 300)];
+    lyricsView.backgroundColor = [UIColor lightGrayColor];
+    
+    LyricsViewController *lyricsViewController = [[LyricsViewController alloc] init];
+    *lyricsPopoverController = [[UIPopoverController alloc] initWithContentViewController:lyricsViewController];
     
 }
 
