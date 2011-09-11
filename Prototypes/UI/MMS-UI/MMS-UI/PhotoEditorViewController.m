@@ -35,7 +35,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    [self setSliderImages: 15];
+    [self setSliderImages: 0];
 }
 
 - (void) setSliderImages:(UInt32)timeAt
@@ -62,6 +62,10 @@
         Picture *pic = (Picture*)obj;
         UInt32 leftOrderNumber = centerOrderNumber - 1;
         UInt32 rightOrderNumber = centerOrderNumber + 1;
+        
+        if(leftOrderNumber == 0){
+            leftPicture.image = nil;
+        }
         if(pic.orderNumber == leftOrderNumber){
             leftPicture.image = pic.image;
         }
@@ -70,6 +74,9 @@
             rightPicture.image = pic.image;
         }
         
+        if(rightOrderNumber == [pictureList count] + 1){
+            rightPicture.image = nil;
+        }
     }];
     
 }
