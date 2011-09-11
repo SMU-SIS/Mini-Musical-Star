@@ -19,16 +19,16 @@ NSUInteger row = [indexPath row];   //get the index of each row
  gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor blackColor] CGColor], (id)[[UIColor whiteColor] CGColor], nil];
  [view.layer insertSublayer:gradient atIndex:0];
 
-
+iPad height: 1024
+iPad width: 748 (minus away the bar)
+---------
 no. of rows must be dynamic
 
 able to draw different rows differently - use a switch
 
+some views/controls will not cause the popover to disappear
+(test with the other button)
 
-
-use a button to trigger off  the table view to automatically scroll to a specific row
-this is needed when the user wants 
-
-then also need to use another temp button to trigger off the lyrics pop over to come down.weeeee
+able to change color of the right panel
 
 delete my photo and notes.txt from git
