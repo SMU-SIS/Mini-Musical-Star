@@ -86,6 +86,16 @@
     return imageNum;
 }
 
+-(Scene *)returnCurrentSelectedScene
+{
+	// Calculate which page is visible 
+	CGFloat pageWidth = sceneMenu.frame.size.width;
+	int page = floor((sceneMenu.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
+    
+    return [theShow.scenes objectAtIndex:1];
+	//return [theShow.scenes objectAtIndex:page];
+}
+
 -(void)selectScene:(id)sender
 {
     //wei jie, I don't know how to get the value for selected scene so i hardcode first ok? help me change - Adrian
@@ -99,7 +109,9 @@
     
     //wei jie, I don't know how to get the value for selected scene so i hardcode first ok? help me change - Adrian
     
-    SceneEditViewController *editController = [[SceneEditViewController alloc] initWithScene:[theShow.scenes objectAtIndex:0]];
+    
+    
+    SceneEditViewController *editController = [[SceneEditViewController alloc] initWithScene:[self returnCurrentSelectedScene]];
     editController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     [self presentModalViewController:editController animated:YES];
     

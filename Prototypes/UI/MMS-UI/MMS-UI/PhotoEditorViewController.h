@@ -17,7 +17,8 @@
 @property(retain,nonatomic) IBOutlet UIImageView *leftPicture;
 @property(retain,nonatomic) IBOutlet UIImageView *rightPicture;
 @property(retain,nonatomic) IBOutlet UIImageView *centerPicture;
+@property(retain,nonatomic) NSArray *thePictures;
 
 - (void) setSliderImages:(UInt32)timeAt;
-
+- (PhotoEditorViewController *)initWithPhotos:(NSArray *)pictureArray;
 @end

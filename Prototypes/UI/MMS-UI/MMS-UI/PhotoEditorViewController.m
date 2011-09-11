@@ -10,14 +10,25 @@
 
 @implementation PhotoEditorViewController
 
-@synthesize leftPicture, rightPicture, centerPicture;
+@synthesize leftPicture, rightPicture, centerPicture, thePictures;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+-(void)dealloc
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
+    [leftPicture release];
+    [rightPicture release];
+    [centerPicture release];
+    [thePictures release];
+    [super dealloc];
+}
+
+- (PhotoEditorViewController *)initWithPhotos:(NSArray *)pictureArray
+{
+    self = [super init];
+    if (self)
+    {
+        self.thePictures = pictureArray;
     }
+    
     return self;
 }
 
@@ -40,11 +51,8 @@
 
 - (void) setSliderImages:(UInt32)timeAt
 {
-    Show *show = [[ShowDAO shows] objectAtIndex:0];
-    NSMutableArray *pictureList = [[[show scenes] objectAtIndex:0] pictureList];
-//    NSArray *slideShowPictureList = [[NSArray alloc] init];
     __block UInt32 centerOrderNumber;
-    [pictureList enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+    [thePictures enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         Picture *pic = (Picture*)obj;
         UInt32 startTime = pic.startTime;
         UInt32 endTime = pic.startTime + pic.duration;
@@ -58,7 +66,7 @@
         
     }];
 
-    [pictureList enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+    [thePictures enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         Picture *pic = (Picture*)obj;
         UInt32 leftOrderNumber = centerOrderNumber - 1;
         UInt32 rightOrderNumber = centerOrderNumber + 1;
@@ -74,7 +82,7 @@
             rightPicture.image = pic.image;
         }
         
-        if(rightOrderNumber == [pictureList count] + 1){
+        if(rightOrderNumber == [thePictures count] + 1){
             rightPicture.image = nil;
         }
     }];
