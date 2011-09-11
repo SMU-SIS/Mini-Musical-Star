@@ -1,34 +1,7 @@
-//    //this is how you handle a original table view cell  
-//    NSString *cellLabel = [handsomeArray objectAtIndex:[indexPath row]];
-//    [cell.textLabel setText:cellLabel];
-//    [cell.detailTextLabel setText:@"you are wow"];
-//    [cellLabel release]; //bye!
-    
-
-
-How to configure a button to respond to a event
-[testButton addTarget:self action:@selector(buttonIsPressed:) forControlEvents:UIControlEventTouchDown];
-
-//get the row of the path
-NSUInteger row = [indexPath row];   //get the index of each row
-
-
-//set gradient
- CAGradientLayer *gradient = [CAGradientLayer layer];
- gradient.frame = view.bounds;
- gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor blackColor] CGColor], (id)[[UIColor whiteColor] CGColor], nil];
- [view.layer insertSublayer:gradient atIndex:0];
-
-iPad height: 1024
-iPad width: 748 (minus away the bar)
----------
-no. of rows must be dynamic
-
-able to draw different rows differently - use a switch
-
-some views/controls will not cause the popover to disappear
-(test with the other button)
-
-able to change color of the right panel
+-Able to dynamically change - have to make adjustments to size later.
+-Green color for the cell right panel represents what ah?
+-Having issues with changing of the gradient colors when the track is being recorded. Implementation is using CALayer. Must be able to change to 3 different types of color.
+-Note: To prevent popover from disappearing every time we click on area outside the popover, we need to write some codes
+-Must be able to have the pop over control produce some hard coded lyrics that can be scrollable.
 
 delete my photo and notes.txt from git

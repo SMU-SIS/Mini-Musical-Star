@@ -13,7 +13,6 @@
     <UITableViewDelegate, UITableViewDataSource, UIPopoverControllerDelegate>
 {
     UITableView *trackTableView;
-    UIView *trackCellRightPanel;
     UIPopoverController *lyricsPopoverController;
     UIImage *recordImage;
     UIImage *recordingImage;
@@ -22,7 +21,6 @@
 }
 
 @property (nonatomic, retain) UITableView *trackTableView;
-@property (nonatomic, retain) UIView *trackCellRightPanel;
 @property (nonatomic, retain) UIPopoverController *lyricsPopoverController;
 @property (nonatomic, retain) UIImage *recordImage;
 @property (nonatomic, retain) UIImage *recordingImage;
