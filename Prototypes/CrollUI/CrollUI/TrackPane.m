@@ -1,16 +1,13 @@
 //
-//  TrackPane.h
+//  TrackPane.m
 //  PlayNewUI
 //
 //  Created by Tommi on 9/9/11.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import "CustomCell.h"
+#import "TrackPane.h"
 
-@interface TrackPane : UIView
-{
-}
+@implementation TrackPane
 
 @end

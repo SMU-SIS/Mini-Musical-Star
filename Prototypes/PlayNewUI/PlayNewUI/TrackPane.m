@@ -10,14 +10,5 @@
 
 @implementation TrackPane
 
-@synthesize tableViewCell;
-
-- (UIView*)hitTest:(CGPoint)point withEvent:(UIEvent *)event
-{
-    if ([self pointInside:point withEvent:event]) {
-        return tableViewCell;
-    }
-    return nil;
-}
 
 @end

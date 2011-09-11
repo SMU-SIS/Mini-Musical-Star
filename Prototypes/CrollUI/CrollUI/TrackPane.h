@@ -7,10 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CustomCell.h"
 
 @interface TrackPane : UIView
-{
-}
 
 @end

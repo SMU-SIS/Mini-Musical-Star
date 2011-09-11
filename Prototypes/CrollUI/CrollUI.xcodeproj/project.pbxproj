@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		64D9B1F4141D2CB700636CEB /* TrackPane.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D9B1F3141D2CB700636CEB /* TrackPane.m */; };
+		64D9B1F7141D2CD300636CEB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64D9B1F6141D2CD300636CEB /* QuartzCore.framework */; };
+		64D9B1FB141D2DD300636CEB /* record.png in Resources */ = {isa = PBXBuildFile; fileRef = 64D9B1F9141D2DD300636CEB /* record.png */; };
+		64D9B1FC141D2DD300636CEB /* recording.png in Resources */ = {isa = PBXBuildFile; fileRef = 64D9B1FA141D2DD300636CEB /* recording.png */; };
+		64D9B1FF141D2E0600636CEB /* LyricsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D9B1FE141D2E0600636CEB /* LyricsViewController.m */; };
 		95DAE92714188B5A0039201D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95DAE92614188B5A0039201D /* UIKit.framework */; };
 		95DAE92914188B5A0039201D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95DAE92814188B5A0039201D /* Foundation.framework */; };
 		95DAE92B14188B5A0039201D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95DAE92A14188B5A0039201D /* CoreGraphics.framework */; };
@@ -40,6 +45,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		64D9B1F2141D2CB700636CEB /* TrackPane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackPane.h; sourceTree = "<group>"; };
+		64D9B1F3141D2CB700636CEB /* TrackPane.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackPane.m; sourceTree = "<group>"; };
+		64D9B1F6141D2CD300636CEB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		64D9B1F9141D2DD300636CEB /* record.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = record.png; sourceTree = "<group>"; };
+		64D9B1FA141D2DD300636CEB /* recording.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = recording.png; sourceTree = "<group>"; };
+		64D9B1FD141D2E0600636CEB /* LyricsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LyricsViewController.h; sourceTree = "<group>"; };
+		64D9B1FE141D2E0600636CEB /* LyricsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LyricsViewController.m; sourceTree = "<group>"; };
 		95DAE92214188B5A0039201D /* CrollUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CrollUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95DAE92614188B5A0039201D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		95DAE92814188B5A0039201D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -73,6 +85,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64D9B1F7141D2CD300636CEB /* QuartzCore.framework in Frameworks */,
 				95DAE92714188B5A0039201D /* UIKit.framework in Frameworks */,
 				95DAE92914188B5A0039201D /* Foundation.framework in Frameworks */,
 				95DAE92B14188B5A0039201D /* CoreGraphics.framework in Frameworks */,
@@ -93,9 +106,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		64D9B1F8141D2DBE00636CEB /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				64D9B1F9141D2DD300636CEB /* record.png */,
+				64D9B1FA141D2DD300636CEB /* recording.png */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		95DAE91714188B5A0039201D = {
 			isa = PBXGroup;
 			children = (
+				64D9B1F6141D2CD300636CEB /* QuartzCore.framework */,
 				95DAE92C14188B5A0039201D /* CrollUI */,
 				95DAE94E14188B5A0039201D /* CrollUITests */,
 				95DAE92514188B5A0039201D /* Frameworks */,
@@ -126,6 +149,11 @@
 		95DAE92C14188B5A0039201D /* CrollUI */ = {
 			isa = PBXGroup;
 			children = (
+				64D9B1FD141D2E0600636CEB /* LyricsViewController.h */,
+				64D9B1FE141D2E0600636CEB /* LyricsViewController.m */,
+				64D9B1F8141D2DBE00636CEB /* Resources */,
+				64D9B1F2141D2CB700636CEB /* TrackPane.h */,
+				64D9B1F3141D2CB700636CEB /* TrackPane.m */,
 				95DAE93514188B5A0039201D /* CrollUIAppDelegate.h */,
 				95DAE93614188B5A0039201D /* CrollUIAppDelegate.m */,
 				95DAE93814188B5A0039201D /* MainWindow.xib */,
@@ -248,6 +276,8 @@
 				95DAE96114188B780039201D /* CrollUIViewController.xib in Resources */,
 				95DAE96614188E140039201D /* AudioEditorViewController.xib in Resources */,
 				95DAE96B141893C30039201D /* PhotoEditorViewController.xib in Resources */,
+				64D9B1FB141D2DD300636CEB /* record.png in Resources */,
+				64D9B1FC141D2DD300636CEB /* recording.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,6 +318,8 @@
 				95DAE93D14188B5A0039201D /* CrollUIViewController.m in Sources */,
 				95DAE96514188E140039201D /* AudioEditorViewController.m in Sources */,
 				95DAE96A141893C30039201D /* PhotoEditorViewController.m in Sources */,
+				64D9B1F4141D2CB700636CEB /* TrackPane.m in Sources */,
+				64D9B1FF141D2E0600636CEB /* LyricsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -459,6 +491,7 @@
 				95DAE95C14188B5A0039201D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		95DAE95D14188B5A0039201D /* Build configuration list for PBXNativeTarget "CrollUITests" */ = {
 			isa = XCConfigurationList;
@@ -467,6 +500,7 @@
 				95DAE95F14188B5A0039201D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

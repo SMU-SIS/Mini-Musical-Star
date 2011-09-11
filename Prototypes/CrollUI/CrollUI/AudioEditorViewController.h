@@ -9,5 +9,24 @@
 #import <UIKit/UIKit.h>
 
 @interface AudioEditorViewController : UIViewController
+<UITableViewDelegate, UITableViewDataSource, UIPopoverControllerDelegate>
+{
+    UITableView *trackTableView;
+    UIPopoverController *lyricsPopoverController;
+    UIImage *recordImage;
+    UIImage *recordingImage;
+    
+    int currentRecordingTrack;
+}
+
+@property (nonatomic, retain) UITableView *trackTableView;
+@property (nonatomic, retain) UIPopoverController *lyricsPopoverController;
+@property (nonatomic, retain) UIImage *recordImage;
+@property (nonatomic, retain) UIImage *recordingImage;
+
+- (IBAction)scrollToX; //to be deleted
+- (IBAction)lyricsAppear; //to be deleted
+- (IBAction)startRecording; //to be deleted
+- (IBAction)stopRecording; //to be deleted
 
 @end
