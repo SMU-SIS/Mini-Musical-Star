@@ -10,6 +10,8 @@
 #import "TrackPane.h"
 #import "LyricsViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "MixPlayerRecorder.h"
+#import "Audio.h"
 
 @interface AudioEditorViewController : UIViewController
 <UITableViewDelegate, UITableViewDataSource, UIPopoverControllerDelegate>
@@ -26,5 +28,10 @@
 @property (nonatomic, retain) UIPopoverController *lyricsPopoverController;
 @property (nonatomic, retain) UIImage *recordImage;
 @property (nonatomic, retain) UIImage *recordingImage;
+
+@property (nonatomic, retain) MixPlayerRecorder *thePlayer;
+@property (nonatomic, retain) NSArray *theAudioObjects;
+
+- (AudioEditorViewController *)initWithPlayer:(MixPlayerRecorder *)aPlayer andAudioObjects:(NSArray *)audioList;
 
 @end

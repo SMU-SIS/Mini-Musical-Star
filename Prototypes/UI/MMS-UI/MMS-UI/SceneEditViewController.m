@@ -78,7 +78,7 @@
 - (void)loadChildViewControllers
 {
     //load the audio view controller
-    audioView = [[AudioEditorViewController alloc] init];
+    audioView = [[AudioEditorViewController alloc] initWithPlayer:thePlayer andAudioObjects:theScene.audioList];
     int page = 0;
     CGRect frame = scrollView.frame;
     frame.origin.x = frame.size.width * page;

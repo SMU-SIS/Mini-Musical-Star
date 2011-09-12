@@ -9,10 +9,13 @@
 #import "AudioEditorViewController.h"
 
 @implementation AudioEditorViewController
-@synthesize trackTableView, lyricsPopoverController, recordImage, recordingImage;
+@synthesize trackTableView, lyricsPopoverController, recordImage, recordingImage, thePlayer, theAudioObjects;
 
 - (void)dealloc
 {
+    [thePlayer stop];
+    [thePlayer release];
+    [theAudioObjects release];
     [trackTableView release];
     [lyricsPopoverController release];
     [recordImage release];
@@ -29,6 +32,18 @@
 }
 
 #pragma mark - View lifecycle
+
+- (AudioEditorViewController *)initWithPlayer:(MixPlayerRecorder *)aPlayer andAudioObjects:(NSArray *)audioList
+{
+    self = [super init];
+    if (self)
+    {
+        self.thePlayer = aPlayer;
+        self.theAudioObjects = audioList;
+    }
+    
+    return self;
+}
 
 - (void)viewDidLoad
 {
@@ -84,7 +99,8 @@
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return theAudioObjects.count;
+    
 }
 
 // This method is called for each cell in the table view.
@@ -95,7 +111,8 @@
     static NSString *CellIdentifier = @"Cell"; //for the 3rd and subsequent rows of cells
     static NSString *blankCellIdentifier = @"BlankCell";  //for the first two rows of cells
     
-    if (indexPath.row == 0 || indexPath.row == 1)
+    //if (indexPath.row == 0 || indexPath.row == 1)
+    if (false)
     {
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:blankCellIdentifier];
         
@@ -116,6 +133,9 @@
         UIButton *recordButton;
         TrackPane *trackCellRightPanel;
         
+        //get the corresponding Audio object
+        Audio *audioForRow = [theAudioObjects objectAtIndex:[indexPath row]];
+        
         if (cell == nil)
         {
             //Here, you create all the new objects
@@ -132,10 +152,13 @@
             trackNameLabel.tag = 1; //tag the object to an integer value
             [trackNameLabel release];
             
-            recordButton = [[UIButton alloc] initWithFrame:CGRectMake(100, 50, 50, 50)];
-            [cell.contentView addSubview:recordButton];
-            recordButton.tag = 2;
-            [recordButton release];
+            if ([audioForRow.replaceable boolValue])
+            {
+                recordButton = [[UIButton alloc] initWithFrame:CGRectMake(100, 50, 50, 50)];
+                [cell.contentView addSubview:recordButton];
+                recordButton.tag = 2;
+                [recordButton release];  
+            }
             
             trackCellRightPanel = [[UIView alloc] initWithFrame:CGRectMake(150, 0, 1024-150, 100)];
             [cell.contentView addSubview:trackCellRightPanel]; //add label to view
@@ -146,13 +169,14 @@
         
         // Here, you just configure the objects as appropriate for the row
         trackNameLabel = (UILabel*)[cell.contentView viewWithTag:1];
-        trackNameLabel.text = [NSString stringWithFormat:@"Vocal %d", [indexPath row]];
+        //trackNameLabel.text = [NSString stringWithFormat:@"Vocal %d", [indexPath row]];
         
+        trackNameLabel.text = audioForRow.title;
         
         recordButton = (UIButton*)[cell.contentView viewWithTag:2];
         [recordButton setImage:recordImage forState:UIControlStateNormal];
         
-        // 
+        
         if (indexPath.row == currentRecordingTrack)
         {
             [recordButton setImage:recordingImage forState:UIControlStateNormal];

@@ -92,7 +92,7 @@
 	CGFloat pageWidth = sceneMenu.frame.size.width;
 	int page = floor((sceneMenu.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
     
-    return [theShow.scenes objectAtIndex:1];
+    return [theShow.scenes objectAtIndex:0];
 	//return [theShow.scenes objectAtIndex:page];
 }
 
