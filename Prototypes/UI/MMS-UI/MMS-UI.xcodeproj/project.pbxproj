@@ -22,6 +22,8 @@
 		82A21EBF140A388C008C26FB /* guitar.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 82A21EBA140A388C008C26FB /* guitar.mp3 */; };
 		82A21EC0140A388C008C26FB /* keys.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 82A21EBB140A388C008C26FB /* keys.mp3 */; };
 		82A21EC1140A388C008C26FB /* vocals.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 82A21EBC140A388C008C26FB /* vocals.mp3 */; };
+		9515B2FE141DD38A001B2456 /* record.png in Resources */ = {isa = PBXBuildFile; fileRef = 9515B2FC141DD38A001B2456 /* record.png */; };
+		9515B2FF141DD38A001B2456 /* recording.png in Resources */ = {isa = PBXBuildFile; fileRef = 9515B2FD141DD38A001B2456 /* recording.png */; };
 		9569E05B1418A2A80016DAF3 /* AudioEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9569E0581418A2A80016DAF3 /* AudioEditorViewController.m */; };
 		9569E05C1418A2A80016DAF3 /* PhotoEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9569E05A1418A2A80016DAF3 /* PhotoEditorViewController.m */; };
 		9569E05F1418A2B10016DAF3 /* AudioEditorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9569E05D1418A2B10016DAF3 /* AudioEditorViewController.xib */; };
@@ -157,6 +159,8 @@
 		82A21EBA140A388C008C26FB /* guitar.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = guitar.mp3; sourceTree = "<group>"; };
 		82A21EBB140A388C008C26FB /* keys.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = keys.mp3; sourceTree = "<group>"; };
 		82A21EBC140A388C008C26FB /* vocals.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = vocals.mp3; sourceTree = "<group>"; };
+		9515B2FC141DD38A001B2456 /* record.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = record.png; sourceTree = "<group>"; };
+		9515B2FD141DD38A001B2456 /* recording.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = recording.png; sourceTree = "<group>"; };
 		9569E0571418A2A80016DAF3 /* AudioEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioEditorViewController.h; sourceTree = "<group>"; };
 		9569E0581418A2A80016DAF3 /* AudioEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioEditorViewController.m; sourceTree = "<group>"; };
 		9569E0591418A2A80016DAF3 /* PhotoEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoEditorViewController.h; sourceTree = "<group>"; };
@@ -649,6 +653,8 @@
 				EDA363A8140230FC00E93779 /* home.png */,
 				ED75B7F713FE9C9700AFA08B /* scene.png */,
 				EDA2A20613F2726B00B64EA5 /* edit.png */,
+				9515B2FC141DD38A001B2456 /* record.png */,
+				9515B2FD141DD38A001B2456 /* recording.png */,
 				EDA2A20713F2726B00B64EA5 /* new.png */,
 				EDA2A20813F2726B00B64EA5 /* play.png */,
 			);
@@ -823,6 +829,8 @@
 				9569E05F1418A2B10016DAF3 /* AudioEditorViewController.xib in Resources */,
 				9569E0601418A2B10016DAF3 /* PhotoEditorViewController.xib in Resources */,
 				9569E0621418A2C90016DAF3 /* SceneEditViewController.xib in Resources */,
+				9515B2FE141DD38A001B2456 /* record.png in Resources */,
+				9515B2FF141DD38A001B2456 /* recording.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
