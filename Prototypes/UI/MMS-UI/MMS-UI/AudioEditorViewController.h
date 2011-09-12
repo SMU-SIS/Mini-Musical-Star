@@ -7,7 +7,23 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TrackPane.h"
+#import "LyricsViewController.h"
 
 @interface AudioEditorViewController : UIViewController
+<UITableViewDelegate, UITableViewDataSource, UIPopoverControllerDelegate>
+{
+    UITableView *trackTableView;
+    UIPopoverController *lyricsPopoverController;
+    UIImage *recordImage;
+    UIImage *recordingImage;
+    
+    int currentRecordingTrack;
+}
+
+@property (nonatomic, retain) UITableView *trackTableView;
+@property (nonatomic, retain) UIPopoverController *lyricsPopoverController;
+@property (nonatomic, retain) UIImage *recordImage;
+@property (nonatomic, retain) UIImage *recordingImage;
 
 @end

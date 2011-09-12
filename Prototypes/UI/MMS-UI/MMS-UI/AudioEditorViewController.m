@@ -9,14 +9,15 @@
 #import "AudioEditorViewController.h"
 
 @implementation AudioEditorViewController
+@synthesize trackTableView, lyricsPopoverController, recordImage, recordingImage;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (void)dealloc
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+    [trackTableView release];
+    [lyricsPopoverController release];
+    [recordImage release];
+    [recordingImage release];
+    [super dealloc];
 }
 
 - (void)didReceiveMemoryWarning
