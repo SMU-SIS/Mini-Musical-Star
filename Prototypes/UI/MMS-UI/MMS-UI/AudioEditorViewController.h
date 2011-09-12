@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "TrackPane.h"
 #import "LyricsViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface AudioEditorViewController : UIViewController
 <UITableViewDelegate, UITableViewDataSource, UIPopoverControllerDelegate>

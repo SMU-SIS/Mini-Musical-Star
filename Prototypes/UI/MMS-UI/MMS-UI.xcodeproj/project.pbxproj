@@ -35,6 +35,9 @@
 		9572E0DB140E118400713F45 /* Scene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9572E0D4140E118400713F45 /* Scene.m */; };
 		9572E0DC140E118400713F45 /* Show.m in Sources */ = {isa = PBXBuildFile; fileRef = 9572E0D6140E118400713F45 /* Show.m */; };
 		9572E0E0140E11FF00713F45 /* ShowDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 9572E0DF140E11FF00713F45 /* ShowDAO.m */; };
+		95784437141DD23C0033721D /* TrackPane.m in Sources */ = {isa = PBXBuildFile; fileRef = 95784433141DD23C0033721D /* TrackPane.m */; };
+		95784438141DD23C0033721D /* LyricsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95784435141DD23C0033721D /* LyricsViewController.m */; };
+		9578443B141DD2F10033721D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9578443A141DD2F10033721D /* QuartzCore.framework */; };
 		95DAE86814147FB20039201D /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C82546140FC506003C9E49 /* ASIAuthenticationDialog.m */; };
 		95DAE86A14147FB90039201D /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C82549140FC506003C9E49 /* ASIDataCompressor.m */; };
 		95DAE86B14147FBC0039201D /* ASIDataDecompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C8254B140FC506003C9E49 /* ASIDataDecompressor.m */; };
@@ -177,6 +180,11 @@
 		9572E0D6140E118400713F45 /* Show.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Show.m; sourceTree = "<group>"; };
 		9572E0DE140E11FF00713F45 /* ShowDAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowDAO.h; sourceTree = "<group>"; };
 		9572E0DF140E11FF00713F45 /* ShowDAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowDAO.m; sourceTree = "<group>"; };
+		95784433141DD23C0033721D /* TrackPane.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackPane.m; sourceTree = "<group>"; };
+		95784434141DD23C0033721D /* LyricsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LyricsViewController.h; sourceTree = "<group>"; };
+		95784435141DD23C0033721D /* LyricsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LyricsViewController.m; sourceTree = "<group>"; };
+		95784436141DD23C0033721D /* TrackPane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackPane.h; sourceTree = "<group>"; };
+		9578443A141DD2F10033721D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		95C82545140FC506003C9E49 /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIAuthenticationDialog.h; sourceTree = "<group>"; };
 		95C82546140FC506003C9E49 /* ASIAuthenticationDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIAuthenticationDialog.m; sourceTree = "<group>"; };
 		95C82547140FC506003C9E49 /* ASICacheDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASICacheDelegate.h; sourceTree = "<group>"; };
@@ -306,6 +314,7 @@
 				EDA2A1C513F26F8400B64EA5 /* UIKit.framework in Frameworks */,
 				EDA2A1C713F26F8400B64EA5 /* Foundation.framework in Frameworks */,
 				EDA2A1C913F26F8400B64EA5 /* CoreGraphics.framework in Frameworks */,
+				9578443B141DD2F10033721D /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -481,6 +490,10 @@
 				ED885C2F140BC13100209530 /* XIB */,
 				EDA2A1FD13F2712000B64EA5 /* Images */,
 				EDA2A1D913F26F8400B64EA5 /* MenuViewController.h */,
+				95784433141DD23C0033721D /* TrackPane.m */,
+				95784434141DD23C0033721D /* LyricsViewController.h */,
+				95784435141DD23C0033721D /* LyricsViewController.m */,
+				95784436141DD23C0033721D /* TrackPane.h */,
 				EDA2A1DA13F26F8400B64EA5 /* MenuViewController.m */,
 				EDA2A20C13F272BF00B64EA5 /* ShowImage.h */,
 				9569E0571418A2A80016DAF3 /* AudioEditorViewController.h */,
@@ -535,6 +548,7 @@
 		EDA2A1B513F26F8300B64EA5 = {
 			isa = PBXGroup;
 			children = (
+				9578443A141DD2F10033721D /* QuartzCore.framework */,
 				95DAE888141481470039201D /* libz.dylib */,
 				95DAE886141481400039201D /* libxml2.dylib */,
 				95DAE884141481300039201D /* SystemConfiguration.framework */,
@@ -884,6 +898,8 @@
 				9569E05B1418A2A80016DAF3 /* AudioEditorViewController.m in Sources */,
 				9569E05C1418A2A80016DAF3 /* PhotoEditorViewController.m in Sources */,
 				9569E0651418A2D30016DAF3 /* SceneEditViewController.m in Sources */,
+				95784437141DD23C0033721D /* TrackPane.m in Sources */,
+				95784438141DD23C0033721D /* LyricsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
