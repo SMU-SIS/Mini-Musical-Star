@@ -104,9 +104,9 @@ static id delegate;
     //find shows that are not in already local, then download
     [showCatalogue enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         NSDictionary *showInCatalogue = (NSDictionary *)obj;
-        NSString *showTitle = [showInCatalogue objectForKey:@"title"];
-        NSString *showTitleZip = [showTitle stringByAppendingPathExtension:@"zip"];
-        if (![self checkIfExistsLocally:showTitle])
+        int showID = [[showInCatalogue objectForKey:@"id"] intValue];
+        NSString *showTitleZip = [[showInCatalogue objectForKey:@"title"] stringByAppendingPathExtension:@"zip"];
+        if (![self checkIfExistsLocally:showID])
         {
             NSURL *showDownloadLocation = [NSURL URLWithString:[showInCatalogue objectForKey:@"zip_url"]];
             NSString *downloadPath = [[userDocumentDirectory stringByAppendingPathComponent:@"shows"] stringByAppendingPathComponent:showTitleZip];
@@ -148,13 +148,13 @@ static id delegate;
     
 }
             
-+ (BOOL)checkIfExistsLocally:(NSString *)showTitle
++ (BOOL)checkIfExistsLocally:(int)showID
 {
     for (int i = 0; i < loadedShows.count; i++)
     {
         Show *aShow = [loadedShows objectAtIndex:i];
-        NSLog(@"showTitle is [%@] and aShow.title is [%@]", showTitle, aShow.title); 
-        if ([showTitle isEqualToString:aShow.title])
+        NSLog(@"showID is [%i] and aShow.showID is [%i]", showID, aShow.showID); 
+        if (showID == aShow.showID)
         {
             return YES;
         }

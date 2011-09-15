@@ -9,7 +9,7 @@
 #import "Show.h"
 
 @implementation Show
-@synthesize data, scenes, title, author, coverPicture, createdDate, iTunesAlbumLink, iBooksBookLink, showLocation;
+@synthesize data, scenes, title, author, coverPicture, createdDate, iTunesAlbumLink, iBooksBookLink, showLocation, showID;
 
 - (Show *)initShowWithPropertyListFile: (NSString *)pListFilePath atPath:(NSURL *)showPath
 {
@@ -31,6 +31,7 @@
         NSDictionary *root = [data objectForKey:@"root"];
         //populate the properties of the Show model
         showLocation = showPath;
+        self.showID = [[root objectForKey:@"id"] intValue];
         self.title = [root objectForKey:@"title"];
         self.author = [root objectForKey:@"author"];
         self.iTunesAlbumLink = [root objectForKey:@"iTunesAlbumLink"];

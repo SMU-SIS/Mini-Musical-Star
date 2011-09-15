@@ -15,6 +15,7 @@
 
 @property (retain, nonatomic) NSDictionary *data;
 @property (retain, nonatomic) NSMutableArray *scenes;
+@property (nonatomic) int showID;
 @property (retain, nonatomic) NSString *title;
 @property (retain, nonatomic) NSString *author;
 @property (retain, nonatomic) UIImage *coverPicture;

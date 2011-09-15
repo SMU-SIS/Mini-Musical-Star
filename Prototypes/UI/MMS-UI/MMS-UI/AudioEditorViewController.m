@@ -225,4 +225,7 @@
 {
     return 100;
 }
+
+#pragma mark audio manipulation and recording methods
+
 @end

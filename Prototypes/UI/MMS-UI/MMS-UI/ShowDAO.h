@@ -20,7 +20,7 @@
 + (NSArray *)shows;
 + (NSArray *)imagesForShows;
 + (void)checkForNewShowsFromServer;
-+ (BOOL)checkIfExistsLocally:(NSString *)showTitle;
++ (BOOL)checkIfExistsLocally:(int)showID;
 + (void)initiateDownloadOfShowFromServer:(NSURL *)zipFileURL andStoreInPath:(NSString *)localShowPath;
 + (void)unzipDownloadedShowURL:(NSString *)localShowZipPath toPath:(NSString *)unzipPath;
 @end
