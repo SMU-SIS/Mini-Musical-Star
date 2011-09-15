@@ -18,7 +18,7 @@
         self.title = [pDictionary objectForKey:@"title"];
         self.path = [showPath stringByAppendingString:[pDictionary objectForKey:@"path"]];
         NSLog(@"LOOKIE HERE! path is %@\n", path);
-        self.replaceable = [pDictionary objectForKey:@"repleaceable"];
+        self.replaceable = [pDictionary objectForKey:@"replaceable"];
         self.duration = [pDictionary objectForKey:@"duration"];
         NSArray *cueArray = [pDictionary objectForKey:@"cues"];
         self.audioCueList = [[NSMutableArray alloc] initWithCapacity:cueArray.count];

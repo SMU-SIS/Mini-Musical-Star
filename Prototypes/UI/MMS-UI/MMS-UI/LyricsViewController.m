@@ -1,16 +1,16 @@
 //
-//  PhotoEditViewController.m
-//  MMS-UI
+//  LyricsViewController.m
+//  PlayNewUI
 //
-//  Created by Adrian on 7/9/11.
+//  Created by Tommi on 10/9/11.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "PhotoEditViewController.h"
+#import "LyricsViewController.h"
 
-@implementation PhotoEditViewController
+@implementation LyricsViewController
 
-@synthesize mainPicture, leftPicture, rightPicture, centerPicture;
+@synthesize tempLabel;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -31,17 +31,31 @@
 
 #pragma mark - View lifecycle
 
+
+// Implement loadView to create a view hierarchy programmatically, without using a nib.
+- (void)loadView
+{
+    tempLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 200)];
+    tempLabel.text = @"Love the way you lie!";
+    
+}
+
+
+/*
+// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
 }
+*/
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+    
+    [tempLabel release];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

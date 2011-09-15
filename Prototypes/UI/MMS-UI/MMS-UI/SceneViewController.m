@@ -7,7 +7,7 @@
 //
 
 #import "SceneViewController.h"
-#import "EditViewController.h"
+
 
 @implementation SceneViewController
 @synthesize imageNum;
@@ -86,16 +86,38 @@
     return imageNum;
 }
 
+-(Scene *)returnCurrentSelectedScene
+{
+	// Calculate which page is visible 
+	CGFloat pageWidth = sceneMenu.frame.size.width;
+	int page = floor((sceneMenu.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
+    
+    return [theShow.scenes objectAtIndex:0];
+	//return [theShow.scenes objectAtIndex:page];
+}
+
 -(void)selectScene:(id)sender
 {
     //wei jie, I don't know how to get the value for selected scene so i hardcode first ok? help me change - Adrian
-    NSLog(@"TMD : %@",theShow.scenes);
-    EditViewController *editScene = [[EditViewController alloc] initWithImagesFromScene:[theShow.scenes objectAtIndex:0]];
+//    NSLog(@"TMD : %@",theShow.scenes);
+//    EditViewController *editScene = [[EditViewController alloc] initWithImagesFromScene:[theShow.scenes objectAtIndex:0]];
+//    
+//    
+//    editScene.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+//    [self presentModalViewController:editScene animated:YES];
+//    [editScene release];
+    
+    //wei jie, I don't know how to get the value for selected scene so i hardcode first ok? help me change - Adrian
     
     
-    editScene.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-    [self presentModalViewController:editScene animated:YES];
-    [editScene release];
+    
+    SceneEditViewController *editController = [[SceneEditViewController alloc] initWithScene:[self returnCurrentSelectedScene]];
+    editController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    [self presentModalViewController:editController animated:YES];
+    
+    [editController release];
+    
+    
 }
 
 -(void)displaySceneImages:(NSArray *)images{
