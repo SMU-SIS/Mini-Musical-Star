@@ -35,5 +35,6 @@
 
 - (SceneEditViewController *)initWithScene:(Scene *)aScene;
 - (void)loadChildViewControllers;
+- (void)setSliderPosition:(int) targetSeconds;
 
 @end

@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A9088F31421D61E009A7EFA /* AFItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A9088ED1421D61E009A7EFA /* AFItemView.m */; };
+		3A9088F41421D61E009A7EFA /* AFOpenFlowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A9088F01421D61E009A7EFA /* AFOpenFlowView.m */; };
+		3A9088F51421D61E009A7EFA /* AFUIImageReflection.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A9088F21421D61E009A7EFA /* AFUIImageReflection.m */; };
+		3A90890914220A0B009A7EFA /* CoverFlowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A90890714220A0A009A7EFA /* CoverFlowViewController.m */; };
+		3A90890A14220A0B009A7EFA /* CoverFlowViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A90890814220A0A009A7EFA /* CoverFlowViewController.xib */; };
+		3A908913142231EE009A7EFA /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A908912142231ED009A7EFA /* Icon-72.png */; };
+		3A90891714223991009A7EFA /* CameraPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A9089151422398D009A7EFA /* CameraPopupViewController.m */; };
+		3A90891814223991009A7EFA /* CameraPopupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A9089161422398F009A7EFA /* CameraPopupViewController.xib */; };
 		6472FC2D14127DDE00837069 /* HiddenView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6472FC2C14127DDE00837069 /* HiddenView.m */; };
 		820511BF13F3BB9B0016F87E /* SceneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 820511BD13F3BB9B0016F87E /* SceneViewController.m */; };
 		820511C013F3BB9B0016F87E /* SceneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 820511BE13F3BB9B0016F87E /* SceneViewController.xib */; };
@@ -136,6 +144,20 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3A9088EC1421D61E009A7EFA /* AFItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFItemView.h; sourceTree = "<group>"; };
+		3A9088ED1421D61E009A7EFA /* AFItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFItemView.m; sourceTree = "<group>"; };
+		3A9088EE1421D61E009A7EFA /* AFOpenFlowConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFOpenFlowConstants.h; sourceTree = "<group>"; };
+		3A9088EF1421D61E009A7EFA /* AFOpenFlowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFOpenFlowView.h; sourceTree = "<group>"; };
+		3A9088F01421D61E009A7EFA /* AFOpenFlowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFOpenFlowView.m; sourceTree = "<group>"; };
+		3A9088F11421D61E009A7EFA /* AFUIImageReflection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFUIImageReflection.h; sourceTree = "<group>"; };
+		3A9088F21421D61E009A7EFA /* AFUIImageReflection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFUIImageReflection.m; sourceTree = "<group>"; };
+		3A90890614220A0A009A7EFA /* CoverFlowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoverFlowViewController.h; sourceTree = "<group>"; };
+		3A90890714220A0A009A7EFA /* CoverFlowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoverFlowViewController.m; sourceTree = "<group>"; };
+		3A90890814220A0A009A7EFA /* CoverFlowViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CoverFlowViewController.xib; sourceTree = "<group>"; };
+		3A908912142231ED009A7EFA /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
+		3A9089141422398C009A7EFA /* CameraPopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraPopupViewController.h; sourceTree = "<group>"; };
+		3A9089151422398D009A7EFA /* CameraPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraPopupViewController.m; sourceTree = "<group>"; };
+		3A9089161422398F009A7EFA /* CameraPopupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CameraPopupViewController.xib; sourceTree = "<group>"; };
 		6472FC2B14127DDE00837069 /* HiddenView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HiddenView.h; sourceTree = "<group>"; };
 		6472FC2C14127DDE00837069 /* HiddenView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HiddenView.m; sourceTree = "<group>"; };
 		820511BC13F3BB9B0016F87E /* SceneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneViewController.h; sourceTree = "<group>"; };
@@ -243,7 +265,7 @@
 		EDA06C9D13FEA5BA00ED4771 /* g6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = g6.png; path = "Images/Scene Images/g6.png"; sourceTree = SOURCE_ROOT; };
 		EDA06C9E13FEA5BA00ED4771 /* g7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = g7.png; path = "Images/Scene Images/g7.png"; sourceTree = SOURCE_ROOT; };
 		EDA06C9F13FEA5BA00ED4771 /* g8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = g8.png; path = "Images/Scene Images/g8.png"; sourceTree = SOURCE_ROOT; };
-		EDA2A1C013F26F8400B64EA5 /* MMS-UI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MMS-UI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EDA2A1C013F26F8400B64EA5 /* MusicalStar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusicalStar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDA2A1C413F26F8400B64EA5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		EDA2A1C613F26F8400B64EA5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		EDA2A1C813F26F8400B64EA5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -335,6 +357,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3A9088EB1421D61E009A7EFA /* OpenFlow */ = {
+			isa = PBXGroup;
+			children = (
+				3A9088EC1421D61E009A7EFA /* AFItemView.h */,
+				3A9088ED1421D61E009A7EFA /* AFItemView.m */,
+				3A9088EE1421D61E009A7EFA /* AFOpenFlowConstants.h */,
+				3A9088EF1421D61E009A7EFA /* AFOpenFlowView.h */,
+				3A9088F01421D61E009A7EFA /* AFOpenFlowView.m */,
+				3A9088F11421D61E009A7EFA /* AFUIImageReflection.h */,
+				3A9088F21421D61E009A7EFA /* AFUIImageReflection.m */,
+			);
+			path = OpenFlow;
+			sourceTree = "<group>";
+		};
 		820E2A1E140A0A2A00B80BBC /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -494,6 +530,8 @@
 				ED885C2F140BC13100209530 /* XIB */,
 				EDA2A1FD13F2712000B64EA5 /* Images */,
 				EDA2A1D913F26F8400B64EA5 /* MenuViewController.h */,
+				3A90890614220A0A009A7EFA /* CoverFlowViewController.h */,
+				3A90890714220A0A009A7EFA /* CoverFlowViewController.m */,
 				95784433141DD23C0033721D /* TrackPane.m */,
 				95784434141DD23C0033721D /* LyricsViewController.h */,
 				95784435141DD23C0033721D /* LyricsViewController.m */,
@@ -515,6 +553,8 @@
 				EDC5CC3613F6261500EAF813 /* CoverViewController.m */,
 				EDA2A1D313F26F8400B64EA5 /* MMS_UIAppDelegate.h */,
 				EDA2A1D413F26F8400B64EA5 /* MMS_UIAppDelegate.m */,
+				3A9089141422398C009A7EFA /* CameraPopupViewController.h */,
+				3A9089151422398D009A7EFA /* CameraPopupViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -530,6 +570,8 @@
 				9569E05D1418A2B10016DAF3 /* AudioEditorViewController.xib */,
 				9569E05E1418A2B10016DAF3 /* PhotoEditorViewController.xib */,
 				9569E0611418A2C90016DAF3 /* SceneEditViewController.xib */,
+				3A9089161422398F009A7EFA /* CameraPopupViewController.xib */,
+				3A90890814220A0A009A7EFA /* CoverFlowViewController.xib */,
 			);
 			name = XIB;
 			sourceTree = "<group>";
@@ -552,6 +594,7 @@
 		EDA2A1B513F26F8300B64EA5 = {
 			isa = PBXGroup;
 			children = (
+				3A908912142231ED009A7EFA /* Icon-72.png */,
 				9578443A141DD2F10033721D /* QuartzCore.framework */,
 				95DAE888141481470039201D /* libz.dylib */,
 				95DAE886141481400039201D /* libxml2.dylib */,
@@ -570,7 +613,7 @@
 		EDA2A1C113F26F8400B64EA5 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				EDA2A1C013F26F8400B64EA5 /* MMS-UI.app */,
+				EDA2A1C013F26F8400B64EA5 /* MusicalStar.app */,
 				EDA2A1E413F26F8400B64EA5 /* MMS-UITests.octest */,
 			);
 			name = Products;
@@ -579,6 +622,7 @@
 		EDA2A1C313F26F8400B64EA5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3A9088EB1421D61E009A7EFA /* OpenFlow */,
 				820E2A1B140A0A1E00B80BBC /* AudioToolbox.framework */,
 				EDA2A1C413F26F8400B64EA5 /* UIKit.framework */,
 				EDA2A1C613F26F8400B64EA5 /* Foundation.framework */,
@@ -724,7 +768,7 @@
 			);
 			name = "MMS-UI";
 			productName = "MMS-UI";
-			productReference = EDA2A1C013F26F8400B64EA5 /* MMS-UI.app */;
+			productReference = EDA2A1C013F26F8400B64EA5 /* MusicalStar.app */;
 			productType = "com.apple.product-type.application";
 		};
 		EDA2A1E313F26F8400B64EA5 /* MMS-UITests */ = {
@@ -831,6 +875,9 @@
 				9569E0621418A2C90016DAF3 /* SceneEditViewController.xib in Resources */,
 				9515B2FE141DD38A001B2456 /* record.png in Resources */,
 				9515B2FF141DD38A001B2456 /* recording.png in Resources */,
+				3A90890A14220A0B009A7EFA /* CoverFlowViewController.xib in Resources */,
+				3A908913142231EE009A7EFA /* Icon-72.png in Resources */,
+				3A90891814223991009A7EFA /* CameraPopupViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -908,6 +955,11 @@
 				9569E0651418A2D30016DAF3 /* SceneEditViewController.m in Sources */,
 				95784437141DD23C0033721D /* TrackPane.m in Sources */,
 				95784438141DD23C0033721D /* LyricsViewController.m in Sources */,
+				3A9088F31421D61E009A7EFA /* AFItemView.m in Sources */,
+				3A9088F41421D61E009A7EFA /* AFOpenFlowView.m in Sources */,
+				3A9088F51421D61E009A7EFA /* AFUIImageReflection.m in Sources */,
+				3A90890914220A0B009A7EFA /* CoverFlowViewController.m in Sources */,
+				3A90891714223991009A7EFA /* CameraPopupViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1008,7 +1060,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MMS-UI/MMS-UI-Prefix.pch";
 				INFOPLIST_FILE = "MMS-UI/MMS-UI-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = MusicalStar;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1021,7 +1073,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MMS-UI/MMS-UI-Prefix.pch";
 				INFOPLIST_FILE = "MMS-UI/MMS-UI-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = MusicalStar;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};

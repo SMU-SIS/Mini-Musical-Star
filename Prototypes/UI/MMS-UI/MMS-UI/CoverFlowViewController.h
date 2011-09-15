@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AFOpenFlowView.h"
 
-@interface CoverFlowViewController : UIViewController
-
+@interface CoverFlowViewController : UIViewController <AFOpenFlowViewDelegate,AFOpenFlowViewDataSource> {
+	
+    // Queue to hold the cover flow images
+	
+	NSOperationQueue *loadImagesOperationQueue;
+    
+}
 @end
