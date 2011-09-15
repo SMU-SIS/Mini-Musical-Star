@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="562" systemVersion="11B2118" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Cover">
+        <attribute name="author" optional="YES" attributeType="String"/>
+        <attribute name="cover_of_songID" optional="YES" attributeType="Integer 16" defaultValueString="0"/>
+        <attribute name="created_date" optional="YES" attributeType="Date"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="CoverScene"/>
+    <entity name="CoverSceneAudio"/>
+    <entity name="CoverScenePicture">
+        <attribute name="OrderNumber" optional="YES" attributeType="Integer 16" defaultValueString="0"/>
+        <attribute name="Path" optional="YES" attributeType="String"/>
+    </entity>
+    <elements>
+        <element name="Cover" positionX="160" positionY="192" width="128" height="105"/>
+        <element name="CoverScene" positionX="160" positionY="192" width="128" height="45"/>
+        <element name="CoverSceneAudio" positionX="160" positionY="192" width="128" height="45"/>
+        <element name="CoverScenePicture" positionX="160" positionY="192" width="128" height="75"/>
+    </elements>
+</model>

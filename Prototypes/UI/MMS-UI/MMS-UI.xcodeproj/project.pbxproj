@@ -24,6 +24,7 @@
 		82A21EC1140A388C008C26FB /* vocals.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 82A21EBC140A388C008C26FB /* vocals.mp3 */; };
 		9515B2FE141DD38A001B2456 /* record.png in Resources */ = {isa = PBXBuildFile; fileRef = 9515B2FC141DD38A001B2456 /* record.png */; };
 		9515B2FF141DD38A001B2456 /* recording.png in Resources */ = {isa = PBXBuildFile; fileRef = 9515B2FD141DD38A001B2456 /* recording.png */; };
+		954CC22114222B33005E0873 /* Covers.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 954CC21F14222B33005E0873 /* Covers.xcdatamodeld */; };
 		9569E05B1418A2A80016DAF3 /* AudioEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9569E0581418A2A80016DAF3 /* AudioEditorViewController.m */; };
 		9569E05C1418A2A80016DAF3 /* PhotoEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9569E05A1418A2A80016DAF3 /* PhotoEditorViewController.m */; };
 		9569E05F1418A2B10016DAF3 /* AudioEditorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9569E05D1418A2B10016DAF3 /* AudioEditorViewController.xib */; };
@@ -37,6 +38,8 @@
 		9572E0DB140E118400713F45 /* Scene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9572E0D4140E118400713F45 /* Scene.m */; };
 		9572E0DC140E118400713F45 /* Show.m in Sources */ = {isa = PBXBuildFile; fileRef = 9572E0D6140E118400713F45 /* Show.m */; };
 		9572E0E0140E11FF00713F45 /* ShowDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 9572E0DF140E11FF00713F45 /* ShowDAO.m */; };
+		957485B21422403A0050576B /* CoverDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 957485B11422403A0050576B /* CoverDAO.m */; };
+		957485B914225A030050576B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 957485B814225A030050576B /* CoreData.framework */; };
 		95784437141DD23C0033721D /* TrackPane.m in Sources */ = {isa = PBXBuildFile; fileRef = 95784433141DD23C0033721D /* TrackPane.m */; };
 		95784438141DD23C0033721D /* LyricsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95784435141DD23C0033721D /* LyricsViewController.m */; };
 		9578443B141DD2F10033721D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9578443A141DD2F10033721D /* QuartzCore.framework */; };
@@ -161,6 +164,7 @@
 		82A21EBC140A388C008C26FB /* vocals.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = vocals.mp3; sourceTree = "<group>"; };
 		9515B2FC141DD38A001B2456 /* record.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = record.png; sourceTree = "<group>"; };
 		9515B2FD141DD38A001B2456 /* recording.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = recording.png; sourceTree = "<group>"; };
+		954CC22014222B33005E0873 /* Covers.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Covers.xcdatamodel; sourceTree = "<group>"; };
 		9569E0571418A2A80016DAF3 /* AudioEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioEditorViewController.h; sourceTree = "<group>"; };
 		9569E0581418A2A80016DAF3 /* AudioEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioEditorViewController.m; sourceTree = "<group>"; };
 		9569E0591418A2A80016DAF3 /* PhotoEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoEditorViewController.h; sourceTree = "<group>"; };
@@ -184,6 +188,9 @@
 		9572E0D6140E118400713F45 /* Show.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Show.m; sourceTree = "<group>"; };
 		9572E0DE140E11FF00713F45 /* ShowDAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowDAO.h; sourceTree = "<group>"; };
 		9572E0DF140E11FF00713F45 /* ShowDAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowDAO.m; sourceTree = "<group>"; };
+		957485B01422403A0050576B /* CoverDAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoverDAO.h; sourceTree = "<group>"; };
+		957485B11422403A0050576B /* CoverDAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoverDAO.m; sourceTree = "<group>"; };
+		957485B814225A030050576B /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		95784433141DD23C0033721D /* TrackPane.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackPane.m; sourceTree = "<group>"; };
 		95784434141DD23C0033721D /* LyricsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LyricsViewController.h; sourceTree = "<group>"; };
 		95784435141DD23C0033721D /* LyricsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LyricsViewController.m; sourceTree = "<group>"; };
@@ -308,6 +315,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				957485B914225A030050576B /* CoreData.framework in Frameworks */,
 				95DAE889141481480039201D /* libz.dylib in Frameworks */,
 				95DAE887141481400039201D /* libxml2.dylib in Frameworks */,
 				95DAE885141481310039201D /* SystemConfiguration.framework in Frameworks */,
@@ -369,6 +377,7 @@
 				9572E0D3140E118400713F45 /* Scene.h */,
 				9572E0D4140E118400713F45 /* Scene.m */,
 				9572E0D5140E118400713F45 /* Show.h */,
+				954CC21F14222B33005E0873 /* Covers.xcdatamodeld */,
 				9572E0D6140E118400713F45 /* Show.m */,
 			);
 			name = Models;
@@ -379,6 +388,8 @@
 			children = (
 				9572E0DE140E11FF00713F45 /* ShowDAO.h */,
 				9572E0DF140E11FF00713F45 /* ShowDAO.m */,
+				957485B01422403A0050576B /* CoverDAO.h */,
+				957485B11422403A0050576B /* CoverDAO.m */,
 			);
 			name = DAOs;
 			sourceTree = "<group>";
@@ -552,6 +563,7 @@
 		EDA2A1B513F26F8300B64EA5 = {
 			isa = PBXGroup;
 			children = (
+				957485B814225A030050576B /* CoreData.framework */,
 				9578443A141DD2F10033721D /* QuartzCore.framework */,
 				95DAE888141481470039201D /* libz.dylib */,
 				95DAE886141481400039201D /* libxml2.dylib */,
@@ -908,6 +920,8 @@
 				9569E0651418A2D30016DAF3 /* SceneEditViewController.m in Sources */,
 				95784437141DD23C0033721D /* TrackPane.m in Sources */,
 				95784438141DD23C0033721D /* LyricsViewController.m in Sources */,
+				954CC22114222B33005E0873 /* Covers.xcdatamodeld in Sources */,
+				957485B21422403A0050576B /* CoverDAO.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1104,6 +1118,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		954CC21F14222B33005E0873 /* Covers.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				954CC22014222B33005E0873 /* Covers.xcdatamodel */,
+			);
+			currentVersion = 954CC22014222B33005E0873 /* Covers.xcdatamodel */;
+			path = Covers.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = EDA2A1B713F26F8300B64EA5 /* Project object */;
 }

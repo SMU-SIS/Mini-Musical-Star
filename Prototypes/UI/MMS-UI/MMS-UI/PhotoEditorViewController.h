@@ -11,6 +11,7 @@
 #import "Show.h"
 #import "ShowDAO.h"
 #import "Picture.h"
+#import "SceneEditViewController.h"
 
 @interface PhotoEditorViewController : UIViewController
 

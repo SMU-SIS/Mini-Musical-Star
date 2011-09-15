@@ -9,7 +9,8 @@
 #import "MenuViewController.h"
 
 @implementation MenuViewController
-@synthesize shows;
+@synthesize shows, fetchedResultsController, managedObjectContext;
+
 
 - (void)dealloc
 {
