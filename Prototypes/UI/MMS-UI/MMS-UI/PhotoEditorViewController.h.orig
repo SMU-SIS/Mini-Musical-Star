@@ -11,9 +11,12 @@
 #import "Show.h"
 #import "ShowDAO.h"
 #import "Picture.h"
+<<<<<<< HEAD
+#import "SceneEditViewController.h"
+=======
 #import "AFOpenFlowView.h"
 #import "CameraPopupViewController.h"
-#import "SceneEditViewController.h"
+>>>>>>> 5df4844c47061ae07798f04a3f98a325a7d8bbb1
 
 
 @interface PhotoEditorViewController : UIViewController <AFOpenFlowViewDelegate,AFOpenFlowViewDataSource> {

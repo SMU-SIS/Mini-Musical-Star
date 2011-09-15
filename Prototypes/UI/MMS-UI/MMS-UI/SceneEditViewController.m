@@ -149,6 +149,14 @@
     
 }
 
+- (void)setSliderPosition:(int) targetSeconds
+{
+    //convert the float value to seconds
+    [thePlayer seekTo:targetSeconds];
+    
+}
+
+
 #pragma mark notifys and callbacks
 
 -(void)didReceiveElapsedTimeNotification:(NSNotification *)notification
