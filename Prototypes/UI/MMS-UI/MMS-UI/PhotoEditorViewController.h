@@ -13,7 +13,6 @@
 #import "Picture.h"
 #import "AFOpenFlowView.h"
 #import "CameraPopupViewController.h"
-#import "SceneEditViewController.h"
 
 
 @interface PhotoEditorViewController : UIViewController <AFOpenFlowViewDelegate,AFOpenFlowViewDataSource> {

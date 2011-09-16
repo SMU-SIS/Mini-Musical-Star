@@ -87,7 +87,7 @@
     [scrollView addSubview:audioView.view];
     
     //load the photo view controller
-    photoView = [[PhotoEditorViewController alloc] initWithPhotos:theScene.pictureList andParent:self];
+    photoView = [[PhotoEditorViewController alloc] initWithPhotos:theScene.pictureList];
     page = 1;
     frame.origin.x = frame.size.width * page;
     frame.origin.y = 0;
