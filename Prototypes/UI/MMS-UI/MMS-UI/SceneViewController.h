@@ -12,6 +12,7 @@
 #import "SceneEditViewController.h"
 #import "Cover.h"
 #import "CoverScene.h"
+#import "DSActivityView.h"
 
 @interface SceneViewController : UIViewController{
     IBOutlet UIImageView *showCover;

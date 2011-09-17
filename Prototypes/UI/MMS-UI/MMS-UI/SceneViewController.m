@@ -127,6 +127,13 @@
 -(void)selectScene:(id)sender
 {
     
+    [DSBezelActivityView newActivityViewForView:self.view withLabel:@"Loading..."];
+    [self performSelectorInBackground:@selector(loadSceneEditViewController) withObject:nil];
+}
+
+//need to do this because it takes some time to load the next controller. can display the loading spinner like that.
+-(void)loadSceneEditViewController
+{
     //wei jie, I don't know how to get the value for selected scene so i hardcode first ok? help me change - Adrian
     
     //attempt to get the Scene from the Cover
@@ -155,15 +162,22 @@
     }
     
     SceneEditViewController *editController = [[SceneEditViewController alloc] initWithScene:selectedScene andSceneCover:selectedCoverScene andContext:context];
-    [self.navigationController pushViewController:editController animated:YES];
-    
-//    editController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-//    [self presentModalViewController:editController animated:YES];
-    
-    [editController release];
-    
-    
+    editController.title = selectedScene.title;
+
+    [self performSelectorOnMainThread:@selector(finishLoadingSceneEditViewController:) withObject:editController waitUntilDone:NO];
 }
+
+-(void)finishLoadingSceneEditViewController:(SceneEditViewController *)theController
+{
+    [DSBezelActivityView removeViewAnimated:YES];
+    [self.navigationController pushViewController:theController animated:YES];
+    
+    //    editController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    //    [self presentModalViewController:editController animated:YES];
+    
+    [theController release];
+}
+
 
 -(void)displaySceneImages:(NSArray *)images{
     for (int i=0; i<images.count; i++) {
