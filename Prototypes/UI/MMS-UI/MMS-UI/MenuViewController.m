@@ -90,8 +90,10 @@
 
 //Button action for creating new musical
 - (IBAction)createMusical {
+    
+    Cover *newCover = [NSEntityDescription insertNewObjectForEntityForName:@"Cover" inManagedObjectContext:managedObjectContext];
 
-    SceneViewController *sceneView = [[SceneViewController alloc] initWithScenesFromShow:[self returnCurrentSelectedShow]];        
+    SceneViewController *sceneView = [[SceneViewController alloc] initWithScenesFromShow:[self returnCurrentSelectedShow] andCover:newCover andContext:managedObjectContext];
     sceneView.title = [[self returnCurrentSelectedShow] title];
     
     [self.navigationController pushViewController:sceneView animated:YES];
@@ -112,12 +114,12 @@
 }
 
 - (IBAction)playBackMusical {
-    PlaybackViewController *pBackMusical = [[PlaybackViewController alloc] initWithShow:[self returnCurrentSelectedShow]];
-    
-    pBackMusical.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-    [self presentModalViewController:pBackMusical animated:YES];
-    
-    [pBackMusical release];
+//    PlaybackViewController *pBackMusical = [[PlaybackViewController alloc] initWithShow:[self returnCurrentSelectedShow]];
+//    
+//    pBackMusical.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+//    [self presentModalViewController:pBackMusical animated:YES];
+//    s
+//    [pBackMusical release];
 }
 
 - (IBAction)coverMusical {

@@ -10,6 +10,7 @@
 #import "ShowImage.h"
 #import "ShowDAO.h"
 #import "Show.h"
+#import "Cover.h"
 
 #import "SceneViewController.h"
 #import "PlaybackViewController.h"

@@ -13,9 +13,17 @@
 @synthesize imageNum;
 @synthesize theShow;
 @synthesize chosenScene;
+@synthesize theCover;
+@synthesize context;
 
 - (void)dealloc
 {
+    [context release];
+    [showCover release];
+    [sceneMenu release];
+    [theShow release];
+    [chosenScene release];
+    [theCover release];
     [super dealloc];
 }
 
@@ -29,6 +37,17 @@
 
 #pragma mark - View lifecycle
 
+-(SceneViewController *)initWithScenesFromShow:(Show *)aShow andCover:(Cover *)aCover andContext:(NSManagedObjectContext *)aContext
+{
+    [super init];
+    //store the current show as an ivar
+    self.theShow = aShow;
+    self.theCover = aCover;
+    self.context = aContext;
+    
+    return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -41,14 +60,8 @@
     [sceneMenu setPagingEnabled:NO]; 
     sceneMenu.clipsToBounds = NO;   
     
-    //Codes to disply the picture of the musical above on the scene selection page
-    menuImages = [ShowImage alloc];
-    NSArray *images = [menuImages getShowImages];
-    [menuImages autorelease];
-    
     //setting the Show's cover image at the yop of the scene
-    UIImage *img = [images objectAtIndex:imageNum];
-    showCover.image = img;
+    showCover.image = theShow.coverPicture;
     
     
     //For the scene selection page. Scrollable.
@@ -113,20 +126,35 @@
 
 -(void)selectScene:(id)sender
 {
-    //wei jie, I don't know how to get the value for selected scene so i hardcode first ok? help me change - Adrian
-//    NSLog(@"TMD : %@",theShow.scenes);
-//    EditViewController *editScene = [[EditViewController alloc] initWithImagesFromScene:[theShow.scenes objectAtIndex:0]];
-//    
-//    
-//    editScene.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-//    [self presentModalViewController:editScene animated:YES];
-//    [editScene release];
     
     //wei jie, I don't know how to get the value for selected scene so i hardcode first ok? help me change - Adrian
     
+    //attempt to get the Scene from the Cover
+    Scene *selectedScene = [self returnCurrentSelectedScene];
     
+    __block CoverScene *selectedCoverScene = nil;
+    [theCover.Scenes enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
+        CoverScene *theCoverScene = (CoverScene *)obj;
+        if (theCoverScene.SceneNum == selectedScene.sceneNumber)
+        {
+            selectedCoverScene = theCoverScene;
+            *stop = YES; 
+            
+        }
+    }];
     
-    SceneEditViewController *editController = [[SceneEditViewController alloc] initWithScene:[self returnCurrentSelectedScene]];
+    if (selectedCoverScene == nil)
+    {
+        //then create a new one
+        selectedCoverScene = [NSEntityDescription insertNewObjectForEntityForName:@"CoverScene" inManagedObjectContext:context];
+        NSLog(@"%@", selectedScene);
+        selectedCoverScene.SceneNum = [NSNumber numberWithInt:1];
+        
+        //[selectedCoverScene setSceneNum:[selectedScene sceneNumber]];
+        [theCover addScenesObject:selectedCoverScene];
+    }
+    
+    SceneEditViewController *editController = [[SceneEditViewController alloc] initWithScene:selectedScene andSceneCover:selectedCoverScene andContext:context];
     [self.navigationController pushViewController:editController animated:YES];
     
 //    editController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
@@ -175,13 +203,6 @@
     return YES;
 }
 
--(SceneViewController *)initWithScenesFromShow:(Show *)aShow
-{
-    [super init];
-    //store the current show as an ivar
-    self.theShow = aShow;
-    
-    return self;
-}
+
 
 @end

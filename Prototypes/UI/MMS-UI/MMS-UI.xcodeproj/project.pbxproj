@@ -74,6 +74,10 @@
 		95DAE8DD141495690039201D /* ZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = 95DAE8D8141495690039201D /* ZipArchive.m */; };
 		95DAE8EA1414A2AF0039201D /* DSActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 95DAE8E91414A2AF0039201D /* DSActivityView.m */; };
 		95DAE8F71414E8D50039201D /* ScenePlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 95DAE8F61414E8D50039201D /* ScenePlayer.m */; };
+		95F9FFA01424709300A18463 /* Cover.m in Sources */ = {isa = PBXBuildFile; fileRef = 95F9FF9F1424709300A18463 /* Cover.m */; };
+		95F9FFA31424709300A18463 /* CoverSceneAudio.m in Sources */ = {isa = PBXBuildFile; fileRef = 95F9FFA21424709300A18463 /* CoverSceneAudio.m */; };
+		95F9FFA91424709400A18463 /* CoverScenePicture.m in Sources */ = {isa = PBXBuildFile; fileRef = 95F9FFA81424709400A18463 /* CoverScenePicture.m */; };
+		95F9FFAC142472BE00A18463 /* CoverScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 95F9FFAB142472BE00A18463 /* CoverScene.m */; };
 		ED75B7F913FE9C9700AFA08B /* scene.png in Resources */ = {isa = PBXBuildFile; fileRef = ED75B7F713FE9C9700AFA08B /* scene.png */; };
 		ED8310D614090B280093BFF9 /* gfxoption.png in Resources */ = {isa = PBXBuildFile; fileRef = ED8310D514090B280093BFF9 /* gfxoption.png */; };
 		EDA06CA013FEA5BA00ED4771 /* g1.png in Resources */ = {isa = PBXBuildFile; fileRef = EDA06C9813FEA5BA00ED4771 /* g1.png */; };
@@ -262,6 +266,14 @@
 		95DAE8E91414A2AF0039201D /* DSActivityView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSActivityView.m; sourceTree = "<group>"; };
 		95DAE8F51414E8D50039201D /* ScenePlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScenePlayer.h; sourceTree = "<group>"; };
 		95DAE8F61414E8D50039201D /* ScenePlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScenePlayer.m; sourceTree = "<group>"; };
+		95F9FF9E1424709300A18463 /* Cover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cover.h; sourceTree = "<group>"; };
+		95F9FF9F1424709300A18463 /* Cover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cover.m; sourceTree = "<group>"; };
+		95F9FFA11424709300A18463 /* CoverSceneAudio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoverSceneAudio.h; sourceTree = "<group>"; };
+		95F9FFA21424709300A18463 /* CoverSceneAudio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoverSceneAudio.m; sourceTree = "<group>"; };
+		95F9FFA71424709400A18463 /* CoverScenePicture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoverScenePicture.h; sourceTree = "<group>"; };
+		95F9FFA81424709400A18463 /* CoverScenePicture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoverScenePicture.m; sourceTree = "<group>"; };
+		95F9FFAA142472BE00A18463 /* CoverScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoverScene.h; sourceTree = "<group>"; };
+		95F9FFAB142472BE00A18463 /* CoverScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoverScene.m; sourceTree = "<group>"; };
 		ED75B7F713FE9C9700AFA08B /* scene.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = scene.png; path = Images/Buttons/scene.png; sourceTree = SOURCE_ROOT; };
 		ED8310D514090B280093BFF9 /* gfxoption.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = gfxoption.png; path = Images/Buttons/gfxoption.png; sourceTree = SOURCE_ROOT; };
 		EDA06C9813FEA5BA00ED4771 /* g1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = g1.png; path = "Images/Scene Images/g1.png"; sourceTree = SOURCE_ROOT; };
@@ -402,6 +414,7 @@
 		9572E0C9140E117200713F45 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				95F9FF9C142460EB00A18463 /* Cover CoreData Models */,
 				9572E0CB140E118400713F45 /* AudioCue.h */,
 				9572E0CC140E118400713F45 /* AudioCue.m */,
 				9572E0CD140E118400713F45 /* Audio.h */,
@@ -413,7 +426,6 @@
 				9572E0D3140E118400713F45 /* Scene.h */,
 				9572E0D4140E118400713F45 /* Scene.m */,
 				9572E0D5140E118400713F45 /* Show.h */,
-				954CC21F14222B33005E0873 /* Covers.xcdatamodeld */,
 				9572E0D6140E118400713F45 /* Show.m */,
 			);
 			name = Models;
@@ -534,6 +546,22 @@
 			name = Libraries;
 			sourceTree = "<group>";
 		};
+		95F9FF9C142460EB00A18463 /* Cover CoreData Models */ = {
+			isa = PBXGroup;
+			children = (
+				954CC21F14222B33005E0873 /* Covers.xcdatamodeld */,
+				95F9FFAA142472BE00A18463 /* CoverScene.h */,
+				95F9FFAB142472BE00A18463 /* CoverScene.m */,
+				95F9FFA71424709400A18463 /* CoverScenePicture.h */,
+				95F9FFA81424709400A18463 /* CoverScenePicture.m */,
+				95F9FFA11424709300A18463 /* CoverSceneAudio.h */,
+				95F9FFA21424709300A18463 /* CoverSceneAudio.m */,
+				95F9FF9E1424709300A18463 /* Cover.h */,
+				95F9FF9F1424709300A18463 /* Cover.m */,
+			);
+			name = "Cover CoreData Models";
+			sourceTree = "<group>";
+		};
 		ED885C2E140BC11E00209530 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -541,13 +569,13 @@
 				ED885C2F140BC13100209530 /* XIB */,
 				EDA2A1FD13F2712000B64EA5 /* Images */,
 				EDA2A1D913F26F8400B64EA5 /* MenuViewController.h */,
+				EDA2A1DA13F26F8400B64EA5 /* MenuViewController.m */,
 				3A90890614220A0A009A7EFA /* CoverFlowViewController.h */,
 				3A90890714220A0A009A7EFA /* CoverFlowViewController.m */,
 				95784433141DD23C0033721D /* TrackPane.m */,
 				95784434141DD23C0033721D /* LyricsViewController.h */,
 				95784435141DD23C0033721D /* LyricsViewController.m */,
 				95784436141DD23C0033721D /* TrackPane.h */,
-				EDA2A1DA13F26F8400B64EA5 /* MenuViewController.m */,
 				EDA2A20C13F272BF00B64EA5 /* ShowImage.h */,
 				9569E0571418A2A80016DAF3 /* AudioEditorViewController.h */,
 				9569E0581418A2A80016DAF3 /* AudioEditorViewController.m */,
@@ -973,6 +1001,10 @@
 				3A90891714223991009A7EFA /* CameraPopupViewController.m in Sources */,
 				954CC22114222B33005E0873 /* Covers.xcdatamodeld in Sources */,
 				957485B21422403A0050576B /* CoverDAO.m in Sources */,
+				95F9FFA01424709300A18463 /* Cover.m in Sources */,
+				95F9FFA31424709300A18463 /* CoverSceneAudio.m in Sources */,
+				95F9FFA91424709400A18463 /* CoverScenePicture.m in Sources */,
+				95F9FFAC142472BE00A18463 /* CoverScene.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

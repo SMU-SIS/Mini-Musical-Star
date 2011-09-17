@@ -10,13 +10,15 @@
 #import "SceneEditViewController.h"
 
 @implementation SceneEditViewController
-@synthesize audioView, photoView, scrollView, pageControl, playPauseButton, elapsedTimeLabel, totalTimeLabel, songInfoLabel, playPositionSlider, masterVolumeSlider, theScene, thePlayer;
+@synthesize audioView, photoView, scrollView, pageControl, playPauseButton, elapsedTimeLabel, totalTimeLabel, songInfoLabel, playPositionSlider, micVolumeSlider, theScene, theCoverScene, thePlayer, context;
 
 - (void)dealloc
 {
+    [context release];
     [thePlayer stop];
     [thePlayer release];
     [theScene release];
+    [theCoverScene release];
     [scrollView release];
     [pageControl release];
     [playPauseButton release];
@@ -24,7 +26,7 @@
     [totalTimeLabel release];
     [songInfoLabel release];
     [playPositionSlider release];
-    [masterVolumeSlider release];
+    [micVolumeSlider release];
     
     [super dealloc];
 }
@@ -39,8 +41,31 @@
 
 #pragma mark - View lifecycle
 
+- (SceneEditViewController *)initWithScene:(Scene *)aScene andSceneCover:(CoverScene *)aCoverScene andContext:(NSManagedObjectContext *)aContext
+{
+    self = [super init];
+    if (self)
+    {
+        self.theScene = aScene;
+        self.theCoverScene = aCoverScene;
+        self.context = aContext;
+        
+        //get the array of audio tracks
+        __block NSMutableArray *audioTracks = [[NSMutableArray alloc] initWithCapacity:aScene.audioList.count];
+        [aScene.audioList enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            Audio *theAudio = (Audio *)obj;
+            [audioTracks addObject:[NSURL fileURLWithPath:theAudio.path]];
+        }];
+        
+        //init the player with the audio tracks
+        thePlayer = [[MixPlayerRecorder alloc] initWithAudioFileURLs:audioTracks];
+        
+        [self performSelector:@selector(registerNotifications)];
+    }
+    
+    return self;
+}
 
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)registerNotifications
 {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceivePlayerStartedNotification:) name:kMixPlayerRecorderPlaybackStarted object:nil];
@@ -73,12 +98,15 @@
     
     [self loadChildViewControllers];
     
+    //set the mic volume control value
+    micVolumeSlider.value = [thePlayer getVolumeForBus:[theScene.audioList count]];
+    
 }
 
 - (void)loadChildViewControllers
 {
     //load the audio view controller
-    audioView = [[AudioEditorViewController alloc] initWithPlayer:thePlayer andAudioObjects:theScene.audioList];
+    audioView = [[AudioEditorViewController alloc] initWithPlayer:thePlayer andAudioObjects:theScene.audioList andCoverScene:theCoverScene andContext:context];
     int page = 0;
     CGRect frame = scrollView.frame;
     frame.origin.x = frame.size.width * page;
@@ -87,7 +115,7 @@
     [scrollView addSubview:audioView.view];
     
     //load the photo view controller
-    photoView = [[PhotoEditorViewController alloc] initWithPhotos:theScene.pictureList];
+    photoView = [[PhotoEditorViewController alloc] initWithPhotos:theScene.pictureList andCoverScene:theCoverScene andContext:context];
     page = 1;
     frame.origin.x = frame.size.width * page;
     frame.origin.y = 0;
@@ -96,28 +124,7 @@
 
 }
 
-- (SceneEditViewController *)initWithScene:(Scene *)aScene
-{
-    self = [super init];
-    if (self)
-    {
-        self.theScene = aScene;
-        
-        //get the array of audio tracks
-        __block NSMutableArray *audioTracks = [[NSMutableArray alloc] initWithCapacity:aScene.audioList.count];
-        [aScene.audioList enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-            Audio *theAudio = (Audio *)obj;
-            [audioTracks addObject:[NSURL fileURLWithPath:theAudio.path]];
-        }];
-        
-        //init the player with the audio tracks
-        thePlayer = [[MixPlayerRecorder alloc] initWithAudioFileURLs:audioTracks];
-        
-        [self registerNotifications];
-    }
-    
-    return self;
-}
+
 
 #pragma mark IBActions
 
@@ -136,9 +143,10 @@
     }
 }
 
-- (IBAction)volumeSliderDidMove:(UISlider *)sender
+- (IBAction)micVolumeSliderDidMove:(UISlider *)sender
 {
-    NSLog(@"This has no effect because I haven't found a way to change the master volume.\n");
+    //this adjusts the mic volume
+    [thePlayer setMicVolume:sender.value];
 }
 
 - (IBAction)toggleSeek:(UISlider *)sender

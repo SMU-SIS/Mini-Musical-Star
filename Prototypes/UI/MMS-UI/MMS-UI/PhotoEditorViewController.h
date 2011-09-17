@@ -13,7 +13,7 @@
 #import "Picture.h"
 #import "AFOpenFlowView.h"
 #import "CameraPopupViewController.h"
-
+#import "CoverScene.h"
 
 @interface PhotoEditorViewController : UIViewController <AFOpenFlowViewDelegate,AFOpenFlowViewDataSource> {
     NSOperationQueue *loadImagesOperationQueue;
@@ -25,9 +25,11 @@
 @property(retain,nonatomic) NSArray *thePictures;
 @property (retain,nonatomic) NSMutableArray *imagesArray;
 
+@property (retain, nonatomic) CoverScene *theCoverScene;
+@property (retain, nonatomic) NSManagedObjectContext *context;
 
 - (void) setSliderImages:(UInt32)timeAt;
-- (PhotoEditorViewController *)initWithPhotos:(NSArray *)pictureArray;
+- (PhotoEditorViewController *)initWithPhotos:(NSArray *)pictureArray andCoverScene:(CoverScene *)aCoverScene andContext:(NSManagedObjectContext *)context;
 - (IBAction) pressCenterImage;
 
 @end

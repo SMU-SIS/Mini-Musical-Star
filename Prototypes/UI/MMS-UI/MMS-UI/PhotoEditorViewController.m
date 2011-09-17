@@ -10,7 +10,7 @@
 
 @implementation PhotoEditorViewController
 
-@synthesize leftPicture, rightPicture, centerPicture, thePictures, imagesArray;
+@synthesize leftPicture, rightPicture, centerPicture, thePictures, imagesArray, theCoverScene, context;
 
 -(void)dealloc
 {
@@ -18,15 +18,19 @@
     [rightPicture release];
     [centerPicture release];
     [thePictures release];
+    [theCoverScene release];
+    [context release];
     [super dealloc];
 }
 
-- (PhotoEditorViewController *)initWithPhotos:(NSArray *)pictureArray
+- (PhotoEditorViewController *)initWithPhotos:(NSArray *)pictureArray andCoverScene:(CoverScene *)aCoverScene andContext:(NSManagedObjectContext *)aContext
 {
     self = [super init];
     if (self)
     {
         self.thePictures = pictureArray;
+        self.theCoverScene = aCoverScene;
+        self.context = aContext;
     }
     
     return self;
