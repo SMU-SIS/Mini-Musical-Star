@@ -15,6 +15,7 @@
 @synthesize window=_window;
 
 @synthesize viewController=_viewController;
+@synthesize naviController=_naviController;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -22,7 +23,7 @@
     
     self.viewController.managedObjectContext = self.managedObjectContext;
 
-    self.window.rootViewController = self.viewController;
+    self.window.rootViewController = self.naviController;
     [self.window makeKeyAndVisible];
     return YES;
 }
@@ -116,6 +117,7 @@
 {
     [_window release];
     [_viewController release];
+    [_naviController release];
     [managedObjectContext release];
     [managedObjectModel release];
     [persistentStoreCoordinator release];

@@ -23,6 +23,7 @@
 @property (nonatomic, retain, readonly) NSManagedObjectModel *managedObjectModel;
 @property (nonatomic, retain, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
+@property (nonatomic, retain) IBOutlet UINavigationController *naviController;
 @property (nonatomic, retain) IBOutlet MenuViewController *viewController;
 
 - (NSString *)applicationDocumentsDirectory;

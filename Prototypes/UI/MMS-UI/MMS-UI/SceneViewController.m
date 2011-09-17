@@ -71,6 +71,12 @@
     [sceneMenu setContentSize:CGSizeMake(sceneMenu.frame.size.width + (extend * 200), 0)];
 }
 
+-(void)viewWillAppear:(BOOL)animated {
+    [self.navigationController setNavigationBarHidden:NO];
+    
+    [super viewWillAppear:animated];
+}
+
 
 - (IBAction)backToMenu {
     [self dismissModalViewControllerAnimated:YES];    

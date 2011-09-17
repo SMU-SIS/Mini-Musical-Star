@@ -14,7 +14,6 @@
 
 - (void)dealloc
 {
-    NSLog(@"haha the shows is released now\n");
     [shows release];
     [super dealloc];
 }
@@ -35,10 +34,18 @@
 {
     [super viewDidLoad];
     
+    [self.navigationController setNavigationBarHidden:YES];
+    
     //load the shows on the local disk
     [ShowDAO loadShowsWithDelegate:self];
     
     [DSBezelActivityView newActivityViewForView:self.view withLabel:@"Downloading Shows..."];
+}
+
+-(void)viewDidAppear:(BOOL)animated {
+    [self.navigationController setNavigationBarHidden:YES];
+    
+    [super viewDidAppear:animated];
 }
 
 - (void)daoDownloadQueueFinished
@@ -93,10 +100,14 @@
 - (IBAction)createMusical {
 
     SceneViewController *sceneView = [[SceneViewController alloc] initWithScenesFromShow:[self returnCurrentSelectedShow]];        
-        sceneView.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-        [self presentModalViewController:sceneView animated:YES];
+    sceneView.title = [[self returnCurrentSelectedShow] title];
+    
+    [self.navigationController pushViewController:sceneView animated:YES];
+    
+    //sceneView.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    //[self presentModalViewController:sceneView animated:YES];
         
-        [sceneView release];
+    [sceneView release];
 }
 
 -(Show *)returnCurrentSelectedShow
