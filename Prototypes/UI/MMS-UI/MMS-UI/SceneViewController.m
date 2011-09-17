@@ -71,10 +71,19 @@
     [sceneMenu setContentSize:CGSizeMake(sceneMenu.frame.size.width + (extend * 200), 0)];
 }
 
--(void)viewWillAppear:(BOOL)animated {
-    [self.navigationController setNavigationBarHidden:NO];
-    
+- (void)viewWillAppear: (BOOL)animated
+{
     [super viewWillAppear:animated];
+    UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithTitle:@"View Covers" style:UIBarButtonItemStylePlain target:self action:@selector(testUIBarButton)];          
+    self.navigationItem.rightBarButtonItem = anotherButton;
+    [anotherButton release];
+}
+
+- (void)testUIBarButton
+{
+    UIAlertView *helloAlert = [[UIAlertView alloc] initWithTitle:@"Covers" message:@"Boo!" delegate:self cancelButtonTitle:@"Yeah ok, ok" otherButtonTitles:nil];
+    [helloAlert show];
+    [helloAlert release];
 }
 
 
@@ -118,8 +127,10 @@
     
     
     SceneEditViewController *editController = [[SceneEditViewController alloc] initWithScene:[self returnCurrentSelectedScene]];
-    editController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-    [self presentModalViewController:editController animated:YES];
+    [self.navigationController pushViewController:editController animated:YES];
+    
+//    editController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+//    [self presentModalViewController:editController animated:YES];
     
     [editController release];
     

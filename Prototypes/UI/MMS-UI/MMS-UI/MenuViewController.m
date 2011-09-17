@@ -34,18 +34,10 @@
 {
     [super viewDidLoad];
     
-    [self.navigationController setNavigationBarHidden:YES];
-    
     //load the shows on the local disk
     [ShowDAO loadShowsWithDelegate:self];
     
     [DSBezelActivityView newActivityViewForView:self.view withLabel:@"Downloading Shows..."];
-}
-
--(void)viewDidAppear:(BOOL)animated {
-    [self.navigationController setNavigationBarHidden:YES];
-    
-    [super viewDidAppear:animated];
 }
 
 - (void)daoDownloadQueueFinished

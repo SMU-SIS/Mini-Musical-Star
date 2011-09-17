@@ -63,7 +63,7 @@
 			<object class="IBUICustomObject" id="250404236">
 				<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 			</object>
-			<object class="IBUINavigationController" id="933077411">
+			<object class="IBUINavigationController" id="720193844">
 				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics">
 					<int key="IBUIStatusBarStyle">2</int>
 				</object>
@@ -73,7 +73,7 @@
 				</object>
 				<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 				<bool key="IBUIHorizontal">NO</bool>
-				<object class="IBUINavigationBar" key="IBUINavigationBar" id="1037881974">
+				<object class="IBUINavigationBar" key="IBUINavigationBar" id="486604933">
 					<nil key="NSNextResponder"/>
 					<int key="NSvFlags">256</int>
 					<string key="NSFrameSize">{0, 0}</string>
@@ -85,12 +85,12 @@
 				<object class="NSArray" key="IBUIViewControllers">
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<object class="IBUIViewController" id="578626022">
-						<object class="IBUINavigationItem" key="IBUINavigationItem" id="373850568">
+						<object class="IBUINavigationItem" key="IBUINavigationItem" id="154336081">
 							<reference key="IBUINavigationBar"/>
 							<string key="IBUITitle">Mini Musical Star</string>
 							<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						</object>
-						<reference key="IBUIParentViewController" ref="933077411"/>
+						<reference key="IBUIParentViewController" ref="720193844"/>
 						<string key="IBUINibName">MenuViewController</string>
 						<reference key="IBUISimulatedStatusBarMetrics" ref="456458906"/>
 						<object class="IBUISimulatedOrientationMetrics" key="IBUISimulatedOrientationMetrics">
@@ -134,7 +134,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">naviController</string>
 						<reference key="source" ref="250404236"/>
-						<reference key="destination" ref="933077411"/>
+						<reference key="destination" ref="720193844"/>
 					</object>
 					<int key="connectionID">15</int>
 				</object>
@@ -172,31 +172,34 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">11</int>
-						<reference key="object" ref="933077411"/>
+						<reference key="object" ref="720193844"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="1037881974"/>
+							<reference ref="486604933"/>
 							<reference ref="578626022"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">12</int>
-						<reference key="object" ref="1037881974"/>
-						<reference key="parent" ref="933077411"/>
+						<reference key="object" ref="486604933"/>
+						<reference key="parent" ref="720193844"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">7</int>
 						<reference key="object" ref="578626022"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="373850568"/>
+							<reference ref="154336081"/>
 						</object>
-						<reference key="parent" ref="933077411"/>
+						<reference key="parent" ref="720193844"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">18</int>
-						<reference key="object" ref="373850568"/>
+						<reference key="object" ref="154336081"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+						</object>
 						<reference key="parent" ref="578626022"/>
 					</object>
 				</object>
@@ -246,7 +249,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">18</int>
+			<int key="maxID">19</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
