@@ -284,7 +284,7 @@
     NSString *recordedPath = [[NSBundle mainBundle] pathForResource:@"guitar" ofType:@"mp3"];
     newCoverSceneAudio.path = recordedPath;
     
-    [theCoverScene addAudioObject:newCoverSceneAudio];
+    [self.theCoverScene addAudioObject:newCoverSceneAudio];
     
 }
 @end

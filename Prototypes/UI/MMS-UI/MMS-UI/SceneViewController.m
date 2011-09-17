@@ -135,7 +135,7 @@
     __block CoverScene *selectedCoverScene = nil;
     [theCover.Scenes enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
         CoverScene *theCoverScene = (CoverScene *)obj;
-        if (theCoverScene.SceneNum == selectedScene.sceneNumber)
+        if ([theCoverScene.SceneNum intValue] == [selectedScene.sceneNumber intValue])
         {
             selectedCoverScene = theCoverScene;
             *stop = YES; 
@@ -148,7 +148,7 @@
         //then create a new one
         selectedCoverScene = [NSEntityDescription insertNewObjectForEntityForName:@"CoverScene" inManagedObjectContext:context];
         NSLog(@"%@", selectedScene);
-        selectedCoverScene.SceneNum = [NSNumber numberWithInt:1];
+        selectedCoverScene.SceneNum = [NSNumber numberWithInt:[selectedScene.sceneNumber intValue]];
         
         //[selectedCoverScene setSceneNum:[selectedScene sceneNumber]];
         [theCover addScenesObject:selectedCoverScene];
