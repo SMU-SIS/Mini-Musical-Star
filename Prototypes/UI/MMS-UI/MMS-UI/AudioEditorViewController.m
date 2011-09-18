@@ -254,18 +254,52 @@
 #pragma mark IBAction events
 -(void)recordingButtonIsPressed:(UIButton *)sender
 {
+    int row = -1;
+    
+    //checks which track the user is trying to record by checking which row the button came from
+    UIButton *recordButton = (UIButton *)sender;
+    UITableViewCell *trackCell = (UITableViewCell*)[recordButton superview];
+    row = [trackTableView indexPathForCell:trackCell].row;
+    [trackCell release];
+    [recordButton release];
+    
+    //get the corresponding Audio object
+    id audioForRow = [tracksForView objectAtIndex:row];
+    
+    //if this is a recorded track, exit this method
+    if ([audioForRow isKindOfClass:[CoverSceneAudio class]])
+    {
+        return;
+    }
+    
+    /* start recording once we determine it is a original track */
     NSLog(@"Adding a new CoverSceneAudio object!\n");
+    
+    Audio *trackToBeRecorded = (Audio*)audioForRow;
     
     CoverSceneAudio *newCoverSceneAudio = [NSEntityDescription insertNewObjectForEntityForName:@"CoverSceneAudio" inManagedObjectContext:context];
     
-    newCoverSceneAudio.title = @"Recorded Audio";
+    newCoverSceneAudio.title = [NSString stringWithFormat:trackToBeRecorded.title];
     
+    //HELP: what is the guitar supposed to mean?
     NSString *recordedPath = [[NSBundle mainBundle] pathForResource:@"guitar" ofType:@"mp3"];
     newCoverSceneAudio.path = recordedPath;
     
+    //things to do
+    //-start recording using MixPlayerRecorder, then store it
+    //-scroll that row to the top
+    //-ask the lyrics popover to come out
+    //-when recording is over, dismiss the lyrics popover
+    //final product: the recorded audio can be played
+    
     [self.theCoverScene addAudioObject:newCoverSceneAudio];
+    
+    //HELP: NEED TO RELEASE THE ID audioForRow object??
+    [trackToBeRecorded release];
+    [theCoverScene release];
 }
 
+#pragma mark instance methods
 - (void)setLyrics:(NSString*)someLyrics
 {
     lyrics = someLyrics;
@@ -331,6 +365,8 @@
 {
     [trackTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:trackNumber-1 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
 }
+
+#pragma mark UIPopoverControllerDelegate Protocol methods
 
 //UIPopoverControllerDelegate Protocol method - called when the popover is dismissed.
 - (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
