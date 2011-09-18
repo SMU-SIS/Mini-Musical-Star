@@ -37,6 +37,7 @@
 - (PhotoEditorViewController *)initWithPhotos:(NSArray *)pictureArray andCoverScene:(CoverScene *)aCoverScene andContext:(NSManagedObjectContext *)context;
 - (IBAction) pressCenterImage;
 - (IBAction) replaceImageTest:(UIButton *)sender;
+- (IBAction) popupCameraOptions: (id) sender;
 
 
 

@@ -11,7 +11,7 @@
 
 @implementation CameraPopupViewController
 
-@synthesize imageView, toolbar, popoverController;
+@synthesize takePhotoButton, replacePictureButton, popoverController;
 @synthesize imagesArray;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -47,11 +47,8 @@
 {
     
     [super viewDidLoad];
-    self.contentSizeForViewInPopover = CGSizeMake(150.0, 140.0);
-
-    
-//    [super viewDidLoad];
-//    // Do any additional setup after loading the view from its nib.
+    // Do any additional setup after loading the view from its nib.
+//    
 //    
 //    UIBarButtonItem *cameraButton = [[UIBarButtonItem alloc] 
 //                                     initWithTitle:@"Camera"
@@ -69,8 +66,8 @@
 //    [cameraButton release];
 //    [cameraRollButton release];
 //    
-//    //load the choosen image that is supposed to be replace
-//    [imageView setImage:[imagesArray objectAtIndex:indexOfImageToChange]];
+    //load the choosen image that is supposed to be replace
+    [imageView setImage:[imagesArray objectAtIndex:indexOfImageToChange]];
 }
 
 - (void)viewDidUnload
@@ -132,8 +129,9 @@
             popoverController.delegate = self;
             
             [self.popoverController 
-             presentPopoverFromBarButtonItem:sender
-             permittedArrowDirections:UIPopoverArrowDirectionUp
+             presentPopoverFromRect: CGRectMake(0.0f, 0.0f, 1000.0f, 1000.0f) 
+             inView:self.view 
+             permittedArrowDirections:UIPopoverArrowDirectionDown 
              animated:YES];
             
             [imagePicker release];

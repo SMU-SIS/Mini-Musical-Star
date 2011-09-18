@@ -21,8 +21,8 @@
     NSInteger indexOfImageToChange;
 }
 
-@property (nonatomic, retain) IBOutlet UIImageView *imageView;
-@property (nonatomic, retain) IBOutlet UIToolbar *toolbar;
+@property (nonatomic, retain) IBOutlet UIButton *takePhotoButton;
+@property (nonatomic, retain) IBOutlet UIButton *replacePictureButton;
 @property (nonatomic, retain) UIPopoverController *popoverController;
 
 @property (nonatomic, retain) NSMutableArray *imagesArray;

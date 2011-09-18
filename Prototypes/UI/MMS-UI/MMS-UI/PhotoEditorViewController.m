@@ -127,18 +127,15 @@
     
 }
 
-- (IBAction) test: (id) sender
+- (IBAction) popupCameraOptions: (id) sender
 {
     self.pop = [[UIPopoverController alloc] initWithContentViewController:[[CameraPopupViewController alloc] init]];
     
-    CGRect popoverRect = [self.view convertRect:[btn frame] 
-                                        fromView:[btn superview]];    
-    popoverRect.size.width = MIN(popoverRect.size.width, 100);
                 
     [self.pop 
-     presentPopoverFromRect:popoverRect 
+     presentPopoverFromRect: CGRectMake(0.0f, 0.0f, 1000.0f, 1000.0f) 
      inView:self.view 
-     permittedArrowDirections:UIPopoverArrowDirectionAny 
+     permittedArrowDirections:UIPopoverArrowDirectionDown 
      animated:YES];
 }
 
