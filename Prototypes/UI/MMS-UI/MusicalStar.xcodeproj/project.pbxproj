@@ -39,6 +39,7 @@
 		9572E0E0140E11FF00713F45 /* ShowDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 9572E0DF140E11FF00713F45 /* ShowDAO.m */; };
 		95784437141DD23C0033721D /* TrackPane.m in Sources */ = {isa = PBXBuildFile; fileRef = 95784433141DD23C0033721D /* TrackPane.m */; };
 		9578443B141DD2F10033721D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9578443A141DD2F10033721D /* QuartzCore.framework */; };
+		959C8F0E1426464800E0988F /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 959C8F0D1426464800E0988F /* Icon-72.png */; };
 		95DAE86814147FB20039201D /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C82546140FC506003C9E49 /* ASIAuthenticationDialog.m */; };
 		95DAE86A14147FB90039201D /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C82549140FC506003C9E49 /* ASIDataCompressor.m */; };
 		95DAE86B14147FBC0039201D /* ASIDataDecompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C8254B140FC506003C9E49 /* ASIDataDecompressor.m */; };
@@ -197,6 +198,7 @@
 		95784433141DD23C0033721D /* TrackPane.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackPane.m; sourceTree = "<group>"; };
 		95784436141DD23C0033721D /* TrackPane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackPane.h; sourceTree = "<group>"; };
 		9578443A141DD2F10033721D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		959C8F0D1426464800E0988F /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
 		95C82545140FC506003C9E49 /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIAuthenticationDialog.h; sourceTree = "<group>"; };
 		95C82546140FC506003C9E49 /* ASIAuthenticationDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIAuthenticationDialog.m; sourceTree = "<group>"; };
 		95C82547140FC506003C9E49 /* ASICacheDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASICacheDelegate.h; sourceTree = "<group>"; };
@@ -367,6 +369,7 @@
 		820E2A1E140A0A2A00B80BBC /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				959C8F0D1426464800E0988F /* Icon-72.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -895,6 +898,7 @@
 				9515B2FE141DD38A001B2456 /* record.png in Resources */,
 				9515B2FF141DD38A001B2456 /* recording.png in Resources */,
 				95F9FFC71425C63700A18463 /* CameraPopupViewController.xib in Resources */,
+				959C8F0E1426464800E0988F /* Icon-72.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
