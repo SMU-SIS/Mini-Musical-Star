@@ -14,6 +14,7 @@
 @property (retain, nonatomic) NSString *path;
 @property (retain, nonatomic) NSNumber *replaceable;
 @property (retain, nonatomic) NSNumber *duration;
+@property (retain, nonatomic) NSString *lyrics;
 @property (retain, nonatomic) NSMutableArray *audioCueList;
 
 - (Audio *)initAudioWithPropertyDictionary: (NSDictionary *) pDictionary withPath: (NSString *)showPath;

@@ -9,7 +9,7 @@
 #import "Audio.h"
 
 @implementation Audio
-@synthesize title, path, replaceable, duration, audioCueList;
+@synthesize title, path, replaceable, duration, lyrics, audioCueList;
 
 - (Audio *)initAudioWithPropertyDictionary: (NSDictionary *) pDictionary withPath: (NSString *)showPath
 {
@@ -17,9 +17,9 @@
     if (self) {
         self.title = [pDictionary objectForKey:@"title"];
         self.path = [showPath stringByAppendingString:[pDictionary objectForKey:@"path"]];
-        NSLog(@"LOOKIE HERE! path is %@\n", path);
         self.replaceable = [pDictionary objectForKey:@"replaceable"];
         self.duration = [pDictionary objectForKey:@"duration"];
+        self.lyrics = [pDictionary objectForKey:@"lyrics"];
         NSArray *cueArray = [pDictionary objectForKey:@"cues"];
         self.audioCueList = [[NSMutableArray alloc] initWithCapacity:cueArray.count];
         
@@ -40,6 +40,7 @@
     [title release];
     [path release];
     [duration release];
+    [lyrics release];
     [audioCueList release];
     [super dealloc];
 }
