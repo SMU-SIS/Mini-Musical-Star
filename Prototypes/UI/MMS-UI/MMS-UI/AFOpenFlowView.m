@@ -41,7 +41,7 @@
 
 @implementation AFOpenFlowView (hidden)
 
-const static CGFloat kReflectionFraction = 0.85;
+const static CGFloat kReflectionFraction = 0.6;
 
 - (void)setUpInitialState {
 	// Set up the default image for the coverflow.
@@ -208,7 +208,7 @@ const static CGFloat kReflectionFraction = 0.85;
 	[super setBounds:newSize];
 	
 	halfScreenWidth = self.bounds.size.width / 2;
-	halfScreenHeight = self.bounds.size.height / 2;
+	halfScreenHeight = self.bounds.size.height / 2.8;
 
 	int lowerBound = MAX(-1, selectedCoverView.number - COVER_BUFFER);
 	int upperBound = MIN(self.numberOfImages - 1, selectedCoverView.number + COVER_BUFFER);
