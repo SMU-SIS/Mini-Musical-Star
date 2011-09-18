@@ -10,7 +10,7 @@
 
 @implementation PhotoEditorViewController
 
-@synthesize leftPicture, rightPicture, centerPicture, thePictures, currentSelectedCover, imagesArray, theCoverScene, context;
+@synthesize leftPicture, rightPicture, centerPicture, thePictures, imagesArray, theCoverScene, context, pop, btn,currentSelectedCover;
 
 -(void)dealloc
 {
@@ -125,6 +125,21 @@
 - (void)openFlowView:(AFOpenFlowView *)openFlowView requestImageForIndex:(int)index
 {
     
+}
+
+- (IBAction) test: (id) sender
+{
+    self.pop = [[UIPopoverController alloc] initWithContentViewController:[[CameraPopupViewController alloc] init]];
+    
+    CGRect popoverRect = [self.view convertRect:[btn frame] 
+                                        fromView:[btn superview]];    
+    popoverRect.size.width = MIN(popoverRect.size.width, 100);
+                
+    [self.pop 
+     presentPopoverFromRect:popoverRect 
+     inView:self.view 
+     permittedArrowDirections:UIPopoverArrowDirectionAny 
+     animated:YES];
 }
 
 //for the AFCoverFlow delegate

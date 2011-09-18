@@ -30,9 +30,14 @@
 @property (retain, nonatomic) CoverScene *theCoverScene;
 @property (retain, nonatomic) NSManagedObjectContext *context;
 
+@property(retain,nonatomic) UIPopoverController *pop;
+@property(retain,nonatomic) IBOutlet UIButton *btn;
+
 - (void) setSliderImages:(UInt32)timeAt;
 - (PhotoEditorViewController *)initWithPhotos:(NSArray *)pictureArray andCoverScene:(CoverScene *)aCoverScene andContext:(NSManagedObjectContext *)context;
 - (IBAction) pressCenterImage;
 - (IBAction) replaceImageTest:(UIButton *)sender;
+
+
 
 @end

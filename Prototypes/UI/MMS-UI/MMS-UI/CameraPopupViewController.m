@@ -45,27 +45,32 @@
 
 - (void)viewDidLoad
 {
+    
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    self.contentSizeForViewInPopover = CGSizeMake(150.0, 140.0);
+
     
-    UIBarButtonItem *cameraButton = [[UIBarButtonItem alloc] 
-                                     initWithTitle:@"Camera"
-                                     style:UIBarButtonItemStyleBordered
-                                     target:self
-                                     action:@selector(useCamera:)];
-    UIBarButtonItem *cameraRollButton = [[UIBarButtonItem alloc] 
-                                         initWithTitle:@"Camera Roll"
-                                         style:UIBarButtonItemStyleBordered
-                                         target:self
-                                         action:@selector(useCameraRoll:)];
-    NSArray *items = [NSArray arrayWithObjects: cameraButton,
-                      cameraRollButton, nil];
-    [toolbar setItems:items animated:NO];
-    [cameraButton release];
-    [cameraRollButton release];
-    
-    //load the choosen image that is supposed to be replace
-    [imageView setImage:[imagesArray objectAtIndex:indexOfImageToChange]];
+//    [super viewDidLoad];
+//    // Do any additional setup after loading the view from its nib.
+//    
+//    UIBarButtonItem *cameraButton = [[UIBarButtonItem alloc] 
+//                                     initWithTitle:@"Camera"
+//                                     style:UIBarButtonItemStyleBordered
+//                                     target:self
+//                                     action:@selector(useCamera:)];
+//    UIBarButtonItem *cameraRollButton = [[UIBarButtonItem alloc] 
+//                                         initWithTitle:@"Camera Roll"
+//                                         style:UIBarButtonItemStyleBordered
+//                                         target:self
+//                                         action:@selector(useCameraRoll:)];
+//    NSArray *items = [NSArray arrayWithObjects: cameraButton,
+//                      cameraRollButton, nil];
+//    [toolbar setItems:items animated:NO];
+//    [cameraButton release];
+//    [cameraRollButton release];
+//    
+//    //load the choosen image that is supposed to be replace
+//    [imageView setImage:[imagesArray objectAtIndex:indexOfImageToChange]];
 }
 
 - (void)viewDidUnload
