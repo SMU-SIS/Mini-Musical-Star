@@ -27,6 +27,8 @@
     [recordImage release];
     [recordingImage release];
     
+    //lyricsPopoverController, lyricsViewController, lyricsScrollView, lyricsLabel are released whenever the popover is closed.
+    
     [super dealloc];
 }
 
@@ -92,7 +94,7 @@
     
     trackTableView.separatorColor = [UIColor clearColor]; //remove borders
     
-	[trackTableView release];
+	//[trackTableView release];
     
     //load images
     recordImage = [UIImage imageNamed:@"record.png"];

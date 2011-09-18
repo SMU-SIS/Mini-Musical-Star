@@ -49,7 +49,6 @@
 		957485B21422403A0050576B /* CoverDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 957485B11422403A0050576B /* CoverDAO.m */; };
 		957485B914225A030050576B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 957485B814225A030050576B /* CoreData.framework */; };
 		95784437141DD23C0033721D /* TrackPane.m in Sources */ = {isa = PBXBuildFile; fileRef = 95784433141DD23C0033721D /* TrackPane.m */; };
-		95784438141DD23C0033721D /* LyricsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95784435141DD23C0033721D /* LyricsViewController.m */; };
 		9578443B141DD2F10033721D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9578443A141DD2F10033721D /* QuartzCore.framework */; };
 		95DAE86814147FB20039201D /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C82546140FC506003C9E49 /* ASIAuthenticationDialog.m */; };
 		95DAE86A14147FB90039201D /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C82549140FC506003C9E49 /* ASIDataCompressor.m */; };
@@ -218,8 +217,6 @@
 		957485B11422403A0050576B /* CoverDAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoverDAO.m; sourceTree = "<group>"; };
 		957485B814225A030050576B /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		95784433141DD23C0033721D /* TrackPane.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackPane.m; sourceTree = "<group>"; };
-		95784434141DD23C0033721D /* LyricsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LyricsViewController.h; sourceTree = "<group>"; };
-		95784435141DD23C0033721D /* LyricsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LyricsViewController.m; sourceTree = "<group>"; };
 		95784436141DD23C0033721D /* TrackPane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackPane.h; sourceTree = "<group>"; };
 		9578443A141DD2F10033721D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		95C82545140FC506003C9E49 /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIAuthenticationDialog.h; sourceTree = "<group>"; };
@@ -573,8 +570,6 @@
 				3A90890614220A0A009A7EFA /* CoverFlowViewController.h */,
 				3A90890714220A0A009A7EFA /* CoverFlowViewController.m */,
 				95784433141DD23C0033721D /* TrackPane.m */,
-				95784434141DD23C0033721D /* LyricsViewController.h */,
-				95784435141DD23C0033721D /* LyricsViewController.m */,
 				95784436141DD23C0033721D /* TrackPane.h */,
 				EDA2A20C13F272BF00B64EA5 /* ShowImage.h */,
 				9569E0571418A2A80016DAF3 /* AudioEditorViewController.h */,
@@ -993,7 +988,6 @@
 				9569E05C1418A2A80016DAF3 /* PhotoEditorViewController.m in Sources */,
 				9569E0651418A2D30016DAF3 /* SceneEditViewController.m in Sources */,
 				95784437141DD23C0033721D /* TrackPane.m in Sources */,
-				95784438141DD23C0033721D /* LyricsViewController.m in Sources */,
 				3A9088F31421D61E009A7EFA /* AFItemView.m in Sources */,
 				3A9088F41421D61E009A7EFA /* AFOpenFlowView.m in Sources */,
 				3A9088F51421D61E009A7EFA /* AFUIImageReflection.m in Sources */,

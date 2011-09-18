@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "TrackPane.h"
-#import "LyricsViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "MixPlayerRecorder.h"
 #import "Audio.h"
