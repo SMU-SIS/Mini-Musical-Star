@@ -15,4 +15,9 @@
 @dynamic Path;
 @dynamic CoverScene;
 
+-(UIImage *)image
+{
+    return [UIImage imageWithContentsOfFile:self.Path];
+}
+
 @end
