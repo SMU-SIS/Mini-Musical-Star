@@ -47,7 +47,7 @@
 					<object class="IBUILabel" id="328484738">
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrameSize">{1024, 153.00399999999999}</string>
+						<string key="NSFrameSize">{1024, 153}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="1067273062"/>
@@ -78,7 +78,7 @@
 					<object class="IBUIScrollView" id="1067273062">
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{354, 174}, {374, 400}}</string>
+						<string key="NSFrame">{{355, 185}, {374, 400}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="923062643"/>
@@ -145,6 +145,7 @@
 						<string key="NSFrame">{{594, 641}, {30, 30}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
@@ -162,7 +163,7 @@
 						</object>
 					</object>
 				</object>
-				<string key="NSFrame">{{0, 20}, {1024, 748}}</string>
+				<string key="NSFrame">{{0, 64}, {1024, 704}}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="328484738"/>
@@ -172,6 +173,9 @@
 				</object>
 				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics">
 					<int key="IBUIStatusBarStyle">2</int>
+				</object>
+				<object class="IBUISimulatedNavigationBarMetrics" key="IBUISimulatedTopBarMetrics">
+					<bool key="IBUIPrompted">NO</bool>
 				</object>
 				<object class="IBUISimulatedOrientationMetrics" key="IBUISimulatedOrientationMetrics">
 					<int key="IBUIInterfaceOrientation">3</int>

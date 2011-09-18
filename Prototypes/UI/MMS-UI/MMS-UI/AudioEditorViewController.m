@@ -9,13 +9,16 @@
 #import "AudioEditorViewController.h"
 
 @implementation AudioEditorViewController
-@synthesize trackTableView, lyricsPopoverController, recordImage, recordingImage, thePlayer, theAudioObjects;
+@synthesize trackTableView, lyricsPopoverController, recordImage, recordingImage, thePlayer, theAudioObjects, theCoverScene, context, tracksForView;
 
 - (void)dealloc
 {
     [thePlayer stop];
     [thePlayer release];
     [theAudioObjects release];
+    [theCoverScene release];
+    [tracksForView release];
+    [context release];
     [trackTableView release];
     [lyricsPopoverController release];
     [recordImage release];
@@ -33,16 +36,36 @@
 
 #pragma mark - View lifecycle
 
-- (AudioEditorViewController *)initWithPlayer:(MixPlayerRecorder *)aPlayer andAudioObjects:(NSArray *)audioList
+- (AudioEditorViewController *)initWithPlayer:(MixPlayerRecorder *)aPlayer andAudioObjects:(NSArray *)audioList andCoverScene:(CoverScene *)aCoverScene andContext:(NSManagedObjectContext *)aContext
 {
     self = [super init];
     if (self)
     {
         self.thePlayer = aPlayer;
         self.theAudioObjects = audioList;
+        self.theCoverScene = aCoverScene;
+        self.context = aContext;
+        
+        [self performSelector:@selector(consolidateOriginalAndCoverTracks)];
+        
+        //KVO the Audio NSSet
+        [self.theCoverScene addObserver:self forKeyPath:@"Audio" options:0 context:@"NewCoverTrackAdded"];
     }
     
     return self;
+}
+
+- (void)consolidateOriginalAndCoverTracks
+{
+    //[tracksForView release];
+    self.tracksForView = [NSMutableArray arrayWithCapacity:theAudioObjects.count + theCoverScene.Audio.count];
+    [theAudioObjects enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        [self.tracksForView addObject:obj];
+    }];
+    
+    [theCoverScene.Audio enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
+        [self.tracksForView addObject:obj];
+    }];
 }
 
 - (void)viewDidLoad
@@ -99,7 +122,7 @@
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return theAudioObjects.count;
+    return theAudioObjects.count + theCoverScene.Audio.count;
     
 }
 
@@ -134,7 +157,8 @@
         TrackPane *trackCellRightPanel;
         
         //get the corresponding Audio object
-        Audio *audioForRow = [theAudioObjects objectAtIndex:[indexPath row]];
+        id audioForRow = [tracksForView objectAtIndex:[indexPath row]];
+
         
         if (cell == nil)
         {
@@ -146,15 +170,26 @@
             
             trackNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(25, 30, 200, 30)];
             trackNameLabel.backgroundColor = [UIColor blackColor];
-            trackNameLabel.textColor = [UIColor whiteColor];
+            
+            if ([audioForRow isKindOfClass:[Audio class]])
+            {
+                trackNameLabel.textColor = [UIColor whiteColor];
+            }
+            
+            else if ([audioForRow isKindOfClass:[CoverSceneAudio class]])
+            {
+                trackNameLabel.textColor = [UIColor redColor];
+            }
+            
             [trackNameLabel setFont:[UIFont fontWithName:@"GillSans-Bold" size:18]];
             [cell.contentView addSubview:trackNameLabel]; //add label to view
             trackNameLabel.tag = 1; //tag the object to an integer value
             [trackNameLabel release];
             
-            if ([audioForRow.replaceable boolValue])
+            if ([audioForRow isKindOfClass:[Audio class]] && [(NSNumber *)[audioForRow valueForKey:@"replaceable"] boolValue])
             {
                 recordButton = [[UIButton alloc] initWithFrame:CGRectMake(100, 50, 50, 50)];
+                
                 [cell.contentView addSubview:recordButton];
                 recordButton.tag = 2;
                 [recordButton release];  
@@ -171,11 +206,11 @@
         trackNameLabel = (UILabel*)[cell.contentView viewWithTag:1];
         //trackNameLabel.text = [NSString stringWithFormat:@"Vocal %d", [indexPath row]];
         
-        trackNameLabel.text = audioForRow.title;
+        trackNameLabel.text = [audioForRow valueForKey:@"title"];
         
         recordButton = (UIButton*)[cell.contentView viewWithTag:2];
         [recordButton setImage:recordImage forState:UIControlStateNormal];
-        
+        [recordButton addTarget:self action:@selector(recordingButtonIsPressed:) forControlEvents:UIControlEventTouchUpInside];
         
         if (indexPath.row == currentRecordingTrack)
         {
@@ -228,4 +263,28 @@
 
 #pragma mark audio manipulation and recording methods
 
+#pragma mark KVO callbacks
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)changeContext
+{
+    NSString *kvoContext = (NSString *)changeContext;
+    if ([kvoContext isEqualToString:@"NewCoverTrackAdded"])
+    {
+        //refresh the table
+        [self performSelector:@selector(consolidateOriginalAndCoverTracks)];
+        [trackTableView reloadData];
+    }
+}
+
+#pragma mark IBAction events
+-(void)recordingButtonIsPressed:(UIButton *)sender
+{
+    NSLog(@"Adding a new CoverSceneAudio object!\n");
+    CoverSceneAudio *newCoverSceneAudio = [NSEntityDescription insertNewObjectForEntityForName:@"CoverSceneAudio" inManagedObjectContext:context];
+    newCoverSceneAudio.title = @"Recorded Audio";
+    NSString *recordedPath = [[NSBundle mainBundle] pathForResource:@"guitar" ofType:@"mp3"];
+    newCoverSceneAudio.path = recordedPath;
+    
+    [self.theCoverScene addAudioObject:newCoverSceneAudio];
+    
+}
 @end

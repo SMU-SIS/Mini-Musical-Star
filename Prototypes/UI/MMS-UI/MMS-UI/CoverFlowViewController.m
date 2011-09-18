@@ -10,15 +10,6 @@
 
 @implementation CoverFlowViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)didReceiveMemoryWarning
 {
     // Releases the view if it doesn't have a superview.
@@ -29,10 +20,25 @@
 
 #pragma mark - View lifecycle
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+	
+	// loading images into the queue
+	
+	loadImagesOperationQueue = [[NSOperationQueue alloc] init];
+	
+	
+	NSString *imageName;
+	for (int i=0; i < 10; i++) {
+		imageName = [[NSString alloc] initWithFormat:@"g%d.jpg", i];
+		[(AFOpenFlowView *)self.view setImage:[UIImage imageNamed:imageName] forIndex:i];
+		[imageName release];
+		NSLog(@"%d is the index",i);
+		
+	}
+	[(AFOpenFlowView *)self.view setNumberOfImages:10];
+	
+	
 }
 
 - (void)viewDidUnload
@@ -40,6 +46,21 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+}
+
+- (void)openFlowView:(AFOpenFlowView *)openFlowView selectionDidChange:(int)index{
+	
+	
+	NSLog(@"%d is selected",index);
+	
+}
+- (void)openFlowView:(AFOpenFlowView *)openFlowView requestImageForIndex:(int)index{
+}
+
+
+- (UIImage *)defaultImage{
+	
+	return [UIImage imageNamed:@"glee_1.jpg"];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

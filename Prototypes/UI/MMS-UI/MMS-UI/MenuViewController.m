@@ -9,11 +9,11 @@
 #import "MenuViewController.h"
 
 @implementation MenuViewController
-@synthesize shows;
+@synthesize shows, fetchedResultsController, managedObjectContext;
+
 
 - (void)dealloc
 {
-    NSLog(@"haha the shows is released now\n");
     [shows release];
     [super dealloc];
 }
@@ -90,12 +90,18 @@
 
 //Button action for creating new musical
 - (IBAction)createMusical {
+    
+    Cover *newCover = [NSEntityDescription insertNewObjectForEntityForName:@"Cover" inManagedObjectContext:managedObjectContext];
 
-    SceneViewController *sceneView = [[SceneViewController alloc] initWithScenesFromShow:[self returnCurrentSelectedShow]];        
-        sceneView.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-        [self presentModalViewController:sceneView animated:YES];
+    SceneViewController *sceneView = [[SceneViewController alloc] initWithScenesFromShow:[self returnCurrentSelectedShow] andCover:newCover andContext:managedObjectContext];
+    sceneView.title = [[self returnCurrentSelectedShow] title];
+    
+    [self.navigationController pushViewController:sceneView animated:YES];
+    
+    //sceneView.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    //[self presentModalViewController:sceneView animated:YES];
         
-        [sceneView release];
+    [sceneView release];
 }
 
 -(Show *)returnCurrentSelectedShow
@@ -108,12 +114,12 @@
 }
 
 - (IBAction)playBackMusical {
-    PlaybackViewController *pBackMusical = [[PlaybackViewController alloc] initWithShow:[self returnCurrentSelectedShow]];
-    
-    pBackMusical.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-    [self presentModalViewController:pBackMusical animated:YES];
-    
-    [pBackMusical release];
+//    PlaybackViewController *pBackMusical = [[PlaybackViewController alloc] initWithShow:[self returnCurrentSelectedShow]];
+//    
+//    pBackMusical.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+//    [self presentModalViewController:pBackMusical animated:YES];
+//    s
+//    [pBackMusical release];
 }
 
 - (IBAction)coverMusical {

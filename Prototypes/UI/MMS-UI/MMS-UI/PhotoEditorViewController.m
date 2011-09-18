@@ -10,7 +10,7 @@
 
 @implementation PhotoEditorViewController
 
-@synthesize leftPicture, rightPicture, centerPicture, thePictures;
+@synthesize leftPicture, rightPicture, centerPicture, thePictures, imagesArray, theCoverScene, context;
 
 -(void)dealloc
 {
@@ -18,15 +18,19 @@
     [rightPicture release];
     [centerPicture release];
     [thePictures release];
+    [theCoverScene release];
+    [context release];
     [super dealloc];
 }
 
-- (PhotoEditorViewController *)initWithPhotos:(NSArray *)pictureArray
+- (PhotoEditorViewController *)initWithPhotos:(NSArray *)pictureArray andCoverScene:(CoverScene *)aCoverScene andContext:(NSManagedObjectContext *)aContext
 {
     self = [super init];
     if (self)
     {
         self.thePictures = pictureArray;
+        self.theCoverScene = aCoverScene;
+        self.context = aContext;
     }
     
     return self;
@@ -45,49 +49,56 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+        
+    // loading images into the queue
+    
+	loadImagesOperationQueue = [[NSOperationQueue alloc] init];
+    
+    [thePictures enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        Picture *pic = (Picture*)obj;
+        [(AFOpenFlowView *)self.view setImage: pic.image forIndex: idx];
+    }];
+    
+	[(AFOpenFlowView *)self.view setNumberOfImages:[thePictures count]];
     [self setSliderImages: 0];
 }
 
 - (void) setSliderImages:(UInt32)timeAt
 {
-    __block UInt32 centerOrderNumber;
     [thePictures enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         Picture *pic = (Picture*)obj;
         UInt32 startTime = pic.startTime;
         UInt32 endTime = pic.startTime + pic.duration;
         if(startTime <= timeAt && endTime > timeAt){
             centerPicture.image = pic.image;
-//            NSLog(@"startTime: %lu ",startTime);
-//            NSLog(@"endTime: %lu",endTime);
-            centerOrderNumber = pic.orderNumber;
+            [(AFOpenFlowView *)self.view setSelectedCover:pic.orderNumber - 1];
+            [(AFOpenFlowView *)self.view centerOnSelectedCover:true];
         }
-        
         
     }];
 
-    [thePictures enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        Picture *pic = (Picture*)obj;
-        UInt32 leftOrderNumber = centerOrderNumber - 1;
-        UInt32 rightOrderNumber = centerOrderNumber + 1;
-        
-        if(leftOrderNumber == 0){
-            leftPicture.image = nil;
-        }
-        if(pic.orderNumber == leftOrderNumber){
-            leftPicture.image = pic.image;
-        }
-        
-        if(pic.orderNumber == rightOrderNumber){
-            rightPicture.image = pic.image;
-        }
-        
-        if(rightOrderNumber == [thePictures count] + 1){
-            rightPicture.image = nil;
-        }
-    }];
     
 }
+
+-(IBAction)pressCenterImage
+{
+    CameraPopupViewController *cameraPopupViewController = [[CameraPopupViewController alloc] initWithArrayAndIndex:imagesArray indexOfImage:1];
+    
+    [self presentModalViewController:cameraPopupViewController animated:YES];
+    
+    [cameraPopupViewController release];
+}
+
+//delegate protocols
+
+// delegate protocol to tell which image is selected
+- (void)openFlowView:(AFOpenFlowView *)openFlowView selectionDidChange:(int)index{
+    
+	NSLog(@"%d is selected",index);
+    
+    
+}
+
 
 - (void)viewDidUnload
 {

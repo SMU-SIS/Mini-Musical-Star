@@ -10,6 +10,7 @@
 #import "ShowImage.h"
 #import "ShowDAO.h"
 #import "Show.h"
+#import "Cover.h"
 
 #import "SceneViewController.h"
 #import "PlaybackViewController.h"
@@ -17,13 +18,18 @@
 #import "DSActivityView.h"
 #import "HiddenView.h"
 
-@interface MenuViewController : UIViewController {
+@interface MenuViewController : UIViewController <NSFetchedResultsControllerDelegate> {
     IBOutlet UIScrollView *scrollView; 
     
     ShowImage *showImages;
+    
+    NSFetchedResultsController *fetchedResultsController;
+    NSManagedObjectContext *managedObjectContext;
 }
 
 @property (retain, nonatomic) NSArray *shows;
+@property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
+@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 
 - (void)daoDownloadQueueFinished;
 

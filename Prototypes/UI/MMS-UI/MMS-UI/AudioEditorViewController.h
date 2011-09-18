@@ -12,6 +12,8 @@
 #import <QuartzCore/QuartzCore.h>
 #import "MixPlayerRecorder.h"
 #import "Audio.h"
+#import "CoverScene.h"
+#import "CoverSceneAudio.h"
 
 @interface AudioEditorViewController : UIViewController
 <UITableViewDelegate, UITableViewDataSource, UIPopoverControllerDelegate>
@@ -31,7 +33,11 @@
 
 @property (nonatomic, retain) MixPlayerRecorder *thePlayer;
 @property (nonatomic, retain) NSArray *theAudioObjects;
+@property (nonatomic, retain) CoverScene *theCoverScene;
+@property (nonatomic, retain) NSMutableArray *tracksForView;
 
-- (AudioEditorViewController *)initWithPlayer:(MixPlayerRecorder *)aPlayer andAudioObjects:(NSArray *)audioList;
+@property (nonatomic, retain) NSManagedObjectContext *context;
+
+- (AudioEditorViewController *)initWithPlayer:(MixPlayerRecorder *)aPlayer andAudioObjects:(NSArray *)audioList andCoverScene:(CoverScene *)aCoverScene andContext:(NSManagedObjectContext *)aContext;
 
 @end
