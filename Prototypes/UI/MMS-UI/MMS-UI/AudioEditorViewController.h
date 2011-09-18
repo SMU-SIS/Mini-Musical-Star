@@ -19,17 +19,30 @@
 <UITableViewDelegate, UITableViewDataSource, UIPopoverControllerDelegate>
 {
     UITableView *trackTableView;
-    UIPopoverController *lyricsPopoverController;
+    
     UIImage *recordImage;
     UIImage *recordingImage;
     
     int currentRecordingTrack;
+    NSString *lyrics;
+    
+    //for the lyrics popover
+    UIPopoverController *lyricsPopoverController;
+    UIViewController *lyricsViewController;
+    UIScrollView *lyricsScrollView;
+    UILabel *lyricsLabel;
 }
 
 @property (nonatomic, retain) UITableView *trackTableView;
-@property (nonatomic, retain) UIPopoverController *lyricsPopoverController;
 @property (nonatomic, retain) UIImage *recordImage;
 @property (nonatomic, retain) UIImage *recordingImage;
+@property (nonatomic, retain) NSString *lyrics;
+
+//for the lyrics popover
+@property (nonatomic, retain) UIPopoverController *lyricsPopoverController;
+@property (nonatomic, retain) UIViewController *lyricsViewController;
+@property (nonatomic, retain) UIScrollView *lyricsScrollView;
+@property (nonatomic, retain) UILabel *lyricsLabel;
 
 @property (nonatomic, retain) MixPlayerRecorder *thePlayer;
 @property (nonatomic, retain) NSArray *theAudioObjects;
@@ -39,5 +52,10 @@
 @property (nonatomic, retain) NSManagedObjectContext *context;
 
 - (AudioEditorViewController *)initWithPlayer:(MixPlayerRecorder *)aPlayer andAudioObjects:(NSArray *)audioList andCoverScene:(CoverScene *)aCoverScene andContext:(NSManagedObjectContext *)aContext;
+
+- (void)setLyrics:(NSString*)someLyrics;
+- (void)removeLyrics;
+- (void)displayLyrics;
+- (void)scrollToTrack:(int)trackNumber;
 
 @end
