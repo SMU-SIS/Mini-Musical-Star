@@ -10,7 +10,7 @@
 
 @implementation PhotoEditorViewController
 
-@synthesize leftPicture, rightPicture, centerPicture, thePictures, imagesArray, theCoverScene, context, pop, btn;
+@synthesize leftPicture, rightPicture, centerPicture, thePictures, imagesArray, theCoverScene, context, pop, btn,currentSelectedCover;
 
 -(void)dealloc
 {
@@ -49,14 +49,27 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-        
-    // loading images into the queue
-    
-	loadImagesOperationQueue = [[NSOperationQueue alloc] init];
+    [self performSelector:@selector(loadImagesIntoOpenFlow)];
+}
+
+- (void) loadImagesIntoOpenFlow
+{
+    loadImagesOperationQueue = [[NSOperationQueue alloc] init];
     
     [thePictures enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         Picture *pic = (Picture*)obj;
-        [(AFOpenFlowView *)self.view setImage: pic.image forIndex: idx];
+        CoverScenePicture *coverPicture = [theCoverScene pictureForOrderNumber:pic.orderNumber];
+        
+        if (coverPicture == nil)
+        {
+            [(AFOpenFlowView *)self.view setImage: pic.image forIndex: idx];
+        }
+        
+        else
+        {
+            [(AFOpenFlowView *)self.view setImage: [coverPicture image] forIndex: idx];
+        }
+        
     }];
     
 	[(AFOpenFlowView *)self.view setNumberOfImages:[thePictures count]];
@@ -91,17 +104,21 @@
 
 - (IBAction) replaceImageTest:(UIButton *)sender
 {
+    NSLog(@"Replacing first photo in the set with something new...");
+    CoverScenePicture *newPicture = [NSEntityDescription insertNewObjectForEntityForName:@"CoverScenePicture" inManagedObjectContext:context];
+    newPicture.OrderNumber = [NSNumber numberWithInt:1];
+    newPicture.Path = [[NSBundle mainBundle] pathForResource:@"hsmS3" ofType:@"jpeg"];
     
+    [self.theCoverScene addPictureObject:newPicture];
+    [(AFOpenFlowView *)self.view setImage: [newPicture image] forIndex:self.currentSelectedCover];
 }
 
 //delegate protocols
 
 // delegate protocol to tell which image is selected
-- (void)openFlowView:(AFOpenFlowView *)openFlowView selectionDidChange:(int)index{
-    
-	NSLog(@"%d is selected",index);
-    
-    
+- (void)openFlowView:(AFOpenFlowView *)openFlowView selectionDidChange:(int)index
+{    
+	self.currentSelectedCover = index;
 }
 
 //for the AFCoverFlow delegate

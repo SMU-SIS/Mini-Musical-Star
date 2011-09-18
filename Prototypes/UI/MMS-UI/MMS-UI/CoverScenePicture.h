@@ -18,4 +18,6 @@
 @property (nonatomic, retain) NSString * Path;
 @property (nonatomic, retain) CoverScene *CoverScene;
 
+-(UIImage *)image;
+
 @end
