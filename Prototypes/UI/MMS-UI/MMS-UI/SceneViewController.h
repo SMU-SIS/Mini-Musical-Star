@@ -31,10 +31,6 @@
 
 -(SceneViewController *)initWithScenesFromShow:(Show *)aShow andCover:(Cover *)aCover andContext:(NSManagedObjectContext *)aContext;
 
--(void)setImageNum:(int)num;
--(int)getImageNum;
--(IBAction)backToMenu;
-
 -(void)selectScene:(UIButton *)sender;
 -(void)displaySceneImages:(NSArray *)images;
 
