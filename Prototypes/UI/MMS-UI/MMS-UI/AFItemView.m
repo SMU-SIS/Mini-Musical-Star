@@ -47,10 +47,11 @@
 }
 
 - (void)setImage:(UIImage *)newImage originalImageHeight:(CGFloat)imageHeight reflectionFraction:(CGFloat)reflectionFraction {
-	[imageView setImage:newImage];
-	verticalPosition = imageHeight * reflectionFraction / 2;
-	originalImageHeight = imageHeight;
-	self.frame = CGRectMake(0, 0, newImage.size.width, newImage.size.height);
+    float multiplier = 0.50;
+    [imageView setImage:newImage];
+    verticalPosition = imageHeight * reflectionFraction / 2;
+    originalImageHeight = imageHeight;
+    self.frame = CGRectMake(0, 0, newImage.size.width*multiplier, newImage.size.height*multiplier);
 }
 
 - (void)setNumber:(int)newNumber {
