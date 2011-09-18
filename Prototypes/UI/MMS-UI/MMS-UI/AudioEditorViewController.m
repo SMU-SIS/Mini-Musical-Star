@@ -140,7 +140,8 @@
     static NSString *CellIdentifier = @"Cell"; //for the 3rd and subsequent rows of cells
     static NSString *blankCellIdentifier = @"BlankCell";  //for the first two rows of cells
     
-    if (indexPath.row == 0 || indexPath.row == 1)
+    //if (indexPath.row == 0 || indexPath.row == 1)
+    if (false)
     {
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:blankCellIdentifier];
         
@@ -161,6 +162,10 @@
         UIButton *recordButton;
         TrackPane *trackCellRightPanel;
         
+        //get the corresponding Audio object
+        id audioForRow = [tracksForView objectAtIndex:[indexPath row]];
+        
+        
         if (cell == nil)
         {
             //Here, you create all the new objects
@@ -169,30 +174,35 @@
             cell.contentView.backgroundColor = [UIColor blackColor];
             [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
             
-            //create the label for the track name
             trackNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(25, 30, 200, 30)];
             trackNameLabel.backgroundColor = [UIColor blackColor];
-            trackNameLabel.textColor = [UIColor whiteColor];
+            
+            if ([audioForRow isKindOfClass:[Audio class]])
+            {
+                trackNameLabel.textColor = [UIColor whiteColor];
+            }
+            
+            else if ([audioForRow isKindOfClass:[CoverSceneAudio class]])
+            {
+                trackNameLabel.textColor = [UIColor redColor];
+            }
+            
             [trackNameLabel setFont:[UIFont fontWithName:@"GillSans-Bold" size:18]];
             [cell.contentView addSubview:trackNameLabel]; //add label to view
             trackNameLabel.tag = 1; //tag the object to an integer value
             [trackNameLabel release];
             
-            //create the record button
-            recordButton = [[UIButton alloc] initWithFrame:CGRectMake(100, 50, 50, 50)];
-            [cell.contentView addSubview:recordButton];
-            recordButton.tag = 2;
-            [recordButton release];
+            if ([audioForRow isKindOfClass:[Audio class]] && [(NSNumber *)[audioForRow valueForKey:@"replaceable"] boolValue])
+            {
+                recordButton = [[UIButton alloc] initWithFrame:CGRectMake(100, 50, 50, 50)];
+                
+                [cell.contentView addSubview:recordButton];
+                recordButton.tag = 2;
+                [recordButton release];  
+            }
             
-            //create the right panel of the table cell
             trackCellRightPanel = [[UIView alloc] initWithFrame:CGRectMake(150, 0, 1024-150, 100)];
             [cell.contentView addSubview:trackCellRightPanel]; //add label to view
-            
-            CAGradientLayer *gradient = [CAGradientLayer layer];
-            gradient.frame = trackCellRightPanel.bounds;
-            gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor whiteColor] CGColor], (id)[[UIColor blackColor] CGColor], nil];
-            [trackCellRightPanel.layer insertSublayer:gradient atIndex:0];
-            
             trackCellRightPanel.tag = 3;
             [trackCellRightPanel release];
             
@@ -200,12 +210,14 @@
         
         // Here, you just configure the objects as appropriate for the row
         trackNameLabel = (UILabel*)[cell.contentView viewWithTag:1];
-        trackNameLabel.text = [NSString stringWithFormat:@"Vocal %d", [indexPath row]];
+        //trackNameLabel.text = [NSString stringWithFormat:@"Vocal %d", [indexPath row]];
+        
+        trackNameLabel.text = [audioForRow valueForKey:@"title"];
         
         recordButton = (UIButton*)[cell.contentView viewWithTag:2];
         [recordButton setImage:recordImage forState:UIControlStateNormal];
+        [recordButton addTarget:self action:@selector(recordingButtonIsPressed:) forControlEvents:UIControlEventTouchUpInside];
         
-        // 
         if (indexPath.row == currentRecordingTrack)
         {
             [recordButton setImage:recordingImage forState:UIControlStateNormal];
@@ -216,18 +228,31 @@
         }
         
         trackCellRightPanel = (TrackPane*)[cell.contentView viewWithTag:3];
-        
-        //NSLog(@"there are %i", [layerArray count]);
-        
-        
-        //need to use later, keep it
         if (indexPath.row == currentRecordingTrack)
         {
+            /* draw the gradient-ed background of white to black */
+            CAGradientLayer *gradient = [CAGradientLayer layer];
+            gradient.frame = trackCellRightPanel.bounds;
+            gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor redColor] CGColor], (id)[[UIColor whiteColor] CGColor], nil];            
+            [trackCellRightPanel.layer insertSublayer:gradient atIndex:0];
+            
+            NSArray *layerArray = trackCellRightPanel.layer.sublayers;
+            CALayer *currLayer = [layerArray objectAtIndex:0]; //gets reference to the old layer, HA!
+            [trackCellRightPanel.layer replaceSublayer:currLayer with:gradient];
             
         }
         else
         {
+            CAGradientLayer *gradient = [CAGradientLayer layer];
+            gradient.frame = trackCellRightPanel.bounds;
+            gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor whiteColor] CGColor], (id)[[UIColor blackColor] CGColor], nil];
+            [trackCellRightPanel.layer insertSublayer:gradient atIndex:0];
             
+            NSArray *layerArray = trackCellRightPanel.layer.sublayers;
+            CALayer *currLayer = [layerArray objectAtIndex:0]; //gets reference to the old layer, HA!
+            [trackCellRightPanel.layer replaceSublayer:currLayer with:gradient];
+            
+            NSLog(@"there are %i", [layerArray count]);
         }
         
         
@@ -235,7 +260,6 @@
         
     }
 }
-
 //This method is for you to set the height of the table view.
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
