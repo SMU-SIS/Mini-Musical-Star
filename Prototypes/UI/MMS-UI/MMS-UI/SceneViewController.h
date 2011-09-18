@@ -35,7 +35,7 @@
 -(int)getImageNum;
 -(IBAction)backToMenu;
 
--(void)selectScene:(id)sender;
+-(void)selectScene:(UIButton *)sender;
 -(void)displaySceneImages:(NSArray *)images;
 
 @end

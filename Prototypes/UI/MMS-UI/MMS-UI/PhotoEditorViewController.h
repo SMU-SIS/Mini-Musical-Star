@@ -31,5 +31,6 @@
 - (void) setSliderImages:(UInt32)timeAt;
 - (PhotoEditorViewController *)initWithPhotos:(NSArray *)pictureArray andCoverScene:(CoverScene *)aCoverScene andContext:(NSManagedObjectContext *)context;
 - (IBAction) pressCenterImage;
+- (IBAction) replaceImageTest:(UIButton *)sender;
 
 @end

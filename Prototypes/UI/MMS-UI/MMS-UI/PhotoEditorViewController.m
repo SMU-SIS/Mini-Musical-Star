@@ -89,6 +89,11 @@
     [cameraPopupViewController release];
 }
 
+- (IBAction) replaceImageTest:(UIButton *)sender
+{
+    
+}
+
 //delegate protocols
 
 // delegate protocol to tell which image is selected
@@ -97,6 +102,18 @@
 	NSLog(@"%d is selected",index);
     
     
+}
+
+//for the AFCoverFlow delegate
+- (void)openFlowView:(AFOpenFlowView *)openFlowView requestImageForIndex:(int)index
+{
+    
+}
+
+//for the AFCoverFlow delegate
+- (UIImage *)defaultImage
+{
+    return nil;
 }
 
 

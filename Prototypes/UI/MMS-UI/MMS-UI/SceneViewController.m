@@ -124,7 +124,7 @@
 	//return [theShow.scenes objectAtIndex:page];
 }
 
--(void)selectScene:(id)sender
+-(void)selectScene:(UIButton *)sender
 {
     
     [DSBezelActivityView newActivityViewForView:self.view withLabel:@"Loading..."];
