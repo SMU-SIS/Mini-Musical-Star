@@ -19,7 +19,6 @@
 		6436B8B61419BC320059D432 /* TrackPane.m in Sources */ = {isa = PBXBuildFile; fileRef = 6436B8B51419BC320059D432 /* TrackPane.m */; };
 		643FACC6141AFEB60096960F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 643FACC5141AFEB60096960F /* QuartzCore.framework */; };
 		643FACC8141B060E0096960F /* record.png in Resources */ = {isa = PBXBuildFile; fileRef = 643FACC7141B060E0096960F /* record.png */; };
-		643FACCB141B39E30096960F /* LyricsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 643FACCA141B39E30096960F /* LyricsViewController.m */; };
 		64F313E1141C69A4001E4812 /* recording.png in Resources */ = {isa = PBXBuildFile; fileRef = 64F313E0141C69A4001E4812 /* recording.png */; };
 /* End PBXBuildFile section */
 
@@ -42,8 +41,6 @@
 		6436B8B51419BC320059D432 /* TrackPane.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackPane.m; sourceTree = "<group>"; };
 		643FACC5141AFEB60096960F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		643FACC7141B060E0096960F /* record.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = record.png; sourceTree = "<group>"; };
-		643FACC9141B39E30096960F /* LyricsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LyricsViewController.h; sourceTree = "<group>"; };
-		643FACCA141B39E30096960F /* LyricsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LyricsViewController.m; sourceTree = "<group>"; };
 		64F313E0141C69A4001E4812 /* recording.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = recording.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -103,8 +100,6 @@
 				6436B84F1418A1070059D432 /* Supporting Files */,
 				6436B8B41419BC320059D432 /* TrackPane.h */,
 				6436B8B51419BC320059D432 /* TrackPane.m */,
-				643FACC9141B39E30096960F /* LyricsViewController.h */,
-				643FACCA141B39E30096960F /* LyricsViewController.m */,
 			);
 			path = PlayNewUI;
 			sourceTree = "<group>";
@@ -195,7 +190,6 @@
 				6436B8591418A1070059D432 /* PlayNewUIAppDelegate.m in Sources */,
 				6436B85F1418A1070059D432 /* PlayNewUIViewController.m in Sources */,
 				6436B8B61419BC320059D432 /* TrackPane.m in Sources */,
-				643FACCB141B39E30096960F /* LyricsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

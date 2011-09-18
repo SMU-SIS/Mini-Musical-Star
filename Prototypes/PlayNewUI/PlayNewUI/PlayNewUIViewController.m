@@ -8,13 +8,14 @@
 
 #import "PlayNewUIViewController.h"
 #import "TrackPane.h"
-#import "LyricsViewController.h"
 
 #import <QuartzCore/QuartzCore.h>
 
 @implementation PlayNewUIViewController
 
-@synthesize trackTableView, lyricsPopoverController, recordImage, recordingImage;
+@synthesize trackTableView, recordImage, recordingImage;
+@synthesize lyricsPopoverController, lyricsViewController, lyricsScrollView, lyricsLabel;
+@synthesize lyrics;
 
 - (void)didReceiveMemoryWarning
 {
@@ -45,8 +46,6 @@
     [self.view addSubview:trackTableView];
     
     trackTableView.separatorColor = [UIColor clearColor]; //remove borders
-    
-	[trackTableView release];
     
     //load images
     recordImage = [UIImage imageNamed:@"record.png"];
@@ -108,6 +107,7 @@
             cell.contentView.backgroundColor = [UIColor blackColor];
             [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
             
+            //create the label for the track name
             trackNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(25, 30, 200, 30)];
             trackNameLabel.backgroundColor = [UIColor blackColor];
             trackNameLabel.textColor = [UIColor whiteColor];
@@ -116,13 +116,21 @@
             trackNameLabel.tag = 1; //tag the object to an integer value
             [trackNameLabel release];
             
+            //create the record button
             recordButton = [[UIButton alloc] initWithFrame:CGRectMake(100, 50, 50, 50)];
             [cell.contentView addSubview:recordButton];
             recordButton.tag = 2;
             [recordButton release];
             
+            //create the right panel of the table cell
             trackCellRightPanel = [[UIView alloc] initWithFrame:CGRectMake(150, 0, 1024-150, 100)];
             [cell.contentView addSubview:trackCellRightPanel]; //add label to view
+
+            CAGradientLayer *gradient = [CAGradientLayer layer];
+            gradient.frame = trackCellRightPanel.bounds;
+            gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor whiteColor] CGColor], (id)[[UIColor blackColor] CGColor], nil];
+            [trackCellRightPanel.layer insertSublayer:gradient atIndex:0];
+
             trackCellRightPanel.tag = 3;
             [trackCellRightPanel release];
             
@@ -131,7 +139,6 @@
         // Here, you just configure the objects as appropriate for the row
         trackNameLabel = (UILabel*)[cell.contentView viewWithTag:1];
         trackNameLabel.text = [NSString stringWithFormat:@"Vocal %d", [indexPath row]];
-        
         
         recordButton = (UIButton*)[cell.contentView viewWithTag:2];
         [recordButton setImage:recordImage forState:UIControlStateNormal];
@@ -147,31 +154,18 @@
         }
         
         trackCellRightPanel = (TrackPane*)[cell.contentView viewWithTag:3];
+               
+        //NSLog(@"there are %i", [layerArray count]);
+        
+        
+        //need to use later, keep it
         if (indexPath.row == currentRecordingTrack)
         {
-            /* draw the gradient-ed background of white to black */
-            CAGradientLayer *gradient = [CAGradientLayer layer];
-            gradient.frame = trackCellRightPanel.bounds;
-            gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor redColor] CGColor], (id)[[UIColor whiteColor] CGColor], nil];            
-            [trackCellRightPanel.layer insertSublayer:gradient atIndex:0];
-            
-            NSArray *layerArray = trackCellRightPanel.layer.sublayers;
-            CALayer *currLayer = [layerArray objectAtIndex:0]; //gets reference to the old layer, HA!
-            [trackCellRightPanel.layer replaceSublayer:currLayer with:gradient];
              
         }
         else
         {
-            CAGradientLayer *gradient = [CAGradientLayer layer];
-            gradient.frame = trackCellRightPanel.bounds;
-            gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor whiteColor] CGColor], (id)[[UIColor blackColor] CGColor], nil];
-            [trackCellRightPanel.layer insertSublayer:gradient atIndex:0];
             
-            NSArray *layerArray = trackCellRightPanel.layer.sublayers;
-            CALayer *currLayer = [layerArray objectAtIndex:0]; //gets reference to the old layer, HA!
-            [trackCellRightPanel.layer replaceSublayer:currLayer with:gradient];
-            
-            NSLog(@"there are %i", [layerArray count]);
         }
 
     
@@ -186,28 +180,84 @@
     return 100;
 }
 
-//This IBAction method has to has to be transferred
+//to be deleted
 - (IBAction)scrollToX
 {
-    [trackTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:8 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+    [self scrollToTrack:5];
 }
 
-//This IBAction method has to has to be transferred
-- (IBAction)lyricsAppear
+//Use this method to scroll a specific track cell to the top row of the table view
+- (void)scrollToTrack:(int)trackNumber
 {
-    //Preferred width of popover: 1024-150
-    //Preferred height of popover: 300 (100 from the empty space on top, 200 from the first 2 rows)
+    [trackTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:trackNumber-1 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+}
+
+/* constants related to displaying lyrics */
+#define POPOVER_WIDTH 1024 //the entire width of the landscape screen
+#define POPOVER_HEIGHT 200-33
+#define POPOVER_ANCHOR_X 150+((1024-150)/2)
+#define POPOVER_ANCHOR_Y 200
+
+//display the lyrics in a popover, this should be called together with setLyrics:(NSString*)someLyrics
+- (void)displayLyrics
+{
+    //I had to move 40px away from the border of the popover controller so the scroll bar of the scroll view can be seen :)
+    //note: these objects are released in another method
+    lyricsViewController = [[UIViewController alloc] init];
+    lyricsScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, POPOVER_WIDTH-40, POPOVER_HEIGHT)]; 
+    lyricsLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, POPOVER_WIDTH-40, POPOVER_HEIGHT)];
     
-    LyricsViewController *lyricsViewController = [[LyricsViewController alloc] init];
+    //configure the lyrics label
+    lyricsLabel.lineBreakMode = UILineBreakModeWordWrap; //line break, word wrap
+	lyricsLabel.numberOfLines = 0; //0 - dynamic number of lines
+    [lyricsLabel setFont:[UIFont fontWithName:@"MarkerFelt-Wide" size:26]];
+    lyricsLabel.textAlignment =  UITextAlignmentCenter;
     
-    lyricsViewController.contentSizeForViewInPopover = CGSizeMake(1024-150-35, 300-33); //size of the view controller’s view while displayed in a popover
-    //note, the size (1024-150-35, 300-33) is decided to ensure the width sits within the center of the vocal track right panels and the height is to ensure it covers the portion of the screen from the top till the top of the current vocal.
+    //configure the lyrics scroll view
+    lyricsScrollView.directionalLockEnabled = YES;
+    lyricsScrollView.showsHorizontalScrollIndicator = NO;
+    lyricsScrollView.showsVerticalScrollIndicator = YES;
+    lyricsScrollView.bounces = NO;
+    [lyricsScrollView setBackgroundColor:[UIColor whiteColor]];
+    
+    lyricsLabel.text = lyrics;
+    
+    CGRect lyricsLabelFrame = lyricsLabel.bounds; //get the CGRect representing the bounds of the UILabel
+    
+    lyricsLabelFrame.size = [lyrics sizeWithFont:lyricsLabel.font constrainedToSize:CGSizeMake(POPOVER_WIDTH, 100000) lineBreakMode:lyricsLabel.lineBreakMode]; //get a CGRect for dynamically resizing the label based on the text. cool.
+    
+    lyricsLabel.frame = CGRectMake(0, 0, lyricsLabel.frame.size.width-10, lyricsLabelFrame.size.height); //set the new size of the label, we are only changing the height
+    
+    [lyricsScrollView setContentSize:CGSizeMake(lyricsLabel.frame.size.width, lyricsLabelFrame.size.height)]; //set content size of scroll view using calculated size of the text on the label
+    
+    [lyricsScrollView addSubview:lyricsLabel]; //add label to scroll view
+    [lyricsViewController.view addSubview:lyricsScrollView]; //add scroll view to view controller
+    
+    lyricsViewController.contentSizeForViewInPopover = CGSizeMake(POPOVER_WIDTH, POPOVER_HEIGHT); //size of the view controller’s view while displayed in a popover. this will determine the size of the popover.
     
     lyricsPopoverController = [[UIPopoverController alloc] initWithContentViewController:lyricsViewController];
+    lyricsPopoverController.delegate = self;
     
-    [self.lyricsPopoverController presentPopoverFromRect:CGRectMake(150+((1024-150)/2), 0, 1, 1) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];    
-    
+    [self.lyricsPopoverController presentPopoverFromRect:CGRectMake(POPOVER_ANCHOR_X, POPOVER_ANCHOR_Y, 1, 1) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];    
+
+}
+
+//to be deleted
+- (IBAction)lyricsAppear
+{ 
+    [self displayLyrics];
+}
+
+//UIPopoverControllerDelegate Protocol method - called when the popover is dismissed.
+- (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
+{
+    //release them. we don't need them after the popover is dismissed.
+    [lyricsLabel release];
+    [lyricsScrollView release];
     [lyricsViewController release];
+    [lyricsPopoverController release];
+    
+    [self removeLyrics];
 }
 
 - (IBAction)startRecording
@@ -226,13 +276,29 @@
     currentRecordingTrack = -1;
 }
 
+- (IBAction)setLyrics
+{
+
+    [self setLyrics:@"Do you ever feel like a plastic bag\nDrifting through the wind, wanting to start again?\nDo you ever feel, feel so paper thin\nLike a house of cards, one blow from caving in?\n\nDo you ever feel already buried deep?\nSix feet under screams but no one seems to hear a thing\nDo you know that there's still a chance for you\n'Cause there's a spark in you?\nYou just gotta ignite the light and let it shine\nJust own the night like the 4th of July\n\n'Cause baby, you're a firework\nCome on, show 'em what you're worth\nMake 'em go, oh\nAs you shoot across the sky\n\nBaby, you're a firework\nCome on, let your colors burst\nMake 'em go, oh\nYou're gonna leave 'em falling down\n"];
+}
+
+- (void)setLyrics:(NSString*)someLyrics
+{
+    lyrics = someLyrics;
+}
+
+- (void)removeLyrics
+{
+    [lyrics release];
+}
+
 - (void)viewDidUnload
 {
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
-    
-    [lyricsPopoverController release];
+
+    [trackTableView release];
     [recordImage release];
     [recordingImage release];
 }
