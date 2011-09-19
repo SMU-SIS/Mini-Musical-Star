@@ -97,7 +97,7 @@
 //         inView:self.view 
 //         permittedArrowDirections:UIPopoverArrowDirectionDown 
 //         animated:YES]; 
-        self.modalPresentationStyle=UIModalPresentationCurrentContext;
+        self.modalPresentationStyle = UIModalPresentationCurrentContext;
         [self presentModalViewController:imagePicker
                             animated:YES];
         [imagePicker release];
@@ -153,8 +153,24 @@
 }
 
 
-
-
+-(UIImage *)resizeImage:(UIImage *)image width:(int)width height:(int)height {
+	
+	CGImageRef imageRef = [image CGImage];
+	CGImageAlphaInfo alphaInfo = CGImageGetAlphaInfo(imageRef);
+	
+	//if (alphaInfo == kCGImageAlphaNone)
+    alphaInfo = kCGImageAlphaNoneSkipLast;
+	
+	CGContextRef bitmap = CGBitmapContextCreate(NULL, width, height, CGImageGetBitsPerComponent(imageRef), 4 * width, CGImageGetColorSpace(imageRef), alphaInfo);
+	CGContextDrawImage(bitmap, CGRectMake(0, 0, width, height), imageRef);
+	CGImageRef ref = CGBitmapContextCreateImage(bitmap);
+	UIImage *result = [UIImage imageWithCGImage:ref];
+	
+	CGContextRelease(bitmap);
+	CGImageRelease(ref);
+	
+	return result;	
+}
 /* Called when the user had taken a photo or selected a photo from the photo library. */
 -(void)imagePickerController:(UIImagePickerController *)picker
 didFinishPickingMediaWithInfo:(NSDictionary *)info
@@ -170,6 +186,9 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     if ([mediaType isEqualToString:(NSString *)kUTTypeImage]) {
         UIImage *image = [info
                           objectForKey:UIImagePickerControllerOriginalImage];
+        
+        //resize image
+        image = [self resizeImage:image width: 640 height: 480];
         
         //imageView.image = image;
         
