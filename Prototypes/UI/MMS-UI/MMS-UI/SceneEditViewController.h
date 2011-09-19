@@ -16,13 +16,11 @@
 @interface SceneEditViewController : UIViewController <UIScrollViewDelegate> {
     // To be used when scrolls originate from the UIPageControl
     BOOL pageControlUsed;
+    BOOL transitioning;
 }
 
 @property (retain, nonatomic) AudioEditorViewController *audioView;
 @property (retain, nonatomic) PhotoEditorViewController *photoView;
-
-@property (retain, nonatomic) IBOutlet UIScrollView *scrollView;
-@property (retain, nonatomic) IBOutlet UIPageControl *pageControl;
 
 @property (retain, nonatomic) IBOutlet UIButton *playPauseButton;
 @property (retain, nonatomic) IBOutlet UILabel *elapsedTimeLabel;
@@ -30,7 +28,8 @@
 @property (retain, nonatomic) IBOutlet UILabel *songInfoLabel;
 @property (retain, nonatomic) IBOutlet UISlider *playPositionSlider;
 @property (retain, nonatomic) IBOutlet UISlider *micVolumeSlider;
-
+@property (retain, nonatomic) IBOutlet UIView *containerView;
+@property (retain, nonatomic) UIBarButtonItem *containerToggleButton;
 @property (retain, nonatomic) Scene *theScene;
 @property (retain, nonatomic) CoverScene *theCoverScene;
 
