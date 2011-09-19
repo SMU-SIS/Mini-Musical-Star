@@ -351,6 +351,11 @@ static OSStatus renderNotification(void *inRefCon,
     [self setVolume:vol forBus:self.numInputFiles];
 }
 
+- (float)getMicVolume
+{
+    return [self getVolumeForBus:numInputFiles];
+}
+
 - (void)stopRecording
 {
     [recorder stop];

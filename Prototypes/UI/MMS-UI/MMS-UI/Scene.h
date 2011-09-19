@@ -20,4 +20,5 @@
 @property (retain, nonatomic) NSNumber *sceneNumber;
 
 -(Scene *) initSceneWithPropertyDictionary:(NSDictionary *)propertyDictonary atPath:(NSString *)scenePath;
+- (NSArray *)arrayOfAudioTrackURLs;
 @end

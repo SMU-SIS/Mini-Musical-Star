@@ -54,6 +54,17 @@
     return [[pictureList objectAtIndex:0] autorelease];
 }
 
+- (NSArray *)arrayOfAudioTrackURLs
+{
+    __block NSMutableArray *audioTracks = [NSMutableArray arrayWithCapacity:self.audioList.count];
+    [self.audioList enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        Audio *theAudio = (Audio *)obj;
+        [audioTracks addObject:[NSURL fileURLWithPath:theAudio.path]];
+    }];
+    
+    return audioTracks;
+}
+
 - (void)dealloc
 {
     [title release];

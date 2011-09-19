@@ -73,6 +73,7 @@
 //Every time you want to record something you have to call this method and specify a filepath url.
 -(void)enableRecordingToFile: (NSURL *)filePath;
 -(void)setMicVolume: (float)vol;
+-(float)getMicVolume;
 
 //this is automatically called when you stop the graph if isRecording is YES, otherwise you can manually call this to stop recording
 -(void)stopRecording;

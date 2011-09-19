@@ -33,7 +33,6 @@
 
 @property (retain, nonatomic) Scene *theScene;
 @property (retain, nonatomic) CoverScene *theCoverScene;
-@property (retain, nonatomic) MixPlayerRecorder *thePlayer;
 
 @property (retain, nonatomic) NSManagedObjectContext *context;
 
