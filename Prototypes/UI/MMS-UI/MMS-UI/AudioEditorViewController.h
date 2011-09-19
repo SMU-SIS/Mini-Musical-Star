@@ -55,6 +55,9 @@
 - (void)setLyrics:(NSString*)someLyrics;
 - (void)removeLyrics;
 - (void)displayLyrics;
-- (void)scrollToTrack:(int)trackNumber;
+- (void)scrollRowToTopOfTableView:(int)trackNumber;
+- (void)reInitPlayer;
+
+- (IBAction)stopButtonIsPresssed:(UIButton*)stopButton;
 
 @end

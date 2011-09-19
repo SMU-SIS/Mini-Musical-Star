@@ -127,7 +127,8 @@
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return theAudioObjects.count + theCoverScene.Audio.count;
+    //2 is for the empty row at the bottom
+    return theAudioObjects.count + theCoverScene.Audio.count + 2;
 }
 
 // This method is called for each cell in the table view.
@@ -136,99 +137,122 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
+    static NSString *BlankCellIdentifier = @"BlankCell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    UILabel *trackNameLabel;
-    UIButton *recordButton;
-    TrackPane *trackCellRightPanel;
-    
-    //get the corresponding Audio object
-    id audioForRow = [tracksForView objectAtIndex:[indexPath row]];
-    
-    if (cell == nil)
+    if ([indexPath row] <= (theAudioObjects.count + theCoverScene.Audio.count - 1))
     {
-        //create all the new objects
-        cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        UILabel *trackNameLabel;
+        UIButton *recordButton;
+        TrackPane *trackCellRightPanel;
         
-        cell.contentView.backgroundColor = [UIColor blackColor];
-        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+        //get the corresponding Audio object
+        id audioForRow = [tracksForView objectAtIndex:[indexPath row]];
         
-        /* label which displays the track name */
-        trackNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 30, 120, 30)];
-        trackNameLabel.backgroundColor = [UIColor blackColor];
-        trackNameLabel.textAlignment =  UITextAlignmentCenter;
-        [trackNameLabel setFont:[UIFont fontWithName:@"GillSans-Bold" size:18]];
-        [cell.contentView addSubview:trackNameLabel]; //add label to view
-        trackNameLabel.tag = 1; //tag the object to an integer value
-        [trackNameLabel release];
+        //rows that are supposed to represent tracks
         
-        /* button for the user to record a cover track */
-        //create an empty place holder for the record button
-        recordButton = [[UIButton alloc] initWithFrame:CGRectMake(100, 50, 50, 50)];
-        [cell.contentView addSubview:recordButton];
-        recordButton.tag = 2;
-        [recordButton release];
-        
-        /* the right panel of the row */
-        trackCellRightPanel = [[UIView alloc] initWithFrame:CGRectMake(150, 0, 1024-150, 100)];
-        [cell.contentView addSubview:trackCellRightPanel]; //add label to view
-        
-        /* draw the gradient-ed background of white to black */
-        CAGradientLayer *gradient = [CAGradientLayer layer];
-        gradient.frame = trackCellRightPanel.bounds;
-        gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor blackColor] CGColor], (id)[[UIColor whiteColor] CGColor], nil];            
-        [trackCellRightPanel.layer insertSublayer:gradient atIndex:0];
-        
-        NSArray *layerArray = trackCellRightPanel.layer.sublayers;
-        CALayer *currLayer = [layerArray objectAtIndex:0]; //gets reference to the old layer, HA!
-        [trackCellRightPanel.layer replaceSublayer:currLayer with:gradient];
-        
-        trackCellRightPanel.tag = 3;
-        [trackCellRightPanel release];
-    }
-    
-    // Here, you just configure the objects as appropriate for the row
-    trackNameLabel = (UILabel*)[cell.contentView viewWithTag:1];
-    trackNameLabel.text = [audioForRow valueForKey:@"title"]; //set the name of the track
-    //determine the color of the font by checking if the track is a original or audio
-    if ([audioForRow isKindOfClass:[Audio class]])
-    {
-        trackNameLabel.textColor = [UIColor whiteColor];
-    }
-    else if ([audioForRow isKindOfClass:[CoverSceneAudio class]])
-    {
-        trackNameLabel.textColor = [UIColor redColor];
-    }
-    
-    recordButton = (UIButton*)[cell.contentView viewWithTag:2];
-    
-    //add the record button image into the placeholder only if the row represents a original track
-    if ([audioForRow isKindOfClass:[Audio class]] && [(NSNumber *)[audioForRow valueForKey:@"replaceable"] boolValue])
-    {
-        if (indexPath.row == currentRecordingTrack)
+        if (cell == nil)
         {
-            [recordButton setImage:recordingImage forState:UIControlStateNormal];
+            //create all the new objects
+            cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
+            
+            cell.contentView.backgroundColor = [UIColor blackColor];
+            [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+            
+            /* label which displays the track name */
+            trackNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 30, 120, 30)];
+            trackNameLabel.backgroundColor = [UIColor blackColor];
+            trackNameLabel.textAlignment =  UITextAlignmentCenter;
+            [trackNameLabel setFont:[UIFont fontWithName:@"GillSans-Bold" size:18]];
+            [cell.contentView addSubview:trackNameLabel]; //add label to view
+            trackNameLabel.tag = 1; //tag the object to an integer value
+            [trackNameLabel release];
+            
+            /* button for the user to record a cover track */
+            //create an empty place holder for the record button
+            recordButton = [[UIButton alloc] initWithFrame:CGRectMake(100, 50, 50, 50)];
+            [cell.contentView addSubview:recordButton];
+            recordButton.tag = 2;
+            [recordButton release];
+            
+            /* the right panel of the row */
+            trackCellRightPanel = [[UIView alloc] initWithFrame:CGRectMake(150, 0, 1024-150, 100)];
+            [cell.contentView addSubview:trackCellRightPanel]; //add label to view
+            
+            /* draw the gradient-ed background of white to black */
+            CAGradientLayer *gradient = [CAGradientLayer layer];
+            gradient.frame = trackCellRightPanel.bounds;
+            gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor blackColor] CGColor], (id)[[UIColor whiteColor] CGColor], nil];            
+            [trackCellRightPanel.layer insertSublayer:gradient atIndex:0];
+            
+            NSArray *layerArray = trackCellRightPanel.layer.sublayers;
+            CALayer *currLayer = [layerArray objectAtIndex:0]; //gets reference to the old layer, HA!
+            [trackCellRightPanel.layer replaceSublayer:currLayer with:gradient];
+            
+            trackCellRightPanel.tag = 3;
+            [trackCellRightPanel release];
         }
-        else
+        
+        // Here, you just configure the objects as appropriate for the row
+        trackNameLabel = (UILabel*)[cell.contentView viewWithTag:1];
+        trackNameLabel.text = [audioForRow valueForKey:@"title"]; //set the name of the track
+        //determine the color of the font by checking if the track is a original or audio
+        if ([audioForRow isKindOfClass:[Audio class]])
         {
-            [recordButton setImage:recordImage forState:UIControlStateNormal];
+            trackNameLabel.textColor = [UIColor whiteColor];
         }
+        else if ([audioForRow isKindOfClass:[CoverSceneAudio class]])
+        {
+            trackNameLabel.textColor = [UIColor redColor];
+        }
+        
+        recordButton = (UIButton*)[cell.contentView viewWithTag:2];
+        
+        //add the record button image into the placeholder only if the row represents a original track
+        if ([audioForRow isKindOfClass:[Audio class]] && [(NSNumber *)[audioForRow valueForKey:@"replaceable"] boolValue])
+        {
+            if (indexPath.row == currentRecordingTrack)
+            {
+                [recordButton setImage:recordingImage forState:UIControlStateNormal];
+            }
+            else
+            {
+                [recordButton setImage:recordImage forState:UIControlStateNormal];
+            }
+        }
+        
+        //to be del: make sure the recordButtonIsPressed method checks if the track is a audio or a cover! *loves*
+        [recordButton addTarget:self action:@selector(recordingButtonIsPressed:) forControlEvents:UIControlEventTouchUpInside];
+        
+        //        trackCellRightPanel = (TrackPane*)[cell.contentView viewWithTag:3];
+        //        if (indexPath.row == currentRecordingTrack)
+        //        {
+        //                    
+        //        }
+        //        else
+        //        {            
+        //            NSLog(@"there are %i", [layerArray count]);
+        //        }    
+        
+        return cell;
+        
     }
-    
-    //to be del: make sure the recordButtonIsPressed method checks if the track is a audio or a cover! *loves*
-    [recordButton addTarget:self action:@selector(recordingButtonIsPressed:) forControlEvents:UIControlEventTouchUpInside];
-    
-    //        trackCellRightPanel = (TrackPane*)[cell.contentView viewWithTag:3];
-    //        if (indexPath.row == currentRecordingTrack)
-    //        {
-    //                    
-    //        }
-    //        else
-    //        {            
-    //            NSLog(@"there are %i", [layerArray count]);
-    //        }    
-    
-    return cell;
+    else
+    {
+        //rows that are supposed to be blank (only for the last 2 rows) 
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:BlankCellIdentifier];
+        
+        if (cell == nil)
+        {
+            //create all the new objects
+            cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:BlankCellIdentifier] autorelease];
+            
+            cell.contentView.backgroundColor = [UIColor blackColor];
+            [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+        }
+        
+        return cell;
+    }
 }
 
 //This method is for you to set the height of the table view.
@@ -258,9 +282,16 @@
     
     //checks which track the user is trying to record by checking which row the button came from
     UIButton *recordButton = (UIButton *)sender;
-    UITableViewCell *trackCell = (UITableViewCell*)[recordButton superview];
-    row = [trackTableView indexPathForCell:trackCell].row;
+    UIView *cellContentView = (UIView*)recordButton.superview;
+    UITableViewCell *trackCell = (UITableViewCell*)[cellContentView superview];
+    UITableView *tableView = (UITableView*)[trackCell superview];
+    NSIndexPath *indexPath = [tableView indexPathForCell:trackCell];
+    row = indexPath.row;
+    
+    [indexPath release];
+    [tableView release];
     [trackCell release];
+    [cellContentView release];
     [recordButton release];
     
     //get the corresponding Audio object
@@ -277,27 +308,66 @@
     
     Audio *trackToBeRecorded = (Audio*)audioForRow;
     
+    NSLog(@"I got the audio: %@",trackToBeRecorded.title);
+    
     CoverSceneAudio *newCoverSceneAudio = [NSEntityDescription insertNewObjectForEntityForName:@"CoverSceneAudio" inManagedObjectContext:context];
     
-    newCoverSceneAudio.title = [NSString stringWithFormat:trackToBeRecorded.title];
+    newCoverSceneAudio.title = trackToBeRecorded.title;
     
-    //HELP: what is the guitar supposed to mean?
+    //HELP: what is the guitar supposed to mean? the name of the audio?
     NSString *recordedPath = [[NSBundle mainBundle] pathForResource:@"guitar" ofType:@"mp3"];
     newCoverSceneAudio.path = recordedPath;
     
     //things to do
     //-start recording using MixPlayerRecorder, then store it
+    [thePlayer enableRecordingToFile: [NSURL fileURLWithPath:newCoverSceneAudio.path]];
+    [thePlayer setMicVolume:0.9]; //to be changed
+    
+    //enableRecordingToFile
+    
     //-scroll that row to the top
+    [self scrollRowToTopOfTableView:row];
+    
     //-ask the lyrics popover to come out
+    [self setLyrics:trackToBeRecorded.lyrics];
+    [self displayLyrics];
+    //    [self removeLyrics]; //not sure where is the best place to do this
+    
     //-when recording is over, dismiss the lyrics popover
     //final product: the recorded audio can be played
     
     [self.theCoverScene addAudioObject:newCoverSceneAudio];
     
     //HELP: NEED TO RELEASE THE ID audioForRow object??
-    [trackToBeRecorded release];
-    [theCoverScene release];
+    //[trackToBeRecorded release];
+    //[theCoverScene release];
 }
+
+- (IBAction)stopButtonIsPresssed:(UIButton*)stopButton
+{
+    [thePlayer stopRecording];
+    [thePlayer setVolume:0 forBus:0];
+    [thePlayer play];
+}
+
+//Reinitialize the MixPlayer with the new audio tracks
+- (IBAction)reInitPlayer
+{
+    [thePlayer release];
+    
+    //HELP: need to reinit player with audio tracks from Scene and CoverScene
+    //where can i get Scene from. no reference to SceneEditViewController
+    
+    //get the array of audio tracks
+//    __block NSMutableArray *audioTracks = [[NSMutableArray alloc] initWithCapacity:aScene.audioList.count];
+//    [aScene.audioList enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+//        Audio *theAudio = (Audio *)obj;
+//        [audioTracks addObject:[NSURL fileURLWithPath:theAudio.path]];
+//    }];
+//    
+//    thePlayer = [[MixPlayerRecorder allocMixPlayerRecorder alloc] initWithAudioFileURLs:audioTracks];
+}
+
 
 #pragma mark instance methods
 - (void)setLyrics:(NSString*)someLyrics
@@ -361,9 +431,9 @@
 }
 
 //Use this method to scroll a specific track cell to the top row of the table view
-- (void)scrollToTrack:(int)trackNumber
+- (void)scrollRowToTopOfTableView:(int)row
 {
-    [trackTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:trackNumber-1 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+    [trackTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
 }
 
 #pragma mark UIPopoverControllerDelegate Protocol methods
