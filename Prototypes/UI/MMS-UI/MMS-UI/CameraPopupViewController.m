@@ -91,18 +91,20 @@
                                   initWithContentViewController:imagePicker];
         
         popoverController.delegate = self;
-        
-//        imagePicker.view.frame = CGRectMake(0, 0, 1000, 200);
+
+        imagePicker.mediaTypes = [NSArray arrayWithObjects:
+                                  (NSString *) kUTTypeImage,
+                                  nil];
         
         [self.popoverController 
-         presentPopoverFromRect: CGRectMake(0, 0, 1024, 768) 
+         presentPopoverFromRect: CGRectMake(0, 0, 500, 500) 
          inView:self.view 
          permittedArrowDirections:UIPopoverArrowDirectionDown 
-         animated:YES];
-//        [self setView: imagePicker.view];
+         animated:YES]; 
 //        [self presentModalViewController:imagePicker
 //                            animated:YES];
-        [imagePicker release];
+//        [self dismissModalViewControllerAnimated:YES];
+//        [imagePicker release];
         newMedia = YES;
     }
 }
@@ -171,7 +173,8 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
         //imageView.image = image;
         
         //replace image from imagesArray index 0 with new image
-        [self replaceImage:indexOfImageToChange newImage:image];
+//        [self replaceImage:indexOfImageToChange newImage:image];
+        [self.delegate replaceCenterImage:image];
         
         //removed codes that save photo to photo library
     }

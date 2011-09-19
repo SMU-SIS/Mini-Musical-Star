@@ -68,7 +68,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    ((AFOpenFlowView *)self.view).viewDelegate = self;
     [self performSelector:@selector(loadImagesIntoOpenFlow)];
+    
 }
 
 - (void) loadImagesIntoOpenFlow
@@ -124,7 +126,11 @@
     [(AFOpenFlowView *)self.view setImage: [newPicture image] forIndex:self.currentSelectedCover];
 }
 
-
+- (void)replaceCenterImage: (UIImage*)image
+{
+    
+    [(AFOpenFlowView *)self.view setImage:image forIndex:self.currentSelectedCover];
+}
 
 
 //delegate protocols
@@ -134,6 +140,7 @@
 {    
 	self.currentSelectedCover = index;
 }
+
 
 //for the AFCoverFlow delegate
 - (void)openFlowView:(AFOpenFlowView *)openFlowView requestImageForIndex:(int)index
@@ -164,7 +171,7 @@
 //for the AFCoverFlow delegate
 - (UIImage *)defaultImage
 {
-    return nil;
+    return [(AFOpenFlowView *)self.view requestImageForIndex:0];
 }
 
 

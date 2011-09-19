@@ -310,6 +310,7 @@ const static CGFloat kReflectionFraction = 0.6;
 	if (beginningCover != selectedCoverView.number)
 		if ([self.viewDelegate respondsToSelector:@selector(openFlowView:selectionDidChange:)])
 			[self.viewDelegate openFlowView:self selectionDidChange:selectedCoverView.number];
+
 }
 
 - (void)centerOnSelectedCover:(BOOL)animated {

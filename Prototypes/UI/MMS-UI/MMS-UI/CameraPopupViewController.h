@@ -8,10 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-
 @protocol CameraPopupViewDelegate <NSObject>
 @required
-- (void)takePhoto;
+- (void)replaceCenterImage: (UIImage*)image;
 @end
 
 

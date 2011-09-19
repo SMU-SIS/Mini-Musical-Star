@@ -71,7 +71,7 @@
 @end
 
 @protocol AFOpenFlowViewDelegate <NSObject>
-@optional
+@required
 - (void)openFlowView:(AFOpenFlowView *)openFlowView selectionDidChange:(int)index;
 @end
 
