@@ -81,7 +81,7 @@
     //KVO the Audio NSSet
     [self.theCoverScene addObserver:self forKeyPath:@"Audio" options:0 context:@"NewCoverTrackAdded"];
     
-    self.view.backgroundColor = [UIColor blackColor];
+    self.view.backgroundColor = [UIColor purpleColor];
     
     // If you initialize the table view with the UIView method initWithFrame:,
     //the UITableViewStylePlain style is used as a default.
@@ -91,7 +91,7 @@
 	trackTableView.dataSource = self;
     
     trackTableView.bounces = NO;
-    trackTableView.backgroundColor = [UIColor blackColor];
+    trackTableView.backgroundColor = [UIColor purpleColor];
     
     [self.view addSubview:trackTableView];
     

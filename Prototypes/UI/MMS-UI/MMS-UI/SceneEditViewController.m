@@ -10,21 +10,21 @@
 #import "SceneEditViewController.h"
 
 @implementation SceneEditViewController
-@synthesize audioView, photoView, scrollView, pageControl, playPauseButton, elapsedTimeLabel, totalTimeLabel, songInfoLabel, playPositionSlider, micVolumeSlider, theScene, theCoverScene, context;
+@synthesize audioView, photoView, playPauseButton, containerView, elapsedTimeLabel, totalTimeLabel, songInfoLabel, playPositionSlider, micVolumeSlider, theScene, theCoverScene, context, containerToggleButton;
 
 - (void)dealloc
 {
     [context release];
     [theScene release];
+    [containerView release];
     [theCoverScene release];
-    [scrollView release];
-    [pageControl release];
     [playPauseButton release];
     [elapsedTimeLabel release];
     [totalTimeLabel release];
     [songInfoLabel release];
     [playPositionSlider release];
     [micVolumeSlider release];
+    [containerToggleButton release];
     
     [super dealloc];
 }
@@ -58,6 +58,7 @@
 {
     //load the audio view controller
     audioView = [[AudioEditorViewController alloc] initWithScene:theScene andCoverScene:theCoverScene andContext:context];
+    
 
     //load the photo view controller
     photoView = [[PhotoEditorViewController alloc] initWithPhotos:theScene.pictureList andCoverScene:theCoverScene andContext:context];
@@ -79,20 +80,12 @@
     
     [self registerNotifications];
     
-    //position the audio view controller
-    int page = 0;
-    CGRect frame = scrollView.frame;
-    frame.origin.x = frame.size.width * page;
-    frame.origin.y = 0;
-    audioView.view.frame = frame;
-    [scrollView addSubview:audioView.view];
+    [containerView addSubview:audioView.view];
+    photoView.view.hidden = YES;
+    [containerView addSubview:photoView.view];
     
-    //position the photo view controller
-    page = 1;
-    frame.origin.x = frame.size.width * page;
-    frame.origin.y = 0;
-    photoView.view.frame = frame;
-    [scrollView addSubview:photoView.view];
+    //add the toggle button the nav bar
+    
     
     //update the total time label
     //[totalTimeLabel setText:[NSString stringWithFormat:@"%lu", thePlayer.totalPlaybackTimeInSeconds]];
@@ -100,21 +93,17 @@
     
     //update the song title
     [songInfoLabel setText:theScene.title];
-    
-    // a page is the width of the scroll view
-    scrollView.pagingEnabled = YES;
-    scrollView.contentSize = CGSizeMake(scrollView.frame.size.width * kNumberOfPages, scrollView.frame.size.height);
-    scrollView.showsHorizontalScrollIndicator = NO;
-    scrollView.showsVerticalScrollIndicator = NO;
-    scrollView.scrollsToTop = NO;
-    scrollView.delegate = self;
-    
-    pageControl.numberOfPages = kNumberOfPages;
-    pageControl.currentPage = 0;
 
     //set the mic volume control value
     micVolumeSlider.value = [self.audioView.thePlayer getMicVolume];
     
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+     containerToggleButton = [[UIBarButtonItem alloc] initWithTitle:@"Photos" style:UIBarButtonItemStylePlain target:self action:@selector(toggleContainerView)];          
+    self.navigationItem.rightBarButtonItem = containerToggleButton;
+
 }
 
 #pragma mark IBActions
@@ -155,8 +144,53 @@
     [self.audioView.thePlayer seekTo:targetSeconds];
 }
 
+- (IBAction)toggleContainerView
+{
+	if (transitioning) return;
+    
+    // First create a CATransition object to describe the transition
+	CATransition *transition = [CATransition animation];
+	// Animate over 1/4 of a second
+	transition.duration = 0.25;
+	// using the ease in/out timing function
+	transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    transition.type = kCATransitionPush;
+    
+    transition.delegate = self;
+    
+    
+    transitioning = YES;
+    
+    if (audioView.view.hidden == NO && photoView.view.hidden == YES)
+    {
+        transition.subtype = kCATransitionFromTop;
+        [containerView.layer addAnimation:transition forKey:nil];
+        
+        audioView.view.hidden = YES;
+        photoView.view.hidden = NO;
+        
+        containerToggleButton.title = @"Audio";
+    }
+    
+    else 
+    {
+        transition.subtype = kCATransitionFromBottom;
+        [containerView.layer addAnimation:transition forKey:nil];
+        
+        audioView.view.hidden = NO;
+        photoView.view.hidden = YES;
+        
+        containerToggleButton.title = @"Photos";
+    }
+}
+
 
 #pragma mark notifys and callbacks
+
+-(void)animationDidStop:(CAAnimation *)theAnimation finished:(BOOL)flag
+{
+	transitioning = NO;
+}
 
 -(void)didReceiveElapsedTimeNotification:(NSNotification *)notification
 {
@@ -185,49 +219,6 @@
 -(void)didReceivePlayerStartedNotification:(NSNotification *)notification
 {
     [playPauseButton setTitle:@"Stop" forState:UIControlStateNormal];
-}
-
-- (void)scrollViewDidScroll:(UIScrollView *)sender
-{
-    // We don't want a "feedback loop" between the UIPageControl and the scroll delegate in
-    // which a scroll event generated from the user hitting the page control triggers updates from
-    // the delegate method. We use a boolean to disable the delegate logic when the page control is used.
-    if (pageControlUsed)
-    {
-        // do nothing - the scroll was initiated from the page control, not the user dragging
-        return;
-    }
-	
-    // Switch the indicator when more than 50% of the previous/next page is visible
-    CGFloat pageWidth = scrollView.frame.size.width;
-    int page = floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
-    pageControl.currentPage = page;
-}
-
-// At the begin of scroll dragging, reset the boolean used when scrolls originate from the UIPageControl
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
-{
-    pageControlUsed = NO;
-}
-
-// At the end of scroll animation, reset the boolean used when scrolls originate from the UIPageControl
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
-{
-    pageControlUsed = NO;
-}
-
-- (IBAction)changePage:(id)sender
-{
-    int page = pageControl.currentPage;
-    
-	// update the scroll view to the appropriate page
-    CGRect frame = scrollView.frame;
-    frame.origin.x = frame.size.width * page;
-    frame.origin.y = 0;
-    [scrollView scrollRectToVisible:frame animated:YES];
-    
-	// Set the boolean used when scrolls originate from the UIPageControl. See scrollViewDidScroll: above.
-    pageControlUsed = YES;
 }
 
 
