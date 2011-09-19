@@ -11,6 +11,7 @@
 @protocol CameraPopupViewDelegate <NSObject>
 @required
 - (void)replaceCenterImage: (UIImage*)image;
+- (void) takePhoto;
 @end
 
 
@@ -46,7 +47,7 @@
 - (void) replaceImage:(NSInteger)imageIndex newImage:(UIImage*)anImage;
 - (void) refreshImageView;
 
-- (IBAction) cancelCurrentOverlay:(UIButton *)sender;
+//- (IBAction) cancelCurrentOverlay:(UIButton *)sender;
 
 @end
 

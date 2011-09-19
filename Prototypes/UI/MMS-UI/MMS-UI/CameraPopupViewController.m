@@ -85,26 +85,22 @@
                                   (NSString *) kUTTypeImage,
                                   nil];
         imagePicker.allowsEditing = NO;
-        imagePicker.view.frame = self.view.frame;
         
-        self.popoverController = [[UIPopoverController alloc]
-                                  initWithContentViewController:imagePicker];
-        
-        popoverController.delegate = self;
-
-        imagePicker.mediaTypes = [NSArray arrayWithObjects:
-                                  (NSString *) kUTTypeImage,
-                                  nil];
-        
-        [self.popoverController 
-         presentPopoverFromRect: CGRectMake(0, 0, 500, 500) 
-         inView:self.view 
-         permittedArrowDirections:UIPopoverArrowDirectionDown 
-         animated:YES]; 
-//        [self presentModalViewController:imagePicker
-//                            animated:YES];
-//        [self dismissModalViewControllerAnimated:YES];
-//        [imagePicker release];
+//        self.popoverController = [[UIPopoverController alloc]
+//                                  initWithContentViewController:imagePicker];
+////        
+//        popoverController.delegate = self;
+//
+//        
+//        [self.popoverController 
+//         presentPopoverFromRect: CGRectMake(-100, 500, 500, 500) 
+//         inView:self.view 
+//         permittedArrowDirections:UIPopoverArrowDirectionDown 
+//         animated:YES]; 
+        self.modalPresentationStyle=UIModalPresentationCurrentContext;
+        [self presentModalViewController:imagePicker
+                            animated:YES];
+        [imagePicker release];
         newMedia = YES;
     }
 }
@@ -134,7 +130,7 @@
             popoverController.delegate = self;
             
             [self.popoverController 
-             presentPopoverFromRect: CGRectMake(0.0f, 0.0f, 1000.0f, 1000.0f) 
+             presentPopoverFromRect: CGRectMake(500, 500, 1000.0f, 1000.0f) 
              inView:self.view 
              permittedArrowDirections:UIPopoverArrowDirectionDown 
              animated:YES];
@@ -145,10 +141,15 @@
     }
 }
 
-- (IBAction) cancelCurrentOverlay:(UIButton *)sender
+- (IBAction) cancelCurrentOverlay
 {
+
+    [self.view setAlpha:1.0];
+    [UIView beginAnimations:nil context:nil];
+    [self.view setAlpha:0.0];
+    [UIView commitAnimations];
     [self.view removeFromSuperview];
-//    [self.delegate cancelOverlay];
+   
 }
 
 
@@ -175,6 +176,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
         //replace image from imagesArray index 0 with new image
 //        [self replaceImage:indexOfImageToChange newImage:image];
         [self.delegate replaceCenterImage:image];
+        [self cancelCurrentOverlay];
         
         //removed codes that save photo to photo library
     }

@@ -17,6 +17,7 @@
     if ([UIImagePickerController isSourceTypeAvailable:
          UIImagePickerControllerSourceTypeCamera])
     {
+        self.view.hidden = YES;
         UIImagePickerController *imagePicker =
         [[UIImagePickerController alloc] init];
         imagePicker.delegate = self;
@@ -24,8 +25,20 @@
         UIImagePickerControllerSourceTypeCamera;
 
         imagePicker.allowsEditing = NO;
-        [self presentModalViewController:imagePicker
-                                animated:YES];
+        
+                UIPopoverController *popoverController = [[UIPopoverController alloc]
+                                          initWithContentViewController:imagePicker];
+                
+//                popoverController.delegate = self;
+        
+        
+                [popoverController 
+                 presentPopoverFromRect: CGRectMake(0, 0, 500, 500) 
+                 inView:self.view 
+                 permittedArrowDirections:UIPopoverArrowDirectionDown 
+                 animated:YES]; 
+//        [self presentModalViewController:imagePicker
+//                                animated:YES];
         [imagePicker release];
     }
 }
@@ -150,20 +163,16 @@
 
 - (IBAction) popupCameraOptions: (id) sender
 {
-//    self.pop = [[UIPopoverController alloc] initWithContentViewController:[[CameraPopupViewController alloc] init]];
-//    
-//
-//    [self.pop 
-//     presentPopoverFromRect: CGRectMake(0.0f, 0.0f, 1000.0f, 1000.0f) 
-//     inView:self.view 
-//     permittedArrowDirections:UIPopoverArrowDirectionDown 
-//     animated:YES];
-//    
     
     CameraPopupViewController *overlayView = [[CameraPopupViewController alloc] init];
-    [self.view addSubview:overlayView.view];
-    [overlayView setDelegate:self];
     
+    [overlayView.view setAlpha:0.0];
+    [self.view addSubview:overlayView.view];
+    [UIView beginAnimations:nil context:nil];
+    [overlayView.view setAlpha:1.0];
+    [UIView commitAnimations];
+
+    [overlayView setDelegate:self];
 
 }
 
