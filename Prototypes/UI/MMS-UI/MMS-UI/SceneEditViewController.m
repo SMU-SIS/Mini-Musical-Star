@@ -10,12 +10,11 @@
 #import "SceneEditViewController.h"
 
 @implementation SceneEditViewController
-@synthesize audioView, photoView, scrollView, pageControl, playPauseButton, elapsedTimeLabel, totalTimeLabel, songInfoLabel, playPositionSlider, micVolumeSlider, theScene, theCoverScene, delegate, context;
+@synthesize audioView, photoView, scrollView, pageControl, playPauseButton, elapsedTimeLabel, totalTimeLabel, songInfoLabel, playPositionSlider, micVolumeSlider, theScene, theCoverScene, context;
 
 - (void)dealloc
 {
     [context release];
-    [delegate release];
     [theScene release];
     [theCoverScene release];
     [scrollView release];
@@ -49,23 +48,20 @@
         self.theCoverScene = aCoverScene;
         self.context = aContext;
         
-        //not necessary after delegating
-        /*
-        //get the array of audio tracks
-        __block NSMutableArray *audioTracks = [[NSMutableArray alloc] initWithCapacity:aScene.audioList.count];
-        [aScene.audioList enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-            Audio *theAudio = (Audio *)obj;
-            [audioTracks addObject:[NSURL fileURLWithPath:theAudio.path]];
-        }];
-        
-        //init the player with the audio tracks
-        thePlayer = [[MixPlayerRecorder alloc] initWithAudioFileURLs:audioTracks];
-        */
-        
-        [self performSelector:@selector(registerNotifications)];
+        [self loadChildViewControllers];
     }
     
     return self;
+}
+
+- (void)loadChildViewControllers
+{
+    //load the audio view controller
+    audioView = [[AudioEditorViewController alloc] initWithScene:theScene andCoverScene:theCoverScene andContext:context];
+
+    //load the photo view controller
+    photoView = [[PhotoEditorViewController alloc] initWithPhotos:theScene.pictureList andCoverScene:theCoverScene andContext:context];
+    
 }
 
 - (void)registerNotifications
@@ -81,9 +77,26 @@
 {
     [super viewDidLoad];
     
+    [self registerNotifications];
+    
+    //position the audio view controller
+    int page = 0;
+    CGRect frame = scrollView.frame;
+    frame.origin.x = frame.size.width * page;
+    frame.origin.y = 0;
+    audioView.view.frame = frame;
+    [scrollView addSubview:audioView.view];
+    
+    //position the photo view controller
+    page = 1;
+    frame.origin.x = frame.size.width * page;
+    frame.origin.y = 0;
+    photoView.view.frame = frame;
+    [scrollView addSubview:photoView.view];
+    
     //update the total time label
     //[totalTimeLabel setText:[NSString stringWithFormat:@"%lu", thePlayer.totalPlaybackTimeInSeconds]];
-    [totalTimeLabel setText:[NSString stringWithFormat:@"%lu", [self.delegate totalPlaybackTimeInSeconds]]];
+    [totalTimeLabel setText:[NSString stringWithFormat:@"%lu", [self.audioView.thePlayer totalPlaybackTimeInSeconds]]];
     
     //update the song title
     [songInfoLabel setText:theScene.title];
@@ -98,51 +111,25 @@
     
     pageControl.numberOfPages = kNumberOfPages;
     pageControl.currentPage = 0;
-    
-    [self loadChildViewControllers];
-    
+
     //set the mic volume control value
-    micVolumeSlider.value = [self.delegate getMicVolume];
+    micVolumeSlider.value = [self.audioView.thePlayer getMicVolume];
     
 }
-
-- (void)loadChildViewControllers
-{
-    //load the audio view controller
-    audioView = [[AudioEditorViewController alloc] initWithAudioObjects:theScene.audioList andCoverScene:theCoverScene andContext:context];
-    int page = 0;
-    CGRect frame = scrollView.frame;
-    frame.origin.x = frame.size.width * page;
-    frame.origin.y = 0;
-    audioView.view.frame = frame;
-    [scrollView addSubview:audioView.view];
-    
-    self.delegate = audioView;
-    
-    //load the photo view controller
-    photoView = [[PhotoEditorViewController alloc] initWithPhotos:theScene.pictureList andCoverScene:theCoverScene andContext:context];
-    page = 1;
-    frame.origin.x = frame.size.width * page;
-    frame.origin.y = 0;
-    photoView.view.frame = frame;
-    [scrollView addSubview:photoView.view];
-
-}
-
-
 
 #pragma mark IBActions
 
 - (IBAction)playPauseButtonPressed: (UIButton *)sender
 {
-    [self.delegate togglePlayOrPause];
-    if ([self.delegate playerIsPlaying])
+    if ([self.audioView.thePlayer isPlaying])
     {
+        [self.audioView.thePlayer stop];
         [sender setTitle:@"Play" forState:UIControlStateNormal];
     }
     
     else
     {
+        [self.audioView.thePlayer play];
         [sender setTitle:@"Stop" forState:UIControlStateNormal];
     }
 }
@@ -151,22 +138,21 @@
 {
     //this adjusts the mic volume
     //[thePlayer setMicVolume:sender.value];
-    [self.delegate setMicVolume:sender.value];
+    [self.audioView.thePlayer setMicVolume:sender.value];
 }
 
 - (IBAction)toggleSeek:(UISlider *)sender
 {
     //convert the float value to seconds
-    int targetSeconds = sender.value * [self.delegate totalPlaybackTimeInSeconds];
-    [self.delegate seekTimeTo:targetSeconds];
+    int targetSeconds = sender.value * [self.audioView.thePlayer totalPlaybackTimeInSeconds];
+    [self.audioView.thePlayer seekTo:targetSeconds];
     
 }
 
 - (void)setSliderPosition:(int) targetSeconds
 {
     //convert the float value to seconds
-    //[thePlayer seekTo:targetSeconds];
-    [self.delegate seekTimeTo:targetSeconds];
+    [self.audioView.thePlayer seekTo:targetSeconds];
 }
 
 
@@ -183,11 +169,11 @@
 -(void)updateProgressSliderWithTime
 {
     //inform the PhotoEditorViewController
-    [photoView setSliderImages:[self.delegate currentPlaybackTimeInSeconds]];
+    [photoView setSliderImages:[self.audioView.thePlayer elapsedPlaybackTimeInSeconds]];
     
     //update the playback labels
-    [elapsedTimeLabel setText:[NSString stringWithFormat:@"%i", [self.delegate currentPlaybackTimeInSeconds]]];
-    float progressSliderValue = (float)[self.delegate currentPlaybackTimeInSeconds] / (float)[self.delegate totalPlaybackTimeInSeconds];    
+    [elapsedTimeLabel setText:[NSString stringWithFormat:@"%i", [self.audioView.thePlayer elapsedPlaybackTimeInSeconds]]];
+    float progressSliderValue = (float)[self.audioView.thePlayer elapsedPlaybackTimeInSeconds] / (float)[self.audioView.thePlayer totalPlaybackTimeInSeconds];    
     playPositionSlider.value = progressSliderValue;
 }
 
@@ -248,9 +234,13 @@
 
 - (void)viewDidUnload
 {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+    
+    
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

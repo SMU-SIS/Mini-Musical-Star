@@ -22,7 +22,6 @@
     [theCoverScene release];
     [tracksForView release];
     [context release];
-
     [trackTableView release];
     [recordImage release];
     [recordingImage release];
@@ -42,15 +41,17 @@
 
 #pragma mark - View lifecycle
 
-- (AudioEditorViewController *)initWithPlayer:(MixPlayerRecorder *)aPlayer andAudioObjects:(NSArray *)audioList andCoverScene:(CoverScene *)aCoverScene andContext:(NSManagedObjectContext *)aContext
+- (AudioEditorViewController *)initWithScene:(Scene *)aScene andCoverScene:(CoverScene *)aCoverScene andContext:(NSManagedObjectContext *)aContext
 {
     self = [super init];
     if (self)
     {
-        self.thePlayer = aPlayer;
-        self.theAudioObjects = audioList;
+        self.theAudioObjects = aScene.audioList;
         self.theCoverScene = aCoverScene;
         self.context = aContext;
+                  
+        //init the player with the audio tracks
+        thePlayer = [[MixPlayerRecorder alloc] initWithAudioFileURLs:[aScene arrayOfAudioTrackURLs]];
         
         [self performSelector:@selector(consolidateOriginalAndCoverTracks)];
         

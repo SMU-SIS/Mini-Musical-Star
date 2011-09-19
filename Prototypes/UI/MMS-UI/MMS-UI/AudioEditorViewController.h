@@ -10,7 +10,7 @@
 #import "TrackPane.h"
 #import <QuartzCore/QuartzCore.h>
 #import "MixPlayerRecorder.h"
-#import "Audio.h"
+#import "Scene.h"
 #import "CoverScene.h"
 #import "CoverSceneAudio.h"
 
@@ -50,7 +50,7 @@
 
 @property (nonatomic, retain) NSManagedObjectContext *context;
 
-- (AudioEditorViewController *)initWithPlayer:(MixPlayerRecorder *)aPlayer andAudioObjects:(NSArray *)audioList andCoverScene:(CoverScene *)aCoverScene andContext:(NSManagedObjectContext *)aContext;
+- (AudioEditorViewController *)initWithScene:(Scene *)theScene andCoverScene:(CoverScene *)aCoverScene andContext:(NSManagedObjectContext *)aContext;
 
 - (void)setLyrics:(NSString*)someLyrics;
 - (void)removeLyrics;
