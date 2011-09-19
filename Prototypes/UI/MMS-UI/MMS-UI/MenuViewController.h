@@ -37,6 +37,8 @@
 -(IBAction)playBackMusical;
 -(IBAction)coverMusical;
 
+//- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation;
+
 -(Show *)returnCurrentSelectedShow;
 -(void)displayShowImages:(NSArray *)images;
 

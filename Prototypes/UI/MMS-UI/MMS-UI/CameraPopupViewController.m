@@ -14,15 +14,15 @@
 @synthesize takePhotoButton, replacePictureButton, popoverController;
 @synthesize imagesArray;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
+//- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+//{
+//    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+//    if (self) {
+//        // Custom initialization
+//    }
+//    return self;
+//}
+//
 - (id)initWithArrayAndIndex:(NSMutableArray*)anArray indexOfImage:(NSInteger)anIndex
 {
     self = [super init];
@@ -32,6 +32,11 @@
     }
     return self;
 }
+
+//- (id)initWithController:(PhotoEditorViewController*)controller
+//{
+//    photoEditViewController = controller;
+//}
 
 - (void)didReceiveMemoryWarning
 {
@@ -47,25 +52,7 @@
 {
     
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-//    
-//    
-//    UIBarButtonItem *cameraButton = [[UIBarButtonItem alloc] 
-//                                     initWithTitle:@"Camera"
-//                                     style:UIBarButtonItemStyleBordered
-//                                     target:self
-//                                     action:@selector(useCamera:)];
-//    UIBarButtonItem *cameraRollButton = [[UIBarButtonItem alloc] 
-//                                         initWithTitle:@"Camera Roll"
-//                                         style:UIBarButtonItemStyleBordered
-//                                         target:self
-//                                         action:@selector(useCameraRoll:)];
-//    NSArray *items = [NSArray arrayWithObjects: cameraButton,
-//                      cameraRollButton, nil];
-//    [toolbar setItems:items animated:NO];
-//    [cameraButton release];
-//    [cameraRollButton release];
-//    
+
     //load the choosen image that is supposed to be replace
     [imageView setImage:[imagesArray objectAtIndex:indexOfImageToChange]];
 }
@@ -137,6 +124,13 @@
             [imagePicker release];
             newMedia = NO;
         }
+    }
+}
+
+- (IBAction) cancelOverlay:(UIButton *)sender
+{
+    for (int i = 0; i < [[self.view subviews] count]; i++ ) {
+        [[[self.view subviews] objectAtIndex:i] removeFromSuperview];
     }
 }
 

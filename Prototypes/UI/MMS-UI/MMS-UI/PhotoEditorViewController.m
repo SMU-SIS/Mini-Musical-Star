@@ -129,15 +129,22 @@
 
 - (IBAction) popupCameraOptions: (id) sender
 {
-    self.pop = [[UIPopoverController alloc] initWithContentViewController:[[CameraPopupViewController alloc] init]];
+//    self.pop = [[UIPopoverController alloc] initWithContentViewController:[[CameraPopupViewController alloc] init]];
+//    
+//
+//    [self.pop 
+//     presentPopoverFromRect: CGRectMake(0.0f, 0.0f, 1000.0f, 1000.0f) 
+//     inView:self.view 
+//     permittedArrowDirections:UIPopoverArrowDirectionDown 
+//     animated:YES];
+//    
     
-                
-    [self.pop 
-     presentPopoverFromRect: CGRectMake(0.0f, 0.0f, 1000.0f, 1000.0f) 
-     inView:self.view 
-     permittedArrowDirections:UIPopoverArrowDirectionDown 
-     animated:YES];
+    CameraPopupViewController *overlayView = [[CameraPopupViewController alloc] init];
+    [self.view addSubview:overlayView.view];
+    
+
 }
+
 
 //for the AFCoverFlow delegate
 - (UIImage *)defaultImage
