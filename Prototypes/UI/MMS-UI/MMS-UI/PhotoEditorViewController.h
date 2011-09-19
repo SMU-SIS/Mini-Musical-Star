@@ -16,7 +16,7 @@
 #import "CoverScene.h"
 #import "CoverScenePicture.h"
 
-@interface PhotoEditorViewController : UIViewController <CameraPopupViewDelegate,AFOpenFlowViewDelegate,AFOpenFlowViewDataSource> {
+@interface PhotoEditorViewController : UIViewController <CameraPopupViewDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate, AFOpenFlowViewDelegate,AFOpenFlowViewDataSource> {
     NSOperationQueue *loadImagesOperationQueue;
 
 }
@@ -40,6 +40,6 @@
 - (IBAction) replaceImageTest:(UIButton *)sender;
 - (IBAction) popupCameraOptions: (id) sender;
 //
-- (void) cancelOverlay;
+- (void) takePhoto;
 
 @end

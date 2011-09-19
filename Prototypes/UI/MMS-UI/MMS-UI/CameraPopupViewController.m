@@ -27,7 +27,7 @@
 {
     self = [super init];
     if (self) {
-        imagesArray = anArray;
+        self.imagesArray = anArray;
         indexOfImageToChange = anIndex;
     }
     return self;
@@ -72,6 +72,7 @@
 
 - (IBAction) useCamera: (id)sender
 {
+//    [self.delegate takePhoto];
     if ([UIImagePickerController isSourceTypeAvailable:
          UIImagePickerControllerSourceTypeCamera])
     {
@@ -84,8 +85,23 @@
                                   (NSString *) kUTTypeImage,
                                   nil];
         imagePicker.allowsEditing = NO;
-        [self presentModalViewController:imagePicker
-                                animated:YES];
+        imagePicker.view.frame = self.view.frame;
+        
+        self.popoverController = [[UIPopoverController alloc]
+                                  initWithContentViewController:imagePicker];
+        
+        popoverController.delegate = self;
+        
+//        imagePicker.view.frame = CGRectMake(0, 0, 1000, 200);
+        
+        [self.popoverController 
+         presentPopoverFromRect: CGRectMake(0, 0, 1024, 768) 
+         inView:self.view 
+         permittedArrowDirections:UIPopoverArrowDirectionDown 
+         animated:YES];
+//        [self setView: imagePicker.view];
+//        [self presentModalViewController:imagePicker
+//                            animated:YES];
         [imagePicker release];
         newMedia = YES;
     }
@@ -129,9 +145,10 @@
 
 - (IBAction) cancelCurrentOverlay:(UIButton *)sender
 {
-    [[self delegate] cancelOverlay];
-    NSLog(@"tommi bitch");
+    [self.view removeFromSuperview];
+//    [self.delegate cancelOverlay];
 }
+
 
 
 

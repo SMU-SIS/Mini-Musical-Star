@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 
 
-@protocol CameraPopupViewDelegate
-- (void)cancelOverlay;
+@protocol CameraPopupViewDelegate <NSObject>
+@required
+- (void)takePhoto;
 @end
 
 
