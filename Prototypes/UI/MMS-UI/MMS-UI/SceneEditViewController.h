@@ -16,6 +16,7 @@
 @protocol SceneEditPlayerControlDelegate <NSObject>
 
 - (void)togglePlayOrPause;
+- (bool)playerIsPlaying;
 - (void)setMicVolume:(float)micVolume;
 - (float)getMicVolume;
 - (void)seekTimeTo:(int)playbackTimeInSeconds;
