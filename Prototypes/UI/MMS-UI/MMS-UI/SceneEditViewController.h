@@ -13,6 +13,17 @@
 #import "CoverScene.h"
 #import "MixPlayerRecorder.h"
 
+@protocol SceneEditPlayerControlDelegate <NSObject>
+
+- (void)togglePlayOrPause;
+- (void)setMicVolume:(float)micVolume;
+- (void)seekTimeTo:(int)playbackTimeInSeconds;
+- (int)totalPlaybackTimeInSeconds;
+- (int)currentPlaybackTimeInSeconds;
+
+
+@end
+
 @interface SceneEditViewController : UIViewController <UIScrollViewDelegate> {
     // To be used when scrolls originate from the UIPageControl
     BOOL pageControlUsed;
