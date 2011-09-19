@@ -55,8 +55,6 @@
         
         [self performSelector:@selector(consolidateOriginalAndCoverTracks)];
         
-        //KVO the Audio NSSet
-        [self.theCoverScene addObserver:self forKeyPath:@"Audio" options:0 context:@"NewCoverTrackAdded"];
     }
     
     return self;
@@ -79,6 +77,9 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    //KVO the Audio NSSet
+    [self.theCoverScene addObserver:self forKeyPath:@"Audio" options:0 context:@"NewCoverTrackAdded"];
     
     self.view.backgroundColor = [UIColor blackColor];
     
@@ -109,6 +110,8 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+    
+    [self.theCoverScene removeObserver:self forKeyPath:@"Audio"];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
