@@ -17,10 +17,10 @@
 
 - (void)togglePlayOrPause;
 - (void)setMicVolume:(float)micVolume;
+- (float)getMicVolume;
 - (void)seekTimeTo:(int)playbackTimeInSeconds;
 - (int)totalPlaybackTimeInSeconds;
 - (int)currentPlaybackTimeInSeconds;
-
 
 @end
 
@@ -44,7 +44,8 @@
 
 @property (retain, nonatomic) Scene *theScene;
 @property (retain, nonatomic) CoverScene *theCoverScene;
-@property (retain, nonatomic) MixPlayerRecorder *thePlayer;
+//@property (retain, nonatomic) MixPlayerRecorder *thePlayer;
+@property (retain, nonatomic) id <SceneEditPlayerControlDelegate> delegate;
 
 @property (retain, nonatomic) NSManagedObjectContext *context;
 
