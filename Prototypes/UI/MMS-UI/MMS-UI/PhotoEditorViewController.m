@@ -10,7 +10,15 @@
 
 @implementation PhotoEditorViewController
 
-@synthesize leftPicture, rightPicture, centerPicture, thePictures, imagesArray, theCoverScene, context, pop, btn,currentSelectedCover;
+@synthesize leftPicture, rightPicture, centerPicture, thePictures, imagesArray, theCoverScene, context, btn,currentSelectedCover, cameraPopupViewController;
+
+- (void) cancelOverlay
+{
+    NSLog(@"YEAH BABY!!!!");
+//    for (int i = 0; i < [[self.view subviews] count]; i++ ) {
+//        [[[self.view subviews] objectAtIndex:i] removeFromSuperview];
+//    }
+}
 
 -(void)dealloc
 {
@@ -20,6 +28,8 @@
     [thePictures release];
     [theCoverScene release];
     [context release];
+    [cameraPopupViewController release];
+    [currentSelectedCover release];
     [super dealloc];
 }
 
@@ -95,8 +105,10 @@
 
 -(IBAction)pressCenterImage
 {
-    CameraPopupViewController *cameraPopupViewController = [[CameraPopupViewController alloc] initWithArrayAndIndex:imagesArray indexOfImage:1];
+    cameraPopupViewController = [[CameraPopupViewController alloc] initWithArrayAndIndex:imagesArray indexOfImage:1];
     
+    [cameraPopupViewController setDelegate:self];
+
     [self presentModalViewController:cameraPopupViewController animated:YES];
     
     [cameraPopupViewController release];
@@ -112,6 +124,9 @@
     [self.theCoverScene addPictureObject:newPicture];
     [(AFOpenFlowView *)self.view setImage: [newPicture image] forIndex:self.currentSelectedCover];
 }
+
+
+
 
 //delegate protocols
 

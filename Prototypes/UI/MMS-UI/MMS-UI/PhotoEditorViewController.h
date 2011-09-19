@@ -16,8 +16,9 @@
 #import "CoverScene.h"
 #import "CoverScenePicture.h"
 
-@interface PhotoEditorViewController : UIViewController <AFOpenFlowViewDelegate,AFOpenFlowViewDataSource> {
+@interface PhotoEditorViewController : UIViewController <CameraPopupViewDelegate,AFOpenFlowViewDelegate,AFOpenFlowViewDataSource> {
     NSOperationQueue *loadImagesOperationQueue;
+
 }
 
 @property(retain,nonatomic) IBOutlet UIImageView *leftPicture;
@@ -29,8 +30,8 @@
 
 @property (retain, nonatomic) CoverScene *theCoverScene;
 @property (retain, nonatomic) NSManagedObjectContext *context;
+@property (retain, nonatomic) CameraPopupViewController *cameraPopupViewController;
 
-@property(retain,nonatomic) UIPopoverController *pop;
 @property(retain,nonatomic) IBOutlet UIButton *btn;
 
 - (void) setSliderImages:(UInt32)timeAt;
@@ -38,7 +39,7 @@
 - (IBAction) pressCenterImage;
 - (IBAction) replaceImageTest:(UIButton *)sender;
 - (IBAction) popupCameraOptions: (id) sender;
-
-
+//
+- (void) cancelOverlay;
 
 @end

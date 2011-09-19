@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PhotoEditorViewController.h"
+
+
+@protocol CameraPopupViewDelegate
+- (void)cancelOverlay;
+@end
+
 
 @interface CameraPopupViewController : UIViewController
 <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPopoverControllerDelegate>
@@ -17,12 +22,14 @@
     UIToolbar *toolbar;
     UIPopoverController *popoverController;
     
-    
-    
+    id <CameraPopupViewDelegate> delegate;
+
     NSMutableArray *imagesArray;
     BOOL newMedia;
     NSInteger indexOfImageToChange;
 }
+
+@property (nonatomic, retain) id <CameraPopupViewDelegate> delegate;
 
 @property (nonatomic, retain) IBOutlet UIButton *takePhotoButton;
 @property (nonatomic, retain) IBOutlet UIButton *replacePictureButton;
@@ -39,7 +46,7 @@
 - (void) replaceImage:(NSInteger)imageIndex newImage:(UIImage*)anImage;
 - (void) refreshImageView;
 
-- (IBAction) cancelOverlay:(UIButton *)sender;
+- (IBAction) cancelCurrentOverlay:(UIButton *)sender;
 
 @end
 

@@ -11,7 +11,7 @@
 
 @implementation CameraPopupViewController
 
-@synthesize takePhotoButton, replacePictureButton, popoverController;
+@synthesize takePhotoButton, replacePictureButton, popoverController, delegate;
 @synthesize imagesArray;
 
 //- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -127,12 +127,13 @@
     }
 }
 
-- (IBAction) cancelOverlay:(UIButton *)sender
+- (IBAction) cancelCurrentOverlay:(UIButton *)sender
 {
-    for (int i = 0; i < [[self.view subviews] count]; i++ ) {
-        [[[self.view subviews] objectAtIndex:i] removeFromSuperview];
-    }
+    [[self delegate] cancelOverlay];
+    NSLog(@"tommi bitch");
 }
+
+
 
 /* Called when the user had taken a photo or selected a photo from the photo library. */
 -(void)imagePickerController:(UIImagePickerController *)picker
