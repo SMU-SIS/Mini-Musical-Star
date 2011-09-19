@@ -12,12 +12,22 @@
 
 @synthesize leftPicture, rightPicture, centerPicture, thePictures, imagesArray, theCoverScene, context, btn,currentSelectedCover, cameraPopupViewController;
 
-- (void) cancelOverlay
+- (void) takePhoto
 {
-    NSLog(@"YEAH BABY!!!!");
-//    for (int i = 0; i < [[self.view subviews] count]; i++ ) {
-//        [[[self.view subviews] objectAtIndex:i] removeFromSuperview];
-//    }
+    if ([UIImagePickerController isSourceTypeAvailable:
+         UIImagePickerControllerSourceTypeCamera])
+    {
+        UIImagePickerController *imagePicker =
+        [[UIImagePickerController alloc] init];
+        imagePicker.delegate = self;
+        imagePicker.sourceType =
+        UIImagePickerControllerSourceTypeCamera;
+
+        imagePicker.allowsEditing = NO;
+        [self presentModalViewController:imagePicker
+                                animated:YES];
+        [imagePicker release];
+    }
 }
 
 -(void)dealloc
@@ -29,7 +39,6 @@
     [theCoverScene release];
     [context release];
     [cameraPopupViewController release];
-    [currentSelectedCover release];
     [super dealloc];
 }
 
@@ -103,16 +112,6 @@
     
 }
 
--(IBAction)pressCenterImage
-{
-    cameraPopupViewController = [[CameraPopupViewController alloc] initWithArrayAndIndex:imagesArray indexOfImage:1];
-    
-    [cameraPopupViewController setDelegate:self];
-
-    [self presentModalViewController:cameraPopupViewController animated:YES];
-    
-    [cameraPopupViewController release];
-}
 
 - (IBAction) replaceImageTest:(UIButton *)sender
 {
@@ -156,6 +155,7 @@
     
     CameraPopupViewController *overlayView = [[CameraPopupViewController alloc] init];
     [self.view addSubview:overlayView.view];
+    [overlayView setDelegate:self];
     
 
 }
