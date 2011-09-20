@@ -351,7 +351,7 @@
 - (IBAction)stopButtonIsPresssed:(UIButton*)stopButton
 
 {
-    [thePlayer stopRecording];
+    [thePlayer stop];
     //[self dismissLyrics]; causing EXC_BAD_ACCESS
     //[self removeLyrics];
     //[thePlayer setVolume:0 forBus:0];
@@ -362,7 +362,7 @@
     //tracksForView is a NSMutableArray
     
     //init the player with the audio tracks
-    NSMutableArray *tracksForViewNSURL = [NSMutableArray arrayWithCapacity:[tracksForView count]];
+    NSMutableArray *tracksForViewNSURL = [NSMutableArray arrayWithCapacity:[tracksForView count]-1];
     
     [tracksForView enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         Audio *anAudio = (Audio*)obj;
@@ -377,7 +377,7 @@
     }];
     
     NSLog(@"I'm at stopButtonIsPressed now, size of tracksForView is: %i", [tracksForView count]);
-    thePlayer = [[MixPlayerRecorder alloc] initWithAudioFileURLs:tracksForView];
+    thePlayer = [[MixPlayerRecorder alloc] initWithAudioFileURLs:tracksForViewNSURL];
 }
 
 #pragma mark instance methods
