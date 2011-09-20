@@ -329,6 +329,26 @@ static OSStatus renderNotification(void *inRefCon,
     return floatVolume;
 }
 
+- (BOOL)busNumberIsMuted:(int)busNumber
+{
+    float enabled;
+    error = AudioUnitGetParameter(mixerUnit, kMultiChannelMixerParam_Enable, kAudioUnitScope_Input, busNumber, &enabled);
+    
+    return !(BOOL)enabled;
+}
+
+- (void)unmuteBusNumber:(int)busNumber
+{
+    float enabled = 1;
+    error = AudioUnitSetParameter(mixerUnit, kMultiChannelMixerParam_Enable, kAudioUnitScope_Input, busNumber, enabled, 0);
+}
+
+- (void)muteBusNumber:(int)busNumber
+{
+    float enabled = 0;
+    error = AudioUnitSetParameter(mixerUnit, kMultiChannelMixerParam_Enable, kAudioUnitScope_Input, busNumber, enabled, 0);
+}
+
 - (void)enableRecordingToFile:(NSURL *)filePath
 {
     recorder = [[BoomzAUOutputCapturer alloc] initWithAudioUnit:rioUnit OutputURL:(CFURLRef)filePath AudioFileTypeID:kAudioFileM4AType forBusNumber:1];

@@ -68,6 +68,10 @@
 -(void)setVolume:(AudioUnitParameterValue)vol forBus:(UInt32)busNumber;
 -(float)getVolumeForBus:(UInt32)busNumber;
 
+-(BOOL)busNumberIsMuted:(int)busNumber;
+-(void)unmuteBusNumber:(int)busNumber;
+-(void)muteBusNumber:(int)busNumber;
+
 //calling this enables recording for the next time you play the graph for ONE TIME ONLY
 //For example, if you call play, then stop, then play again, it will only record the time between the first play-to-stop
 //Every time you want to record something you have to call this method and specify a filepath url.

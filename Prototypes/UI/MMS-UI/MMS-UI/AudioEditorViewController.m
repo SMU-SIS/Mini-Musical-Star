@@ -104,7 +104,7 @@
 	trackTableView.dataSource = self;
     
     trackTableView.bounces = NO;
-    trackTableView.backgroundColor = [UIColor purpleColor];
+    trackTableView.backgroundColor = [UIColor cyanColor];
     
     [self.view addSubview:trackTableView];
     
@@ -148,6 +148,24 @@
     return theAudioObjects.count + theCoverScene.Audio.count + 2;
 }
 
+- (void)muteToggleButtonTapped:(UIButton *)sender
+{    
+    int busNumber = sender.tag;
+    
+    if ([thePlayer busNumberIsMuted:busNumber])
+    {
+        [thePlayer unmuteBusNumber:busNumber];
+        [sender setTitle:@"Tap to Mute" forState:UIControlStateNormal];
+    }
+    
+    else
+    {
+        [thePlayer muteBusNumber:busNumber];
+        [sender setTitle:@"Tap to Unmute" forState:UIControlStateNormal];
+    }
+    
+}
+
 // This method is called for each cell in the table view.
 // This method is called whenever we are scrolling - try adding a NSLog to see.
 // Customize the appearance of table view cells.
@@ -168,9 +186,13 @@
         //get the corresponding Audio object
         id audioForRow = [tracksForView objectAtIndex:[indexPath row]];
         
-        //suspect the tracksForView something wrong
-        
         //rows that are supposed to represent tracks
+        
+        //create the mute/unmute button for the track
+        UIButton *rightPanelButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 1024-150, 100)];
+        [rightPanelButton setTag:[indexPath row]];
+        [rightPanelButton setTitle:@"Tap to Mute" forState:UIControlStateNormal];
+        [rightPanelButton addTarget:self action:@selector(muteToggleButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
         
         if (cell == nil)
         {
@@ -196,17 +218,23 @@
             recordButton.tag = 2;
             [recordButton release];
             
+            
             /* the right panel of the row */
             trackCellRightPanel = [[UIView alloc] initWithFrame:CGRectMake(150, 0, 1024-150, 100)];
-            [cell.contentView addSubview:trackCellRightPanel]; //add label to view
+
+            [trackCellRightPanel addSubview:rightPanelButton];
             
-            /* draw the gradient-ed background of white to black */
-            CAGradientLayer *gradient = [CAGradientLayer layer];
-            gradient.frame = trackCellRightPanel.bounds;
-            gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor blackColor] CGColor], (id)[[UIColor whiteColor] CGColor], nil];            
-            [trackCellRightPanel.layer insertSublayer:gradient atIndex:0];
+            [cell.contentView addSubview:trackCellRightPanel]; //add label to view
+
+//            /* draw the gradient-ed background of white to black */
+//            CAGradientLayer *gradient = [CAGradientLayer layer];
+//            gradient.frame = trackCellRightPanel.bounds;
+//            gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor blackColor] CGColor], (id)[[UIColor whiteColor] CGColor], nil];            
+//            [trackCellRightPanel.layer insertSublayer:gradient atIndex:0];
             
             trackCellRightPanel.tag = 3;
+            
+            [trackCellRightPanel bringSubviewToFront:rightPanelButton];
             [trackCellRightPanel release];
         }
         
@@ -242,35 +270,36 @@
         [recordButton addTarget:self action:@selector(recordingButtonIsPressed:) forControlEvents:UIControlEventTouchDown];
         
         trackCellRightPanel = (UIView*)[cell.contentView viewWithTag:3];
-        CALayer *layer = trackCellRightPanel.layer;
-        layer.sublayers = nil; //remove all the sublayers inside the layer. if not we will keep adding additional layers.
-//        NSArray *layerArray = trackCellRightPanel.layer.sublayers; //get the array of layers
+//        CALayer *layer = trackCellRightPanel.layer;
+//        layer.sublayers = nil; //remove all the sublayers inside the layer. if not we will keep adding additional layers.
+////        NSArray *layerArray = trackCellRightPanel.layer.sublayers; //get the array of layers
+//        
+//        if (indexPath.row == currentRecordingTrack && isRecording == YES)
+//        {
+//            /* draw the gradient-ed background of red to black */
+//            CAGradientLayer *gradient = [CAGradientLayer layer];
+//            gradient.frame = trackCellRightPanel.bounds;
+//            gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor redColor] CGColor], (id)[[UIColor whiteColor] CGColor], nil];            
+//            [trackCellRightPanel.layer insertSublayer:gradient atIndex:0];          
+//        }
+//        else if (isRecording == NO && isPlaying == TRUE)
+//        {
+//            //SUPPOSE TO CHECK OF THE TRACK IS MUTE ALSO
+//            CAGradientLayer *gradient = [CAGradientLayer layer];
+//            gradient.frame = trackCellRightPanel.bounds;
+//            gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor greenColor] CGColor], (id)[[UIColor whiteColor] CGColor], nil];            
+//            [trackCellRightPanel.layer insertSublayer:gradient atIndex:0];
+//        }
+//        else
+//        {            
+//            /* draw the gradient-ed background of white to black */
+//            CAGradientLayer *gradient = [CAGradientLayer layer];
+//            gradient.frame = trackCellRightPanel.bounds;
+//            gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor blackColor] CGColor], (id)[[UIColor whiteColor] CGColor], nil];            
+//            [trackCellRightPanel.layer insertSublayer:gradient atIndex:0];
+//        }    
         
-        if (indexPath.row == currentRecordingTrack && isRecording == YES)
-        {
-            /* draw the gradient-ed background of red to black */
-            CAGradientLayer *gradient = [CAGradientLayer layer];
-            gradient.frame = trackCellRightPanel.bounds;
-            gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor redColor] CGColor], (id)[[UIColor whiteColor] CGColor], nil];            
-            [trackCellRightPanel.layer insertSublayer:gradient atIndex:0];          
-        }
-        else if (isRecording == NO && isPlaying == TRUE)
-        {
-            //SUPPOSE TO CHECK OF THE TRACK IS MUTE ALSO
-            CAGradientLayer *gradient = [CAGradientLayer layer];
-            gradient.frame = trackCellRightPanel.bounds;
-            gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor greenColor] CGColor], (id)[[UIColor whiteColor] CGColor], nil];            
-            [trackCellRightPanel.layer insertSublayer:gradient atIndex:0];
-        }
-        else
-        {            
-            /* draw the gradient-ed background of white to black */
-            CAGradientLayer *gradient = [CAGradientLayer layer];
-            gradient.frame = trackCellRightPanel.bounds;
-            gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor blackColor] CGColor], (id)[[UIColor whiteColor] CGColor], nil];            
-            [trackCellRightPanel.layer insertSublayer:gradient atIndex:0];
-        }    
-        
+        [trackCellRightPanel bringSubviewToFront:rightPanelButton];
         return cell;
         
     }
