@@ -9,7 +9,8 @@
 #import "AudioEditorViewController.h"
 
 @implementation AudioEditorViewController
-@synthesize thePlayer, theAudioObjects, theCoverScene, context, tracksForView;
+@synthesize thePlayer, theAudioObjects, theCoverScene, context;
+@synthesize tracksForView;
 @synthesize trackTableView, recordImage, recordingImage;
 @synthesize lyricsPopoverController, lyricsViewController, lyricsScrollView, lyricsLabel;
 @synthesize lyrics;
@@ -47,9 +48,10 @@
     if (self)
     {
         self.theAudioObjects = aScene.audioList;
+        //self.theScene = aScene;
         self.theCoverScene = aCoverScene;
         self.context = aContext;
-                  
+        
         //init the player with the audio tracks
         thePlayer = [[MixPlayerRecorder alloc] initWithAudioFileURLs:[aScene arrayOfAudioTrackURLs]];
         
@@ -57,13 +59,21 @@
         
     }
     
+    //tobedeleted
+//    [[aScene arrayOfAudioTrackURLs] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+//        NSURL *aNSURL = (NSURL*)obj;    
+//        NSLog(@"aaaNSURL: %@", [aNSURL absoluteString]);
+//    }];
+    
     return self;
 }
 
 - (void)consolidateOriginalAndCoverTracks
 {
     //[tracksForView release];
+    
     self.tracksForView = [NSMutableArray arrayWithCapacity:theAudioObjects.count + theCoverScene.Audio.count];
+    
     [theAudioObjects enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         [self.tracksForView addObject:obj];
     }];
@@ -150,8 +160,12 @@
         UIButton *recordButton;
         TrackPane *trackCellRightPanel;
         
+        NSLog(@"[indexPath row]: %i", [indexPath row]);
+        
         //get the corresponding Audio object
         id audioForRow = [tracksForView objectAtIndex:[indexPath row]];
+        
+        //suspect the tracksForView something wrong
         
         //rows that are supposed to represent tracks
         
@@ -292,12 +306,6 @@
     NSIndexPath *indexPath = [tableView indexPathForCell:trackCell];
     row = indexPath.row;
     
-    [indexPath release];
-    [tableView release];
-    [trackCell release];
-    [cellContentView release];
-    [recordButton release];
-    
     //get the corresponding Audio object
     id audioForRow = [tracksForView objectAtIndex:row];
     
@@ -316,62 +324,61 @@
     
     CoverSceneAudio *newCoverSceneAudio = [NSEntityDescription insertNewObjectForEntityForName:@"CoverSceneAudio" inManagedObjectContext:context];
     
-    newCoverSceneAudio.title = trackToBeRecorded.title;
+    newCoverSceneAudio.title = trackToBeRecorded.title; //cannot change
+        
+    NSString *tempDir = NSTemporaryDirectory();
+    NSString *tempFile = [tempDir stringByAppendingFormat:@"%@-cover.m4a", newCoverSceneAudio.title];
+    NSURL *fileURL = [NSURL fileURLWithPath:tempFile];
     
-    //HELP: what is the guitar supposed to mean? the name of the audio?
-    NSString *recordedPath = [[NSBundle mainBundle] pathForResource:@"guitar" ofType:@"mp3"];
-    newCoverSceneAudio.path = recordedPath;
+    newCoverSceneAudio.path = tempFile;
     
-    //things to do
-    //-start recording using MixPlayerRecorder, then store it
-    [thePlayer enableRecordingToFile: [NSURL fileURLWithPath:newCoverSceneAudio.path]];
-    [thePlayer setMicVolume:0.9]; //to be changed
+    //start recording using MixPlayerRecorder
+    //[thePlayer setMicVolume:0.9]; //to be changed
+    [thePlayer enableRecordingToFile:fileURL];
     
-    //enableRecordingToFile
-    
-    //-scroll that row to the top
+    //scroll that row to the top
     [self scrollRowToTopOfTableView:row];
     
-    //-ask the lyrics popover to come out
+    //ask the lyrics popover to come out
     [self setLyrics:trackToBeRecorded.lyrics];
     [self displayLyrics];
-    //    [self removeLyrics]; //not sure where is the best place to do this
-    
-    //-when recording is over, dismiss the lyrics popover
-    //final product: the recorded audio can be played
-    
+
     [self.theCoverScene addAudioObject:newCoverSceneAudio];
     
-    //HELP: NEED TO RELEASE THE ID audioForRow object??
-    //[trackToBeRecorded release];
     //[theCoverScene release];
 }
 
 - (IBAction)stopButtonIsPresssed:(UIButton*)stopButton
+
 {
     [thePlayer stopRecording];
-    [thePlayer setVolume:0 forBus:0];
-    [thePlayer play];
-}
-
-//Reinitialize the MixPlayer with the new audio tracks
-- (IBAction)reInitPlayer
-{
+    //[self dismissLyrics]; causing EXC_BAD_ACCESS
+    //[self removeLyrics];
+    //[thePlayer setVolume:0 forBus:0];
+    //[thePlayer play];
+    
     [thePlayer release];
     
-    //HELP: need to reinit player with audio tracks from Scene and CoverScene
-    //where can i get Scene from. no reference to SceneEditViewController
+    //tracksForView is a NSMutableArray
     
-    //get the array of audio tracks
-//    __block NSMutableArray *audioTracks = [[NSMutableArray alloc] initWithCapacity:aScene.audioList.count];
-//    [aScene.audioList enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-//        Audio *theAudio = (Audio *)obj;
-//        [audioTracks addObject:[NSURL fileURLWithPath:theAudio.path]];
-//    }];
-//    
-//    thePlayer = [[MixPlayerRecorder allocMixPlayerRecorder alloc] initWithAudioFileURLs:audioTracks];
+    //init the player with the audio tracks
+    NSMutableArray *tracksForViewNSURL = [NSMutableArray arrayWithCapacity:[tracksForView count]];
+    
+    [tracksForView enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        Audio *anAudio = (Audio*)obj;
+        NSString *path = anAudio.path;
+        [tracksForViewNSURL addObject:[NSURL fileURLWithPath:path]];
+    }];
+    
+    //tobedeleted
+    [tracksForViewNSURL enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        NSURL *aNSURL = (NSURL*)obj;    
+        NSLog(@"zzzNSURL: %@", [aNSURL absoluteString]);
+    }];
+    
+    NSLog(@"I'm at stopButtonIsPressed now, size of tracksForView is: %i", [tracksForView count]);
+    thePlayer = [[MixPlayerRecorder alloc] initWithAudioFileURLs:tracksForView];
 }
-
 
 #pragma mark instance methods
 - (void)setLyrics:(NSString*)someLyrics
@@ -432,6 +439,11 @@
     
     [self.lyricsPopoverController presentPopoverFromRect:CGRectMake(POPOVER_ANCHOR_X, POPOVER_ANCHOR_Y, 1, 1) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];    
     
+}
+
+- (void)dismissLyrics
+{
+    [lyricsPopoverController dismissPopoverAnimated:YES];
 }
 
 //Use this method to scroll a specific track cell to the top row of the table view

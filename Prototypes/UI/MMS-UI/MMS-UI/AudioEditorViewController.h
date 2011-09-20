@@ -45,6 +45,7 @@
 
 @property (nonatomic, retain) MixPlayerRecorder *thePlayer;
 @property (nonatomic, retain) NSArray *theAudioObjects;
+//@property (nonatomic, retain) Scene *theScene;
 @property (nonatomic, retain) CoverScene *theCoverScene;
 @property (nonatomic, retain) NSMutableArray *tracksForView;
 
@@ -55,8 +56,8 @@
 - (void)setLyrics:(NSString*)someLyrics;
 - (void)removeLyrics;
 - (void)displayLyrics;
+- (void)dismissLyrics;
 - (void)scrollRowToTopOfTableView:(int)trackNumber;
-- (void)reInitPlayer;
 
 - (IBAction)stopButtonIsPresssed:(UIButton*)stopButton;
 
