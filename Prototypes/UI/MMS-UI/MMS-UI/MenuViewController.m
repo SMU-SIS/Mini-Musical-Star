@@ -66,7 +66,7 @@
     [scrollView setScrollEnabled:YES];
     [scrollView setShowsHorizontalScrollIndicator:NO];
     [scrollView setShowsVerticalScrollIndicator:NO];
-    [scrollView setPagingEnabled:YES]; 
+    [scrollView setPagingEnabled:NO]; 
     scrollView.clipsToBounds = NO;    
     [scrollView setContentSize:CGSizeMake(scrollView.frame.size.width + (images.count+1)* 280, scrollView.frame.size.height)];
     
@@ -74,10 +74,10 @@
     
     
     //set up the hidden frame to scroll the scrollView outside from outside it's rectangle
-    CGRect hiddenScrollViewFrame = CGRectMake(0, 174, 1024, scrollView.frame.size.height); //make a CGRect for HiddenView
-    HiddenView *hiddenView = [[[HiddenView alloc] initWithFrame:hiddenScrollViewFrame] autorelease]; //init new HiddenView which is a custom UIView
-    hiddenView.menuScrollView = scrollView;
-    [self.view addSubview:hiddenView]; //add to the MenuViewController
+//    CGRect hiddenScrollViewFrame = CGRectMake(0, 174, 1024, scrollView.frame.size.height); //make a CGRect for HiddenView
+//    HiddenView *hiddenView = [[[HiddenView alloc] initWithFrame:hiddenScrollViewFrame] autorelease]; //init new HiddenView which is a custom UIView
+//    hiddenView.menuScrollView = scrollView;
+//    [self.view addSubview:hiddenView]; //add to the MenuViewController
 }
 
 - (void)viewDidUnload
@@ -89,12 +89,12 @@
 
 
 //Button action for creating new musical
-- (IBAction)createMusical {
+- (IBAction)createMusical: (UIButton*)sender {
     
     Cover *newCover = [NSEntityDescription insertNewObjectForEntityForName:@"Cover" inManagedObjectContext:managedObjectContext];
 
-    SceneViewController *sceneView = [[SceneViewController alloc] initWithScenesFromShow:[self returnCurrentSelectedShow] andCover:newCover andContext:managedObjectContext];
-    sceneView.title = [[self returnCurrentSelectedShow] title];
+    SceneViewController *sceneView = [[SceneViewController alloc] initWithScenesFromShow:[shows objectAtIndex:sender.tag] andCover:newCover andContext:managedObjectContext];
+    sceneView.title = [[shows objectAtIndex:sender.tag] title];
     
     [self.navigationController pushViewController:sceneView animated:YES];
     
@@ -104,13 +104,16 @@
     [sceneView release];
 }
 
--(Show *)returnCurrentSelectedShow
+-(Show *)returnCurrentSelectedShow:(id) sender
 {
 	// Calculate which page is visible 
-	CGFloat pageWidth = scrollView.frame.size.width;
-	int page = floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
-    
-	return [shows objectAtIndex:page];
+	
+    for (int i=0; i<[buttonArray count];i++){
+        if([sender isEqual: [buttonArray objectAtIndex:i]]){
+            return [shows objectAtIndex:i];
+        };
+    }
+	return nil;
 }
 
 - (IBAction)playBackMusical {
@@ -138,7 +141,7 @@
 {
     for (int i=0; i<images.count; i++) {
         CGRect frame;
-        frame.origin.x = scrollView.frame.size.width * i + 10;
+        frame.origin.x = scrollView.frame.size.width/3 * (1+i);
         frame.origin.y = 0;
         frame.size.width = 280;
         frame.size.height = scrollView.frame.size.height;
@@ -148,8 +151,17 @@
         
         UIImage *img = [images objectAtIndex:i];
         
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame:frame];
-        imageView.image = img;
+        UIButton *imageView = [[UIButton alloc] initWithFrame:frame];
+        imageView.layer.cornerRadius = 10; // this value vary as per your desire
+        imageView.clipsToBounds = YES;
+        
+        [imageView setImage:img forState:UIControlStateNormal];
+        
+        imageView.tag = i;
+        
+        [imageView addTarget:self action:@selector(createMusical:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [buttonArray addObject: imageView];
         
         [scrollView addSubview:imageView];
         [imageView release];

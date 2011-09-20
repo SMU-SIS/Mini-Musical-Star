@@ -23,6 +23,8 @@
     
     ShowImage *showImages;
     
+    NSMutableArray *buttonArray;
+    
     NSFetchedResultsController *fetchedResultsController;
     NSManagedObjectContext *managedObjectContext;
 }
