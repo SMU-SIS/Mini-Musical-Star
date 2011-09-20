@@ -47,8 +47,13 @@
 
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    scrollView.hidden = YES;
+}
 - (void)viewDidAppear:(BOOL)animated
 {
+    scrollView.hidden = NO;
     //return the array of show images; reason being, i need to get the scrollview content size based on the image count.
     //showImages = [ShowImage alloc];
     //NSArray *images = showImages.getShowImages; 
