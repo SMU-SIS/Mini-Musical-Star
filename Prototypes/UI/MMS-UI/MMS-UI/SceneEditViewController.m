@@ -114,12 +114,13 @@
     {
         [self.audioView.thePlayer stop];
         [sender setTitle:@"Play" forState:UIControlStateNormal];
+        [self.audioView stopPlaying];
     }
-    
     else
     {
         [self.audioView.thePlayer play];
         [sender setTitle:@"Stop" forState:UIControlStateNormal];
+        [self.audioView startPlaying];
     }
 }
 

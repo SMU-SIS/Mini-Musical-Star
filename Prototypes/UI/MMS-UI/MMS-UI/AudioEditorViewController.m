@@ -52,6 +52,9 @@
         self.theCoverScene = aCoverScene;
         self.context = aContext;
         
+        isPlaying = NO;
+        isRecording = NO;
+        
         //init the player with the audio tracks
         thePlayer = [[MixPlayerRecorder alloc] initWithAudioFileURLs:[aScene arrayOfAudioTrackURLs]];
         
@@ -158,7 +161,7 @@
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         UILabel *trackNameLabel;
         UIButton *recordButton;
-        TrackPane *trackCellRightPanel;
+        UIView *trackCellRightPanel;
         
         NSLog(@"[indexPath row]: %i", [indexPath row]);
         
@@ -203,10 +206,6 @@
             gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor blackColor] CGColor], (id)[[UIColor whiteColor] CGColor], nil];            
             [trackCellRightPanel.layer insertSublayer:gradient atIndex:0];
             
-            NSArray *layerArray = trackCellRightPanel.layer.sublayers;
-            CALayer *currLayer = [layerArray objectAtIndex:0]; //gets reference to the old layer, HA!
-            [trackCellRightPanel.layer replaceSublayer:currLayer with:gradient];
-            
             trackCellRightPanel.tag = 3;
             [trackCellRightPanel release];
         }
@@ -239,18 +238,38 @@
             }
         }
         
-        //to be del: make sure the recordButtonIsPressed method checks if the track is a audio or a cover! *loves*
-        [recordButton addTarget:self action:@selector(recordingButtonIsPressed:) forControlEvents:UIControlEventTouchUpInside];
+        //previously UIControlEventTouchUpInside, now 
+        [recordButton addTarget:self action:@selector(recordingButtonIsPressed:) forControlEvents:UIControlEventTouchDown];
         
-        //        trackCellRightPanel = (TrackPane*)[cell.contentView viewWithTag:3];
-        //        if (indexPath.row == currentRecordingTrack)
-        //        {
-        //                    
-        //        }
-        //        else
-        //        {            
-        //            NSLog(@"there are %i", [layerArray count]);
-        //        }    
+        trackCellRightPanel = (UIView*)[cell.contentView viewWithTag:3];
+        CALayer *layer = trackCellRightPanel.layer;
+        layer.sublayers = nil; //remove all the sublayers inside the layer. if not we will keep adding additional layers.
+//        NSArray *layerArray = trackCellRightPanel.layer.sublayers; //get the array of layers
+        
+        if (indexPath.row == currentRecordingTrack && isRecording == YES)
+        {
+            /* draw the gradient-ed background of red to black */
+            CAGradientLayer *gradient = [CAGradientLayer layer];
+            gradient.frame = trackCellRightPanel.bounds;
+            gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor redColor] CGColor], (id)[[UIColor whiteColor] CGColor], nil];            
+            [trackCellRightPanel.layer insertSublayer:gradient atIndex:0];          
+        }
+        else if (isRecording == NO && isPlaying == TRUE)
+        {
+            //SUPPOSE TO CHECK OF THE TRACK IS MUTE ALSO
+            CAGradientLayer *gradient = [CAGradientLayer layer];
+            gradient.frame = trackCellRightPanel.bounds;
+            gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor greenColor] CGColor], (id)[[UIColor whiteColor] CGColor], nil];            
+            [trackCellRightPanel.layer insertSublayer:gradient atIndex:0];
+        }
+        else
+        {            
+            /* draw the gradient-ed background of white to black */
+            CAGradientLayer *gradient = [CAGradientLayer layer];
+            gradient.frame = trackCellRightPanel.bounds;
+            gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor blackColor] CGColor], (id)[[UIColor whiteColor] CGColor], nil];            
+            [trackCellRightPanel.layer insertSublayer:gradient atIndex:0];
+        }    
         
         return cell;
         
@@ -315,6 +334,12 @@
         return;
     }
     
+    currentRecordingTrack = row;
+    isRecording = YES;
+    
+    //reload the tableviewcell
+    [trackTableView reloadData];
+    
     /* start recording once we determine it is a original track */
     NSLog(@"Adding a new CoverSceneAudio object!\n");
     
@@ -333,7 +358,7 @@
     newCoverSceneAudio.path = tempFile;
     
     //start recording using MixPlayerRecorder
-    //[thePlayer setMicVolume:0.9]; //to be changed
+    [thePlayer setMicVolume:0.9]; //to be changed
     [thePlayer enableRecordingToFile:fileURL];
     
     //scroll that row to the top
@@ -351,17 +376,17 @@
 - (IBAction)stopButtonIsPresssed:(UIButton*)stopButton
 
 {
+    //these will help to change the color of the right pane back to black
+    currentRecordingTrack = -1;
+    isRecording = NO;
+    [trackTableView reloadData];
+    
     [thePlayer stop];
     //[self dismissLyrics]; causing EXC_BAD_ACCESS
     //[self removeLyrics];
-    //[thePlayer setVolume:0 forBus:0];
     //[thePlayer play];
     
-    [thePlayer release];
-    
-    //tracksForView is a NSMutableArray
-    
-    //init the player with the audio tracks
+    //init the player with the original audio tracks and cover tracks
     NSMutableArray *tracksForViewNSURL = [NSMutableArray arrayWithCapacity:[tracksForView count]-1];
     
     [tracksForView enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
@@ -378,6 +403,9 @@
     
     NSLog(@"I'm at stopButtonIsPressed now, size of tracksForView is: %i", [tracksForView count]);
     thePlayer = [[MixPlayerRecorder alloc] initWithAudioFileURLs:tracksForViewNSURL];
+    
+    [thePlayer setVolume:0.9 forBus:2];    
+    [thePlayer play];
 }
 
 #pragma mark instance methods
@@ -389,6 +417,18 @@
 - (void)removeLyrics
 {
     [lyrics release];
+}
+
+- (void)startPlaying
+{
+    isPlaying = YES;
+    [trackTableView reloadData];
+}
+
+- (void)stopPlaying
+{
+    isPlaying = NO;
+    [trackTableView reloadData];
 }
 
 /* constants related to displaying lyrics */
@@ -438,6 +478,22 @@
     lyricsPopoverController.delegate = self;
     
     [self.lyricsPopoverController presentPopoverFromRect:CGRectMake(POPOVER_ANCHOR_X, POPOVER_ANCHOR_Y, 1, 1) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];    
+    
+    //set an array of views that the user can interact with while popover is visible
+    NSMutableArray *arrayOfPassThroughViews = [NSMutableArray arrayWithCapacity:1];
+    [arrayOfPassThroughViews addObject:trackTableView];
+   
+    for(int i=0;i<(theAudioObjects.count + theCoverScene.Audio.count + 2);i++) {
+        UITableViewCell *cell = [trackTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
+      if (cell != nil)
+      {
+       [arrayOfPassThroughViews addObject:cell];   
+      }
+        
+        
+    }
+    
+    lyricsPopoverController.passthroughViews = arrayOfPassThroughViews;
     
 }
 

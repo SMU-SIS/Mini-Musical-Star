@@ -18,19 +18,6 @@
     //open the audio file
     xafref = 0;
     
-    if ([audioFileURL isKindOfClass:[NSURL class]])
-    {
-        NSLog(@"IS KIND OF CLASS!!");
-    }
-    else
-    {
-        NSLog(@"not kind of class :(");
-    }
-    
-    NSLog(@"Me at audioFileURL, URL is: %@", [audioFileURL absoluteString]);
-    
-    
-    
     error = ExtAudioFileOpenURL((CFURLRef)audioFileURL, &xafref);
     
     //get the format of the audio file - what are we doing this for? nowhere else in the code needs this
