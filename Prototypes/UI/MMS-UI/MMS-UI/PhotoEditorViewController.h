@@ -28,6 +28,7 @@
 @property (retain,nonatomic) NSMutableArray *imagesArray;
 @property (nonatomic) int currentSelectedCover;
 
+
 @property (retain, nonatomic) CoverScene *theCoverScene;
 @property (retain, nonatomic) NSManagedObjectContext *context;
 @property (retain, nonatomic) CameraPopupViewController *cameraPopupViewController;
@@ -39,6 +40,7 @@
 - (IBAction) pressCenterImage;
 - (IBAction) replaceImageTest:(UIButton *)sender;
 - (IBAction) popupCameraOptions: (id) sender;
+
 
 - (void)replaceCenterImage: (UIImage*)image;
 

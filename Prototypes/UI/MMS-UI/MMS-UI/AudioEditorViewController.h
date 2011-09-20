@@ -15,7 +15,7 @@
 #import "CoverSceneAudio.h"
 
 @interface AudioEditorViewController : UIViewController
-<UITableViewDelegate, UITableViewDataSource, UIPopoverControllerDelegate>
+<UITableViewDelegate, UITableViewDataSource, UIPopoverControllerDelegate, UIAlertViewDelegate>
 {
     UITableView *trackTableView;
     
@@ -32,6 +32,9 @@
     UIViewController *lyricsViewController;
     UIScrollView *lyricsScrollView;
     UILabel *lyricsLabel;
+    
+    NSURL *currentRecordingNSURL;
+    NSString *currentRecordingTrackTitle;
 }
 
 @property (nonatomic, retain) UITableView *trackTableView;
@@ -52,6 +55,9 @@
 
 @property (nonatomic, retain) NSManagedObjectContext *context;
 
+@property (nonatomic, retain) NSURL *currentRecordingNSURL;
+@property (nonatomic, retain) NSString *currentRecordingTrackTitle;
+
 - (AudioEditorViewController *)initWithScene:(Scene *)theScene andCoverScene:(CoverScene *)aCoverScene andContext:(NSManagedObjectContext *)aContext;
 
 - (void)setLyrics:(NSString*)someLyrics;
@@ -62,6 +68,6 @@
 - (void)startPlaying;
 - (void)stopPlaying;
 
-- (IBAction)stopButtonIsPresssed:(UIButton*)stopButton;
+- (IBAction)stopButtonIsPresssed;
 
 @end

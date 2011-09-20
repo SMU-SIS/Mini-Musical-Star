@@ -14,6 +14,7 @@
 @synthesize trackTableView, recordImage, recordingImage;
 @synthesize lyricsPopoverController, lyricsViewController, lyricsScrollView, lyricsLabel;
 @synthesize lyrics;
+@synthesize currentRecordingNSURL, currentRecordingTrackTitle;
 
 - (void)dealloc
 {
@@ -61,12 +62,6 @@
         [self performSelector:@selector(consolidateOriginalAndCoverTracks)];
         
     }
-    
-    //tobedeleted
-//    [[aScene arrayOfAudioTrackURLs] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-//        NSURL *aNSURL = (NSURL*)obj;    
-//        NSLog(@"aaaNSURL: %@", [aNSURL absoluteString]);
-//    }];
     
     return self;
 }
@@ -374,46 +369,36 @@
     
     Audio *trackToBeRecorded = (Audio*)audioForRow;
     
-    NSLog(@"I got the audio: %@",trackToBeRecorded.title);
-    
-    CoverSceneAudio *newCoverSceneAudio = [NSEntityDescription insertNewObjectForEntityForName:@"CoverSceneAudio" inManagedObjectContext:context];
-    
-    newCoverSceneAudio.title = trackToBeRecorded.title; //cannot change
-        
     NSString *tempDir = NSTemporaryDirectory();
-    NSString *tempFile = [tempDir stringByAppendingFormat:@"%@-cover.m4a", newCoverSceneAudio.title];
+    NSString *tempFile = [tempDir stringByAppendingFormat:@"%@-cover.m4a", trackToBeRecorded.title];
     NSURL *fileURL = [NSURL fileURLWithPath:tempFile];
+    currentRecordingNSURL = fileURL;
     
-    newCoverSceneAudio.path = tempFile;
-    
-    //start recording using MixPlayerRecorder
-    [thePlayer setMicVolume:0.9]; //to be changed
-    [thePlayer enableRecordingToFile:fileURL];
+    currentRecordingTrackTitle = trackToBeRecorded.title;
     
     //scroll that row to the top
     [self scrollRowToTopOfTableView:row];
     
-    //ask the lyrics popover to come out
+    //start recording using MixPlayerRecorder
+    [thePlayer enableRecordingToFile:fileURL];
+    [thePlayer play];
+    
+    //display lyrics popover to come out
     [self setLyrics:trackToBeRecorded.lyrics];
     [self displayLyrics];
-
-    [self.theCoverScene addAudioObject:newCoverSceneAudio];
-    
-    //[theCoverScene release];
 }
 
-- (IBAction)stopButtonIsPresssed:(UIButton*)stopButton
-
+- (void)recordingIsCompleted
 {
-    //these will help to change the color of the right pane back to black
-    currentRecordingTrack = -1;
-    isRecording = NO;
-    [trackTableView reloadData];
+    NSString *tempDir = NSTemporaryDirectory();
+    NSString *tempFile = [tempDir stringByAppendingFormat:@"%@-cover.m4a", currentRecordingTrackTitle];
     
-    [thePlayer stop];
-    //[self dismissLyrics]; causing EXC_BAD_ACCESS
-    //[self removeLyrics];
-    //[thePlayer play];
+    CoverSceneAudio *newCoverSceneAudio = [NSEntityDescription insertNewObjectForEntityForName:@"CoverSceneAudio" inManagedObjectContext:context];
+    
+    newCoverSceneAudio.title = currentRecordingTrackTitle;
+    newCoverSceneAudio.path = tempFile;
+    
+    [self.theCoverScene addAudioObject:newCoverSceneAudio];
     
     //init the player with the original audio tracks and cover tracks
     NSMutableArray *tracksForViewNSURL = [NSMutableArray arrayWithCapacity:[tracksForView count]-1];
@@ -424,17 +409,33 @@
         [tracksForViewNSURL addObject:[NSURL fileURLWithPath:path]];
     }];
     
-    //tobedeleted
-    [tracksForViewNSURL enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        NSURL *aNSURL = (NSURL*)obj;    
-        NSLog(@"zzzNSURL: %@", [aNSURL absoluteString]);
-    }];
+    [thePlayer release];
     
-    NSLog(@"I'm at stopButtonIsPressed now, size of tracksForView is: %i", [tracksForView count]);
+    //reinit the player
     thePlayer = [[MixPlayerRecorder alloc] initWithAudioFileURLs:tracksForViewNSURL];
+}
+
+- (void)userCancelled
+{
     
-    [thePlayer setVolume:0.9 forBus:2];    
-    [thePlayer play];
+}
+
+- (void)stopButtonIsPresssed
+{
+//    UIAlertView *reallyStopAlertView = [[UIAlertView alloc] initWithTitle:@"Stop?" message:@"Do you really want to stop? :(" delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
+//    [reallyStopAlertView show];
+    
+
+    currentRecordingTrack = -1;
+    isRecording = NO;
+    
+    [trackTableView reloadData];
+    
+    [thePlayer stop];
+    
+    //clear values
+    
+    [self recordingIsCompleted];
 }
 
 #pragma mark instance methods
@@ -526,9 +527,13 @@
     
 }
 
+//Dissmiss the lyrics popover controller only if it is not nil and it is visible
 - (void)dismissLyrics
 {
-    [lyricsPopoverController dismissPopoverAnimated:YES];
+    if (lyricsPopoverController != nil && lyricsPopoverController.popoverVisible)
+    {
+        [lyricsPopoverController dismissPopoverAnimated:YES];
+    }
 }
 
 //Use this method to scroll a specific track cell to the top row of the table view
@@ -549,6 +554,20 @@
     [lyricsPopoverController release];
     
     [self removeLyrics];
+}
+
+#pragma mark UIAlertViewDelegate Protocol methods
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1) 
+    {
+        //user pressed yes
+    }
+    else
+    {
+        //user pressed no
+    }
 }
 
 @end
