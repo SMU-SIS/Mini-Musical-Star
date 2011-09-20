@@ -43,16 +43,12 @@
     [ShowDAO loadShowsWithDelegate:self];
     
     [DSBezelActivityView newActivityViewForView:self.view withLabel:@"Downloading Shows..."];
+    
+
 }
 
-- (void)daoDownloadQueueFinished
+- (void)viewDidAppear:(BOOL)animated
 {
-    self.shows = [[ShowDAO shows] retain];
-    [DSBezelActivityView removeViewAnimated:YES];
-    
-    //    NSLog(@"shows are %@\n", shows);
-    
-    
     //return the array of show images; reason being, i need to get the scrollview content size based on the image count.
     //showImages = [ShowImage alloc];
     //NSArray *images = showImages.getShowImages; 
@@ -71,6 +67,17 @@
     [scrollView setContentSize:CGSizeMake(scrollView.frame.size.width + (images.count+1)* 280, scrollView.frame.size.height)];
     
     [showImages release];
+}
+
+- (void)daoDownloadQueueFinished
+{
+    self.shows = [[ShowDAO shows] retain];
+    [DSBezelActivityView removeViewAnimated:YES];
+    
+    //    NSLog(@"shows are %@\n", shows);
+    
+    
+
     
     
     //set up the hidden frame to scroll the scrollView outside from outside it's rectangle
