@@ -32,6 +32,9 @@
     UIViewController *lyricsViewController;
     UIScrollView *lyricsScrollView;
     UILabel *lyricsLabel;
+    
+    NSURL *tempNSURL;
+    NSString *tempTrackTitle;
 }
 
 @property (nonatomic, retain) UITableView *trackTableView;
@@ -51,6 +54,9 @@
 @property (nonatomic, retain) NSMutableArray *tracksForView;
 
 @property (nonatomic, retain) NSManagedObjectContext *context;
+
+@property (nonatomic, retain) NSURL *tempNSURL;
+@property (nonatomic, retain) NSString *tempTrackTitle;
 
 - (AudioEditorViewController *)initWithScene:(Scene *)theScene andCoverScene:(CoverScene *)aCoverScene andContext:(NSManagedObjectContext *)aContext;
 

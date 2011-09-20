@@ -14,6 +14,7 @@
 @synthesize trackTableView, recordImage, recordingImage;
 @synthesize lyricsPopoverController, lyricsViewController, lyricsScrollView, lyricsLabel;
 @synthesize lyrics;
+@synthesize tempNSURL, tempTrackTitle;
 
 - (void)dealloc
 {
@@ -347,19 +348,24 @@
     
     NSLog(@"I got the audio: %@",trackToBeRecorded.title);
     
-    CoverSceneAudio *newCoverSceneAudio = [NSEntityDescription insertNewObjectForEntityForName:@"CoverSceneAudio" inManagedObjectContext:context];
+    //CoverSceneAudio *newCoverSceneAudio = [NSEntityDescription insertNewObjectForEntityForName:@"CoverSceneAudio" inManagedObjectContext:context];
     
-    newCoverSceneAudio.title = trackToBeRecorded.title; //cannot change
+   // newCoverSceneAudio.title = trackToBeRecorded.title; //cannot change
         
     NSString *tempDir = NSTemporaryDirectory();
-    NSString *tempFile = [tempDir stringByAppendingFormat:@"%@-cover.m4a", newCoverSceneAudio.title];
+    //NSString *tempFile = [tempDir stringByAppendingFormat:@"%@-cover.m4a", newCoverSceneAudio.title];
+    NSString *tempFile = [tempDir stringByAppendingFormat:@"%@-cover.m4a", trackToBeRecorded.title];
     NSURL *fileURL = [NSURL fileURLWithPath:tempFile];
+    tempNSURL = fileURL;
     
-    newCoverSceneAudio.path = tempFile;
+    //newCoverSceneAudio.path = tempFile;
+    
+    tempTrackTitle = trackToBeRecorded.title;
     
     //start recording using MixPlayerRecorder
     [thePlayer setMicVolume:0.9]; //to be changed
     [thePlayer enableRecordingToFile:fileURL];
+    [thePlayer play];
     
     //scroll that row to the top
     [self scrollRowToTopOfTableView:row];
@@ -368,7 +374,7 @@
     [self setLyrics:trackToBeRecorded.lyrics];
     [self displayLyrics];
 
-    [self.theCoverScene addAudioObject:newCoverSceneAudio];
+    
     
     //[theCoverScene release];
 }
@@ -376,6 +382,12 @@
 - (IBAction)stopButtonIsPresssed:(UIButton*)stopButton
 
 {
+    
+    UIAlertView *reallyStopAlertView = [[UIAlertView alloc] initWithTitle:@"Stop?" message:@"Do you really want to stop? :(" delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
+    
+    [reallyStopAlertView show];
+    
+    
     //these will help to change the color of the right pane back to black
     currentRecordingTrack = -1;
     isRecording = NO;
@@ -385,6 +397,20 @@
     //[self dismissLyrics]; causing EXC_BAD_ACCESS
     //[self removeLyrics];
     //[thePlayer play];
+    
+    
+    NSString *tempDir = NSTemporaryDirectory();
+    NSString *tempFile = [tempDir stringByAppendingFormat:@"%@-cover.m4a", tempTrackTitle];
+    NSURL *fileURL = [NSURL fileURLWithPath:tempFile];
+    
+    CoverSceneAudio *newCoverSceneAudio = [NSEntityDescription insertNewObjectForEntityForName:@"CoverSceneAudio" inManagedObjectContext:context];
+
+    newCoverSceneAudio.title = tempTrackTitle;
+    newCoverSceneAudio.path = tempFile;
+    
+    [self.theCoverScene addAudioObject:newCoverSceneAudio];
+    
+    
     
     //init the player with the original audio tracks and cover tracks
     NSMutableArray *tracksForViewNSURL = [NSMutableArray arrayWithCapacity:[tracksForView count]-1];
@@ -430,6 +456,11 @@
     isPlaying = NO;
     [trackTableView reloadData];
 }
+
+//- (void)userIsSongBecauseHeFinishSingingTheWholeSong
+//{
+
+//}
 
 /* constants related to displaying lyrics */
 #define POPOVER_WIDTH 1024 //the entire width of the landscape screen
