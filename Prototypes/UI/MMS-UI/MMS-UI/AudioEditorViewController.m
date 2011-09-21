@@ -647,4 +647,9 @@
     }
 }
 
+- (void)deRegisterFromNSNotifcationCenter
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 @end

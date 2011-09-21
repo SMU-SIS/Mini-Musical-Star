@@ -77,6 +77,7 @@
 
 - (void)giveMePlayPauseButton:(UIButton*)aButton;
 
+- (void)deRegisterFromNSNotifcationCenter;
 - (void)registerNotifications;
 
 
