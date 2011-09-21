@@ -74,7 +74,7 @@
 
 - (void)consolidateOriginalAndCoverTracks
 {
-    NSLog(@"Inside consolidateOriginalAndCoverTracks");
+//    NSLog(@"Inside consolidateOriginalAndCoverTracks");
     //[tracksForView release];
     
     self.tracksForView = [NSMutableArray arrayWithCapacity:theAudioObjects.count + theCoverScene.Audio.count];

@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6472FC2D14127DDE00837069 /* HiddenView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6472FC2C14127DDE00837069 /* HiddenView.m */; };
 		820511BF13F3BB9B0016F87E /* SceneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 820511BD13F3BB9B0016F87E /* SceneViewController.m */; };
 		820511C013F3BB9B0016F87E /* SceneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 820511BE13F3BB9B0016F87E /* SceneViewController.xib */; };
 		820E2A1C140A0A1E00B80BBC /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 820E2A1B140A0A1E00B80BBC /* AudioToolbox.framework */; };
@@ -144,8 +143,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		6472FC2B14127DDE00837069 /* HiddenView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HiddenView.h; sourceTree = "<group>"; };
-		6472FC2C14127DDE00837069 /* HiddenView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HiddenView.m; sourceTree = "<group>"; };
 		820511BC13F3BB9B0016F87E /* SceneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneViewController.h; sourceTree = "<group>"; };
 		820511BD13F3BB9B0016F87E /* SceneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SceneViewController.m; sourceTree = "<group>"; };
 		820511BE13F3BB9B0016F87E /* SceneViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SceneViewController.xib; sourceTree = "<group>"; };
@@ -491,8 +488,6 @@
 		95DAE8F31414DFD00039201D /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				6472FC2B14127DDE00837069 /* HiddenView.h */,
-				6472FC2C14127DDE00837069 /* HiddenView.m */,
 				820E2A1F140A0A3E00B80BBC /* MixPlayerRecorder.h */,
 				820E2A20140A0A3E00B80BBC /* MixPlayerRecorder.m */,
 				820E2A21140A0A3E00B80BBC /* ASBDHelper.c */,
@@ -936,7 +931,6 @@
 				9572E0DB140E118400713F45 /* Scene.m in Sources */,
 				9572E0DC140E118400713F45 /* Show.m in Sources */,
 				9572E0E0140E11FF00713F45 /* ShowDAO.m in Sources */,
-				6472FC2D14127DDE00837069 /* HiddenView.m in Sources */,
 				95DAE86814147FB20039201D /* ASIAuthenticationDialog.m in Sources */,
 				95DAE86A14147FB90039201D /* ASIDataCompressor.m in Sources */,
 				95DAE86B14147FBC0039201D /* ASIDataDecompressor.m in Sources */,
