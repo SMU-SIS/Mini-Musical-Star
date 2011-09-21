@@ -172,7 +172,7 @@
 {
     //convert the float value to seconds
     int targetSeconds = sender.value * [self.audioView.thePlayer totalPlaybackTimeInSeconds];
-    [self.audioView.thePlayer seekTo:targetSeconds];
+    [self setSliderPosition:targetSeconds];
     
 }
 
