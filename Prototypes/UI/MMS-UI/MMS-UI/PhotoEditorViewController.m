@@ -10,7 +10,7 @@
 
 @implementation PhotoEditorViewController
 
-@synthesize leftPicture, rightPicture, centerPicture, thePictures, imagesArray, theCoverScene, context, btn, currentSelectedCover, cameraPopupViewController;
+@synthesize leftPicture, rightPicture, centerPicture, thePictures, imagesArray, theCoverScene, context, btn, currentSelectedCover, cameraPopupViewController, delegate;
 
 -(void)dealloc
 {
@@ -100,6 +100,7 @@
         
         if (coverPicture == nil)
         {
+           
             [(AFOpenFlowView *)self.view setImage: pic.image forIndex: idx];
         }
         
@@ -156,6 +157,9 @@
 - (void)openFlowView:(AFOpenFlowView *)openFlowView selectionDidChange:(int)index
 {    
 	self.currentSelectedCover = index;
+    Picture *pic = [thePictures objectAtIndex:index]; 
+    [self.delegate setSliderPosition: pic.startTime];
+    
 }
 
 
@@ -175,6 +179,8 @@
     [UIView beginAnimations:nil context:nil];
     [overlayView.view setAlpha:1.0];
     [UIView commitAnimations];
+    
+    [delegate stopPlayer];
 
     [overlayView setDelegate:self];
 

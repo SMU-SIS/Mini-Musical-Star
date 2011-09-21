@@ -14,7 +14,6 @@
 - (void) takePhoto;
 @end
 
-
 @interface CameraPopupViewController : UIViewController
 <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPopoverControllerDelegate>
 {

@@ -40,6 +40,7 @@
 		95784437141DD23C0033721D /* TrackPane.m in Sources */ = {isa = PBXBuildFile; fileRef = 95784433141DD23C0033721D /* TrackPane.m */; };
 		9578443B141DD2F10033721D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9578443A141DD2F10033721D /* QuartzCore.framework */; };
 		959C8F0E1426464800E0988F /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 959C8F0D1426464800E0988F /* Icon-72.png */; };
+		95D9BB17142A1C4800782636 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 95D9BB16142A1C4800782636 /* UIImage+Resize.m */; };
 		95DAE86814147FB20039201D /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C82546140FC506003C9E49 /* ASIAuthenticationDialog.m */; };
 		95DAE86A14147FB90039201D /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C82549140FC506003C9E49 /* ASIDataCompressor.m */; };
 		95DAE86B14147FBC0039201D /* ASIDataDecompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C8254B140FC506003C9E49 /* ASIDataDecompressor.m */; };
@@ -219,6 +220,8 @@
 		95C82556140FC506003C9E49 /* ASINetworkQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASINetworkQueue.h; sourceTree = "<group>"; };
 		95C82557140FC506003C9E49 /* ASINetworkQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASINetworkQueue.m; sourceTree = "<group>"; };
 		95C82558140FC506003C9E49 /* ASIProgressDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIProgressDelegate.h; sourceTree = "<group>"; };
+		95D9BB15142A1C4800782636 /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
+		95D9BB16142A1C4800782636 /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
 		95DAE8721414801F0039201D /* README-GHUnit */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "README-GHUnit"; sourceTree = "<group>"; };
 		95DAE874141480200039201D /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		95DAE875141480200039201D /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
@@ -516,6 +519,8 @@
 				820E2A2A140A0A3E00B80BBC /* TPCircularBuffer.h */,
 				95DAE8F51414E8D50039201D /* ScenePlayer.h */,
 				95DAE8F61414E8D50039201D /* ScenePlayer.m */,
+				95D9BB15142A1C4800782636 /* UIImage+Resize.h */,
+				95D9BB16142A1C4800782636 /* UIImage+Resize.m */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -984,6 +989,7 @@
 				95F9FFDE1425C86B00A18463 /* CoverScene.m in Sources */,
 				95F9FFDF1425C86B00A18463 /* CoverSceneAudio.m in Sources */,
 				95F9FFE01425C86B00A18463 /* CoverScenePicture.m in Sources */,
+				95D9BB17142A1C4800782636 /* UIImage+Resize.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

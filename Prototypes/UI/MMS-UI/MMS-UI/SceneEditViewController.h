@@ -13,7 +13,7 @@
 #import "CoverScene.h"
 #import "MixPlayerRecorder.h"
 
-@interface SceneEditViewController : UIViewController <UIScrollViewDelegate, UIAlertViewDelegate> {
+@interface SceneEditViewController : UIViewController <UIScrollViewDelegate, UIAlertViewDelegate, PhotoEditorViewDelegate> {
     // To be used when scrolls originate from the UIPageControl
     BOOL pageControlUsed;
     BOOL transitioning;

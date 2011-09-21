@@ -43,8 +43,6 @@
     [ShowDAO loadShowsWithDelegate:self];
     
     [DSBezelActivityView newActivityViewForView:self.view withLabel:@"Downloading Shows..."];
-    
-
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -153,7 +151,7 @@
 {
     for (int i=0; i<images.count; i++) {
         CGRect frame;
-        frame.origin.x = scrollView.frame.size.width/3 * (1+i);
+        frame.origin.x = scrollView.frame.size.width/3 * i;
         frame.origin.y = 0;
         frame.size.width = 280;
         frame.size.height = scrollView.frame.size.height;
