@@ -461,7 +461,6 @@
 
 - (void)recordingIsCompleted
 {
-    NSLog(@"Inside recordingIsCompleted");
     
     currentRecordingTrack = -1;
     isRecording = NO;
@@ -529,7 +528,6 @@
         
         if (!thePlayer.stoppedBecauseReachedEnd)
         {
-            NSLog(@"Deleting the file which stores the incomplete song");
             //if file exists delete the file first
             NSFileManager *fileManager = [NSFileManager defaultManager];
             [fileManager removeItemAtURL:currentRecordingNSURL error:nil];
