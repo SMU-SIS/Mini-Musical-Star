@@ -74,6 +74,8 @@
 
 - (void)consolidateOriginalAndCoverTracks
 {
+    
+    NSLog(@"Inside consolidateOriginalAndCoverTracks");
     //[tracksForView release];
     
     self.tracksForView = [NSMutableArray arrayWithCapacity:theAudioObjects.count + theCoverScene.Audio.count];
@@ -127,7 +129,7 @@
     
     [self.theCoverScene removeObserver:self forKeyPath:@"Audio"];
     
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+//    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -183,9 +185,7 @@
         UILabel *trackNameLabel;
         UIButton *recordButton;
         UIView *trackCellRightPanel;
-        
-        NSLog(@"[indexPath row]: %i", [indexPath row]);
-        
+
         //get the corresponding Audio object
         id audioForRow = [tracksForView objectAtIndex:[indexPath row]];
         
@@ -335,6 +335,8 @@
 #pragma mark KVO callbacks
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)changeContext
 {
+    NSLog(@"Inside observeValueForKeyPath");
+    
     NSString *kvoContext = (NSString *)changeContext;
     if ([kvoContext isEqualToString:@"NewCoverTrackAdded"])
     {
@@ -373,10 +375,8 @@
     [trackTableView reloadData];
     
     /* start recording once we determine it is a original track */
-    NSLog(@"Adding a new CoverSceneAudio object!\n");
-    
     Audio *trackToBeRecorded = (Audio*)audioForRow;
-    
+
     NSString *tempDir = NSTemporaryDirectory();
     //we are going to use .caf files because i am going to encode in IMA4
     NSString *tempFile = [tempDir stringByAppendingFormat:@"%@-cover.caf", trackToBeRecorded.title];
@@ -413,7 +413,7 @@
 
 - (void)recordingIsCompleted
 {
-    [self resetRecordingValues];
+    NSLog(@"Inside recordingIsCompleted");
     
     currentRecordingTrack = -1;
     isRecording = NO;
@@ -447,10 +447,15 @@
     
     [playPauseButton setTitle:@"Play" forState:UIControlStateNormal];
     
+    [self dismissLyrics];
+    
+    [self resetRecordingValues];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
     //bring the seeker of player back to the starting point
-    [thePlayer seekTo:0];
+    [thePlayer seekTo:0]; //seekTo:0 is causing the NSNotification to call this method
     [thePlayer stop];
-
 }
 
 - (void)playButtonIsPressed
