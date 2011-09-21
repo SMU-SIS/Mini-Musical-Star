@@ -151,6 +151,8 @@
     [delegate stopPlayer];
 
     [overlayView setDelegate:self];
+    
+    [overlayView release];
 
 }
 
