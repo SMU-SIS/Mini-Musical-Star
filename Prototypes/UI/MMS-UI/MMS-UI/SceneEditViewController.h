@@ -19,6 +19,8 @@
     BOOL transitioning;
     BOOL isReallyStop;
     BOOL isAlertShown;
+    
+    IBOutlet UIButton *playPauseButton;
 }
 
 @property (retain, nonatomic) AudioEditorViewController *audioView;

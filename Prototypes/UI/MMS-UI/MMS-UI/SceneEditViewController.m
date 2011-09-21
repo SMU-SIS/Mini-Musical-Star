@@ -59,12 +59,10 @@
 - (void)loadChildViewControllers
 {
     //load the audio view controller
-    audioView = [[AudioEditorViewController alloc] initWithScene:theScene andCoverScene:theCoverScene andContext:context];
-    
+    audioView = [[AudioEditorViewController alloc] initWithScene:theScene andCoverScene:theCoverScene andContext:context andPlayPauseButton:playPauseButton];
 
     //load the photo view controller
     photoView = [[PhotoEditorViewController alloc] initWithPhotos:theScene.pictureList andCoverScene:theCoverScene andContext:context];
-    
 }
 
 - (void)registerNotifications
@@ -81,6 +79,8 @@
     [super viewDidLoad];
     
     [self registerNotifications];
+    
+    [audioView giveMePlayPauseButton:playPauseButton];
     
     [containerView addSubview:audioView.view];
     photoView.view.hidden = YES;
