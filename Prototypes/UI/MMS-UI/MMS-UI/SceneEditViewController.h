@@ -44,5 +44,6 @@
 - (void)setSliderPosition:(int) targetSeconds;
 - (void)showReallyAlertView;
 - (void)playPauseButtonIsPressed;
-
+- (void)stopPlayer;
+    
 @end

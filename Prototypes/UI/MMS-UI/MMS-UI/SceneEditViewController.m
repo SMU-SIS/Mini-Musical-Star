@@ -15,6 +15,7 @@
 - (void)dealloc
 {
     [audioView release];
+    NSLog(@"audioView just got released, retain count is %i\n", audioView.retainCount);
     [photoView release];
     [playPauseButton release];
     [containerView release];
@@ -27,8 +28,6 @@
     [theCoverScene release];
     [context release];
     [containerToggleButton release];
-    
-    
     [super dealloc];
 }
 
@@ -178,16 +177,26 @@
 
 - (void)setSliderPosition:(int) targetSeconds
 {
-    //convert the float value to seconds
-    if (self.audioView.thePlayer.isPlaying)
+    if (self.audioView.thePlayer.isRecording)
     {
-        [self.audioView.thePlayer seekTo:targetSeconds];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Oops!" message:@"Sorry, you can't seek while recording!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+        [alertView show];
+        [alertView release];
     }
     
     else
     {
-        [self.audioView.thePlayer seekTo:targetSeconds];
-        [self.audioView.thePlayer stop];
+        //convert the float value to seconds
+        if (self.audioView.thePlayer.isPlaying)
+        {
+            [self.audioView.thePlayer seekTo:targetSeconds];
+        }
+        
+        else
+        {
+            [self.audioView.thePlayer seekTo:targetSeconds];
+            [self.audioView.thePlayer stop];
+        }
     }
 }
 
@@ -275,7 +284,7 @@
 - (void)viewDidUnload
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    
+    NSLog(@"View is being unloaded!");
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
