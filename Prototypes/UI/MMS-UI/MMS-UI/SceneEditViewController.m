@@ -178,7 +178,16 @@
 - (void)setSliderPosition:(int) targetSeconds
 {
     //convert the float value to seconds
-    [self.audioView.thePlayer seekTo:targetSeconds];
+    if (self.audioView.thePlayer.isPlaying)
+    {
+        [self.audioView.thePlayer seekTo:targetSeconds];
+    }
+    
+    else
+    {
+        [self.audioView.thePlayer seekTo:targetSeconds];
+        [self.audioView.thePlayer stop];
+    }
 }
 
 - (IBAction)toggleContainerView
@@ -220,7 +229,6 @@
         containerToggleButton.title = @"Photos";
     }
 }
-
 
 #pragma mark notifys and callbacks
 
