@@ -136,8 +136,8 @@
             {
                 if (isReallyStop == YES)
                 {
-                    [self.audioView.thePlayer stop];
-                    [playPauseButton setTitle:@"Stop" forState:UIControlStateNormal];
+                    //[self.audioView.thePlayer stop]; //let audio view handle stopping.
+                    [playPauseButton setTitle:@"Play" forState:UIControlStateNormal];
                     [self.audioView stopButtonIsPresssed];
                 }
                 

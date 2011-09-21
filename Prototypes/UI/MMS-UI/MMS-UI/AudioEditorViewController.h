@@ -18,14 +18,12 @@
 <UITableViewDelegate, UITableViewDataSource, UIPopoverControllerDelegate>
 {
     UITableView *trackTableView;
-    
     UIImage *recordImage;
     UIImage *recordingImage;
     
-    int currentRecordingTrack;
+    //variables to track the state of the MixPlayer
     bool isRecording;
     bool isPlaying;
-    NSString *lyrics;
     
     //for the lyrics popover
     UIPopoverController *lyricsPopoverController;
@@ -33,10 +31,14 @@
     UIScrollView *lyricsScrollView;
     UILabel *lyricsLabel;
     
+    //stores a pointer to the play/pause button to the scene editor
+    UIButton *playPauseButton;
+    
+    //variables to store values temporarily when recording covers
+    int currentRecordingTrack;
+    NSString *lyrics;
     NSURL *currentRecordingNSURL;
     NSString *currentRecordingTrackTitle;
-    
-    UIButton *playPauseButton;
 }
 
 @property (nonatomic, retain) UITableView *trackTableView;

@@ -74,7 +74,6 @@
 
 - (void)consolidateOriginalAndCoverTracks
 {
-    
     NSLog(@"Inside consolidateOriginalAndCoverTracks");
     //[tracksForView release];
     
@@ -128,8 +127,6 @@
     // e.g. self.myOutlet = nil;
     
     [self.theCoverScene removeObserver:self forKeyPath:@"Audio"];
-    
-//    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -418,8 +415,6 @@
     currentRecordingTrack = -1;
     isRecording = NO;
     
-    [self dismissLyrics];
-    
     NSString *tempDir = NSTemporaryDirectory();
     NSString *tempFile = [tempDir stringByAppendingFormat:@"%@-cover.caf", currentRecordingTrackTitle];
     
@@ -474,25 +469,28 @@
 - (void)stopButtonIsPresssed
 {
     if (isRecording) {
+        [[NSNotificationCenter defaultCenter] removeObserver:self];
+        
         currentRecordingTrack = -1;
         isRecording = NO;
         
         [trackTableView reloadData];
         
-        [thePlayer stop];
+        if (!thePlayer.stoppedBecauseReachedEnd)
+        {
+            NSLog(@"Deleting the file which stores the incomplete song");
+            //if file exists delete the file first
+            NSFileManager *fileManager = [NSFileManager defaultManager];
+            [fileManager removeItemAtURL:currentRecordingNSURL error:nil];
+        }
+
         
         //bring the seeker of player back to the starting point
         [thePlayer seekTo:0];
         [thePlayer stop];
         
-        if (!thePlayer.stoppedBecauseReachedEnd)
-        {
-            NSLog(@"Delete the file");
-            //if file exists delete the file first
-            NSFileManager *fileManager = [NSFileManager defaultManager];
-            [fileManager removeItemAtURL:currentRecordingNSURL error:nil];
-        }
-        
+        [self dismissLyrics];
+               
         //clear values
         [self resetRecordingValues];
     }
