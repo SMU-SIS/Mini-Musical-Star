@@ -36,7 +36,6 @@
 		9572E0DB140E118400713F45 /* Scene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9572E0D4140E118400713F45 /* Scene.m */; };
 		9572E0DC140E118400713F45 /* Show.m in Sources */ = {isa = PBXBuildFile; fileRef = 9572E0D6140E118400713F45 /* Show.m */; };
 		9572E0E0140E11FF00713F45 /* ShowDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 9572E0DF140E11FF00713F45 /* ShowDAO.m */; };
-		95784437141DD23C0033721D /* TrackPane.m in Sources */ = {isa = PBXBuildFile; fileRef = 95784433141DD23C0033721D /* TrackPane.m */; };
 		9578443B141DD2F10033721D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9578443A141DD2F10033721D /* QuartzCore.framework */; };
 		959C8F0E1426464800E0988F /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 959C8F0D1426464800E0988F /* Icon-72.png */; };
 		95D9BB17142A1C4800782636 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 95D9BB16142A1C4800782636 /* UIImage+Resize.m */; };
@@ -189,8 +188,6 @@
 		9572E0D6140E118400713F45 /* Show.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Show.m; sourceTree = "<group>"; };
 		9572E0DE140E11FF00713F45 /* ShowDAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowDAO.h; sourceTree = "<group>"; };
 		9572E0DF140E11FF00713F45 /* ShowDAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowDAO.m; sourceTree = "<group>"; };
-		95784433141DD23C0033721D /* TrackPane.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackPane.m; sourceTree = "<group>"; };
-		95784436141DD23C0033721D /* TrackPane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackPane.h; sourceTree = "<group>"; };
 		9578443A141DD2F10033721D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		959C8F0D1426464800E0988F /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
 		95C82545140FC506003C9E49 /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIAuthenticationDialog.h; sourceTree = "<group>"; };
@@ -546,8 +543,6 @@
 				EDA2A1DA13F26F8400B64EA5 /* MenuViewController.m */,
 				95F9FFC31425C60400A18463 /* CameraPopupViewController.h */,
 				95F9FFC41425C60400A18463 /* CameraPopupViewController.m */,
-				95784433141DD23C0033721D /* TrackPane.m */,
-				95784436141DD23C0033721D /* TrackPane.h */,
 				9569E0571418A2A80016DAF3 /* AudioEditorViewController.h */,
 				9569E0581418A2A80016DAF3 /* AudioEditorViewController.m */,
 				9569E0591418A2A80016DAF3 /* PhotoEditorViewController.h */,
@@ -949,7 +944,6 @@
 				9569E05B1418A2A80016DAF3 /* AudioEditorViewController.m in Sources */,
 				9569E05C1418A2A80016DAF3 /* PhotoEditorViewController.m in Sources */,
 				9569E0651418A2D30016DAF3 /* SceneEditViewController.m in Sources */,
-				95784437141DD23C0033721D /* TrackPane.m in Sources */,
 				95F9FFBE1425C5C200A18463 /* AFItemView.m in Sources */,
 				95F9FFBF1425C5C200A18463 /* AFOpenFlowView.m in Sources */,
 				95F9FFC01425C5C200A18463 /* AFUIImageReflection.m in Sources */,

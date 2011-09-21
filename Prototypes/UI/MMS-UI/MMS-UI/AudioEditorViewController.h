@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "TrackPane.h"
 #import <QuartzCore/QuartzCore.h>
 #import "MixPlayerRecorder.h"
 #import "Scene.h"
