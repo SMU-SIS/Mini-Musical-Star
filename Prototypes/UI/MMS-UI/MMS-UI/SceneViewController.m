@@ -101,7 +101,6 @@
 
 -(void)selectScene:(UIButton *)sender
 {
-    
     [DSBezelActivityView newActivityViewForView:self.view withLabel:@"Loading..."];
     [self performSelectorInBackground:@selector(loadSceneEditViewController:) withObject:sender];
 }
@@ -168,7 +167,6 @@
         //NSLog(@"Length is %g", frame.size.height);
         
         UIImage *img = [images objectAtIndex:i];
-        
         
         UIButton *button = [[UIButton alloc] initWithFrame:frame];
         //set tag number for each scene button to correspond with the scenes array

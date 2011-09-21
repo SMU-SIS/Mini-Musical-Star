@@ -136,8 +136,8 @@
             {
                 if (isReallyStop == YES)
                 {
-                    [self.audioView.thePlayer stop];
-                    [playPauseButton setTitle:@"Stop" forState:UIControlStateNormal];
+                    //[self.audioView.thePlayer stop]; //let audio view handle stopping.
+                    [playPauseButton setTitle:@"Play" forState:UIControlStateNormal];
                     [self.audioView stopButtonIsPresssed];
                 }
                 
@@ -258,8 +258,6 @@
     [playPauseButton setTitle:@"Stop" forState:UIControlStateNormal];
 }
 
-
-
 - (void)viewDidUnload
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -267,8 +265,6 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
-    
-    
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -298,8 +294,6 @@
 
 - (void)showReallyAlertView
 {
-    NSLog(@"I went into showReallyAlertView");
-    
     UIAlertView *reallyStopAlertView = [[UIAlertView alloc] initWithTitle:@"Stop?" message:@"Do you really want to stop? :(" delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
     
     [reallyStopAlertView show];
