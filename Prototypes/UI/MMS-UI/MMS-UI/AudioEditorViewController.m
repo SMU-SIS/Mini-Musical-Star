@@ -435,14 +435,14 @@
         [tracksForViewNSURL addObject:[NSURL fileURLWithPath:path]];
     }];
     
+    [self dismissLyrics];
+    
     [thePlayer release];
     
     //reinit the player
     thePlayer = [[MixPlayerRecorder alloc] initWithAudioFileURLs:tracksForViewNSURL];
     
     [playPauseButton setTitle:@"Play" forState:UIControlStateNormal];
-    
-    [self dismissLyrics];
     
     [self resetRecordingValues];
     
