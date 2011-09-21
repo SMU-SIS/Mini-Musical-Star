@@ -27,7 +27,6 @@
     
     //for the lyrics popover
     UIPopoverController *lyricsPopoverController;
-    UIViewController *lyricsViewController;
     UIScrollView *lyricsScrollView;
     UILabel *lyricsLabel;
     
@@ -50,7 +49,6 @@
 @property (nonatomic, retain) NSString *lyrics;
 
 //for the lyrics
-@property (nonatomic, retain) UIViewController *lyricsViewController;
 @property (nonatomic, retain) UIScrollView *lyricsScrollView;
 @property (nonatomic, retain) UILabel *lyricsLabel;
 @property (nonatomic, retain) UIView *lyricsView;
@@ -69,11 +67,8 @@
 
 - (AudioEditorViewController *)initWithScene:(Scene *)theScene andCoverScene:(CoverScene *)aCoverScene andContext:(NSManagedObjectContext *)aContext andPlayPauseButton:(UIButton*)aPlayPauseButton;
 
-- (void)setLyrics:(NSString*)someLyrics;
-- (void)removeLyrics;
-- (void)displayLyrics;
-- (void)dismissLyrics;
 - (void)scrollRowToTopOfTableView:(int)trackNumber;
+- (void)prepareLyricsView;
 
 - (void)playButtonIsPressed;
 - (void)stopButtonIsPresssed;
@@ -84,5 +79,7 @@
 - (void)giveMePlayPauseButton:(UIButton*)aButton;
 
 - (void)registerNotifications;
+
+
 
 @end

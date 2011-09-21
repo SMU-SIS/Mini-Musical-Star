@@ -12,7 +12,7 @@
 @synthesize thePlayer, theAudioObjects, theCoverScene, context;
 @synthesize tracksForView;
 @synthesize trackTableView, recordImage, recordingImage;
-@synthesize lyricsViewController, lyricsScrollView, lyricsLabel, lyricsView;
+@synthesize lyricsScrollView, lyricsLabel, lyricsView;
 @synthesize lyrics;
 @synthesize currentRecordingNSURL, currentRecordingTrackTitle;
 @synthesize playPauseButton;
@@ -33,7 +33,9 @@
     [currentRecordingNSURL release];
     [currentRecordingTrackTitle release];
     
-    //lyricsPopoverController, lyricsViewController, lyricsScrollView, lyricsLabel are released whenever the popover is closed.
+    [lyricsScrollView release];
+    [lyricsLabel release];
+    [lyricsView release];
     
     [super dealloc];
 }
@@ -66,6 +68,11 @@
         thePlayer = [[MixPlayerRecorder alloc] initWithAudioFileURLs:[aScene arrayOfAudioTrackURLs]];
         
         [self performSelector:@selector(consolidateOriginalAndCoverTracks)];
+        
+        Audio *firstAudio = (Audio*)[tracksForView objectAtIndex:0];
+        lyrics = firstAudio.lyrics;
+        
+        [self prepareLyricsView];
         
     }
     
@@ -118,6 +125,8 @@
     
     //set default value
     currentRecordingTrack = -1; //representing no track is being recorded
+    
+    
 }
 
 - (void)viewDidUnload
@@ -312,6 +321,7 @@
 //        }    
         
         [trackCellRightPanel bringSubviewToFront:rightPanelButton];
+        [rightPanelButton release];
         return cell;
         
     }
@@ -420,8 +430,7 @@
     [thePlayer play];
     
     //display lyrics popover to come out
-    [self setLyrics:trackToBeRecorded.lyrics];
-    [self displayLyrics];
+    [self showAndDismissLyricsButtonIsPressed];
     
     [self registerNotifications];
 }
@@ -461,7 +470,7 @@
         [tracksForViewNSURL addObject:[NSURL fileURLWithPath:path]];
     }];
     
-    [self dismissLyrics];
+    [self showAndDismissLyricsButtonIsPressed];
     
     [thePlayer release];
     
@@ -514,7 +523,7 @@
         [thePlayer seekTo:0];
         [thePlayer stop];
         
-        [self dismissLyrics];
+        [self showAndDismissLyricsButtonIsPressed];
                
         //clear values
         [self resetRecordingValues];
@@ -525,16 +534,6 @@
         [trackTableView reloadData];
         
     }
-}
-
-- (void)setLyrics:(NSString*)someLyrics
-{
-    lyrics = someLyrics;
-}
-
-- (void)removeLyrics
-{
-    [lyrics release];
 }
 
 - (bool)isRecording
@@ -548,7 +547,7 @@
 #define LYRICS_VIEW_X 0
 #define LYRICS_VIEW_Y 200
 
-- (void)displayLyrics
+- (void)prepareLyricsView
 {
    lyricsView = [[UIView alloc] initWithFrame:CGRectMake(LYRICS_VIEW_X, LYRICS_VIEW_Y, LYRICS_VIEW_WIDTH, LYRICS_VIEW_HEIGHT)];
 
@@ -581,11 +580,7 @@
     
     [lyricsScrollView addSubview:lyricsLabel];
     [lyricsView addSubview:lyricsScrollView];
-    
-    [self.view addSubview:lyricsView];
-    [self.view bringSubviewToFront:lyricsView];
-    [self.view sendSubviewToBack:trackTableView];
-    
+
     lyricsLabel.text = lyrics;
 }
 
@@ -593,12 +588,6 @@
 - (void)giveMePlayPauseButton:(UIButton*)aButton
 {
     self.playPauseButton = aButton;
-}
-
-//remove the lyrics view from it's superview
-- (void)dismissLyrics
-{
-    [lyricsView removeFromSuperview];
 }
 
 //Use this method to scroll a specific track cell to the top row of the table view
@@ -625,22 +614,10 @@
     {
         //if the lyrics view don't have a super view
         [self.view addSubview:lyricsView];
+        [self.view bringSubviewToFront:lyricsView];
+        [self.view sendSubviewToBack:trackTableView];
+
     }
-}
-
-
-#pragma mark UIPopoverControllerDelegate Protocol methods
-
-//UIPopoverControllerDelegate Protocol method - called when the popover is dismissed.
-- (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
-{
-    //release them. we don't need them after the popover is dismissed.
-    [lyricsLabel release];
-    [lyricsScrollView release];
-    [lyricsViewController release];
-    [lyricsPopoverController release];
-    
-    [self removeLyrics];
 }
 
 @end
