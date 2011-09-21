@@ -185,6 +185,8 @@
         [sender setTitle:@"Tap to Unmute" forState:UIControlStateNormal];
     }
     
+    [trackTableView reloadData];
+    
 }
 
 // This method is called for each cell in the table view.
@@ -308,9 +310,6 @@
         layer.sublayers = nil; //remove all the sublayers inside the layer. if not we will keep adding additional layers.
        // NSArray *layerArray = trackCellRightPanel.layer.sublayers; //get the array of layers
         
-        NSLog(@"isRecording: %i", isRecording);
-        NSLog(@"isPlaying: %i", isPlaying);
-        
         if (indexPath.row == currentRecordingTrack && isRecording == YES)
         {
             /* draw the gradient-ed background of red to black */
@@ -322,10 +321,22 @@
         else if (isRecording == NO && isPlaying == YES)
         {
             //SUPPOSE TO CHECK OF THE TRACK IS MUTE ALSO
-            CAGradientLayer *gradient = [CAGradientLayer layer];
-            gradient.frame = trackCellRightIndicator.bounds;
-            gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor greenColor] CGColor], (id)[[UIColor whiteColor] CGColor], nil];            
-            [trackCellRightIndicator.layer insertSublayer:gradient atIndex:0];
+            
+            
+            if ([thePlayer busNumberIsMuted:indexPath.row])
+            {
+                CAGradientLayer *gradient = [CAGradientLayer layer];
+                gradient.frame = trackCellRightIndicator.bounds;
+                gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor blackColor] CGColor], (id)[[UIColor whiteColor] CGColor], nil];            
+                [trackCellRightIndicator.layer insertSublayer:gradient atIndex:0];
+            }
+            else
+            {
+                CAGradientLayer *gradient = [CAGradientLayer layer];
+                gradient.frame = trackCellRightIndicator.bounds;
+                gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor greenColor] CGColor], (id)[[UIColor whiteColor] CGColor], nil];            
+                [trackCellRightIndicator.layer insertSublayer:gradient atIndex:0];
+            }
         }
         else
         {            
@@ -529,7 +540,6 @@
         
         if (!thePlayer.stoppedBecauseReachedEnd)
         {
-            NSLog(@"Deleting the file which stores the incomplete song");
             //if file exists delete the file first
             NSFileManager *fileManager = [NSFileManager defaultManager];
             [fileManager removeItemAtURL:currentRecordingNSURL error:nil];
