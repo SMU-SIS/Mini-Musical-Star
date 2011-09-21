@@ -180,7 +180,7 @@
     [overlayView.view setAlpha:1.0];
     [UIView commitAnimations];
     
-    [delegate playPauseButtonIsPressed];
+    [delegate stopPlayer];
 
     [overlayView setDelegate:self];
 
