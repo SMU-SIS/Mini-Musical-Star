@@ -150,7 +150,6 @@
 
     [overlayView setDelegate:self];
     
-    [overlayView release];
 
 }
 
