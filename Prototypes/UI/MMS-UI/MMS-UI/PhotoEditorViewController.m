@@ -22,6 +22,7 @@
     [theCoverScene release];
     [context release];
     [cameraPopupViewController release];
+    [delegate release];
     [super dealloc];
 }
 

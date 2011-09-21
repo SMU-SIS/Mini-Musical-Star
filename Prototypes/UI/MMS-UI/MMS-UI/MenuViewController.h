@@ -13,7 +13,6 @@
 #import "Cover.h"
 
 #import "SceneViewController.h"
-#import "PlaybackViewController.h"
 #import "DSActivityView.h"
 
 @interface MenuViewController : UIViewController <NSFetchedResultsControllerDelegate> {

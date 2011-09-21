@@ -13,6 +13,15 @@
 
 @synthesize takePhotoButton, replacePictureButton, popoverController, delegate;
 
+-(void) dealloc
+{
+    [takePhotoButton release];
+    [replacePictureButton release];
+    [popoverController release];
+    [delegate release];
+    [super dealloc];
+}
+
 - (void)didReceiveMemoryWarning
 {
     // Releases the view if it doesn't have a superview.
