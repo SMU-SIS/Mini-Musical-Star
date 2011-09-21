@@ -48,4 +48,5 @@ enum { kIsNonMixableFlag = (1L << 6) };
 void ASBDSetAUCanonical(AudioStreamBasicDescription* asbd, UInt32 nChannels, bool interleaved);
 void ASBDSetCanonical(AudioStreamBasicDescription* asbd, UInt32 nChannels, bool interleaved);
 void ASBDSetM4A(AudioStreamBasicDescription* asbd, UInt32 nChannels);
+void ASBDSetIMA4(AudioStreamBasicDescription* asbd, UInt32 nChannels);
 void ASBDPrint(AudioStreamBasicDescription* asbd);
