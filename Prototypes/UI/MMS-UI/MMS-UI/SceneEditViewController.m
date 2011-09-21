@@ -15,7 +15,6 @@
 - (void)dealloc
 {
     [audioView release];
-    NSLog(@"audioView just got released, retain count is %i\n", audioView.retainCount);
     [photoView release];
     [playPauseButton release];
     [containerView release];
@@ -120,7 +119,6 @@
 
 - (void)playPauseButtonIsPressed
 {
-    NSLog(@"Hi i'm inside playPauseButtonIsPressed, isRecording %i", [audioView isRecording]);
     
     if ([self.audioView.thePlayer isPlaying] && [audioView isRecording] == NO)
     {
@@ -284,7 +282,6 @@
 - (void)viewDidUnload
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    NSLog(@"View is being unloaded!");
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;

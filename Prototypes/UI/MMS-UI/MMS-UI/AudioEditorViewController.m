@@ -472,7 +472,6 @@
 
 - (void)recordingIsCompleted
 {
-    NSLog(@"Inside recordingIsCompleted");
     
     currentRecordingTrack = -1;
     isRecording = NO;
