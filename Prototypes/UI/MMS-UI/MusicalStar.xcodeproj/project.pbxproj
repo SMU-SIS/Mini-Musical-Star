@@ -591,14 +591,6 @@
 		EDA2A1B513F26F8300B64EA5 = {
 			isa = PBXGroup;
 			children = (
-				95F9FFC11425C5DF00A18463 /* CoreData.framework */,
-				9578443A141DD2F10033721D /* QuartzCore.framework */,
-				95DAE888141481470039201D /* libz.dylib */,
-				95DAE886141481400039201D /* libxml2.dylib */,
-				95DAE884141481300039201D /* SystemConfiguration.framework */,
-				95DAE882141481210039201D /* Security.framework */,
-				95DAE880141481160039201D /* MobileCoreServices.framework */,
-				95DAE87E141480F80039201D /* CFNetwork.framework */,
 				820E2A1E140A0A2A00B80BBC /* Resources */,
 				EDA2A1CA13F26F8400B64EA5 /* MMS-UI */,
 				EDA2A1EA13F26F8400B64EA5 /* MMS-UITests */,
@@ -619,6 +611,14 @@
 		EDA2A1C313F26F8400B64EA5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				95F9FFC11425C5DF00A18463 /* CoreData.framework */,
+				9578443A141DD2F10033721D /* QuartzCore.framework */,
+				95DAE888141481470039201D /* libz.dylib */,
+				95DAE886141481400039201D /* libxml2.dylib */,
+				95DAE884141481300039201D /* SystemConfiguration.framework */,
+				95DAE882141481210039201D /* Security.framework */,
+				95DAE880141481160039201D /* MobileCoreServices.framework */,
+				95DAE87E141480F80039201D /* CFNetwork.framework */,
 				820E2A1B140A0A1E00B80BBC /* AudioToolbox.framework */,
 				EDA2A1C413F26F8400B64EA5 /* UIKit.framework */,
 				EDA2A1C613F26F8400B64EA5 /* Foundation.framework */,
