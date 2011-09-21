@@ -18,7 +18,6 @@
     [takePhotoButton release];
     [replacePictureButton release];
     [popoverController release];
-    [delegate release];
     [super dealloc];
 }
 
