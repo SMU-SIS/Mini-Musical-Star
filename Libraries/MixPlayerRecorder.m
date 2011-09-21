@@ -200,13 +200,13 @@ static OSStatus renderNotification(void *inRefCon,
     CheckError(error, "cannot add AUGraphAddRenderNotify");
     
     //summary...
-    CAShow(processingGraph);
+//    CAShow(processingGraph);
     
     //initalize the graph
     error = AUGraphInitialize(processingGraph);
     CheckError(error, "cannot initialize processing graph");
     
-    printf("Finished initializing graph\n");
+//    printf("Finished initializing graph\n");
 }
 
 #pragma mark - callable methods
@@ -255,7 +255,7 @@ static OSStatus renderNotification(void *inRefCon,
     error = AUGraphStart(processingGraph);
     CheckError(error, "Cannot start AUGraph");
     isPlaying = YES;
-    printf("AUGraph started\n");
+//    printf("AUGraph started\n");
     
     //post notifications
     [[NSNotificationCenter defaultCenter] postNotificationName:kMixPlayerRecorderPlaybackStarted object:self];
@@ -270,7 +270,7 @@ static OSStatus renderNotification(void *inRefCon,
     error = AUGraphStop(processingGraph);
     CheckError(error, "Cannot stop AUGraph");
     isPlaying = NO;
-    printf("AUGraph stopped\n");
+//    printf("AUGraph stopped\n");
     
     //post notification
     [[NSNotificationCenter defaultCenter] postNotificationName:kMixPlayerRecorderPlaybackStopped object:self];
