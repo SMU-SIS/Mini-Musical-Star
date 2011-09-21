@@ -30,7 +30,6 @@
     [recordImage release];
     [recordingImage release];
     
-    [lyrics release];
     [currentRecordingNSURL release];
     [currentRecordingTrackTitle release];
     
@@ -127,6 +126,8 @@
     // e.g. self.myOutlet = nil;
     
     [self.theCoverScene removeObserver:self forKeyPath:@"Audio"];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -384,9 +385,8 @@
     NSFileManager *fileManager = [NSFileManager defaultManager];
     [fileManager removeItemAtURL:fileURL error:nil];
     
-    currentRecordingNSURL = fileURL;
-    
-    currentRecordingTrackTitle = trackToBeRecorded.title;
+    self.currentRecordingNSURL = fileURL;
+    self.currentRecordingTrackTitle = trackToBeRecorded.title;
     
     //scroll that row to the top
     [self scrollRowToTopOfTableView:row];
@@ -398,10 +398,25 @@
     //display lyrics popover to come out
     [self setLyrics:trackToBeRecorded.lyrics];
     [self displayLyrics];
+    
+    [self registerNotifications];
+}
+
+#pragma mark instance methods
+
+- (void)resetRecordingValues
+{
+    currentRecordingTrackTitle = @"";
+    currentRecordingNSURL = nil;
 }
 
 - (void)recordingIsCompleted
 {
+    [self resetRecordingValues];
+    
+    currentRecordingTrack = -1;
+    isRecording = NO;
+    
     [self dismissLyrics];
     
     NSString *tempDir = NSTemporaryDirectory();
@@ -428,33 +443,31 @@
     
     //reinit the player
     thePlayer = [[MixPlayerRecorder alloc] initWithAudioFileURLs:tracksForViewNSURL];
-}
-
-- (void)userCancelled
-{
-    currentRecordingTrackTitle = @"";
-    currentRecordingNSURL = nil;
     
+    [playPauseButton setTitle:@"Play" forState:UIControlStateNormal];
+    
+    //bring the seeker of player back to the starting point
+    [thePlayer seekTo:0];
+    [thePlayer stop];
+
 }
 
 - (void)playButtonIsPressed
 {
     if (isRecording) 
     {
-        
-        
+        //nothing should be done here.
     }
     else if (isPlaying)
     {
         isPlaying = YES;
         [trackTableView reloadData];
     }
-    
 }
 
 - (void)stopButtonIsPresssed
 {
-   if (isRecording) {
+    if (isRecording) {
         currentRecordingTrack = -1;
         isRecording = NO;
         
@@ -462,9 +475,20 @@
         
         [thePlayer stop];
         
-        //clear values
+        //bring the seeker of player back to the starting point
+        [thePlayer seekTo:0];
+        [thePlayer stop];
         
-        [self recordingIsCompleted];
+        if (!thePlayer.stoppedBecauseReachedEnd)
+        {
+            NSLog(@"Delete the file");
+            //if file exists delete the file first
+            NSFileManager *fileManager = [NSFileManager defaultManager];
+            [fileManager removeItemAtURL:currentRecordingNSURL error:nil];
+        }
+        
+        //clear values
+        [self resetRecordingValues];
     }
     else if (isPlaying)
     {
@@ -474,7 +498,6 @@
     }
 }
 
-#pragma mark instance methods
 - (void)setLyrics:(NSString*)someLyrics
 {
     lyrics = someLyrics;
@@ -492,7 +515,7 @@
 
 /* constants related to displaying lyrics */
 #define POPOVER_WIDTH 1024 //the entire width of the landscape screen
-#define POPOVER_HEIGHT 200-33
+#define POPOVER_HEIGHT 200-33+180
 #define POPOVER_ANCHOR_X 150+((1024-150)/2)
 #define POPOVER_ANCHOR_Y 200
 
@@ -541,16 +564,15 @@
     //set an array of views that the user can interact with while popover is visible
     NSMutableArray *arrayOfPassThroughViews = [NSMutableArray arrayWithCapacity:1];
     [arrayOfPassThroughViews addObject:trackTableView];
-   
+    
     for(int i=0;i<(theAudioObjects.count + theCoverScene.Audio.count + 2);i++) {
         UITableViewCell *cell = [trackTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
-      if (cell != nil)
-      {
-       [arrayOfPassThroughViews addObject:cell];   
-      }
+        if (cell != nil)
+        {
+            [arrayOfPassThroughViews addObject:cell];   
+        }
         
         [arrayOfPassThroughViews addObject:playPauseButton];
-        
     }
     
     lyricsPopoverController.passthroughViews = arrayOfPassThroughViews;
@@ -576,6 +598,11 @@
 - (void)scrollRowToTopOfTableView:(int)row
 {
     [trackTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+}
+
+- (void)registerNotifications
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(recordingIsCompleted) name:kMixPlayerRecorderPlaybackStopped object:nil];
 }
 
 #pragma mark UIPopoverControllerDelegate Protocol methods
