@@ -74,6 +74,16 @@
         
         [self prepareLyricsView];
         
+        
+        UIButton *showAndDismissLyricsButton;
+        showAndDismissLyricsButton = [[UIButton buttonWithType:UIButtonTypeRoundedRect] retain];
+        showAndDismissLyricsButton.frame = CGRectMake(900, 25, 100, 50);
+        [showAndDismissLyricsButton setTitle:@"toggle lyrics" forState:UIControlStateNormal];
+        [self.view addSubview:showAndDismissLyricsButton];  
+        [showAndDismissLyricsButton addTarget:self action:@selector(showAndDismissLyricsButtonIsPressed) forControlEvents:UIControlEventTouchDown];
+        [showAndDismissLyricsButton release];
+
+        
     }
     
     return self;
@@ -103,7 +113,7 @@
     //KVO the Audio NSSet
     [self.theCoverScene addObserver:self forKeyPath:@"Audio" options:0 context:@"NewCoverTrackAdded"];
     
-    self.view.backgroundColor = [UIColor purpleColor];
+    self.view.backgroundColor = [UIColor blackColor];
     
     // If you initialize the table view with the UIView method initWithFrame:,
     //the UITableViewStylePlain style is used as a default.
@@ -191,7 +201,7 @@
         UILabel *trackNameLabel;
         UIButton *recordButton;
         UIView *trackCellRightPanel;
-        UIButton *showAndDismissLyricsButton;
+        //UIButton *showAndDismissLyricsButton;
 
         //get the corresponding Audio object
         id audioForRow = [tracksForView objectAtIndex:[indexPath row]];
@@ -245,14 +255,6 @@
             
             [trackCellRightPanel bringSubviewToFront:rightPanelButton];
             [trackCellRightPanel release];
-            
-            showAndDismissLyricsButton = [[UIButton buttonWithType:UIButtonTypeRoundedRect] retain];
-            showAndDismissLyricsButton.frame = CGRectMake(900, 25, 100, 50);
-            [showAndDismissLyricsButton setTitle:@"toggle lyrics" forState:UIControlStateNormal];
-            [cell.contentView addSubview:showAndDismissLyricsButton];  
-            [showAndDismissLyricsButton addTarget:self action:@selector(showAndDismissLyricsButtonIsPressed) forControlEvents:UIControlEventTouchDown];
-            [showAndDismissLyricsButton release];
-            
         }
         
         // Here, you just configure the objects as appropriate for the row
@@ -573,6 +575,8 @@
     [lyricsScrollView setContentSize:CGSizeMake(lyricsLabel.frame.size.width, lyricsLabelFrame.size.height)]; //set content size of scroll view using calculated size of the text on the label
     
     [lyricsView setBackgroundColor:[UIColor blackColor]];
+    
+    lyricsView.alpha = 0.5;
     
     [lyricsScrollView addSubview:lyricsLabel];
     [lyricsView addSubview:lyricsScrollView];
