@@ -13,10 +13,7 @@
 #import "Cover.h"
 
 #import "SceneViewController.h"
-#import "PlaybackViewController.h"
-#import "CoverViewController.h"
 #import "DSActivityView.h"
-#import "HiddenView.h"
 
 @interface MenuViewController : UIViewController <NSFetchedResultsControllerDelegate> {
     IBOutlet UIScrollView *scrollView; 
@@ -35,11 +32,7 @@
 
 - (void)daoDownloadQueueFinished;
 
--(IBAction)createMusical;
--(IBAction)playBackMusical;
--(IBAction)coverMusical;
-
-//- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation;
+-(IBAction)createMusical: (UIButton*)sender;
 
 -(void)displayShowImages:(NSArray *)images;
 

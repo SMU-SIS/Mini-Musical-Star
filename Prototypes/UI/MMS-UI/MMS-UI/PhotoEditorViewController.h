@@ -19,7 +19,6 @@
 @protocol PhotoEditorViewDelegate <NSObject>
 - (void) setSliderPosition: (int) seconds;
 - (void)stopPlayer;
-
 @end
 
 @interface PhotoEditorViewController : UIViewController <AFOpenFlowViewDelegate,AFOpenFlowViewDataSource, CameraPopupViewDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate> {
@@ -36,23 +35,19 @@
 @property (retain,nonatomic) NSMutableArray *imagesArray;
 @property (nonatomic) int currentSelectedCover;
 
-
 @property (nonatomic, retain) id <PhotoEditorViewDelegate> delegate;
+
 @property (retain, nonatomic) CoverScene *theCoverScene;
 @property (retain, nonatomic) NSManagedObjectContext *context;
 @property (retain, nonatomic) CameraPopupViewController *cameraPopupViewController;
 
-@property(retain,nonatomic) IBOutlet UIButton *btn;
-
-- (void) setSliderImages:(UInt32)timeAt;
 - (PhotoEditorViewController *)initWithPhotos:(NSArray *)pictureArray andCoverScene:(CoverScene *)aCoverScene andContext:(NSManagedObjectContext *)context;
-- (IBAction) pressCenterImage;
+
 - (IBAction) replaceImageTest:(UIButton *)sender;
 - (IBAction) popupCameraOptions: (id) sender;
 
-
+- (void) setSliderImages:(UInt32)timeAt;
 - (void)replaceCenterImage: (UIImage*)image;
-
 - (void)openFlowView:(AFOpenFlowView *)openFlowView selectionDidChange:(int)index;
 
 

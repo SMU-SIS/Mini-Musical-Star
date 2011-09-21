@@ -53,12 +53,10 @@ static id delegate;
 
 + (void)loadSingleShowFromDirectoryURL:(NSURL *)showDirectoryURL
 {
-    NSLog(@"showDirectoryURL: %@",showDirectoryURL);
     
     //get a reference to showMetaData.plist url
     NSURL *metadataURL = [showDirectoryURL URLByAppendingPathComponent:@"showMetaData.plist"];
     NSString *metadataString = [metadataURL path];
-    NSLog(@"metadataString is %@\n", metadataString);
     
     Show *show = [[Show alloc] initShowWithPropertyListFile:metadataString atPath:showDirectoryURL];
     [loadedShows addObject:show];
@@ -97,7 +95,6 @@ static id delegate;
                         (float)random()/RAND_MAX];
     NSURL *url = [NSURL URLWithString:urlStr];
     NSDictionary *root = [[NSDictionary alloc] initWithContentsOfURL:url];
-    NSLog(@"the dictionary is %@\n", root);
     
     NSArray *showCatalogue = [root objectForKey:@"shows"];
     
@@ -116,7 +113,6 @@ static id delegate;
     
     if (downloadQueue.requestsCount > 0)
     {
-        NSLog(@"Number of requests in the downloadQueue is %i\n", downloadQueue.requestsCount);
         [downloadQueue go];
     }
     
@@ -133,15 +129,11 @@ static id delegate;
     __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:zipFileURL];
     [request setDownloadDestinationPath:localShowPath];
     [request setCompletionBlock:^{
-        NSLog(@"Download finished! Unzipping show...\n");
         [self unzipDownloadedShowURL:localShowPath toPath:[localShowPath stringByDeletingPathExtension]];
         [self loadSingleShowFromDirectoryURL:
             [NSURL fileURLWithPath:[localShowPath stringByDeletingPathExtension]]];
-        NSLog(@"Show at %@ loaded\n", [localShowPath stringByDeletingPathExtension]);
     }];
     [request setFailedBlock:^{
-        NSError *error = [request error];
-        NSLog(@"Download Error: %@\n", error);
     }];
     
     [downloadQueue addOperation:request];
@@ -153,7 +145,6 @@ static id delegate;
     for (int i = 0; i < loadedShows.count; i++)
     {
         Show *aShow = [loadedShows objectAtIndex:i];
-        NSLog(@"showID is [%i] and aShow.showID is [%i]", showID, aShow.showID); 
         if (showID == aShow.showID)
         {
             return YES;

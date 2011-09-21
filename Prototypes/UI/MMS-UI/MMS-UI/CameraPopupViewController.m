@@ -12,31 +12,15 @@
 @implementation CameraPopupViewController
 
 @synthesize takePhotoButton, replacePictureButton, popoverController, delegate;
-@synthesize imagesArray;
 
-//- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-//{
-//    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-//    if (self) {
-//        // Custom initialization
-//    }
-//    return self;
-//}
-//
-- (id)initWithArrayAndIndex:(NSMutableArray*)anArray indexOfImage:(NSInteger)anIndex
+-(void) dealloc
 {
-    self = [super init];
-    if (self) {
-        self.imagesArray = anArray;
-        indexOfImageToChange = anIndex;
-    }
-    return self;
+    [takePhotoButton release];
+    [replacePictureButton release];
+    [popoverController release];
+    [delegate release];
+    [super dealloc];
 }
-
-//- (id)initWithController:(PhotoEditorViewController*)controller
-//{
-//    photoEditViewController = controller;
-//}
 
 - (void)didReceiveMemoryWarning
 {
@@ -50,11 +34,7 @@
 
 - (void)viewDidLoad
 {
-    
     [super viewDidLoad];
-
-    //load the choosen image that is supposed to be replace
-    [imageView setImage:[imagesArray objectAtIndex:indexOfImageToChange]];
 }
 
 - (void)viewDidUnload
@@ -86,22 +66,10 @@
                                   nil];
         imagePicker.allowsEditing = NO;
         
-//        self.popoverController = [[UIPopoverController alloc]
-//                                  initWithContentViewController:imagePicker];
-////        
-//        popoverController.delegate = self;
-//
-//        
-//        [self.popoverController 
-//         presentPopoverFromRect: CGRectMake(-100, 500, 500, 500) 
-//         inView:self.view 
-//         permittedArrowDirections:UIPopoverArrowDirectionDown 
-//         animated:YES]; 
         self.modalPresentationStyle = UIModalPresentationCurrentContext;
         [self presentModalViewController:imagePicker
                             animated:YES];
         [imagePicker release];
-        newMedia = YES;
     }
 }
 
@@ -136,7 +104,6 @@
              animated:YES];
             
             [imagePicker release];
-            newMedia = NO;
         }
     }
 }
@@ -152,30 +119,10 @@
    
 }
 
-
-//-(UIImage *)resizeImage:(UIImage *)image width:(int)width height:(int)height {
-//	
-//	CGImageRef imageRef = [image CGImage];
-//	CGImageAlphaInfo alphaInfo = CGImageGetAlphaInfo(imageRef);
-//	
-//	//if (alphaInfo == kCGImageAlphaNone)
-//    alphaInfo = kCGImageAlphaNoneSkipLast;
-//	
-//	CGContextRef bitmap = CGBitmapContextCreate(NULL, width, height, CGImageGetBitsPerComponent(imageRef), 4 * width, CGImageGetColorSpace(imageRef), alphaInfo);
-//	CGContextDrawImage(bitmap, CGRectMake(0, 0, width, height), imageRef);
-//	CGImageRef ref = CGBitmapContextCreateImage(bitmap);
-//	UIImage *result = [UIImage imageWithCGImage:ref];
-//	
-//	CGContextRelease(bitmap);
-//	CGImageRelease(ref);
-//	
-//	return result;	
-//}
 /* Called when the user had taken a photo or selected a photo from the photo library. */
 -(void)imagePickerController:(UIImagePickerController *)picker
 didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    NSLog(@"I'm in didFinishPickingMediaWithInfo");
     
     [self.popoverController dismissPopoverAnimated:true];
     [popoverController release];
@@ -188,8 +135,6 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
                           objectForKey:UIImagePickerControllerOriginalImage];
         
         //resize image
-//        UIImage *resizedImage = [UIImage imageWithCGImage:image.CGImage Scale:0.25 Orientation:UIImageOrientationUp];
-//        resizedImage = [self resizeImage:image width: 640 height: 480];
         CGSize size = CGSizeMake(640,480);
         if (image.size.height == 640 || image.size.height == 960){
             size = CGSizeMake(480,640);
@@ -199,7 +144,6 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
         //imageView.image = image;
         
         //replace image from imagesArray index 0 with new image
-//        [self replaceImage:indexOfImageToChange newImage:image];
         [self.delegate replaceCenterImage:image];
         [self cancelCurrentOverlay];
         
@@ -209,39 +153,6 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     {
         // Code here to support video if enabled
     }
-    
-    [self refreshImageView]; //refresh the imageView
 }
-
--(void)image:(UIImage *)image finishedSavingWithError:(NSError *)error contextInfo:(void *)contextInfo
-{
-    if (error) {
-        UIAlertView *alert = [[UIAlertView alloc]
-                              initWithTitle: @"Save failed"
-                              message: @"Failed to save image"\
-                              delegate: nil
-                              cancelButtonTitle:@"OK"
-                              otherButtonTitles:nil];
-        [alert show];
-        [alert release];
-    }
-}
-
--(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
-{
-    [self dismissModalViewControllerAnimated:YES];
-    
-    NSLog(@"I'm in imagePickerControllerDidCancel");
-}
-
-- (void) replaceImage:(NSInteger)imageIndex newImage:(UIImage*)anImage 
-{
-    [imagesArray replaceObjectAtIndex:imageIndex withObject:anImage];
-}
-
-- (void)refreshImageView 
-{
-    [imageView setImage:[imagesArray objectAtIndex:indexOfImageToChange]];
-} 
 
 @end
