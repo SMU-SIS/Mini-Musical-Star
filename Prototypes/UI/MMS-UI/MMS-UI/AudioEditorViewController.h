@@ -77,6 +77,7 @@
 
 - (void)playButtonIsPressed;
 - (void)stopButtonIsPresssed;
+- (void)showAndDismissLyricsButtonIsPressed;
 
 - (bool)isRecording;
 

@@ -182,6 +182,7 @@
         UILabel *trackNameLabel;
         UIButton *recordButton;
         UIView *trackCellRightPanel;
+        UIButton *showAndDismissLyricsButton;
 
         //get the corresponding Audio object
         id audioForRow = [tracksForView objectAtIndex:[indexPath row]];
@@ -236,6 +237,17 @@
             
             [trackCellRightPanel bringSubviewToFront:rightPanelButton];
             [trackCellRightPanel release];
+            
+            showAndDismissLyricsButton = [[UIButton alloc] initWithFrame:CGRectMake(950, 25, 100, 50)];
+            [showAndDismissLyricsButton setBackgroundColor:[UIColor redColor]];
+            UILabel *showAndDismissLyricsLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 50)];
+            showAndDismissLyricsLabel.text = @"Lyrics";
+            [showAndDismissLyricsButton addSubview:showAndDismissLyricsLabel];
+            [cell.contentView addSubview:showAndDismissLyricsButton];  
+             [showAndDismissLyricsButton addTarget:self action:@selector(showAndDismissLyricsButtonIsPressed) forControlEvents:UIControlEventTouchDown];
+            [showAndDismissLyricsLabel release];
+            [showAndDismissLyricsButton release];
+            
         }
         
         // Here, you just configure the objects as appropriate for the row
@@ -347,6 +359,16 @@
 -(void)recordingButtonIsPressed:(UIButton *)sender
 {
     int row = -1;
+    
+    if (isRecording == YES)
+    {        
+        UIAlertView *recordButtonHitWhenRecordingAlert = [[UIAlertView alloc] initWithTitle:@"Opps!" message:@"You are not supposed to hit me when recording!" delegate:nil cancelButtonTitle:@"I'm sorry!" otherButtonTitles:nil];
+        [recordButtonHitWhenRecordingAlert show];
+        [recordButtonHitWhenRecordingAlert release];
+        
+        return;
+    }
+    
     
     //checks which track the user is trying to record by checking which row the button came from
     UIButton *recordButton = (UIButton *)sender;
@@ -487,7 +509,6 @@
             NSFileManager *fileManager = [NSFileManager defaultManager];
             [fileManager removeItemAtURL:currentRecordingNSURL error:nil];
         }
-
         
         //bring the seeker of player back to the starting point
         [thePlayer seekTo:0];
@@ -590,6 +611,23 @@
 {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(recordingIsCompleted) name:kMixPlayerRecorderPlaybackStopped object:nil];
 }
+
+- (void)showAndDismissLyricsButtonIsPressed
+{  
+    UIView *superView = lyricsView.superview;
+    
+    if (superView != nil)
+    {
+        //if the lyrics have a super view
+        [lyricsView removeFromSuperview];
+    }
+    else
+    {
+        //if the lyrics view don't have a super view
+        [self.view addSubview:lyricsView];
+    }
+}
+
 
 #pragma mark UIPopoverControllerDelegate Protocol methods
 
