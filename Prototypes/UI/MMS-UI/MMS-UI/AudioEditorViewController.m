@@ -176,13 +176,13 @@
     if ([thePlayer busNumberIsMuted:busNumber])
     {
         [thePlayer unmuteBusNumber:busNumber];
-        [sender setTitle:@"Tap to Mute" forState:UIControlStateNormal];
+        [sender setTitle:@"tap to mute" forState:UIControlStateNormal];        
     }
     
     else
     {
         [thePlayer muteBusNumber:busNumber];
-        [sender setTitle:@"Tap to Unmute" forState:UIControlStateNormal];
+        [sender setTitle:@"tap to unmute" forState:UIControlStateNormal];
     }
     
     [trackTableView reloadData];
@@ -213,7 +213,10 @@
         //create the mute/unmute button for the track
         UIButton *rightPanelButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 1024-150, 100)];
         [rightPanelButton setTag:[indexPath row]];
-        [rightPanelButton setTitle:@"Tap to Mute" forState:UIControlStateNormal];
+        [rightPanelButton setTitle:@"tap to mute" forState:UIControlStateNormal];
+        rightPanelButton.titleLabel.font = [UIFont fontWithName:@"GillSans-Bold" size:30];
+        rightPanelButton.titleLabel.alpha = 0.5;
+        
         [rightPanelButton addTarget:self action:@selector(muteToggleButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
         
         if (cell == nil)
@@ -319,10 +322,7 @@
             [trackCellRightIndicator.layer insertSublayer:gradient atIndex:0];          
         }
         else if (isRecording == NO && isPlaying == YES)
-        {
-            //SUPPOSE TO CHECK OF THE TRACK IS MUTE ALSO
-            
-            
+        {      
             if ([thePlayer busNumberIsMuted:indexPath.row])
             {
                 CAGradientLayer *gradient = [CAGradientLayer layer];
@@ -334,7 +334,7 @@
             {
                 CAGradientLayer *gradient = [CAGradientLayer layer];
                 gradient.frame = trackCellRightIndicator.bounds;
-                gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor greenColor] CGColor], (id)[[UIColor whiteColor] CGColor], nil];            
+                gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor colorWithRed:34/255.0 green:139/255.0 blue:34/255.0 alpha:1] CGColor], (id)[[UIColor whiteColor] CGColor], nil];            
                 [trackCellRightIndicator.layer insertSublayer:gradient atIndex:0];
             }
         }
