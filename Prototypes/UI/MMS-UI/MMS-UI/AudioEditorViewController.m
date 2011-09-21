@@ -228,33 +228,29 @@
             recordButton.tag = 2;
             [recordButton release];
             
-            
             /* the right panel of the row */
             trackCellRightPanel = [[UIView alloc] initWithFrame:CGRectMake(150, 0, 1024-150, 100)];
-
+            
             [trackCellRightPanel addSubview:rightPanelButton];
             
             [cell.contentView addSubview:trackCellRightPanel]; //add label to view
-
-//            /* draw the gradient-ed background of white to black */
-//            CAGradientLayer *gradient = [CAGradientLayer layer];
-//            gradient.frame = trackCellRightPanel.bounds;
-//            gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor blackColor] CGColor], (id)[[UIColor whiteColor] CGColor], nil];            
-//            [trackCellRightPanel.layer insertSublayer:gradient atIndex:0];
+            
+            //            /* draw the gradient-ed background of white to black */
+            //            CAGradientLayer *gradient = [CAGradientLayer layer];
+            //            gradient.frame = trackCellRightPanel.bounds;
+            //            gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor blackColor] CGColor], (id)[[UIColor whiteColor] CGColor], nil];            
+            //            [trackCellRightPanel.layer insertSublayer:gradient atIndex:0];
             
             trackCellRightPanel.tag = 3;
             
             [trackCellRightPanel bringSubviewToFront:rightPanelButton];
             [trackCellRightPanel release];
             
-            showAndDismissLyricsButton = [[UIButton alloc] initWithFrame:CGRectMake(950, 25, 100, 50)];
-            [showAndDismissLyricsButton setBackgroundColor:[UIColor redColor]];
-            UILabel *showAndDismissLyricsLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 50)];
-            showAndDismissLyricsLabel.text = @"Lyrics";
-            [showAndDismissLyricsButton addSubview:showAndDismissLyricsLabel];
+            showAndDismissLyricsButton = [[UIButton buttonWithType:UIButtonTypeRoundedRect] retain];
+            showAndDismissLyricsButton.frame = CGRectMake(900, 25, 100, 50);
+            [showAndDismissLyricsButton setTitle:@"toggle lyrics" forState:UIControlStateNormal];
             [cell.contentView addSubview:showAndDismissLyricsButton];  
-             [showAndDismissLyricsButton addTarget:self action:@selector(showAndDismissLyricsButtonIsPressed) forControlEvents:UIControlEventTouchDown];
-            [showAndDismissLyricsLabel release];
+            [showAndDismissLyricsButton addTarget:self action:@selector(showAndDismissLyricsButtonIsPressed) forControlEvents:UIControlEventTouchDown];
             [showAndDismissLyricsButton release];
             
         }
