@@ -106,7 +106,6 @@
 		EDA2A20913F2726B00B64EA5 /* edit.png in Resources */ = {isa = PBXBuildFile; fileRef = EDA2A20613F2726B00B64EA5 /* edit.png */; };
 		EDA2A20A13F2726B00B64EA5 /* new.png in Resources */ = {isa = PBXBuildFile; fileRef = EDA2A20713F2726B00B64EA5 /* new.png */; };
 		EDA2A20B13F2726B00B64EA5 /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = EDA2A20813F2726B00B64EA5 /* play.png */; };
-		EDA2A20E13F272BF00B64EA5 /* ShowImage.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA2A20D13F272BF00B64EA5 /* ShowImage.m */; };
 		EDA363A9140230FC00E93779 /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = EDA363A8140230FC00E93779 /* home.png */; };
 		EDAB95AD140A27800088C1CE /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = EDAB95A7140A27800088C1CE /* back.png */; };
 		EDAB95AE140A27800088C1CE /* camera.png in Resources */ = {isa = PBXBuildFile; fileRef = EDAB95A8140A27800088C1CE /* camera.png */; };
@@ -133,7 +132,6 @@
 		EDB9C5EE1402651500434223 /* picture.png in Resources */ = {isa = PBXBuildFile; fileRef = EDB9C5ED1402651500434223 /* picture.png */; };
 		EDC5CC3213F6260400EAF813 /* PlaybackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDC5CC3013F6260400EAF813 /* PlaybackViewController.m */; };
 		EDC5CC3313F6260400EAF813 /* PlaybackViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDC5CC3113F6260400EAF813 /* PlaybackViewController.xib */; };
-		EDC5CC3813F6261500EAF813 /* CoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDC5CC3613F6261500EAF813 /* CoverViewController.m */; };
 		EDC5CC3913F6261500EAF813 /* CoverViewConroller.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDC5CC3713F6261500EAF813 /* CoverViewConroller.xib */; };
 /* End PBXBuildFile section */
 
@@ -302,8 +300,6 @@
 		EDA2A20613F2726B00B64EA5 /* edit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = edit.png; path = Images/Buttons/edit.png; sourceTree = SOURCE_ROOT; };
 		EDA2A20713F2726B00B64EA5 /* new.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = new.png; path = Images/Buttons/new.png; sourceTree = SOURCE_ROOT; };
 		EDA2A20813F2726B00B64EA5 /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = play.png; path = Images/Buttons/play.png; sourceTree = SOURCE_ROOT; };
-		EDA2A20C13F272BF00B64EA5 /* ShowImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowImage.h; sourceTree = "<group>"; };
-		EDA2A20D13F272BF00B64EA5 /* ShowImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowImage.m; sourceTree = "<group>"; };
 		EDA363A8140230FC00E93779 /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = home.png; path = Images/Buttons/home.png; sourceTree = SOURCE_ROOT; };
 		EDAB95A7140A27800088C1CE /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = back.png; path = Images/Buttons/breakdown/back.png; sourceTree = SOURCE_ROOT; };
 		EDAB95A8140A27800088C1CE /* camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = camera.png; path = Images/Buttons/breakdown/camera.png; sourceTree = SOURCE_ROOT; };
@@ -331,8 +327,6 @@
 		EDC5CC2F13F6260400EAF813 /* PlaybackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaybackViewController.h; sourceTree = "<group>"; };
 		EDC5CC3013F6260400EAF813 /* PlaybackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaybackViewController.m; sourceTree = "<group>"; };
 		EDC5CC3113F6260400EAF813 /* PlaybackViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlaybackViewController.xib; sourceTree = "<group>"; };
-		EDC5CC3513F6261500EAF813 /* CoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoverViewController.h; sourceTree = "<group>"; };
-		EDC5CC3613F6261500EAF813 /* CoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoverViewController.m; sourceTree = "<group>"; };
 		EDC5CC3713F6261500EAF813 /* CoverViewConroller.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CoverViewConroller.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -567,20 +561,16 @@
 				95F9FFC41425C60400A18463 /* CameraPopupViewController.m */,
 				95784433141DD23C0033721D /* TrackPane.m */,
 				95784436141DD23C0033721D /* TrackPane.h */,
-				EDA2A20C13F272BF00B64EA5 /* ShowImage.h */,
 				9569E0571418A2A80016DAF3 /* AudioEditorViewController.h */,
 				9569E0581418A2A80016DAF3 /* AudioEditorViewController.m */,
 				9569E0591418A2A80016DAF3 /* PhotoEditorViewController.h */,
 				9569E05A1418A2A80016DAF3 /* PhotoEditorViewController.m */,
-				EDA2A20D13F272BF00B64EA5 /* ShowImage.m */,
 				820511BC13F3BB9B0016F87E /* SceneViewController.h */,
 				820511BD13F3BB9B0016F87E /* SceneViewController.m */,
 				EDC5CC2F13F6260400EAF813 /* PlaybackViewController.h */,
 				9569E0631418A2D30016DAF3 /* SceneEditViewController.h */,
 				9569E0641418A2D30016DAF3 /* SceneEditViewController.m */,
 				EDC5CC3013F6260400EAF813 /* PlaybackViewController.m */,
-				EDC5CC3513F6261500EAF813 /* CoverViewController.h */,
-				EDC5CC3613F6261500EAF813 /* CoverViewController.m */,
 				EDA2A1D313F26F8400B64EA5 /* MMS_UIAppDelegate.h */,
 				EDA2A1D413F26F8400B64EA5 /* MMS_UIAppDelegate.m */,
 			);
@@ -942,10 +932,8 @@
 				EDA2A1D213F26F8400B64EA5 /* main.m in Sources */,
 				EDA2A1D513F26F8400B64EA5 /* MMS_UIAppDelegate.m in Sources */,
 				EDA2A1DB13F26F8400B64EA5 /* MenuViewController.m in Sources */,
-				EDA2A20E13F272BF00B64EA5 /* ShowImage.m in Sources */,
 				820511BF13F3BB9B0016F87E /* SceneViewController.m in Sources */,
 				EDC5CC3213F6260400EAF813 /* PlaybackViewController.m in Sources */,
-				EDC5CC3813F6261500EAF813 /* CoverViewController.m in Sources */,
 				820E2A2B140A0A3E00B80BBC /* MixPlayerRecorder.m in Sources */,
 				820E2A2C140A0A3E00B80BBC /* ASBDHelper.c in Sources */,
 				820E2A2D140A0A3E00B80BBC /* AudioFileRingBuffer.m in Sources */,

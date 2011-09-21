@@ -37,13 +37,10 @@
         self.iTunesAlbumLink = [root objectForKey:@"iTunesAlbumLink"];
         self.iBooksBookLink = [root objectForKey:@"iBooksBookLink"];
         
-        NSLog(@"itunes album link is %@ and ibooks book link is %@\n", iTunesAlbumLink, iBooksBookLink);
-        
         NSString *coverPicturePath = [[showLocation path] stringByAppendingPathComponent:[root objectForKey:@"cover-picture"]];
-        NSLog(@"coverPicturePath is %@\n", coverPicturePath);
+
         self.coverPicture = [UIImage imageWithContentsOfFile:coverPicturePath];
         
-        NSLog(@"cover picture is %@\n", coverPicture);
         self.createdDate = [root objectForKey:@"created"];
         
         //get the scene data
@@ -54,7 +51,6 @@
             NSDictionary *sceneDict = (NSDictionary *)obj;
             NSString *sceneNumber = [sceneDict objectForKey:@"scene-number"];
             NSString *scenePath = [[[[showPath path] stringByAppendingString: @"/scenes/"] stringByAppendingString: sceneNumber] stringByAppendingString: @"/"];
-            NSLog(@"WOOOOHOOOO ASDASDASD : %@",scenePath);
             Scene *scene = [[Scene alloc] initSceneWithPropertyDictionary: sceneDict atPath:scenePath];
             
             [scenes addObject:scene];

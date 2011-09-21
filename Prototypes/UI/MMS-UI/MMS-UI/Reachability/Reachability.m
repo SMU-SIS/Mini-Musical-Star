@@ -149,8 +149,6 @@ static NSString *reachabilityFlags_(SCNetworkReachabilityFlags flags) {
 
 static void logReachabilityFlags_(const char *name, int line, SCNetworkReachabilityFlags flags) {
 	
-    NSLog(@"%s (%d) \n\t%@", name, line, reachabilityFlags_(flags));
-	
 } // logReachabilityFlags_()
 
 #define logNetworkStatus(status) (logNetworkStatus_(__PRETTY_FUNCTION__, __LINE__, status))
@@ -171,7 +169,6 @@ static void logNetworkStatus_(const char *name, int line, NetworkStatus status) 
 			break;
 	}
 	
-	NSLog(@"%s (%d) \n\tNetwork Status: %@", name, line, statusString);
 	
 } // logNetworkStatus_()
 

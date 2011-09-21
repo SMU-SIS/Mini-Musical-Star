@@ -10,7 +10,7 @@
 
 @implementation PhotoEditorViewController
 
-@synthesize leftPicture, rightPicture, centerPicture, thePictures, imagesArray, theCoverScene, context, btn, currentSelectedCover, cameraPopupViewController, delegate;
+@synthesize leftPicture, rightPicture, centerPicture, thePictures, imagesArray, theCoverScene, context, currentSelectedCover, cameraPopupViewController, delegate;
 
 -(void)dealloc
 {
@@ -21,42 +21,9 @@
     [imagesArray release];
     [theCoverScene release];
     [context release];
-    [btn release];
     [cameraPopupViewController release];
     [super dealloc];
 }
-
-- (void) takePhoto
-{
-    if ([UIImagePickerController isSourceTypeAvailable:
-         UIImagePickerControllerSourceTypeCamera])
-    {
-        self.view.hidden = YES;
-        UIImagePickerController *imagePicker =
-        [[UIImagePickerController alloc] init];
-        imagePicker.delegate = self;
-        imagePicker.sourceType =
-        UIImagePickerControllerSourceTypeCamera;
-
-        imagePicker.allowsEditing = NO;
-        
-                UIPopoverController *popoverController = [[UIPopoverController alloc]
-                                          initWithContentViewController:imagePicker];
-                
-//                popoverController.delegate = self;
-        
-        
-                [popoverController 
-                 presentPopoverFromRect: CGRectMake(0, 0, 500, 500) 
-                 inView:self.view 
-                 permittedArrowDirections:UIPopoverArrowDirectionDown 
-                 animated:YES]; 
-//        [self presentModalViewController:imagePicker
-//                                animated:YES];
-        [imagePicker release];
-    }
-}
-
 
 
 - (PhotoEditorViewController *)initWithPhotos:(NSArray *)pictureArray andCoverScene:(CoverScene *)aCoverScene andContext:(NSManagedObjectContext *)aContext
@@ -135,7 +102,6 @@
 
 - (IBAction) replaceImageTest:(UIButton *)sender
 {
-    NSLog(@"Replacing first photo in the set with something new...");
     CoverScenePicture *newPicture = [NSEntityDescription insertNewObjectForEntityForName:@"CoverScenePicture" inManagedObjectContext:context];
     newPicture.OrderNumber = [NSNumber numberWithInt:1];
     newPicture.Path = [[NSBundle mainBundle] pathForResource:@"hsmS3" ofType:@"jpeg"];
@@ -151,9 +117,6 @@
 }
 
 
-//delegate protocols
-
-// delegate protocol to tell which image is selected
 - (void)openFlowView:(AFOpenFlowView *)openFlowView selectionDidChange:(int)index
 {    
 	self.currentSelectedCover = index;
@@ -162,11 +125,15 @@
     
 }
 
-
-//for the AFCoverFlow delegate
 - (void)openFlowView:(AFOpenFlowView *)openFlowView requestImageForIndex:(int)index
 {
-    
+    //empty for now
+}
+
+//for the AFCoverFlow delegate
+- (UIImage *)defaultImage
+{
+    return nil;
 }
 
 - (IBAction) popupCameraOptions: (id) sender
@@ -184,13 +151,6 @@
 
     [overlayView setDelegate:self];
 
-}
-
-
-//for the AFCoverFlow delegate
-- (UIImage *)defaultImage
-{
-    return [(AFOpenFlowView *)self.view requestImageForIndex:0];
 }
 
 

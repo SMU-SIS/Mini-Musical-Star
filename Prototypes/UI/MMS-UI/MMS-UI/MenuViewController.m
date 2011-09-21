@@ -77,7 +77,6 @@
     self.shows = [[ShowDAO shows] retain];
     [DSBezelActivityView removeViewAnimated:YES];
     
-    //    NSLog(@"shows are %@\n", shows);
     
     
 
@@ -155,9 +154,6 @@
         frame.origin.y = 0;
         frame.size.width = 280;
         frame.size.height = scrollView.frame.size.height;
-        
-        NSLog(@"Width is %g", scrollView.frame.size.width *i+320);
-        NSLog(@"Length is %g", frame.size.height);
         
         UIImage *img = [images objectAtIndex:i];
         
