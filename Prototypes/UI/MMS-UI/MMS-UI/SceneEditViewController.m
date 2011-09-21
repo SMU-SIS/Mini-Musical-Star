@@ -14,17 +14,20 @@
 
 - (void)dealloc
 {
-    [context release];
-    [theScene release];
-    [containerView release];
-    [theCoverScene release];
+    [audioView release];
+    [photoView release];
     [playPauseButton release];
+    [containerView release];
     [elapsedTimeLabel release];
     [totalTimeLabel release];
     [songInfoLabel release];
     [playPositionSlider release];
     [micVolumeSlider release];
+    [theScene release];
+    [theCoverScene release];
+    [context release];
     [containerToggleButton release];
+    
     
     [super dealloc];
 }

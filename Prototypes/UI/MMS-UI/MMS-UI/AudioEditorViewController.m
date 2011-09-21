@@ -12,7 +12,7 @@
 @synthesize thePlayer, theAudioObjects, theCoverScene, context;
 @synthesize tracksForView;
 @synthesize trackTableView, recordImage, recordingImage;
-@synthesize lyricsPopoverController, lyricsViewController, lyricsScrollView, lyricsLabel;
+@synthesize lyricsPopoverController, lyricsViewController, lyricsScrollView, lyricsLabel; //released when popover is closed
 @synthesize lyrics;
 @synthesize currentRecordingNSURL, currentRecordingTrackTitle;
 @synthesize playPauseButton;
@@ -23,11 +23,16 @@
     [thePlayer release];
     [theAudioObjects release];
     [theCoverScene release];
-    [tracksForView release];
     [context release];
+    
+    [tracksForView release];
     [trackTableView release];
     [recordImage release];
     [recordingImage release];
+    
+    [lyrics release];
+    [currentRecordingNSURL release];
+    [currentRecordingTrackTitle release];
     
     //lyricsPopoverController, lyricsViewController, lyricsScrollView, lyricsLabel are released whenever the popover is closed.
     
@@ -374,6 +379,11 @@
     NSString *tempDir = NSTemporaryDirectory();
     NSString *tempFile = [tempDir stringByAppendingFormat:@"%@-cover.m4a", trackToBeRecorded.title];
     NSURL *fileURL = [NSURL fileURLWithPath:tempFile];
+    
+    //if file exists delete the file first
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    [fileManager removeItemAtURL:fileURL error:nil];
+    
     currentRecordingNSURL = fileURL;
     
     currentRecordingTrackTitle = trackToBeRecorded.title;

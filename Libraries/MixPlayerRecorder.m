@@ -351,7 +351,7 @@ static OSStatus renderNotification(void *inRefCon,
 
 - (void)enableRecordingToFile:(NSURL *)filePath
 {
-    recorder = [[BoomzAUOutputCapturer alloc] initWithAudioUnit:rioUnit OutputURL:(CFURLRef)filePath AudioFileTypeID:kAudioFileM4AType forBusNumber:1];
+    recorder = [[BoomzAUOutputCapturer alloc] initWithAudioUnit:rioUnit OutputURL:(CFURLRef)filePath AudioFileTypeID:kAudioFileCAFType forBusNumber:1];
     
     [recorder start];
     isRecording = YES;
