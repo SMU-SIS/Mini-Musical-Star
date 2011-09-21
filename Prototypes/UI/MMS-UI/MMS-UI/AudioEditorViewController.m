@@ -12,7 +12,7 @@
 @synthesize thePlayer, theAudioObjects, theCoverScene, context;
 @synthesize tracksForView;
 @synthesize trackTableView, recordImage, recordingImage;
-@synthesize lyricsPopoverController, lyricsViewController, lyricsScrollView, lyricsLabel; //released when popover is closed
+@synthesize lyricsViewController, lyricsScrollView, lyricsLabel, lyricsView;
 @synthesize lyrics;
 @synthesize currentRecordingNSURL, currentRecordingTrackTitle;
 @synthesize playPauseButton;
@@ -182,6 +182,7 @@
         UILabel *trackNameLabel;
         UIButton *recordButton;
         UIView *trackCellRightPanel;
+        UIButton *showAndDismissLyricsButton;
 
         //get the corresponding Audio object
         id audioForRow = [tracksForView objectAtIndex:[indexPath row]];
@@ -236,6 +237,17 @@
             
             [trackCellRightPanel bringSubviewToFront:rightPanelButton];
             [trackCellRightPanel release];
+            
+            showAndDismissLyricsButton = [[UIButton alloc] initWithFrame:CGRectMake(950, 25, 100, 50)];
+            [showAndDismissLyricsButton setBackgroundColor:[UIColor redColor]];
+            UILabel *showAndDismissLyricsLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 50)];
+            showAndDismissLyricsLabel.text = @"Lyrics";
+            [showAndDismissLyricsButton addSubview:showAndDismissLyricsLabel];
+            [cell.contentView addSubview:showAndDismissLyricsButton];  
+             [showAndDismissLyricsButton addTarget:self action:@selector(showAndDismissLyricsButtonIsPressed) forControlEvents:UIControlEventTouchDown];
+            [showAndDismissLyricsLabel release];
+            [showAndDismissLyricsButton release];
+            
         }
         
         // Here, you just configure the objects as appropriate for the row
@@ -348,6 +360,16 @@
 {
     int row = -1;
     
+    if (isRecording == YES)
+    {        
+        UIAlertView *recordButtonHitWhenRecordingAlert = [[UIAlertView alloc] initWithTitle:@"Opps!" message:@"You are not supposed to hit me when recording!" delegate:nil cancelButtonTitle:@"I'm sorry!" otherButtonTitles:nil];
+        [recordButtonHitWhenRecordingAlert show];
+        [recordButtonHitWhenRecordingAlert release];
+        
+        return;
+    }
+    
+    
     //checks which track the user is trying to record by checking which row the button came from
     UIButton *recordButton = (UIButton *)sender;
     UIView *cellContentView = (UIView*)recordButton.superview;
@@ -388,6 +410,10 @@
     
     //scroll that row to the top
     [self scrollRowToTopOfTableView:row];
+    
+    [thePlayer stop];
+    [thePlayer seekTo:0];
+    [thePlayer stop];
     
     //start recording using MixPlayerRecorder
     [thePlayer enableRecordingToFile:fileURL];
@@ -483,7 +509,6 @@
             NSFileManager *fileManager = [NSFileManager defaultManager];
             [fileManager removeItemAtURL:currentRecordingNSURL error:nil];
         }
-
         
         //bring the seeker of player back to the starting point
         [thePlayer seekTo:0];
@@ -518,26 +543,25 @@
 }
 
 /* constants related to displaying lyrics */
-#define POPOVER_WIDTH 1024 //the entire width of the landscape screen
-#define POPOVER_HEIGHT 200-33+180
-#define POPOVER_ANCHOR_X 150+((1024-150)/2)
-#define POPOVER_ANCHOR_Y 200
+#define LYRICS_VIEW_WIDTH 1030 //the entire width of the landscape screen
+#define LYRICS_VIEW_HEIGHT 768-200-200
+#define LYRICS_VIEW_X 0
+#define LYRICS_VIEW_Y 200
 
-//display the lyrics in a popover, this should be called together with setLyrics:(NSString*)someLyrics
 - (void)displayLyrics
 {
-    //I had to move 40px away from the border of the popover controller so the scroll bar of the scroll view can be seen :)
-    //note: these objects are released in another method
-    lyricsViewController = [[UIViewController alloc] init];
-    lyricsScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, POPOVER_WIDTH-40, POPOVER_HEIGHT)]; 
-    lyricsLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, POPOVER_WIDTH-40, POPOVER_HEIGHT)];
-    
+   lyricsView = [[UIView alloc] initWithFrame:CGRectMake(LYRICS_VIEW_X, LYRICS_VIEW_Y, LYRICS_VIEW_WIDTH, LYRICS_VIEW_HEIGHT)];
+
+    lyricsScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, LYRICS_VIEW_WIDTH-40, LYRICS_VIEW_HEIGHT)]; 
+
+    lyricsLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, LYRICS_VIEW_WIDTH-40, LYRICS_VIEW_HEIGHT)];
+
     //configure the lyrics label
     lyricsLabel.lineBreakMode = UILineBreakModeWordWrap; //line break, word wrap
 	lyricsLabel.numberOfLines = 0; //0 - dynamic number of lines
     [lyricsLabel setFont:[UIFont fontWithName:@"MarkerFelt-Wide" size:26]];
     lyricsLabel.textAlignment =  UITextAlignmentCenter;
-    
+
     //configure the lyrics scroll view
     lyricsScrollView.directionalLockEnabled = YES;
     lyricsScrollView.showsHorizontalScrollIndicator = NO;
@@ -545,42 +569,24 @@
     lyricsScrollView.bounces = NO;
     [lyricsScrollView setBackgroundColor:[UIColor whiteColor]];
     
-    lyricsLabel.text = lyrics;
-    
     CGRect lyricsLabelFrame = lyricsLabel.bounds; //get the CGRect representing the bounds of the UILabel
     
-    lyricsLabelFrame.size = [lyrics sizeWithFont:lyricsLabel.font constrainedToSize:CGSizeMake(POPOVER_WIDTH, 100000) lineBreakMode:lyricsLabel.lineBreakMode]; //get a CGRect for dynamically resizing the label based on the text. cool.
+    lyricsLabelFrame.size = [lyrics sizeWithFont:lyricsLabel.font constrainedToSize:CGSizeMake(LYRICS_VIEW_WIDTH, 100000) lineBreakMode:lyricsLabel.lineBreakMode]; //get a CGRect for dynamically resizing the label based on the text. cool.
     
     lyricsLabel.frame = CGRectMake(0, 0, lyricsLabel.frame.size.width-10, lyricsLabelFrame.size.height); //set the new size of the label, we are only changing the height
     
     [lyricsScrollView setContentSize:CGSizeMake(lyricsLabel.frame.size.width, lyricsLabelFrame.size.height)]; //set content size of scroll view using calculated size of the text on the label
     
-    [lyricsScrollView addSubview:lyricsLabel]; //add label to scroll view
-    [lyricsViewController.view addSubview:lyricsScrollView]; //add scroll view to view controller
+    [lyricsView setBackgroundColor:[UIColor blackColor]];
     
-    lyricsViewController.contentSizeForViewInPopover = CGSizeMake(POPOVER_WIDTH, POPOVER_HEIGHT); //size of the view controller’s view while displayed in a popover. this will determine the size of the popover.
+    [lyricsScrollView addSubview:lyricsLabel];
+    [lyricsView addSubview:lyricsScrollView];
     
-    lyricsPopoverController = [[UIPopoverController alloc] initWithContentViewController:lyricsViewController];
-    lyricsPopoverController.delegate = self;
+    [self.view addSubview:lyricsView];
+    [self.view bringSubviewToFront:lyricsView];
+    [self.view sendSubviewToBack:trackTableView];
     
-    [self.lyricsPopoverController presentPopoverFromRect:CGRectMake(POPOVER_ANCHOR_X, POPOVER_ANCHOR_Y, 1, 1) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];    
-    
-    //set an array of views that the user can interact with while popover is visible
-    NSMutableArray *arrayOfPassThroughViews = [NSMutableArray arrayWithCapacity:1];
-    [arrayOfPassThroughViews addObject:trackTableView];
-    
-    for(int i=0;i<(theAudioObjects.count + theCoverScene.Audio.count + 2);i++) {
-        UITableViewCell *cell = [trackTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
-        if (cell != nil)
-        {
-            [arrayOfPassThroughViews addObject:cell];   
-        }
-        
-        [arrayOfPassThroughViews addObject:playPauseButton];
-    }
-    
-    lyricsPopoverController.passthroughViews = arrayOfPassThroughViews;
-    
+    lyricsLabel.text = lyrics;
 }
 
 //This is for scene edit view to pass me a pointer to the play pause button
@@ -589,13 +595,10 @@
     self.playPauseButton = aButton;
 }
 
-//Dismiss the lyrics popover controller only if it is not nil and it is visible
+//remove the lyrics view from it's superview
 - (void)dismissLyrics
 {
-    if (lyricsPopoverController != nil && lyricsPopoverController.popoverVisible)
-    {
-        [lyricsPopoverController dismissPopoverAnimated:YES];
-    }
+    [lyricsView removeFromSuperview];
 }
 
 //Use this method to scroll a specific track cell to the top row of the table view
@@ -608,6 +611,23 @@
 {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(recordingIsCompleted) name:kMixPlayerRecorderPlaybackStopped object:nil];
 }
+
+- (void)showAndDismissLyricsButtonIsPressed
+{  
+    UIView *superView = lyricsView.superview;
+    
+    if (superView != nil)
+    {
+        //if the lyrics have a super view
+        [lyricsView removeFromSuperview];
+    }
+    else
+    {
+        //if the lyrics view don't have a super view
+        [self.view addSubview:lyricsView];
+    }
+}
+
 
 #pragma mark UIPopoverControllerDelegate Protocol methods
 
