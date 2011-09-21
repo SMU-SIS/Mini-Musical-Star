@@ -43,8 +43,6 @@
     [ShowDAO loadShowsWithDelegate:self];
     
     [DSBezelActivityView newActivityViewForView:self.view withLabel:@"Downloading Shows..."];
-    
-
 }
 
 - (void)viewWillAppear:(BOOL)animated

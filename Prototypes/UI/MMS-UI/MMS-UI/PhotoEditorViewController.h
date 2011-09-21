@@ -16,6 +16,10 @@
 #import "CoverScene.h"
 #import "CoverScenePicture.h"
 
+@protocol PhotoEditorViewDelegate <NSObject>
+- (void) setSliderPosition: (int) seconds;
+@end
+
 @interface PhotoEditorViewController : UIViewController <AFOpenFlowViewDelegate,AFOpenFlowViewDataSource, CameraPopupViewDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate> {
     NSOperationQueue *loadImagesOperationQueue;
 

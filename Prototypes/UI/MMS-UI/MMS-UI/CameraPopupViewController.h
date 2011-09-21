@@ -14,11 +14,6 @@
 - (void) takePhoto;
 @end
 
-@protocol SceneEditViewDelegate <NSObject>
-- (void) setSliderPosition: (int) seconds;
-@end
-
-
 @interface CameraPopupViewController : UIViewController
 <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPopoverControllerDelegate>
 {
