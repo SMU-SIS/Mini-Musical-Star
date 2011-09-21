@@ -48,6 +48,8 @@
         self.theCoverScene = aCoverScene;
         self.context = aContext;
         
+        isAlertShown = NO;
+        
         [self loadChildViewControllers];
     }
     
@@ -110,18 +112,49 @@
 
 - (IBAction)playPauseButtonPressed: (UIButton *)sender
 {
-    if ([self.audioView.thePlayer isPlaying])
+    [self playPauseButtonIsPressed];
+}
+
+- (void)playPauseButtonIsPressed
+{
+    NSLog(@"Hi i'm inside playPauseButtonIsPressed, isRecording %i", [audioView isRecording]);
+    
+    if ([self.audioView.thePlayer isPlaying] && [audioView isRecording] == NO)
     {
         [self.audioView.thePlayer stop];
-        [sender setTitle:@"Play" forState:UIControlStateNormal];
-        [self.audioView stopPlaying];
+        [playPauseButton setTitle:@"Play" forState:UIControlStateNormal];
+        [self.audioView stopButtonIsPresssed];
     }
     else
     {
-        [self.audioView.thePlayer play];
-        [sender setTitle:@"Stop" forState:UIControlStateNormal];
-        [self.audioView startPlaying];
+        if ([audioView isRecording] == YES) {
+            
+            if (isAlertShown == YES)
+            {
+                if (isReallyStop == YES)
+                {
+                    [self.audioView.thePlayer stop];
+                    [playPauseButton setTitle:@"Stop" forState:UIControlStateNormal];
+                    [self.audioView stopButtonIsPresssed];
+                }
+                
+                isAlertShown = NO;
+            }
+            else
+            {
+                [self showReallyAlertView]; 
+            }
+            
+            
+        }
+        else 
+        {
+            [self.audioView.thePlayer play];
+            [playPauseButton setTitle:@"Stop" forState:UIControlStateNormal];
+            [self.audioView playButtonIsPressed];
+        }
     }
+    
 }
 
 - (IBAction)micVolumeSliderDidMove:(UISlider *)sender
@@ -239,6 +272,34 @@
 {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationLandscapeLeft || interfaceOrientation == UIInterfaceOrientationLandscapeRight);
+}
+
+#pragma mark UIAlertViewDelegate Protocol methods
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1) 
+    {
+        isReallyStop = YES;
+    }
+    else
+    {
+        //user pressed no
+        isReallyStop = NO;
+    }
+    
+    isAlertShown = YES;
+    
+    [self playPauseButtonIsPressed];
+}
+
+- (void)showReallyAlertView
+{
+    NSLog(@"I went into showReallyAlertView");
+    
+    UIAlertView *reallyStopAlertView = [[UIAlertView alloc] initWithTitle:@"Stop?" message:@"Do you really want to stop? :(" delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
+    
+    [reallyStopAlertView show];
 }
 
 @end

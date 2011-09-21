@@ -13,10 +13,12 @@
 #import "CoverScene.h"
 #import "MixPlayerRecorder.h"
 
-@interface SceneEditViewController : UIViewController <UIScrollViewDelegate> {
+@interface SceneEditViewController : UIViewController <UIScrollViewDelegate, UIAlertViewDelegate> {
     // To be used when scrolls originate from the UIPageControl
     BOOL pageControlUsed;
     BOOL transitioning;
+    BOOL isReallyStop;
+    BOOL isAlertShown;
 }
 
 @property (retain, nonatomic) AudioEditorViewController *audioView;
@@ -38,5 +40,7 @@
 - (SceneEditViewController *)initWithScene:(Scene *)aScene andSceneCover:(CoverScene *)aCoverScene andContext:(NSManagedObjectContext *)aContext;
 - (void)loadChildViewControllers;
 - (void)setSliderPosition:(int) targetSeconds;
+- (void)showReallyAlertView;
+- (void)playPauseButtonIsPressed;
 
 @end

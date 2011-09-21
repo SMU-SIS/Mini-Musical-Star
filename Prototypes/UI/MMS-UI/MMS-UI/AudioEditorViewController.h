@@ -15,7 +15,7 @@
 #import "CoverSceneAudio.h"
 
 @interface AudioEditorViewController : UIViewController
-<UITableViewDelegate, UITableViewDataSource, UIPopoverControllerDelegate, UIAlertViewDelegate>
+<UITableViewDelegate, UITableViewDataSource, UIPopoverControllerDelegate>
 {
     UITableView *trackTableView;
     
@@ -65,9 +65,10 @@
 - (void)displayLyrics;
 - (void)dismissLyrics;
 - (void)scrollRowToTopOfTableView:(int)trackNumber;
-- (void)startPlaying;
-- (void)stopPlaying;
 
-- (IBAction)stopButtonIsPresssed;
+- (void)playButtonIsPressed;
+- (void)stopButtonIsPresssed;
+
+- (bool)isRecording;
 
 @end

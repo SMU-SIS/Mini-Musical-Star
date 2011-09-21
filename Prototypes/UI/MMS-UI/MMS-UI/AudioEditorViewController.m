@@ -374,6 +374,7 @@
     //init the player with the original audio tracks and cover tracks
     NSMutableArray *tracksForViewNSURL = [NSMutableArray arrayWithCapacity:[tracksForView count]-1];
     
+    //populate the NSURLs of each audios into an array
     [tracksForView enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         Audio *anAudio = (Audio*)obj;
         NSString *path = anAudio.path;
@@ -388,25 +389,46 @@
 
 - (void)userCancelled
 {
+    currentRecordingTrackTitle = @"";
+    currentRecordingNSURL = nil;
+    
+}
+
+- (void)playButtonIsPressed
+{
+    if (isRecording) 
+    {
+        
+        
+    }
+    else if (isPlaying)
+    {
+        isPlaying = YES;
+        [trackTableView reloadData];
+    }
     
 }
 
 - (void)stopButtonIsPresssed
 {
-//    UIAlertView *reallyStopAlertView = [[UIAlertView alloc] initWithTitle:@"Stop?" message:@"Do you really want to stop? :(" delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
-//    [reallyStopAlertView show];
-    
-
-    currentRecordingTrack = -1;
-    isRecording = NO;
-    
-    [trackTableView reloadData];
-    
-    [thePlayer stop];
-    
-    //clear values
-    
-    [self recordingIsCompleted];
+   if (isRecording) {
+        currentRecordingTrack = -1;
+        isRecording = NO;
+        
+        [trackTableView reloadData];
+        
+        [thePlayer stop];
+        
+        //clear values
+        
+        [self recordingIsCompleted];
+    }
+    else if (isPlaying)
+    {
+        isPlaying = NO;
+        [trackTableView reloadData];
+        
+    }
 }
 
 #pragma mark instance methods
@@ -420,16 +442,9 @@
     [lyrics release];
 }
 
-- (void)startPlaying
+- (bool)isRecording
 {
-    isPlaying = YES;
-    [trackTableView reloadData];
-}
-
-- (void)stopPlaying
-{
-    isPlaying = NO;
-    [trackTableView reloadData];
+    return isRecording;
 }
 
 /* constants related to displaying lyrics */
@@ -527,18 +542,6 @@
     [self removeLyrics];
 }
 
-#pragma mark UIAlertViewDelegate Protocol methods
 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if (buttonIndex == 1) 
-    {
-        //user pressed yes
-    }
-    else
-    {
-        //user pressed no
-    }
-}
 
 @end
