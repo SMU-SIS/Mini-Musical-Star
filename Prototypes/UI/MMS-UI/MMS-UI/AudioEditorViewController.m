@@ -389,6 +389,10 @@
     //scroll that row to the top
     [self scrollRowToTopOfTableView:row];
     
+    [thePlayer stop];
+    [thePlayer seekTo:0];
+    [thePlayer stop];
+    
     //start recording using MixPlayerRecorder
     [thePlayer enableRecordingToFile:fileURL];
     [thePlayer play];
