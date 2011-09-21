@@ -18,10 +18,13 @@
 
 @protocol PhotoEditorViewDelegate <NSObject>
 - (void) setSliderPosition: (int) seconds;
+- (void)playPauseButtonIsPressed;
 @end
 
 @interface PhotoEditorViewController : UIViewController <AFOpenFlowViewDelegate,AFOpenFlowViewDataSource, CameraPopupViewDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate> {
     NSOperationQueue *loadImagesOperationQueue;
+    
+    id <PhotoEditorViewDelegate> delegate;
 
 }
 
@@ -33,6 +36,7 @@
 @property (nonatomic) int currentSelectedCover;
 
 
+@property (nonatomic, retain) id <PhotoEditorViewDelegate> delegate;
 @property (retain, nonatomic) CoverScene *theCoverScene;
 @property (retain, nonatomic) NSManagedObjectContext *context;
 @property (retain, nonatomic) CameraPopupViewController *cameraPopupViewController;
