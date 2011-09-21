@@ -153,24 +153,24 @@
 }
 
 
--(UIImage *)resizeImage:(UIImage *)image width:(int)width height:(int)height {
-	
-	CGImageRef imageRef = [image CGImage];
-	CGImageAlphaInfo alphaInfo = CGImageGetAlphaInfo(imageRef);
-	
-	//if (alphaInfo == kCGImageAlphaNone)
-    alphaInfo = kCGImageAlphaNoneSkipLast;
-	
-	CGContextRef bitmap = CGBitmapContextCreate(NULL, width, height, CGImageGetBitsPerComponent(imageRef), 4 * width, CGImageGetColorSpace(imageRef), alphaInfo);
-	CGContextDrawImage(bitmap, CGRectMake(0, 0, width, height), imageRef);
-	CGImageRef ref = CGBitmapContextCreateImage(bitmap);
-	UIImage *result = [UIImage imageWithCGImage:ref];
-	
-	CGContextRelease(bitmap);
-	CGImageRelease(ref);
-	
-	return result;	
-}
+//-(UIImage *)resizeImage:(UIImage *)image width:(int)width height:(int)height {
+//	
+//	CGImageRef imageRef = [image CGImage];
+//	CGImageAlphaInfo alphaInfo = CGImageGetAlphaInfo(imageRef);
+//	
+//	//if (alphaInfo == kCGImageAlphaNone)
+//    alphaInfo = kCGImageAlphaNoneSkipLast;
+//	
+//	CGContextRef bitmap = CGBitmapContextCreate(NULL, width, height, CGImageGetBitsPerComponent(imageRef), 4 * width, CGImageGetColorSpace(imageRef), alphaInfo);
+//	CGContextDrawImage(bitmap, CGRectMake(0, 0, width, height), imageRef);
+//	CGImageRef ref = CGBitmapContextCreateImage(bitmap);
+//	UIImage *result = [UIImage imageWithCGImage:ref];
+//	
+//	CGContextRelease(bitmap);
+//	CGImageRelease(ref);
+//	
+//	return result;	
+//}
 /* Called when the user had taken a photo or selected a photo from the photo library. */
 -(void)imagePickerController:(UIImagePickerController *)picker
 didFinishPickingMediaWithInfo:(NSDictionary *)info
@@ -188,14 +188,15 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
                           objectForKey:UIImagePickerControllerOriginalImage];
         
         //resize image
-        UIImage *resizedImage = [UIImage imageWithCGImage:image.CGImage Scale:0.25 Orientation:UIImageOrientationUp];
-        resizedImage = [self resizeImage:image width: 640 height: 480];
+//        UIImage *resizedImage = [UIImage imageWithCGImage:image.CGImage Scale:0.25 Orientation:UIImageOrientationUp];
+//        resizedImage = [self resizeImage:image width: 640 height: 480];
+        image = [UIImage imageWithImage:image scaledToSize:CGSizeMake(640,480)];
         
         //imageView.image = image;
         
         //replace image from imagesArray index 0 with new image
 //        [self replaceImage:indexOfImageToChange newImage:image];
-        [self.delegate replaceCenterImage:resizedImage];
+        [self.delegate replaceCenterImage:image];
         [self cancelCurrentOverlay];
         
         //removed codes that save photo to photo library

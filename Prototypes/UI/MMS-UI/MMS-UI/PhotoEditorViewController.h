@@ -18,6 +18,7 @@
 
 @protocol PhotoEditorViewDelegate <NSObject>
 - (void) setSliderPosition: (int) seconds;
+- (void)playPauseButtonIsPressed;
 @end
 
 @interface PhotoEditorViewController : UIViewController <AFOpenFlowViewDelegate,AFOpenFlowViewDataSource, CameraPopupViewDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate> {

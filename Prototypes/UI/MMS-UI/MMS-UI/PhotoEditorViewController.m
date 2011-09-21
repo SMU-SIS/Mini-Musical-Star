@@ -179,6 +179,8 @@
     [UIView beginAnimations:nil context:nil];
     [overlayView.view setAlpha:1.0];
     [UIView commitAnimations];
+    
+    [delegate playPauseButtonIsPressed];
 
     [overlayView setDelegate:self];
 
