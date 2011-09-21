@@ -10,7 +10,21 @@
 
 @implementation PhotoEditorViewController
 
-@synthesize leftPicture, rightPicture, centerPicture, thePictures, imagesArray, theCoverScene, context, btn,currentSelectedCover, cameraPopupViewController;
+@synthesize leftPicture, rightPicture, centerPicture, thePictures, imagesArray, theCoverScene, context, btn, currentSelectedCover, cameraPopupViewController;
+
+-(void)dealloc
+{
+    [leftPicture release];
+    [rightPicture release];
+    [centerPicture release];
+    [thePictures release];
+    [imagesArray release];
+    [theCoverScene release];
+    [context release];
+    [btn release];
+    [cameraPopupViewController release];
+    [super dealloc];
+}
 
 - (void) takePhoto
 {
@@ -43,17 +57,7 @@
     }
 }
 
--(void)dealloc
-{
-    [leftPicture release];
-    [rightPicture release];
-    [centerPicture release];
-    [thePictures release];
-    [theCoverScene release];
-    [context release];
-    [cameraPopupViewController release];
-    [super dealloc];
-}
+
 
 - (PhotoEditorViewController *)initWithPhotos:(NSArray *)pictureArray andCoverScene:(CoverScene *)aCoverScene andContext:(NSManagedObjectContext *)aContext
 {

@@ -11,6 +11,7 @@
 //this one apparently produces the best PCM (suitable for speaker output)
 void ASBDSetCanonical(AudioStreamBasicDescription* asbd, UInt32 nChannels, bool interleaved)
 {
+    //memset(&asbd, 0, sizeof(asbd));
     asbd->mFormatID = kAudioFormatLinearPCM;
     int sampleSize = SizeOf32(AudioSampleType);
     asbd->mFormatFlags = kAudioFormatFlagsCanonical;
@@ -23,13 +24,13 @@ void ASBDSetCanonical(AudioStreamBasicDescription* asbd, UInt32 nChannels, bool 
         asbd->mBytesPerPacket = asbd->mBytesPerFrame = sampleSize;
         asbd->mFormatFlags |= kAudioFormatFlagIsNonInterleaved;
     }
-
 }
 
 //this one is when you wanna write out to m4a (AAC) PLEASE DON'T USE THIS FOR READING
 //if you wanna read go and use ExtAudioFileGetProperty and get kExtAudioFileProperty_FileDataFormat
 void ASBDSetM4A(AudioStreamBasicDescription* asbd, UInt32 nChannels)
 {
+    //memset(&asbd, 0, sizeof(asbd));
     asbd->mSampleRate = 44100.00;
     asbd->mFormatID = kAudioFormatMPEG4AAC;
     asbd->mFormatFlags = kMPEG4Object_AAC_LC;
