@@ -188,13 +188,14 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
                           objectForKey:UIImagePickerControllerOriginalImage];
         
         //resize image
-        image = [self resizeImage:image width: 640 height: 480];
+        UIImage *resizedImage = [UIImage imageWithCGImage:image.CGImage Scale:0.25 Orientation:UIImageOrientationUp];
+        resizedImage = [self resizeImage:image width: 640 height: 480];
         
         //imageView.image = image;
         
         //replace image from imagesArray index 0 with new image
 //        [self replaceImage:indexOfImageToChange newImage:image];
-        [self.delegate replaceCenterImage:image];
+        [self.delegate replaceCenterImage:resizedImage];
         [self cancelCurrentOverlay];
         
         //removed codes that save photo to photo library

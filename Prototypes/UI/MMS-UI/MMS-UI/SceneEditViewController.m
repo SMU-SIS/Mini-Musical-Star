@@ -66,6 +66,7 @@
 
     //load the photo view controller
     photoView = [[PhotoEditorViewController alloc] initWithPhotos:theScene.pictureList andCoverScene:theCoverScene andContext:context];
+    [photoView setDelegate:self];
 }
 
 - (void)registerNotifications
