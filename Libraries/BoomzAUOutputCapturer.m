@@ -42,7 +42,8 @@ static OSStatus RenderCallback(	void *							inRefCon,
         //should be changeable (set to 0 to record the entire mix (VERY LAGGY THOUGH), set to 1 to record just mic)
         mBusNumber = busNumber;
         
-        ASBDSetCanonical(&format, 2, YES);
+        //ASBDSetCanonical(&format, 2, YES);
+        ASBDSetIMA4(&format, 2);
         
     }
     

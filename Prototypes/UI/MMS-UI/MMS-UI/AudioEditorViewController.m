@@ -375,7 +375,8 @@
     Audio *trackToBeRecorded = (Audio*)audioForRow;
     
     NSString *tempDir = NSTemporaryDirectory();
-    NSString *tempFile = [tempDir stringByAppendingFormat:@"%@-cover.m4a", trackToBeRecorded.title];
+    //we are going to use .caf files because i am going to encode in IMA4
+    NSString *tempFile = [tempDir stringByAppendingFormat:@"%@-cover.caf", trackToBeRecorded.title];
     NSURL *fileURL = [NSURL fileURLWithPath:tempFile];
     
     //if file exists delete the file first
@@ -401,7 +402,7 @@
 - (void)recordingIsCompleted
 {
     NSString *tempDir = NSTemporaryDirectory();
-    NSString *tempFile = [tempDir stringByAppendingFormat:@"%@-cover.m4a", currentRecordingTrackTitle];
+    NSString *tempFile = [tempDir stringByAppendingFormat:@"%@-cover.caf", currentRecordingTrackTitle];
     
     CoverSceneAudio *newCoverSceneAudio = [NSEntityDescription insertNewObjectForEntityForName:@"CoverSceneAudio" inManagedObjectContext:context];
     
