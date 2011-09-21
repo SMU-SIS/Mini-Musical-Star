@@ -190,8 +190,12 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
         //resize image
 //        UIImage *resizedImage = [UIImage imageWithCGImage:image.CGImage Scale:0.25 Orientation:UIImageOrientationUp];
 //        resizedImage = [self resizeImage:image width: 640 height: 480];
-        image = [UIImage imageWithImage:image scaledToSize:CGSizeMake(640,480)];
-        
+        CGSize size = CGSizeMake(640,480);
+        if (image.size.height == 640 || image.size.height == 960){
+            size = CGSizeMake(480,640);
+        }
+       
+        image = [UIImage imageWithImage:image scaledToSize:size];
         //imageView.image = image;
         
         //replace image from imagesArray index 0 with new image
