@@ -191,6 +191,11 @@
     }
 }
 
+- (void)stopPlayer
+{
+    [self.audioView.thePlayer stop];
+}
+
 - (IBAction)toggleContainerView
 {
 	if (transitioning) return;
