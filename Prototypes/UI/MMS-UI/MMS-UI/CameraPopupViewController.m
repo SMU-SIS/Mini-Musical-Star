@@ -11,13 +11,15 @@
 
 @implementation CameraPopupViewController
 
-@synthesize takePhotoButton, replacePictureButton, popoverController, delegate;
+@synthesize takePhotoButton, replacePictureButton, popoverController, delegate, context, theCoverScene;
 
 -(void) dealloc
 {
     [takePhotoButton release];
     [replacePictureButton release];
     [popoverController release];
+    [theCoverScene release];
+    [context release];
     [super dealloc];
 }
 
@@ -49,9 +51,29 @@
 	return YES;
 }
 
+- (CameraPopupViewController *)initWithCoverScene:(CoverScene *)coverScene andContext:(NSManagedObjectContext *)aContext
+{
+    self = [super init];
+    if (self)
+    {
+        self.theCoverScene = coverScene;
+        self.context = aContext;
+    }
+    
+    return self;
+}
+
+- (void) replaceImageTest
+{
+    NSLog(@"Replacing first photo in the set with something new...");
+    CoverScenePicture *newPicture = [NSEntityDescription insertNewObjectForEntityForName:@"CoverScenePicture" inManagedObjectContext:context];
+    newPicture.OrderNumber = [NSNumber numberWithInt:1];
+    newPicture.Path = [[NSBundle mainBundle] pathForResource:@"hsmS3" ofType:@"jpeg"];
+    
+}
+
 - (IBAction) useCamera: (id)sender
 {
-//    [self.delegate takePhoto];
     if ([UIImagePickerController isSourceTypeAvailable:
          UIImagePickerControllerSourceTypeCamera])
     {

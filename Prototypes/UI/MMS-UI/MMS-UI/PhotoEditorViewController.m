@@ -147,12 +147,11 @@
     [UIView commitAnimations];
     
     [delegate stopPlayer];
-
+    
     [overlayView setDelegate:self];
     
 
 }
-
 
 - (void)viewDidUnload
 {

@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CoverScene.h"
+#import "CoverScenePicture.h"
 
 @protocol CameraPopupViewDelegate <NSObject>
 @required
@@ -24,10 +26,14 @@
 
 @property (nonatomic, assign) id <CameraPopupViewDelegate> delegate;
 
+@property (retain, nonatomic) CoverScene *theCoverScene;
+@property (retain, nonatomic) NSManagedObjectContext *context;
 @property (nonatomic, retain) IBOutlet UIButton *takePhotoButton;
 @property (nonatomic, retain) IBOutlet UIButton *replacePictureButton;
 
 @property (nonatomic, retain) UIPopoverController *popoverController;
+
+- (CameraPopupViewController *)initWithCoverScene:(CoverScene *)coverScene andContext:(NSManagedObjectContext *)aContext;
 
 - (IBAction)useCamera: (id)sender;
 - (IBAction)useCameraRoll: (id)sender;
