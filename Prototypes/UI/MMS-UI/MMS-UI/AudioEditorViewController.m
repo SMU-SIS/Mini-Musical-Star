@@ -15,6 +15,7 @@
 @synthesize lyricsPopoverController, lyricsViewController, lyricsScrollView, lyricsLabel; //released when popover is closed
 @synthesize lyrics;
 @synthesize currentRecordingNSURL, currentRecordingTrackTitle;
+@synthesize playPauseButton;
 
 - (void)dealloc
 {
@@ -48,7 +49,7 @@
 
 #pragma mark - View lifecycle
 
-- (AudioEditorViewController *)initWithScene:(Scene *)aScene andCoverScene:(CoverScene *)aCoverScene andContext:(NSManagedObjectContext *)aContext
+- (AudioEditorViewController *)initWithScene:(Scene *)aScene andCoverScene:(CoverScene *)aCoverScene andContext:(NSManagedObjectContext *)aContext andPlayPauseButton:(UIButton*)aPlayPauseButton
 {
     self = [super init];
     if (self)
@@ -57,6 +58,7 @@
         //self.theScene = aScene;
         self.theCoverScene = aCoverScene;
         self.context = aContext;
+        self.playPauseButton = aPlayPauseButton;
         
         isPlaying = NO;
         isRecording = NO;
@@ -401,6 +403,8 @@
 
 - (void)recordingIsCompleted
 {
+    [self dismissLyrics];
+    
     NSString *tempDir = NSTemporaryDirectory();
     NSString *tempFile = [tempDir stringByAppendingFormat:@"%@-cover.caf", currentRecordingTrackTitle];
     
@@ -546,6 +550,7 @@
        [arrayOfPassThroughViews addObject:cell];   
       }
         
+        [arrayOfPassThroughViews addObject:playPauseButton];
         
     }
     
@@ -553,7 +558,13 @@
     
 }
 
-//Dissmiss the lyrics popover controller only if it is not nil and it is visible
+//This is for scene edit view to pass me a pointer to the play pause button
+- (void)giveMePlayPauseButton:(UIButton*)aButton
+{
+    self.playPauseButton = aButton;
+}
+
+//Dismiss the lyrics popover controller only if it is not nil and it is visible
 - (void)dismissLyrics
 {
     if (lyricsPopoverController != nil && lyricsPopoverController.popoverVisible)
@@ -581,7 +592,5 @@
     
     [self removeLyrics];
 }
-
-
 
 @end

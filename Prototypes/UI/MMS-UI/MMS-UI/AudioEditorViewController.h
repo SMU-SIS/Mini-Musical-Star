@@ -35,6 +35,8 @@
     
     NSURL *currentRecordingNSURL;
     NSString *currentRecordingTrackTitle;
+    
+    UIButton *playPauseButton;
 }
 
 @property (nonatomic, retain) UITableView *trackTableView;
@@ -58,7 +60,9 @@
 @property (nonatomic, retain) NSURL *currentRecordingNSURL;
 @property (nonatomic, retain) NSString *currentRecordingTrackTitle;
 
-- (AudioEditorViewController *)initWithScene:(Scene *)theScene andCoverScene:(CoverScene *)aCoverScene andContext:(NSManagedObjectContext *)aContext;
+@property (nonatomic, retain) UIButton *playPauseButton;
+
+- (AudioEditorViewController *)initWithScene:(Scene *)theScene andCoverScene:(CoverScene *)aCoverScene andContext:(NSManagedObjectContext *)aContext andPlayPauseButton:(UIButton*)aPlayPauseButton;
 
 - (void)setLyrics:(NSString*)someLyrics;
 - (void)removeLyrics;
@@ -70,5 +74,7 @@
 - (void)stopButtonIsPresssed;
 
 - (bool)isRecording;
+
+- (void)giveMePlayPauseButton:(UIButton*)aButton;
 
 @end
