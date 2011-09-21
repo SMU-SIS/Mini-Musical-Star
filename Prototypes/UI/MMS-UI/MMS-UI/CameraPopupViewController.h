@@ -22,7 +22,7 @@
 
 }
 
-@property (nonatomic, retain) id <CameraPopupViewDelegate> delegate;
+@property (nonatomic, assign) id <CameraPopupViewDelegate> delegate;
 
 @property (nonatomic, retain) IBOutlet UIButton *takePhotoButton;
 @property (nonatomic, retain) IBOutlet UIButton *replacePictureButton;

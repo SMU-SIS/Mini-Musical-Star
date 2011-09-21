@@ -22,7 +22,6 @@
     [theCoverScene release];
     [context release];
     [cameraPopupViewController release];
-    [delegate release];
     [super dealloc];
 }
 
@@ -113,7 +112,6 @@
 
 - (void)replaceCenterImage: (UIImage*)image
 {
-    
     [(AFOpenFlowView *)self.view setImage:image forIndex:self.currentSelectedCover];
 }
 
@@ -151,6 +149,7 @@
     [delegate stopPlayer];
 
     [overlayView setDelegate:self];
+    
 
 }
 

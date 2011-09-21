@@ -35,7 +35,7 @@
 @property (retain,nonatomic) NSMutableArray *imagesArray;
 @property (nonatomic) int currentSelectedCover;
 
-@property (nonatomic, retain) id <PhotoEditorViewDelegate> delegate;
+@property (nonatomic, assign) id <PhotoEditorViewDelegate> delegate;
 
 @property (retain, nonatomic) CoverScene *theCoverScene;
 @property (retain, nonatomic) NSManagedObjectContext *context;
