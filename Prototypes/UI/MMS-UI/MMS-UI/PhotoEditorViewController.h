@@ -43,7 +43,6 @@
 
 - (PhotoEditorViewController *)initWithPhotos:(NSArray *)pictureArray andCoverScene:(CoverScene *)aCoverScene andContext:(NSManagedObjectContext *)context;
 
-- (IBAction) replaceImageTest:(UIButton *)sender;
 - (IBAction) popupCameraOptions: (id) sender;
 
 - (void) setSliderImages:(UInt32)timeAt;

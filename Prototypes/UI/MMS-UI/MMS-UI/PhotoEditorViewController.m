@@ -100,17 +100,6 @@
     
 }
 
-
-//- (IBAction) replaceImageTest:(UIButton *)sender
-//{
-//    CoverScenePicture *newPicture = [NSEntityDescription insertNewObjectForEntityForName:@"CoverScenePicture" inManagedObjectContext:context];
-//    newPicture.OrderNumber = [NSNumber numberWithInt:1];
-//    newPicture.Path = [[NSBundle mainBundle] pathForResource:@"hsmS3" ofType:@"jpeg"];
-//    
-//    [self.theCoverScene addPictureObject:newPicture];
-//    [(AFOpenFlowView *)self.view setImage: [newPicture image] forIndex:self.currentSelectedCover];
-//}
-
 - (int)replaceCenterImage: (UIImage*)image
 {
     [(AFOpenFlowView *)self.view setImage:image forIndex:self.currentSelectedCover];
