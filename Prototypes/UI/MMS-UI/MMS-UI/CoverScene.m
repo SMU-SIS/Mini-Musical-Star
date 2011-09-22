@@ -24,7 +24,7 @@
     
     [self.Picture enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
         CoverScenePicture *theCoverPicture = (CoverScenePicture *)obj;
-        if ([theCoverPicture.OrderNumber intValue] == orderNum)
+        if ([theCoverPicture.OrderNumber intValue] == (orderNum))
         {
             pictureToReturn = theCoverPicture;
             *stop = YES;

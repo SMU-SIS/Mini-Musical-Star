@@ -61,20 +61,21 @@
 {
     loadImagesOperationQueue = [[NSOperationQueue alloc] init];
     
+    __block int count= 0;
     [thePictures enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         Picture *pic = (Picture*)obj;
-        CoverScenePicture *coverPicture = [theCoverScene pictureForOrderNumber:pic.orderNumber];
-        
+        CoverScenePicture *coverPicture = [theCoverScene pictureForOrderNumber:count];
+//        NSLog(@"coverPictures: %@",coverPicture);
         if (coverPicture == nil)
         {
-           
-            [(AFOpenFlowView *)self.view setImage: pic.image forIndex: idx];
+            [(AFOpenFlowView *)self.view setImage: pic.image forIndex: count];
         }
         
         else
         {
-            [(AFOpenFlowView *)self.view setImage: [coverPicture image] forIndex: idx];
+            [(AFOpenFlowView *)self.view setImage: [coverPicture image] forIndex: count];
         }
+        count = count + 1;
         
     }];
     
@@ -100,15 +101,15 @@
 }
 
 
-- (IBAction) replaceImageTest:(UIButton *)sender
-{
-    CoverScenePicture *newPicture = [NSEntityDescription insertNewObjectForEntityForName:@"CoverScenePicture" inManagedObjectContext:context];
-    newPicture.OrderNumber = [NSNumber numberWithInt:1];
-    newPicture.Path = [[NSBundle mainBundle] pathForResource:@"hsmS3" ofType:@"jpeg"];
-    
-    [self.theCoverScene addPictureObject:newPicture];
-    [(AFOpenFlowView *)self.view setImage: [newPicture image] forIndex:self.currentSelectedCover];
-}
+//- (IBAction) replaceImageTest:(UIButton *)sender
+//{
+//    CoverScenePicture *newPicture = [NSEntityDescription insertNewObjectForEntityForName:@"CoverScenePicture" inManagedObjectContext:context];
+//    newPicture.OrderNumber = [NSNumber numberWithInt:1];
+//    newPicture.Path = [[NSBundle mainBundle] pathForResource:@"hsmS3" ofType:@"jpeg"];
+//    
+//    [self.theCoverScene addPictureObject:newPicture];
+//    [(AFOpenFlowView *)self.view setImage: [newPicture image] forIndex:self.currentSelectedCover];
+//}
 
 - (int)replaceCenterImage: (UIImage*)image
 {

@@ -171,14 +171,28 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
         //removed codes that save photo to photo library
         UIImageWriteToSavedPhotosAlbum(image,nil, nil, nil);
         
-        //save photo to core data
-        NSLog(@"Replacing first photo in the set with something new...");
-        NSLog(@"MEDIA TYPE: %@",[info objectForKey:UIImagePickerControllerReferenceURL]);
-        NSLog(@"MEDIA URL: %@",[[info objectForKey:UIImagePickerControllerReferenceURL] path]);
+        //save photo to documents directory, then store path in core data
+        
+        //write image
+        NSString *imageFileName = [NSString stringWithFormat:@"user_%i.jpg", selectedIndex];
+
+        NSString  *jpgPath = [NSHomeDirectory() stringByAppendingPathComponent:[@"Documents" stringByAppendingPathComponent:imageFileName]];
+        
+        [UIImageJPEGRepresentation(image, 1.0) writeToFile:jpgPath atomically:YES];
+        
+        // Create file manager
+//        NSError *error;
+//        NSFileManager *fileMgr = [NSFileManager defaultManager];
+        
+        // Point to Document directory
+        NSString *documentsDirectoryImage = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:imageFileName];
+        
         CoverScenePicture *newPicture = [NSEntityDescription insertNewObjectForEntityForName:@"CoverScenePicture" inManagedObjectContext:context];
-        newPicture.OrderNumber = [NSNumber numberWithInt:selectedIndex];
-        newPicture.Path = [[NSBundle mainBundle] pathForResource:@"hsmS3" ofType:@"jpeg"];
-//        [theCoverScene addPictureObject:newPicture];
+        newPicture.OrderNumber = [NSNumber numberWithInt:(selectedIndex)];
+        newPicture.Path = documentsDirectoryImage;
+        NSLog(@"selected index: %d",selectedIndex);
+        [theCoverScene addPictureObject:newPicture];
+        NSLog(@"added picture to coverscene :%@",[newPicture image]);
     }
     else if ([mediaType isEqualToString:(NSString *)kUTTypeMovie])
     {
