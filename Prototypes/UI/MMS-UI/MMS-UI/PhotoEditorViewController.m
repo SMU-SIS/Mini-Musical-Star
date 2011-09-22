@@ -110,9 +110,10 @@
     [(AFOpenFlowView *)self.view setImage: [newPicture image] forIndex:self.currentSelectedCover];
 }
 
-- (void)replaceCenterImage: (UIImage*)image
+- (int)replaceCenterImage: (UIImage*)image
 {
     [(AFOpenFlowView *)self.view setImage:image forIndex:self.currentSelectedCover];
+    return self.currentSelectedCover;
 }
 
 
@@ -138,7 +139,7 @@
 - (IBAction) popupCameraOptions: (id) sender
 {
     
-    CameraPopupViewController *overlayView = [[CameraPopupViewController alloc] init];
+    CameraPopupViewController *overlayView = [[CameraPopupViewController alloc] initWithCoverScene:theCoverScene andContext:context];
     
     [overlayView.view setAlpha:0.0];
     [self.view addSubview:overlayView.view];

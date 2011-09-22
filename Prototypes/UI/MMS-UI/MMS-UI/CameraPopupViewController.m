@@ -164,11 +164,21 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
         image = [UIImage imageWithImage:image scaledToSize:size];
         //imageView.image = image;
         
-        //replace image from imagesArray index 0 with new image
-        [self.delegate replaceCenterImage:image];
+        //replace image in cover flow
+        int selectedIndex = [self.delegate replaceCenterImage:image];
         [self cancelCurrentOverlay];
         
         //removed codes that save photo to photo library
+        UIImageWriteToSavedPhotosAlbum(image,nil, nil, nil);
+        
+        //save photo to core data
+        NSLog(@"Replacing first photo in the set with something new...");
+        NSLog(@"MEDIA TYPE: %@",[info objectForKey:UIImagePickerControllerReferenceURL]);
+        NSLog(@"MEDIA URL: %@",[[info objectForKey:UIImagePickerControllerReferenceURL] path]);
+        CoverScenePicture *newPicture = [NSEntityDescription insertNewObjectForEntityForName:@"CoverScenePicture" inManagedObjectContext:context];
+        newPicture.OrderNumber = [NSNumber numberWithInt:selectedIndex];
+        newPicture.Path = [[NSBundle mainBundle] pathForResource:@"hsmS3" ofType:@"jpeg"];
+//        [theCoverScene addPictureObject:newPicture];
     }
     else if ([mediaType isEqualToString:(NSString *)kUTTypeMovie])
     {

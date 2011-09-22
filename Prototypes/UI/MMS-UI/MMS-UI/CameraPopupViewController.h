@@ -12,7 +12,7 @@
 
 @protocol CameraPopupViewDelegate <NSObject>
 @required
-- (void)replaceCenterImage: (UIImage*)image;
+- (int)replaceCenterImage: (UIImage*)image;
 @end
 
 @interface CameraPopupViewController : UIViewController
