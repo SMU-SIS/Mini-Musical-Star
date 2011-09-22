@@ -63,15 +63,6 @@
     return self;
 }
 
-- (void) replaceImageTest
-{
-    NSLog(@"Replacing first photo in the set with something new...");
-    CoverScenePicture *newPicture = [NSEntityDescription insertNewObjectForEntityForName:@"CoverScenePicture" inManagedObjectContext:context];
-    newPicture.OrderNumber = [NSNumber numberWithInt:1];
-    newPicture.Path = [[NSBundle mainBundle] pathForResource:@"hsmS3" ofType:@"jpeg"];
-    
-}
-
 - (IBAction) useCamera: (id)sender
 {
     if ([UIImagePickerController isSourceTypeAvailable:
@@ -180,19 +171,14 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
         
         [UIImageJPEGRepresentation(image, 1.0) writeToFile:jpgPath atomically:YES];
         
-        // Create file manager
-//        NSError *error;
-//        NSFileManager *fileMgr = [NSFileManager defaultManager];
-        
         // Point to Document directory
         NSString *documentsDirectoryImage = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:imageFileName];
         
+        //save to coredata
         CoverScenePicture *newPicture = [NSEntityDescription insertNewObjectForEntityForName:@"CoverScenePicture" inManagedObjectContext:context];
         newPicture.OrderNumber = [NSNumber numberWithInt:(selectedIndex)];
         newPicture.Path = documentsDirectoryImage;
-        NSLog(@"selected index: %d",selectedIndex);
         [theCoverScene addPictureObject:newPicture];
-        NSLog(@"added picture to coverscene :%@",[newPicture image]);
     }
     else if ([mediaType isEqualToString:(NSString *)kUTTypeMovie])
     {
