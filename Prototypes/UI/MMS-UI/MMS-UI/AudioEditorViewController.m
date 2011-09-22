@@ -484,7 +484,7 @@
     newCoverSceneAudio.title = currentRecordingTrackTitle;
     newCoverSceneAudio.path = tempFile;
     
-    [self.theCoverScene addAudioObject:newCoverSceneAudio];
+    [self.theCoverScene addAudioObject:newCoverSceneAudio]; //receing EXC_BAD_ACCESS here when exit and record
     
     //init the player with the original audio tracks and cover tracks
     NSMutableArray *tracksForViewNSURL = [NSMutableArray arrayWithCapacity:[tracksForView count]-1];

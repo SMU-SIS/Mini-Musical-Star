@@ -107,7 +107,11 @@
 {
      containerToggleButton = [[UIBarButtonItem alloc] initWithTitle:@"Photos" style:UIBarButtonItemStylePlain target:self action:@selector(toggleContainerView)];          
     self.navigationItem.rightBarButtonItem = containerToggleButton;
+}
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [audioView deRegisterFromNSNotifcationCenter];
 }
 
 #pragma mark IBActions
