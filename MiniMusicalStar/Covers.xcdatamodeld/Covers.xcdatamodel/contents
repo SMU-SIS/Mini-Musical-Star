@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="562" systemVersion="11B2118" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Cover" representedClassName="Cover">
+        <attribute name="author" optional="YES" attributeType="String"/>
+        <attribute name="cover_of_songID" optional="YES" attributeType="Integer 16" defaultValueString="0"/>
+        <attribute name="created_date" optional="YES" attributeType="Date"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <relationship name="Scenes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CoverScene" inverseName="Cover" inverseEntity="CoverScene"/>
+    </entity>
+    <entity name="CoverScene" representedClassName="CoverScene">
+        <attribute name="SceneNum" optional="YES" attributeType="Integer 16" defaultValueString="0"/>
+        <relationship name="Audio" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CoverSceneAudio" inverseName="CoverScene" inverseEntity="CoverSceneAudio"/>
+        <relationship name="Cover" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Cover" inverseName="Scenes" inverseEntity="Cover"/>
+        <relationship name="Picture" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CoverScenePicture" inverseName="CoverScene" inverseEntity="CoverScenePicture"/>
+    </entity>
+    <entity name="CoverSceneAudio" representedClassName="CoverSceneAudio">
+        <attribute name="path" optional="YES" attributeType="String"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <relationship name="CoverScene" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="CoverScene" inverseName="Audio" inverseEntity="CoverScene"/>
+    </entity>
+    <entity name="CoverScenePicture" representedClassName="CoverScenePicture">
+        <attribute name="OrderNumber" optional="YES" attributeType="Integer 16" defaultValueString="0"/>
+        <attribute name="Path" optional="YES" attributeType="String"/>
+        <relationship name="CoverScene" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="CoverScene" inverseName="Picture" inverseEntity="CoverScene"/>
+    </entity>
+    <elements>
+        <element name="Cover" positionX="-0" positionY="258" width="128" height="120"/>
+        <element name="CoverScene" positionX="-38" positionY="72" width="128" height="90"/>
+        <element name="CoverSceneAudio" positionX="342" positionY="18" width="128" height="90"/>
+        <element name="CoverScenePicture" positionX="331" positionY="135" width="128" height="75"/>
+    </elements>
+</model>
