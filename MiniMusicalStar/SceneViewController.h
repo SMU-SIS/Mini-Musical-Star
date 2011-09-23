@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ShowImage.h"
 #import "Show.h"
 #import "SceneEditViewController.h"
 #import "Cover.h"

@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ShowImage.h"
 #import "ShowDAO.h"
 #import "Show.h"
 #import "Cover.h"
@@ -17,9 +16,7 @@
 
 @interface MenuViewController : UIViewController <NSFetchedResultsControllerDelegate> {
     IBOutlet UIScrollView *scrollView; 
-    
-    ShowImage *showImages;
-    
+
     NSMutableArray *buttonArray;
     
     NSFetchedResultsController *fetchedResultsController;

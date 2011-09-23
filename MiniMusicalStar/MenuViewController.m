@@ -53,9 +53,6 @@
 {
     scrollView.hidden = NO;
     //return the array of show images; reason being, i need to get the scrollview content size based on the image count.
-    //showImages = [ShowImage alloc];
-    //NSArray *images = showImages.getShowImages; 
-    
     NSArray *images = [ShowDAO imagesForShows];
     
     //display the show images.
@@ -69,7 +66,6 @@
     scrollView.clipsToBounds = NO;    
     [scrollView setContentSize:CGSizeMake(scrollView.frame.size.width + (images.count+1)* 280, scrollView.frame.size.height)];
     
-    [showImages release];
 }
 
 - (void)daoDownloadQueueFinished
@@ -107,8 +103,6 @@
     
     [self.navigationController pushViewController:sceneView animated:YES];
     
-    //sceneView.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-    //[self presentModalViewController:sceneView animated:YES];
         
     [sceneView release];
 }
@@ -123,27 +117,6 @@
         };
     }
 	return nil;
-}
-
-- (IBAction)playBackMusical {
-//    PlaybackViewController *pBackMusical = [[PlaybackViewController alloc] initWithShow:[self returnCurrentSelectedShow]];
-//    
-//    pBackMusical.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-//    [self presentModalViewController:pBackMusical animated:YES];
-//    s
-//    [pBackMusical release];
-}
-
-- (IBAction)coverMusical {
-//    CoverViewController *covers = [[CoverViewController alloc] initWithNibName:nil bundle:nil];
-//    
-//    int current = [self currentPage];    
-//    [covers setImageNum:current];
-//    
-//    covers.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-//    [self presentModalViewController:covers animated:YES];
-//    
-//    [covers release];
 }
 
 -(void)displayShowImages:(NSArray *)images
