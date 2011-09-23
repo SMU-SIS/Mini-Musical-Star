@@ -189,7 +189,7 @@
 		EDA2A1C913F26F8400B64EA5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDA2A1C813F26F8400B64EA5 /* CoreGraphics.framework */; };
 		EDA2A1CF13F26F8400B64EA5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EDA2A1CD13F26F8400B64EA5 /* InfoPlist.strings */; };
 		EDA2A1D213F26F8400B64EA5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA2A1D113F26F8400B64EA5 /* main.m */; };
-		EDA2A1D513F26F8400B64EA5 /* MMS_UIAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA2A1D413F26F8400B64EA5 /* MMS_UIAppDelegate.m */; };
+		EDA2A1D513F26F8400B64EA5 /* MiniMusicalStarAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA2A1D413F26F8400B64EA5 /* MiniMusicalStarAppDelegate.m */; };
 		EDA2A1D813F26F8400B64EA5 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDA2A1D613F26F8400B64EA5 /* MainWindow.xib */; };
 		EDA2A1DB13F26F8400B64EA5 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA2A1DA13F26F8400B64EA5 /* MenuViewController.m */; };
 		EDA2A1DE13F26F8400B64EA5 /* MenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDA2A1DC13F26F8400B64EA5 /* MenuViewController.xib */; };
@@ -373,8 +373,8 @@
 		EDA2A1CE13F26F8400B64EA5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		EDA2A1D013F26F8400B64EA5 /* MiniMusicalStar-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MiniMusicalStar-Prefix.pch"; sourceTree = "<group>"; };
 		EDA2A1D113F26F8400B64EA5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		EDA2A1D313F26F8400B64EA5 /* MMS_UIAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MMS_UIAppDelegate.h; sourceTree = "<group>"; };
-		EDA2A1D413F26F8400B64EA5 /* MMS_UIAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MMS_UIAppDelegate.m; sourceTree = "<group>"; };
+		EDA2A1D313F26F8400B64EA5 /* MiniMusicalStarAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MiniMusicalStarAppDelegate.h; sourceTree = "<group>"; };
+		EDA2A1D413F26F8400B64EA5 /* MiniMusicalStarAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MiniMusicalStarAppDelegate.m; sourceTree = "<group>"; };
 		EDA2A1D713F26F8400B64EA5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
 		EDA2A1D913F26F8400B64EA5 /* MenuViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
 		EDA2A1DA13F26F8400B64EA5 /* MenuViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
@@ -729,8 +729,8 @@
 				820511BD13F3BB9B0016F87E /* SceneViewController.m */,
 				9569E0631418A2D30016DAF3 /* SceneEditViewController.h */,
 				9569E0641418A2D30016DAF3 /* SceneEditViewController.m */,
-				EDA2A1D313F26F8400B64EA5 /* MMS_UIAppDelegate.h */,
-				EDA2A1D413F26F8400B64EA5 /* MMS_UIAppDelegate.m */,
+				EDA2A1D313F26F8400B64EA5 /* MiniMusicalStarAppDelegate.h */,
+				EDA2A1D413F26F8400B64EA5 /* MiniMusicalStarAppDelegate.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -1042,7 +1042,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EDA2A1D213F26F8400B64EA5 /* main.m in Sources */,
-				EDA2A1D513F26F8400B64EA5 /* MMS_UIAppDelegate.m in Sources */,
+				EDA2A1D513F26F8400B64EA5 /* MiniMusicalStarAppDelegate.m in Sources */,
 				EDA2A1DB13F26F8400B64EA5 /* MenuViewController.m in Sources */,
 				820511BF13F3BB9B0016F87E /* SceneViewController.m in Sources */,
 				9572E0D7140E118400713F45 /* AudioCue.m in Sources */,

@@ -1,3 +1,4 @@
+
 //
 //  MMS_UIAppDelegate.m
 //  MMS-UI
@@ -6,10 +7,10 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "MMS_UIAppDelegate.h"
+#import "MiniMusicalStarAppDelegate.h"
 #import "MenuViewController.h"
 
-@implementation MMS_UIAppDelegate
+@implementation MiniMusicalStarAppDelegate
 
 
 @synthesize window=_window;
