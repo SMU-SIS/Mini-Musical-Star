@@ -9,3 +9,5 @@ clean:
 test:
 	GHUNIT_CLI=1 xcodebuild -target MiniMusicalStarTests -configuration Debug -sdk iphonesimulator build	
 
+love:
+	GHUNIT_CLI=1 xcodebuild -target MiniMusicalStarTests -configuration Debug -sdk iphonesimulator build
