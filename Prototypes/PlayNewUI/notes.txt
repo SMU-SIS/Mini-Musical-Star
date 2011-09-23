@@ -1,7 +1,0 @@
--Able to dynamically change - have to make adjustments to size later.
--Green color for the cell right panel represents what ah?
--Having issues with changing of the gradient colors when the track is being recorded. Implementation is using CALayer. Must be able to change to 3 different types of color.
--Note: To prevent popover from disappearing every time we click on area outside the popover, we need to write some codes
--Must be able to have the pop over control produce some hard coded lyrics that can be scrollable.
-
-delete my photo and notes.txt from git
