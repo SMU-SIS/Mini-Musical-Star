@@ -8,6 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		3A5C9B78142C8EB200176351 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A5C9B77142C8EB200176351 /* SenTestingKit.framework */; };
+		3A683775142CBF7C000485F2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDA2A1C413F26F8400B64EA5 /* UIKit.framework */; };
+		3A683776142CBF7C000485F2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDA2A1C613F26F8400B64EA5 /* Foundation.framework */; };
+		3A683777142CBF7C000485F2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDA2A1C813F26F8400B64EA5 /* CoreGraphics.framework */; };
+		3A683799142CBFA6000485F2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3A68378B142CBF95000485F2 /* InfoPlist.strings */; };
+		3A68379B142CBFC1000485F2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A68378F142CBF95000485F2 /* main.m */; };
+		3A6837A2142CC1DB000485F2 /* PhotoEditorViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6837A1142CC1DB000485F2 /* PhotoEditorViewControllerTest.m */; };
+		3A6837A5142CC5FE000485F2 /* GHUnitIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A6837A4142CC5FE000485F2 /* GHUnitIOS.framework */; };
+		3A6837A8142CCDC9000485F2 /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A6837A7142CCDC9000485F2 /* OCMock.framework */; };
+		3A9A4EE1142CB5E5008972A1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EDA2A1CD13F26F8400B64EA5 /* InfoPlist.strings */; };
 		3AFFDE1E142C7191000D8494 /* bass.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3AFFDDEB142C7191000D8494 /* bass.mp3 */; };
 		3AFFDE20142C7191000D8494 /* drums.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3AFFDDEC142C7191000D8494 /* drums.mp3 */; };
 		3AFFDE22142C7191000D8494 /* guitar.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3AFFDDED142C7191000D8494 /* guitar.mp3 */; };
@@ -115,7 +124,6 @@
 		EDA2A1C513F26F8400B64EA5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDA2A1C413F26F8400B64EA5 /* UIKit.framework */; };
 		EDA2A1C713F26F8400B64EA5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDA2A1C613F26F8400B64EA5 /* Foundation.framework */; };
 		EDA2A1C913F26F8400B64EA5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDA2A1C813F26F8400B64EA5 /* CoreGraphics.framework */; };
-		EDA2A1CF13F26F8400B64EA5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EDA2A1CD13F26F8400B64EA5 /* InfoPlist.strings */; };
 		EDA2A1D213F26F8400B64EA5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA2A1D113F26F8400B64EA5 /* main.m */; };
 		EDA2A1D513F26F8400B64EA5 /* MiniMusicalStarAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA2A1D413F26F8400B64EA5 /* MiniMusicalStarAppDelegate.m */; };
 		EDA2A1D813F26F8400B64EA5 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDA2A1D613F26F8400B64EA5 /* MainWindow.xib */; };
@@ -127,6 +135,15 @@
 
 /* Begin PBXFileReference section */
 		3A5C9B77142C8EB200176351 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		3A683773142CBF7C000485F2 /* MiniMusicalStarTests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MiniMusicalStarTests.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3A68378C142CBF95000485F2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3A68378F142CBF95000485F2 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		3A683790142CBF95000485F2 /* MiniMusicalStarTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MiniMusicalStarTests-Info.plist"; sourceTree = "<group>"; };
+		3A683791142CBF95000485F2 /* MiniMusicalStarTests-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MiniMusicalStarTests-Prefix.pch"; sourceTree = "<group>"; };
+		3A6837A1142CC1DB000485F2 /* PhotoEditorViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoEditorViewControllerTest.m; sourceTree = "<group>"; };
+		3A6837A4142CC5FE000485F2 /* GHUnitIOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GHUnitIOS.framework; path = MiniMusicalStarTests/GHUnitIOS.framework; sourceTree = "<group>"; };
+		3A6837A7142CCDC9000485F2 /* OCMock.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OCMock.framework; path = MiniMusicalStarTests/OCMock.framework; sourceTree = "<group>"; };
+		3AA6F3F3142CB2A3009C89A1 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = SDKs/MacOSX10.7.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
 		3AFFDDEB142C7191000D8494 /* bass.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bass.mp3; sourceTree = "<group>"; };
 		3AFFDDEC142C7191000D8494 /* drums.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = drums.mp3; sourceTree = "<group>"; };
 		3AFFDDED142C7191000D8494 /* guitar.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = guitar.mp3; sourceTree = "<group>"; };
@@ -297,6 +314,18 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		3A683770142CBF7C000485F2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3A6837A8142CCDC9000485F2 /* OCMock.framework in Frameworks */,
+				3A6837A5142CC5FE000485F2 /* GHUnitIOS.framework in Frameworks */,
+				3A683775142CBF7C000485F2 /* UIKit.framework in Frameworks */,
+				3A683776142CBF7C000485F2 /* Foundation.framework in Frameworks */,
+				3A683777142CBF7C000485F2 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EDA2A1BD13F26F8400B64EA5 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -320,6 +349,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3A68378A142CBF95000485F2 /* MiniMusicalStarTests */ = {
+			isa = PBXGroup;
+			children = (
+				3A68379D142CBFD4000485F2 /* Supporting Files */,
+				3A6837A1142CC1DB000485F2 /* PhotoEditorViewControllerTest.m */,
+			);
+			path = MiniMusicalStarTests;
+			sourceTree = "<group>";
+		};
+		3A68379D142CBFD4000485F2 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3A68378B142CBF95000485F2 /* InfoPlist.strings */,
+				3A68378F142CBF95000485F2 /* main.m */,
+				3A683791142CBF95000485F2 /* MiniMusicalStarTests-Prefix.pch */,
+				3A683790142CBF95000485F2 /* MiniMusicalStarTests-Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		3AFFDDEA142C7191000D8494 /* Audio */ = {
 			isa = PBXGroup;
 			children = (
@@ -654,6 +703,7 @@
 			children = (
 				820E2A1E140A0A2A00B80BBC /* Resources */,
 				EDA2A1CA13F26F8400B64EA5 /* MiniMusicalStar */,
+				3A68378A142CBF95000485F2 /* MiniMusicalStarTests */,
 				EDA2A1C313F26F8400B64EA5 /* Frameworks */,
 				EDA2A1C113F26F8400B64EA5 /* Products */,
 			);
@@ -663,6 +713,7 @@
 			isa = PBXGroup;
 			children = (
 				EDA2A1C013F26F8400B64EA5 /* MiniMusicalStar.app */,
+				3A683773142CBF7C000485F2 /* MiniMusicalStarTests.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -670,6 +721,9 @@
 		EDA2A1C313F26F8400B64EA5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3A6837A7142CCDC9000485F2 /* OCMock.framework */,
+				3A6837A4142CC5FE000485F2 /* GHUnitIOS.framework */,
+				3AA6F3F3142CB2A3009C89A1 /* Cocoa.framework */,
 				3A5C9B77142C8EB200176351 /* SenTestingKit.framework */,
 				95F9FFC11425C5DF00A18463 /* CoreData.framework */,
 				9578443A141DD2F10033721D /* QuartzCore.framework */,
@@ -713,6 +767,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		3A683772142CBF7C000485F2 /* MiniMusicalStarTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3A683787142CBF7C000485F2 /* Build configuration list for PBXNativeTarget "MiniMusicalStarTests" */;
+			buildPhases = (
+				3A68376F142CBF7C000485F2 /* Sources */,
+				3A683770142CBF7C000485F2 /* Frameworks */,
+				3A683771142CBF7C000485F2 /* Resources */,
+				3A6837A6142CCA30000485F2 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MiniMusicalStarTests;
+			productName = MiniMusicalStarTests;
+			productReference = 3A683773142CBF7C000485F2 /* MiniMusicalStarTests.app */;
+			productType = "com.apple.product-type.application";
+		};
 		EDA2A1BF13F26F8400B64EA5 /* MiniMusicalStar */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = EDA2A1F713F26F8500B64EA5 /* Build configuration list for PBXNativeTarget "MiniMusicalStar" */;
@@ -741,6 +813,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				English,
 			);
 			mainGroup = EDA2A1B513F26F8300B64EA5;
 			productRefGroup = EDA2A1C113F26F8400B64EA5 /* Products */;
@@ -748,16 +821,24 @@
 			projectRoot = "";
 			targets = (
 				EDA2A1BF13F26F8400B64EA5 /* MiniMusicalStar */,
+				3A683772142CBF7C000485F2 /* MiniMusicalStarTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		3A683771142CBF7C000485F2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3A683799142CBFA6000485F2 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EDA2A1BE13F26F8400B64EA5 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EDA2A1CF13F26F8400B64EA5 /* InfoPlist.strings in Resources */,
 				EDA2A1D813F26F8400B64EA5 /* MainWindow.xib in Resources */,
 				EDA2A1DE13F26F8400B64EA5 /* MenuViewController.xib in Resources */,
 				820511C013F3BB9B0016F87E /* SceneViewController.xib in Resources */,
@@ -815,12 +896,39 @@
 				3AFFDE79142C71AD000D8494 /* Icon-72.png in Resources */,
 				3AFFDE81142C7419000D8494 /* record.png in Resources */,
 				3AFFDE83142C7419000D8494 /* recording.png in Resources */,
+				3A9A4EE1142CB5E5008972A1 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		3A6837A6142CCA30000485F2 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "sh RunTests.sh";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
+		3A68376F142CBF7C000485F2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3A68379B142CBFC1000485F2 /* main.m in Sources */,
+				3A6837A2142CC1DB000485F2 /* PhotoEditorViewControllerTest.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EDA2A1BC13F26F8400B64EA5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -876,6 +984,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		3A68378B142CBF95000485F2 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3A68378C142CBF95000485F2 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		EDA2A1CD13F26F8400B64EA5 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -903,6 +1019,58 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		3A683788142CBF7C000485F2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/MiniMusicalStarTests\"",
+				);
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MiniMusicalStarTests/MiniMusicalStarTests-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				INFOPLIST_FILE = "MiniMusicalStarTests/MiniMusicalStarTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		3A683789142CBF7C000485F2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/MiniMusicalStarTests\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MiniMusicalStarTests/MiniMusicalStarTests-Prefix.pch";
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				INFOPLIST_FILE = "MiniMusicalStarTests/MiniMusicalStarTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
 		EDA2A1F513F26F8500B64EA5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -982,6 +1150,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		3A683787142CBF7C000485F2 /* Build configuration list for PBXNativeTarget "MiniMusicalStarTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3A683788142CBF7C000485F2 /* Debug */,
+				3A683789142CBF7C000485F2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		EDA2A1BA13F26F8300B64EA5 /* Build configuration list for PBXProject "MiniMusicalStar" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
