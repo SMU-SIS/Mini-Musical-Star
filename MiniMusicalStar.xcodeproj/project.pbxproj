@@ -702,7 +702,6 @@
 		EDA2A1B513F26F8300B64EA5 = {
 			isa = PBXGroup;
 			children = (
-				3A6837A9142CD26B000485F2 /* OCMock.framework */,
 				820E2A1E140A0A2A00B80BBC /* Resources */,
 				EDA2A1CA13F26F8400B64EA5 /* MiniMusicalStar */,
 				3A68378A142CBF95000485F2 /* MiniMusicalStarTests */,
@@ -723,6 +722,7 @@
 		EDA2A1C313F26F8400B64EA5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3A6837A9142CD26B000485F2 /* OCMock.framework */,
 				3A6837A4142CC5FE000485F2 /* GHUnitIOS.framework */,
 				3AA6F3F3142CB2A3009C89A1 /* Cocoa.framework */,
 				3A5C9B77142C8EB200176351 /* SenTestingKit.framework */,
