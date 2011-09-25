@@ -21,6 +21,7 @@
 		3A010671142F18D40054A0BB /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 95DAE886141481400039201D /* libxml2.dylib */; };
 		3A12E368142F1D9A004B97BE /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A12E367142F1D9A004B97BE /* libOCMock.a */; };
 		3A12E374142F2BD3004B97BE /* Picture.m in Sources */ = {isa = PBXBuildFile; fileRef = 9572E0D0140E118400713F45 /* Picture.m */; };
+		3A12E375142F2C2D004B97BE /* PictureCue.m in Sources */ = {isa = PBXBuildFile; fileRef = 9572E0D2140E118400713F45 /* PictureCue.m */; };
 		3A5C9B78142C8EB200176351 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A5C9B77142C8EB200176351 /* SenTestingKit.framework */; };
 		3A683775142CBF7C000485F2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDA2A1C413F26F8400B64EA5 /* UIKit.framework */; };
 		3A683776142CBF7C000485F2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDA2A1C613F26F8400B64EA5 /* Foundation.framework */; };
@@ -1006,6 +1007,7 @@
 				3A010656142F14E30054A0BB /* PhotoEditorViewController.m in Sources */,
 				3A010658142F14ED0054A0BB /* CameraPopupViewController.m in Sources */,
 				3A12E374142F2BD3004B97BE /* Picture.m in Sources */,
+				3A12E375142F2C2D004B97BE /* PictureCue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
