@@ -6,7 +6,6 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import <GHUnitIOS/GHUnit.h> 
 
 @interface SceneEditViewControllerTest : GHTestCase { }
 @end
