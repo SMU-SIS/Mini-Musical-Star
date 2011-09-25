@@ -34,18 +34,18 @@
 
 - (void)testCreateMusical
 {
-    usleep(1000000*[SharedTests randomFloatBetween:0.0 and:0.4]);
+    usleep(1000000*[SharedTests randomFloatBetween:0.0 and:0.1]);
     GHAssertNotNULL(@"test",nil);
 }
 - (void)testDisplayShowImages
 {
-    usleep(1000000*[SharedTests randomFloatBetween:0.0 and:0.4]);
+    usleep(1000000*[SharedTests randomFloatBetween:0.0 and:0.1]);
     GHAssertNotNULL(@"test",nil);
 }
 
 - (void)daoDownloadQueueFinished
 {
-    usleep(1000000*[SharedTests randomFloatBetween:0.0 and:0.4]);
+    usleep(1000000*[SharedTests randomFloatBetween:0.0 and:0.1]);
     GHAssertNotNULL(@"test",nil);
 }
 

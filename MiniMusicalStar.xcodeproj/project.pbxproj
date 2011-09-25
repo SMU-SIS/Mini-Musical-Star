@@ -22,6 +22,11 @@
 		3A12E368142F1D9A004B97BE /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A12E367142F1D9A004B97BE /* libOCMock.a */; };
 		3A12E374142F2BD3004B97BE /* Picture.m in Sources */ = {isa = PBXBuildFile; fileRef = 9572E0D0140E118400713F45 /* Picture.m */; };
 		3A12E375142F2C2D004B97BE /* PictureCue.m in Sources */ = {isa = PBXBuildFile; fileRef = 9572E0D2140E118400713F45 /* PictureCue.m */; };
+		3A12E376142F7379004B97BE /* CoverScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 95F9FFD71425C86B00A18463 /* CoverScene.m */; };
+		3A12E377142F7547004B97BE /* AFOpenFlowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFFDECE142C7CCD000D8494 /* AFOpenFlowView.m */; };
+		3A12E378142F7551004B97BE /* AFItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFFDECB142C7CCD000D8494 /* AFItemView.m */; };
+		3A12E379142F7556004B97BE /* AFUIImageReflection.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFFDED0142C7CCD000D8494 /* AFUIImageReflection.m */; };
+		3A12E37C142F81A7004B97BE /* SceneTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A12E37B142F81A7004B97BE /* SceneTest.m */; };
 		3A5C9B78142C8EB200176351 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A5C9B77142C8EB200176351 /* SenTestingKit.framework */; };
 		3A683775142CBF7C000485F2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDA2A1C413F26F8400B64EA5 /* UIKit.framework */; };
 		3A683776142CBF7C000485F2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDA2A1C613F26F8400B64EA5 /* Foundation.framework */; };
@@ -109,7 +114,6 @@
 		3AFFDF05142C7E0F000D8494 /* TPCircularBuffer.c in Sources */ = {isa = PBXBuildFile; fileRef = 3AFFDEF9142C7E0F000D8494 /* TPCircularBuffer.c */; };
 		3AFFDF0A142C7E16000D8494 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFFDF09142C7E16000D8494 /* UIImage+Resize.m */; };
 		3AFFDF0F142C7E69000D8494 /* DSActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFFDF0E142C7E69000D8494 /* DSActivityView.m */; };
-		64B69665142F2CE000FD6C86 /* AudioEditorViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 64B69664142F2CE000FD6C86 /* AudioEditorViewControllerTest.m */; };
 		820511BF13F3BB9B0016F87E /* SceneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 820511BD13F3BB9B0016F87E /* SceneViewController.m */; };
 		820511C013F3BB9B0016F87E /* SceneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 820511BE13F3BB9B0016F87E /* SceneViewController.xib */; };
 		820E2A1C140A0A1E00B80BBC /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 820E2A1B140A0A1E00B80BBC /* AudioToolbox.framework */; };
@@ -159,6 +163,8 @@
 		3A12E36F142F2A7A004B97BE /* OCMock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMock.h; sourceTree = "<group>"; };
 		3A12E370142F2A7A004B97BE /* OCMockObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMockObject.h; sourceTree = "<group>"; };
 		3A12E371142F2A7A004B97BE /* OCMockRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMockRecorder.h; sourceTree = "<group>"; };
+		3A12E37A142F81A6004B97BE /* SceneTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneTest.h; sourceTree = "<group>"; };
+		3A12E37B142F81A7004B97BE /* SceneTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SceneTest.m; sourceTree = "<group>"; };
 		3A5C9B77142C8EB200176351 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		3A683773142CBF7C000485F2 /* MiniMusicalStarTests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MiniMusicalStarTests.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A68378C142CBF95000485F2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -282,8 +288,6 @@
 		3AFFDF09142C7E16000D8494 /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
 		3AFFDF0D142C7E69000D8494 /* DSActivityView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSActivityView.h; sourceTree = "<group>"; };
 		3AFFDF0E142C7E69000D8494 /* DSActivityView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSActivityView.m; sourceTree = "<group>"; };
-		64B69663142F2CE000FD6C86 /* AudioEditorViewControllerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioEditorViewControllerTest.h; sourceTree = "<group>"; };
-		64B69664142F2CE000FD6C86 /* AudioEditorViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioEditorViewControllerTest.m; sourceTree = "<group>"; };
 		820511BC13F3BB9B0016F87E /* SceneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneViewController.h; sourceTree = "<group>"; };
 		820511BD13F3BB9B0016F87E /* SceneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SceneViewController.m; sourceTree = "<group>"; };
 		820511BE13F3BB9B0016F87E /* SceneViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SceneViewController.xib; sourceTree = "<group>"; };
@@ -441,8 +445,8 @@
 				3A72F591142EF2E4009BC19E /* SceneViewControllerTest.m */,
 				3A72F593142EF326009BC19E /* SceneEditViewControllerTest.h */,
 				3A72F594142EF326009BC19E /* SceneEditViewControllerTest.m */,
-				64B69663142F2CE000FD6C86 /* AudioEditorViewControllerTest.h */,
-				64B69664142F2CE000FD6C86 /* AudioEditorViewControllerTest.m */,
+				3A12E37A142F81A6004B97BE /* SceneTest.h */,
+				3A12E37B142F81A7004B97BE /* SceneTest.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -1013,7 +1017,11 @@
 				3A010658142F14ED0054A0BB /* CameraPopupViewController.m in Sources */,
 				3A12E374142F2BD3004B97BE /* Picture.m in Sources */,
 				3A12E375142F2C2D004B97BE /* PictureCue.m in Sources */,
-				64B69665142F2CE000FD6C86 /* AudioEditorViewControllerTest.m in Sources */,
+				3A12E376142F7379004B97BE /* CoverScene.m in Sources */,
+				3A12E377142F7547004B97BE /* AFOpenFlowView.m in Sources */,
+				3A12E378142F7551004B97BE /* AFItemView.m in Sources */,
+				3A12E379142F7556004B97BE /* AFUIImageReflection.m in Sources */,
+				3A12E37C142F81A7004B97BE /* SceneTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
