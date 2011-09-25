@@ -13,9 +13,9 @@
 		3A683777142CBF7C000485F2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDA2A1C813F26F8400B64EA5 /* CoreGraphics.framework */; };
 		3A683799142CBFA6000485F2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3A68378B142CBF95000485F2 /* InfoPlist.strings */; };
 		3A68379B142CBFC1000485F2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A68378F142CBF95000485F2 /* main.m */; };
-		3A6837A2142CC1DB000485F2 /* PhotoEditorViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6837A1142CC1DB000485F2 /* PhotoEditorViewControllerTest.m */; };
 		3A6837A5142CC5FE000485F2 /* GHUnitIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A6837A4142CC5FE000485F2 /* GHUnitIOS.framework */; };
 		3A6837AC142CD419000485F2 /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A6837AB142CD419000485F2 /* libOCMock.a */; };
+		3A72F57D142ED15D009BC19E /* PhotoEditorViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A72F57C142ED15D009BC19E /* PhotoEditorViewControllerTest.m */; };
 		3A9A4EE1142CB5E5008972A1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EDA2A1CD13F26F8400B64EA5 /* InfoPlist.strings */; };
 		3AFFDE1E142C7191000D8494 /* bass.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3AFFDDEB142C7191000D8494 /* bass.mp3 */; };
 		3AFFDE20142C7191000D8494 /* drums.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3AFFDDEC142C7191000D8494 /* drums.mp3 */; };
@@ -140,10 +140,11 @@
 		3A68378F142CBF95000485F2 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3A683790142CBF95000485F2 /* MiniMusicalStarTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MiniMusicalStarTests-Info.plist"; sourceTree = "<group>"; };
 		3A683791142CBF95000485F2 /* MiniMusicalStarTests-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MiniMusicalStarTests-Prefix.pch"; sourceTree = "<group>"; };
-		3A6837A1142CC1DB000485F2 /* PhotoEditorViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoEditorViewControllerTest.m; sourceTree = "<group>"; };
 		3A6837A4142CC5FE000485F2 /* GHUnitIOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GHUnitIOS.framework; path = MiniMusicalStarTests/GHUnitIOS.framework; sourceTree = "<group>"; };
 		3A6837A9142CD26B000485F2 /* OCMock.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OCMock.framework; path = MiniMusicalStarTests/OCMock.framework; sourceTree = "<group>"; };
 		3A6837AB142CD419000485F2 /* libOCMock.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOCMock.a; path = MiniMusicalStarTests/libOCMock.a; sourceTree = "<group>"; };
+		3A72F57B142ED15D009BC19E /* PhotoEditorViewControllerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoEditorViewControllerTest.h; sourceTree = "<group>"; };
+		3A72F57C142ED15D009BC19E /* PhotoEditorViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoEditorViewControllerTest.m; sourceTree = "<group>"; };
 		3AA6F3F3142CB2A3009C89A1 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = SDKs/MacOSX10.7.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
 		3AFFDDEB142C7191000D8494 /* bass.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bass.mp3; sourceTree = "<group>"; };
 		3AFFDDEC142C7191000D8494 /* drums.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = drums.mp3; sourceTree = "<group>"; };
@@ -354,7 +355,8 @@
 			isa = PBXGroup;
 			children = (
 				3A68379D142CBFD4000485F2 /* Supporting Files */,
-				3A6837A1142CC1DB000485F2 /* PhotoEditorViewControllerTest.m */,
+				3A72F57B142ED15D009BC19E /* PhotoEditorViewControllerTest.h */,
+				3A72F57C142ED15D009BC19E /* PhotoEditorViewControllerTest.m */,
 			);
 			path = MiniMusicalStarTests;
 			sourceTree = "<group>";
@@ -927,7 +929,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3A68379B142CBFC1000485F2 /* main.m in Sources */,
-				3A6837A2142CC1DB000485F2 /* PhotoEditorViewControllerTest.m in Sources */,
+				3A72F57D142ED15D009BC19E /* PhotoEditorViewControllerTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1167,6 +1169,7 @@
 				3A683789142CBF7C000485F2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		EDA2A1BA13F26F8300B64EA5 /* Build configuration list for PBXProject "MiniMusicalStar" */ = {
 			isa = XCConfigurationList;
