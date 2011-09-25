@@ -7,6 +7,7 @@
 //
 
 #import "PhotoEditorViewControllerTest.h"
+#import "OCMock.h"
 
 @implementation PhotoEditorViewControllerTest
 @synthesize controller;
@@ -33,6 +34,8 @@
 
 - (void)setUp {
     // Run before each test method
+//    Picture *picture1 = [[Picture alloc] initPictureWithPropertyDictionary: ]
+//    NSArray *photosArray = [[NSArray alloc] in
     self.controller = [[[PhotoEditorViewController alloc] init] autorelease];
     GHAssertNotNULL(controller,@"controller did not get initialized");
 }
@@ -50,6 +53,7 @@
 
 - (void)testSliderCanBeSet
 {
+    
     GHAssertTrue([self.controller setSliderImages:0], @"it should return true if slider is set at 0");
 }
 - (void)testReplaceCenterImage

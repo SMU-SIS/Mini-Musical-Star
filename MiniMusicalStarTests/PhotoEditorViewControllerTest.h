@@ -7,6 +7,7 @@
 //
 
 #import "PhotoEditorViewController.h"
+#import "Picture.h"
 
 @interface PhotoEditorViewControllerTest : GHTestCase { }
 
