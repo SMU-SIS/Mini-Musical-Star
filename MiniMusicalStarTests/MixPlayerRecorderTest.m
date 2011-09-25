@@ -126,7 +126,7 @@
     if (!player.isPlaying) [player play];
     
     int originalFrameNum = player.frameNum;
-    [player seekTo:50000];
+    [player seekTo:20];
     [NSThread sleepForTimeInterval:1];
     STAssertEquals(true, (originalFrameNum != player.frameNum), @"new frameNum is the same as original");
 }
@@ -161,7 +161,7 @@
     NSArray *fiveArray = [NSArray arrayWithObjects:[NSURL fileURLWithPath:guitar], [NSURL fileURLWithPath:keys], [NSURL fileURLWithPath:vocals],[NSURL fileURLWithPath:bass],[NSURL fileURLWithPath:drums], nil];
     MixPlayerRecorder *testRecorder = [[MixPlayerRecorder alloc] initWithAudioFileURLs:fiveArray];
     
-    NSString *tempFile = [NSTemporaryDirectory() stringByAppendingString:@"test.m4a"];
+    NSString *tempFile = [NSTemporaryDirectory() stringByAppendingString:@"test.caf"];
     [testRecorder enableRecordingToFile:[NSURL fileURLWithPath:tempFile]];
      
     [testRecorder play];
