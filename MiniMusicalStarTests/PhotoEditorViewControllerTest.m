@@ -86,7 +86,7 @@
 //    [[openFlowView expect] setSelectedCover:1];
 //    [[openFlowView expect] centerOnSelectedCover:TRUE];
     id mockController = [OCMockObject mockForClass:[PhotoEditorViewController class]];
-//    [[mockController expect] setSliderImages:2];
+    [[mockController expect] setSliderImages:2];
 }
 - (void)testReplaceCenterImage
 {
