@@ -7,7 +7,15 @@
 //
 
 #import "PhotoEditorViewControllerTest.h"
+
 @implementation PhotoEditorViewControllerTest
+@synthesize controller;
+
+-(void)dealloc
+{
+    [controller release];
+    [super dealloc];
+}
 
 - (BOOL)shouldRunOnMainThread {
     // By default NO, but if you have a UI test or test dependent on running on the main thread return YES.
@@ -25,36 +33,38 @@
 
 - (void)setUp {
     // Run before each test method
+    self.controller = [[[PhotoEditorViewController alloc] init] autorelease];
+    GHAssertNotNULL(controller,@"controller did not get initialized");
 }
 
 - (void)tearDown {
     // Run after each test method
+    self.controller = nil;
 }
 
 - (void)testInitWithPhotos
 {
-    usleep(1000000*[SharedTests randomFloatBetween:0.0 and:1.3]);
+    usleep(1000000*[SharedTests randomFloatBetween:0.0 and:0.4]);
     GHAssertNotNULL(@"test",nil);
 }
 
-- (void)testSetSliderImages
+- (void)testSliderCanBeSet
 {
-    usleep(1000000*[SharedTests randomFloatBetween:0.0 and:1.3]);
-    GHAssertNotNULL(@"test",nil);
+    GHAssertTrue([self.controller setSliderImages:0], @"it should return true if slider is set at 0");
 }
 - (void)testReplaceCenterImage
 {
-    usleep(1000000*[SharedTests randomFloatBetween:0.0 and:1.3]);
+    usleep(1000000*[SharedTests randomFloatBetween:0.0 and:0.4]);
     GHAssertNotNULL(@"test",nil);
 }
 - (void)testOpenFlowView
 {
-    usleep(1000000*[SharedTests randomFloatBetween:0.0 and:1.3]);
+    usleep(1000000*[SharedTests randomFloatBetween:0.0 and:0.4]);
     GHAssertNotNULL(@"test",nil);
 }
 - (void) testPopupCameraOptions
 {
-    usleep(1000000*[SharedTests randomFloatBetween:0.0 and:1.3]);
+    usleep(1000000*[SharedTests randomFloatBetween:0.0 and:0.4]);
     GHAssertNotNULL(@"test",nil);
 }
 

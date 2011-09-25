@@ -34,19 +34,19 @@
 
 - (void)testInitWithCoverScene
 {
-    usleep(1000000*[SharedTests randomFloatBetween:0.0 and:1.3]);
+    usleep(1000000*[SharedTests randomFloatBetween:0.0 and:0.4]);
     GHAssertNotNULL(@"test",nil);
 }
 
 - (void)testUseCamera
 {
-    usleep(1000000*[SharedTests randomFloatBetween:0.0 and:1.3]);
+    usleep(1000000*[SharedTests randomFloatBetween:0.0 and:0.4]);
     GHAssertNotNULL(@"test",nil);
 }
 
 - (void)testUseCameraRoll
 {
-    usleep(1000000*[SharedTests randomFloatBetween:0.0 and:1.3]);
+    usleep(1000000*[SharedTests randomFloatBetween:0.0 and:0.4]);
     GHAssertNotNULL(@"test",nil);
 }
 

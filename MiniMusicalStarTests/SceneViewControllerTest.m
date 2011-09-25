@@ -34,17 +34,17 @@
 
 - (void)testInitWithScenesFromShow
 {
-    usleep(1000000*[SharedTests randomFloatBetween:0.0 and:1.3]);
+    usleep(1000000*[SharedTests randomFloatBetween:0.0 and:0.4]);
     GHAssertNotNULL(@"test",nil);
 }
 - (void)testSelectScene
 {
-    usleep(1000000*[SharedTests randomFloatBetween:0.0 and:1.3]);
+    usleep(1000000*[SharedTests randomFloatBetween:0.0 and:0.4]);
     GHAssertNotNULL(@"test",nil);
 }
 - (void)testDisplaySceneImages
 {
-    usleep(1000000*[SharedTests randomFloatBetween:0.0 and:1.3]);
+    usleep(1000000*[SharedTests randomFloatBetween:0.0 and:0.4]);
     GHAssertNotNULL(@"test",nil);
 }
 

@@ -6,5 +6,10 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
+#import "PhotoEditorViewController.h"
+
 @interface PhotoEditorViewControllerTest : GHTestCase { }
+
+@property(retain,nonatomic) PhotoEditorViewController *controller; 
+
 @end

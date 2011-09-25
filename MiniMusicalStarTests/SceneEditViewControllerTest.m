@@ -34,24 +34,24 @@
 
 - (void)testInitWithScene
 {
-    usleep(1000000*[SharedTests randomFloatBetween:0.0 and:1.3]);
+    usleep(1000000*[SharedTests randomFloatBetween:0.0 and:0.4]);
     GHAssertNotNULL(@"test",nil);
 }
 - (void)testLoadChildViewControllers
 {
-    usleep(1000000*[SharedTests randomFloatBetween:0.0 and:1.3]);
+    usleep(1000000*[SharedTests randomFloatBetween:0.0 and:0.4]);
     GHAssertNotNULL(@"test",nil);
 }
 
 - (void)testSetSliderPosition
 {
-    usleep(1000000*[SharedTests randomFloatBetween:0.0 and:1.3]);
+    usleep(1000000*[SharedTests randomFloatBetween:0.0 and:0.4]);
     GHAssertNotNULL(@"test",nil);
 }
 
 - (void)testShowReallyAlertView
 {
-    usleep(1000000*[SharedTests randomFloatBetween:0.0 and:1.3]);
+    usleep(1000000*[SharedTests randomFloatBetween:0.0 and:0.4]);
     GHAssertNotNULL(@"test",nil);
 }
 

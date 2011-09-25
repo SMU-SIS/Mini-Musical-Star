@@ -83,19 +83,22 @@
     [self setSliderImages: 0];
 }
 
-- (void) setSliderImages:(UInt32)timeAt
+- (BOOL) setSliderImages:(UInt32)timeAt
 {
+    __block BOOL success = FALSE;
     [thePictures enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         Picture *pic = (Picture*)obj;
         UInt32 startTime = pic.startTime;
         UInt32 endTime = pic.startTime + pic.duration;
         if(startTime <= timeAt && endTime > timeAt){
             centerPicture.image = pic.image;
-            [(AFOpenFlowView *)self.view setSelectedCover:pic.orderNumber - 1];
+            [(AFOpenFlowView *)self.view setSelectedCover:(pic.orderNumber - 1)];
             [(AFOpenFlowView *)self.view centerOnSelectedCover:true];
+            success = TRUE;
         }
         
     }];
+    return success;
 
     
 }

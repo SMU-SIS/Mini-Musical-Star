@@ -7,6 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A010656142F14E30054A0BB /* PhotoEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9569E05A1418A2A80016DAF3 /* PhotoEditorViewController.m */; };
+		3A010658142F14ED0054A0BB /* CameraPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95F9FFC41425C60400A18463 /* CameraPopupViewController.m */; };
+		3A010659142F15020054A0BB /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A5C9B77142C8EB200176351 /* SenTestingKit.framework */; };
+		3A01065A142F15060054A0BB /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95F9FFC11425C5DF00A18463 /* CoreData.framework */; };
+		3A01065B142F15080054A0BB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9578443A141DD2F10033721D /* QuartzCore.framework */; };
+		3A01065C142F150B0054A0BB /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95DAE884141481300039201D /* SystemConfiguration.framework */; };
+		3A01065D142F150D0054A0BB /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95DAE882141481210039201D /* Security.framework */; };
+		3A01065E142F15110054A0BB /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95DAE880141481160039201D /* MobileCoreServices.framework */; };
+		3A01065F142F15140054A0BB /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95DAE87E141480F80039201D /* CFNetwork.framework */; };
+		3A010660142F15170054A0BB /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 820E2A1B140A0A1E00B80BBC /* AudioToolbox.framework */; };
+		3A010670142F18D10054A0BB /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 95DAE888141481470039201D /* libz.dylib */; };
+		3A010671142F18D40054A0BB /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 95DAE886141481400039201D /* libxml2.dylib */; };
+		3A12E368142F1D9A004B97BE /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A12E367142F1D9A004B97BE /* libOCMock.a */; };
 		3A5C9B78142C8EB200176351 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A5C9B77142C8EB200176351 /* SenTestingKit.framework */; };
 		3A683775142CBF7C000485F2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDA2A1C413F26F8400B64EA5 /* UIKit.framework */; };
 		3A683776142CBF7C000485F2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDA2A1C613F26F8400B64EA5 /* Foundation.framework */; };
@@ -14,7 +27,6 @@
 		3A683799142CBFA6000485F2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3A68378B142CBF95000485F2 /* InfoPlist.strings */; };
 		3A68379B142CBFC1000485F2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A68378F142CBF95000485F2 /* main.m */; };
 		3A6837A5142CC5FE000485F2 /* GHUnitIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A6837A4142CC5FE000485F2 /* GHUnitIOS.framework */; };
-		3A6837AC142CD419000485F2 /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A6837AB142CD419000485F2 /* libOCMock.a */; };
 		3A72F57D142ED15D009BC19E /* PhotoEditorViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A72F57C142ED15D009BC19E /* PhotoEditorViewControllerTest.m */; };
 		3A72F58A142EEEC2009BC19E /* CameraPopupViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A72F589142EEEC2009BC19E /* CameraPopupViewControllerTest.m */; };
 		3A72F58F142EF24C009BC19E /* MenuViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A72F58E142EF24C009BC19E /* MenuViewControllerTest.m */; };
@@ -116,8 +128,6 @@
 		95DAE881141481160039201D /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95DAE880141481160039201D /* MobileCoreServices.framework */; };
 		95DAE883141481210039201D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95DAE882141481210039201D /* Security.framework */; };
 		95DAE885141481310039201D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95DAE884141481300039201D /* SystemConfiguration.framework */; };
-		95DAE887141481400039201D /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 95DAE886141481400039201D /* libxml2.dylib */; };
-		95DAE889141481480039201D /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 95DAE888141481470039201D /* libz.dylib */; };
 		95F9FFC21425C5DF00A18463 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95F9FFC11425C5DF00A18463 /* CoreData.framework */; };
 		95F9FFC51425C60400A18463 /* CameraPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95F9FFC41425C60400A18463 /* CameraPopupViewController.m */; };
 		95F9FFC71425C63700A18463 /* CameraPopupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95F9FFC61425C63700A18463 /* CameraPopupViewController.xib */; };
@@ -139,6 +149,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3A12E367142F1D9A004B97BE /* libOCMock.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOCMock.a; path = Libraries/libOCMock.a; sourceTree = "<group>"; };
 		3A5C9B77142C8EB200176351 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		3A683773142CBF7C000485F2 /* MiniMusicalStarTests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MiniMusicalStarTests.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A68378C142CBF95000485F2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -146,8 +157,6 @@
 		3A683790142CBF95000485F2 /* MiniMusicalStarTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MiniMusicalStarTests-Info.plist"; sourceTree = "<group>"; };
 		3A683791142CBF95000485F2 /* MiniMusicalStarTests-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MiniMusicalStarTests-Prefix.pch"; sourceTree = "<group>"; };
 		3A6837A4142CC5FE000485F2 /* GHUnitIOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GHUnitIOS.framework; path = MiniMusicalStarTests/GHUnitIOS.framework; sourceTree = "<group>"; };
-		3A6837A9142CD26B000485F2 /* OCMock.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OCMock.framework; path = MiniMusicalStarTests/OCMock.framework; sourceTree = "<group>"; };
-		3A6837AB142CD419000485F2 /* libOCMock.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOCMock.a; path = MiniMusicalStarTests/libOCMock.a; sourceTree = "<group>"; };
 		3A72F57B142ED15D009BC19E /* PhotoEditorViewControllerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoEditorViewControllerTest.h; sourceTree = "<group>"; };
 		3A72F57C142ED15D009BC19E /* PhotoEditorViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoEditorViewControllerTest.m; sourceTree = "<group>"; };
 		3A72F588142EEEC2009BC19E /* CameraPopupViewControllerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraPopupViewControllerTest.h; sourceTree = "<group>"; };
@@ -160,7 +169,6 @@
 		3A72F594142EF326009BC19E /* SceneEditViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SceneEditViewControllerTest.m; sourceTree = "<group>"; };
 		3A72F596142EFABF009BC19E /* SharedTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharedTests.h; sourceTree = "<group>"; };
 		3A72F597142EFABF009BC19E /* SharedTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SharedTests.m; sourceTree = "<group>"; };
-		3AA6F3F3142CB2A3009C89A1 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = SDKs/MacOSX10.7.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
 		3AFFDDEB142C7191000D8494 /* bass.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bass.mp3; sourceTree = "<group>"; };
 		3AFFDDEC142C7191000D8494 /* drums.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = drums.mp3; sourceTree = "<group>"; };
 		3AFFDDED142C7191000D8494 /* guitar.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = guitar.mp3; sourceTree = "<group>"; };
@@ -339,7 +347,15 @@
 				3A683775142CBF7C000485F2 /* UIKit.framework in Frameworks */,
 				3A683776142CBF7C000485F2 /* Foundation.framework in Frameworks */,
 				3A683777142CBF7C000485F2 /* CoreGraphics.framework in Frameworks */,
-				3A6837AC142CD419000485F2 /* libOCMock.a in Frameworks */,
+				3A010659142F15020054A0BB /* SenTestingKit.framework in Frameworks */,
+				3A01065A142F15060054A0BB /* CoreData.framework in Frameworks */,
+				3A01065B142F15080054A0BB /* QuartzCore.framework in Frameworks */,
+				3A01065C142F150B0054A0BB /* SystemConfiguration.framework in Frameworks */,
+				3A01065D142F150D0054A0BB /* Security.framework in Frameworks */,
+				3A01065E142F15110054A0BB /* MobileCoreServices.framework in Frameworks */,
+				3A01065F142F15140054A0BB /* CFNetwork.framework in Frameworks */,
+				3A010660142F15170054A0BB /* AudioToolbox.framework in Frameworks */,
+				3A12E368142F1D9A004B97BE /* libOCMock.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -349,8 +365,6 @@
 			files = (
 				3A5C9B78142C8EB200176351 /* SenTestingKit.framework in Frameworks */,
 				95F9FFC21425C5DF00A18463 /* CoreData.framework in Frameworks */,
-				95DAE889141481480039201D /* libz.dylib in Frameworks */,
-				95DAE887141481400039201D /* libxml2.dylib in Frameworks */,
 				95DAE885141481310039201D /* SystemConfiguration.framework in Frameworks */,
 				95DAE883141481210039201D /* Security.framework in Frameworks */,
 				95DAE881141481160039201D /* MobileCoreServices.framework in Frameworks */,
@@ -360,6 +374,8 @@
 				EDA2A1C713F26F8400B64EA5 /* Foundation.framework in Frameworks */,
 				EDA2A1C913F26F8400B64EA5 /* CoreGraphics.framework in Frameworks */,
 				9578443B141DD2F10033721D /* QuartzCore.framework in Frameworks */,
+				3A010670142F18D10054A0BB /* libz.dylib in Frameworks */,
+				3A010671142F18D40054A0BB /* libxml2.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -757,9 +773,8 @@
 		EDA2A1C313F26F8400B64EA5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				3A6837A9142CD26B000485F2 /* OCMock.framework */,
+				3A12E367142F1D9A004B97BE /* libOCMock.a */,
 				3A6837A4142CC5FE000485F2 /* GHUnitIOS.framework */,
-				3AA6F3F3142CB2A3009C89A1 /* Cocoa.framework */,
 				3A5C9B77142C8EB200176351 /* SenTestingKit.framework */,
 				95F9FFC11425C5DF00A18463 /* CoreData.framework */,
 				9578443A141DD2F10033721D /* QuartzCore.framework */,
@@ -773,7 +788,6 @@
 				EDA2A1C813F26F8400B64EA5 /* CoreGraphics.framework */,
 				95DAE888141481470039201D /* libz.dylib */,
 				95DAE886141481400039201D /* libxml2.dylib */,
-				3A6837AB142CD419000485F2 /* libOCMock.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -968,6 +982,8 @@
 				3A72F592142EF2E4009BC19E /* SceneViewControllerTest.m in Sources */,
 				3A72F595142EF326009BC19E /* SceneEditViewControllerTest.m in Sources */,
 				3A72F598142EFABF009BC19E /* SharedTests.m in Sources */,
+				3A010656142F14E30054A0BB /* PhotoEditorViewController.m in Sources */,
+				3A010658142F14ED0054A0BB /* CameraPopupViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1070,6 +1086,8 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/MiniMusicalStarTests\"",
+					"\"$(DEVELOPER_FRAMEWORKS_DIR)\"",
+					"\"$(SRCROOT)\"",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1083,8 +1101,12 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/MiniMusicalStarTests\"",
+					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/Libraries\"",
 				);
 				OTHER_LDFLAGS = (
+					"-force_load",
+					"$(PROJECT_DIR)/Libraries/libOCMock.a",
 					"-ObjC",
 					"-all_load",
 				);
@@ -1102,6 +1124,8 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/MiniMusicalStarTests\"",
+					"\"$(DEVELOPER_FRAMEWORKS_DIR)\"",
+					"\"$(SRCROOT)\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MiniMusicalStarTests/MiniMusicalStarTests-Prefix.pch";
@@ -1110,8 +1134,12 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/MiniMusicalStarTests\"",
+					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/Libraries\"",
 				);
 				OTHER_LDFLAGS = (
+					"-force_load",
+					"$(PROJECT_DIR)/Libraries/libOCMock.a",
 					"-ObjC",
 					"-all_load",
 				);
@@ -1164,6 +1192,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(DEVELOPER_FRAMEWORKS_DIR)\"",
+					"\"$(SRCROOT)\"",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1185,6 +1214,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(DEVELOPER_FRAMEWORKS_DIR)\"",
+					"\"$(SRCROOT)\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MiniMusicalStar/MiniMusicalStar-Prefix.pch";

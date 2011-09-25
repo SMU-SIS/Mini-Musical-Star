@@ -45,7 +45,7 @@
 
 - (IBAction) popupCameraOptions: (id) sender;
 
-- (void) setSliderImages:(UInt32)timeAt;
+- (BOOL) setSliderImages:(UInt32)timeAt;
 - (int)replaceCenterImage: (UIImage*)image;
 - (void)openFlowView:(AFOpenFlowView *)openFlowView selectionDidChange:(int)index;
 
