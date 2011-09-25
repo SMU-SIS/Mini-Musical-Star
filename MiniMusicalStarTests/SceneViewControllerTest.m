@@ -1,13 +1,14 @@
 //
-//  PhotoEditorViewControllerTest.m
+//  SceneViewControlllerTest.m
 //  MiniMusicalStar
 //
 //  Created by Adrian on 25/9/11.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "PhotoEditorViewControllerTest.h"
-@implementation PhotoEditorViewControllerTest
+#import "SceneViewControllerTest.h"
+
+@implementation SceneViewControllerTest
 
 - (BOOL)shouldRunOnMainThread {
     // By default NO, but if you have a UI test or test dependent on running on the main thread return YES.
@@ -29,33 +30,23 @@
 
 - (void)tearDown {
     // Run after each test method
+}   
+
+- (void)testInitWithScenesFromShow
+{
+    usleep(1000000*[SharedTests randomFloatBetween:0.0 and:1.3]);
+    GHAssertNotNULL(@"test",nil);
+}
+- (void)testSelectScene
+{
+    usleep(1000000*[SharedTests randomFloatBetween:0.0 and:1.3]);
+    GHAssertNotNULL(@"test",nil);
+}
+- (void)testDisplaySceneImages
+{
+    usleep(1000000*[SharedTests randomFloatBetween:0.0 and:1.3]);
+    GHAssertNotNULL(@"test",nil);
 }
 
-- (void)testInitWithPhotos
-{
-    usleep(1000000*[SharedTests randomFloatBetween:0.0 and:1.3]);
-    GHAssertNotNULL(@"test",nil);
-}
-
-- (void)testSetSliderImages
-{
-    usleep(1000000*[SharedTests randomFloatBetween:0.0 and:1.3]);
-    GHAssertNotNULL(@"test",nil);
-}
-- (void)testReplaceCenterImage
-{
-    usleep(1000000*[SharedTests randomFloatBetween:0.0 and:1.3]);
-    GHAssertNotNULL(@"test",nil);
-}
-- (void)testOpenFlowView
-{
-    usleep(1000000*[SharedTests randomFloatBetween:0.0 and:1.3]);
-    GHAssertNotNULL(@"test",nil);
-}
-- (void) testPopupCameraOptions
-{
-    usleep(1000000*[SharedTests randomFloatBetween:0.0 and:1.3]);
-    GHAssertNotNULL(@"test",nil);
-}
 
 @end

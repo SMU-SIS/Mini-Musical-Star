@@ -16,6 +16,11 @@
 		3A6837A5142CC5FE000485F2 /* GHUnitIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A6837A4142CC5FE000485F2 /* GHUnitIOS.framework */; };
 		3A6837AC142CD419000485F2 /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A6837AB142CD419000485F2 /* libOCMock.a */; };
 		3A72F57D142ED15D009BC19E /* PhotoEditorViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A72F57C142ED15D009BC19E /* PhotoEditorViewControllerTest.m */; };
+		3A72F58A142EEEC2009BC19E /* CameraPopupViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A72F589142EEEC2009BC19E /* CameraPopupViewControllerTest.m */; };
+		3A72F58F142EF24C009BC19E /* MenuViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A72F58E142EF24C009BC19E /* MenuViewControllerTest.m */; };
+		3A72F592142EF2E4009BC19E /* SceneViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A72F591142EF2E4009BC19E /* SceneViewControllerTest.m */; };
+		3A72F595142EF326009BC19E /* SceneEditViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A72F594142EF326009BC19E /* SceneEditViewControllerTest.m */; };
+		3A72F598142EFABF009BC19E /* SharedTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A72F597142EFABF009BC19E /* SharedTests.m */; };
 		3A9A4EE1142CB5E5008972A1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EDA2A1CD13F26F8400B64EA5 /* InfoPlist.strings */; };
 		3AFFDE1E142C7191000D8494 /* bass.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3AFFDDEB142C7191000D8494 /* bass.mp3 */; };
 		3AFFDE20142C7191000D8494 /* drums.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3AFFDDEC142C7191000D8494 /* drums.mp3 */; };
@@ -145,6 +150,16 @@
 		3A6837AB142CD419000485F2 /* libOCMock.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOCMock.a; path = MiniMusicalStarTests/libOCMock.a; sourceTree = "<group>"; };
 		3A72F57B142ED15D009BC19E /* PhotoEditorViewControllerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoEditorViewControllerTest.h; sourceTree = "<group>"; };
 		3A72F57C142ED15D009BC19E /* PhotoEditorViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoEditorViewControllerTest.m; sourceTree = "<group>"; };
+		3A72F588142EEEC2009BC19E /* CameraPopupViewControllerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraPopupViewControllerTest.h; sourceTree = "<group>"; };
+		3A72F589142EEEC2009BC19E /* CameraPopupViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraPopupViewControllerTest.m; sourceTree = "<group>"; };
+		3A72F58D142EF24C009BC19E /* MenuViewControllerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewControllerTest.h; sourceTree = "<group>"; };
+		3A72F58E142EF24C009BC19E /* MenuViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewControllerTest.m; sourceTree = "<group>"; };
+		3A72F590142EF2E4009BC19E /* SceneViewControllerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneViewControllerTest.h; sourceTree = "<group>"; };
+		3A72F591142EF2E4009BC19E /* SceneViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SceneViewControllerTest.m; sourceTree = "<group>"; };
+		3A72F593142EF326009BC19E /* SceneEditViewControllerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneEditViewControllerTest.h; sourceTree = "<group>"; };
+		3A72F594142EF326009BC19E /* SceneEditViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SceneEditViewControllerTest.m; sourceTree = "<group>"; };
+		3A72F596142EFABF009BC19E /* SharedTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharedTests.h; sourceTree = "<group>"; };
+		3A72F597142EFABF009BC19E /* SharedTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SharedTests.m; sourceTree = "<group>"; };
 		3AA6F3F3142CB2A3009C89A1 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = SDKs/MacOSX10.7.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
 		3AFFDDEB142C7191000D8494 /* bass.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bass.mp3; sourceTree = "<group>"; };
 		3AFFDDEC142C7191000D8494 /* drums.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = drums.mp3; sourceTree = "<group>"; };
@@ -354,9 +369,10 @@
 		3A68378A142CBF95000485F2 /* MiniMusicalStarTests */ = {
 			isa = PBXGroup;
 			children = (
+				3A72F58C142EEF89009BC19E /* ViewControllers */,
 				3A68379D142CBFD4000485F2 /* Supporting Files */,
-				3A72F57B142ED15D009BC19E /* PhotoEditorViewControllerTest.h */,
-				3A72F57C142ED15D009BC19E /* PhotoEditorViewControllerTest.m */,
+				3A72F596142EFABF009BC19E /* SharedTests.h */,
+				3A72F597142EFABF009BC19E /* SharedTests.m */,
 			);
 			path = MiniMusicalStarTests;
 			sourceTree = "<group>";
@@ -370,6 +386,23 @@
 				3A683790142CBF95000485F2 /* MiniMusicalStarTests-Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3A72F58C142EEF89009BC19E /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				3A72F57B142ED15D009BC19E /* PhotoEditorViewControllerTest.h */,
+				3A72F57C142ED15D009BC19E /* PhotoEditorViewControllerTest.m */,
+				3A72F588142EEEC2009BC19E /* CameraPopupViewControllerTest.h */,
+				3A72F589142EEEC2009BC19E /* CameraPopupViewControllerTest.m */,
+				3A72F58D142EF24C009BC19E /* MenuViewControllerTest.h */,
+				3A72F58E142EF24C009BC19E /* MenuViewControllerTest.m */,
+				3A72F590142EF2E4009BC19E /* SceneViewControllerTest.h */,
+				3A72F591142EF2E4009BC19E /* SceneViewControllerTest.m */,
+				3A72F593142EF326009BC19E /* SceneEditViewControllerTest.h */,
+				3A72F594142EF326009BC19E /* SceneEditViewControllerTest.m */,
+			);
+			name = ViewControllers;
 			sourceTree = "<group>";
 		};
 		3AFFDDEA142C7191000D8494 /* Audio */ = {
@@ -930,6 +963,11 @@
 			files = (
 				3A68379B142CBFC1000485F2 /* main.m in Sources */,
 				3A72F57D142ED15D009BC19E /* PhotoEditorViewControllerTest.m in Sources */,
+				3A72F58A142EEEC2009BC19E /* CameraPopupViewControllerTest.m in Sources */,
+				3A72F58F142EF24C009BC19E /* MenuViewControllerTest.m in Sources */,
+				3A72F592142EF2E4009BC19E /* SceneViewControllerTest.m in Sources */,
+				3A72F595142EF326009BC19E /* SceneEditViewControllerTest.m in Sources */,
+				3A72F598142EFABF009BC19E /* SharedTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
