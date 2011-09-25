@@ -109,6 +109,7 @@
 		3AFFDF05142C7E0F000D8494 /* TPCircularBuffer.c in Sources */ = {isa = PBXBuildFile; fileRef = 3AFFDEF9142C7E0F000D8494 /* TPCircularBuffer.c */; };
 		3AFFDF0A142C7E16000D8494 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFFDF09142C7E16000D8494 /* UIImage+Resize.m */; };
 		3AFFDF0F142C7E69000D8494 /* DSActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFFDF0E142C7E69000D8494 /* DSActivityView.m */; };
+		64B69665142F2CE000FD6C86 /* AudioEditorViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 64B69664142F2CE000FD6C86 /* AudioEditorViewControllerTest.m */; };
 		820511BF13F3BB9B0016F87E /* SceneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 820511BD13F3BB9B0016F87E /* SceneViewController.m */; };
 		820511C013F3BB9B0016F87E /* SceneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 820511BE13F3BB9B0016F87E /* SceneViewController.xib */; };
 		820E2A1C140A0A1E00B80BBC /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 820E2A1B140A0A1E00B80BBC /* AudioToolbox.framework */; };
@@ -281,6 +282,8 @@
 		3AFFDF09142C7E16000D8494 /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
 		3AFFDF0D142C7E69000D8494 /* DSActivityView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSActivityView.h; sourceTree = "<group>"; };
 		3AFFDF0E142C7E69000D8494 /* DSActivityView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSActivityView.m; sourceTree = "<group>"; };
+		64B69663142F2CE000FD6C86 /* AudioEditorViewControllerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioEditorViewControllerTest.h; sourceTree = "<group>"; };
+		64B69664142F2CE000FD6C86 /* AudioEditorViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioEditorViewControllerTest.m; sourceTree = "<group>"; };
 		820511BC13F3BB9B0016F87E /* SceneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneViewController.h; sourceTree = "<group>"; };
 		820511BD13F3BB9B0016F87E /* SceneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SceneViewController.m; sourceTree = "<group>"; };
 		820511BE13F3BB9B0016F87E /* SceneViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SceneViewController.xib; sourceTree = "<group>"; };
@@ -438,6 +441,8 @@
 				3A72F591142EF2E4009BC19E /* SceneViewControllerTest.m */,
 				3A72F593142EF326009BC19E /* SceneEditViewControllerTest.h */,
 				3A72F594142EF326009BC19E /* SceneEditViewControllerTest.m */,
+				64B69663142F2CE000FD6C86 /* AudioEditorViewControllerTest.h */,
+				64B69664142F2CE000FD6C86 /* AudioEditorViewControllerTest.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -1008,6 +1013,7 @@
 				3A010658142F14ED0054A0BB /* CameraPopupViewController.m in Sources */,
 				3A12E374142F2BD3004B97BE /* Picture.m in Sources */,
 				3A12E375142F2C2D004B97BE /* PictureCue.m in Sources */,
+				64B69665142F2CE000FD6C86 /* AudioEditorViewControllerTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
