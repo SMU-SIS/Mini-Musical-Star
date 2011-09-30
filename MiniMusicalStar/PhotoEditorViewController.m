@@ -131,19 +131,19 @@
 
 - (IBAction) popupCameraOptions: (id) sender
 {
-    
-    CameraPopupViewController *overlayView = [[CameraPopupViewController alloc] initWithCoverScene:theCoverScene andContext:context];
-    
-    [overlayView.view setAlpha:0.0];
-    [self.view addSubview:overlayView.view];
-    [UIView beginAnimations:nil context:nil];
-    [overlayView.view setAlpha:1.0];
-    [UIView commitAnimations];
-    
-    [delegate stopPlayer];
-    
-    [overlayView setDelegate:self];
-    
+    if(![self.delegate isRecording]){
+        CameraPopupViewController *overlayView = [[CameraPopupViewController alloc] initWithCoverScene:theCoverScene andContext:context];
+        
+        [overlayView.view setAlpha:0.0];
+        [self.view addSubview:overlayView.view];
+        [UIView beginAnimations:nil context:nil];
+        [overlayView.view setAlpha:1.0];
+        [UIView commitAnimations];
+        
+        [delegate stopPlayer];
+        
+        [overlayView setDelegate:self];
+    }
 
 }
 

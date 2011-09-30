@@ -207,6 +207,11 @@
     [self.audioView.thePlayer stop];
 }
 
+-(BOOL)isRecording
+{
+    return [audioView isRecording];
+}
+
 - (IBAction)toggleContainerView
 {
 	if (transitioning) return;

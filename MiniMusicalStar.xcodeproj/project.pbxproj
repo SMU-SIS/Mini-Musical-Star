@@ -825,7 +825,6 @@
 		EDA2A1B513F26F8300B64EA5 = {
 			isa = PBXGroup;
 			children = (
-				3ADA7B01142F86DF0045F53E /* AVFoundation.framework */,
 				820E2A1E140A0A2A00B80BBC /* Resources */,
 				EDA2A1CA13F26F8400B64EA5 /* MiniMusicalStar */,
 				3A68378A142CBF95000485F2 /* MiniMusicalStarTests */,
@@ -846,6 +845,7 @@
 		EDA2A1C313F26F8400B64EA5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3ADA7B01142F86DF0045F53E /* AVFoundation.framework */,
 				3A6837A4142CC5FE000485F2 /* GHUnitIOS.framework */,
 				3A5C9B77142C8EB200176351 /* SenTestingKit.framework */,
 				95F9FFC11425C5DF00A18463 /* CoreData.framework */,

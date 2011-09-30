@@ -45,5 +45,6 @@
 - (void)showReallyAlertView;
 - (void)playPauseButtonIsPressed;
 - (void)stopPlayer;
+- (BOOL)isRecording;
     
 @end
