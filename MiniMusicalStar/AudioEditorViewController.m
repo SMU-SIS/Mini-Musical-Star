@@ -12,7 +12,7 @@
 @synthesize thePlayer, theAudioObjects, theCoverScene, context;
 @synthesize tracksForView;
 @synthesize trackTableView, recordImage, recordingImage;
-@synthesize lyricsScrollView, lyricsLabel, lyricsView;
+@synthesize lyricsScrollView, lyricsLabel;
 @synthesize lyrics;
 @synthesize currentRecordingNSURL, currentRecordingTrackTitle;
 @synthesize playPauseButton;
@@ -35,7 +35,6 @@
     
     [lyricsScrollView release];
     [lyricsLabel release];
-    [lyricsView release];
     
     [super dealloc];
 }
@@ -72,18 +71,7 @@
         Audio *firstAudio = (Audio*)[tracksForView objectAtIndex:0];
         lyrics = firstAudio.lyrics;
         
-        [self prepareLyricsView];
-        
-        
-        UIButton *showAndDismissLyricsButton;
-        showAndDismissLyricsButton = [[UIButton buttonWithType:UIButtonTypeRoundedRect] retain];
-        showAndDismissLyricsButton.frame = CGRectMake(900, 25, 100, 50);
-        [showAndDismissLyricsButton setTitle:@"toggle lyrics" forState:UIControlStateNormal];
-        [self.view addSubview:showAndDismissLyricsButton];  
-        [showAndDismissLyricsButton addTarget:self action:@selector(showAndDismissLyricsButtonIsPressed) forControlEvents:UIControlEventTouchDown];
-        [showAndDismissLyricsButton release];
-
-        
+        [self drawLyricsView];
     }
     
     return self;
@@ -117,7 +105,7 @@
     
     // If you initialize the table view with the UIView method initWithFrame:,
     //the UITableViewStylePlain style is used as a default.
-    trackTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 100, 1024, 300) style:UITableViewStylePlain];
+    trackTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 100, 500, 300) style:UITableViewStylePlain];
     
     trackTableView.delegate = self;
 	trackTableView.dataSource = self;
@@ -456,9 +444,6 @@
     [thePlayer enableRecordingToFile:fileURL];
     [thePlayer play];
     
-    //display lyrics popover to come out
-    [self showAndDismissLyricsButtonIsPressed];
-    
     [self registerNotifications];
 }
 
@@ -495,8 +480,6 @@
         NSString *path = anAudio.path;
         [tracksForViewNSURL addObject:[NSURL fileURLWithPath:path]];
     }];
-    
-    [self showAndDismissLyricsButtonIsPressed];
     
     [thePlayer release];
     
@@ -547,8 +530,6 @@
         //bring the seeker of player back to the starting point
         [thePlayer seekTo:0];
         [thePlayer stop];
-        
-        [self showAndDismissLyricsButtonIsPressed];
                
         //clear values
         [self resetRecordingValues];
@@ -574,9 +555,7 @@
 
 - (void)prepareLyricsView
 {
-   lyricsView = [[UIView alloc] initWithFrame:CGRectMake(LYRICS_VIEW_X, LYRICS_VIEW_Y, LYRICS_VIEW_WIDTH, LYRICS_VIEW_HEIGHT)];
-
-    lyricsScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, LYRICS_VIEW_WIDTH-40, LYRICS_VIEW_HEIGHT)]; 
+    lyricsScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(LYRICS_VIEW_X, LYRICS_VIEW_Y, LYRICS_VIEW_WIDTH, LYRICS_VIEW_HEIGHT)]; 
 
     lyricsLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, LYRICS_VIEW_WIDTH-40, LYRICS_VIEW_HEIGHT)];
 
@@ -601,12 +580,11 @@
     
     [lyricsScrollView setContentSize:CGSizeMake(lyricsLabel.frame.size.width, lyricsLabelFrame.size.height)]; //set content size of scroll view using calculated size of the text on the label
     
-    [lyricsView setBackgroundColor:[UIColor blackColor]];
+    [lyricsScrollView setBackgroundColor:[UIColor blackColor]];
     
-    lyricsView.alpha = 0.5;
+    lyricsScrollView.alpha = 0.5;
     
     [lyricsScrollView addSubview:lyricsLabel];
-    [lyricsView addSubview:lyricsScrollView];
 
     lyricsLabel.text = lyrics;
 }
@@ -628,23 +606,40 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(recordingIsCompleted) name:kMixPlayerRecorderPlaybackStopped object:nil];
 }
 
-- (void)showAndDismissLyricsButtonIsPressed
-{  
-    UIView *superView = lyricsView.superview;
+//0, 100, 600, 300
+- (void) drawLyricsView
+{
+    lyricsScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(500, 0, 1024-500, 580)]; 
+    lyricsLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 1024-500, 580)];
     
-    if (superView != nil)
-    {
-        //if the lyrics have a super view
-        [lyricsView removeFromSuperview];
-    }
-    else
-    {
-        //if the lyrics view don't have a super view
-        [self.view addSubview:lyricsView];
-        [self.view bringSubviewToFront:lyricsView];
-        [self.view sendSubviewToBack:trackTableView];
-
-    }
+    //configure the lyrics label
+    lyricsLabel.lineBreakMode = UILineBreakModeWordWrap; //line break, word wrap
+	lyricsLabel.numberOfLines = 0; //0 - dynamic number of lines
+    [lyricsLabel setFont:[UIFont fontWithName:@"MarkerFelt-Wide" size:24]];
+    lyricsLabel.textColor = [UIColor whiteColor];
+    lyricsLabel.textAlignment =  UITextAlignmentCenter;
+    
+    //configure the lyrics scroll view
+    lyricsScrollView.directionalLockEnabled = YES;
+    lyricsScrollView.showsHorizontalScrollIndicator = NO;
+    lyricsScrollView.showsVerticalScrollIndicator = YES;
+    lyricsScrollView.bounces = NO;
+    [lyricsScrollView setBackgroundColor:[UIColor whiteColor]];
+    
+    CGRect lyricsLabelFrame = lyricsLabel.bounds; //get the CGRect representing the bounds of the UILabel
+    
+    lyricsLabelFrame.size = [lyrics sizeWithFont:lyricsLabel.font constrainedToSize:CGSizeMake(1024-500-20, 100000) lineBreakMode:lyricsLabel.lineBreakMode]; //get a CGRect for dynamically resizing the label based on the text. cool.
+    
+    lyricsLabel.frame = CGRectMake(0, 0, lyricsLabel.frame.size.width-10, lyricsLabelFrame.size.height); //set the new size of the label, we are only changing the height
+    
+    [lyricsScrollView setContentSize:CGSizeMake(lyricsLabel.frame.size.width, lyricsLabelFrame.size.height)]; //set content size of scroll view using calculated size of the text on the label
+    
+    [lyricsLabel setBackgroundColor:[UIColor blackColor]];
+    
+    lyricsLabel.text = lyrics;
+    
+    [lyricsScrollView addSubview:lyricsLabel];
+    [self.view addSubview:lyricsScrollView];
 }
 
 - (void)deRegisterFromNSNotifcationCenter

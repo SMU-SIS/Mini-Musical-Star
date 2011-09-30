@@ -25,12 +25,8 @@
     bool isPlaying;
     
     //for the lyrics popover
-    UIPopoverController *lyricsPopoverController;
     UIScrollView *lyricsScrollView;
     UILabel *lyricsLabel;
-    
-    //for new lyrics view
-    UIView *lyricsView;
     
     //stores a pointer to the play/pause button to the scene editor
     UIButton *playPauseButton;
@@ -50,7 +46,6 @@
 //for the lyrics
 @property (nonatomic, retain) UIScrollView *lyricsScrollView;
 @property (nonatomic, retain) UILabel *lyricsLabel;
-@property (nonatomic, retain) UIView *lyricsView;
 
 @property (nonatomic, retain) MixPlayerRecorder *thePlayer;
 @property (nonatomic, retain) NSArray *theAudioObjects;
@@ -71,7 +66,6 @@
 
 - (void)playButtonIsPressed;
 - (void)stopButtonIsPresssed;
-- (void)showAndDismissLyricsButtonIsPressed;
 
 - (bool)isRecording;
 
@@ -80,6 +74,7 @@
 - (void)deRegisterFromNSNotifcationCenter;
 - (void)registerNotifications;
 
+- (void) drawLyricsView;
 
 
 @end
