@@ -62,7 +62,6 @@
 - (AudioEditorViewController *)initWithScene:(Scene *)theScene andCoverScene:(CoverScene *)aCoverScene andContext:(NSManagedObjectContext *)aContext andPlayPauseButton:(UIButton*)aPlayPauseButton;
 
 - (void)scrollRowToTopOfTableView:(int)trackNumber;
-- (void)prepareLyricsView;
 
 - (void)playButtonIsPressed;
 - (void)stopButtonIsPresssed;
@@ -74,7 +73,9 @@
 - (void)deRegisterFromNSNotifcationCenter;
 - (void)registerNotifications;
 
-- (void) drawLyricsView;
-
+- (void)drawLyricsView;
+- (CAGradientLayer*)createGradientLayer:(CGRect)frame firstColor:(UIColor*)firstColor andSecondColor:(UIColor*)secondColor;
+- (UIScrollView*)createLyricsScrollView;
+- (UILabel*)createLyricsLabel;
 
 @end

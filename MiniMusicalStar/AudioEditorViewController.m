@@ -79,7 +79,7 @@
 
 - (void)consolidateOriginalAndCoverTracks
 {
-//    NSLog(@"Inside consolidateOriginalAndCoverTracks");
+    //    NSLog(@"Inside consolidateOriginalAndCoverTracks");
     //[tracksForView release];
     
     self.tracksForView = [NSMutableArray arrayWithCapacity:theAudioObjects.count + theCoverScene.Audio.count];
@@ -239,10 +239,7 @@
             [trackCellRightIndicator setBackgroundColor:[UIColor purpleColor]];
             
             /* draw the gradient-ed background of white to black */
-            CAGradientLayer *gradient = [CAGradientLayer layer];
-            gradient.frame = trackCellRightIndicator.bounds;
-            gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor blackColor] CGColor], (id)[[UIColor whiteColor] CGColor], nil];            
-            [trackCellRightIndicator.layer insertSublayer:gradient atIndex:0];
+            [trackCellRightIndicator.layer insertSublayer:[self createGradientLayer:trackCellRightIndicator.bounds firstColor:[UIColor blackColor] andSecondColor:[UIColor whiteColor]] atIndex:0];
             
             
             [trackCellRightIndicator release];
@@ -295,44 +292,30 @@
         
         trackCellRightPanel = (UIView*)[cell.contentView viewWithTag:4];
         
-        
         trackCellRightIndicator = (UIView*)[cell.contentView viewWithTag:3];
         CALayer *layer = trackCellRightIndicator.layer;
         layer.sublayers = nil; //remove all the sublayers inside the layer. if not we will keep adding additional layers.
-       // NSArray *layerArray = trackCellRightPanel.layer.sublayers; //get the array of layers
         
         if (indexPath.row == currentRecordingTrack && isRecording == YES)
         {
-            /* draw the gradient-ed background of red to black */
-            CAGradientLayer *gradient = [CAGradientLayer layer];
-            gradient.frame = trackCellRightIndicator.bounds;
-            gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor redColor] CGColor], (id)[[UIColor whiteColor] CGColor], nil];            
-            [trackCellRightIndicator.layer insertSublayer:gradient atIndex:0];          
+            /* draw the gradient-ed background of red to black */            
+            [trackCellRightIndicator.layer insertSublayer:[self createGradientLayer:trackCellRightIndicator.bounds firstColor:[UIColor redColor] andSecondColor:[UIColor whiteColor]] atIndex:0];
         }
         else if (isRecording == NO && isPlaying == YES)
         {      
             if ([thePlayer busNumberIsMuted:indexPath.row])
             {
-                CAGradientLayer *gradient = [CAGradientLayer layer];
-                gradient.frame = trackCellRightIndicator.bounds;
-                gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor blackColor] CGColor], (id)[[UIColor whiteColor] CGColor], nil];            
-                [trackCellRightIndicator.layer insertSublayer:gradient atIndex:0];
+                [trackCellRightIndicator.layer insertSublayer:[self createGradientLayer:trackCellRightIndicator.bounds firstColor:[UIColor blackColor] andSecondColor:[UIColor whiteColor]] atIndex:0];
             }
             else
-            {
-                CAGradientLayer *gradient = [CAGradientLayer layer];
-                gradient.frame = trackCellRightIndicator.bounds;
-                gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor colorWithRed:34/255.0 green:139/255.0 blue:34/255.0 alpha:1] CGColor], (id)[[UIColor whiteColor] CGColor], nil];            
-                [trackCellRightIndicator.layer insertSublayer:gradient atIndex:0];
+            {           
+                [trackCellRightIndicator.layer insertSublayer:[self createGradientLayer:trackCellRightIndicator.bounds firstColor:[UIColor colorWithRed:34/255.0 green:139/255.0 blue:34/255.0 alpha:1] andSecondColor:[UIColor whiteColor]] atIndex:0];
             }
         }
         else
         {            
-            /* draw the gradient-ed background of white to black */
-            CAGradientLayer *gradient = [CAGradientLayer layer];
-            gradient.frame = trackCellRightIndicator.bounds;
-            gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor blackColor] CGColor], (id)[[UIColor whiteColor] CGColor], nil];            
-            [trackCellRightIndicator.layer insertSublayer:gradient atIndex:0];
+            /* draw the gradient-ed background of white to black */         
+            [trackCellRightIndicator.layer insertSublayer:[self createGradientLayer:trackCellRightIndicator.bounds firstColor:[UIColor blackColor] andSecondColor:[UIColor whiteColor]] atIndex:0];
         }    
         
         [trackCellRightPanel bringSubviewToFront:rightPanelButton];
@@ -356,6 +339,15 @@
         
         return cell;
     }
+}
+
+- (CAGradientLayer*)createGradientLayer:(CGRect)frame firstColor:(UIColor*)firstColor andSecondColor:(UIColor*)secondColor {
+    CAGradientLayer *gradientLayer = [CAGradientLayer layer];
+    
+    gradientLayer.frame = frame;
+    gradientLayer.colors = [NSArray arrayWithObjects:(id)[firstColor CGColor], (id)[secondColor CGColor], nil];            
+    
+    return gradientLayer;
 }
 
 //This method is for you to set the height of the table view.
@@ -420,7 +412,7 @@
     
     /* start recording once we determine it is a original track */
     Audio *trackToBeRecorded = (Audio*)audioForRow;
-
+    
     NSString *tempDir = NSTemporaryDirectory();
     //we are going to use .caf files because i am going to encode in IMA4
     NSString *tempFile = [tempDir stringByAppendingFormat:@"%@-cover.caf", trackToBeRecorded.title];
@@ -530,7 +522,7 @@
         //bring the seeker of player back to the starting point
         [thePlayer seekTo:0];
         [thePlayer stop];
-               
+        
         //clear values
         [self resetRecordingValues];
     }
@@ -545,48 +537,6 @@
 - (bool)isRecording
 {
     return isRecording;
-}
-
-/* constants related to displaying lyrics */
-#define LYRICS_VIEW_WIDTH 1030 //the entire width of the landscape screen
-#define LYRICS_VIEW_HEIGHT 768-200-200
-#define LYRICS_VIEW_X 0
-#define LYRICS_VIEW_Y 200
-
-- (void)prepareLyricsView
-{
-    lyricsScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(LYRICS_VIEW_X, LYRICS_VIEW_Y, LYRICS_VIEW_WIDTH, LYRICS_VIEW_HEIGHT)]; 
-
-    lyricsLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, LYRICS_VIEW_WIDTH-40, LYRICS_VIEW_HEIGHT)];
-
-    //configure the lyrics label
-    lyricsLabel.lineBreakMode = UILineBreakModeWordWrap; //line break, word wrap
-	lyricsLabel.numberOfLines = 0; //0 - dynamic number of lines
-    [lyricsLabel setFont:[UIFont fontWithName:@"MarkerFelt-Wide" size:26]];
-    lyricsLabel.textAlignment =  UITextAlignmentCenter;
-
-    //configure the lyrics scroll view
-    lyricsScrollView.directionalLockEnabled = YES;
-    lyricsScrollView.showsHorizontalScrollIndicator = NO;
-    lyricsScrollView.showsVerticalScrollIndicator = YES;
-    lyricsScrollView.bounces = NO;
-    [lyricsScrollView setBackgroundColor:[UIColor whiteColor]];
-    
-    CGRect lyricsLabelFrame = lyricsLabel.bounds; //get the CGRect representing the bounds of the UILabel
-    
-    lyricsLabelFrame.size = [lyrics sizeWithFont:lyricsLabel.font constrainedToSize:CGSizeMake(LYRICS_VIEW_WIDTH, 100000) lineBreakMode:lyricsLabel.lineBreakMode]; //get a CGRect for dynamically resizing the label based on the text. cool.
-    
-    lyricsLabel.frame = CGRectMake(0, 0, lyricsLabel.frame.size.width-10, lyricsLabelFrame.size.height); //set the new size of the label, we are only changing the height
-    
-    [lyricsScrollView setContentSize:CGSizeMake(lyricsLabel.frame.size.width, lyricsLabelFrame.size.height)]; //set content size of scroll view using calculated size of the text on the label
-    
-    [lyricsScrollView setBackgroundColor:[UIColor blackColor]];
-    
-    lyricsScrollView.alpha = 0.5;
-    
-    [lyricsScrollView addSubview:lyricsLabel];
-
-    lyricsLabel.text = lyrics;
 }
 
 //This is for scene edit view to pass me a pointer to the play pause button
@@ -606,18 +556,33 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(recordingIsCompleted) name:kMixPlayerRecorderPlaybackStopped object:nil];
 }
 
-//0, 100, 600, 300
+/* constants related to displaying lyrics */
+#define LYRICS_VIEW_WIDTH 1024-500 //the entire width of the landscape screen
+#define LYRICS_VIEW_HEIGHT 580
+#define LYRICS_VIEW_X 500
+#define LYRICS_VIEW_Y 0
+
 - (void) drawLyricsView
 {
-    lyricsScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(500, 0, 1024-500, 580)]; 
-    lyricsLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 1024-500, 580)];
+    [self createLyricsScrollView];
+    [self createLyricsLabel];
     
-    //configure the lyrics label
-    lyricsLabel.lineBreakMode = UILineBreakModeWordWrap; //line break, word wrap
-	lyricsLabel.numberOfLines = 0; //0 - dynamic number of lines
-    [lyricsLabel setFont:[UIFont fontWithName:@"MarkerFelt-Wide" size:24]];
-    lyricsLabel.textColor = [UIColor whiteColor];
-    lyricsLabel.textAlignment =  UITextAlignmentCenter;
+    CGRect lyricsLabelFrame = lyricsLabel.bounds; //get the CGRect representing the bounds of the UILabel
+    
+    lyricsLabelFrame.size = [lyrics sizeWithFont:lyricsLabel.font constrainedToSize:CGSizeMake(LYRICS_VIEW_WIDTH-20, 100000) lineBreakMode:lyricsLabel.lineBreakMode]; //get a CGRect for dynamically resizing the label based on the text. cool.
+    
+    lyricsLabel.frame = CGRectMake(0, 0, lyricsLabel.frame.size.width-10, lyricsLabelFrame.size.height); //set the new size of the label, we are only changing the height
+    
+    [lyricsScrollView setContentSize:CGSizeMake(lyricsLabel.frame.size.width, lyricsLabelFrame.size.height)]; //set content size of scroll view using calculated size of the text on the label
+    
+    lyricsLabel.text = lyrics;
+    
+    [lyricsScrollView addSubview:lyricsLabel];
+    [self.view addSubview:lyricsScrollView];
+}
+
+- (UIScrollView*)createLyricsScrollView {
+    lyricsScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(LYRICS_VIEW_X, LYRICS_VIEW_Y, LYRICS_VIEW_WIDTH, LYRICS_VIEW_HEIGHT)]; 
     
     //configure the lyrics scroll view
     lyricsScrollView.directionalLockEnabled = YES;
@@ -626,20 +591,21 @@
     lyricsScrollView.bounces = NO;
     [lyricsScrollView setBackgroundColor:[UIColor whiteColor]];
     
-    CGRect lyricsLabelFrame = lyricsLabel.bounds; //get the CGRect representing the bounds of the UILabel
+    return lyricsScrollView;
+}
+
+- (UILabel*)createLyricsLabel {
+    lyricsLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, LYRICS_VIEW_WIDTH, LYRICS_VIEW_HEIGHT)];
     
-    lyricsLabelFrame.size = [lyrics sizeWithFont:lyricsLabel.font constrainedToSize:CGSizeMake(1024-500-20, 100000) lineBreakMode:lyricsLabel.lineBreakMode]; //get a CGRect for dynamically resizing the label based on the text. cool.
+    //configure the lyrics label
+    lyricsLabel.lineBreakMode = UILineBreakModeWordWrap; //line break, word wrap
+	lyricsLabel.numberOfLines = 0; //0 - dynamic number of lines
+    [lyricsLabel setFont:[UIFont fontWithName:@"MarkerFelt-Wide" size:24]];
+    lyricsLabel.textColor = [UIColor whiteColor];
+    lyricsLabel.textAlignment =  UITextAlignmentCenter;
+    lyricsLabel.backgroundColor = [UIColor blackColor];
     
-    lyricsLabel.frame = CGRectMake(0, 0, lyricsLabel.frame.size.width-10, lyricsLabelFrame.size.height); //set the new size of the label, we are only changing the height
-    
-    [lyricsScrollView setContentSize:CGSizeMake(lyricsLabel.frame.size.width, lyricsLabelFrame.size.height)]; //set content size of scroll view using calculated size of the text on the label
-    
-    [lyricsLabel setBackgroundColor:[UIColor blackColor]];
-    
-    lyricsLabel.text = lyrics;
-    
-    [lyricsScrollView addSubview:lyricsLabel];
-    [self.view addSubview:lyricsScrollView];
+    return lyricsLabel;
 }
 
 - (void)deRegisterFromNSNotifcationCenter
