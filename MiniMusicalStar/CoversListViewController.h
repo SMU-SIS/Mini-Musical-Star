@@ -7,11 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Show.h"
 #import "Cover.h"
 
-@interface CoversListViewController : UITableViewController
+@interface CoversListViewController : UITableViewController <NSFetchedResultsControllerDelegate>
 
 @property (assign, nonatomic) id delegate;
-@property (retain, nonatomic) NSArray *coversArray;
+@property (retain, nonatomic) Show *theShow;
+@property (retain, nonatomic) NSManagedObjectContext *context;
+@property (retain, nonatomic) NSFetchedResultsController *frc;
 
+- (id)initWithShow:(Show *)aShow context:(NSManagedObjectContext *)aContext;
+- (void)createFetchedResultsController;
+- (void)configureCell:(UITableViewCell*)cell atIndexPath:(NSIndexPath*)indexPath;
 @end

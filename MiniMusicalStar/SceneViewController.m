@@ -52,7 +52,7 @@
     self.context = aContext;
     
     //load the cover list
-    self.coversList = [[CoversListViewController alloc] init];
+    self.coversList = [[CoversListViewController alloc] initWithShow:theShow context:context];
     self.coversList.delegate = self;
     self.coversPopover = [[UIPopoverController alloc] initWithContentViewController:coversList];
     
@@ -95,30 +95,6 @@
     }
 
     [sceneMenu setContentSize:CGSizeMake(sceneMenu.frame.size.width + (extend * 200), 0)];
-}
-
-- (NSArray *)coversForShow
-{
-    NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"Cover" inManagedObjectContext:self.context];
-    NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
-    [request setEntity:entityDescription];
-    
-    //predicate...
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"cover_of_showID == %i", theShow.showID];
-    [request setPredicate:predicate];
-    
-    NSError *err = nil;
-    NSArray *results = [self.context executeFetchRequest:request error:&err];
-    
-    if (results == nil)
-    {
-        NSLog(@"Fetch error: %@", err);
-    }
-    
-    NSLog(@"%i results found", results.count);
-    
-    return results;
-    
 }
 
 - (void)viewWillAppear: (BOOL)animated
@@ -187,6 +163,13 @@
         [coversPopover dismissPopoverAnimated:YES];
     }
 
+}
+
+- (void)selectedSavedCover:(Cover *)selectedCover;
+{
+    self.theCover = selectedCover;
+    self.title = selectedCover.title;
+    [coversPopover dismissPopoverAnimated:YES];
 }
 
 -(void)selectScene:(UIButton *)sender

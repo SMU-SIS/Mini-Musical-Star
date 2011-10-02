@@ -32,4 +32,9 @@
     return hasEdits;
 }
 
+- (void)purgeRelatedFiles
+{
+    NSLog(@"This method has to be implemented to delete all the user-created audio and photo files that are associated with this cover.");
+}
+
 @end

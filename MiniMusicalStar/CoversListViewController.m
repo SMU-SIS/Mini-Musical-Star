@@ -9,7 +9,15 @@
 #import "CoversListViewController.h"
 
 @implementation CoversListViewController
-@synthesize delegate, coversArray;
+@synthesize delegate, theShow, context, frc;
+
+- (void)dealloc
+{
+    [frc release];
+    [theShow release];
+    [context release];
+    [super dealloc];
+}
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -19,6 +27,45 @@
     }
     return self;
 }
+
+- (id)initWithShow:(Show *)aShow context:(NSManagedObjectContext *)aContext
+{
+    self = [super init];
+    if (self)
+    {
+        self.theShow = aShow;
+        self.context = aContext;
+        [self createFetchedResultsController];
+    }
+    
+    return self;
+}
+
+- (void)createFetchedResultsController
+{
+    NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"Cover" inManagedObjectContext:self.context];
+    NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
+    [request setEntity:entityDescription];
+    
+    [request setFetchBatchSize:20];
+    
+    //predicate...
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"cover_of_showID == %i", theShow.showID];
+    [request setPredicate:predicate];
+    
+    //sort descriptor...
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"title" ascending:NO];
+    NSArray *descriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
+    [request setSortDescriptors:descriptors];
+    
+    NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:self.context sectionNameKeyPath:nil cacheName:@"Root"];
+    fetchedResultsController.delegate = self;
+    
+    self.frc = fetchedResultsController;
+    [fetchedResultsController release], fetchedResultsController = nil;
+
+}
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -33,7 +80,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.coversArray = [self.delegate performSelector:@selector(coversForShow)];
+    
+    NSError *error;
+    if (![[self frc] performFetch:&error]) {
+		// Update to handle the error appropriately.
+		NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+	}
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -81,14 +133,16 @@
 {
 
     // Return the number of sections.
-    return 1;
+    return [[frc sections] count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 
     // Return the number of rows in the section.
-    return self.coversArray.count;
+    id <NSFetchedResultsSectionInfo> sectionInfo = nil;
+    sectionInfo = [[frc sections] objectAtIndex:section];
+    return [sectionInfo numberOfObjects];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -101,10 +155,22 @@
     }
     
     // Configure the cell...
-    Cover *aCover = [self.coversArray objectAtIndex:[indexPath row]];
-    UILabel *cellLabel = cell.textLabel;
-    cellLabel.text = aCover.title;
+    [self configureCell:cell atIndexPath:indexPath];
     return cell;
+}
+
+- (void)configureCell:(UITableViewCell*)cell atIndexPath:(NSIndexPath*)indexPath
+{
+    NSManagedObject *mo = nil;
+    NSString *temp = nil;
+    mo = [frc objectAtIndexPath:indexPath];
+    temp = [[mo valueForKey:@"title"] description]; 
+    [[cell textLabel] setText:temp];
+}
+
+- (void)controllerWillChangeContent:(NSFetchedResultsController*)controller
+{
+    [[self tableView] reloadData];
 }
 
 /*
@@ -116,19 +182,27 @@
 }
 */
 
-/*
+
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
+        Cover *selectedCover = [frc objectAtIndexPath:indexPath];
+        [selectedCover purgeRelatedFiles];
+        [self.context deleteObject:selectedCover];
+        
+        NSError *err;
+        if (![self.context save:&err])
+        {
+            NSLog(@"Deletion error occured: %@", err);
+        }
+        
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+ 
 }
-*/
+
 
 /*
 // Override to support rearranging the table view.
@@ -150,14 +224,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     [detailViewController release];
-     */
+    //get the Cover object
+    Cover *selectedCover = [frc objectAtIndexPath:indexPath];
+    [delegate performSelector:@selector(selectedSavedCover:) withObject:selectedCover];
 }
 
 @end

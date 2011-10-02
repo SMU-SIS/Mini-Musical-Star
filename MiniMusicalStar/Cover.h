@@ -28,4 +28,5 @@
 - (void)removeScenes:(NSSet *)values;
 
 - (BOOL)showWasEdited;
+- (void)purgeRelatedFiles;
 @end
