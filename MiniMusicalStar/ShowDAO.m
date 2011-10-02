@@ -23,13 +23,17 @@ static id delegate;
     [self checkForNewShowsFromServer];
 }
 
++ (NSMutableString *)getUserDocumentDir {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSMutableString *path = [NSMutableString stringWithString:[paths objectAtIndex:0]];
+    return path;
+}
+
 + (void)loadLocalShows
 {
     NSError *error;
     NSFileManager *manager = [NSFileManager defaultManager];
-    
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask ,YES);
-    userDocumentDirectory = [paths objectAtIndex:0];
+    userDocumentDirectory = [self getUserDocumentDir];
     NSLog(@"document directory is %@\n", userDocumentDirectory);
     
     NSString *showsDirectory = [userDocumentDirectory stringByAppendingString:@"/shows"];    
@@ -166,7 +170,8 @@ static id delegate;
     unlink([localShowZipPath cStringUsingEncoding:NSUTF8StringEncoding]);
     
     //delete the resource fork
-    unlink([[unzipPath stringByAppendingPathExtension:@"__MACOSX"] UTF8String]);
+    NSString *resourceFork = [unzipPath stringByAppendingPathComponent:@"__MACOSX"];
+    [[NSFileManager defaultManager] removeItemAtPath:resourceFork error:nil];
 }
             
 
