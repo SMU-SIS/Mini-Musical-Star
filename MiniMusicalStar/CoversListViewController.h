@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Cover.h"
 
 @interface CoversListViewController : UITableViewController
+
+@property (assign, nonatomic) id delegate;
+@property (retain, nonatomic) NSArray *coversArray;
 
 @end

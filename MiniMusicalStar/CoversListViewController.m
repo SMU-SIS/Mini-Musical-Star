@@ -9,6 +9,7 @@
 #import "CoversListViewController.h"
 
 @implementation CoversListViewController
+@synthesize delegate, coversArray;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -32,6 +33,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.coversArray = [self.delegate performSelector:@selector(coversForShow)];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -86,7 +88,7 @@
 {
 
     // Return the number of rows in the section.
-    return 5;
+    return self.coversArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -99,8 +101,9 @@
     }
     
     // Configure the cell...
+    Cover *aCover = [self.coversArray objectAtIndex:[indexPath row]];
     UILabel *cellLabel = cell.textLabel;
-    cellLabel.text = [NSString stringWithFormat:@"Cell Number %i", indexPath];
+    cellLabel.text = aCover.title;
     return cell;
 }
 

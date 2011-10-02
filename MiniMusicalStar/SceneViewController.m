@@ -51,6 +51,11 @@
     self.theCover = aCover;
     self.context = aContext;
     
+    //load the cover list
+    self.coversList = [[CoversListViewController alloc] init];
+    self.coversList.delegate = self;
+    self.coversPopover = [[UIPopoverController alloc] initWithContentViewController:coversList];
+    
     return self;
 }
 
@@ -59,9 +64,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    //load the cover list
-    self.coversList = [[CoversListViewController alloc] init];
-    self.coversPopover = [[UIPopoverController alloc] initWithContentViewController:coversList];
+    //load the covers
   
     //Settings for the scrollview
     [sceneMenu setScrollEnabled:YES];
@@ -92,6 +95,30 @@
     }
 
     [sceneMenu setContentSize:CGSizeMake(sceneMenu.frame.size.width + (extend * 200), 0)];
+}
+
+- (NSArray *)coversForShow
+{
+    NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"Cover" inManagedObjectContext:self.context];
+    NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
+    [request setEntity:entityDescription];
+    
+    //predicate...
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"cover_of_showID == %i", theShow.showID];
+    [request setPredicate:predicate];
+    
+    NSError *err = nil;
+    NSArray *results = [self.context executeFetchRequest:request error:&err];
+    
+    if (results == nil)
+    {
+        NSLog(@"Fetch error: %@", err);
+    }
+    
+    NSLog(@"%i results found", results.count);
+    
+    return results;
+    
 }
 
 - (void)viewWillAppear: (BOOL)animated
