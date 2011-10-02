@@ -55,4 +55,11 @@
     return !((self.Audio.count == 0) && (self.Picture.count == 0));
 }
 
+- (void)purgeRelatedFiles
+{
+    [self.Audio enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
+        [obj performSelector:@selector(deleteAudioFile)];
+    }];
+}
+
 @end

@@ -14,4 +14,9 @@
 @dynamic title;
 @dynamic CoverScene;
 
+- (void)deleteAudioFile
+{
+    unlink([self.path UTF8String]);
+}
+
 @end

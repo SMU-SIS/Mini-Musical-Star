@@ -36,5 +36,5 @@
 - (CoverSceneAudio *)audioForTrackTitle:(NSString *)trackTitle;
 
 - (BOOL)sceneHasEdits;
-
+- (void)purgeRelatedFiles;
 @end

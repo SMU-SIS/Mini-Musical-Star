@@ -34,7 +34,9 @@
 
 - (void)purgeRelatedFiles
 {
-    NSLog(@"This method has to be implemented to delete all the user-created audio and photo files that are associated with this cover.");
+    [self.Scenes enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
+        [obj performSelector:@selector(purgeRelatedFiles)];
+    }];
 }
 
 @end
