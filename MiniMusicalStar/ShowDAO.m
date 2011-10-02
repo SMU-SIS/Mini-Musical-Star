@@ -164,6 +164,9 @@ static id delegate;
     
     //delete the zip file
     unlink([localShowZipPath cStringUsingEncoding:NSUTF8StringEncoding]);
+    
+    //delete the resource fork
+    unlink([[unzipPath stringByAppendingPathExtension:@"__MACOSX"] UTF8String]);
 }
             
 
