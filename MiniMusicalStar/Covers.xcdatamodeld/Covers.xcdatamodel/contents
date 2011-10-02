@@ -2,7 +2,7 @@
 <model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="562" systemVersion="11B2118" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Cover" representedClassName="Cover">
         <attribute name="author" optional="YES" attributeType="String"/>
-        <attribute name="cover_of_songID" optional="YES" attributeType="Integer 16" defaultValueString="0"/>
+        <attribute name="cover_of_showID" optional="YES" attributeType="Integer 16" defaultValueString="0"/>
         <attribute name="created_date" optional="YES" attributeType="Date"/>
         <attribute name="title" optional="YES" attributeType="String"/>
         <relationship name="Scenes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CoverScene" inverseName="Cover" inverseEntity="CoverScene"/>

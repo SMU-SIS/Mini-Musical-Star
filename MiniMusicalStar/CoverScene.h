@@ -35,5 +35,6 @@
 - (CoverScenePicture *)pictureForOrderNumber:(int)orderNum;
 - (CoverSceneAudio *)audioForTrackTitle:(NSString *)trackTitle;
 
+- (BOOL)sceneHasEdits;
 
 @end

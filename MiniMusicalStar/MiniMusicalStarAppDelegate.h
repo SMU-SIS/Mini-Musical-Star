@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-
 @class MenuViewController;
 
 @interface MiniMusicalStarAppDelegate : NSObject <UIApplicationDelegate> {

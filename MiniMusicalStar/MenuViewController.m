@@ -87,7 +87,7 @@
 - (IBAction)createMusical: (UIButton*)sender {
     
     Cover *newCover = [NSEntityDescription insertNewObjectForEntityForName:@"Cover" inManagedObjectContext:managedObjectContext];
-
+    newCover.cover_of_showID = [NSNumber numberWithInt:[[shows objectAtIndex:sender.tag] showID]];
     SceneViewController *sceneView = [[SceneViewController alloc] initWithScenesFromShow:[shows objectAtIndex:sender.tag] andCover:newCover andContext:managedObjectContext];
     sceneView.title = [[shows objectAtIndex:sender.tag] title];
     

@@ -8,13 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
-
+#import "CoverScene.h"
 
 @interface Cover : NSManagedObject {
 @private
 }
 @property (nonatomic, retain) NSString * author;
-@property (nonatomic, retain) NSNumber * cover_of_songID;
+@property (nonatomic, retain) NSNumber * cover_of_showID;
 @property (nonatomic, retain) NSDate * created_date;
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSSet *Scenes;
@@ -27,4 +27,5 @@
 - (void)addScenes:(NSSet *)values;
 - (void)removeScenes:(NSSet *)values;
 
+- (BOOL)showWasEdited;
 @end

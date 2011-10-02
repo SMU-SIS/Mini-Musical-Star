@@ -156,6 +156,8 @@
 		9572E0DC140E118400713F45 /* Show.m in Sources */ = {isa = PBXBuildFile; fileRef = 9572E0D6140E118400713F45 /* Show.m */; };
 		9572E0E0140E11FF00713F45 /* ShowDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 9572E0DF140E11FF00713F45 /* ShowDAO.m */; };
 		9578443B141DD2F10033721D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9578443A141DD2F10033721D /* QuartzCore.framework */; };
+		95C526AE1438DA740008AE13 /* CoversListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C526AC1438DA740008AE13 /* CoversListViewController.m */; };
+		95C526AF1438DA740008AE13 /* CoversListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95C526AD1438DA740008AE13 /* CoversListViewController.xib */; };
 		95DAE87F141480F80039201D /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95DAE87E141480F80039201D /* CFNetwork.framework */; };
 		95DAE881141481160039201D /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95DAE880141481160039201D /* MobileCoreServices.framework */; };
 		95DAE883141481210039201D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95DAE882141481210039201D /* Security.framework */; };
@@ -348,6 +350,9 @@
 		9572E0DE140E11FF00713F45 /* ShowDAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowDAO.h; sourceTree = "<group>"; };
 		9572E0DF140E11FF00713F45 /* ShowDAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowDAO.m; sourceTree = "<group>"; };
 		9578443A141DD2F10033721D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		95C526AB1438DA740008AE13 /* CoversListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoversListViewController.h; sourceTree = "<group>"; };
+		95C526AC1438DA740008AE13 /* CoversListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoversListViewController.m; sourceTree = "<group>"; };
+		95C526AD1438DA740008AE13 /* CoversListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CoversListViewController.xib; sourceTree = "<group>"; };
 		95DAE87E141480F80039201D /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		95DAE880141481160039201D /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		95DAE882141481210039201D /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -802,6 +807,8 @@
 				9569E0641418A2D30016DAF3 /* SceneEditViewController.m */,
 				EDA2A1D313F26F8400B64EA5 /* MiniMusicalStarAppDelegate.h */,
 				EDA2A1D413F26F8400B64EA5 /* MiniMusicalStarAppDelegate.m */,
+				95C526AB1438DA740008AE13 /* CoversListViewController.h */,
+				95C526AC1438DA740008AE13 /* CoversListViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -818,6 +825,7 @@
 				9569E05D1418A2B10016DAF3 /* AudioEditorViewController.xib */,
 				9569E05E1418A2B10016DAF3 /* PhotoEditorViewController.xib */,
 				9569E0611418A2C90016DAF3 /* SceneEditViewController.xib */,
+				95C526AD1438DA740008AE13 /* CoversListViewController.xib */,
 			);
 			name = XIB;
 			sourceTree = "<group>";
@@ -1025,6 +1033,7 @@
 				3AFFDE81142C7419000D8494 /* record.png in Resources */,
 				3AFFDE83142C7419000D8494 /* recording.png in Resources */,
 				3A9A4EE1142CB5E5008972A1 /* InfoPlist.strings in Resources */,
+				95C526AF1438DA740008AE13 /* CoversListViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1138,6 +1147,7 @@
 				3AFFDF05142C7E0F000D8494 /* TPCircularBuffer.c in Sources */,
 				3AFFDF0A142C7E16000D8494 /* UIImage+Resize.m in Sources */,
 				3AFFDF0F142C7E69000D8494 /* DSActivityView.m in Sources */,
+				95C526AE1438DA740008AE13 /* CoversListViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

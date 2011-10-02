@@ -11,9 +11,25 @@
 
 @implementation Cover
 @dynamic author;
-@dynamic cover_of_songID;
+@dynamic cover_of_showID;
 @dynamic created_date;
 @dynamic title;
 @dynamic Scenes;
+
+- (BOOL)showWasEdited
+{
+    //iterate through all cover scenes
+    __block BOOL hasEdits = NO;
+    [self.Scenes enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
+        CoverScene *coverScene = (CoverScene *)obj;
+        if ([coverScene sceneHasEdits])
+        {
+            hasEdits = YES;
+            *stop = YES;
+        }
+    }];
+    
+    return hasEdits;
+}
 
 @end

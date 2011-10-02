@@ -50,4 +50,9 @@
     return audioToReturn;
 }
 
+- (BOOL)sceneHasEdits
+{
+    return !((self.Audio.count == 0) && (self.Picture.count == 0));
+}
+
 @end

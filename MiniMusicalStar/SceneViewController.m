@@ -15,9 +15,15 @@
 @synthesize chosenScene;
 @synthesize theCover;
 @synthesize context;
+@synthesize saveCoverButton;
+@synthesize userCoverName;
+@synthesize coversList, coversPopover;
 
 - (void)dealloc
 {
+    [saveCoverButton release];
+    [coversList release];
+    [coversPopover release];
     [context release];
     [showCover release];
     [sceneMenu release];
@@ -52,6 +58,10 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    //load the cover list
+    self.coversList = [[CoversListViewController alloc] init];
+    self.coversPopover = [[UIPopoverController alloc] initWithContentViewController:coversList];
   
     //Settings for the scrollview
     [sceneMenu setScrollEnabled:YES];
@@ -87,16 +97,69 @@
 - (void)viewWillAppear: (BOOL)animated
 {
     [super viewWillAppear:animated];
-    UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithTitle:@"View Covers" style:UIBarButtonItemStylePlain target:self action:@selector(testUIBarButton)];          
+    
+    //disable the save cover button first
+    self.saveCoverButton.enabled = NO;
+    self.saveCoverButton.hidden = YES;
+    
+    UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithTitle:@"View Covers" style:UIBarButtonItemStylePlain target:self action:@selector(coversButtonPressed:)];          
     self.navigationItem.rightBarButtonItem = anotherButton;
     [anotherButton release];
+    
+    //if there are any edits, reflect them here
+    if ([theCover showWasEdited])
+    {
+        self.title = [theShow.title stringByAppendingString:@" (edited)"];
+        self.saveCoverButton.enabled = YES;
+        self.saveCoverButton.hidden = NO;
+    }
 }
 
-- (void)testUIBarButton
+- (IBAction)saveCoverButtonPressed:(UIButton *)sender
 {
-    UIAlertView *helloAlert = [[UIAlertView alloc] initWithTitle:@"Covers" message:@"Boo!" delegate:self cancelButtonTitle:@"Yeah ok, ok" otherButtonTitles:nil];
-    [helloAlert show];
-    [helloAlert release];
+    UIAlertView *saveModal = [[UIAlertView alloc] init];
+    saveModal.delegate = self;
+    saveModal.title = @"Name your creation!";
+    saveModal.message = @" ";
+    [saveModal addButtonWithTitle:@"Cancel"];
+    [saveModal addButtonWithTitle:@"OK"];
+    
+    userCoverName = [[UITextField alloc] initWithFrame:CGRectMake(20.0, 45.0, 245.0, 25.0)];
+    userCoverName.backgroundColor = [UIColor whiteColor];
+    
+    [saveModal addSubview:userCoverName];
+    [saveModal show];
+    [saveModal release];
+    [userCoverName release];
+    
+}
+
+- (void) alertView:(UIAlertView *)alert clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1)
+    {
+        self.theCover.title = userCoverName.text;
+        
+        //save the cover to persistent storage
+        [self.context save:nil];
+        
+        self.title = self.theCover.title;
+    }
+    
+}
+
+- (void)coversButtonPressed:(id)sender
+{
+    if (!self.coversPopover.isPopoverVisible)
+    {
+        [coversPopover presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+    }
+    
+    else
+    {
+        [coversPopover dismissPopoverAnimated:YES];
+    }
+
 }
 
 -(void)selectScene:(UIButton *)sender

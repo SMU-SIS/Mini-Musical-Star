@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Show.h"
 #import "SceneEditViewController.h"
+#import "CoversListViewController.h"
 #import "Cover.h"
 #import "CoverScene.h"
 #import "DSActivityView.h"
@@ -27,6 +28,11 @@
 @property (retain, nonatomic) Scene *chosenScene;
 @property (retain, nonatomic) Cover *theCover;
 
+@property (retain, nonatomic) UIButton *saveCoverButton;
+@property (retain, nonatomic) UITextField *userCoverName;
+
+@property (retain, nonatomic) CoversListViewController *coversList;
+@property (retain, nonatomic) UIPopoverController *coversPopover;
 
 -(SceneViewController *)initWithScenesFromShow:(Show *)aShow andCover:(Cover *)aCover andContext:(NSManagedObjectContext *)aContext;
 
