@@ -156,7 +156,6 @@
 					<string>-2.IBPluginDependency</string>
 					<string>13.CustomClassName</string>
 					<string>13.IBPluginDependency</string>
-					<string>21.CustomClassName</string>
 					<string>21.IBPluginDependency</string>
 					<string>21.IBUIButtonInspectorSelectedStateConfigurationMetadataKey</string>
 				</object>
@@ -168,7 +167,6 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>AFOpenFlowView</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>UIButtonTypeCustom</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<real value="2"/>
 				</object>
