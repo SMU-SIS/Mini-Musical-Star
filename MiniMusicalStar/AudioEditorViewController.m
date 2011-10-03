@@ -8,6 +8,8 @@
 
 #import "AudioEditorViewController.h"
 
+#import "CoversFilenameGenerator.h"
+
 @implementation AudioEditorViewController
 @synthesize thePlayer, theAudioObjects, theCoverScene, context;
 @synthesize tracksForView;
@@ -361,7 +363,7 @@
 #pragma mark KVO callbacks
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)changeContext
 {
-    NSLog(@"Inside observeValueForKeyPath");
+    //NSLog(@"Inside observeValueForKeyPath");
     
     NSString *kvoContext = (NSString *)changeContext;
     if ([kvoContext isEqualToString:@"NewCoverTrackAdded"])
@@ -456,10 +458,19 @@
     NSString *tempDir = NSTemporaryDirectory();
     NSString *tempFile = [tempDir stringByAppendingFormat:@"%@-cover.caf", currentRecordingTrackTitle];
     
+    NSString *newFilename = [tempDir stringByAppendingFormat:@"%@.caf", [CoversFilenameGenerator returnMD5HashOfData:[NSData dataWithContentsOfFile:tempFile]]];
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager]; //to help with the renaming
+    NSError *error; //for error info
+    
+    //rename file
+    if ([fileManager moveItemAtPath:tempFile toPath:newFilename error:&error] != YES)
+        NSLog(@"Unable to move file: %@", [error localizedDescription]);
+    
     CoverSceneAudio *newCoverSceneAudio = [NSEntityDescription insertNewObjectForEntityForName:@"CoverSceneAudio" inManagedObjectContext:context];
     
     newCoverSceneAudio.title = currentRecordingTrackTitle;
-    newCoverSceneAudio.path = tempFile;
+    newCoverSceneAudio.path = newFilename;
     
     [self.theCoverScene addAudioObject:newCoverSceneAudio]; //receing EXC_BAD_ACCESS here when exit and record
     

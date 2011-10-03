@@ -133,6 +133,7 @@
 		3AFFDF05142C7E0F000D8494 /* TPCircularBuffer.c in Sources */ = {isa = PBXBuildFile; fileRef = 3AFFDEF9142C7E0F000D8494 /* TPCircularBuffer.c */; };
 		3AFFDF0A142C7E16000D8494 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFFDF09142C7E16000D8494 /* UIImage+Resize.m */; };
 		3AFFDF0F142C7E69000D8494 /* DSActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFFDF0E142C7E69000D8494 /* DSActivityView.m */; };
+		6410AF33143A00900062B04D /* CoversFilenameGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6410AF32143A00900062B04D /* CoversFilenameGenerator.m */; };
 		643AC0ED142FF2AE00F65B85 /* AudioEditViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 643AC0EC142FF2AD00F65B85 /* AudioEditViewControllerTest.m */; };
 		820511BF13F3BB9B0016F87E /* SceneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 820511BD13F3BB9B0016F87E /* SceneViewController.m */; };
 		820511C013F3BB9B0016F87E /* SceneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 820511BE13F3BB9B0016F87E /* SceneViewController.xib */; };
@@ -320,6 +321,8 @@
 		3AFFDF09142C7E16000D8494 /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
 		3AFFDF0D142C7E69000D8494 /* DSActivityView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSActivityView.h; sourceTree = "<group>"; };
 		3AFFDF0E142C7E69000D8494 /* DSActivityView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSActivityView.m; sourceTree = "<group>"; };
+		6410AF31143A00900062B04D /* CoversFilenameGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CoversFilenameGenerator.h; path = Libraries/CoversFilenameGenerator.h; sourceTree = SOURCE_ROOT; };
+		6410AF32143A00900062B04D /* CoversFilenameGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CoversFilenameGenerator.m; path = Libraries/CoversFilenameGenerator.m; sourceTree = SOURCE_ROOT; };
 		643AC0EB142FF2AD00F65B85 /* AudioEditViewControllerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioEditViewControllerTest.h; sourceTree = "<group>"; };
 		643AC0EC142FF2AD00F65B85 /* AudioEditViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioEditViewControllerTest.m; sourceTree = "<group>"; };
 		820511BC13F3BB9B0016F87E /* SceneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneViewController.h; sourceTree = "<group>"; };
@@ -761,6 +764,8 @@
 		95DAE8F31414DFD00039201D /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				6410AF31143A00900062B04D /* CoversFilenameGenerator.h */,
+				6410AF32143A00900062B04D /* CoversFilenameGenerator.m */,
 				3A12E36B142F2A7A004B97BE /* OCMock */,
 				3A12E367142F1D9A004B97BE /* libOCMock.a */,
 				3AFFDF0C142C7E69000D8494 /* DSActivityView */,
@@ -1148,6 +1153,7 @@
 				3AFFDF0A142C7E16000D8494 /* UIImage+Resize.m in Sources */,
 				3AFFDF0F142C7E69000D8494 /* DSActivityView.m in Sources */,
 				95C526AE1438DA740008AE13 /* CoversListViewController.m in Sources */,
+				6410AF33143A00900062B04D /* CoversFilenameGenerator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
