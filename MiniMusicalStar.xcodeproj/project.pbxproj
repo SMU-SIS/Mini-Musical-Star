@@ -105,7 +105,6 @@
 		3AFFDE72142C7191000D8494 /* g6.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AFFDE1B142C7191000D8494 /* g6.png */; };
 		3AFFDE74142C7191000D8494 /* g7.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AFFDE1C142C7191000D8494 /* g7.png */; };
 		3AFFDE76142C7191000D8494 /* g8.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AFFDE1D142C7191000D8494 /* g8.png */; };
-		3AFFDE79142C71AD000D8494 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AFFDE78142C71AD000D8494 /* Icon-72.png */; };
 		3AFFDE81142C7419000D8494 /* record.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AFFDE7F142C7419000D8494 /* record.png */; };
 		3AFFDE83142C7419000D8494 /* recording.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AFFDE80142C7419000D8494 /* recording.png */; };
 		3AFFDEB7142C7CB8000D8494 /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFFDEA1142C7CB8000D8494 /* ASIAuthenticationDialog.m */; };
@@ -263,7 +262,6 @@
 		3AFFDE1B142C7191000D8494 /* g6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = g6.png; sourceTree = "<group>"; };
 		3AFFDE1C142C7191000D8494 /* g7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = g7.png; sourceTree = "<group>"; };
 		3AFFDE1D142C7191000D8494 /* g8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = g8.png; sourceTree = "<group>"; };
-		3AFFDE78142C71AD000D8494 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-72.png"; path = "Resources/Icon-72.png"; sourceTree = "<group>"; };
 		3AFFDE7F142C7419000D8494 /* record.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = record.png; sourceTree = "<group>"; };
 		3AFFDE80142C7419000D8494 /* recording.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = recording.png; sourceTree = "<group>"; };
 		3AFFDEA0142C7CB8000D8494 /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIAuthenticationDialog.h; sourceTree = "<group>"; };
@@ -728,7 +726,6 @@
 			isa = PBXGroup;
 			children = (
 				82BA9DAC143B7A6600D9D54A /* Icon-72.png */,
-				3AFFDE78142C71AD000D8494 /* Icon-72.png */,
 				3AFFDDEA142C7191000D8494 /* Audio */,
 				3AFFDDF0142C7191000D8494 /* Images */,
 			);
@@ -1037,7 +1034,6 @@
 				3AFFDE72142C7191000D8494 /* g6.png in Resources */,
 				3AFFDE74142C7191000D8494 /* g7.png in Resources */,
 				3AFFDE76142C7191000D8494 /* g8.png in Resources */,
-				3AFFDE79142C71AD000D8494 /* Icon-72.png in Resources */,
 				3AFFDE81142C7419000D8494 /* record.png in Resources */,
 				3AFFDE83142C7419000D8494 /* recording.png in Resources */,
 				3A9A4EE1142CB5E5008972A1 /* InfoPlist.strings in Resources */,
