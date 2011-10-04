@@ -20,6 +20,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    sleep(5);
+    
     // Override point for customization after application launch.
     
     self.viewController.managedObjectContext = self.managedObjectContext;
