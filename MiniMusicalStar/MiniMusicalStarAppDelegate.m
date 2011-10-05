@@ -20,7 +20,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    sleep(5);
+    sleep(2);
     
     // Override point for customization after application launch.
     
