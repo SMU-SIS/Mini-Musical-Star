@@ -21,9 +21,12 @@
     
     NSFetchedResultsController *fetchedResultsController;
     NSManagedObjectContext *managedObjectContext;
+    
+    UIView *currentSelectedMusical;
 }
 
 @property (retain, nonatomic) NSArray *shows;
+@property (retain, nonatomic) UIView *currentSelectedMusical;
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 

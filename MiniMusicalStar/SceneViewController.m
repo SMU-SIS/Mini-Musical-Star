@@ -110,7 +110,8 @@
     [anotherButton release];
     
     //if there are any edits, reflect them here
-    if ([theCover showWasEdited])
+    //if ([theCover showWasEdited])
+    if ([self.context hasChanges])
     {
         self.title = [theShow.title stringByAppendingString:@" (edited)"];
         self.saveCoverButton.enabled = YES;
