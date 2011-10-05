@@ -93,7 +93,7 @@
     SceneViewController *sceneView = [[SceneViewController alloc] initWithScenesFromShow:[shows objectAtIndex:currentSelectedMusical.tag] andCover:newCover andContext:managedObjectContext];
     sceneView.title = [[shows objectAtIndex:currentSelectedMusical.tag] title];
     
-    [self.navigationController pushViewController:sceneView animated:NO];
+    [self.navigationController pushViewController:sceneView animated:YES];
         
     [sceneView release];
 }
