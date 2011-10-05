@@ -23,10 +23,12 @@
     NSManagedObjectContext *managedObjectContext;
     
     UIView *currentSelectedMusical;
+    UIViewController *currentSelectedCoversList;
 }
 
 @property (retain, nonatomic) NSArray *shows;
 @property (retain, nonatomic) UIView *currentSelectedMusical;
+@property (retain, nonatomic) UIViewController *currentSelectedCoversList;
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 

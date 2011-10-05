@@ -103,7 +103,11 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:delegate action:@selector(flipCoversBackToFront)];          
+    self.navigationItem.leftBarButtonItem = backButton;
+    [backButton release];
     [super viewWillAppear:animated];
+
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -142,7 +146,9 @@
     // Return the number of rows in the section.
     id <NSFetchedResultsSectionInfo> sectionInfo = nil;
     sectionInfo = [[frc sections] objectAtIndex:section];
+    NSLog(@"we have %i objects in database", [sectionInfo numberOfObjects]);
     return [sectionInfo numberOfObjects];
+    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

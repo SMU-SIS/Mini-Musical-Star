@@ -9,12 +9,13 @@
 #import "MenuViewController.h"
 
 @implementation MenuViewController
-@synthesize shows, fetchedResultsController, managedObjectContext, currentSelectedMusical;
+@synthesize shows, fetchedResultsController, managedObjectContext, currentSelectedMusical, currentSelectedCoversList;
 
 
 - (void)dealloc
 {
     [shows release];
+    [currentSelectedCoversList release];
     [currentSelectedMusical release];
     [super dealloc];
 }
@@ -87,15 +88,10 @@
 //Button action for creating new musical
 - (IBAction)createMusical: (UIButton*)sender {
     
-    NSLog(@"current selected musical is %i", currentSelectedMusical.tag);
-    
     Cover *newCover = [NSEntityDescription insertNewObjectForEntityForName:@"Cover" inManagedObjectContext:managedObjectContext];
     newCover.cover_of_showID = [NSNumber numberWithInt:[[shows objectAtIndex:currentSelectedMusical.tag] showID]];
     SceneViewController *sceneView = [[SceneViewController alloc] initWithScenesFromShow:[shows objectAtIndex:currentSelectedMusical.tag] andCover:newCover andContext:managedObjectContext];
     sceneView.title = [[shows objectAtIndex:currentSelectedMusical.tag] title];
-    
-    [self.navigationController pushViewController:sceneView animated:YES];
-    
         
     [sceneView release];
 }
@@ -121,24 +117,31 @@
         frame.size.width = 280;
         frame.size.height = scrollView.frame.size.height;
         
-        UIImage *img = [images objectAtIndex:i];
+        //add the placeholder view...
+        UIView *musicalButtonView = [[UIView alloc] initWithFrame:frame];
+        [scrollView addSubview:musicalButtonView];
         
-        UIButton *imageView = [[UIButton alloc] initWithFrame:frame];
+        //add the musical image as a button...
+        CGRect buttonFrame;
+        buttonFrame.origin.x = 0;
+        buttonFrame.origin.y = 0;
+        buttonFrame.size.width = 280;
+        buttonFrame.size.height = frame.size.height;
+        
+        UIButton *imageView = [[UIButton alloc] initWithFrame:buttonFrame];
         imageView.layer.cornerRadius = 10; // this value vary as per your desire
         imageView.clipsToBounds = YES;
         imageView.adjustsImageWhenHighlighted = NO;
         
-        [imageView setImage:img forState:UIControlStateNormal];
-        
+        [imageView setImage:[images objectAtIndex:i] forState:UIControlStateNormal];
         imageView.tag = i;
-        
         [imageView addTarget:self action:@selector(showTranslucentViewsForMusicalButton:) forControlEvents:UIControlEventTouchUpInside];
         
-        [buttonArray addObject: imageView];
-        
-        [scrollView addSubview:imageView];
-        
         [self applyTransparencyToImageView:imageView];
+        
+        [buttonArray addObject: imageView];
+        [musicalButtonView addSubview: imageView];
+        
         [imageView release];
     }
 }
@@ -254,7 +257,50 @@
 
 - (void)listCoversForMusical:(id)sender
 {
-    NSLog(@"hello!!!!");
+    UIView *parentView = self.currentSelectedMusical.superview;
+    
+    CGRect coversFrame;
+    coversFrame.origin.x = 0;
+    coversFrame.origin.y = 0;
+    coversFrame.size.width = 280;
+    coversFrame.size.height = parentView.frame.size.height;
+    
+    CoversListViewController *coversView = [[CoversListViewController alloc] initWithShow:[shows objectAtIndex:currentSelectedMusical.tag] context:self.managedObjectContext];
+    coversView.view.frame = coversFrame;
+    coversView.delegate = self;
+    
+    UINavigationController *coversListNavController = [[UINavigationController alloc] initWithRootViewController:coversView];
+    coversListNavController.view.frame = coversFrame;
+    self.currentSelectedCoversList = coversListNavController;
+    
+    [self.currentSelectedMusical removeFromSuperview];
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:1.0];
+    [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:parentView cache:YES];
+    [UIView setAnimationDuration:1.0];
+    CGAffineTransform transform = CGAffineTransformMakeScale(1.2, 1.2);
+    parentView.transform = transform;
+    [UIView commitAnimations];
+    
+    [parentView addSubview:coversListNavController.view];
+    
+}
+
+- (void)flipCoversBackToFront
+{
+    UIView *parentView = self.currentSelectedMusical.superview;
+    
+    [self.currentSelectedCoversList.view removeFromSuperview];
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:1.0];
+    [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:parentView cache:YES];
+    [UIView setAnimationDuration:1.0];
+    CGAffineTransform transform = CGAffineTransformMakeScale(1.2, 1.2);
+    parentView.transform = transform;
+    [UIView commitAnimations];
+    
+    [parentView addSubview:self.currentSelectedMusical];
+    self.currentSelectedCoversList = nil;
 }
 
 @end
