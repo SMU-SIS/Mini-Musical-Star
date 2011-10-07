@@ -58,8 +58,7 @@
     self = [super init];
     if (self)
     {
-        self.theAudioObjects = [aScene audioTracks];
-        //self.theScene = aScene;
+        self.theAudioObjects = aScene.audioList;
         self.theCoverScene = aCoverScene;
         self.context = aContext;
         self.playPauseButton = aPlayPauseButton;
@@ -82,10 +81,7 @@
 }
 
 - (void)consolidateOriginalAndCoverTracks
-{
-    //    NSLog(@"Inside consolidateOriginalAndCoverTracks");
-    //[tracksForView release];
-    
+{  
     self.tracksForView = [NSMutableArray arrayWithCapacity:theAudioObjects.count + theCoverScene.Audio.count];
     
     [theAudioObjects enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
@@ -127,8 +123,6 @@
     
     //set default value
     currentRecordingTrack = -1; //representing no track is being recorded
-    
-    
 }
 
 - (void)viewDidUnload
@@ -177,12 +171,9 @@
     }
     
     [trackTableView reloadData];
-    
 }
 
-// This method is called for each cell in the table view.
-// This method is called whenever we are scrolling - try adding a NSLog to see.
-// Customize the appearance of table view cells.
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
@@ -231,7 +222,6 @@
         recordButton.tag = 2;
         [recordButton release];
         
-        
         /* the right panel indicator */
         trackCellRightIndicator = [[UIView alloc] initWithFrame:CGRectMake(150, 0, 1024-150, 100)];
         [cell.contentView addSubview:trackCellRightIndicator];
@@ -241,9 +231,7 @@
         /* draw the gradient-ed background of white to black */
         [trackCellRightIndicator.layer insertSublayer:[self createGradientLayer:trackCellRightIndicator.bounds firstColor:[UIColor blackColor] andSecondColor:[UIColor whiteColor]] atIndex:0];
         
-        
         [trackCellRightIndicator release];
-        
         
         /* the right panel of the row */
         trackCellRightPanel = [[UIView alloc] initWithFrame:CGRectMake(150, 0, 1024-150, 100)];
@@ -590,10 +578,6 @@
 {
     NSString *timeIntervalInString = [NSString stringWithFormat:@"%f", [[NSDate date] timeIntervalSince1970]];
     NSString *uniqueFilename = [CoversFilenameGenerator returnMD5HashOfString:timeIntervalInString];
-    
-    //NSLog(@"timeIntervalInString %@", timeIntervalInString);
-    //NSLog(@"uniqueFilename %@", uniqueFilename);
-    
     return uniqueFilename;
 }
 
