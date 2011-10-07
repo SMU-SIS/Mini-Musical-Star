@@ -7,7 +7,7 @@
 //
 
 #import "AudioEditorViewController.h"
-
+#import "Audio.h"
 #import "CoversFilenameGenerator.h"
 
 @implementation AudioEditorViewController
@@ -56,7 +56,7 @@
     self = [super init];
     if (self)
     {
-        self.theAudioObjects = aScene.audioList;
+        self.theAudioObjects = [aScene audioTracks];
         //self.theScene = aScene;
         self.theCoverScene = aCoverScene;
         self.context = aContext;

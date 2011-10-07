@@ -13,6 +13,7 @@
 @dynamic path;
 @dynamic title;
 @dynamic CoverScene;
+@dynamic OriginalHash;
 
 - (void)deleteAudioFile
 {

@@ -14,12 +14,14 @@
         <relationship name="Picture" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CoverScenePicture" inverseName="CoverScene" inverseEntity="CoverScenePicture"/>
     </entity>
     <entity name="CoverSceneAudio" representedClassName="CoverSceneAudio">
+        <attribute name="originalHash" optional="YES" attributeType="String"/>
         <attribute name="path" optional="YES" attributeType="String"/>
         <attribute name="title" optional="YES" attributeType="String"/>
         <relationship name="CoverScene" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="CoverScene" inverseName="Audio" inverseEntity="CoverScene"/>
     </entity>
     <entity name="CoverScenePicture" representedClassName="CoverScenePicture">
-        <attribute name="OrderNumber" optional="YES" attributeType="Integer 16" defaultValueString="0"/>
+        <attribute name="OrderNumber" optional="YES" attributeType="String"/>
+        <attribute name="originalHash" optional="YES" attributeType="String"/>
         <attribute name="Path" optional="YES" attributeType="String"/>
         <relationship name="CoverScene" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="CoverScene" inverseName="Picture" inverseEntity="CoverScene"/>
     </entity>
@@ -27,6 +29,6 @@
         <element name="Cover" positionX="-0" positionY="258" width="128" height="120"/>
         <element name="CoverScene" positionX="-38" positionY="72" width="128" height="90"/>
         <element name="CoverSceneAudio" positionX="342" positionY="18" width="128" height="90"/>
-        <element name="CoverScenePicture" positionX="331" positionY="135" width="128" height="75"/>
+        <element name="CoverScenePicture" positionX="331" positionY="135" width="128" height="105"/>
     </elements>
 </model>

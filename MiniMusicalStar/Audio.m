@@ -9,26 +9,18 @@
 #import "Audio.h"
 
 @implementation Audio
-@synthesize title, path, replaceable, duration, lyrics, audioCueList;
+@synthesize hash, title, path, replaceable, duration, lyrics, audioCueList;
 
-- (Audio *)initAudioWithPropertyDictionary: (NSDictionary *) pDictionary withPath: (NSString *)showPath
+- (id)initWithHash:(NSString *)key dictionary:(NSDictionary *)dictionary assetPath:assetPath
 {
     self = [super init];
     if (self) {
-        self.title = [pDictionary objectForKey:@"title"];
-        self.path = [showPath stringByAppendingString:[pDictionary objectForKey:@"path"]];
-        self.replaceable = [pDictionary objectForKey:@"replaceable"];
-        self.duration = [pDictionary objectForKey:@"duration"];
-        self.lyrics = [pDictionary objectForKey:@"lyrics"];
-        NSArray *cueArray = [pDictionary objectForKey:@"cues"];
-        self.audioCueList = [[NSMutableArray alloc] initWithCapacity:cueArray.count];
-        
-        [cueArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-            NSDictionary *cueObjectDict = (NSDictionary *)obj;
-            AudioCue *audioCue = [[AudioCue alloc] initAudioCueWithPropertyDictionary:cueObjectDict];
-            [audioCueList addObject:audioCue];
-            [audioCue release];
-        }];
+        self.hash = key;
+        self.title = [dictionary objectForKey:@"title"];
+        self.path = [assetPath stringByAppendingPathComponent:[dictionary objectForKey:@"path"]];
+        self.replaceable = [dictionary objectForKey:@"replaceable"];
+        self.duration = [dictionary objectForKey:@"duration"];
+        self.lyrics = [dictionary objectForKey:@"lyrics"];
         
     }
     

@@ -7,18 +7,27 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Audio.h"
-#import "Picture.h"
 
-@interface Scene : NSObject
+@class Audio;
+@class Picture;
+@interface Scene : NSObject {
+}
 
+@property (retain, nonatomic) NSString *hash;
 @property (retain, nonatomic) NSString *title;
-@property (retain, nonatomic) NSNumber *duration;
-@property (retain, nonatomic) NSMutableArray *audioList;
-@property (retain, nonatomic) NSMutableArray *pictureList;
+@property (retain, nonatomic) NSString *description;
+@property (retain, nonatomic) NSMutableDictionary *audioDict;
+@property (retain, nonatomic) NSMutableDictionary *pictureDict;
+@property (retain, nonatomic) NSMutableDictionary *pictureTimingDict;
+@property (retain, nonatomic) NSMutableArray *pictureTimingsArray;
 @property (retain, nonatomic) UIImage *coverPicture;
-@property (retain, nonatomic) NSNumber *sceneNumber;
 
--(Scene *) initSceneWithPropertyDictionary:(NSDictionary *)propertyDictonary atPath:(NSString *)scenePath;
-- (NSArray *)arrayOfAudioTrackURLs;
+-(id) initWithHash:(NSString *)hash dictionary:(NSDictionary *)dictionary assetPath:(NSString *)assetPath;
+-(Picture *)pictureForSeconds:(int)second;
+- (Picture *)pictureForAbsoluteSecond:(int)second;
+- (int)pictureNumberToShowForSeconds:(int)second;
+- (int)startTimeOfPictureIndex:(int)index;
+- (Picture *)pictureForIndex:(int)index;
+-(NSArray *)arrayOfAudioTrackURLs;
+-(NSArray *)audioTracks;
 @end

@@ -10,14 +10,14 @@
 
 @implementation PhotoEditorViewController
 
-@synthesize leftPicture, rightPicture, centerPicture, thePictures, imagesArray, theCoverScene, context, currentSelectedCover, cameraPopupViewController, delegate;
+@synthesize leftPicture, rightPicture, centerPicture, theScene, imagesArray, theCoverScene, context, currentSelectedCover, cameraPopupViewController, delegate;
 
 -(void)dealloc
 {
     [leftPicture release];
     [rightPicture release];
     [centerPicture release];
-    [thePictures release];
+    [theScene release];
     [imagesArray release];
     [theCoverScene release];
     [context release];
@@ -26,12 +26,12 @@
 }
 
 
-- (PhotoEditorViewController *)initWithPhotos:(NSArray *)pictureArray andCoverScene:(CoverScene *)aCoverScene andContext:(NSManagedObjectContext *)aContext
+- (id)initWithScene:(Scene *)aScene andCoverScene:(CoverScene *)aCoverScene andContext:(NSManagedObjectContext *)aContext
 {
     self = [super init];
     if (self)
     {
-        self.thePictures = pictureArray;
+        self.theScene = aScene;
         self.theCoverScene = aCoverScene;
         self.context = aContext;
     }
@@ -61,45 +61,48 @@
 {
     loadImagesOperationQueue = [[NSOperationQueue alloc] init];
     
-    __block int count= 0;
-    [thePictures enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        Picture *pic = (Picture*)obj;
-        CoverScenePicture *coverPicture = [theCoverScene pictureForOrderNumber:count];
-//        NSLog(@"coverPictures: %@",coverPicture);
-        if (coverPicture == nil)
-        {
-            [(AFOpenFlowView *)self.view setImage: pic.image forIndex: count];
-        }
-        
-        else
-        {
-            [(AFOpenFlowView *)self.view setImage: [coverPicture image] forIndex: count];
-        }
-        count = count + 1;
-        
-    }];
+    int seconds = 0;
+    int processedImages = 0;
+    int numberOfImages = [theScene.pictureDict count];
     
-	[(AFOpenFlowView *)self.view setNumberOfImages:[thePictures count]];
-    [self setSliderImages: 0];
+    while (processedImages < numberOfImages)
+    {
+        Picture *thePicture = [theScene pictureForAbsoluteSecond:seconds];
+        if (thePicture)
+        {
+            //check if there is a cover picture
+            CoverScenePicture *coverPicture = [theCoverScene pictureForOriginalHash:thePicture.hash];
+            
+            if (coverPicture)
+            {
+                [(AFOpenFlowView *)self.view setImage: [coverPicture image] forIndex: processedImages];
+            }
+            
+            else
+            {
+                [(AFOpenFlowView *)self.view setImage: thePicture.image forIndex: processedImages];
+            }
+            
+            processedImages++;
+        }
+        
+        seconds++;
+    }
+    
+	[(AFOpenFlowView *)self.view setNumberOfImages:numberOfImages];
+    if (numberOfImages > 0) [self setSliderImages: 0];
 }
 
 - (BOOL) setSliderImages:(UInt32)timeAt
 {
-    __block BOOL success = FALSE;
-    [thePictures enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        Picture *pic = (Picture*)obj;
-        UInt32 startTime = pic.startTime;
-        UInt32 endTime = pic.startTime + pic.duration;
-        if(startTime <= timeAt && endTime > timeAt){
-            centerPicture.image = pic.image;
-            [(AFOpenFlowView *)self.view setSelectedCover:(pic.orderNumber - 1)];
-            [(AFOpenFlowView *)self.view centerOnSelectedCover:true];
-            success = TRUE;
-        }
-        
-    }];
-    return success;
+    if (imagesArray.count > 0)
+    {
+        [(AFOpenFlowView *)self.view setSelectedCover:[theScene pictureNumberToShowForSeconds:timeAt]];
+        [(AFOpenFlowView *)self.view centerOnSelectedCover:true];
+    }
 
+    
+    return YES;
     
 }
 
@@ -112,10 +115,7 @@
 
 - (void)openFlowView:(AFOpenFlowView *)openFlowView selectionDidChange:(int)index
 {    
-	self.currentSelectedCover = index;
-    Picture *pic = [thePictures objectAtIndex:index]; 
-    [self.delegate setSliderPosition: pic.startTime];
-    
+    [self.delegate setSliderPosition:[self.theScene startTimeOfPictureIndex:index]];
 }
 
 - (void)openFlowView:(AFOpenFlowView *)openFlowView requestImageForIndex:(int)index
@@ -131,8 +131,12 @@
 
 - (IBAction) popupCameraOptions: (id) sender
 {
+    
     if(![self.delegate isRecording]){
-        CameraPopupViewController *overlayView = [[CameraPopupViewController alloc] initWithCoverScene:theCoverScene andContext:context];
+        //get a reference to the current selected photo
+        Picture *pic = [theScene pictureForIndex:self.currentSelectedCover];
+        
+        CameraPopupViewController *overlayView = [[CameraPopupViewController alloc] initWithCoverScene:theCoverScene andContext:context originalHash:pic.hash];
         
         [overlayView.view setAlpha:0.0];
         [self.view addSubview:overlayView.view];

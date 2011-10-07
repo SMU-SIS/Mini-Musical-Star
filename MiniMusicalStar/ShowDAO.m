@@ -85,7 +85,6 @@ static id delegate;
     [loadedShows enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         Show *show = (Show *)obj;
         [imagesArray addObject:show.coverPicture];
-        
     }];
     
     return imagesArray;

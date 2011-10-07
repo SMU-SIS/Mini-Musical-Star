@@ -11,6 +11,7 @@
 
 
 @implementation CoverScenePicture
+@dynamic OriginalHash;
 @dynamic OrderNumber;
 @dynamic Path;
 @dynamic CoverScene;
