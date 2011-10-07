@@ -61,8 +61,6 @@
 
 - (AudioEditorViewController *)initWithScene:(Scene *)theScene andCoverScene:(CoverScene *)aCoverScene andContext:(NSManagedObjectContext *)aContext andPlayPauseButton:(UIButton*)aPlayPauseButton;
 
-- (void)scrollRowToTopOfTableView:(int)trackNumber;
-
 - (void)playButtonIsPressed;
 - (void)stopButtonIsPresssed;
 

@@ -115,7 +115,7 @@
 	trackTableView.dataSource = self;
     
     trackTableView.bounces = NO;
-    trackTableView.backgroundColor = [UIColor cyanColor];
+    trackTableView.backgroundColor = [UIColor blackColor];
     
     [self.view addSubview:trackTableView];
     
@@ -157,8 +157,7 @@
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    //2 is for the empty row at the bottom
-    return theAudioObjects.count + theCoverScene.Audio.count + 2;
+    return theAudioObjects.count + theCoverScene.Audio.count;
 }
 
 - (void)muteToggleButtonTapped:(UIButton *)sender
@@ -187,162 +186,141 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-    static NSString *BlankCellIdentifier = @"BlankCell";
     
-    if ([indexPath row] <= (theAudioObjects.count + theCoverScene.Audio.count - 1))
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    UILabel *trackNameLabel;
+    UIButton *recordButton;
+    UIView *trackCellRightPanel;
+    UIView *trackCellRightIndicator;
+    
+    //get the corresponding Audio object
+    id audioForRow = [tracksForView objectAtIndex:[indexPath row]];
+    
+    //rows that are supposed to represent tracks
+    
+    //create the mute/unmute button for the track
+    UIButton *rightPanelButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 1024-150, 100)];
+    [rightPanelButton setTag:[indexPath row]];
+    [rightPanelButton setTitle:@"tap to mute" forState:UIControlStateNormal];
+    rightPanelButton.titleLabel.font = [UIFont fontWithName:@"GillSans-Bold" size:30];
+    rightPanelButton.titleLabel.alpha = 0.5;
+    
+    [rightPanelButton addTarget:self action:@selector(muteToggleButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+    
+    if (cell == nil)
     {
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        UILabel *trackNameLabel;
-        UIButton *recordButton;
-        UIView *trackCellRightPanel;
-        UIView *trackCellRightIndicator;
+        //create all the new objects
+        cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
         
-        //get the corresponding Audio object
-        id audioForRow = [tracksForView objectAtIndex:[indexPath row]];
+        cell.contentView.backgroundColor = [UIColor blackColor];
+        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
         
-        //rows that are supposed to represent tracks
+        /* label which displays the track name */
+        trackNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 30, 120, 30)];
+        trackNameLabel.backgroundColor = [UIColor blackColor];
+        trackNameLabel.textAlignment =  UITextAlignmentCenter;
+        [trackNameLabel setFont:[UIFont fontWithName:@"GillSans-Bold" size:18]];
+        [cell.contentView addSubview:trackNameLabel]; //add label to view
+        trackNameLabel.tag = 1; //tag the object to an integer value
+        [trackNameLabel release];
         
-        //create the mute/unmute button for the track
-        UIButton *rightPanelButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 1024-150, 100)];
-        [rightPanelButton setTag:[indexPath row]];
-        [rightPanelButton setTitle:@"tap to mute" forState:UIControlStateNormal];
-        rightPanelButton.titleLabel.font = [UIFont fontWithName:@"GillSans-Bold" size:30];
-        rightPanelButton.titleLabel.alpha = 0.5;
+        /* button for the user to record a cover track */
+        //create an empty place holder for the record button
+        recordButton = [[UIButton alloc] initWithFrame:CGRectMake(100, 50, 50, 50)];
+        [cell.contentView addSubview:recordButton];
+        recordButton.tag = 2;
+        [recordButton release];
         
-        [rightPanelButton addTarget:self action:@selector(muteToggleButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
         
-        if (cell == nil)
+        /* the right panel indicator */
+        trackCellRightIndicator = [[UIView alloc] initWithFrame:CGRectMake(150, 0, 1024-150, 100)];
+        [cell.contentView addSubview:trackCellRightIndicator];
+        trackCellRightIndicator.tag = 3;
+        [trackCellRightIndicator setBackgroundColor:[UIColor purpleColor]];
+        
+        /* draw the gradient-ed background of white to black */
+        [trackCellRightIndicator.layer insertSublayer:[self createGradientLayer:trackCellRightIndicator.bounds firstColor:[UIColor blackColor] andSecondColor:[UIColor whiteColor]] atIndex:0];
+        
+        
+        [trackCellRightIndicator release];
+        
+        
+        /* the right panel of the row */
+        trackCellRightPanel = [[UIView alloc] initWithFrame:CGRectMake(150, 0, 1024-150, 100)];
+        trackCellRightPanel.alpha = 0.8;
+        
+        [trackCellRightPanel addSubview:rightPanelButton];
+        
+        [cell.contentView addSubview:trackCellRightPanel]; //add label to view
+        
+        trackCellRightPanel.tag = 4;
+        rightPanelButton.alpha = 0.8;
+        [trackCellRightPanel bringSubviewToFront:rightPanelButton];
+        [trackCellRightPanel release];
+    }
+    
+    // Here, you just configure the objects as appropriate for the row
+    trackNameLabel = (UILabel*)[cell.contentView viewWithTag:1];
+    trackNameLabel.text = [audioForRow valueForKey:@"title"]; //set the name of the track
+    //determine the color of the font by checking if the track is a original or audio
+    if ([audioForRow isKindOfClass:[Audio class]])
+    {
+        trackNameLabel.textColor = [UIColor whiteColor];
+    }
+    else if ([audioForRow isKindOfClass:[CoverSceneAudio class]])
+    {
+        trackNameLabel.textColor = [UIColor redColor];
+    }
+    
+    recordButton = (UIButton*)[cell.contentView viewWithTag:2];
+    
+    //add the record button image into the placeholder only if the row represents a original track
+    if ([audioForRow isKindOfClass:[Audio class]] && [(NSNumber *)[audioForRow valueForKey:@"replaceable"] boolValue])
+    {
+        if (indexPath.row == currentRecordingTrack)
         {
-            //create all the new objects
-            cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
-            
-            cell.contentView.backgroundColor = [UIColor blackColor];
-            [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-            
-            /* label which displays the track name */
-            trackNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 30, 120, 30)];
-            trackNameLabel.backgroundColor = [UIColor blackColor];
-            trackNameLabel.textAlignment =  UITextAlignmentCenter;
-            [trackNameLabel setFont:[UIFont fontWithName:@"GillSans-Bold" size:18]];
-            [cell.contentView addSubview:trackNameLabel]; //add label to view
-            trackNameLabel.tag = 1; //tag the object to an integer value
-            [trackNameLabel release];
-            
-            /* button for the user to record a cover track */
-            //create an empty place holder for the record button
-            recordButton = [[UIButton alloc] initWithFrame:CGRectMake(100, 50, 50, 50)];
-            [cell.contentView addSubview:recordButton];
-            recordButton.tag = 2;
-            [recordButton release];
-            
-            
-            /* the right panel indicator */
-            trackCellRightIndicator = [[UIView alloc] initWithFrame:CGRectMake(150, 0, 1024-150, 100)];
-            [cell.contentView addSubview:trackCellRightIndicator];
-            trackCellRightIndicator.tag = 3;
-            [trackCellRightIndicator setBackgroundColor:[UIColor purpleColor]];
-            
-            /* draw the gradient-ed background of white to black */
-            [trackCellRightIndicator.layer insertSublayer:[self createGradientLayer:trackCellRightIndicator.bounds firstColor:[UIColor blackColor] andSecondColor:[UIColor whiteColor]] atIndex:0];
-            
-            
-            [trackCellRightIndicator release];
-            
-            
-            /* the right panel of the row */
-            trackCellRightPanel = [[UIView alloc] initWithFrame:CGRectMake(150, 0, 1024-150, 100)];
-            trackCellRightPanel.alpha = 0.8;
-            
-            [trackCellRightPanel addSubview:rightPanelButton];
-            
-            [cell.contentView addSubview:trackCellRightPanel]; //add label to view
-            
-            trackCellRightPanel.tag = 4;
-            rightPanelButton.alpha = 0.8;
-            [trackCellRightPanel bringSubviewToFront:rightPanelButton];
-            [trackCellRightPanel release];
-        }
-        
-        // Here, you just configure the objects as appropriate for the row
-        trackNameLabel = (UILabel*)[cell.contentView viewWithTag:1];
-        trackNameLabel.text = [audioForRow valueForKey:@"title"]; //set the name of the track
-        //determine the color of the font by checking if the track is a original or audio
-        if ([audioForRow isKindOfClass:[Audio class]])
-        {
-            trackNameLabel.textColor = [UIColor whiteColor];
-        }
-        else if ([audioForRow isKindOfClass:[CoverSceneAudio class]])
-        {
-            trackNameLabel.textColor = [UIColor redColor];
-        }
-        
-        recordButton = (UIButton*)[cell.contentView viewWithTag:2];
-        
-        //add the record button image into the placeholder only if the row represents a original track
-        if ([audioForRow isKindOfClass:[Audio class]] && [(NSNumber *)[audioForRow valueForKey:@"replaceable"] boolValue])
-        {
-            if (indexPath.row == currentRecordingTrack)
-            {
-                [recordButton setImage:recordingImage forState:UIControlStateNormal];
-            }
-            else
-            {
-                [recordButton setImage:recordImage forState:UIControlStateNormal];
-            }
-        }
-        
-        //previously UIControlEventTouchUpInside, now 
-        [recordButton addTarget:self action:@selector(recordingButtonIsPressed:) forControlEvents:UIControlEventTouchDown];
-        
-        trackCellRightPanel = (UIView*)[cell.contentView viewWithTag:4];
-        
-        trackCellRightIndicator = (UIView*)[cell.contentView viewWithTag:3];
-        CALayer *layer = trackCellRightIndicator.layer;
-        layer.sublayers = nil; //remove all the sublayers inside the layer. if not we will keep adding additional layers.
-        
-        if (indexPath.row == currentRecordingTrack && isRecording == YES)
-        {
-            /* draw the gradient-ed background of red to black */            
-            [trackCellRightIndicator.layer insertSublayer:[self createGradientLayer:trackCellRightIndicator.bounds firstColor:[UIColor redColor] andSecondColor:[UIColor whiteColor]] atIndex:0];
-        }
-        else if (isRecording == NO && isPlaying == YES)
-        {      
-            if ([thePlayer busNumberIsMuted:indexPath.row])
-            {
-                [trackCellRightIndicator.layer insertSublayer:[self createGradientLayer:trackCellRightIndicator.bounds firstColor:[UIColor blackColor] andSecondColor:[UIColor whiteColor]] atIndex:0];
-            }
-            else
-            {           
-                [trackCellRightIndicator.layer insertSublayer:[self createGradientLayer:trackCellRightIndicator.bounds firstColor:[UIColor colorWithRed:34/255.0 green:139/255.0 blue:34/255.0 alpha:1] andSecondColor:[UIColor whiteColor]] atIndex:0];
-            }
+            [recordButton setImage:recordingImage forState:UIControlStateNormal];
         }
         else
-        {            
-            /* draw the gradient-ed background of white to black */         
+        {
+            [recordButton setImage:recordImage forState:UIControlStateNormal];
+        }
+    }
+    
+    //previously UIControlEventTouchUpInside, now 
+    [recordButton addTarget:self action:@selector(recordingButtonIsPressed:) forControlEvents:UIControlEventTouchDown];
+    
+    trackCellRightPanel = (UIView*)[cell.contentView viewWithTag:4];
+    
+    trackCellRightIndicator = (UIView*)[cell.contentView viewWithTag:3];
+    CALayer *layer = trackCellRightIndicator.layer;
+    layer.sublayers = nil; //remove all the sublayers inside the layer. if not we will keep adding additional layers.
+    
+    if (indexPath.row == currentRecordingTrack && isRecording == YES)
+    {
+        /* draw the gradient-ed background of red to black */            
+        [trackCellRightIndicator.layer insertSublayer:[self createGradientLayer:trackCellRightIndicator.bounds firstColor:[UIColor redColor] andSecondColor:[UIColor whiteColor]] atIndex:0];
+    }
+    else if (isRecording == NO && isPlaying == YES)
+    {      
+        if ([thePlayer busNumberIsMuted:indexPath.row])
+        {
             [trackCellRightIndicator.layer insertSublayer:[self createGradientLayer:trackCellRightIndicator.bounds firstColor:[UIColor blackColor] andSecondColor:[UIColor whiteColor]] atIndex:0];
-        }    
-        
-        [trackCellRightPanel bringSubviewToFront:rightPanelButton];
-        [rightPanelButton release];
-        return cell;
-        
+        }
+        else
+        {           
+            [trackCellRightIndicator.layer insertSublayer:[self createGradientLayer:trackCellRightIndicator.bounds firstColor:[UIColor colorWithRed:34/255.0 green:139/255.0 blue:34/255.0 alpha:1] andSecondColor:[UIColor whiteColor]] atIndex:0];
+        }
     }
     else
-    {
-        //rows that are supposed to be blank (only for the last 2 rows) 
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:BlankCellIdentifier];
-        
-        if (cell == nil)
-        {
-            //create all the new objects
-            cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:BlankCellIdentifier] autorelease];
-            
-            cell.contentView.backgroundColor = [UIColor blackColor];
-            [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-        }
-        
-        return cell;
-    }
+    {            
+        /* draw the gradient-ed background of white to black */         
+        [trackCellRightIndicator.layer insertSublayer:[self createGradientLayer:trackCellRightIndicator.bounds firstColor:[UIColor blackColor] andSecondColor:[UIColor whiteColor]] atIndex:0];
+    }    
+    
+    [trackCellRightPanel bringSubviewToFront:rightPanelButton];
+    [rightPanelButton release];
+    return cell;
 }
 
 - (CAGradientLayer*)createGradientLayer:(CGRect)frame firstColor:(UIColor*)firstColor andSecondColor:(UIColor*)secondColor {
@@ -428,9 +406,6 @@
     
     self.currentRecordingURL = fileURL;
     self.currentRecordingTrackTitle = trackToBeRecorded.title;
-    
-    //scroll that row to the top
-    [self scrollRowToTopOfTableView:row];
     
     [thePlayer stop];
     [thePlayer seekTo:0];
@@ -548,12 +523,6 @@
     self.playPauseButton = aButton;
 }
 
-//Use this method to scroll a specific track cell to the top row of the table view
-- (void)scrollRowToTopOfTableView:(int)row
-{
-    [trackTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
-}
-
 - (void)registerNotifications
 {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(recordingIsCompleted) name:kMixPlayerRecorderPlaybackStopped object:nil];
@@ -602,7 +571,7 @@
     
     //configure the lyrics label
     lyricsLabel.lineBreakMode = UILineBreakModeWordWrap; //line break, word wrap
-	lyricsLabel.numberOfLines = 0; //0 - dynamic number of lines
+	lyricsLabel.numberOfLines = 0; //0 - dynamic ngit umber of lines
     [lyricsLabel setFont:[UIFont fontWithName:@"MarkerFelt-Wide" size:24]];
     lyricsLabel.textColor = [UIColor whiteColor];
     lyricsLabel.textAlignment =  UITextAlignmentCenter;
@@ -616,10 +585,14 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+
 + (NSString*)getUniqueFilenameWithoutExt
 {
     NSString *timeIntervalInString = [NSString stringWithFormat:@"%f", [[NSDate date] timeIntervalSince1970]];
     NSString *uniqueFilename = [CoversFilenameGenerator returnMD5HashOfString:timeIntervalInString];
+    
+    //NSLog(@"timeIntervalInString %@", timeIntervalInString);
+    //NSLog(@"uniqueFilename %@", uniqueFilename);
     
     return uniqueFilename;
 }
