@@ -23,7 +23,7 @@
 @property (retain, nonatomic) NSString *iTunesAlbumLink;
 @property (retain, nonatomic) NSString *iBooksBookLink;
 
-@property (retain, nonatomic) NSURL *showLocation;
+@property (retain, nonatomic) NSString *showAssetsLocation;
 
 - (Show *)initShowWithPropertyListFile: (NSString *)pListFilePath atPath:(NSURL *)showPath;
 

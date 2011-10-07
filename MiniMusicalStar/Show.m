@@ -9,7 +9,7 @@
 #import "Show.h"
 
 @implementation Show
-@synthesize data, scenes, title, author, coverPicture, createdDate, iTunesAlbumLink, iBooksBookLink, showLocation, showID;
+@synthesize data, scenes, title, author, coverPicture, createdDate, iTunesAlbumLink, iBooksBookLink, showAssetsLocation, showID;
 
 - (Show *)initShowWithPropertyListFile: (NSString *)pListFilePath atPath:(NSURL *)showPath
 {
@@ -29,16 +29,16 @@
         }
         
         NSDictionary *root = [data objectForKey:@"root"];
+        
         //populate the properties of the Show model
-        showLocation = showPath;
+        self.showAssetsLocation = [[showPath path] stringByAppendingPathComponent:@"assets"];
         self.showID = [[root objectForKey:@"id"] intValue];
         self.title = [root objectForKey:@"title"];
         self.author = [root objectForKey:@"author"];
         self.iTunesAlbumLink = [root objectForKey:@"iTunesAlbumLink"];
         self.iBooksBookLink = [root objectForKey:@"iBooksBookLink"];
         
-        NSString *coverPicturePath = [[showLocation path] stringByAppendingPathComponent:[root objectForKey:@"cover-picture"]];
-
+        NSString *coverPicturePath = [self.showAssetsLocation stringByAppendingPathComponent:[root objectForKey:@"cover-picture"]];
         self.coverPicture = [UIImage imageWithContentsOfFile:coverPicturePath];
         
         self.createdDate = [root objectForKey:@"created"];
@@ -73,7 +73,7 @@
     [createdDate release];
     [iTunesAlbumLink release];
     [iBooksBookLink release];
-    [showLocation release];
+    [showAssetsLocation release];
     [super dealloc];
 }
 
