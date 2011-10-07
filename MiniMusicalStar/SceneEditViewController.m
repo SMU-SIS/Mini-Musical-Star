@@ -273,7 +273,7 @@
     [photoView setSliderImages:[self.audioView.thePlayer elapsedPlaybackTimeInSeconds]];
     
     //update the playback labels
-    [elapsedTimeLabel setText:[NSString stringWithFormat:@"%i:%i", [self.audioView.thePlayer elapsedPlaybackTimeInSeconds]/60, [self.audioView.thePlayer elapsedPlaybackTimeInSeconds]%60]];
+    [elapsedTimeLabel setText:[NSString stringWithFormat:@"%i:%0.2i", [self.audioView.thePlayer elapsedPlaybackTimeInSeconds]/60, [self.audioView.thePlayer elapsedPlaybackTimeInSeconds]%60]];
     float progressSliderValue = (float)[self.audioView.thePlayer elapsedPlaybackTimeInSeconds] / (float)[self.audioView.thePlayer totalPlaybackTimeInSeconds];    
     playPositionSlider.value = progressSliderValue;
 }
