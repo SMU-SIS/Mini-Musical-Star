@@ -23,4 +23,6 @@
 + (BOOL)checkIfExistsLocally:(int)showID;
 + (void)initiateDownloadOfShowFromServer:(NSURL *)zipFileURL andStoreInPath:(NSString *)localShowPath;
 + (void)unzipDownloadedShowURL:(NSString *)localShowZipPath toPath:(NSString *)unzipPath;
++ (NSMutableString *)getUserDocumentDir;
+
 @end

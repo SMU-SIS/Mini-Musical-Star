@@ -10,13 +10,15 @@
 
 #import "CoversFilenameGenerator.h"
 
+#import "ShowDAO.h"
+
 @implementation AudioEditorViewController
 @synthesize thePlayer, theAudioObjects, theCoverScene, context;
 @synthesize tracksForView;
 @synthesize trackTableView, recordImage, recordingImage;
 @synthesize lyricsScrollView, lyricsLabel;
 @synthesize lyrics;
-@synthesize currentRecordingNSURL, currentRecordingTrackTitle;
+@synthesize currentRecordingURL, currentRecordingTrackTitle;
 @synthesize playPauseButton;
 
 - (void)dealloc
@@ -32,7 +34,7 @@
     [recordImage release];
     [recordingImage release];
     
-    [currentRecordingNSURL release];
+    [currentRecordingURL release];
     [currentRecordingTrackTitle release];
     
     [lyricsScrollView release];
@@ -388,7 +390,6 @@
         return;
     }
     
-    
     //checks which track the user is trying to record by checking which row the button came from
     UIButton *recordButton = (UIButton *)sender;
     UIView *cellContentView = (UIView*)recordButton.superview;
@@ -415,16 +416,17 @@
     /* start recording once we determine it is a original track */
     Audio *trackToBeRecorded = (Audio*)audioForRow;
     
-    NSString *tempDir = NSTemporaryDirectory();
-    //we are going to use .caf files because i am going to encode in IMA4
-    NSString *tempFile = [tempDir stringByAppendingFormat:@"%@-cover.caf", trackToBeRecorded.title];
-    NSURL *fileURL = [NSURL fileURLWithPath:tempFile];
-    
-    //if file exists delete the file first
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    [fileManager removeItemAtURL:fileURL error:nil];
     
-    self.currentRecordingNSURL = fileURL;
+    NSString *userDocumentDirectory = [ShowDAO getUserDocumentDir];
+    NSString *uniqueFilename = [AudioEditorViewController getUniqueFilenameWithoutExt];
+    
+    NSString *audioCoverFilepath = [userDocumentDirectory stringByAppendingFormat:@"/%@.caf", uniqueFilename];    //we are going to use .caf files because i am going to encode in IMA4
+
+    NSURL *fileURL = [NSURL fileURLWithPath:audioCoverFilepath];
+    [fileManager removeItemAtURL:fileURL error:nil];    //if file exists delete the file first
+    
+    self.currentRecordingURL = fileURL;
     self.currentRecordingTrackTitle = trackToBeRecorded.title;
     
     //scroll that row to the top
@@ -446,7 +448,7 @@
 - (void)resetRecordingValues
 {
     currentRecordingTrackTitle = @"";
-    currentRecordingNSURL = nil;
+    currentRecordingURL = nil;
 }
 
 - (void)recordingIsCompleted
@@ -454,23 +456,13 @@
     
     currentRecordingTrack = -1;
     isRecording = NO;
-    
-    NSString *tempDir = NSTemporaryDirectory();
-    NSString *tempFile = [tempDir stringByAppendingFormat:@"%@-cover.caf", currentRecordingTrackTitle];
-    
-    NSString *newFilename = [tempDir stringByAppendingFormat:@"%@.caf", [CoversFilenameGenerator returnMD5HashOfData:[NSData dataWithContentsOfFile:tempFile]]];
-    
-    NSFileManager *fileManager = [NSFileManager defaultManager]; //to help with the renaming
-    NSError *error; //for error info
-    
-    //rename file
-    if ([fileManager moveItemAtPath:tempFile toPath:newFilename error:&error] != YES)
-        NSLog(@"Unable to move file: %@", [error localizedDescription]);
-    
+       
+    NSString *audioCoverFilepath = [currentRecordingURL path];
+      
     CoverSceneAudio *newCoverSceneAudio = [NSEntityDescription insertNewObjectForEntityForName:@"CoverSceneAudio" inManagedObjectContext:context];
     
-    newCoverSceneAudio.title = currentRecordingTrackTitle;
-    newCoverSceneAudio.path = newFilename;
+    newCoverSceneAudio.title = currentRecordingTrackTitle;  
+    newCoverSceneAudio.path = audioCoverFilepath;
     
     [self.theCoverScene addAudioObject:newCoverSceneAudio]; //receing EXC_BAD_ACCESS here when exit and record
     
@@ -527,7 +519,7 @@
         {
             //if file exists delete the file first
             NSFileManager *fileManager = [NSFileManager defaultManager];
-            [fileManager removeItemAtURL:currentRecordingNSURL error:nil];
+            [fileManager removeItemAtURL:currentRecordingURL error:nil];
         }
         
         //bring the seeker of player back to the starting point
@@ -622,6 +614,14 @@
 - (void)deRegisterFromNSNotifcationCenter
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
++ (NSString*)getUniqueFilenameWithoutExt
+{
+    NSString *timeIntervalInString = [NSString stringWithFormat:@"%f", [[NSDate date] timeIntervalSince1970]];
+    NSString *uniqueFilename = [CoversFilenameGenerator returnMD5HashOfString:timeIntervalInString];
+    
+    return uniqueFilename;
 }
 
 @end

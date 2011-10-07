@@ -11,5 +11,6 @@
 @interface CoversFilenameGenerator : NSObject
 
 +(NSString *) returnMD5HashOfData:(NSData*)aData;
++(NSString *) returnMD5HashOfString:(NSString*)aString;
 
 @end

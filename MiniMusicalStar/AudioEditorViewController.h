@@ -34,7 +34,7 @@
     //variables to store values temporarily when recording covers
     int currentRecordingTrack;
     NSString *lyrics;
-    NSURL *currentRecordingNSURL;
+    NSURL *currentRecordingURL;
     NSString *currentRecordingTrackTitle;
 }
 
@@ -54,7 +54,7 @@
 
 @property (nonatomic, retain) NSManagedObjectContext *context;
 
-@property (nonatomic, retain) NSURL *currentRecordingNSURL;
+@property (nonatomic, retain) NSURL *currentRecordingURL;
 @property (nonatomic, retain) NSString *currentRecordingTrackTitle;
 
 @property (nonatomic, retain) UIButton *playPauseButton;
@@ -77,5 +77,7 @@
 - (CAGradientLayer*)createGradientLayer:(CGRect)frame firstColor:(UIColor*)firstColor andSecondColor:(UIColor*)secondColor;
 - (UIScrollView*)createLyricsScrollView;
 - (UILabel*)createLyricsLabel;
+
++ (NSString*)getUniqueFilenameWithoutExt;
 
 @end
