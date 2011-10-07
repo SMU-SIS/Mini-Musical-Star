@@ -9,7 +9,23 @@
 #import "Show.h"
 
 @implementation Show
-@synthesize data, scenes, title, author, coverPicture, createdDate, iTunesAlbumLink, iBooksBookLink, showLocation, showID;
+@synthesize data, scenes, scenesOrder, title, author, createdDate, iTunesAlbumLink, iBooksBookLink, showAssetsLocation, showID, coverPicture;
+
+
+- (void)dealloc
+{
+    [data release];
+    [scenesOrder release];
+    [coverPicture release];
+    [author release];
+    [title release];
+    [scenes release];
+    [createdDate release];
+    [iTunesAlbumLink release];
+    [iBooksBookLink release];
+    [showAssetsLocation release];
+    [super dealloc];
+}
 
 - (Show *)initShowWithPropertyListFile: (NSString *)pListFilePath atPath:(NSURL *)showPath
 {
@@ -19,7 +35,7 @@
         NSString *errorDesc = nil;
         NSPropertyListFormat format;
         NSData *plistXML = [[NSFileManager defaultManager] contentsAtPath:pListFilePath];
-        data = (NSDictionary *)[NSPropertyListSerialization
+        self.data = (NSDictionary *)[NSPropertyListSerialization
                                               propertyListFromData:plistXML
                                               mutabilityOption:NSPropertyListMutableContainersAndLeaves
                                               format:&format
@@ -29,52 +45,61 @@
         }
         
         NSDictionary *root = [data objectForKey:@"root"];
+        
+        //set the location of the show assets
+        self.showAssetsLocation = [[showPath path] stringByAppendingPathComponent:@"assets"];
+        
         //populate the properties of the Show model
-        showLocation = showPath;
         self.showID = [[root objectForKey:@"id"] intValue];
         self.title = [root objectForKey:@"title"];
         self.author = [root objectForKey:@"author"];
         self.iTunesAlbumLink = [root objectForKey:@"iTunesAlbumLink"];
         self.iBooksBookLink = [root objectForKey:@"iBooksBookLink"];
-        
-        NSString *coverPicturePath = [[showLocation path] stringByAppendingPathComponent:[root objectForKey:@"cover-picture"]];
-
+        self.createdDate = [root objectForKey:@"created"];
+        NSString *coverPicturePath = [self.showAssetsLocation stringByAppendingPathComponent:[root objectForKey:@"cover-picture"]];
         self.coverPicture = [UIImage imageWithContentsOfFile:coverPicturePath];
         
-        self.createdDate = [root objectForKey:@"created"];
+        //load the scenes dictionary
+        NSDictionary *plistScenesDictionary = [root objectForKey:@"scenes"];
+        self.scenes = [NSMutableDictionary dictionaryWithCapacity:[plistScenesDictionary count]];
         
-        //get the scene data
-        NSArray *scenesArray = [root objectForKey:@"scenes"];
-        scenes = [[NSMutableArray alloc] initWithCapacity:scenesArray.count];
-        
-        [scenesArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-            NSDictionary *sceneDict = (NSDictionary *)obj;
-            NSString *sceneNumber = [sceneDict objectForKey:@"scene-number"];
-            NSString *scenePath = [[[[showPath path] stringByAppendingString: @"/scenes/"] stringByAppendingString: sceneNumber] stringByAppendingString: @"/"];
-            Scene *scene = [[Scene alloc] initSceneWithPropertyDictionary: sceneDict atPath:scenePath];
-            
-            [scenes addObject:scene];
+        [plistScenesDictionary enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+            Scene *scene = [[Scene alloc] initWithHash:(NSString *)key dictionary:(NSDictionary *)obj assetPath:showAssetsLocation];
+            [self.scenes setObject:scene forKey:(NSString *)key];
             [scene release];
         }];
+        
+        //load the scenes ordering array
+        self.scenesOrder = [root objectForKey:@"scenes-order"];
     }
     
     return self;
 }
 
-
-
-- (void)dealloc
+- (void)setCoverPicture:(UIImage *)aCoverPicture
 {
-    [data release];
-    [coverPicture release];
-    [author release];
-    [title release];
-    [scenes release];
-    [createdDate release];
-    [iTunesAlbumLink release];
-    [iBooksBookLink release];
-    [showLocation release];
-    [super dealloc];
+    coverPicture = [aCoverPicture retain];
 }
+
+- (UIImage *)coverPicture
+{
+    if (coverPicture)
+    {
+        return coverPicture;
+    }
+    
+    else
+    {
+        NSString *placeholderSceneImage = [[NSBundle mainBundle] pathForResource:@"musical_placeholder" ofType:@"png"];
+        return [[[UIImage alloc] initWithContentsOfFile:placeholderSceneImage] autorelease];
+    }
+}
+
+- (Scene *)sceneForIndex:(int)idx
+{
+    return [self.scenes objectForKey:[self.scenesOrder objectAtIndex:idx]];
+}
+
+
 
 @end

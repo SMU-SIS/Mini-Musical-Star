@@ -90,7 +90,10 @@
     
     Cover *newCover = [NSEntityDescription insertNewObjectForEntityForName:@"Cover" inManagedObjectContext:managedObjectContext];
     newCover.cover_of_showID = [NSNumber numberWithInt:[[shows objectAtIndex:currentSelectedMusical.tag] showID]];
+    
     SceneViewController *sceneView = [[SceneViewController alloc] initWithScenesFromShow:[shows objectAtIndex:currentSelectedMusical.tag] andCover:newCover andContext:managedObjectContext];
+    
+    
     sceneView.title = [[shows objectAtIndex:currentSelectedMusical.tag] title];
     
     [self.navigationController pushViewController:sceneView animated:YES];

@@ -30,10 +30,10 @@
 @property (retain, nonatomic) NSManagedObjectContext *context;
 @property (nonatomic, retain) IBOutlet UIButton *takePhotoButton;
 @property (nonatomic, retain) IBOutlet UIButton *replacePictureButton;
-
+@property (retain, nonatomic) NSString *originalHash;
 @property (nonatomic, retain) UIPopoverController *popoverController;
 
-- (CameraPopupViewController *)initWithCoverScene:(CoverScene *)coverScene andContext:(NSManagedObjectContext *)aContext;
+- (id)initWithCoverScene:(CoverScene *)coverScene andContext:(NSManagedObjectContext *)aContext originalHash:(NSString *)aOriginalHash;
 
 - (IBAction)useCamera: (id)sender;
 - (IBAction)useCameraRoll: (id)sender;

@@ -9,33 +9,15 @@
 #import "Picture.h"
 
 @implementation Picture
-@synthesize title, image, startTime, duration, pictureCueList, orderNumber;
+@synthesize hash, title, image, startTime, duration, pictureCueList, orderNumber;
 
-- (Picture *)initPictureWithPropertyDictionary: (NSDictionary *) pDictionary: (NSString *) scenePath
+- (id)initWithHash:(NSString *)key dictionary:(NSDictionary *)dictionary assetPath:assetPath
 {
     self = [super init];
     if (self) {
-        self.title = [pDictionary objectForKey:@"title"];
-        self.image = [[UIImage alloc] initWithContentsOfFile:[scenePath stringByAppendingString:[pDictionary objectForKey:@"path"]]];
-        NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
-        [f setNumberStyle:NSNumberFormatterDecimalStyle];
-        self.startTime = (UInt32)[[pDictionary objectForKey:@"start-time"] intValue];
-        self.duration = (UInt32) [[pDictionary objectForKey:@"duration"] intValue];
-        self.orderNumber = (UInt32) [[pDictionary objectForKey:@"order-number"] intValue];
-        
-        [f release];
-        NSArray *cueArray = [pDictionary objectForKey:@"cues"];
-        pictureCueList = [[NSMutableArray alloc] initWithCapacity:cueArray.count];
-        
-        [cueArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-            NSDictionary *cueObjectDict = (NSDictionary *)obj;
-            
-            PictureCue *pictureCue = [[PictureCue alloc] initPictureCueWithPropertyDictionary:cueObjectDict];
-            [pictureCueList addObject:pictureCue];
-            [pictureCue release];
-            
-        }];
-        
+        self.hash = key;
+        self.title = [dictionary objectForKey:@"title"];
+        self.image = [[UIImage alloc] initWithContentsOfFile:[assetPath stringByAppendingPathComponent:[dictionary objectForKey:@"path"]]];
     }
     
     return self;

@@ -18,6 +18,22 @@
 @dynamic Cover;
 @dynamic Picture;
 
+- (CoverScenePicture *)pictureForOriginalHash:(NSString *)hash
+{
+    __block CoverScenePicture *pictureToReturn = nil;
+    
+    [self.Picture enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
+        CoverScenePicture *theCoverPicture = (CoverScenePicture *)obj;
+        if ([theCoverPicture.OriginalHash isEqualToString:hash])
+        {
+            pictureToReturn = theCoverPicture;
+            *stop = YES;
+        }
+    }];
+    
+    return pictureToReturn; 
+}
+
 - (CoverScenePicture *)pictureForOrderNumber:(int)orderNum
 {
     __block CoverScenePicture *pictureToReturn = nil;

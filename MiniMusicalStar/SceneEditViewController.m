@@ -63,7 +63,7 @@
     audioView = [[AudioEditorViewController alloc] initWithScene:theScene andCoverScene:theCoverScene andContext:context andPlayPauseButton:playPauseButton];
 
     //load the photo view controller
-    photoView = [[PhotoEditorViewController alloc] initWithPhotos:theScene.pictureList andCoverScene:theCoverScene andContext:context];
+    photoView = [[PhotoEditorViewController alloc] initWithScene:theScene andCoverScene:theCoverScene andContext:context];
     [photoView setDelegate:self];
 }
 

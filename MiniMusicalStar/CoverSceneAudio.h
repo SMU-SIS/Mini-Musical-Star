@@ -13,6 +13,7 @@
 @interface CoverSceneAudio : NSManagedObject {
 @private
 }
+@property (retain, nonatomic) NSString *OriginalHash;
 @property (nonatomic, retain) NSString * path;
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSManagedObject *CoverScene;

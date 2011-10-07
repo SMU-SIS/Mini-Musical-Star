@@ -80,10 +80,9 @@
     //For the scene selection page. Scrollable.
     //get the scene images out of the show
     NSMutableArray *sceneImages = [[NSMutableArray alloc]initWithCapacity:theShow.scenes.count];
-    [theShow.scenes enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+    [theShow.scenes enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         Scene *scene = (Scene *)obj;
         [sceneImages addObject:scene.coverPicture];
-        
     }];
     
     [self displaySceneImages:sceneImages];
@@ -186,29 +185,10 @@
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     
     //attempt to get the Scene from the Cover
-    Scene *selectedScene = [self.theShow.scenes objectAtIndex:sender.tag];
+    Scene *selectedScene = [self.theShow sceneForIndex:sender.tag];
     
     __block CoverScene *selectedCoverScene = nil;
-    [theCover.Scenes enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
-        CoverScene *theCoverScene = (CoverScene *)obj;
-        if ([theCoverScene.SceneNum intValue] == [selectedScene.sceneNumber intValue])
-        {
-            selectedCoverScene = theCoverScene;
-            *stop = YES; 
-            
-        }
-    }];
-    
-    if (selectedCoverScene == nil)
-    {
-        //then create a new one
-        selectedCoverScene = [NSEntityDescription insertNewObjectForEntityForName:@"CoverScene" inManagedObjectContext:context];
-        selectedCoverScene.SceneNum = [NSNumber numberWithInt:[selectedScene.sceneNumber intValue]];
         
-        //[selectedCoverScene setSceneNum:[selectedScene sceneNumber]];
-        [theCover addScenesObject:selectedCoverScene];
-    }
-    
     SceneEditViewController *editController = [[SceneEditViewController alloc] initWithScene:selectedScene andSceneCover:selectedCoverScene andContext:context];
     editController.title = selectedScene.title;
     

@@ -7,41 +7,72 @@
 //
 
 #import "Scene.h"
+#import "Audio.h"
+#import "Picture.h"
 
 @implementation Scene
-@synthesize title, duration, audioList, pictureList, coverPicture, sceneNumber;
+@synthesize hash, title, description, audioDict, pictureDict, coverPicture, pictureTimingDict, pictureTimingsArray;
 
--(Scene *) initSceneWithPropertyDictionary:(NSDictionary *)propertyDictionary atPath:(NSString *)scenePath
+- (void)dealloc
+{
+    [hash release];
+    [title release];
+    [description release];
+    [audioDict release];
+    [pictureTimingDict release];
+    [pictureTimingsArray release];
+    [pictureDict release];
+    [super dealloc];
+}
+
+-(id) initWithHash:(NSString *)aHash dictionary:(NSDictionary *)dictionary assetPath:(NSString *)assetPath
 {
     self = [super init];
     if (self) {
         // Initialization code here.
-        self.title = [propertyDictionary objectForKey:@"title"];
-        self.duration = [propertyDictionary objectForKey:@"duration"];
-        self.coverPicture = [[UIImage alloc] initWithContentsOfFile:[scenePath stringByAppendingString:[propertyDictionary objectForKey:@"cover-picture"]]];
-        self.sceneNumber = [propertyDictionary objectForKey:@"scene-number"];
-        NSArray *audioArray = [propertyDictionary objectForKey:@"audio"];
-        audioList = [[NSMutableArray alloc] initWithCapacity:audioArray.count];
+        self.hash = aHash;
+        self.title = [dictionary objectForKey:@"title"];
+        self.coverPicture = [[UIImage alloc] initWithContentsOfFile:[assetPath stringByAppendingString:[dictionary objectForKey:@"cover-picture"]]];
+        self.description = [dictionary objectForKey:@"description"];
         
-        [audioArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-            NSDictionary *audioObjectDict = (NSDictionary *)obj;
-            
-            //Audio *audioTrack = [[Audio alloc] initWithPropertyDictionary:audioObjectDict];
-            Audio *audioTrack = [[Audio alloc] initAudioWithPropertyDictionary:audioObjectDict withPath:scenePath];
-            [audioList addObject:audioTrack];
+        //init the audio stuff here
+        NSMutableDictionary *plistAudioDict = [dictionary objectForKey:@"audio"];
+        self.audioDict = [NSMutableDictionary dictionaryWithCapacity:[plistAudioDict count]];
+        
+        [plistAudioDict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+            Audio *audioTrack = [[Audio alloc] initWithHash:(NSString *)key dictionary:(NSDictionary *)obj assetPath:assetPath];
+            [self.audioDict setObject:audioTrack forKey:audioTrack.hash];
             [audioTrack release];
-            
         }];
         
-        NSArray *pictureArray = [propertyDictionary objectForKey:@"pictures"];
-        pictureList = [[NSMutableArray alloc] initWithCapacity:pictureArray.count];
+        //init the picture stuff here
+        NSMutableDictionary *plistPicturesDict = [dictionary objectForKey:@"pictures"];
+        self.pictureDict = [NSMutableDictionary dictionaryWithCapacity:[plistPicturesDict count]];
         
-        [pictureArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-            NSDictionary *pictureObjectDict = (NSDictionary *)obj;
+        [plistPicturesDict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+            Picture *aPicture = [[Picture alloc] initWithHash:(NSString *)key dictionary:(NSDictionary *)obj assetPath:assetPath];
+            [self.pictureDict setObject:aPicture forKey:aPicture.hash];
+        }];
+        
+        //init the picture order dictionary - startTimeInSeconds::picture hash
+        self.pictureTimingDict = [dictionary objectForKey:@"pictures-timing"];
+        
+        //create an array of timings and SORT THEM
+        self.pictureTimingsArray = [NSMutableArray arrayWithArray:[self.pictureTimingDict allKeys]];
+        
+        [self.pictureTimingsArray sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+            NSString *strObj1 = (NSString *)obj1;
+            NSString *strObj2 = (NSString *)obj2;
             
-            Picture *scenePicture = [[Picture alloc] initPictureWithPropertyDictionary:pictureObjectDict : scenePath];
-            [pictureList addObject:scenePicture];
-            [scenePicture release];
+            if ([strObj1 intValue] > [strObj2 intValue])
+            {
+                return NSOrderedDescending;
+            }
+            
+            else
+            {
+                return NSOrderedAscending;
+            }
         }];
         
     }
@@ -49,28 +80,90 @@
     return self;
 }
 
-- (UIImage *)randomScenePicture
+- (Picture *)pictureForIndex:(int)index
 {
-    return [[pictureList objectAtIndex:0] autorelease];
+    //get the start time for this index
+    NSString *startTime = [pictureTimingsArray objectAtIndex:index];
+    NSString *pictureHash = [pictureTimingDict objectForKey:startTime];
+    
+    return [pictureDict objectForKey:pictureHash];
+}
+
+- (Picture *)pictureForAbsoluteSecond:(int)second
+{
+    //convert the int seconds to the plist/dictionary friendly string
+    NSString *wantedSeconds = [NSString stringWithFormat:@"%i", second];
+    
+    NSString *pictureHash = [pictureTimingDict objectForKey:wantedSeconds];
+    return [pictureDict objectForKey:pictureHash];
+}
+
+- (Picture *)pictureForSeconds:(int)second
+{
+    Picture *picture = [self pictureForAbsoluteSecond:second];
+    
+    while (picture == nil)
+    {
+        picture = [self pictureForAbsoluteSecond:second--];
+    }
+    
+    return picture;
+}
+
+- (int)pictureNumberToShowForSeconds:(int)second
+{
+    int order = NSNotFound;
+    
+    do {
+        order = [self.pictureTimingsArray indexOfObject:[NSString stringWithFormat:@"%i", second]];
+        second--;
+    } while (order == NSNotFound);
+    
+    return order;
+
+}
+
+- (int)startTimeOfPictureIndex:(int)index
+{
+    //get the seconds corresponding to the picture index
+    return [[self.pictureTimingsArray objectAtIndex:index] intValue];
+}
+
+- (UIImage *)coverPicture
+{
+    
+    if (coverPicture)
+    {
+        return coverPicture;
+    }
+    
+    else
+    {
+        NSString *placeholderSceneImage = [[NSBundle mainBundle] pathForResource:@"scene_placeholder" ofType:@"png"];
+        return [[[UIImage alloc] initWithContentsOfFile:placeholderSceneImage] autorelease];
+    }
 }
 
 - (NSArray *)arrayOfAudioTrackURLs
 {
-    __block NSMutableArray *audioTracks = [NSMutableArray arrayWithCapacity:self.audioList.count];
-    [self.audioList enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        Audio *theAudio = (Audio *)obj;
-        [audioTracks addObject:[NSURL fileURLWithPath:theAudio.path]];
+    __block NSMutableArray *audioTracks = [NSMutableArray arrayWithCapacity:self.audioDict.count];
+    [self.audioDict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+        Audio *theAudioTrack = (Audio *)obj;
+        [audioTracks addObject:[NSURL fileURLWithPath:theAudioTrack.path]];
     }];
     
     return audioTracks;
 }
 
-- (void)dealloc
+- (NSArray *)audioTracks
 {
-    [title release];
-    [duration release];
-    [audioList release];
-    [pictureList release];
-    [super dealloc];
+    NSMutableArray *audioTracks = [[NSMutableArray alloc] initWithCapacity:[self.audioDict count]];
+    [self.audioDict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+        [audioTracks addObject:obj];
+    }];
+    
+    return [audioTracks autorelease];
 }
+
+
 @end

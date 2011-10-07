@@ -14,6 +14,7 @@
 @interface CoverScenePicture : NSManagedObject {
 @private
 }
+@property (retain, nonatomic) NSString *OriginalHash;
 @property (nonatomic, retain) NSNumber * OrderNumber;
 @property (nonatomic, retain) NSString * Path;
 @property (nonatomic, retain) CoverScene *CoverScene;

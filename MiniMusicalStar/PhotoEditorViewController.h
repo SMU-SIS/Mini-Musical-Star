@@ -32,7 +32,7 @@
 @property(retain,nonatomic) IBOutlet UIImageView *leftPicture;
 @property(retain,nonatomic) IBOutlet UIImageView *rightPicture;
 @property(retain,nonatomic) IBOutlet UIImageView *centerPicture;
-@property(retain,nonatomic) NSArray *thePictures;
+@property(retain,nonatomic) Scene *theScene;
 @property (retain,nonatomic) NSMutableArray *imagesArray;
 @property (nonatomic) int currentSelectedCover;
 
@@ -42,7 +42,7 @@
 @property (retain, nonatomic) NSManagedObjectContext *context;
 @property (retain, nonatomic) CameraPopupViewController *cameraPopupViewController;
 
-- (PhotoEditorViewController *)initWithPhotos:(NSArray *)pictureArray andCoverScene:(CoverScene *)aCoverScene andContext:(NSManagedObjectContext *)context;
+- (id)initWithScene:(Scene *)aScene andCoverScene:(CoverScene *)aCoverScene andContext:(NSManagedObjectContext *)context;
 
 - (IBAction) popupCameraOptions: (id) sender;
 

@@ -12,7 +12,7 @@
 #import "Scene.h"
 #import "CoverScene.h"
 #import "CoverSceneAudio.h"
-
+@class Audio;
 @interface AudioEditorViewController : UIViewController
 <UITableViewDelegate, UITableViewDataSource, UIPopoverControllerDelegate>
 {
@@ -59,7 +59,7 @@
 
 @property (nonatomic, retain) UIButton *playPauseButton;
 
-- (AudioEditorViewController *)initWithScene:(Scene *)theScene andCoverScene:(CoverScene *)aCoverScene andContext:(NSManagedObjectContext *)aContext andPlayPauseButton:(UIButton*)aPlayPauseButton;
+- (id)initWithScene:(Scene *)theScene andCoverScene:(CoverScene *)aCoverScene andContext:(NSManagedObjectContext *)aContext andPlayPauseButton:(UIButton*)aPlayPauseButton;
 
 - (void)playButtonIsPressed;
 - (void)stopButtonIsPresssed;

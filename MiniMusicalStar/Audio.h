@@ -10,6 +10,7 @@
 #import "AudioCue.h"
 @interface Audio : NSObject
 
+@property (retain, nonatomic) NSString *hash;
 @property (retain, nonatomic) NSString *title;
 @property (retain, nonatomic) NSString *path;
 @property (retain, nonatomic) NSNumber *replaceable;
@@ -17,6 +18,6 @@
 @property (retain, nonatomic) NSString *lyrics;
 @property (retain, nonatomic) NSMutableArray *audioCueList;
 
-- (Audio *)initAudioWithPropertyDictionary: (NSDictionary *) pDictionary withPath: (NSString *)showPath;
+- (id)initWithHash:(NSString *)key dictionary:(NSDictionary *)obj assetPath:assetPath;
 
 @end

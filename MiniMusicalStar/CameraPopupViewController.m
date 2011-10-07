@@ -11,7 +11,7 @@
 
 @implementation CameraPopupViewController
 
-@synthesize takePhotoButton, replacePictureButton, popoverController, delegate, context, theCoverScene;
+@synthesize takePhotoButton, replacePictureButton, popoverController, delegate, context, theCoverScene, originalHash;
 
 -(void) dealloc
 {
@@ -19,6 +19,7 @@
     [replacePictureButton release];
     [popoverController release];
     [theCoverScene release];
+    [originalHash release];
     [context release];
     [super dealloc];
 }
@@ -51,13 +52,14 @@
 	return YES;
 }
 
-- (CameraPopupViewController *)initWithCoverScene:(CoverScene *)coverScene andContext:(NSManagedObjectContext *)aContext
+- (id)initWithCoverScene:(CoverScene *)coverScene andContext:(NSManagedObjectContext *)aContext originalHash:(NSString *)aOriginalHash
 {
     self = [super init];
     if (self)
     {
         self.theCoverScene = coverScene;
         self.context = aContext;
+        self.originalHash = aOriginalHash;
     }
     
     return self;
@@ -176,6 +178,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
         
         //save to coredata
         CoverScenePicture *newPicture = [NSEntityDescription insertNewObjectForEntityForName:@"CoverScenePicture" inManagedObjectContext:context];
+        newPicture.OriginalHash = self.originalHash;
         newPicture.OrderNumber = [NSNumber numberWithInt:(selectedIndex)];
         newPicture.Path = documentsDirectoryImage;
         [theCoverScene addPictureObject:newPicture];

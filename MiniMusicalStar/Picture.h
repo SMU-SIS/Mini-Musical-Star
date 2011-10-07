@@ -11,6 +11,7 @@
 
 @interface Picture : NSObject
 
+@property (retain, nonatomic) NSString *hash;
 @property (retain, nonatomic) NSString *title;
 @property (retain, nonatomic) UIImage *image;
 @property (assign, nonatomic) UInt32 startTime;
@@ -18,6 +19,6 @@
 @property (retain, nonatomic) NSMutableArray *pictureCueList;
 @property (assign, nonatomic) UInt32 orderNumber;
 
-- (Picture *)initPictureWithPropertyDictionary: (NSDictionary *) pDictionary : (NSString *) scenePath;
+- (id)initWithHash:(NSString *)key dictionary:(NSDictionary *)obj assetPath:assetPath;
 
 @end
