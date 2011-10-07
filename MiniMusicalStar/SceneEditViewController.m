@@ -93,7 +93,7 @@
     
     //update the total time label
     //[totalTimeLabel setText:[NSString stringWithFormat:@"%lu", thePlayer.totalPlaybackTimeInSeconds]];
-    [totalTimeLabel setText:[NSString stringWithFormat:@"%lu", [self.audioView.thePlayer totalPlaybackTimeInSeconds]]];
+    [totalTimeLabel setText:[NSString stringWithFormat:@"%lu:%lu", [self.audioView.thePlayer totalPlaybackTimeInSeconds]/60, [self.audioView.thePlayer totalPlaybackTimeInSeconds]%60]];
     
     //update the song title
     [songInfoLabel setText:theScene.title];
@@ -273,7 +273,7 @@
     [photoView setSliderImages:[self.audioView.thePlayer elapsedPlaybackTimeInSeconds]];
     
     //update the playback labels
-    [elapsedTimeLabel setText:[NSString stringWithFormat:@"%i", [self.audioView.thePlayer elapsedPlaybackTimeInSeconds]]];
+    [elapsedTimeLabel setText:[NSString stringWithFormat:@"%i:%i", [self.audioView.thePlayer elapsedPlaybackTimeInSeconds]/60, [self.audioView.thePlayer elapsedPlaybackTimeInSeconds]%60]];
     float progressSliderValue = (float)[self.audioView.thePlayer elapsedPlaybackTimeInSeconds] / (float)[self.audioView.thePlayer totalPlaybackTimeInSeconds];    
     playPositionSlider.value = progressSliderValue;
 }
