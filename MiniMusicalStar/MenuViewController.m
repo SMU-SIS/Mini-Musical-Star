@@ -142,7 +142,7 @@
         imageView.tag = i;
         [imageView addTarget:self action:@selector(showTranslucentViewsForMusicalButton:) forControlEvents:UIControlEventTouchUpInside];
         
-        [self applyTransparencyToImageView:imageView];
+        [self performSelector:@selector(applyTransparencyToImageView:) withObject:imageView];
         
         [buttonArray addObject: imageView];
         [musicalButtonView addSubview: imageView];

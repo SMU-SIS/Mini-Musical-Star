@@ -20,10 +20,10 @@ static id delegate;
 {
     delegate = aDelegate;
     [self loadLocalShows];
-    //[self checkForNewShowsFromServer];
+    [self checkForNewShowsFromServer];
     
     //uncomment this when switching back
-    [delegate performSelectorOnMainThread:@selector(daoDownloadQueueFinished) withObject:nil waitUntilDone:NO];
+    //[delegate performSelectorOnMainThread:@selector(daoDownloadQueueFinished) withObject:nil waitUntilDone:NO];
 }
 
 + (NSMutableString *)getUserDocumentDir {
