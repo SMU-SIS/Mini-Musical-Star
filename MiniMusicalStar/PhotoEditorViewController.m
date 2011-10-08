@@ -153,38 +153,38 @@
 
 -(IBAction) generateVideo
 {
-    //wire writer
-    NSError *error = nil;
-    AVAssetWriter *videoWriter = [[AVAssetWriter alloc] initWithURL:
-                                  [NSURL fileURLWithPath:@"/Documents"] fileType:AVFileTypeQuickTimeMovie
-                                                              error:&error];
-    NSParameterAssert(videoWriter);
-    
-    NSDictionary *videoSettings = [NSDictionary dictionaryWithObjectsAndKeys:
-                                   AVVideoCodecH264, AVVideoCodecKey,
-                                   [NSNumber numberWithInt:640], AVVideoWidthKey,
-                                   [NSNumber numberWithInt:480], AVVideoHeightKey,
-                                   nil];
-    AVAssetWriterInput* writerInput = [[AVAssetWriterInput
-                                        assetWriterInputWithMediaType:AVMediaTypeVideo
-                                        outputSettings:videoSettings] retain];
-    
-    NSParameterAssert(writerInput);
-    NSParameterAssert([videoWriter canAddInput:writerInput]);
-    [videoWriter addInput:writerInput];
-    
-    //start writing session
-    [videoWriter startWriting];
-    int64_t startValue = 0;
-    int32_t preferredTimeScale = 1;
-    [videoWriter startSessionAtSourceTime:CMTimeMake(startValue,preferredTimeScale)];
-    
-    
-    //finish the session
-    [writerInput markAsFinished];
-    int64_t endValue = 300;
-    [videoWriter endSessionAtSourceTime:CMTimeMake(endValue,preferredTimeScale)];
-    [videoWriter finishWriting];
+//    //wire writer
+//    NSError *error = nil;
+//    AVAssetWriter *videoWriter = [[AVAssetWriter alloc] initWithURL:
+//                                  [NSURL fileURLWithPath:@"/Documents"] fileType:AVFileTypeQuickTimeMovie
+//                                                              error:&error];
+//    NSParameterAssert(videoWriter);
+//    
+//    NSDictionary *videoSettings = [NSDictionary dictionaryWithObjectsAndKeys:
+//                                   AVVideoCodecH264, AVVideoCodecKey,
+//                                   [NSNumber numberWithInt:640], AVVideoWidthKey,
+//                                   [NSNumber numberWithInt:480], AVVideoHeightKey,
+//                                   nil];
+//    AVAssetWriterInput* writerInput = [[AVAssetWriterInput
+//                                        assetWriterInputWithMediaType:AVMediaTypeVideo
+//                                        outputSettings:videoSettings] retain];
+//    
+//    NSParameterAssert(writerInput);
+//    NSParameterAssert([videoWriter canAddInput:writerInput]);
+//    [videoWriter addInput:writerInput];
+//    
+//    //start writing session
+//    [videoWriter startWriting];
+//    int64_t startValue = 0;
+//    int32_t preferredTimeScale = 1;
+//    [videoWriter startSessionAtSourceTime:CMTimeMake(startValue,preferredTimeScale)];
+//    
+//    
+//    //finish the session
+//    [writerInput markAsFinished];
+//    int64_t endValue = 300;
+//    [videoWriter endSessionAtSourceTime:CMTimeMake(endValue,preferredTimeScale)];
+//    [videoWriter finishWriting];
 }
 
 - (void)viewDidUnload
