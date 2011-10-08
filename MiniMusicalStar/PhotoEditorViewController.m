@@ -183,6 +183,15 @@
     return pxbuffer;
 }
 
+NSComparisonResult compare(id obj1, id obj2, void *context) {
+    if (obj1 < obj2)
+        return NSOrderedAscending;
+    else if (obj1 > obj2)
+        return NSOrderedDescending;
+    else 
+        return NSOrderedSame;
+}
+
 -(IBAction)generateVideo
 {
     CGSize size = CGSizeMake(640, 640);
@@ -225,6 +234,9 @@
     __block int i = 0;
     [imagesDict enumerateKeysAndObjectsUsingBlock:^(id key, id object, BOOL *stop) {
 //        Picture *pic = [theScene.pictureDict objectForKey:object];
+        
+        NSArray *sortedTimingsArray = [theScene.pictureTimingDict keysSortedByValueUsingSelector:@selector(compare:)];
+        //remember to do the timings
         UIImage *img = (UIImage *)object;
         if (adaptor.assetWriterInput.readyForMoreMediaData && !retry) 
         {
@@ -263,54 +275,62 @@
     
     //now i will combine track and video
     
-//    AVMutableComposition* composition = [AVMutableComposition composition];
-//    
-//    AVURLAsset* videoAsset = [[AVURLAsset alloc]initWithURL:[NSURL fileURLWithPath:[[ShowDAO getUserDocumentDir] stringByAppendingString:@"/test.m4v"]] options:nil];
-//    AVURLAsset* audioAsset1 = [[AVURLAsset alloc]initWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"song" ofType:@"mp3"]] options:nil];
-//    
-//    AVMutableCompositionTrack *compositionVideoTrack = [composition addMutableTrackWithMediaType:AVMediaTypeVideo preferredTrackID:kCMPersistentTrackID_Invalid];
-//    
-//    [compositionVideoTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero,videoAsset.duration) 
-//                                   ofTrack:[[videoAsset tracksWithMediaType:AVMediaTypeVideo]objectAtIndex:0] 
-//                                    atTime:kCMTimeZero error:&error];
-//    AVMutableCompositionTrack *compositionAudioTrack1 = [composition addMutableTrackWithMediaType:AVMediaTypeAudio preferredTrackID:kCMPersistentTrackID_Invalid];
-//    
-//    [compositionAudioTrack1 insertTimeRange:CMTimeRangeMake(kCMTimeZero,audioAsset1.duration) 
-//                                    ofTrack:[[audioAsset1 tracksWithMediaType:AVMediaTypeAudio]objectAtIndex:0] 
-//                                     atTime:kCMTimeZero
-//                                      error:&error];
+    AVMutableComposition* composition = [AVMutableComposition composition];
+    
+    AVURLAsset* videoAsset = [[AVURLAsset alloc]initWithURL:[NSURL fileURLWithPath:[[ShowDAO getUserDocumentDir] stringByAppendingString:@"/test.m4v"]] options:nil];
+    
+    __block AVMutableCompositionTrack *compositionAudioTrack1 = NULL;
+    [theScene.audioTracks enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        Audio *audio = (Audio*)obj;
+        AVURLAsset* audioAsset1 = [[AVURLAsset alloc]initWithURL:[NSURL fileURLWithPath:[[ShowDAO getUserDocumentDir] stringByAppendingString:audio.path]] options:nil];
+        NSLog(@"is it this %@",[NSURL fileURLWithPath:[[ShowDAO getUserDocumentDir] stringByAppendingString:audio.path]]);
+        compositionAudioTrack1 = [composition addMutableTrackWithMediaType:AVMediaTypeAudio preferredTrackID:kCMPersistentTrackID_Invalid];
+        NSLog(@"how many times");
+        [compositionAudioTrack1 insertTimeRange:CMTimeRangeMake(kCMTimeZero,audioAsset1.duration) 
+                                        ofTrack:[[audioAsset1 tracksWithMediaType:AVMediaTypeAudio]objectAtIndex:0] 
+                                         atTime:kCMTimeZero
+                                          error:&error];
+        
+    }];
+
+    AVMutableCompositionTrack *compositionVideoTrack = [composition addMutableTrackWithMediaType:AVMediaTypeVideo preferredTrackID:kCMPersistentTrackID_Invalid];
+    
+    [compositionVideoTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero,videoAsset.duration) 
+                                   ofTrack:[[videoAsset tracksWithMediaType:AVMediaTypeVideo]objectAtIndex:0] 
+                                    atTime:kCMTimeZero error:&error];
+
     
     //NOW I EXPORT, FINALLYZZZZ
-//    NSArray *compatiblePresets = [AVAssetExportSession exportPresetsCompatibleWithAsset:composition];
-//    if ([compatiblePresets containsObject:AVAssetExportPresetLowQuality]) {
-//        AVAssetExportSession *exportSession = [[AVAssetExportSession alloc]
-//                                               initWithAsset:composition presetName:AVAssetExportPresetHighestQuality];
-//        
-//        
-//        exportSession.outputURL = [NSURL fileURLWithPath:[[ShowDAO getUserDocumentDir] stringByAppendingString:@"/finally.mov"]];
-//        exportSession.outputFileType = AVFileTypeQuickTimeMovie;
-//        
-//        CMTime start = CMTimeMakeWithSeconds(0, 1);
-//        CMTime duration = CMTimeMakeWithSeconds(25, 1);
-//        CMTimeRange range = CMTimeRangeMake(start, duration);
-//        exportSession.timeRange = range;
-//        
-//        [exportSession exportAsynchronouslyWithCompletionHandler:^{
-//            
-//            switch ([exportSession status]) {
-//                case AVAssetExportSessionStatusFailed:
-//                    NSLog(@"Export failed: %@", [[exportSession error] localizedDescription]);
-//                    break;
-//                case AVAssetExportSessionStatusCancelled:
-//                    NSLog(@"Export canceled");
-//                    break;
-//                default:
-//                    break;
-//            }
-//            [exportSession release];
-//        }];
-//        
-//    }
+    NSArray *compatiblePresets = [AVAssetExportSession exportPresetsCompatibleWithAsset:composition];
+    if ([compatiblePresets containsObject:AVAssetExportPresetLowQuality]) {
+        AVAssetExportSession *exportSession = [[AVAssetExportSession alloc]
+                                               initWithAsset:composition presetName:AVAssetExportPresetHighestQuality];
+        
+        
+        exportSession.outputURL = [NSURL fileURLWithPath:[[ShowDAO getUserDocumentDir] stringByAppendingString:@"/finally.mov"]];
+        exportSession.outputFileType = AVFileTypeQuickTimeMovie;
+        
+        CMTime start = CMTimeMakeWithSeconds(0, 1);
+        CMTime duration = CMTimeMakeWithSeconds(25, 1);
+        CMTimeRange range = CMTimeRangeMake(start, duration);
+        exportSession.timeRange = range;
+        
+        [exportSession exportAsynchronouslyWithCompletionHandler:^{
+            
+            switch ([exportSession status]) {
+                case AVAssetExportSessionStatusFailed:
+                    NSLog(@"Export failed: %@", [[exportSession error] localizedDescription]);
+                    break;
+                case AVAssetExportSessionStatusCancelled:
+                    NSLog(@"Export canceled");
+                    break;
+                default:
+                    break;
+            }
+            [exportSession release];
+        }];
+        
+    }
     
     
     
@@ -336,6 +356,20 @@
         [self.view addSubview:moviePlayer.view];
         [moviePlayer play];
     }
+}
+
+- (void) moviePlayBackDidFinish:(NSNotification*)notification {
+    MPMoviePlayerController *moviePlayer = [notification object];
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:MPMoviePlayerPlaybackDidFinishNotification
+                                                  object:moviePlayer];
+    
+    // If the moviePlayer.view was added to the view, it needs to be removed
+    if ([moviePlayer respondsToSelector:@selector(setFullscreen:animated:)]) {
+        [moviePlayer.view removeFromSuperview];
+    }
+    
+    [moviePlayer release];
 }
 
 - (void)viewDidUnload

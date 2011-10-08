@@ -19,6 +19,7 @@
 #import "CoverScene.h"
 #import "CoverScenePicture.h"
 #import "VideoPlayerViewController.h"
+#import "Audio.h"
 
 @protocol PhotoEditorViewDelegate <NSObject>
 - (void)setSliderPosition: (int) seconds;
