@@ -27,6 +27,10 @@
 		3A12E378142F7551004B97BE /* AFItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFFDECB142C7CCD000D8494 /* AFItemView.m */; };
 		3A12E379142F7556004B97BE /* AFUIImageReflection.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFFDED0142C7CCD000D8494 /* AFUIImageReflection.m */; };
 		3A12E37C142F81A7004B97BE /* SceneTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A12E37B142F81A7004B97BE /* SceneTest.m */; };
+		3A5F7C661440CE1600E9C570 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A5F7C651440CE1600E9C570 /* CoreMedia.framework */; };
+		3A5F7C681440CE1D00E9C570 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A5F7C671440CE1D00E9C570 /* CoreVideo.framework */; };
+		3A5F7C6C1440D74E00E9C570 /* VideoPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A5F7C6A1440D74D00E9C570 /* VideoPlayerViewController.m */; };
+		3A5F7C6D1440D74E00E9C570 /* VideoPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A5F7C6B1440D74D00E9C570 /* VideoPlayerViewController.xib */; };
 		3A683775142CBF7C000485F2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDA2A1C413F26F8400B64EA5 /* UIKit.framework */; };
 		3A683776142CBF7C000485F2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDA2A1C613F26F8400B64EA5 /* Foundation.framework */; };
 		3A683777142CBF7C000485F2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDA2A1C813F26F8400B64EA5 /* CoreGraphics.framework */; };
@@ -198,6 +202,11 @@
 		3A12E37A142F81A6004B97BE /* SceneTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneTest.h; sourceTree = "<group>"; };
 		3A12E37B142F81A7004B97BE /* SceneTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SceneTest.m; sourceTree = "<group>"; };
 		3A5C9B77142C8EB200176351 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		3A5F7C651440CE1600E9C570 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		3A5F7C671440CE1D00E9C570 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		3A5F7C691440D74D00E9C570 /* VideoPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoPlayerViewController.h; sourceTree = "<group>"; };
+		3A5F7C6A1440D74D00E9C570 /* VideoPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoPlayerViewController.m; sourceTree = "<group>"; };
+		3A5F7C6B1440D74D00E9C570 /* VideoPlayerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoPlayerViewController.xib; sourceTree = "<group>"; };
 		3A683773142CBF7C000485F2 /* MiniMusicalStarTests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MiniMusicalStarTests.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A68378C142CBF95000485F2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3A68378F142CBF95000485F2 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -428,6 +437,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A5F7C681440CE1D00E9C570 /* CoreVideo.framework in Frameworks */,
+				3A5F7C661440CE1600E9C570 /* CoreMedia.framework in Frameworks */,
+				EDA2A1C913F26F8400B64EA5 /* CoreGraphics.framework in Frameworks */,
 				3AAD1EFB143F5DCE0090DD44 /* AVFoundation.framework in Frameworks */,
 				95F9FFC21425C5DF00A18463 /* CoreData.framework in Frameworks */,
 				95DAE885141481310039201D /* SystemConfiguration.framework in Frameworks */,
@@ -437,7 +449,6 @@
 				820E2A1C140A0A1E00B80BBC /* AudioToolbox.framework in Frameworks */,
 				EDA2A1C513F26F8400B64EA5 /* UIKit.framework in Frameworks */,
 				EDA2A1C713F26F8400B64EA5 /* Foundation.framework in Frameworks */,
-				EDA2A1C913F26F8400B64EA5 /* CoreGraphics.framework in Frameworks */,
 				9578443B141DD2F10033721D /* QuartzCore.framework in Frameworks */,
 				3A010670142F18D10054A0BB /* libz.dylib in Frameworks */,
 				3A010671142F18D40054A0BB /* libxml2.dylib in Frameworks */,
@@ -825,6 +836,8 @@
 				EDA2A1D413F26F8400B64EA5 /* MiniMusicalStarAppDelegate.m */,
 				95C526AB1438DA740008AE13 /* CoversListViewController.h */,
 				95C526AC1438DA740008AE13 /* CoversListViewController.m */,
+				3A5F7C691440D74D00E9C570 /* VideoPlayerViewController.h */,
+				3A5F7C6A1440D74D00E9C570 /* VideoPlayerViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -842,6 +855,7 @@
 				9569E05E1418A2B10016DAF3 /* PhotoEditorViewController.xib */,
 				9569E0611418A2C90016DAF3 /* SceneEditViewController.xib */,
 				95C526AD1438DA740008AE13 /* CoversListViewController.xib */,
+				3A5F7C6B1440D74D00E9C570 /* VideoPlayerViewController.xib */,
 			);
 			name = XIB;
 			sourceTree = "<group>";
@@ -869,6 +883,8 @@
 		EDA2A1C313F26F8400B64EA5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3A5F7C671440CE1D00E9C570 /* CoreVideo.framework */,
+				3A5F7C651440CE1600E9C570 /* CoreMedia.framework */,
 				3AAD1EFA143F5DCE0090DD44 /* AVFoundation.framework */,
 				3A6837A4142CC5FE000485F2 /* GHUnitIOS.framework */,
 				3A5C9B77142C8EB200176351 /* SenTestingKit.framework */,
@@ -1053,6 +1069,7 @@
 				82BA9DBC143B828300D9D54A /* Default-Landscape.png in Resources */,
 				950060051440B5FF000BB0A6 /* musical_placeholder.png in Resources */,
 				950060061440B5FF000BB0A6 /* scene_placeholder.png in Resources */,
+				3A5F7C6D1440D74E00E9C570 /* VideoPlayerViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1168,6 +1185,7 @@
 				3AFFDF0F142C7E69000D8494 /* DSActivityView.m in Sources */,
 				95C526AE1438DA740008AE13 /* CoversListViewController.m in Sources */,
 				6410AF33143A00900062B04D /* CoversFilenameGenerator.m in Sources */,
+				3A5F7C6C1440D74E00E9C570 /* VideoPlayerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

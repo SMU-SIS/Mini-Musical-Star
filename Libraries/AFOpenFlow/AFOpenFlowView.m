@@ -177,6 +177,10 @@ const static CGFloat kReflectionFraction = 0.6;
 
 #define COVER_BUFFER 6
 
+- (NSMutableDictionary*) getCoverImages
+{
+    return coverImages;
+}
 - (void)awakeFromNib {
 	[self setUpInitialState];
 }

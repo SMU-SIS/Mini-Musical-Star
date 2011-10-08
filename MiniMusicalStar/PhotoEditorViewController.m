@@ -151,40 +151,170 @@
 
 }
 
--(IBAction) generateVideo
+- (CVPixelBufferRef) pixelBufferFromCGImage: (CGImageRef) image size:(CGSize) size{
+    NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
+                             [NSNumber numberWithBool:YES], kCVPixelBufferCGImageCompatibilityKey,
+                             [NSNumber numberWithBool:YES], kCVPixelBufferCGBitmapContextCompatibilityKey,
+                             nil];
+    CVPixelBufferRef pxbuffer = NULL;
+    
+    CVReturn status = CVPixelBufferCreate(kCFAllocatorDefault, size.width,
+                                          size.height, kCVPixelFormatType_32ARGB, (CFDictionaryRef) options, 
+                                          &pxbuffer);
+    NSParameterAssert(status == kCVReturnSuccess && pxbuffer != NULL);
+    
+    CVPixelBufferLockBaseAddress(pxbuffer, 0);
+    void *pxdata = CVPixelBufferGetBaseAddress(pxbuffer);
+    NSParameterAssert(pxdata != NULL);
+    
+    CGColorSpaceRef rgbColorSpace = CGColorSpaceCreateDeviceRGB();
+    CGContextRef context = CGBitmapContextCreate(pxdata, size.width,
+                                                 size.height, 8, 4*size.width, rgbColorSpace, 
+                                                 kCGImageAlphaNoneSkipFirst);
+    NSParameterAssert(context);
+    CGContextConcatCTM(context, CGAffineTransformMakeRotation(0));
+    CGContextDrawImage(context, CGRectMake(0, 0, CGImageGetWidth(image), 
+                                           CGImageGetHeight(image)), image);
+    CGColorSpaceRelease(rgbColorSpace);
+    CGContextRelease(context);
+    
+    CVPixelBufferUnlockBaseAddress(pxbuffer, 0);
+    
+    return pxbuffer;
+}
+
+-(IBAction)generateVideo
 {
-//    //wire writer
-//    NSError *error = nil;
-//    AVAssetWriter *videoWriter = [[AVAssetWriter alloc] initWithURL:
-//                                  [NSURL fileURLWithPath:@"/Documents"] fileType:AVFileTypeQuickTimeMovie
-//                                                              error:&error];
-//    NSParameterAssert(videoWriter);
+    CGSize size = CGSizeMake(640, 640);
+    NSError *error = nil;
+    
+    AVAssetWriter *videoWriter = [[AVAssetWriter alloc] initWithURL:
+                                  [NSURL fileURLWithPath:[[ShowDAO getUserDocumentDir] stringByAppendingString:@"/test.m4v"]] fileType:AVFileTypeAppleM4V
+                                                              error:&error];
+    NSLog(@"output: %@",[videoWriter outputURL]);
+    NSLog(@"HIHI : %@",[[NSURL fileURLWithPath:[ShowDAO getUserDocumentDir]] absoluteString]);
+    
+    NSParameterAssert(videoWriter);
+    
+    NSDictionary *videoSettings = [NSDictionary dictionaryWithObjectsAndKeys:
+                                   AVVideoCodecH264, AVVideoCodecKey,
+                                   [NSNumber numberWithInt:size.width], AVVideoWidthKey,
+                                   [NSNumber numberWithInt:size.height], AVVideoHeightKey,
+                                   nil];
+    AVAssetWriterInput* writerInput = [[AVAssetWriterInput
+                                        assetWriterInputWithMediaType:AVMediaTypeVideo
+                                        outputSettings:videoSettings] retain];
+    
+    AVAssetWriterInputPixelBufferAdaptor *adaptor = [AVAssetWriterInputPixelBufferAdaptor
+                                                     assetWriterInputPixelBufferAdaptorWithAssetWriterInput:writerInput
+                                                     sourcePixelBufferAttributes:nil];
+    NSParameterAssert(writerInput);
+    NSParameterAssert([videoWriter canAddInput:writerInput]);
+    [videoWriter addInput:writerInput];
+    
+    //Start a session:
+    [videoWriter startWriting];
+    [videoWriter startSessionAtSourceTime:kCMTimeZero];
+    
+    int duration = 10;
+    
+    //add to buffer
+    __block CVPixelBufferRef buffer = NULL;
+    __block BOOL retry = NO;
+    NSMutableDictionary *imagesDict = [(AFOpenFlowView *)self.view getCoverImages];
+    __block int i = 0;
+    [imagesDict enumerateKeysAndObjectsUsingBlock:^(id key, id object, BOOL *stop) {
+//        Picture *pic = [theScene.pictureDict objectForKey:object];
+        UIImage *img = (UIImage *)object;
+        if (adaptor.assetWriterInput.readyForMoreMediaData && !retry) 
+        {
+            NSLog(@"inside for loop %d",i);
+            CMTime frameTime = CMTimeMake(1, 1);
+            CMTime lastTime=CMTimeMake(i*5, 1); 
+            CMTime presentTime=CMTimeAdd(lastTime, frameTime);
+            //            NSString *imgName = [NSString stringWithFormat:@"frame%d.png",i];
+            //            UIImage *imgFrame = [UIImage imageNamed:imgName];
+            buffer = [self pixelBufferFromCGImage:img.CGImage size:size];
+            BOOL pixelBufferResult = [adaptor appendPixelBuffer:buffer withPresentationTime:presentTime];
+            
+            if (pixelBufferResult == NO)
+            {
+                NSLog(@"failed to append buffer");
+                NSLog(@"The error is %@", [videoWriter error]);
+            }
+            if(buffer)
+                CVBufferRelease(buffer);
+            [NSThread sleepForTimeInterval:0.05];
+            i+=1;
+        }
+        else
+        {
+            NSLog(@"error");
+            retry = YES;
+        }
+       
+    }];
+    
+    
+    //Finish the session:
+    [writerInput markAsFinished];
+    [videoWriter endSessionAtSourceTime:CMTimeMake(duration, 1)];
+    [videoWriter finishWriting];
+    
+    //now i will combine track and video
+    
+//    AVMutableComposition* composition = [AVMutableComposition composition];
 //    
-//    NSDictionary *videoSettings = [NSDictionary dictionaryWithObjectsAndKeys:
-//                                   AVVideoCodecH264, AVVideoCodecKey,
-//                                   [NSNumber numberWithInt:640], AVVideoWidthKey,
-//                                   [NSNumber numberWithInt:480], AVVideoHeightKey,
-//                                   nil];
-//    AVAssetWriterInput* writerInput = [[AVAssetWriterInput
-//                                        assetWriterInputWithMediaType:AVMediaTypeVideo
-//                                        outputSettings:videoSettings] retain];
+//    AVURLAsset* videoAsset = [[AVURLAsset alloc]initWithURL:[NSURL fileURLWithPath:[[ShowDAO getUserDocumentDir] stringByAppendingString:@"/test.m4v"]] options:nil];
+//    AVURLAsset* audioAsset1 = [[AVURLAsset alloc]initWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"song" ofType:@"mp3"]] options:nil];
 //    
-//    NSParameterAssert(writerInput);
-//    NSParameterAssert([videoWriter canAddInput:writerInput]);
-//    [videoWriter addInput:writerInput];
+//    AVMutableCompositionTrack *compositionVideoTrack = [composition addMutableTrackWithMediaType:AVMediaTypeVideo preferredTrackID:kCMPersistentTrackID_Invalid];
 //    
-//    //start writing session
-//    [videoWriter startWriting];
-//    int64_t startValue = 0;
-//    int32_t preferredTimeScale = 1;
-//    [videoWriter startSessionAtSourceTime:CMTimeMake(startValue,preferredTimeScale)];
+//    [compositionVideoTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero,videoAsset.duration) 
+//                                   ofTrack:[[videoAsset tracksWithMediaType:AVMediaTypeVideo]objectAtIndex:0] 
+//                                    atTime:kCMTimeZero error:&error];
+//    AVMutableCompositionTrack *compositionAudioTrack1 = [composition addMutableTrackWithMediaType:AVMediaTypeAudio preferredTrackID:kCMPersistentTrackID_Invalid];
 //    
-//    
-//    //finish the session
-//    [writerInput markAsFinished];
-//    int64_t endValue = 300;
-//    [videoWriter endSessionAtSourceTime:CMTimeMake(endValue,preferredTimeScale)];
-//    [videoWriter finishWriting];
+//    [compositionAudioTrack1 insertTimeRange:CMTimeRangeMake(kCMTimeZero,audioAsset1.duration) 
+//                                    ofTrack:[[audioAsset1 tracksWithMediaType:AVMediaTypeAudio]objectAtIndex:0] 
+//                                     atTime:kCMTimeZero
+//                                      error:&error];
+    
+    //NOW I EXPORT, FINALLYZZZZ
+//    NSArray *compatiblePresets = [AVAssetExportSession exportPresetsCompatibleWithAsset:composition];
+//    if ([compatiblePresets containsObject:AVAssetExportPresetLowQuality]) {
+//        AVAssetExportSession *exportSession = [[AVAssetExportSession alloc]
+//                                               initWithAsset:composition presetName:AVAssetExportPresetHighestQuality];
+//        
+//        
+//        exportSession.outputURL = [NSURL fileURLWithPath:[[ShowDAO getUserDocumentDir] stringByAppendingString:@"/finally.mov"]];
+//        exportSession.outputFileType = AVFileTypeQuickTimeMovie;
+//        
+//        CMTime start = CMTimeMakeWithSeconds(0, 1);
+//        CMTime duration = CMTimeMakeWithSeconds(25, 1);
+//        CMTimeRange range = CMTimeRangeMake(start, duration);
+//        exportSession.timeRange = range;
+//        
+//        [exportSession exportAsynchronouslyWithCompletionHandler:^{
+//            
+//            switch ([exportSession status]) {
+//                case AVAssetExportSessionStatusFailed:
+//                    NSLog(@"Export failed: %@", [[exportSession error] localizedDescription]);
+//                    break;
+//                case AVAssetExportSessionStatusCancelled:
+//                    NSLog(@"Export canceled");
+//                    break;
+//                default:
+//                    break;
+//            }
+//            [exportSession release];
+//        }];
+//        
+//    }
+    
+    
+    
+//play the fucking player    
 }
 
 - (void)viewDidUnload

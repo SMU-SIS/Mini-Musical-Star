@@ -48,7 +48,6 @@
 						<string key="NSFrame">{{380, 170}, {264, 178}}</string>
 						<reference key="NSSuperview" ref="680058226"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:237</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">1</int>
@@ -138,9 +137,9 @@
 						<string key="label">generateVideo</string>
 						<reference key="source" ref="7254858"/>
 						<reference key="destination" ref="841351856"/>
-						<int key="IBEventType">3</int>
+						<int key="IBEventType">1</int>
 					</object>
-					<int key="connectionID">36</int>
+					<int key="connectionID">37</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -183,6 +182,7 @@
 						<int key="objectID">35</int>
 						<reference key="object" ref="7254858"/>
 						<reference key="parent" ref="680058226"/>
+						<string key="objectName">Button - generate video</string>
 					</object>
 				</object>
 			</object>
@@ -225,7 +225,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">36</int>
+			<int key="maxID">37</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
