@@ -314,7 +314,28 @@
     
     
     
-//play the fucking player    
+//play the fucking player
+//    VideoPlayerViewController *videoPlayer = [[VideoPlayerViewController alloc] initWithVideoURL: [NSURL fileURLWithPath:[[ShowDAO getUserDocumentDir] stringByAppendingString:@"/test.m4v"]]];
+    
+    NSURL *url = [NSURL fileURLWithPath:[[ShowDAO getUserDocumentDir] stringByAppendingString:@"/test.m4v"]];
+    MPMoviePlayerController *moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:url];
+    
+    // Register to receive a notification when the movie has finished playing.
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(moviePlayBackDidFinish:)
+                                                 name:MPMoviePlayerPlaybackDidFinishNotification
+                                               object:moviePlayer];
+    
+    if ([moviePlayer respondsToSelector:@selector(setFullscreen:animated:)]) {
+        // Use the new 3.2 style API
+        
+        [moviePlayer.view setFrame:self.view.bounds];
+        moviePlayer.controlStyle = MPMovieControlStyleFullscreen;
+        moviePlayer.shouldAutoplay = YES;
+        [self.view setBackgroundColor:[UIColor blackColor]];
+        [self.view addSubview:moviePlayer.view];
+        [moviePlayer play];
+    }
 }
 
 - (void)viewDidUnload

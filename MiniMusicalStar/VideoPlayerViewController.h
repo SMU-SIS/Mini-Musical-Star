@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MediaPlayer/MediaPlayer.h>
 
 @interface VideoPlayerViewController : UIViewController
+
+- (VideoPlayerViewController*)initWithVideoURL:(NSURL*)url;
 
 @end
