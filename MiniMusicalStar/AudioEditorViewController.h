@@ -19,6 +19,9 @@
     UITableView *trackTableView;
     UIImage *recordImage;
     UIImage *recordingImage;
+    UIImage *mutedImage;
+    UIImage *unMutedImage;
+    UIImage *trashbinImage;
     
     //variables to track the state of the MixPlayer
     bool isRecording;
@@ -35,12 +38,16 @@
     int currentRecordingTrack;
     NSString *lyrics;
     NSURL *currentRecordingURL;
-    NSString *currentRecordingTrackTitle;
+    Audio *currentRecordingAudio;
 }
 
 @property (nonatomic, retain) UITableView *trackTableView;
 @property (nonatomic, retain) UIImage *recordImage;
 @property (nonatomic, retain) UIImage *recordingImage;
+@property (nonatomic, retain) UIImage *mutedImage;
+@property (nonatomic, retain) UIImage *unmutedImage;
+@property (nonatomic, retain) UIImage *trashbinImage;
+
 @property (nonatomic, retain) NSString *lyrics;
 
 //for the lyrics
@@ -55,7 +62,7 @@
 @property (nonatomic, retain) NSManagedObjectContext *context;
 
 @property (nonatomic, retain) NSURL *currentRecordingURL;
-@property (nonatomic, retain) NSString *currentRecordingTrackTitle;
+@property (nonatomic, retain) Audio *currentRecordingAudio;
 
 @property (nonatomic, retain) UIButton *playPauseButton;
 
@@ -63,6 +70,9 @@
 
 - (void)playButtonIsPressed;
 - (void)stopButtonIsPresssed;
+
+- (void)coverAudioRecording;
+- (void)trashCoverAudio;
 
 - (bool)isRecording;
 
