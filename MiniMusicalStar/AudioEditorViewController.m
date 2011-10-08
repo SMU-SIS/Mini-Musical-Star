@@ -58,7 +58,7 @@
     self = [super init];
     if (self)
     {
-        self.theAudioObjects = aScene.audioList;
+        self.theAudioObjects = [aScene audioTracks];
         self.theCoverScene = aCoverScene;
         self.context = aContext;
         self.playPauseButton = aPlayPauseButton;
