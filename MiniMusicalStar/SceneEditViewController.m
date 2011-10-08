@@ -93,7 +93,7 @@
     
     //update the total time label
     //[totalTimeLabel setText:[NSString stringWithFormat:@"%lu", thePlayer.totalPlaybackTimeInSeconds]];
-    [totalTimeLabel setText:[NSString stringWithFormat:@"%lu:%lu", [self.audioView.thePlayer totalPlaybackTimeInSeconds]/60, [self.audioView.thePlayer totalPlaybackTimeInSeconds]%60]];
+    [totalTimeLabel setText:[NSString stringWithFormat:@"%lu:%0.2lu", [self.audioView.thePlayer totalPlaybackTimeInSeconds]/60, [self.audioView.thePlayer totalPlaybackTimeInSeconds]%60]];
     
     //update the song title
     [songInfoLabel setText:theScene.title];
