@@ -192,6 +192,7 @@
 
 -(IBAction)generateVideo
 {
+    [DSBezelActivityView newActivityViewForView:self.view withLabel:@"Exporting...Wait OK?! otherwise your ipad might EXPLODE"];
     CGSize size = CGSizeMake(640, 480);
     NSString *videoFilename = [@"/" stringByAppendingString:[[AudioEditorViewController getUniqueFilenameWithoutExt] stringByAppendingString:@".mov"]];
     self.exportFilename = [@"/" stringByAppendingString:[[AudioEditorViewController getUniqueFilenameWithoutExt] stringByAppendingString:@".mov"]];
@@ -306,11 +307,11 @@
 
     
     //NOW I EXPORT, FINALLYZZZZ
-    __block BOOL ready = NO;
+//    __block BOOL ready = NO;
     NSArray *compatiblePresets = [AVAssetExportSession exportPresetsCompatibleWithAsset:composition];
     if ([compatiblePresets containsObject:AVAssetExportPresetLowQuality]) {
         AVAssetExportSession *exportSession = [[AVAssetExportSession alloc]
-                                               initWithAsset:composition presetName:AVAssetExportPresetLowQuality];
+                                               initWithAsset:composition presetName:AVAssetExportPresetHighestQuality];
         
         
         exportSession.outputURL = [NSURL fileURLWithPath:[[ShowDAO getUserDocumentDir] stringByAppendingString:self.exportFilename]];
@@ -325,7 +326,7 @@
             switch ([exportSession status]) {
                 case AVAssetExportSessionStatusCompleted:
                     NSLog(@"Export Completed");
-                    ready = YES;
+                    [DSBezelActivityView removeViewAnimated:YES];
                     break;
                 case AVAssetExportSessionStatusFailed:
                     NSLog(@"Export failed: %@", [[exportSession error] localizedDescription]);
