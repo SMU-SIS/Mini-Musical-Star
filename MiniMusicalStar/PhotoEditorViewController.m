@@ -129,13 +129,6 @@
     //empty for now
 }
 
-- (void) playIt
-{
-    //play the fucking player
-    NSURL *url = [NSURL fileURLWithPath:[[ShowDAO getUserDocumentDir] stringByAppendingString:@"/finally.mov"]];
-    [delegate playMovie:url];
-}
-
 //for the AFCoverFlow delegate
 - (UIImage *)defaultImage
 {
@@ -199,10 +192,13 @@
 -(IBAction)generateVideo
 {
     CGSize size = CGSizeMake(640, 480);
+    NSString *videoFilename = [@"/" stringByAppendingString:[[AudioEditorViewController getUniqueFilenameWithoutExt] stringByAppendingString:@".mov"]];
+    NSString *exportFilename = [@"/" stringByAppendingString:[[AudioEditorViewController getUniqueFilenameWithoutExt] stringByAppendingString:@".mov"]];
+//    NSLog(@"videoFilename : %@",videoFilename);
     __block NSError *error = nil;
     
     AVAssetWriter *videoWriter = [[AVAssetWriter alloc] initWithURL:
-                                  [NSURL fileURLWithPath:[[ShowDAO getUserDocumentDir] stringByAppendingString:@"/test.mov"]] fileType:AVFileTypeQuickTimeMovie
+                                  [NSURL fileURLWithPath:[[ShowDAO getUserDocumentDir] stringByAppendingString:videoFilename]] fileType:AVFileTypeQuickTimeMovie
                                                               error:&error];
     
     NSParameterAssert(videoWriter);
@@ -285,7 +281,7 @@
     //now i will combine track and video
     AVMutableComposition* composition = [AVMutableComposition composition];
     
-    AVURLAsset* videoAsset = [[AVURLAsset alloc]initWithURL:[NSURL fileURLWithPath:[[ShowDAO getUserDocumentDir] stringByAppendingString:@"/test.mov"]] options:nil];
+    AVURLAsset* videoAsset = [[AVURLAsset alloc]initWithURL:[NSURL fileURLWithPath:[[ShowDAO getUserDocumentDir] stringByAppendingString:videoFilename]] options:nil];
     
     __block AVMutableCompositionTrack *compositionAudioTrack1 = NULL;
     [[delegate getExportAudioURLs] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
@@ -309,15 +305,15 @@
 
     
     //NOW I EXPORT, FINALLYZZZZ
-    __block BOOL ready = NO;
     NSArray *compatiblePresets = [AVAssetExportSession exportPresetsCompatibleWithAsset:composition];
     if ([compatiblePresets containsObject:AVAssetExportPresetLowQuality]) {
         AVAssetExportSession *exportSession = [[AVAssetExportSession alloc]
                                                initWithAsset:composition presetName:AVAssetExportPresetLowQuality];
         
         
-        exportSession.outputURL = [NSURL fileURLWithPath:[[ShowDAO getUserDocumentDir] stringByAppendingString:@"/finally.mov"]];
+        exportSession.outputURL = [NSURL fileURLWithPath:[[ShowDAO getUserDocumentDir] stringByAppendingString:exportFilename]];
         exportSession.outputFileType = AVFileTypeQuickTimeMovie;
+        exportSession.shouldOptimizeForNetworkUse = YES;
         
         CMTime start = CMTimeMakeWithSeconds(0, 1);
         CMTime duration = CMTimeMakeWithSeconds(1000, 1);
@@ -325,11 +321,9 @@
         exportSession.timeRange = range;
         
         [exportSession exportAsynchronouslyWithCompletionHandler:^{
-            
             switch ([exportSession status]) {
                 case AVAssetExportSessionStatusCompleted:
                     NSLog(@"Export Completed");
-                    ready = YES;
                     break;
                 case AVAssetExportSessionStatusFailed:
                     NSLog(@"Export failed: %@", [[exportSession error] localizedDescription]);
@@ -341,14 +335,20 @@
                     break;
             }
             
-            [exportSession release];
+            
         }];
         
+        while(exportSession.progress != 1.0){
+            NSLog(@"loading... : %f",exportSession.progress);
+            sleep(1);
+        }
+        [exportSession release];
+        
     }
-    while(!ready){
-        //do nothing
-    }
-    [self playIt];
+
+    //play the fucking player
+    NSURL *url = [NSURL fileURLWithPath:[[ShowDAO getUserDocumentDir] stringByAppendingString:exportFilename]];
+    [delegate playMovie:url];
 
 }
 
