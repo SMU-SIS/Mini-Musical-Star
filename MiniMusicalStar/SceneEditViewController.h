@@ -47,5 +47,6 @@
 - (void)stopPlayer;
 - (BOOL)isRecording;
 - (NSArray*) getExportAudioURLs;
+- (void) playMovie:(NSURL*)filePath;
     
 @end

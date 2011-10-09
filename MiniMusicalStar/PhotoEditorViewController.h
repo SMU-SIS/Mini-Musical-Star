@@ -26,6 +26,7 @@
 - (void)stopPlayer;
 - (BOOL)isRecording;
 - (NSArray*) getExportAudioURLs;
+- (void) playMovie:(NSURL*)filePath;
 @end
 
 @interface PhotoEditorViewController : UIViewController <AFOpenFlowViewDelegate,AFOpenFlowViewDataSource, CameraPopupViewDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate> {

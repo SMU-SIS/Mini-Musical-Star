@@ -34,6 +34,7 @@
         self.theScene = aScene;
         self.theCoverScene = aCoverScene;
         self.context = aContext;
+        self.imagesArray = [[NSMutableArray alloc]init];
     }
     
     return self;
@@ -76,11 +77,15 @@
             if (coverPicture)
             {
                 [(AFOpenFlowView *)self.view setImage: [coverPicture image] forIndex: processedImages];
+                [self.imagesArray addObject:[coverPicture image]];
             }
             
             else
             {
                 [(AFOpenFlowView *)self.view setImage: thePicture.image forIndex: processedImages];
+                [self.imagesArray addObject:thePicture.image];
+//                NSLog(@" AHHH %@",[self.imagesArray count]);
+
             }
             
             processedImages++;
@@ -109,6 +114,7 @@
 - (int)replaceCenterImage: (UIImage*)image
 {
     [(AFOpenFlowView *)self.view setImage:image forIndex:self.currentSelectedCover];
+    [self.imagesArray replaceObjectAtIndex:self.currentSelectedCover withObject:image];
     return self.currentSelectedCover;
 }
 
@@ -121,6 +127,13 @@
 - (void)openFlowView:(AFOpenFlowView *)openFlowView requestImageForIndex:(int)index
 {
     //empty for now
+}
+
+- (void) playIt
+{
+    //play the fucking player
+    NSURL *url = [NSURL fileURLWithPath:[[ShowDAO getUserDocumentDir] stringByAppendingString:@"/finally.mov"]];
+    [delegate playMovie:url];
 }
 
 //for the AFCoverFlow delegate
@@ -183,37 +196,14 @@
     return pxbuffer;
 }
 
-//NSComparisonResult compare(id obj1, id obj2, void *context) {
-//    if (obj1 < obj2)
-//        return NSOrderedAscending;
-//    else if (obj1 > obj2)
-//        return NSOrderedDescending;
-//    else 
-//        return NSOrderedSame;
-//}
-
-NSInteger intSort(id num1, id num2, void *context)
-{
-    int v1 = [num1 intValue];
-    int v2 = [num2 intValue];
-    if (v1 < v2)
-        return NSOrderedAscending;
-    else if (v1 > v2)
-        return NSOrderedDescending;
-    else
-        return NSOrderedSame;
-}
-
 -(IBAction)generateVideo
 {
     CGSize size = CGSizeMake(640, 480);
-    NSError *error = nil;
+    __block NSError *error = nil;
     
     AVAssetWriter *videoWriter = [[AVAssetWriter alloc] initWithURL:
-                                  [NSURL fileURLWithPath:[[ShowDAO getUserDocumentDir] stringByAppendingString:@"/test.m4v"]] fileType:AVFileTypeAppleM4V
+                                  [NSURL fileURLWithPath:[[ShowDAO getUserDocumentDir] stringByAppendingString:@"/test.mov"]] fileType:AVFileTypeQuickTimeMovie
                                                               error:&error];
-    NSLog(@"output: %@",[videoWriter outputURL]);
-    NSLog(@"HIHI : %@",[[NSURL fileURLWithPath:[ShowDAO getUserDocumentDir]] absoluteString]);
     
     NSParameterAssert(videoWriter);
     
@@ -237,32 +227,35 @@ NSInteger intSort(id num1, id num2, void *context)
     [videoWriter startWriting];
     [videoWriter startSessionAtSourceTime:kCMTimeZero];
     
-    int duration = 10;
-    
     //add to buffer
     __block CVPixelBufferRef buffer = NULL;
     __block BOOL retry = NO;
-    NSMutableDictionary *imagesDict = [(AFOpenFlowView *)self.view getCoverImages];
+
     __block int i = 0;
-    [imagesDict enumerateKeysAndObjectsUsingBlock:^(id key, id object, BOOL *stop) {
-//        Picture *pic = [theScene.pictureDict objectForKey:object];
+   
+    //sort the fucking array
+    __block NSMutableArray *sortedTimingsArray = [NSMutableArray arrayWithArray:[theScene.pictureTimingDict allKeys]];
+    [sortedTimingsArray sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        NSString *strObj1 = (NSString *)obj1;
+        NSString *strObj2 = (NSString *)obj2;
         
-        NSArray *sortedTimingsArray = [theScene.pictureTimingDict keysSortedByValueUsingSelector:@selector(compare:)];
-        [sortedTimingsArray sortedArrayUsingFunction:intSort context:NULL];
-            NSLog(@"gggg %@",[sortedTimingsArray objectAtIndex:0]);
-             NSLog(@"gggg %@",[sortedTimingsArray objectAtIndex:1]);
-         NSLog(@"gggg %@",[sortedTimingsArray objectAtIndex:2]);
-         NSLog(@"gggg %@",[sortedTimingsArray objectAtIndex:3]);
-        //remember to do the timings
-        UIImage *img = (UIImage *)object;
+        if ([strObj1 intValue] > [strObj2 intValue])
+        {
+            return NSOrderedDescending;
+        }
+        
+        else
+        {
+            return NSOrderedAscending;
+        }
+    }];
+    
+    [self.imagesArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        UIImage *img = (UIImage *)obj;
         if (adaptor.assetWriterInput.readyForMoreMediaData && !retry) 
         {
-            NSLog(@"inside for loop %d",i);
-            CMTime frameTime = CMTimeMake(1, 1);
-            CMTime lastTime=CMTimeMake(i*5, 1); 
-            CMTime presentTime=CMTimeAdd(lastTime, frameTime);
-            //            NSString *imgName = [NSString stringWithFormat:@"frame%d.png",i];
-            //            UIImage *imgFrame = [UIImage imageNamed:imgName];
+            int timeAt = [[sortedTimingsArray objectAtIndex:i] intValue];   
+            CMTime presentTime=CMTimeMake(timeAt,1);
             buffer = [self pixelBufferFromCGImage:img.CGImage size:size];
             BOOL pixelBufferResult = [adaptor appendPixelBuffer:buffer withPresentationTime:presentTime];
             
@@ -284,26 +277,23 @@ NSInteger intSort(id num1, id num2, void *context)
        
     }];
     
-    
     //Finish the session:
     [writerInput markAsFinished];
-    [videoWriter endSessionAtSourceTime:CMTimeMake(duration, 1)];
+    [videoWriter endSessionAtSourceTime:CMTimeMake(1000, 1)];
     [videoWriter finishWriting];
     
     //now i will combine track and video
-    
     AVMutableComposition* composition = [AVMutableComposition composition];
     
-    AVURLAsset* videoAsset = [[AVURLAsset alloc]initWithURL:[NSURL fileURLWithPath:[[ShowDAO getUserDocumentDir] stringByAppendingString:@"/test.m4v"]] options:nil];
+    AVURLAsset* videoAsset = [[AVURLAsset alloc]initWithURL:[NSURL fileURLWithPath:[[ShowDAO getUserDocumentDir] stringByAppendingString:@"/test.mov"]] options:nil];
     
     __block AVMutableCompositionTrack *compositionAudioTrack1 = NULL;
     [[delegate getExportAudioURLs] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         NSURL *audioURL = (NSURL*)obj;
         AVURLAsset* audioAsset1 = [[AVURLAsset alloc]initWithURL:audioURL options:nil];
-        NSLog(@"audioAsset : %@",[audioAsset1 URL]);
+//        NSLog(@"audioAsset : %@",[audioAsset1 URL]);
 //        NSLog(@"is it this %@",[NSURL fileURLWithPath:[[ShowDAO getUserDocumentDir] stringByAppendingString:audio.path]]);
         compositionAudioTrack1 = [composition addMutableTrackWithMediaType:AVMediaTypeAudio preferredTrackID:kCMPersistentTrackID_Invalid];
-//        NSLog(@"how many times");
         [compositionAudioTrack1 insertTimeRange:CMTimeRangeMake(kCMTimeZero,audioAsset1.duration) 
                                         ofTrack:[[audioAsset1 tracksWithMediaType:AVMediaTypeAudio]objectAtIndex:0] 
                                          atTime:kCMTimeZero
@@ -319,10 +309,11 @@ NSInteger intSort(id num1, id num2, void *context)
 
     
     //NOW I EXPORT, FINALLYZZZZ
+    __block BOOL ready = NO;
     NSArray *compatiblePresets = [AVAssetExportSession exportPresetsCompatibleWithAsset:composition];
     if ([compatiblePresets containsObject:AVAssetExportPresetLowQuality]) {
         AVAssetExportSession *exportSession = [[AVAssetExportSession alloc]
-                                               initWithAsset:composition presetName:AVAssetExportPresetHighestQuality];
+                                               initWithAsset:composition presetName:AVAssetExportPresetLowQuality];
         
         
         exportSession.outputURL = [NSURL fileURLWithPath:[[ShowDAO getUserDocumentDir] stringByAppendingString:@"/finally.mov"]];
@@ -336,60 +327,33 @@ NSInteger intSort(id num1, id num2, void *context)
         [exportSession exportAsynchronouslyWithCompletionHandler:^{
             
             switch ([exportSession status]) {
+                case AVAssetExportSessionStatusCompleted:
+                    NSLog(@"Export Completed");
+                    ready = YES;
+                    break;
                 case AVAssetExportSessionStatusFailed:
                     NSLog(@"Export failed: %@", [[exportSession error] localizedDescription]);
                     break;
                 case AVAssetExportSessionStatusCancelled:
-                    NSLog(@"Export canceled");
+                    NSLog(@"Export cancelled");
                     break;
                 default:
                     break;
             }
+            
             [exportSession release];
         }];
         
     }
-    
-    
-    
-//play the fucking player
-//    VideoPlayerViewController *videoPlayer = [[VideoPlayerViewController alloc] initWithVideoURL: [NSURL fileURLWithPath:[[ShowDAO getUserDocumentDir] stringByAppendingString:@"/test.m4v"]]];
-    
-    NSURL *url = [NSURL fileURLWithPath:[[ShowDAO getUserDocumentDir] stringByAppendingString:@"/finally.mov"]];
-    NSLog(@"ASDASD : %@",url);
-    MPMoviePlayerController *moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:url];
-    
-    // Register to receive a notification when the movie has finished playing.
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(moviePlayBackDidFinish:)
-                                                 name:MPMoviePlayerPlaybackDidFinishNotification
-                                               object:moviePlayer];
-    
-    if ([moviePlayer respondsToSelector:@selector(setFullscreen:animated:)]) {
-        // Use the new 3.2 style API
-        
-        [moviePlayer.view setFrame:self.view.bounds];
-        moviePlayer.controlStyle = MPMovieControlStyleFullscreen;
-        moviePlayer.shouldAutoplay = YES;
-        [self.view setBackgroundColor:[UIColor blackColor]];
-        [self.view addSubview:moviePlayer.view];
-        [moviePlayer play];
+    while(!ready){
+        //do nothing
     }
+    [self playIt];
+
 }
 
-- (void) moviePlayBackDidFinish:(NSNotification*)notification {
-    MPMoviePlayerController *moviePlayer = [notification object];
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:MPMoviePlayerPlaybackDidFinishNotification
-                                                  object:moviePlayer];
-    
-    // If the moviePlayer.view was added to the view, it needs to be removed
-    if ([moviePlayer respondsToSelector:@selector(setFullscreen:animated:)]) {
-        [moviePlayer.view removeFromSuperview];
-    }
-    
-    [moviePlayer release];
-}
+
+
 
 - (void)viewDidUnload
 {
