@@ -1,8 +1,8 @@
 //
 //  CoverScene.h
-//  MMS-UI
+//  MiniMusicalStar
 //
-//  Created by Jun Kit Lee on 17/9/11.
+//  Created by Jun Kit Lee on 9/10/11.
 //  Copyright (c) 2011 mohawk.riceball@gmail.com. All rights reserved.
 //
 
@@ -32,10 +32,4 @@
 - (void)addPicture:(NSSet *)values;
 - (void)removePicture:(NSSet *)values;
 
-- (CoverScenePicture *)pictureForOriginalHash:(NSString *)hash;
-- (CoverScenePicture *)pictureForOrderNumber:(int)orderNum;
-- (CoverSceneAudio *)audioForTrackTitle:(NSString *)trackTitle;
-
-- (BOOL)sceneHasEdits;
-- (void)purgeRelatedFiles;
 @end

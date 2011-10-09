@@ -188,7 +188,9 @@
     Scene *selectedScene = [self.theShow sceneForIndex:sender.tag];
     
     __block CoverScene *selectedCoverScene = nil;
-        
+    selectedCoverScene = [NSEntityDescription insertNewObjectForEntityForName:@"CoverScene" inManagedObjectContext:context];
+    [self.theCover addScenesObject:selectedCoverScene];
+
     SceneEditViewController *editController = [[SceneEditViewController alloc] initWithScene:selectedScene andSceneCover:selectedCoverScene andContext:context];
     editController.title = selectedScene.title;
     
