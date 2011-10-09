@@ -32,4 +32,9 @@
 - (void)addPicture:(NSSet *)values;
 - (void)removePicture:(NSSet *)values;
 
+- (CoverScenePicture *)pictureForOriginalHash:(NSString *)hash;
+- (CoverScenePicture *)pictureForOrderNumber:(int)orderNum;
+- (CoverSceneAudio *)audioForTrackTitle:(NSString *)trackTitle;
+
+
 @end
