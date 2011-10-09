@@ -619,6 +619,35 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+- (NSArray*)getExportAudioURLs
+{
+    NSMutableArray *mutableArrayOfAudioURLs = [NSMutableArray arrayWithCapacity:theAudioObjects.count + theCoverScene.Audio.count];
+    
+    [theAudioObjects enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {        
+        if ([obj isKindOfClass:[Audio class]])
+        {
+            Audio *anAudio = (Audio*)obj;
+            NSURL *audioURL = [NSURL fileURLWithPath:anAudio.path];
+            [mutableArrayOfAudioURLs addObject:audioURL];
+        }
+        
+    }];
+    
+    [theCoverScene.Audio enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
+        if ([obj isKindOfClass:[CoverSceneAudio class]])
+        {
+            CoverSceneAudio *anCoverSceneAudio = (CoverSceneAudio*)obj;
+            NSURL *audioURL = [NSURL fileURLWithPath:anCoverSceneAudio.path];
+            [mutableArrayOfAudioURLs addObject:audioURL];
+        }
+        
+    }];
+    
+    NSArray *arrayOfAudioURLs = [[[NSArray alloc] initWithArray:mutableArrayOfAudioURLs] autorelease];
+    
+    return arrayOfAudioURLs;
+}
+
 #pragma mark - class methods
 + (NSString*)getUniqueFilenameWithoutExt
 {

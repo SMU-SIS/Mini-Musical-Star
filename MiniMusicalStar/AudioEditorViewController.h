@@ -88,4 +88,6 @@
 
 + (NSString*)getUniqueFilenameWithoutExt;
 
+- (NSArray*)getExportAudioURLs;
+
 @end
