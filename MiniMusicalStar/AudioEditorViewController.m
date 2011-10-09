@@ -621,20 +621,15 @@
 
 - (NSArray*)getExportAudioURLs
 {
-    NSMutableArray *mutableArrayOfAudioURLs = [NSMutableArray arrayWithCapacity:theAudioObjects.count + theCoverScene.Audio.count];
+    NSMutableArray *mutableArrayOfAudioURLs = [NSMutableArray arrayWithCapacity:tracksForView.count];
     
-    [theAudioObjects enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {        
+    [tracksForView enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {        
         if ([obj isKindOfClass:[Audio class]])
         {
             Audio *anAudio = (Audio*)obj;
             NSURL *audioURL = [NSURL fileURLWithPath:anAudio.path];
             [mutableArrayOfAudioURLs addObject:audioURL];
-        }
-        
-    }];
-    
-    [theCoverScene.Audio enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
-        if ([obj isKindOfClass:[CoverSceneAudio class]])
+        } else if ([obj isKindOfClass:[CoverSceneAudio class]])
         {
             CoverSceneAudio *anCoverSceneAudio = (CoverSceneAudio*)obj;
             NSURL *audioURL = [NSURL fileURLWithPath:anCoverSceneAudio.path];
