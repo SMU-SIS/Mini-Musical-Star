@@ -57,5 +57,9 @@
 - (int)replaceCenterImage: (UIImage*)image;
 - (void)openFlowView:(AFOpenFlowView *)openFlowView selectionDidChange:(int)index;
 
+-(IBAction)pressManualButton;
+
+@property (retain,nonatomic) NSString *exportFilename;
+
 
 @end
