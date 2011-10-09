@@ -80,7 +80,7 @@
 						<string key="NSFrame">{{73, 34}, {131, 37}}</string>
 						<reference key="NSSuperview" ref="680058226"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="216352848"/>
+						<reference key="NSNextKeyView" ref="755642497"/>
 						<string key="NSReuseIdentifierKey">_NS:237</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -94,15 +94,15 @@
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 						</object>
-						<object class="NSColor" key="IBUINormalTitleShadowColor" id="476037905">
+						<object class="NSColor" key="IBUINormalTitleShadowColor" id="126943841">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MC41AA</bytes>
 						</object>
 					</object>
-					<object class="IBUIButton" id="216352848">
+					<object class="IBUIButton" id="755642497">
 						<reference key="NSNextResponder" ref="680058226"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{56, 79}, {164, 37}}</string>
+						<string key="NSFrame">{{73, 99}, {310, 37}}</string>
 						<reference key="NSSuperview" ref="680058226"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="921805083"/>
@@ -113,13 +113,13 @@
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<reference key="IBUIFont" ref="796881232"/>
 						<int key="IBUIButtonType">1</int>
-						<string key="IBUINormalTitle">Manual Play Button</string>
+						<string key="IBUINormalTitle">PlayVideo (ONLY AFTER GENERATION)</string>
 						<reference key="IBUIHighlightedTitleColor" ref="15868856"/>
 						<object class="NSColor" key="IBUINormalTitleColor">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 						</object>
-						<reference key="IBUINormalTitleShadowColor" ref="476037905"/>
+						<reference key="IBUINormalTitleShadowColor" ref="126943841"/>
 					</object>
 				</object>
 				<string key="NSFrameSize">{1024, 567}</string>
@@ -167,7 +167,7 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">pressManualButton</string>
-						<reference key="source" ref="216352848"/>
+						<reference key="source" ref="755642497"/>
 						<reference key="destination" ref="841351856"/>
 						<int key="IBEventType">7</int>
 					</object>
@@ -201,7 +201,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="921805083"/>
 							<reference ref="7254858"/>
-							<reference ref="216352848"/>
+							<reference ref="755642497"/>
 						</object>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">Open Flow View</string>
@@ -219,7 +219,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">38</int>
-						<reference key="object" ref="216352848"/>
+						<reference key="object" ref="755642497"/>
 						<reference key="parent" ref="680058226"/>
 						<string key="objectName">Button - Manual Play Button</string>
 					</object>
