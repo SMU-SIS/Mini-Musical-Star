@@ -84,6 +84,8 @@
 
 - (void)consolidateOriginalAndCoverTracks
 {  
+    NSLog(@"i'm in consolidateOriginalAndCoverTracks!");
+    
     self.tracksForView = [NSMutableArray arrayWithCapacity:theAudioObjects.count + theCoverScene.Audio.count];
     
     [theAudioObjects enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
@@ -156,6 +158,7 @@
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    NSLog(@"count %i", theAudioObjects.count + theCoverScene.Audio.count);
     return theAudioObjects.count + theCoverScene.Audio.count;
 }
 
@@ -315,9 +318,7 @@
 
 #pragma mark - KVO callbacks
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)changeContext
-{
-    //NSLog(@"Inside observeValueForKeyPath");
-    
+{    
     NSString *kvoContext = (NSString *)changeContext;
     if ([kvoContext isEqualToString:@"NewCoverTrackAdded"])
     {
@@ -437,12 +438,31 @@
     
 }
 
-- (void)trashCoverAudio
+- (void)trashCoverAudio:(int)indexInConsolidatedAudioTracksArray
 {
-    //remove the CoverSceneAudio file
+    id audioForRow = [tracksForView objectAtIndex:indexInConsolidatedAudioTracksArray];
     
-    //delete the file from the user directory
-        //check if the file exist before deleting to prevent error
+    //check to make sure it is not an Audio
+    if ([audioForRow isKindOfClass:[Audio class]])
+    {
+        NSLog(@"Jialat liao, you trying to remove an orignal track. You think you director ah!");
+    }
+    
+    CoverSceneAudio *audioToBeRemoved = (CoverSceneAudio*)audioForRow;
+    NSURL *urlOfAudioToBeRemoved = [NSURL fileURLWithPath:audioToBeRemoved.path];
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSError *error;
+    
+    //remove audio object from cover scene
+    if (![fileManager removeItemAtURL:urlOfAudioToBeRemoved error:&error])
+    {
+        NSLog(@"I tried to delete the audio file but failed: %@", error);
+    }
+    
+    [self.theCoverScene removeAudioObject:audioToBeRemoved];    //remove audio object from coverscene object
+    
+    [trackTableView reloadData];
 }
 
 - (CAGradientLayer*)createGradientLayer:(CGRect)frame firstColor:(UIColor*)firstColor andSecondColor:(UIColor*)secondColor {
@@ -471,7 +491,12 @@
     newCoverSceneAudio.path = [currentRecordingURL path];
     newCoverSceneAudio.OriginalHash = currentRecordingAudio.hash;
     
+    NSLog(@"before: %i", theCoverScene.Audio.count);
+
+    
     [self.theCoverScene addAudioObject:newCoverSceneAudio]; //receing EXC_BAD_ACCESS here when exit and record
+    
+    NSLog(@"after: %i", theCoverScene.Audio.count);
     
     //init the player with the original audio tracks and cover tracks
     NSMutableArray *tracksForViewNSURL = [NSMutableArray arrayWithCapacity:[tracksForView count]-1];
@@ -481,6 +506,7 @@
         Audio *anAudio = (Audio*)obj;
         NSString *path = anAudio.path;
         [tracksForViewNSURL addObject:[NSURL fileURLWithPath:path]];
+        NSLog(@"repopulating index: %i", idx);
     }];
     
     [thePlayer release];

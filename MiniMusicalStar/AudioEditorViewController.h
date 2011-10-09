@@ -72,7 +72,7 @@
 - (void)stopButtonIsPresssed;
 
 - (void)coverAudioRecording;
-- (void)trashCoverAudio;
+- (void)trashCoverAudio:(int)indexInConsolidatedAudioTracksArray;
 
 - (bool)isRecording;
 
@@ -89,5 +89,7 @@
 + (NSString*)getUniqueFilenameWithoutExt;
 
 - (NSArray*)getExportAudioURLs;
+
+
 
 @end
