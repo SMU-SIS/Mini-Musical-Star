@@ -621,19 +621,32 @@
 
 - (NSArray*)getExportAudioURLs
 {
-    NSMutableArray *mutableArrayOfAudioURLs = [NSMutableArray arrayWithCapacity:tracksForView.count];
+    NSMutableArray *mutableArrayOfAudioURLs = [NSMutableArray arrayWithCapacity:1]; //don't know how big it will be, just start with 1 
     
     [tracksForView enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {        
         if ([obj isKindOfClass:[Audio class]])
         {
             Audio *anAudio = (Audio*)obj;
             NSURL *audioURL = [NSURL fileURLWithPath:anAudio.path];
-            [mutableArrayOfAudioURLs addObject:audioURL];
+            
+            //add only if the audio is not muted
+            if ([thePlayer busNumberIsMuted:idx] == NO)
+            {
+                [mutableArrayOfAudioURLs addObject:audioURL];
+                
+            }
+            
         } else if ([obj isKindOfClass:[CoverSceneAudio class]])
         {
             CoverSceneAudio *anCoverSceneAudio = (CoverSceneAudio*)obj;
             NSURL *audioURL = [NSURL fileURLWithPath:anCoverSceneAudio.path];
-            [mutableArrayOfAudioURLs addObject:audioURL];
+            
+            //add only if the audio is not muted
+            if ([thePlayer busNumberIsMuted:idx] == NO)
+            {
+                [mutableArrayOfAudioURLs addObject:audioURL];
+                
+            }
         }
         
     }];
