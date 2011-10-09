@@ -305,6 +305,7 @@
 
     
     //NOW I EXPORT, FINALLYZZZZ
+    __block BOOL ready = NO;
     NSArray *compatiblePresets = [AVAssetExportSession exportPresetsCompatibleWithAsset:composition];
     if ([compatiblePresets containsObject:AVAssetExportPresetLowQuality]) {
         AVAssetExportSession *exportSession = [[AVAssetExportSession alloc]
@@ -313,7 +314,6 @@
         
         exportSession.outputURL = [NSURL fileURLWithPath:[[ShowDAO getUserDocumentDir] stringByAppendingString:exportFilename]];
         exportSession.outputFileType = AVFileTypeQuickTimeMovie;
-        exportSession.shouldOptimizeForNetworkUse = YES;
         
         CMTime start = CMTimeMakeWithSeconds(0, 1);
         CMTime duration = CMTimeMakeWithSeconds(1000, 1);
@@ -324,6 +324,7 @@
             switch ([exportSession status]) {
                 case AVAssetExportSessionStatusCompleted:
                     NSLog(@"Export Completed");
+                    ready = YES;
                     break;
                 case AVAssetExportSessionStatusFailed:
                     NSLog(@"Export failed: %@", [[exportSession error] localizedDescription]);
@@ -338,7 +339,8 @@
             
         }];
         
-        while(exportSession.progress != 1.0){
+        while(!ready){
+            //do nothing
             NSLog(@"loading... : %f",exportSession.progress);
             sleep(1);
         }
