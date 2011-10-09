@@ -71,7 +71,7 @@
 - (void)playButtonIsPressed;
 - (void)stopButtonIsPresssed;
 
-- (void)coverAudioRecording;
+- (void)startCoverAudioRecording:(int)indexInConsolidatedAudioTracksArray;
 - (void)trashCoverAudio:(int)indexInConsolidatedAudioTracksArray;
 
 - (bool)isRecording;

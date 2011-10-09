@@ -139,6 +139,9 @@
 		3AFFDF0A142C7E16000D8494 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFFDF09142C7E16000D8494 /* UIImage+Resize.m */; };
 		3AFFDF0F142C7E69000D8494 /* DSActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFFDF0E142C7E69000D8494 /* DSActivityView.m */; };
 		6410AF33143A00900062B04D /* CoversFilenameGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6410AF32143A00900062B04D /* CoversFilenameGenerator.m */; };
+		641B32D91441E98100F4A93D /* trashbin.png in Resources */ = {isa = PBXBuildFile; fileRef = 641B32D71441E98100F4A93D /* trashbin.png */; };
+		641B32DA1441E98100F4A93D /* unmuted.png in Resources */ = {isa = PBXBuildFile; fileRef = 641B32D81441E98100F4A93D /* unmuted.png */; };
+		641B32DD1441E99500F4A93D /* muted.png in Resources */ = {isa = PBXBuildFile; fileRef = 641B32DC1441E99500F4A93D /* muted.png */; };
 		643AC0ED142FF2AE00F65B85 /* AudioEditViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 643AC0EC142FF2AD00F65B85 /* AudioEditViewControllerTest.m */; };
 		820511BF13F3BB9B0016F87E /* SceneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 820511BD13F3BB9B0016F87E /* SceneViewController.m */; };
 		820511C013F3BB9B0016F87E /* SceneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 820511BE13F3BB9B0016F87E /* SceneViewController.xib */; };
@@ -337,6 +340,9 @@
 		3AFFDF0E142C7E69000D8494 /* DSActivityView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSActivityView.m; sourceTree = "<group>"; };
 		6410AF31143A00900062B04D /* CoversFilenameGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CoversFilenameGenerator.h; path = Libraries/CoversFilenameGenerator.h; sourceTree = SOURCE_ROOT; };
 		6410AF32143A00900062B04D /* CoversFilenameGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CoversFilenameGenerator.m; path = Libraries/CoversFilenameGenerator.m; sourceTree = SOURCE_ROOT; };
+		641B32D71441E98100F4A93D /* trashbin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trashbin.png; sourceTree = "<group>"; };
+		641B32D81441E98100F4A93D /* unmuted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unmuted.png; sourceTree = "<group>"; };
+		641B32DC1441E99500F4A93D /* muted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = muted.png; sourceTree = "<group>"; };
 		643AC0EB142FF2AD00F65B85 /* AudioEditViewControllerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioEditViewControllerTest.h; sourceTree = "<group>"; };
 		643AC0EC142FF2AD00F65B85 /* AudioEditViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioEditViewControllerTest.m; sourceTree = "<group>"; };
 		820511BC13F3BB9B0016F87E /* SceneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneViewController.h; sourceTree = "<group>"; };
@@ -549,6 +555,9 @@
 		3AFFDDF1142C7191000D8494 /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
+				641B32DC1441E99500F4A93D /* muted.png */,
+				641B32D71441E98100F4A93D /* trashbin.png */,
+				641B32D81441E98100F4A93D /* unmuted.png */,
 				3AFFDDF2142C7191000D8494 /* breakdown */,
 				3AFFDDF9142C7191000D8494 /* edit.png */,
 				3AFFDDFA142C7191000D8494 /* gfxoption.png */,
@@ -1074,6 +1083,9 @@
 				950060051440B5FF000BB0A6 /* musical_placeholder.png in Resources */,
 				950060061440B5FF000BB0A6 /* scene_placeholder.png in Resources */,
 				3A5F7C6D1440D74E00E9C570 /* VideoPlayerViewController.xib in Resources */,
+				641B32D91441E98100F4A93D /* trashbin.png in Resources */,
+				641B32DA1441E98100F4A93D /* unmuted.png in Resources */,
+				641B32DD1441E99500F4A93D /* muted.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

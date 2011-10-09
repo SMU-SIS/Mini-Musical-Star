@@ -84,8 +84,6 @@
 
 - (void)consolidateOriginalAndCoverTracks
 {  
-    NSLog(@"i'm in consolidateOriginalAndCoverTracks!");
-    
     self.tracksForView = [NSMutableArray arrayWithCapacity:theAudioObjects.count + theCoverScene.Audio.count];
     
     [theAudioObjects enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
@@ -158,7 +156,6 @@
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSLog(@"count %i", theAudioObjects.count + theCoverScene.Audio.count);
     return theAudioObjects.count + theCoverScene.Audio.count;
 }
 
@@ -189,7 +186,7 @@
         [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
         
         /* label which displays the track name */
-        trackNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 30, 120, 30)];
+        trackNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 25, 120, 30)];
         trackNameLabel.backgroundColor = [UIColor blackColor];
         trackNameLabel.textAlignment =  UITextAlignmentCenter;
         [trackNameLabel setFont:[UIFont fontWithName:@"GillSans-Bold" size:18]];
@@ -354,11 +351,7 @@
 }
 
 -(void)recordOrTrashButtonIsPressed:(UIButton *)sender
-{
-    //refractor this method
-        //if this button is pressed for trashing, call trashCoverAudio
-        //if this button is pressed for recording, write another method startCoverAudioRecording
-    
+{    
     int row = -1;
     
     if (isRecording == YES)
@@ -384,6 +377,8 @@
     //if this is a recorded track or a replaceable track, exit this method
     if ([audioForRow isKindOfClass:[CoverSceneAudio class]])
     {
+        //if this is a recorded track, delete
+        [self trashCoverAudio:row];
         return;
     }
     else if ([audioForRow isKindOfClass:[Audio class]])
@@ -398,9 +393,19 @@
             //if the audio track is cannot be replaced
             return;
         }
+        
+        //if the audiotrack can be replaced, start recording
+        [self startCoverAudioRecording:row];
     }
+}
+
+#pragma mark - instance methods
+- (void)startCoverAudioRecording:(int)indexInConsolidatedAudioTracksArray
+{
+    //get the corresponding Audio object
+    id audioForRow = [tracksForView objectAtIndex:indexInConsolidatedAudioTracksArray];
     
-    currentRecordingTrack = row;
+    currentRecordingTrack = indexInConsolidatedAudioTracksArray;
     isRecording = YES;
     
     //reload the tableviewcell
@@ -415,7 +420,7 @@
     NSString *uniqueFilename = [AudioEditorViewController getUniqueFilenameWithoutExt];
     
     NSString *audioCoverFilepath = [userDocumentDirectory stringByAppendingFormat:@"/%@.caf", uniqueFilename];    //we are going to use .caf files because i am going to encode in IMA4
-
+    
     NSURL *fileURL = [NSURL fileURLWithPath:audioCoverFilepath];
     [fileManager removeItemAtURL:fileURL error:nil];    //if file exists delete the file first
     
@@ -430,12 +435,6 @@
     [thePlayer play];
     
     [self registerNotifications];
-}
-
-#pragma mark - instance methods
-- (void)coverAudioRecording
-{
-    
 }
 
 - (void)trashCoverAudio:(int)indexInConsolidatedAudioTracksArray
@@ -461,6 +460,8 @@
     }
     
     [self.theCoverScene removeAudioObject:audioToBeRemoved];    //remove audio object from coverscene object
+    
+    [self consolidateOriginalAndCoverTracks];   //reconsolidate to reflect the update
     
     [trackTableView reloadData];
 }
@@ -491,12 +492,7 @@
     newCoverSceneAudio.path = [currentRecordingURL path];
     newCoverSceneAudio.OriginalHash = currentRecordingAudio.hash;
     
-    NSLog(@"before: %i", theCoverScene.Audio.count);
-
-    
     [self.theCoverScene addAudioObject:newCoverSceneAudio]; //receing EXC_BAD_ACCESS here when exit and record
-    
-    NSLog(@"after: %i", theCoverScene.Audio.count);
     
     //init the player with the original audio tracks and cover tracks
     NSMutableArray *tracksForViewNSURL = [NSMutableArray arrayWithCapacity:[tracksForView count]-1];
@@ -506,7 +502,6 @@
         Audio *anAudio = (Audio*)obj;
         NSString *path = anAudio.path;
         [tracksForViewNSURL addObject:[NSURL fileURLWithPath:path]];
-        NSLog(@"repopulating index: %i", idx);
     }];
     
     [thePlayer release];
