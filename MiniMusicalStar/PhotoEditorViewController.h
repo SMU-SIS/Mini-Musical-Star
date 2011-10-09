@@ -20,6 +20,7 @@
 #import "CoverScenePicture.h"
 #import "VideoPlayerViewController.h"
 #import "AudioEditorViewController.h"
+#import "DSActivityView.h"
 
 @protocol PhotoEditorViewDelegate <NSObject>
 - (void)setSliderPosition: (int) seconds;
@@ -56,6 +57,10 @@
 - (BOOL) setSliderImages:(UInt32)timeAt;
 - (int)replaceCenterImage: (UIImage*)image;
 - (void)openFlowView:(AFOpenFlowView *)openFlowView selectionDidChange:(int)index;
+
+-(IBAction)pressManualButton;
+
+@property (retain,nonatomic) NSString *exportFilename;
 
 
 @end

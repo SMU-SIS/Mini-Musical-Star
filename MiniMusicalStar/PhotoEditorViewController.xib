@@ -48,6 +48,7 @@
 						<string key="NSFrame">{{380, 170}, {264, 178}}</string>
 						<reference key="NSSuperview" ref="680058226"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:237</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">1</int>
@@ -79,7 +80,7 @@
 						<string key="NSFrame">{{73, 34}, {131, 37}}</string>
 						<reference key="NSSuperview" ref="680058226"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="921805083"/>
+						<reference key="NSNextKeyView" ref="755642497"/>
 						<string key="NSReuseIdentifierKey">_NS:237</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -93,10 +94,32 @@
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 						</object>
-						<object class="NSColor" key="IBUINormalTitleShadowColor">
+						<object class="NSColor" key="IBUINormalTitleShadowColor" id="126943841">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MC41AA</bytes>
 						</object>
+					</object>
+					<object class="IBUIButton" id="755642497">
+						<reference key="NSNextResponder" ref="680058226"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{73, 99}, {310, 37}}</string>
+						<reference key="NSSuperview" ref="680058226"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="921805083"/>
+						<string key="NSReuseIdentifierKey">_NS:237</string>
+						<bool key="IBUIOpaque">NO</bool>
+						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+						<int key="IBUIContentHorizontalAlignment">0</int>
+						<int key="IBUIContentVerticalAlignment">0</int>
+						<reference key="IBUIFont" ref="796881232"/>
+						<int key="IBUIButtonType">1</int>
+						<string key="IBUINormalTitle">PlayVideo (ONLY AFTER GENERATION)</string>
+						<reference key="IBUIHighlightedTitleColor" ref="15868856"/>
+						<object class="NSColor" key="IBUINormalTitleColor">
+							<int key="NSColorSpace">1</int>
+							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
+						</object>
+						<reference key="IBUINormalTitleShadowColor" ref="126943841"/>
 					</object>
 				</object>
 				<string key="NSFrameSize">{1024, 567}</string>
@@ -141,6 +164,15 @@
 					</object>
 					<int key="connectionID">37</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">pressManualButton</string>
+						<reference key="source" ref="755642497"/>
+						<reference key="destination" ref="841351856"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">40</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -169,6 +201,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="921805083"/>
 							<reference ref="7254858"/>
+							<reference ref="755642497"/>
 						</object>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">Open Flow View</string>
@@ -183,6 +216,12 @@
 						<reference key="object" ref="7254858"/>
 						<reference key="parent" ref="680058226"/>
 						<string key="objectName">Button - generate video</string>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">38</int>
+						<reference key="object" ref="755642497"/>
+						<reference key="parent" ref="680058226"/>
+						<string key="objectName">Button - Manual Play Button</string>
 					</object>
 				</object>
 			</object>
@@ -199,6 +238,7 @@
 					<string>21.IBPluginDependency</string>
 					<string>21.IBUIButtonInspectorSelectedStateConfigurationMetadataKey</string>
 					<string>35.IBPluginDependency</string>
+					<string>38.IBPluginDependency</string>
 				</object>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -210,6 +250,7 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<real value="2"/>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				</object>
 			</object>
@@ -225,7 +266,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">37</int>
+			<int key="maxID">40</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -242,14 +283,35 @@
 					<string key="className">PhotoEditorViewController</string>
 					<string key="superclassName">UIViewController</string>
 					<object class="NSMutableDictionary" key="actions">
-						<string key="NS.key.0">popupCameraOptions:</string>
-						<string key="NS.object.0">id</string>
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>popupCameraOptions:</string>
+							<string>pressManualButton</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
+							<string>id</string>
+						</object>
 					</object>
 					<object class="NSMutableDictionary" key="actionInfosByName">
-						<string key="NS.key.0">popupCameraOptions:</string>
-						<object class="IBActionInfo" key="NS.object.0">
-							<string key="name">popupCameraOptions:</string>
-							<string key="candidateClassName">id</string>
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>popupCameraOptions:</string>
+							<string>pressManualButton</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBActionInfo">
+								<string key="name">popupCameraOptions:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">pressManualButton</string>
+								<string key="candidateClassName">id</string>
+							</object>
 						</object>
 					</object>
 					<object class="NSMutableDictionary" key="outlets">

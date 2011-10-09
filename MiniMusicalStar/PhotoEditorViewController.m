@@ -10,10 +10,11 @@
 
 @implementation PhotoEditorViewController
 
-@synthesize leftPicture, rightPicture, centerPicture, theScene, imagesArray, theCoverScene, context, currentSelectedCover, cameraPopupViewController, delegate;
+@synthesize leftPicture, rightPicture, centerPicture, theScene, imagesArray, theCoverScene, context, currentSelectedCover, cameraPopupViewController, delegate, exportFilename;
 
 -(void)dealloc
 {
+    [exportFilename release];
     [leftPicture release];
     [rightPicture release];
     [centerPicture release];
@@ -191,10 +192,11 @@
 
 -(IBAction)generateVideo
 {
+    [DSBezelActivityView newActivityViewForView:self.view withLabel:@"Exporting...Wait OK?! otherwise your ipad might EXPLODE"];
     CGSize size = CGSizeMake(640, 480);
     NSString *videoFilename = [@"/" stringByAppendingString:[[AudioEditorViewController getUniqueFilenameWithoutExt] stringByAppendingString:@".mov"]];
-    NSString *exportFilename = [@"/" stringByAppendingString:[[AudioEditorViewController getUniqueFilenameWithoutExt] stringByAppendingString:@".mov"]];
-//    NSLog(@"videoFilename : %@",videoFilename);
+    self.exportFilename = [@"/" stringByAppendingString:[[AudioEditorViewController getUniqueFilenameWithoutExt] stringByAppendingString:@".mov"]];
+    NSLog(@"exportFilename : %@",exportFilename);
     __block NSError *error = nil;
     
     AVAssetWriter *videoWriter = [[AVAssetWriter alloc] initWithURL:
@@ -305,14 +307,14 @@
 
     
     //NOW I EXPORT, FINALLYZZZZ
-    __block BOOL ready = NO;
+//    __block BOOL ready = NO;
     NSArray *compatiblePresets = [AVAssetExportSession exportPresetsCompatibleWithAsset:composition];
     if ([compatiblePresets containsObject:AVAssetExportPresetLowQuality]) {
         AVAssetExportSession *exportSession = [[AVAssetExportSession alloc]
-                                               initWithAsset:composition presetName:AVAssetExportPresetLowQuality];
+                                               initWithAsset:composition presetName:AVAssetExportPresetHighestQuality];
         
         
-        exportSession.outputURL = [NSURL fileURLWithPath:[[ShowDAO getUserDocumentDir] stringByAppendingString:exportFilename]];
+        exportSession.outputURL = [NSURL fileURLWithPath:[[ShowDAO getUserDocumentDir] stringByAppendingString:self.exportFilename]];
         exportSession.outputFileType = AVFileTypeQuickTimeMovie;
         
         CMTime start = CMTimeMakeWithSeconds(0, 1);
@@ -324,7 +326,7 @@
             switch ([exportSession status]) {
                 case AVAssetExportSessionStatusCompleted:
                     NSLog(@"Export Completed");
-                    ready = YES;
+                    [DSBezelActivityView removeViewAnimated:YES];
                     break;
                 case AVAssetExportSessionStatusFailed:
                     NSLog(@"Export failed: %@", [[exportSession error] localizedDescription]);
@@ -339,19 +341,27 @@
             
         }];
         
-        while(!ready){
-            //do nothing
-            NSLog(@"loading... : %f",exportSession.progress);
-            sleep(1);
-        }
+//        while(!ready){
+//            //do nothing
+//            NSLog(@"loading... : %f",exportSession.progress);
+//            sleep(1);
+//        }
         [exportSession release];
         
     }
 
-    //play the fucking player
-    NSURL *url = [NSURL fileURLWithPath:[[ShowDAO getUserDocumentDir] stringByAppendingString:exportFilename]];
-    [delegate playMovie:url];
+//    //play the fucking player
+//    NSURL *url = [NSURL fileURLWithPath:[[ShowDAO getUserDocumentDir] stringByAppendingString:self.exportFilename]];
+//    [delegate playMovie:url];
 
+}
+
+-(IBAction)pressManualButton
+{
+    
+//    NSLog(@"exportMANFilename : %@",self.exportFilename);
+    NSURL *url = [NSURL fileURLWithPath:[[ShowDAO getUserDocumentDir] stringByAppendingString:self.exportFilename]];
+    [delegate playMovie:url];
 }
 
 
