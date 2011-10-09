@@ -46,5 +46,6 @@
 - (void)playPauseButtonIsPressed;
 - (void)stopPlayer;
 - (BOOL)isRecording;
+- (NSArray*) getExportAudioURLs;
     
 @end

@@ -183,18 +183,30 @@
     return pxbuffer;
 }
 
-NSComparisonResult compare(id obj1, id obj2, void *context) {
-    if (obj1 < obj2)
+//NSComparisonResult compare(id obj1, id obj2, void *context) {
+//    if (obj1 < obj2)
+//        return NSOrderedAscending;
+//    else if (obj1 > obj2)
+//        return NSOrderedDescending;
+//    else 
+//        return NSOrderedSame;
+//}
+
+NSInteger intSort(id num1, id num2, void *context)
+{
+    int v1 = [num1 intValue];
+    int v2 = [num2 intValue];
+    if (v1 < v2)
         return NSOrderedAscending;
-    else if (obj1 > obj2)
+    else if (v1 > v2)
         return NSOrderedDescending;
-    else 
+    else
         return NSOrderedSame;
 }
 
 -(IBAction)generateVideo
 {
-    CGSize size = CGSizeMake(640, 640);
+    CGSize size = CGSizeMake(640, 480);
     NSError *error = nil;
     
     AVAssetWriter *videoWriter = [[AVAssetWriter alloc] initWithURL:
@@ -236,6 +248,11 @@ NSComparisonResult compare(id obj1, id obj2, void *context) {
 //        Picture *pic = [theScene.pictureDict objectForKey:object];
         
         NSArray *sortedTimingsArray = [theScene.pictureTimingDict keysSortedByValueUsingSelector:@selector(compare:)];
+        [sortedTimingsArray sortedArrayUsingFunction:intSort context:NULL];
+            NSLog(@"gggg %@",[sortedTimingsArray objectAtIndex:0]);
+             NSLog(@"gggg %@",[sortedTimingsArray objectAtIndex:1]);
+         NSLog(@"gggg %@",[sortedTimingsArray objectAtIndex:2]);
+         NSLog(@"gggg %@",[sortedTimingsArray objectAtIndex:3]);
         //remember to do the timings
         UIImage *img = (UIImage *)object;
         if (adaptor.assetWriterInput.readyForMoreMediaData && !retry) 
@@ -280,12 +297,13 @@ NSComparisonResult compare(id obj1, id obj2, void *context) {
     AVURLAsset* videoAsset = [[AVURLAsset alloc]initWithURL:[NSURL fileURLWithPath:[[ShowDAO getUserDocumentDir] stringByAppendingString:@"/test.m4v"]] options:nil];
     
     __block AVMutableCompositionTrack *compositionAudioTrack1 = NULL;
-    [theScene.audioTracks enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        Audio *audio = (Audio*)obj;
-        AVURLAsset* audioAsset1 = [[AVURLAsset alloc]initWithURL:[NSURL fileURLWithPath:[[ShowDAO getUserDocumentDir] stringByAppendingString:audio.path]] options:nil];
-        NSLog(@"is it this %@",[NSURL fileURLWithPath:[[ShowDAO getUserDocumentDir] stringByAppendingString:audio.path]]);
+    [[delegate getExportAudioURLs] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        NSURL *audioURL = (NSURL*)obj;
+        AVURLAsset* audioAsset1 = [[AVURLAsset alloc]initWithURL:audioURL options:nil];
+        NSLog(@"audioAsset : %@",[audioAsset1 URL]);
+//        NSLog(@"is it this %@",[NSURL fileURLWithPath:[[ShowDAO getUserDocumentDir] stringByAppendingString:audio.path]]);
         compositionAudioTrack1 = [composition addMutableTrackWithMediaType:AVMediaTypeAudio preferredTrackID:kCMPersistentTrackID_Invalid];
-        NSLog(@"how many times");
+//        NSLog(@"how many times");
         [compositionAudioTrack1 insertTimeRange:CMTimeRangeMake(kCMTimeZero,audioAsset1.duration) 
                                         ofTrack:[[audioAsset1 tracksWithMediaType:AVMediaTypeAudio]objectAtIndex:0] 
                                          atTime:kCMTimeZero
@@ -311,7 +329,7 @@ NSComparisonResult compare(id obj1, id obj2, void *context) {
         exportSession.outputFileType = AVFileTypeQuickTimeMovie;
         
         CMTime start = CMTimeMakeWithSeconds(0, 1);
-        CMTime duration = CMTimeMakeWithSeconds(25, 1);
+        CMTime duration = CMTimeMakeWithSeconds(1000, 1);
         CMTimeRange range = CMTimeRangeMake(start, duration);
         exportSession.timeRange = range;
         
@@ -337,7 +355,8 @@ NSComparisonResult compare(id obj1, id obj2, void *context) {
 //play the fucking player
 //    VideoPlayerViewController *videoPlayer = [[VideoPlayerViewController alloc] initWithVideoURL: [NSURL fileURLWithPath:[[ShowDAO getUserDocumentDir] stringByAppendingString:@"/test.m4v"]]];
     
-    NSURL *url = [NSURL fileURLWithPath:[[ShowDAO getUserDocumentDir] stringByAppendingString:@"/test.m4v"]];
+    NSURL *url = [NSURL fileURLWithPath:[[ShowDAO getUserDocumentDir] stringByAppendingString:@"/finally.mov"]];
+    NSLog(@"ASDASD : %@",url);
     MPMoviePlayerController *moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:url];
     
     // Register to receive a notification when the movie has finished playing.

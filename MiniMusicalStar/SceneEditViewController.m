@@ -76,6 +76,10 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveElapsedTimeNotification:) name:kMixPlayerRecorderPlaybackElapsedTimeAdvanced object:nil];
 }
 
+- (NSArray*) getExportAudioURLs{
+    return [audioView getExportAudioURLs];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];

@@ -25,6 +25,7 @@
 - (void)setSliderPosition: (int) seconds;
 - (void)stopPlayer;
 - (BOOL)isRecording;
+- (NSArray*) getExportAudioURLs;
 @end
 
 @interface PhotoEditorViewController : UIViewController <AFOpenFlowViewDelegate,AFOpenFlowViewDataSource, CameraPopupViewDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate> {
