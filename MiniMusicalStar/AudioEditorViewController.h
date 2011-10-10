@@ -90,6 +90,6 @@
 
 - (NSArray*)getExportAudioURLs;
 
-
+- (void)showPopoverSelectTrackLyrics:(id*)sender;
 
 @end
