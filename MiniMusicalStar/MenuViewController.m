@@ -154,29 +154,29 @@
 -(void)applyTransparencyToImageView:(UIImageView *)musicalButton
 {
     //the top part
-    CGRect topFrame;
-    topFrame.origin.x = 0;
-    topFrame.origin.y = 0;
-    topFrame.size.width = 280;
-    topFrame.size.height = 40;
-    
-    UILabel *topLabel = [[UILabel alloc] initWithFrame:topFrame];
-    topLabel.text = @"3 Covers";
-    topLabel.textColor = [UIColor whiteColor];
-    topLabel.backgroundColor = [UIColor darkGrayColor];
-    topLabel.textAlignment = UITextAlignmentCenter;
-    topLabel.tag = -1; //to indiciate it's the translucent view
-    
-    topLabel.layer.opacity = 0.8;
-    topLabel.hidden = YES;
-    
-    UIButton *listCoversButton = [[UIButton alloc] initWithFrame:topFrame];
-    [listCoversButton addTarget:self action:@selector(listCoversForMusical:) forControlEvents:UIControlEventTouchUpInside];
-    listCoversButton.enabled = NO;
-    
-    [musicalButton addSubview:listCoversButton];
-    [musicalButton addSubview:topLabel];
-    [listCoversButton release];
+//    CGRect topFrame;
+//    topFrame.origin.x = 0;
+//    topFrame.origin.y = 0;
+//    topFrame.size.width = 280;
+//    topFrame.size.height = 40;
+//    
+//    UILabel *topLabel = [[UILabel alloc] initWithFrame:topFrame];
+//    topLabel.text = @"3 Covers";
+//    topLabel.textColor = [UIColor whiteColor];
+//    topLabel.backgroundColor = [UIColor darkGrayColor];
+//    topLabel.textAlignment = UITextAlignmentCenter;
+//    topLabel.tag = -1; //to indiciate it's the translucent view
+//    
+//    topLabel.layer.opacity = 0.8;
+//    topLabel.hidden = YES;
+//    
+//    UIButton *listCoversButton = [[UIButton alloc] initWithFrame:topFrame];
+//    [listCoversButton addTarget:self action:@selector(listCoversForMusical:) forControlEvents:UIControlEventTouchUpInside];
+//    listCoversButton.enabled = NO;
+//    
+//    [musicalButton addSubview:listCoversButton];
+//    [musicalButton addSubview:topLabel];
+//    [listCoversButton release];
     
     //the bottom part
     CGRect bottomFrame;

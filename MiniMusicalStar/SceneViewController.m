@@ -104,18 +104,18 @@
     self.saveCoverButton.enabled = NO;
     self.saveCoverButton.hidden = YES;
     
-    UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithTitle:@"View Covers" style:UIBarButtonItemStylePlain target:self action:@selector(coversButtonPressed:)];          
-    self.navigationItem.rightBarButtonItem = anotherButton;
-    [anotherButton release];
+//    UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithTitle:@"View Covers" style:UIBarButtonItemStylePlain target:self action:@selector(coversButtonPressed:)];          
+//    self.navigationItem.rightBarButtonItem = anotherButton;
+//    [anotherButton release];
     
     //if there are any edits, reflect them here
     //if ([theCover showWasEdited])
-    if ([self.context hasChanges])
-    {
-        self.title = [theShow.title stringByAppendingString:@" (edited)"];
-        self.saveCoverButton.enabled = YES;
-        self.saveCoverButton.hidden = NO;
-    }
+//    if ([self.context hasChanges])
+//    {
+//        self.title = [theShow.title stringByAppendingString:@" (edited)"];
+//        self.saveCoverButton.enabled = YES;
+//        self.saveCoverButton.hidden = NO;
+//    }
 }
 
 - (IBAction)saveCoverButtonPressed:(UIButton *)sender
