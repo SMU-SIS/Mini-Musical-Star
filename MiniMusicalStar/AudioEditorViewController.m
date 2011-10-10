@@ -444,7 +444,9 @@
     [trackTableView reloadData];
     
     /* start recording once we determine it is a original track */
-    currentRecordingAudio = (Audio*)audioForRow;
+    
+    //added self. to ensure it is being memory managed by the synthesized accessors
+    self.currentRecordingAudio = (Audio*)audioForRow;
     
     NSFileManager *fileManager = [NSFileManager defaultManager];
     
