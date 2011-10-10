@@ -74,7 +74,7 @@
     [scrollView setShowsVerticalScrollIndicator:NO];
     [scrollView setPagingEnabled:NO]; 
     scrollView.clipsToBounds = NO;    
-    [scrollView setContentSize:CGSizeMake(scrollView.frame.size.width + (images.count+1)* 280, scrollView.frame.size.height)];
+    [scrollView setContentSize:CGSizeMake((images.count)* 280, scrollView.frame.size.height)];
 }
 
 - (void)viewDidUnload
