@@ -20,6 +20,7 @@
 @synthesize lyrics;
 @synthesize currentRecordingURL, currentRecordingAudio;
 @synthesize playPauseButton;
+@synthesize arrayOfReplaceableAudios;
 
 - (void)dealloc
 {
@@ -41,6 +42,8 @@
     
     [lyricsScrollView release];
     [lyricsLabel release];
+    
+    [arrayOfReplaceableAudios release];
     
     [super dealloc];
 }
@@ -73,8 +76,9 @@
         
         [self performSelector:@selector(consolidateOriginalAndCoverTracks)];
         
-        Audio *firstAudio = (Audio*)[tracksForView objectAtIndex:0];
-        lyrics = firstAudio.lyrics;
+        [self consolidateReplaceableAudios];
+        
+        lyrics = [self findFirstReplaceableTrackAndSetLyrics];
         
         [self drawLyricsView];
     }
@@ -82,18 +86,7 @@
     return self;
 }
 
-- (void)consolidateOriginalAndCoverTracks
-{  
-    self.tracksForView = [NSMutableArray arrayWithCapacity:theAudioObjects.count + theCoverScene.Audio.count];
-    
-    [theAudioObjects enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        [self.tracksForView addObject:obj];
-    }];
-    
-    [theCoverScene.Audio enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
-        [self.tracksForView addObject:obj];
-    }];
-}
+
 
 - (void)viewDidLoad
 {
@@ -110,8 +103,8 @@
     trackTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 100, 500, 300) style:UITableViewStylePlain];
     
     trackTableView.delegate = self;
+    trackTableView.tag = 0;
 	trackTableView.dataSource = self;
-    
     trackTableView.bounces = NO;
     trackTableView.backgroundColor = [UIColor blackColor];
     
@@ -145,7 +138,19 @@
 	return YES;
 }
 
+#pragma mark - UIPopoverController delegate methods
+
+- (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
+{
+
+}
+
 #pragma mark - UITableView delegate methods
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+}
 
 // We will only have 1 section, so don't change the value here.
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -155,7 +160,12 @@
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+{   
+    if (tableView.tag == 1)
+    {
+        return [arrayOfReplaceableAudios count];
+    }    
+    
     return theAudioObjects.count + theCoverScene.Audio.count;
 }
 
@@ -165,6 +175,24 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    //this part has to be refractored
+    if (tableView.tag == 1)
+    {
+        static NSString *CellIdentifierTracksLyrics = @"CellCell";
+        
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifierTracksLyrics];
+
+        if (cell == nil)
+        {
+            cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifierTracksLyrics] autorelease];
+
+            Audio *anAudio = (Audio*) [arrayOfReplaceableAudios objectAtIndex:[indexPath row]];
+            cell.textLabel.text = anAudio.title;            
+        }
+        
+        return cell;
+    }
+    
     static NSString *CellIdentifier = @"Cell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -304,10 +332,14 @@
     return cell;
 }
 
-
 //This method is for you to set the height of the table view.
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (tableView.tag == 1)
+    {
+        return 32; //default when in landscape
+    }
+    
     return TRACK_CELL_HEIGHT;
 }
 
@@ -444,7 +476,7 @@
     //check to make sure it is not an Audio
     if ([audioForRow isKindOfClass:[Audio class]])
     {
-        NSLog(@"Jialat liao, you trying to remove an orignal track. You think you director ah!");
+        //NSLog(@"Jialat liao, you trying to remove an orignal track. You think you director ah!");
     }
     
     CoverSceneAudio *audioToBeRemoved = (CoverSceneAudio*)audioForRow;
@@ -456,7 +488,7 @@
     //remove audio object from cover scene
     if (![fileManager removeItemAtURL:urlOfAudioToBeRemoved error:&error])
     {
-        NSLog(@"I tried to delete the audio file but failed: %@", error);
+        //NSLog(@"I tried to delete the audio file but failed: %@", error);
     }
     
     [self.theCoverScene removeAudioObject:audioToBeRemoved];    //remove audio object from coverscene object
@@ -603,47 +635,51 @@
     [lyricsScrollView setContentSize:CGSizeMake(lyricsLabel.frame.size.width, lyricsLabelFrame.size.height)]; //set content size of scroll view using calculated size of the text on the label
     
     lyricsLabel.text = lyrics;
+
+    //UIToolbar *lyricsViewToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, LYRICS_VIEW_HEIGHT-44, LYRICS_VIEW_WIDTH, 44)];
+    //[lyricsScrollView addSubview:lyricsViewToolbar];
     
     
-    UIToolbar *lyricsViewToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, LYRICS_VIEW_HEIGHT-44, LYRICS_VIEW_WIDTH, 44)];
-    [lyricsScrollView addSubview:lyricsViewToolbar];
     
     
-    
-    
-    UIBarButtonItem *flexibleSpaceLeft = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];    //this is used to force the button to the right
-    
-    UIBarButtonItem *selectTracksLyricsBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Select Track" style:UIBarButtonItemStylePlain target:self action:@selector(showPopoverSelectTrackLyrics:)];
-    
-    NSArray *barButtonItemsArray = [NSArray arrayWithObjects:flexibleSpaceLeft, selectTracksLyricsBarButtonItem, nil];
-    
-    [lyricsViewToolbar setItems:barButtonItemsArray animated:NO];
-    
-    [selectTracksLyricsBarButtonItem release];
-    [flexibleSpaceLeft release];
-       
-    
+//    UIBarButtonItem *flexibleSpaceLeft = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];    //this is used to force the button to the right
+//    
+//    UIBarButtonItem *selectTracksLyricsBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Select Track" style:UIBarButtonItemStylePlain target:self action:@selector(showPopoverSelectTrackLyrics:)];
+//    
+//    NSArray *barButtonItemsArray = [NSArray arrayWithObjects:flexibleSpaceLeft, selectTracksLyricsBarButtonItem, nil];
+//    
+//    [lyricsViewToolbar setItems:barButtonItemsArray animated:NO];
+//    
+//    [selectTracksLyricsBarButtonItem release];
+//    [flexibleSpaceLeft release];
+//       
+//    
     [lyricsScrollView addSubview:lyricsLabel];
     [self.view addSubview:lyricsScrollView];
     
-    [lyricsScrollView bringSubviewToFront:lyricsViewToolbar];
+    //[lyricsScrollView bringSubviewToFront:lyricsViewToolbar];
 
 }
 
-- (void)showPopoverSelectTrackLyrics:(id*)sender
-{
-    UITableViewController *trackLyricsTableViewController = [[UITableViewController alloc] initWithStyle:UITableViewStylePlain];
-    UITableView *trackLyricsTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 100, 800)];
-    trackLyricsTableViewController.tableView = trackLyricsTableView;
-    
-    UIPopoverController *popoverSelectTrackLyrics = [[UIPopoverController alloc] initWithContentViewController:trackLyricsTableViewController];
-    
-    trackLyricsTableView.dataSource = theAudioObjects;
-    
-    [popoverSelectTrackLyrics presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionDown animated:YES];
-    
-    
-}
+//- (void)showPopoverSelectTrackLyrics:(id*)sender
+//{
+//    UITableViewController *trackLyricsTableViewController = [[UITableViewController alloc] initWithStyle:UITableViewStylePlain];
+//    
+//    UITableView *trackLyricsTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 100, 800)];
+//    trackLyricsTableViewController.tableView = trackLyricsTableView;
+//    
+//    trackLyricsTableView.tag = 1;
+//    trackLyricsTableView.delegate = self;
+//    trackLyricsTableView.dataSource = self;
+//    
+//    UIPopoverController *popoverSelectTrackLyrics = [[UIPopoverController alloc] initWithContentViewController:trackLyricsTableViewController];
+//    
+//    [popoverSelectTrackLyrics presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionDown animated:YES];
+//    
+//    
+//
+//    
+//}
 
 - (UIScrollView*)createLyricsScrollView {
     lyricsScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(LYRICS_VIEW_X, LYRICS_VIEW_Y, LYRICS_VIEW_WIDTH, LYRICS_VIEW_HEIGHT)]; 
@@ -653,7 +689,7 @@
     lyricsScrollView.showsHorizontalScrollIndicator = NO;
     lyricsScrollView.showsVerticalScrollIndicator = YES;
     lyricsScrollView.bounces = NO;
-    [lyricsScrollView setBackgroundColor:[UIColor whiteColor]];
+    [lyricsScrollView setBackgroundColor:[UIColor blackColor]];
     
     return lyricsScrollView;
 }
@@ -712,6 +748,57 @@
     NSArray *arrayOfAudioURLs = [[[NSArray alloc] initWithArray:mutableArrayOfAudioURLs] autorelease];
     
     return arrayOfAudioURLs;
+}
+
+- (void)consolidateOriginalAndCoverTracks
+{  
+    self.tracksForView = [NSMutableArray arrayWithCapacity:theAudioObjects.count + theCoverScene.Audio.count];
+    
+    [theAudioObjects enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        [self.tracksForView addObject:obj];
+    }];
+    
+    [theCoverScene.Audio enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
+        [self.tracksForView addObject:obj];
+    }];
+}
+
+//this method helps to consolidate all replaceable audios into an array
+- (void)consolidateReplaceableAudios
+{
+    self.arrayOfReplaceableAudios = [NSMutableArray arrayWithCapacity:1];
+    
+    [theAudioObjects enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        if ([obj isKindOfClass:[Audio class]])
+        {
+            Audio *anAudio = (Audio*)obj;
+            
+            if ([anAudio.replaceable intValue] == 1)
+            {
+                [self.arrayOfReplaceableAudios addObject:anAudio];
+            }
+        }
+    }];
+}
+
+//this is a temporary method
+- (NSString*)findFirstReplaceableTrackAndSetLyrics
+{
+    __block NSString *theLyrics;
+    
+    [theAudioObjects enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        if ([obj isKindOfClass:[Audio class]])
+        {
+            Audio *anAudio = (Audio*)obj;
+            
+            if ([anAudio.replaceable intValue] == 1)
+            {
+                 theLyrics = anAudio.lyrics;
+            }
+        }
+    }];
+    
+    return theLyrics;
 }
 
 #pragma mark - class methods

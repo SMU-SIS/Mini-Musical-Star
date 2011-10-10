@@ -39,6 +39,8 @@
     NSString *lyrics;
     NSURL *currentRecordingURL;
     Audio *currentRecordingAudio;
+    
+    NSMutableArray *arrayOfReplaceableAudios;
 }
 
 @property (nonatomic, retain) UITableView *trackTableView;
@@ -66,6 +68,8 @@
 
 @property (nonatomic, retain) UIButton *playPauseButton;
 
+@property (nonatomic, retain) NSMutableArray *arrayOfReplaceableAudios;
+
 - (id)initWithScene:(Scene *)theScene andCoverScene:(CoverScene *)aCoverScene andContext:(NSManagedObjectContext *)aContext andPlayPauseButton:(UIButton*)aPlayPauseButton;
 
 - (void)playButtonIsPressed;
@@ -91,5 +95,10 @@
 - (NSArray*)getExportAudioURLs;
 
 - (void)showPopoverSelectTrackLyrics:(id*)sender;
+
+- (void)consolidateOriginalAndCoverTracks;
+- (void)consolidateReplaceableAudios;
+
+- (NSString*)findFirstReplaceableTrackAndSetLyrics;
 
 @end
