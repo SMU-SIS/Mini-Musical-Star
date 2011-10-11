@@ -12,6 +12,7 @@
 @implementation Cover
 @dynamic author;
 @dynamic cover_of_showID;
+@dynamic originalHash;
 @dynamic created_date;
 @dynamic title;
 @dynamic Scenes;

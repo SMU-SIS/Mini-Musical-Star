@@ -9,10 +9,13 @@
 #import <UIKit/UIKit.h>
 
 @class Show;
+@class Cover;
 
 @interface NewOpenViewController : UIViewController
 
 @property (retain, nonatomic) Show *theShow;
 @property (retain, nonatomic) NSManagedObjectContext *context;
+@property (retain, nonatomic) NSFetchedResultsController *frc;
 
+- (void)loadShowWithCover:(Cover *)aCover;
 @end

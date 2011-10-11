@@ -9,9 +9,11 @@
 #import "NewOpenViewController.h"
 
 #import "Show.h"
+#import "Cover.h"
+#import "SceneViewController.h"
 
 @implementation NewOpenViewController
-@synthesize theShow, context;
+@synthesize theShow, context, frc;
 
 -(void)dealloc
 {
@@ -58,6 +60,49 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+}
+
+- (IBAction)createNewMusicalButtonPressed:(UIButton *)sender
+{
+    Cover *newCover = [NSEntityDescription insertNewObjectForEntityForName:@"Cover" inManagedObjectContext:self.context];
+    newCover.cover_of_showID = [NSNumber numberWithInt:theShow.showID];
+    
+    [self loadShowWithCover:newCover];
+
+}
+
+- (void)loadShowWithCover:(Cover *)aCover
+{
+    //instantiate the next view controller
+    SceneViewController *sceneView = [[SceneViewController alloc] initWithScenesFromShow:self.theShow andCover:aCover andContext:self.context];
+    
+    [self.navigationController pushViewController:sceneView animated:YES];
+    [sceneView release];
+}
+
+- (void)loadCoversForShow:(Show *)aShow
+{
+    NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"Cover" inManagedObjectContext:self.context];
+    NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
+    [request setEntity:entityDescription];
+    
+    [request setFetchBatchSize:20];
+    
+    //predicate...
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"cover_of_showID == %i", aShow.showID];
+    [request setPredicate:predicate];
+    
+    //sort descriptor...
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"title" ascending:NO];
+    NSArray *descriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
+    [request setSortDescriptors:descriptors];
+    
+    
+    NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:self.context sectionNameKeyPath:nil cacheName:@"Root"];
+    fetchedResultsController.delegate = self;
+    
+    self.frc = fetchedResultsController;
+    [fetchedResultsController release], fetchedResultsController = nil;
 }
 
 - (void)viewDidUnload

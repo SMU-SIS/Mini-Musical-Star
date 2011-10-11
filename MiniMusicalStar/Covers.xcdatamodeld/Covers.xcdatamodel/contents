@@ -4,6 +4,7 @@
         <attribute name="author" optional="YES" attributeType="String"/>
         <attribute name="cover_of_showID" optional="YES" attributeType="Integer 16" defaultValueString="0"/>
         <attribute name="created_date" optional="YES" attributeType="Date"/>
+        <attribute name="originalhash" optional="YES" attributeType="String"/>
         <attribute name="title" optional="YES" attributeType="String"/>
         <relationship name="Scenes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CoverScene" inverseName="Cover" inverseEntity="CoverScene"/>
     </entity>
@@ -26,7 +27,7 @@
         <relationship name="CoverScene" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="CoverScene" inverseName="Picture" inverseEntity="CoverScene"/>
     </entity>
     <elements>
-        <element name="Cover" positionX="-0" positionY="258" width="128" height="120"/>
+        <element name="Cover" positionX="-0" positionY="258" width="128" height="135"/>
         <element name="CoverScene" positionX="-38" positionY="72" width="128" height="90"/>
         <element name="CoverSceneAudio" positionX="342" positionY="18" width="128" height="90"/>
         <element name="CoverScenePicture" positionX="331" positionY="135" width="128" height="105"/>
