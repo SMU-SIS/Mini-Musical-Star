@@ -7,6 +7,7 @@
 //
 
 #import "MenuViewController.h"
+#import "NewOpenViewController.h"
 
 @implementation MenuViewController
 @synthesize shows, fetchedResultsController, managedObjectContext, currentSelectedMusical, currentSelectedCoversList;
@@ -86,19 +87,15 @@
 
 
 //Button action for creating new musical
-- (IBAction)createMusical: (UIButton*)sender {
+- (IBAction)musicalButtonWasPressed: (UIButton*)sender 
+{
     
-    Cover *newCover = [NSEntityDescription insertNewObjectForEntityForName:@"Cover" inManagedObjectContext:managedObjectContext];
-    newCover.cover_of_showID = [NSNumber numberWithInt:[[shows objectAtIndex:currentSelectedMusical.tag] showID]];
+    Show *selectedShow = [shows objectAtIndex:sender.tag];
+    NewOpenViewController *newOpen = [[NewOpenViewController alloc] initWithShow:selectedShow context:self.managedObjectContext];
     
-    SceneViewController *sceneView = [[SceneViewController alloc] initWithScenesFromShow:[shows objectAtIndex:currentSelectedMusical.tag] andCover:newCover andContext:managedObjectContext];
-    
-    
-    sceneView.title = [[shows objectAtIndex:currentSelectedMusical.tag] title];
-    
-    [self.navigationController pushViewController:sceneView animated:YES];
+    [self.navigationController pushViewController:newOpen animated:YES];
         
-    [sceneView release];
+    [selectedShow release];
 }
 
 -(Show *)returnCurrentSelectedShow:(id) sender
@@ -140,9 +137,7 @@
         
         [imageView setImage:[images objectAtIndex:i] forState:UIControlStateNormal];
         imageView.tag = i;
-        [imageView addTarget:self action:@selector(showTranslucentViewsForMusicalButton:) forControlEvents:UIControlEventTouchUpInside];
-        
-        [self performSelector:@selector(applyTransparencyToImageView:) withObject:imageView];
+        [imageView addTarget:self action:@selector(musicalButtonWasPressed:) forControlEvents:UIControlEventTouchUpInside];
         
         [buttonArray addObject: imageView];
         [musicalButtonView addSubview: imageView];
@@ -151,161 +146,10 @@
     }
 }
 
--(void)applyTransparencyToImageView:(UIImageView *)musicalButton
-{
-    //the top part
-//    CGRect topFrame;
-//    topFrame.origin.x = 0;
-//    topFrame.origin.y = 0;
-//    topFrame.size.width = 280;
-//    topFrame.size.height = 40;
-//    
-//    UILabel *topLabel = [[UILabel alloc] initWithFrame:topFrame];
-//    topLabel.text = @"3 Covers";
-//    topLabel.textColor = [UIColor whiteColor];
-//    topLabel.backgroundColor = [UIColor darkGrayColor];
-//    topLabel.textAlignment = UITextAlignmentCenter;
-//    topLabel.tag = -1; //to indiciate it's the translucent view
-//    
-//    topLabel.layer.opacity = 0.8;
-//    topLabel.hidden = YES;
-//    
-//    UIButton *listCoversButton = [[UIButton alloc] initWithFrame:topFrame];
-//    [listCoversButton addTarget:self action:@selector(listCoversForMusical:) forControlEvents:UIControlEventTouchUpInside];
-//    listCoversButton.enabled = NO;
-//    
-//    [musicalButton addSubview:listCoversButton];
-//    [musicalButton addSubview:topLabel];
-//    [listCoversButton release];
-    
-    //the bottom part
-    CGRect bottomFrame;
-    bottomFrame.origin.x = 0;
-    bottomFrame.origin.y = musicalButton.frame.size.height - 40;
-    bottomFrame.size.width = 280;
-    bottomFrame.size.height = 40;
-    
-    UILabel *bottomLabel = [[UILabel alloc] initWithFrame:bottomFrame];
-    bottomLabel.text = @"Create new cover";
-    bottomLabel.textColor = [UIColor whiteColor];
-    bottomLabel.backgroundColor = [UIColor darkGrayColor];
-    bottomLabel.textAlignment = UITextAlignmentCenter;
-    bottomLabel.tag = -1; //to indiciate it's the translucent view
-    
-    UIButton *createMusicalButton = [[UIButton alloc] initWithFrame:bottomFrame];
-    [createMusicalButton addTarget:self action:@selector(createMusical:) forControlEvents:UIControlEventTouchUpInside];
-    createMusicalButton.enabled = NO;
-    
-    bottomLabel.layer.opacity = 0.8;
-    bottomLabel.hidden = YES;
-    
-    [musicalButton addSubview:bottomLabel];
-    [musicalButton addSubview:createMusicalButton];
-    [createMusicalButton release];
-    
-}
 
--(void)showTranslucentViewsForMusicalButton:(UIImageView *)musicalButton
-{
-    
-    
-    // First create a CATransition object to describe the transition
-	CATransition *transition = [CATransition animation];
-	// Animate over 1/4 of a second
-	transition.duration = 0.25;
-	// using the ease in/out timing function
-	transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    transition.type = kCATransitionFade;
 
-    
-    CATransition *theAnimation = [CATransition animation];
-    theAnimation.duration=1.0;
-    
-    //hide subviews of last selected button
-    if (self.currentSelectedMusical != nil)
-    {
-        [self.currentSelectedMusical.subviews enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-            UIView *subview = (UIView *)obj;
-            if ([subview isKindOfClass:[UIButton class]])
-            {
-                UIButton *theButton = (UIButton *)subview;
-                theButton.enabled = NO;
-            }
-            
-            if (subview.tag == -1)
-            {
-                [subview.layer addAnimation:transition forKey:nil];
-                subview.hidden = YES;
-            }
-            
-            
-        }];
-    }
-    
-    [musicalButton.subviews enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        UIView *subview = (UIView *)obj;
-        if ([subview isKindOfClass:[UIButton class]])
-        {
-            UIButton *theButton = (UIButton *)subview;
-            theButton.enabled = YES;
-        }
-        
-        if (subview.tag == -1)
-        {
-            [subview.layer addAnimation:transition forKey:nil];
-            subview.hidden = NO;
-        }
-    }];
-    
-    self.currentSelectedMusical = musicalButton;
-}
 
-- (void)listCoversForMusical:(id)sender
-{
-    UIView *parentView = self.currentSelectedMusical.superview;
-    
-    CGRect coversFrame;
-    coversFrame.origin.x = 0;
-    coversFrame.origin.y = 0;
-    coversFrame.size.width = 280;
-    coversFrame.size.height = parentView.frame.size.height;
-    
-    CoversListViewController *coversView = [[CoversListViewController alloc] initWithShow:[shows objectAtIndex:currentSelectedMusical.tag] context:self.managedObjectContext];
-    coversView.view.frame = coversFrame;
-    coversView.delegate = self;
-    
-    UINavigationController *coversListNavController = [[UINavigationController alloc] initWithRootViewController:coversView];
-    coversListNavController.view.frame = coversFrame;
-    self.currentSelectedCoversList = coversListNavController;
-    
-    [self.currentSelectedMusical removeFromSuperview];
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:1.0];
-    [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:parentView cache:YES];
-    [UIView setAnimationDuration:1.0];
-    CGAffineTransform transform = CGAffineTransformMakeScale(1.2, 1.2);
-    parentView.transform = transform;
-    [UIView commitAnimations];
-    
-    [parentView addSubview:coversListNavController.view];
-    
-}
 
-- (void)flipCoversBackToFront
-{
-    UIView *parentView = self.currentSelectedMusical.superview;
-    
-    [self.currentSelectedCoversList.view removeFromSuperview];
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:1.0];
-    [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:parentView cache:YES];
-    [UIView setAnimationDuration:1.0];
-    CGAffineTransform transform = CGAffineTransformMakeScale(1.2, 1.2);
-    parentView.transform = transform;
-    [UIView commitAnimations];
-    
-    [parentView addSubview:self.currentSelectedMusical];
-    self.currentSelectedCoversList = nil;
-}
+
 
 @end

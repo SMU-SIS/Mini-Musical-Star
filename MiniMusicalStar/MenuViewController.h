@@ -14,6 +14,8 @@
 #import "SceneViewController.h"
 #import "DSActivityView.h"
 
+@class NewOpenViewController;
+
 @interface MenuViewController : UIViewController <NSFetchedResultsControllerDelegate> {
     IBOutlet UIScrollView *scrollView; 
 
@@ -34,7 +36,7 @@
 
 - (void)daoDownloadQueueFinished;
 
--(IBAction)createMusical: (UIButton*)sender;
+-(IBAction)musicalButtonWasPressed: (UIButton*)sender;
 
 -(void)displayShowImages:(NSArray *)images;
 

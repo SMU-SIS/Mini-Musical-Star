@@ -175,6 +175,8 @@
 		95DAE881141481160039201D /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95DAE880141481160039201D /* MobileCoreServices.framework */; };
 		95DAE883141481210039201D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95DAE882141481210039201D /* Security.framework */; };
 		95DAE885141481310039201D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95DAE884141481300039201D /* SystemConfiguration.framework */; };
+		95F856C4144409400089C62D /* NewOpenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95F856C2144409400089C62D /* NewOpenViewController.m */; };
+		95F856C5144409400089C62D /* NewOpenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95F856C3144409400089C62D /* NewOpenViewController.xib */; };
 		95F9FFC21425C5DF00A18463 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95F9FFC11425C5DF00A18463 /* CoreData.framework */; };
 		95F9FFC51425C60400A18463 /* CameraPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95F9FFC41425C60400A18463 /* CameraPopupViewController.m */; };
 		95F9FFC71425C63700A18463 /* CameraPopupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95F9FFC61425C63700A18463 /* CameraPopupViewController.xib */; };
@@ -386,6 +388,9 @@
 		95DAE884141481300039201D /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		95DAE886141481400039201D /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		95DAE888141481470039201D /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		95F856C1144409400089C62D /* NewOpenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewOpenViewController.h; sourceTree = "<group>"; };
+		95F856C2144409400089C62D /* NewOpenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewOpenViewController.m; sourceTree = "<group>"; };
+		95F856C3144409400089C62D /* NewOpenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewOpenViewController.xib; sourceTree = "<group>"; };
 		95F9FFC11425C5DF00A18463 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		95F9FFC31425C60400A18463 /* CameraPopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraPopupViewController.h; sourceTree = "<group>"; };
 		95F9FFC41425C60400A18463 /* CameraPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraPopupViewController.m; sourceTree = "<group>"; };
@@ -850,6 +855,8 @@
 				95C526AC1438DA740008AE13 /* CoversListViewController.m */,
 				3A5F7C691440D74D00E9C570 /* VideoPlayerViewController.h */,
 				3A5F7C6A1440D74D00E9C570 /* VideoPlayerViewController.m */,
+				95F856C1144409400089C62D /* NewOpenViewController.h */,
+				95F856C2144409400089C62D /* NewOpenViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -868,6 +875,7 @@
 				9569E0611418A2C90016DAF3 /* SceneEditViewController.xib */,
 				95C526AD1438DA740008AE13 /* CoversListViewController.xib */,
 				3A5F7C6B1440D74D00E9C570 /* VideoPlayerViewController.xib */,
+				95F856C3144409400089C62D /* NewOpenViewController.xib */,
 			);
 			name = XIB;
 			sourceTree = "<group>";
@@ -1086,6 +1094,7 @@
 				641B32D91441E98100F4A93D /* trashbin.png in Resources */,
 				641B32DA1441E98100F4A93D /* unmuted.png in Resources */,
 				641B32DD1441E99500F4A93D /* muted.png in Resources */,
+				95F856C5144409400089C62D /* NewOpenViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1202,6 +1211,7 @@
 				95C526AE1438DA740008AE13 /* CoversListViewController.m in Sources */,
 				6410AF33143A00900062B04D /* CoversFilenameGenerator.m in Sources */,
 				3A5F7C6C1440D74E00E9C570 /* VideoPlayerViewController.m in Sources */,
+				95F856C4144409400089C62D /* NewOpenViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
