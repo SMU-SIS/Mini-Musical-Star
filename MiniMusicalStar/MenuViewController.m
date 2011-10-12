@@ -137,15 +137,13 @@
         
         [imageView setImage:[images objectAtIndex:i] forState:UIControlStateNormal];
         imageView.tag = i;
-<<<<<<< HEAD
         [imageView addTarget:self action:@selector(musicalButtonWasPressed:) forControlEvents:UIControlEventTouchUpInside];
-=======
         //[imageView addTarget:self action:@selector(showTranslucentViewsForMusicalButton:) forControlEvents:UIControlEventTouchUpInside];
         
         [imageView addTarget:self action:@selector(selectMusical:) forControlEvents:UIControlEventTouchUpInside];
         
         //[self performSelector:@selector(applyTransparencyToImageView:) withObject:imageView];
->>>>>>> Added ChoiceSelectionViewController
+
         
         [buttonArray addObject: imageView];
         [musicalButtonView addSubview: imageView];
@@ -154,22 +152,22 @@
     }
 }
 
-<<<<<<< HEAD
-=======
+
+
 //weijie test method
 -(void)selectMusical:(UIImageView *)musicalButton
 {
     self.currentSelectedMusical = musicalButton;
 
     
-    ChoiceSelectionViewController *choiceView = [[ChoiceSelectionViewController alloc] initWithAShowForSelection:[shows objectAtIndex:currentSelectedMusical.tag] context:self.managedObjectContext];
+    //ChoiceSelectionViewController *choiceView = [[ChoiceSelectionViewController alloc] initWithAShowForSelection:[shows objectAtIndex:currentSelectedMusical.tag] context:self.managedObjectContext];
     
     
-    choiceView.title = [[shows objectAtIndex:currentSelectedMusical.tag] title];
+    //choiceView.title = [[shows objectAtIndex:currentSelectedMusical.tag] title];
     
-    [self.navigationController pushViewController:choiceView animated:YES];
+    //[self.navigationController pushViewController:choiceView animated:YES];
     
-    [choiceView release];
+    //[choiceView release];
 }
 
 -(void)applyTransparencyToImageView:(UIImageView *)musicalButton
@@ -225,7 +223,6 @@
     [createMusicalButton release];
     
 }
->>>>>>> Added ChoiceSelectionViewController
 
 
 
