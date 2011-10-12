@@ -143,6 +143,8 @@
 		641B32DA1441E98100F4A93D /* unmuted.png in Resources */ = {isa = PBXBuildFile; fileRef = 641B32D81441E98100F4A93D /* unmuted.png */; };
 		641B32DD1441E99500F4A93D /* muted.png in Resources */ = {isa = PBXBuildFile; fileRef = 641B32DC1441E99500F4A93D /* muted.png */; };
 		643AC0ED142FF2AE00F65B85 /* AudioEditViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 643AC0EC142FF2AD00F65B85 /* AudioEditViewControllerTest.m */; };
+		737716CB1445D61500BF2036 /* ChoiceSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 737716C91445D61500BF2036 /* ChoiceSelectionViewController.m */; };
+		737716CC1445D61500BF2036 /* ChoiceSelectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 737716CA1445D61500BF2036 /* ChoiceSelectionViewController.xib */; };
 		820511BF13F3BB9B0016F87E /* SceneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 820511BD13F3BB9B0016F87E /* SceneViewController.m */; };
 		820511C013F3BB9B0016F87E /* SceneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 820511BE13F3BB9B0016F87E /* SceneViewController.xib */; };
 		820E2A1C140A0A1E00B80BBC /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 820E2A1B140A0A1E00B80BBC /* AudioToolbox.framework */; };
@@ -347,6 +349,9 @@
 		641B32DC1441E99500F4A93D /* muted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = muted.png; sourceTree = "<group>"; };
 		643AC0EB142FF2AD00F65B85 /* AudioEditViewControllerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioEditViewControllerTest.h; sourceTree = "<group>"; };
 		643AC0EC142FF2AD00F65B85 /* AudioEditViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioEditViewControllerTest.m; sourceTree = "<group>"; };
+		737716C81445D61500BF2036 /* ChoiceSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChoiceSelectionViewController.h; sourceTree = "<group>"; };
+		737716C91445D61500BF2036 /* ChoiceSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChoiceSelectionViewController.m; sourceTree = "<group>"; };
+		737716CA1445D61500BF2036 /* ChoiceSelectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChoiceSelectionViewController.xib; sourceTree = "<group>"; };
 		820511BC13F3BB9B0016F87E /* SceneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneViewController.h; sourceTree = "<group>"; };
 		820511BD13F3BB9B0016F87E /* SceneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SceneViewController.m; sourceTree = "<group>"; };
 		820511BE13F3BB9B0016F87E /* SceneViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SceneViewController.xib; sourceTree = "<group>"; };
@@ -839,6 +844,8 @@
 				ED885C2F140BC13100209530 /* XIB */,
 				EDA2A1D913F26F8400B64EA5 /* MenuViewController.h */,
 				EDA2A1DA13F26F8400B64EA5 /* MenuViewController.m */,
+				737716C81445D61500BF2036 /* ChoiceSelectionViewController.h */,
+				737716C91445D61500BF2036 /* ChoiceSelectionViewController.m */,
 				95F9FFC31425C60400A18463 /* CameraPopupViewController.h */,
 				95F9FFC41425C60400A18463 /* CameraPopupViewController.m */,
 				9569E0571418A2A80016DAF3 /* AudioEditorViewController.h */,
@@ -865,6 +872,7 @@
 			isa = PBXGroup;
 			children = (
 				95F9FFC61425C63700A18463 /* CameraPopupViewController.xib */,
+				737716CA1445D61500BF2036 /* ChoiceSelectionViewController.xib */,
 				EDA2A1D613F26F8400B64EA5 /* MainWindow.xib */,
 				EDA2A1DC13F26F8400B64EA5 /* MenuViewController.xib */,
 				EDC5CC3113F6260400EAF813 /* PlaybackViewController.xib */,
@@ -1095,6 +1103,7 @@
 				641B32DA1441E98100F4A93D /* unmuted.png in Resources */,
 				641B32DD1441E99500F4A93D /* muted.png in Resources */,
 				95F856C5144409400089C62D /* NewOpenViewController.xib in Resources */,
+				737716CC1445D61500BF2036 /* ChoiceSelectionViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1212,6 +1221,7 @@
 				6410AF33143A00900062B04D /* CoversFilenameGenerator.m in Sources */,
 				3A5F7C6C1440D74E00E9C570 /* VideoPlayerViewController.m in Sources */,
 				95F856C4144409400089C62D /* NewOpenViewController.m in Sources */,
+				737716CB1445D61500BF2036 /* ChoiceSelectionViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
