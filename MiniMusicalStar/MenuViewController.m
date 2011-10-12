@@ -137,7 +137,15 @@
         
         [imageView setImage:[images objectAtIndex:i] forState:UIControlStateNormal];
         imageView.tag = i;
+<<<<<<< HEAD
         [imageView addTarget:self action:@selector(musicalButtonWasPressed:) forControlEvents:UIControlEventTouchUpInside];
+=======
+        //[imageView addTarget:self action:@selector(showTranslucentViewsForMusicalButton:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [imageView addTarget:self action:@selector(selectMusical:) forControlEvents:UIControlEventTouchUpInside];
+        
+        //[self performSelector:@selector(applyTransparencyToImageView:) withObject:imageView];
+>>>>>>> Added ChoiceSelectionViewController
         
         [buttonArray addObject: imageView];
         [musicalButtonView addSubview: imageView];
@@ -146,6 +154,78 @@
     }
 }
 
+<<<<<<< HEAD
+=======
+//weijie test method
+-(void)selectMusical:(UIImageView *)musicalButton
+{
+    self.currentSelectedMusical = musicalButton;
+
+    
+    ChoiceSelectionViewController *choiceView = [[ChoiceSelectionViewController alloc] initWithAShowForSelection:[shows objectAtIndex:currentSelectedMusical.tag] context:self.managedObjectContext];
+    
+    
+    choiceView.title = [[shows objectAtIndex:currentSelectedMusical.tag] title];
+    
+    [self.navigationController pushViewController:choiceView animated:YES];
+    
+    [choiceView release];
+}
+
+-(void)applyTransparencyToImageView:(UIImageView *)musicalButton
+{
+    //the top part
+    CGRect topFrame;
+    topFrame.origin.x = 0;
+    topFrame.origin.y = 0;
+    topFrame.size.width = 280;
+    topFrame.size.height = 40;
+    
+    UILabel *topLabel = [[UILabel alloc] initWithFrame:topFrame];
+    topLabel.text = @"3 Covers";
+    topLabel.textColor = [UIColor whiteColor];
+    topLabel.backgroundColor = [UIColor darkGrayColor];
+    topLabel.textAlignment = UITextAlignmentCenter;
+    topLabel.tag = -1; //to indiciate it's the translucent view
+    
+    topLabel.layer.opacity = 0.8;
+    topLabel.hidden = YES;
+    
+    UIButton *listCoversButton = [[UIButton alloc] initWithFrame:topFrame];
+    [listCoversButton addTarget:self action:@selector(listCoversForMusical:) forControlEvents:UIControlEventTouchUpInside];
+    listCoversButton.enabled = NO;
+    
+    [musicalButton addSubview:listCoversButton];
+    [musicalButton addSubview:topLabel];
+    [listCoversButton release];
+    
+    //the bottom part
+    CGRect bottomFrame;
+    bottomFrame.origin.x = 0;
+    bottomFrame.origin.y = musicalButton.frame.size.height - 40;
+    bottomFrame.size.width = 280;
+    bottomFrame.size.height = 40;
+    
+    UILabel *bottomLabel = [[UILabel alloc] initWithFrame:bottomFrame];
+    bottomLabel.text = @"Create new cover";
+    bottomLabel.textColor = [UIColor whiteColor];
+    bottomLabel.backgroundColor = [UIColor darkGrayColor];
+    bottomLabel.textAlignment = UITextAlignmentCenter;
+    bottomLabel.tag = -1; //to indiciate it's the translucent view
+    
+    UIButton *createMusicalButton = [[UIButton alloc] initWithFrame:bottomFrame];
+    [createMusicalButton addTarget:self action:@selector(createMusical:) forControlEvents:UIControlEventTouchUpInside];
+    createMusicalButton.enabled = NO;
+    
+    bottomLabel.layer.opacity = 0.8;
+    bottomLabel.hidden = YES;
+    
+    [musicalButton addSubview:bottomLabel];
+    [musicalButton addSubview:createMusicalButton];
+    [createMusicalButton release];
+    
+}
+>>>>>>> Added ChoiceSelectionViewController
 
 
 

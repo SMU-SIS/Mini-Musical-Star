@@ -10,6 +10,7 @@
 #import "ShowDAO.h"
 #import "Show.h"
 #import "Cover.h"
+#import "ChoiceSelectionViewController.h"
 
 #import "SceneViewController.h"
 #import "DSActivityView.h"
