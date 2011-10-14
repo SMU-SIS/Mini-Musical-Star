@@ -192,45 +192,6 @@
 	return nil;
 }
 
--(void)displayShowImages:(NSArray *)images
-{
-    for (int i=0; i<images.count; i++) {
-        CGRect frame;
-        frame.origin.x = scrollView.frame.size.width/3 * i;
-        frame.origin.y = 0;
-        frame.size.width = 280;
-        frame.size.height = scrollView.frame.size.height;
-        
-        //add the placeholder view...
-        UIView *musicalButtonView = [[UIView alloc] initWithFrame:frame];
-        [scrollView addSubview:musicalButtonView];
-        
-        //add the musical image as a button...
-        CGRect buttonFrame;
-        buttonFrame.origin.x = 0;
-        buttonFrame.origin.y = 0;
-        buttonFrame.size.width = 280;
-        buttonFrame.size.height = frame.size.height;
-        
-        UIButton *imageView = [[UIButton alloc] initWithFrame:buttonFrame];
-        imageView.layer.cornerRadius = 10; // this value vary as per your desire
-        imageView.clipsToBounds = YES;
-        imageView.adjustsImageWhenHighlighted = NO;
-        
-        [imageView setImage:[images objectAtIndex:i] forState:UIControlStateNormal];
-        imageView.tag = i;
-        
-        [imageView addTarget:self action:@selector(selectMusical:) forControlEvents:UIControlEventTouchUpInside];
-        
-        [buttonArray addObject: imageView];
-        [musicalButtonView addSubview: imageView];
-        
-        [imageView release];
-    }
-}
-
-
-
 //weijie test method
 -(void)selectMusical:(UIImageView *)musicalButton
 {
@@ -246,64 +207,5 @@
     
     [choiceView release];
 }
-
--(void)applyTransparencyToImageView:(UIImageView *)musicalButton
-{
-    //the top part
-    CGRect topFrame;
-    topFrame.origin.x = 0;
-    topFrame.origin.y = 0;
-    topFrame.size.width = 280;
-    topFrame.size.height = 40;
-    
-    UILabel *topLabel = [[UILabel alloc] initWithFrame:topFrame];
-    topLabel.text = @"3 Covers";
-    topLabel.textColor = [UIColor whiteColor];
-    topLabel.backgroundColor = [UIColor darkGrayColor];
-    topLabel.textAlignment = UITextAlignmentCenter;
-    topLabel.tag = -1; //to indiciate it's the translucent view
-    
-    topLabel.layer.opacity = 0.8;
-    topLabel.hidden = YES;
-    
-    UIButton *listCoversButton = [[UIButton alloc] initWithFrame:topFrame];
-    [listCoversButton addTarget:self action:@selector(listCoversForMusical:) forControlEvents:UIControlEventTouchUpInside];
-    listCoversButton.enabled = NO;
-    
-    [musicalButton addSubview:listCoversButton];
-    [musicalButton addSubview:topLabel];
-    [listCoversButton release];
-    
-    //the bottom part
-    CGRect bottomFrame;
-    bottomFrame.origin.x = 0;
-    bottomFrame.origin.y = musicalButton.frame.size.height - 40;
-    bottomFrame.size.width = 280;
-    bottomFrame.size.height = 40;
-    
-    UILabel *bottomLabel = [[UILabel alloc] initWithFrame:bottomFrame];
-    bottomLabel.text = @"Create new cover";
-    bottomLabel.textColor = [UIColor whiteColor];
-    bottomLabel.backgroundColor = [UIColor darkGrayColor];
-    bottomLabel.textAlignment = UITextAlignmentCenter;
-    bottomLabel.tag = -1; //to indiciate it's the translucent view
-    
-    UIButton *createMusicalButton = [[UIButton alloc] initWithFrame:bottomFrame];
-    [createMusicalButton addTarget:self action:@selector(createMusical:) forControlEvents:UIControlEventTouchUpInside];
-    createMusicalButton.enabled = NO;
-    
-    bottomLabel.layer.opacity = 0.8;
-    bottomLabel.hidden = YES;
-    
-    [musicalButton addSubview:bottomLabel];
-    [musicalButton addSubview:createMusicalButton];
-    [createMusicalButton release];
-    
-}
-
-
-
-
-
 
 @end
