@@ -8,14 +8,15 @@
 
 #import "MenuViewController.h"
 #import "NewOpenViewController.h"
+#import "UndownloadedShow.h"
 
 @implementation MenuViewController
-@synthesize shows, fetchedResultsController, managedObjectContext, currentSelectedMusical, currentSelectedCoversList;
+@synthesize shows, fetchedResultsController, managedObjectContext, currentSelectedMusical, currentSelectedCoversList, scrollView;
 
 
 - (void)dealloc
 {
-    [shows release];
+    [scrollView release];
     [currentSelectedCoversList release];
     [currentSelectedMusical release];
     [super dealloc];
@@ -44,8 +45,101 @@
     
     //load the shows on the local disk
     [ShowDAO loadShowsWithDelegate:self];
+    self.shows = [ShowDAO shows];
     
-    [DSBezelActivityView newActivityViewForView:self.view withLabel:@"Downloading Shows..."];
+    [self createScrollViewOfShows];
+    //[DSBezelActivityView newActivityViewForView:self.view withLabel:@"Downloading Shows..."];
+ 
+    //NSArray *images = [ShowDAO imagesForShows];
+    //display the show images.
+    //[self displayShowImages:images];
+
+}
+
+- (void)createScrollViewOfShows
+{
+    //let's start by setting the scrollview attributes
+    scrollView.scrollEnabled = YES;
+    scrollView.showsHorizontalScrollIndicator = NO;
+    scrollView.showsVerticalScrollIndicator = NO;
+    scrollView.pagingEnabled = NO;
+    scrollView.clipsToBounds = NO;    
+    [scrollView setContentSize:CGSizeMake(self.shows.count * 280, scrollView.frame.size.height)];
+    
+    //self.shows contains both downloaded and undownloaded shows, make sure to differentiate
+    [self.shows enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        
+        CGRect frame;
+        frame.origin.x = scrollView.frame.size.width/3 * idx;
+        frame.origin.y = 0;
+        frame.size.width = 280;
+        frame.size.height = scrollView.frame.size.height;
+        
+        //add the placeholder view...
+        UIView *musicalButtonView = [[UIView alloc] initWithFrame:frame];
+        [scrollView addSubview:musicalButtonView];
+        
+        //add the cover image as a button...
+        CGRect buttonFrame;
+        buttonFrame.origin.x = 0;
+        buttonFrame.origin.y = 0;
+        buttonFrame.size.width = 280;
+        buttonFrame.size.height = frame.size.height;
+        
+        UIButton *showButton;
+        
+        //now we check if it's downloaded or undownloaded
+        if ([obj isKindOfClass:[Show class]])
+        {
+            showButton = [self createButtonForShow:(Show *)obj frame:buttonFrame];
+        }
+        
+        else if ([obj isKindOfClass:[UndownloadedShow class]])
+        {
+            showButton = [self createButtonForUndownloadedShow:(UndownloadedShow *)obj frame:buttonFrame];
+        }
+        
+        showButton.tag = idx;
+        [buttonArray addObject: showButton];
+        [musicalButtonView addSubview: showButton];
+    }];
+    
+    
+}
+
+- (UIButton *)createButtonForShow:(Show *)aShow frame:(CGRect)buttonFrame
+{
+    UIButton *showButton = [[UIButton alloc] initWithFrame:buttonFrame];
+    showButton.layer.cornerRadius = 10; // this value vary as per your desire
+    showButton.clipsToBounds = YES;
+    showButton.adjustsImageWhenHighlighted = NO;
+    
+    [showButton setImage:aShow.coverPicture forState:UIControlStateNormal];
+    [showButton addTarget:self action:@selector(selectMusical:) forControlEvents:UIControlEventTouchUpInside];
+    
+    return [showButton autorelease];
+    
+}
+
+- (UIButton *)createButtonForUndownloadedShow:(UndownloadedShow *)aShow frame:(CGRect)buttonFrame
+{
+    UIButton *showButton = [[UIButton alloc] initWithFrame:buttonFrame];
+    showButton.layer.cornerRadius = 10; // this value vary as per your desire
+    showButton.clipsToBounds = YES;
+    showButton.adjustsImageWhenHighlighted = NO;
+    
+    [showButton.layer setOpacity:0.6]; //make the undownloaded musical lighter
+    
+    [showButton setImage:aShow.coverImage forState:UIControlStateNormal];
+    [showButton addTarget:self action:@selector(downloadMusical:) forControlEvents:UIControlEventTouchUpInside];
+    
+    return [showButton autorelease];
+    
+}
+
+- (void)downloadMusical:(UIButton *)sender
+{
+    NSLog(@"Yes! download musical button pressed, with tag %i", sender.tag);
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -59,23 +153,11 @@
 
 - (void)daoDownloadQueueFinished
 {
-    self.shows = [ShowDAO shows];
-    [DSBezelActivityView removeViewAnimated:YES];
     
-    //continue setting up the scrollview
+    //self.showsNotDownloaded = [ShowDAO showsNotDownloaded];
+    //[DSBezelActivityView removeViewAnimated:YES];
     
-    //return the array of show images; reason being, i need to get the scrollview content size based on the image count.
-    NSArray *images = [ShowDAO imagesForShows];
-    //display the show images.
-    [self displayShowImages:images];
-    
-    //setting the scrollview attributes
-    [scrollView setScrollEnabled:YES];
-    [scrollView setShowsHorizontalScrollIndicator:NO];
-    [scrollView setShowsVerticalScrollIndicator:NO];
-    [scrollView setPagingEnabled:NO]; 
-    scrollView.clipsToBounds = NO;    
-    [scrollView setContentSize:CGSizeMake((images.count)* 280, scrollView.frame.size.height)];
+
 }
 
 - (void)viewDidUnload
@@ -137,13 +219,8 @@
         
         [imageView setImage:[images objectAtIndex:i] forState:UIControlStateNormal];
         imageView.tag = i;
-        //[imageView addTarget:self action:@selector(musicalButtonWasPressed:) forControlEvents:UIControlEventTouchUpInside];
-        //[imageView addTarget:self action:@selector(showTranslucentViewsForMusicalButton:) forControlEvents:UIControlEventTouchUpInside];
         
         [imageView addTarget:self action:@selector(selectMusical:) forControlEvents:UIControlEventTouchUpInside];
-        
-        //[self performSelector:@selector(applyTransparencyToImageView:) withObject:imageView];
-
         
         [buttonArray addObject: imageView];
         [musicalButtonView addSubview: imageView];

@@ -17,7 +17,8 @@
 + (void)loadShowsWithDelegate:(id)aDelegate;
 + (void)loadLocalShows;
 + (void)loadSingleShowFromDirectoryURL:(NSURL *)showDirectoryURL;
-+ (NSArray *)shows;
++ (NSMutableArray *)shows;
++ (NSMutableArray *)showsNotDownloaded;
 + (NSArray *)imagesForShows;
 + (void)checkForNewShowsFromServer;
 + (BOOL)checkIfExistsLocally:(int)showID;

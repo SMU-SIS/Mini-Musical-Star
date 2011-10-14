@@ -16,6 +16,7 @@
 #import "DSActivityView.h"
 
 @class NewOpenViewController;
+@class UndownloadedShow;
 
 @interface MenuViewController : UIViewController <NSFetchedResultsControllerDelegate> {
     IBOutlet UIScrollView *scrollView; 
@@ -29,14 +30,17 @@
     UIViewController *currentSelectedCoversList;
 }
 
-@property (retain, nonatomic) NSArray *shows;
+@property (assign, nonatomic) NSArray *shows;
 @property (retain, nonatomic) UIView *currentSelectedMusical;
 @property (retain, nonatomic) UIViewController *currentSelectedCoversList;
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
+@property (retain, nonatomic) IBOutlet UIScrollView *scrollView;
 
 - (void)daoDownloadQueueFinished;
-
+- (void)createScrollViewOfShows;
+- (UIButton *)createButtonForShow:(Show *)aShow frame:(CGRect)buttonFrame;
+- (UIButton *)createButtonForUndownloadedShow:(UndownloadedShow *)aShow frame:(CGRect)buttonFrame;
 -(IBAction)musicalButtonWasPressed: (UIButton*)sender;
 
 -(void)displayShowImages:(NSArray *)images;

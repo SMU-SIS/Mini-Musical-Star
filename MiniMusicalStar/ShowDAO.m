@@ -7,11 +7,13 @@
 //
 
 #import "ShowDAO.h"
+#import "UndownloadedShow.h"
 
 @implementation ShowDAO
 
 static ASINetworkQueue *downloadQueue;
 static NSMutableArray *loadedShows;
+static NSMutableArray *showsNotDownloaded;
 static NSString *userDocumentDirectory;
 static bool initialized = NO;
 static id delegate;
@@ -48,6 +50,7 @@ static id delegate;
     NSArray *showsDirectoryListing = [manager contentsOfDirectoryAtURL:[NSURL fileURLWithPath:showsDirectory] includingPropertiesForKeys:[NSArray arrayWithObject:NSURLIsDirectoryKey] options:NSDirectoryEnumerationSkipsHiddenFiles error:&error];
     
     loadedShows = [[NSMutableArray alloc] initWithCapacity:showsDirectoryListing.count]; 
+    showsNotDownloaded = [[NSMutableArray alloc] init];
     
     //read the showMetaData.plist file for every Show
     [showsDirectoryListing enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
@@ -70,11 +73,16 @@ static id delegate;
     [show release];
 }
 
-+ (NSArray *)shows
++ (NSMutableArray *)shows
 {
     if (!initialized) [self loadLocalShows];
     
     return loadedShows;
+}
+
++ (NSMutableArray *)showsNotDownloaded
+{
+    return showsNotDownloaded;
 }
 
 + (NSArray *)imagesForShows
@@ -111,22 +119,35 @@ static id delegate;
         NSString *showTitleZip = [[showInCatalogue objectForKey:@"title"] stringByAppendingPathExtension:@"zip"];
         if (![self checkIfExistsLocally:showID])
         {
-            NSURL *showDownloadLocation = [NSURL URLWithString:[showInCatalogue objectForKey:@"zip_url"]];
-            NSString *downloadPath = [[userDocumentDirectory stringByAppendingPathComponent:@"shows"] stringByAppendingPathComponent:showTitleZip];
-            [self initiateDownloadOfShowFromServer:showDownloadLocation andStoreInPath:downloadPath];
+            //don't download now, just give the user an option to download
+            UndownloadedShow *undownloadedShow = [[UndownloadedShow alloc] init];
+            
+            undownloadedShow.showID = showID;
+            undownloadedShow.title = [showInCatalogue objectForKey:@"title"];
+            undownloadedShow.downloadURL = [NSURL URLWithString:[showInCatalogue objectForKey:@"zip_url"]];
+            
+            NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[showInCatalogue objectForKey:@"cover-photo-url"]]];
+            
+            undownloadedShow.coverImage = [UIImage imageWithData:imageData];
+            
+            [loadedShows addObject:undownloadedShow];
+            
+            //NSString *downloadPath = [[userDocumentDirectory stringByAppendingPathComponent:@"shows"] stringByAppendingPathComponent:showTitleZip];
+ 
+            //[self initiateDownloadOfShowFromServer:showDownloadLocation andStoreInPath:downloadPath];
         }
     }];
     
-    if (downloadQueue.requestsCount > 0)
-    {
-        [downloadQueue go];
-    }
-    
-    else
-    {
-        [downloadQueue release];
-        [delegate performSelectorOnMainThread:@selector(daoDownloadQueueFinished) withObject:nil waitUntilDone:NO];
-    }
+//    if (downloadQueue.requestsCount > 0)
+//    {
+//        [downloadQueue go];
+//    }
+//    
+//    else
+//    {
+//        [downloadQueue release];
+//        [delegate performSelectorOnMainThread:@selector(daoDownloadQueueFinished) withObject:nil waitUntilDone:NO];
+//    }
 }
 
 + (void)initiateDownloadOfShowFromServer:(NSURL *)zipFileURL andStoreInPath:(NSString *)localShowPath
