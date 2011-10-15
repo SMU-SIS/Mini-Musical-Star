@@ -17,22 +17,6 @@
 @dynamic title;
 @dynamic Scenes;
 
-- (BOOL)showWasEdited
-{
-    //iterate through all cover scenes
-    __block BOOL hasEdits = NO;
-    [self.Scenes enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
-        CoverScene *coverScene = (CoverScene *)obj;
-        if ([coverScene sceneHasEdits])
-        {
-            hasEdits = YES;
-            *stop = YES;
-        }
-    }];
-    
-    return hasEdits;
-}
-
 - (void)purgeRelatedFiles
 {
     [self.Scenes enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {

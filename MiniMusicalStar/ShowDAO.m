@@ -30,6 +30,7 @@
     {
         self.delegate = aDelegate;
         
+        [self seedTutorialMusical];
         [self loadLocalShows];
         [self checkForNewShowsFromServer];
         
@@ -45,6 +46,25 @@
     return path;
 }
 
+- (void)seedTutorialMusical
+{
+    NSError *error;
+    NSFileManager *manager = [NSFileManager defaultManager];
+
+    NSString *showsDirectory = [[ShowDAO userDocumentDirectory] stringByAppendingString:@"/shows"];
+    
+    //create the shows directory (if it's not already there)
+    [manager createDirectoryAtPath:showsDirectory withIntermediateDirectories:NO attributes:nil error:&error];
+    
+    BOOL isDirectory = YES;
+    if (![manager fileExistsAtPath:@"Howling Dog" isDirectory:&isDirectory])
+    {
+        //then seed the tutorial
+        NSString *howlingDogZip = [[NSBundle mainBundle] pathForResource:@"howling_dog" ofType:@"zip"];
+        [self unzipDownloadedShowURL:howlingDogZip toPath:[showsDirectory stringByAppendingPathComponent:@"Howling Dog"]];
+    }
+}
+
 - (void)loadLocalShows
 {
     NSError *error;
@@ -52,10 +72,7 @@
     NSLog(@"document directory is %@\n", [ShowDAO userDocumentDirectory]);
     
     NSString *showsDirectory = [[ShowDAO userDocumentDirectory] stringByAppendingString:@"/shows"];    
-    
-    //create it
-    [manager createDirectoryAtPath:showsDirectory withIntermediateDirectories:NO attributes:nil error:&error];
-    
+
     //list the directory structure
     NSArray *showsDirectoryListing = [manager contentsOfDirectoryAtURL:[NSURL fileURLWithPath:showsDirectory] includingPropertiesForKeys:[NSArray arrayWithObject:NSURLIsDirectoryKey] options:NSDirectoryEnumerationSkipsHiddenFiles error:&error];
     

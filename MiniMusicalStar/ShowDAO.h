@@ -18,6 +18,7 @@
 
 + (NSMutableString *)userDocumentDirectory;
 - (id)initWithDelegate:(id)aDelegate;
+- (void)seedTutorialMusical;
 - (void)loadLocalShows;
 - (Show *)loadSingleShowFromDirectoryURL:(NSURL *)showDirectoryURL;
 - (void)checkForNewShowsFromServer;
