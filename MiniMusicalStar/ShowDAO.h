@@ -13,6 +13,7 @@
 @interface ShowDAO : NSObject
 
 @property (retain, nonatomic) NSMutableArray *loadedShows;
+@property (retain, nonatomic) NSMutableDictionary *activeDownloads;
 @property (assign, nonatomic) id delegate;
 
 + (NSMutableString *)userDocumentDirectory;
@@ -21,6 +22,7 @@
 - (Show *)loadSingleShowFromDirectoryURL:(NSURL *)showDirectoryURL;
 - (void)checkForNewShowsFromServer;
 - (void)downloadShow:(UndownloadedShow *)aShow progressIndicatorDelegate:(id)aDelegate;
+- (void)cancelDownloadForShow:(UndownloadedShow *)aShow;
 - (BOOL)checkIfExistsLocally:(int)showID;
 - (void)unzipDownloadedShowURL:(NSString *)localShowZipPath toPath:(NSString *)unzipPath;
 @end

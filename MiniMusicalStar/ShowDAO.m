@@ -14,11 +14,12 @@
 #import "ZipArchive.h"
 
 @implementation ShowDAO
-@synthesize loadedShows, delegate;
+@synthesize loadedShows, activeDownloads, delegate;
 
 - (void)dealloc
 {
     [loadedShows release];
+    [activeDownloads release];
     [super dealloc];
 }
 
@@ -31,6 +32,8 @@
         
         [self loadLocalShows];
         [self checkForNewShowsFromServer];
+        
+        self.activeDownloads = [NSMutableDictionary dictionary];
     }
     
     return self;
@@ -136,15 +139,31 @@
         [[self mutableArrayValueForKey:@"loadedShows"] replaceObjectAtIndex:undownloadedShowIndex withObject:newShow];
         
         //MenuViewController is KVO-ing loadedShows, she (haha! I gave it a gender!) will update the scrollview automatically
+        
+        //remove myself from the dictionary
+        [activeDownloads removeObjectForKey:aShow.downloadURL];
 
     }];
     
     [request setFailedBlock:^{
-        NSLog(@"Download of show failed. No internet access?");
+        NSLog(@"Download of show failed. No internet access? Or probably user cancelled it?");
+        [activeDownloads removeObjectForKey:aShow.downloadURL];
+        
+        //inform the MenuViewController that the download has failed to allow her to update the UI
+        [delegate performSelectorOnMainThread:@selector(resetToCleanStateForPartiallyDownloadedShow:) withObject:aShow waitUntilDone:NO];
     }];
     
     //start the request asynchronously
     [request startAsynchronous];
+    
+    //add the request to the activeDownloads dictionary so that we can refer to it later on
+    [activeDownloads setObject:request forKey:aShow.downloadURL];
+}
+
+- (void)cancelDownloadForShow:(UndownloadedShow *)aShow
+{
+    ASIHTTPRequest *request = [activeDownloads objectForKey:aShow.downloadURL];
+    [request cancel];
 }
             
 - (BOOL)checkIfExistsLocally:(int)showID

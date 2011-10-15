@@ -170,13 +170,35 @@
     progressBarFrame.origin.y = sender.frame.size.height - 20;
     
     UIProgressView *progressBar = [[UIProgressView alloc] initWithFrame:progressBarFrame];
+    progressBar.tag = 2; //progress bar tag is 2
     [sender.superview addSubview:progressBar];
+    
+    [self.showDAO downloadShow:[self.showDAO.loadedShows objectAtIndex:sender.tag] progressIndicatorDelegate:progressBar];
     
     //change the label text (the label has a tag of 1) to "tap to cancel"
     UILabel *downloadLabel = (UILabel *)[sender.superview viewWithTag:1];
     downloadLabel.text = @"Tap to Cancel";
+    [sender removeTarget:self action:@selector(downloadMusical:) forControlEvents:UIControlEventTouchUpInside];
+    [sender addTarget:self action:@selector(cancelDownloadOfShow:) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)cancelDownloadOfShow:(UIButton *)sender
+{
+    [self.showDAO cancelDownloadForShow:[self.showDAO.loadedShows objectAtIndex:sender.tag]];
     
-    [self.showDAO downloadShow:[self.showDAO.loadedShows objectAtIndex:sender.tag] progressIndicatorDelegate:progressBar];
+    //the callback on the request will handle the resetting of the button using the method below
+}
+
+- (void)resetToCleanStateForPartiallyDownloadedShow:(UndownloadedShow *)aShow
+{
+    UIButton *showButton = [buttonArray objectAtIndex:[self.showDAO.loadedShows indexOfObject:aShow]];
+    [[showButton.superview viewWithTag:2] removeFromSuperview]; //remove the progress bar
+    
+    [showButton removeTarget:self action:@selector(cancelDownloadOfShow:) forControlEvents:UIControlEventTouchUpInside];
+    [showButton addTarget:self action:@selector(downloadMusical:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UILabel *downloadLabel = (UILabel *)[showButton.superview viewWithTag:1];
+    downloadLabel.text = @"Tap to Download";
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context

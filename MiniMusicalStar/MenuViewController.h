@@ -24,6 +24,8 @@
 - (UIButton *)createButtonForShow:(Show *)aShow frame:(CGRect)buttonFrame;
 - (UIButton *)createButtonForUndownloadedShow:(UndownloadedShow *)aShow frame:(CGRect)buttonFrame;
 - (void)downloadMusical:(UIButton *)sender;
+- (void)cancelDownloadOfShow:(UIButton *)sender;
+- (void)resetToCleanStateForPartiallyDownloadedShow:(UndownloadedShow *)aShow;
 -(void)selectMusical:(UIImageView *)musicalButton;
 
 @end
