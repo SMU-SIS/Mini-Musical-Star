@@ -9,40 +9,46 @@
 #import "ShowDAO.h"
 #import "UndownloadedShow.h"
 #import "Show.h"
+#import "ASIHTTPRequest.h"
+#import "ASINetworkQueue.h"
+#import "ZipArchive.h"
 
 @implementation ShowDAO
+@synthesize loadedShows, delegate;
 
-static ASINetworkQueue *downloadQueue;
-static NSMutableArray *loadedShows;
-static NSMutableArray *showsNotDownloaded;
-static NSString *userDocumentDirectory;
-static bool initialized = NO;
-static id delegate;
-
-+ (void)loadShowsWithDelegate:(id)aDelegate
+- (void)dealloc
 {
-    delegate = aDelegate;
-    [self loadLocalShows];
-    [self checkForNewShowsFromServer];
-    
-    //uncomment this when switching back
-    //[delegate performSelectorOnMainThread:@selector(daoDownloadQueueFinished) withObject:nil waitUntilDone:NO];
+    [loadedShows release];
+    [super dealloc];
 }
 
-+ (NSMutableString *)getUserDocumentDir {
+- (id)initWithDelegate:(id)aDelegate
+{
+    self = [super init];
+    if (self)
+    {
+        self.delegate = aDelegate;
+        
+        [self loadLocalShows];
+        [self checkForNewShowsFromServer];
+    }
+    
+    return self;
+}
+
++ (NSMutableString *)userDocumentDirectory {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSMutableString *path = [NSMutableString stringWithString:[paths objectAtIndex:0]];
     return path;
 }
 
-+ (void)loadLocalShows
+- (void)loadLocalShows
 {
     NSError *error;
     NSFileManager *manager = [NSFileManager defaultManager];
-    userDocumentDirectory = [self getUserDocumentDir];
-    NSLog(@"document directory is %@\n", userDocumentDirectory);
+    NSLog(@"document directory is %@\n", [ShowDAO userDocumentDirectory]);
     
-    NSString *showsDirectory = [userDocumentDirectory stringByAppendingString:@"/shows"];    
+    NSString *showsDirectory = [[ShowDAO userDocumentDirectory] stringByAppendingString:@"/shows"];    
     
     //create it
     [manager createDirectoryAtPath:showsDirectory withIntermediateDirectories:NO attributes:nil error:&error];
@@ -50,19 +56,17 @@ static id delegate;
     //list the directory structure
     NSArray *showsDirectoryListing = [manager contentsOfDirectoryAtURL:[NSURL fileURLWithPath:showsDirectory] includingPropertiesForKeys:[NSArray arrayWithObject:NSURLIsDirectoryKey] options:NSDirectoryEnumerationSkipsHiddenFiles error:&error];
     
-    loadedShows = [[NSMutableArray alloc] initWithCapacity:showsDirectoryListing.count]; 
+    self.loadedShows = [[NSMutableArray alloc] initWithCapacity:showsDirectoryListing.count]; 
     
     //read the showMetaData.plist file for every Show and get a Show object out of it, and add it to the array
     [showsDirectoryListing enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         NSURL *showDirectoryURL = (NSURL *)obj;
         Show *newShow = [self loadSingleShowFromDirectoryURL:showDirectoryURL];
-        [loadedShows addObject:newShow];
+        [self.loadedShows addObject:newShow];
     }];
-    
-    initialized = YES;
 }
 
-+ (Show *)loadSingleShowFromDirectoryURL:(NSURL *)showDirectoryURL
+- (Show *)loadSingleShowFromDirectoryURL:(NSURL *)showDirectoryURL
 {
     
     //get a reference to showMetaData.plist url
@@ -73,27 +77,7 @@ static id delegate;
     return [show autorelease];
 }
 
-+ (NSMutableArray *)shows
-{
-    if (!initialized) [self loadLocalShows];
-    
-    return loadedShows;
-}
-
-+ (NSArray *)imagesForShows
-{
-    if (!initialized) [self loadLocalShows];
-    
-    NSMutableArray *imagesArray = [[NSMutableArray alloc] initWithCapacity:loadedShows.count];
-    [loadedShows enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        Show *show = (Show *)obj;
-        [imagesArray addObject:show.coverPicture];
-    }];
-    
-    return imagesArray;
-}
-
-+ (void)checkForNewShowsFromServer
+- (void)checkForNewShowsFromServer
 {
     
     NSString *urlStr = [[NSString alloc] 
@@ -121,15 +105,15 @@ static id delegate;
             
             undownloadedShow.coverImage = [UIImage imageWithData:imageData];
             
-            [loadedShows addObject:undownloadedShow];
+            [self.loadedShows addObject:undownloadedShow];
         }
     }];
 }
 
-+ (void)downloadShow:(UndownloadedShow *)aShow progressIndicatorDelegate:(id)aDelegate
+- (void)downloadShow:(UndownloadedShow *)aShow progressIndicatorDelegate:(id)aDelegate
 {
     //destination path
-    NSString *destinationPath = [[[[self getUserDocumentDir] stringByAppendingPathComponent:@"shows"] stringByAppendingPathComponent:aShow.title] stringByAppendingPathExtension:@"zip"];
+    NSString *destinationPath = [[[[ShowDAO userDocumentDirectory] stringByAppendingPathComponent:@"shows"] stringByAppendingPathComponent:aShow.title] stringByAppendingPathExtension:@"zip"];
     
     __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:aShow.downloadURL];
     [request setDownloadProgressDelegate:aDelegate];
@@ -147,7 +131,7 @@ static id delegate;
         
         //we replace the old show in the array with this new show
         int undownloadedShowIndex = [loadedShows indexOfObject:aShow];
-        [loadedShows replaceObjectAtIndex:undownloadedShowIndex withObject:newShow];
+        [self.loadedShows replaceObjectAtIndex:undownloadedShowIndex withObject:newShow];
         
         //we don't have to update the array ourselves as KVO on MenuViewController will do that for us :)
     }];
@@ -160,11 +144,11 @@ static id delegate;
     [request startAsynchronous];
 }
             
-+ (BOOL)checkIfExistsLocally:(int)showID
+- (BOOL)checkIfExistsLocally:(int)showID
 {
-    for (int i = 0; i < loadedShows.count; i++)
+    for (int i = 0; i < self.loadedShows.count; i++)
     {
-        Show *aShow = [loadedShows objectAtIndex:i];
+        Show *aShow = [self.loadedShows objectAtIndex:i];
         if (showID == aShow.showID)
         {
             return YES;
@@ -174,7 +158,7 @@ static id delegate;
     return NO;
 }
 
-+ (void)unzipDownloadedShowURL:(NSString *)localShowZipPath toPath:(NSString *)unzipPath
+- (void)unzipDownloadedShowURL:(NSString *)localShowZipPath toPath:(NSString *)unzipPath
 {
     ZipArchive *zipArchive = [[ZipArchive alloc] init];
     [zipArchive UnzipOpenFile:localShowZipPath];
