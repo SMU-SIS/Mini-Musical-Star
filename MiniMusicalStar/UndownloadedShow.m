@@ -16,6 +16,7 @@
     [title release];
     [downloadURL release];
     [coverImage release];
+    [super dealloc];
 }
 
 - (id)init

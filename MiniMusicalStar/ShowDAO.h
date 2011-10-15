@@ -7,22 +7,22 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Show.h"
 #import "ASIHTTPRequest.h"
 #import "ASINetworkQueue.h"
 #import "ZipArchive.h"
-
+@class UndownloadedShow;
+@class Show;
 @interface ShowDAO : NSObject
 
 + (void)loadShowsWithDelegate:(id)aDelegate;
 + (void)loadLocalShows;
-+ (void)loadSingleShowFromDirectoryURL:(NSURL *)showDirectoryURL;
++ (Show *)loadSingleShowFromDirectoryURL:(NSURL *)showDirectoryURL;
 + (NSMutableArray *)shows;
 + (NSMutableArray *)showsNotDownloaded;
 + (NSArray *)imagesForShows;
 + (void)checkForNewShowsFromServer;
 + (BOOL)checkIfExistsLocally:(int)showID;
-+ (void)initiateDownloadOfShowFromServer:(NSURL *)zipFileURL andStoreInPath:(NSString *)localShowPath;
++ (void)downloadShow:(UndownloadedShow *)aShow progressIndicatorDelegate:(id)aDelegate;
 + (void)unzipDownloadedShowURL:(NSString *)localShowZipPath toPath:(NSString *)unzipPath;
 + (NSMutableString *)getUserDocumentDir;
 

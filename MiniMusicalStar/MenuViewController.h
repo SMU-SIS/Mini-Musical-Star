@@ -37,12 +37,10 @@
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @property (retain, nonatomic) IBOutlet UIScrollView *scrollView;
 
-- (void)daoDownloadQueueFinished;
 - (void)createScrollViewOfShows;
 - (UIButton *)createButtonForShow:(Show *)aShow frame:(CGRect)buttonFrame;
 - (UIButton *)createButtonForUndownloadedShow:(UndownloadedShow *)aShow frame:(CGRect)buttonFrame;
 -(IBAction)musicalButtonWasPressed: (UIButton*)sender;
-
--(void)displayShowImages:(NSArray *)images;
+- (void)displaySpinnerOnShow:(UndownloadedShow *)aShow;
 
 @end

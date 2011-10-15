@@ -48,11 +48,7 @@
     self.shows = [ShowDAO shows];
     
     [self createScrollViewOfShows];
-    //[DSBezelActivityView newActivityViewForView:self.view withLabel:@"Downloading Shows..."];
- 
-    //NSArray *images = [ShowDAO imagesForShows];
-    //display the show images.
-    //[self displayShowImages:images];
+    [self addObserver:self forKeyPath:@"shows" options:NSKeyValueObservingOptionNew context:@"NewShowDownloaded"];
 
 }
 
@@ -139,7 +135,38 @@
 
 - (void)downloadMusical:(UIButton *)sender
 {
-    NSLog(@"Yes! download musical button pressed, with tag %i", sender.tag);
+    //create a progress indicator
+    CGRect progressBarFrame;
+    progressBarFrame.size.width = 250;
+    progressBarFrame.size.height = 10;
+    progressBarFrame.origin.x = 10;
+    progressBarFrame.origin.y = sender.frame.size.height - 20;
+    
+    UIProgressView *progressBar = [[UIProgressView alloc] initWithFrame:progressBarFrame];
+    [sender addSubview:progressBar];
+    
+    [ShowDAO downloadShow:[self.shows objectAtIndex:sender.tag] progressIndicatorDelegate:progressBar];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    //cast the context as a string
+    NSString *contextString = (NSString *)context;
+    if ([contextString isEqualToString:@"NewShowDownloaded"])
+    {
+        //find out what is the index of the show
+        NSIndexSet *changedObjects = [change objectForKey:NSKeyValueChangeIndexesKey];
+        int indexOfShow = [changedObjects firstIndex];
+        if (indexOfShow < 0) NSLog(@"Error: Cannot find index of new show");
+        else
+        {
+            //up the button opacity and change the button target
+            UIButton *theButton = [buttonArray objectAtIndex:indexOfShow];
+            theButton.layer.opacity = 1.0;
+            [theButton removeTarget:self action:@selector(downloadMusical:) forControlEvents:UIControlEventTouchUpInside];
+            [theButton addTarget:self action:@selector(selectMusical:) forControlEvents:UIControlEventTouchUpInside];
+        }
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -151,17 +178,9 @@
     scrollView.hidden = NO;
 }
 
-- (void)daoDownloadQueueFinished
-{
-    
-    //self.showsNotDownloaded = [ShowDAO showsNotDownloaded];
-    //[DSBezelActivityView removeViewAnimated:YES];
-    
-
-}
-
 - (void)viewDidUnload
 {
+    [self removeObserver:self forKeyPath:@"shows"];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;

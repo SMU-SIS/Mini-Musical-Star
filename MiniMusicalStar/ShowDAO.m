@@ -8,6 +8,7 @@
 
 #import "ShowDAO.h"
 #import "UndownloadedShow.h"
+#import "Show.h"
 
 @implementation ShowDAO
 
@@ -50,18 +51,18 @@ static id delegate;
     NSArray *showsDirectoryListing = [manager contentsOfDirectoryAtURL:[NSURL fileURLWithPath:showsDirectory] includingPropertiesForKeys:[NSArray arrayWithObject:NSURLIsDirectoryKey] options:NSDirectoryEnumerationSkipsHiddenFiles error:&error];
     
     loadedShows = [[NSMutableArray alloc] initWithCapacity:showsDirectoryListing.count]; 
-    showsNotDownloaded = [[NSMutableArray alloc] init];
     
-    //read the showMetaData.plist file for every Show
+    //read the showMetaData.plist file for every Show and get a Show object out of it, and add it to the array
     [showsDirectoryListing enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         NSURL *showDirectoryURL = (NSURL *)obj;
-        [self loadSingleShowFromDirectoryURL:showDirectoryURL];
+        Show *newShow = [self loadSingleShowFromDirectoryURL:showDirectoryURL];
+        [loadedShows addObject:newShow];
     }];
     
     initialized = YES;
 }
 
-+ (void)loadSingleShowFromDirectoryURL:(NSURL *)showDirectoryURL
++ (Show *)loadSingleShowFromDirectoryURL:(NSURL *)showDirectoryURL
 {
     
     //get a reference to showMetaData.plist url
@@ -69,8 +70,7 @@ static id delegate;
     NSString *metadataString = [metadataURL path];
     
     Show *show = [[Show alloc] initShowWithPropertyListFile:metadataString atPath:showDirectoryURL];
-    [loadedShows addObject:show];
-    [show release];
+    return [show autorelease];
 }
 
 + (NSMutableArray *)shows
@@ -78,11 +78,6 @@ static id delegate;
     if (!initialized) [self loadLocalShows];
     
     return loadedShows;
-}
-
-+ (NSMutableArray *)showsNotDownloaded
-{
-    return showsNotDownloaded;
 }
 
 + (NSArray *)imagesForShows
@@ -100,9 +95,6 @@ static id delegate;
 
 + (void)checkForNewShowsFromServer
 {
-    downloadQueue = [[ASINetworkQueue alloc] init];
-    [downloadQueue setDelegate:delegate];
-    [downloadQueue setQueueDidFinishSelector:@selector(daoDownloadQueueFinished)];
     
     NSString *urlStr = [[NSString alloc] 
                         initWithFormat:@"http://dl.dropbox.com/u/23645/shows.plist?seedVar=%f", 
@@ -112,11 +104,10 @@ static id delegate;
     
     NSArray *showCatalogue = [root objectForKey:@"shows"];
     
-    //find shows that are not in already local, then download
+    //find shows that are not in already local, then create UndownloadShow objects for them
     [showCatalogue enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         NSDictionary *showInCatalogue = (NSDictionary *)obj;
         int showID = [[showInCatalogue objectForKey:@"id"] intValue];
-        NSString *showTitleZip = [[showInCatalogue objectForKey:@"title"] stringByAppendingPathExtension:@"zip"];
         if (![self checkIfExistsLocally:showID])
         {
             //don't download now, just give the user an option to download
@@ -131,40 +122,42 @@ static id delegate;
             undownloadedShow.coverImage = [UIImage imageWithData:imageData];
             
             [loadedShows addObject:undownloadedShow];
-            
-            //NSString *downloadPath = [[userDocumentDirectory stringByAppendingPathComponent:@"shows"] stringByAppendingPathComponent:showTitleZip];
- 
-            //[self initiateDownloadOfShowFromServer:showDownloadLocation andStoreInPath:downloadPath];
         }
     }];
-    
-//    if (downloadQueue.requestsCount > 0)
-//    {
-//        [downloadQueue go];
-//    }
-//    
-//    else
-//    {
-//        [downloadQueue release];
-//        [delegate performSelectorOnMainThread:@selector(daoDownloadQueueFinished) withObject:nil waitUntilDone:NO];
-//    }
 }
 
-+ (void)initiateDownloadOfShowFromServer:(NSURL *)zipFileURL andStoreInPath:(NSString *)localShowPath
++ (void)downloadShow:(UndownloadedShow *)aShow progressIndicatorDelegate:(id)aDelegate
 {
+    //destination path
+    NSString *destinationPath = [[[[self getUserDocumentDir] stringByAppendingPathComponent:@"shows"] stringByAppendingPathComponent:aShow.title] stringByAppendingPathExtension:@"zip"];
     
-    __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:zipFileURL];
-    [request setDownloadDestinationPath:localShowPath];
+    __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:aShow.downloadURL];
+    [request setDownloadProgressDelegate:aDelegate];
+    [request setShowAccurateProgress:YES];
+    
+    [request setDownloadDestinationPath:destinationPath];
     [request setCompletionBlock:^{
-        [self unzipDownloadedShowURL:localShowPath toPath:[localShowPath stringByDeletingPathExtension]];
-        [self loadSingleShowFromDirectoryURL:
-            [NSURL fileURLWithPath:[localShowPath stringByDeletingPathExtension]]];
+        
+        //remove the progress bar
+        [(UIView *)aDelegate removeFromSuperview];
+        
+        //then we do the decompressing...
+        [self unzipDownloadedShowURL:destinationPath toPath:[destinationPath stringByDeletingPathExtension]];
+        Show *newShow = [self loadSingleShowFromDirectoryURL:[NSURL fileURLWithPath:[destinationPath stringByDeletingPathExtension]]];
+        
+        //we replace the old show in the array with this new show
+        int undownloadedShowIndex = [loadedShows indexOfObject:aShow];
+        [loadedShows replaceObjectAtIndex:undownloadedShowIndex withObject:newShow];
+        
+        //we don't have to update the array ourselves as KVO on MenuViewController will do that for us :)
     }];
+    
     [request setFailedBlock:^{
+        NSLog(@"Download of show failed. No internet access?");
     }];
     
-    [downloadQueue addOperation:request];
-    
+    //start the request asynchronously
+    [request startAsynchronous];
 }
             
 + (BOOL)checkIfExistsLocally:(int)showID
