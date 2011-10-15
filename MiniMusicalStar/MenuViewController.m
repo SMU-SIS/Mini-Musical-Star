@@ -67,6 +67,9 @@
     scrollView.clipsToBounds = NO;    
     [scrollView setContentSize:CGSizeMake(self.showDAO.loadedShows.count * 280, scrollView.frame.size.height)];
     
+    //create a buttonArray as the backing for the buttons in the scrollview (so we can refer to them later)
+    self.buttonArray = [NSMutableArray arrayWithCapacity:self.showDAO.loadedShows.count];
+    
     //self.shows contains both downloaded and undownloaded shows, make sure to differentiate
     [self.showDAO.loadedShows enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         
@@ -88,6 +91,7 @@
         buttonFrame.size.height = frame.size.height;
         
         UIButton *showButton;
+        UILabel *downloadLabel = nil;
         
         //now we check if it's downloaded or undownloaded
         if ([obj isKindOfClass:[Show class]])
@@ -98,11 +102,29 @@
         else if ([obj isKindOfClass:[UndownloadedShow class]])
         {
             showButton = [self createButtonForUndownloadedShow:(UndownloadedShow *)obj frame:buttonFrame];
+            
+            //add a download label in the centre of the showButton
+            CGRect downloadIconFrame;
+            downloadIconFrame.origin.x = 0;
+            downloadIconFrame.origin.y = 310;
+            downloadIconFrame.size.width = 280;
+            downloadIconFrame.size.height = 60;
+            
+            downloadLabel = [[UILabel alloc] initWithFrame:downloadIconFrame];
+            downloadLabel.tag = 1; //used to identify the label later on
+            downloadLabel.text = @"Tap to Download";
+            downloadLabel.textAlignment = UITextAlignmentCenter;
+            downloadLabel.font = [downloadLabel.font fontWithSize:26.0];
+            downloadLabel.textColor = [UIColor whiteColor];
+            downloadLabel.backgroundColor = [UIColor blackColor];
+            [downloadLabel adjustsFontSizeToFitWidth];
         }
         
         showButton.tag = idx;
         [buttonArray addObject: showButton];
         [musicalButtonView addSubview: showButton];
+        if (downloadLabel != nil) [musicalButtonView addSubview: downloadLabel];
+        
     }];
     
     
@@ -128,12 +150,12 @@
     showButton.layer.cornerRadius = 10; // this value vary as per your desire
     showButton.clipsToBounds = YES;
     showButton.adjustsImageWhenHighlighted = NO;
-    
-    [showButton.layer setOpacity:0.6]; //make the undownloaded musical lighter
-    
+    showButton.alpha = 0.5; //make the undownloaded musical lighter
+
     [showButton setImage:aShow.coverImage forState:UIControlStateNormal];
     [showButton addTarget:self action:@selector(downloadMusical:) forControlEvents:UIControlEventTouchUpInside];
     
+
     return [showButton autorelease];
     
 }
@@ -148,7 +170,11 @@
     progressBarFrame.origin.y = sender.frame.size.height - 20;
     
     UIProgressView *progressBar = [[UIProgressView alloc] initWithFrame:progressBarFrame];
-    [sender addSubview:progressBar];
+    [sender.superview addSubview:progressBar];
+    
+    //change the label text (the label has a tag of 1) to "tap to cancel"
+    UILabel *downloadLabel = (UILabel *)[sender.superview viewWithTag:1];
+    downloadLabel.text = @"Tap to Cancel";
     
     [self.showDAO downloadShow:[self.showDAO.loadedShows objectAtIndex:sender.tag] progressIndicatorDelegate:progressBar];
 }
@@ -167,9 +193,12 @@
         {
             //up the button opacity and change the button target
             UIButton *theButton = [buttonArray objectAtIndex:indexOfShow];
-            theButton.layer.opacity = 1.0;
+            theButton.alpha = 1.0;
             [theButton removeTarget:self action:@selector(downloadMusical:) forControlEvents:UIControlEventTouchUpInside];
             [theButton addTarget:self action:@selector(selectMusical:) forControlEvents:UIControlEventTouchUpInside];
+            
+            //remove the label
+            [[theButton.superview viewWithTag:1] removeFromSuperview];
         }
     }
 }

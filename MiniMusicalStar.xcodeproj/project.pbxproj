@@ -174,6 +174,7 @@
 		95C526AE1438DA740008AE13 /* CoversListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C526AC1438DA740008AE13 /* CoversListViewController.m */; };
 		95C526AF1438DA740008AE13 /* CoversListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95C526AD1438DA740008AE13 /* CoversListViewController.xib */; };
 		95D2069714482984004B6E8B /* UndownloadedShow.m in Sources */ = {isa = PBXBuildFile; fileRef = 95D2069614482984004B6E8B /* UndownloadedShow.m */; };
+		95D2069B1449B0F8004B6E8B /* 40-inbox.png in Resources */ = {isa = PBXBuildFile; fileRef = 95D2069A1449B0F8004B6E8B /* 40-inbox.png */; };
 		95DAE87F141480F80039201D /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95DAE87E141480F80039201D /* CFNetwork.framework */; };
 		95DAE881141481160039201D /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95DAE880141481160039201D /* MobileCoreServices.framework */; };
 		95DAE883141481210039201D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95DAE882141481210039201D /* Security.framework */; };
@@ -390,6 +391,7 @@
 		95C526AD1438DA740008AE13 /* CoversListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CoversListViewController.xib; sourceTree = "<group>"; };
 		95D2069514482984004B6E8B /* UndownloadedShow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UndownloadedShow.h; sourceTree = "<group>"; };
 		95D2069614482984004B6E8B /* UndownloadedShow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UndownloadedShow.m; sourceTree = "<group>"; };
+		95D2069A1449B0F8004B6E8B /* 40-inbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "40-inbox.png"; sourceTree = "<group>"; };
 		95DAE87E141480F80039201D /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		95DAE880141481160039201D /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		95DAE882141481210039201D /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -769,6 +771,7 @@
 		820E2A1E140A0A2A00B80BBC /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				95D206991449B0EA004B6E8B /* Icons */,
 				950060031440B5FF000BB0A6 /* musical_placeholder.png */,
 				950060041440B5FF000BB0A6 /* scene_placeholder.png */,
 				82BA9DBB143B828300D9D54A /* Default-Landscape.png */,
@@ -808,6 +811,14 @@
 				9572E0DF140E11FF00713F45 /* ShowDAO.m */,
 			);
 			name = DAOs;
+			sourceTree = "<group>";
+		};
+		95D206991449B0EA004B6E8B /* Icons */ = {
+			isa = PBXGroup;
+			children = (
+				95D2069A1449B0F8004B6E8B /* 40-inbox.png */,
+			);
+			name = Icons;
 			sourceTree = "<group>";
 		};
 		95DAE8F31414DFD00039201D /* Libraries */ = {
@@ -1109,6 +1120,7 @@
 				641B32DD1441E99500F4A93D /* muted.png in Resources */,
 				95F856C5144409400089C62D /* NewOpenViewController.xib in Resources */,
 				737716CC1445D61500BF2036 /* ChoiceSelectionViewController.xib in Resources */,
+				95D2069B1449B0F8004B6E8B /* 40-inbox.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

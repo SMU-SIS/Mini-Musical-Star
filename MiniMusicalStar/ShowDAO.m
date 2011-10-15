@@ -56,7 +56,7 @@
     //list the directory structure
     NSArray *showsDirectoryListing = [manager contentsOfDirectoryAtURL:[NSURL fileURLWithPath:showsDirectory] includingPropertiesForKeys:[NSArray arrayWithObject:NSURLIsDirectoryKey] options:NSDirectoryEnumerationSkipsHiddenFiles error:&error];
     
-    self.loadedShows = [[NSMutableArray alloc] initWithCapacity:showsDirectoryListing.count]; 
+    self.loadedShows = [NSMutableArray arrayWithCapacity:showsDirectoryListing.count]; 
     
     //read the showMetaData.plist file for every Show and get a Show object out of it, and add it to the array
     [showsDirectoryListing enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
@@ -131,9 +131,12 @@
         
         //we replace the old show in the array with this new show
         int undownloadedShowIndex = [loadedShows indexOfObject:aShow];
-        [self.loadedShows replaceObjectAtIndex:undownloadedShowIndex withObject:newShow];
         
-        //we don't have to update the array ourselves as KVO on MenuViewController will do that for us :)
+        //this thing caused me HOURS OF GRIEF. no one told me that NSMutableArray was not KVO-compliant, must use mutableArrayValueForKey!
+        [[self mutableArrayValueForKey:@"loadedShows"] replaceObjectAtIndex:undownloadedShowIndex withObject:newShow];
+        
+        //MenuViewController is KVO-ing loadedShows, she (haha! I gave it a gender!) will update the scrollview automatically
+
     }];
     
     [request setFailedBlock:^{
