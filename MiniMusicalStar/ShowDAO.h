@@ -16,6 +16,7 @@
 @property (assign, nonatomic) id delegate;
 
 + (NSMutableString *)userDocumentDirectory;
+- (id)initWithDelegate:(id)aDelegate;
 - (void)loadLocalShows;
 - (Show *)loadSingleShowFromDirectoryURL:(NSURL *)showDirectoryURL;
 - (void)checkForNewShowsFromServer;

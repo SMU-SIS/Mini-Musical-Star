@@ -9,16 +9,22 @@
 #import "MenuViewController.h"
 #import "NewOpenViewController.h"
 #import "UndownloadedShow.h"
+#import "ShowDAO.h"
+#import "Show.h"
+#import "Cover.h"
+#import "ChoiceSelectionViewController.h"
+#import "DSActivityView.h"
 
 @implementation MenuViewController
-@synthesize shows, fetchedResultsController, managedObjectContext, currentSelectedMusical, currentSelectedCoversList, scrollView;
+@synthesize managedObjectContext, scrollView, buttonArray, showDAO;
 
 
 - (void)dealloc
 {
+    [managedObjectContext release];
     [scrollView release];
-    [currentSelectedCoversList release];
-    [currentSelectedMusical release];
+    [buttonArray release];
+    [ShowDAO release];
     [super dealloc];
 }
 
@@ -44,11 +50,10 @@
     [super viewDidLoad];
     
     //load the shows on the local disk
-    [ShowDAO loadShowsWithDelegate:self];
-    self.shows = [ShowDAO shows];
+    self.showDAO = [[ShowDAO alloc] initWithDelegate:self];
     
     [self createScrollViewOfShows];
-    [self addObserver:self forKeyPath:@"shows" options:NSKeyValueObservingOptionNew context:@"NewShowDownloaded"];
+    [self.showDAO addObserver:self forKeyPath:@"loadedShows" options:NSKeyValueObservingOptionNew context:@"NewShowDownloaded"];
 
 }
 
@@ -60,10 +65,10 @@
     scrollView.showsVerticalScrollIndicator = NO;
     scrollView.pagingEnabled = NO;
     scrollView.clipsToBounds = NO;    
-    [scrollView setContentSize:CGSizeMake(self.shows.count * 280, scrollView.frame.size.height)];
+    [scrollView setContentSize:CGSizeMake(self.showDAO.loadedShows.count * 280, scrollView.frame.size.height)];
     
     //self.shows contains both downloaded and undownloaded shows, make sure to differentiate
-    [self.shows enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+    [self.showDAO.loadedShows enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         
         CGRect frame;
         frame.origin.x = scrollView.frame.size.width/3 * idx;
@@ -145,7 +150,7 @@
     UIProgressView *progressBar = [[UIProgressView alloc] initWithFrame:progressBarFrame];
     [sender addSubview:progressBar];
     
-    [ShowDAO downloadShow:[self.shows objectAtIndex:sender.tag] progressIndicatorDelegate:progressBar];
+    [self.showDAO downloadShow:[self.showDAO.loadedShows objectAtIndex:sender.tag] progressIndicatorDelegate:progressBar];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
@@ -180,50 +185,24 @@
 
 - (void)viewDidUnload
 {
-    [self removeObserver:self forKeyPath:@"shows"];
+    [self.showDAO removeObserver:self forKeyPath:@"loadedShows"];
     [super viewDidUnload];
+    
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
-}
-
-
-//Button action for creating new musical
-- (IBAction)musicalButtonWasPressed: (UIButton*)sender 
-{
-    
-    Show *selectedShow = [shows objectAtIndex:sender.tag];
-    NewOpenViewController *newOpen = [[NewOpenViewController alloc] initWithShow:selectedShow context:self.managedObjectContext];
-    
-    [self.navigationController pushViewController:newOpen animated:YES];
-        
-    [selectedShow release];
-}
-
--(Show *)returnCurrentSelectedShow:(id) sender
-{
-	// Calculate which page is visible 
-	
-    for (int i=0; i<[buttonArray count];i++){
-        if([sender isEqual: [buttonArray objectAtIndex:i]]){
-            return [shows objectAtIndex:i];
-        };
-    }
-	return nil;
 }
 
 //weijie test method
 -(void)selectMusical:(UIImageView *)musicalButton
 {
-    self.currentSelectedMusical = musicalButton;
-
     
-    ChoiceSelectionViewController *choiceView = [[ChoiceSelectionViewController alloc] initWithAShowForSelection:[shows objectAtIndex:currentSelectedMusical.tag] context:self.managedObjectContext];
+    Show *theShow = [self.showDAO.loadedShows objectAtIndex:musicalButton.tag];
+    
+    ChoiceSelectionViewController *choiceView = [[ChoiceSelectionViewController alloc] initWithAShowForSelection: theShow context:self.managedObjectContext];
     
     
-    choiceView.title = [[shows objectAtIndex:currentSelectedMusical.tag] title];
-    
+    choiceView.title = theShow.title;
     [self.navigationController pushViewController:choiceView animated:YES];
-    
     [choiceView release];
 }
 

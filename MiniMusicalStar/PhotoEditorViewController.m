@@ -200,7 +200,7 @@
     __block NSError *error = nil;
     
     AVAssetWriter *videoWriter = [[AVAssetWriter alloc] initWithURL:
-                                  [NSURL fileURLWithPath:[[ShowDAO getUserDocumentDir] stringByAppendingString:videoFilename]] fileType:AVFileTypeQuickTimeMovie
+                                  [NSURL fileURLWithPath:[[ShowDAO userDocumentDirectory] stringByAppendingString:videoFilename]] fileType:AVFileTypeQuickTimeMovie
                                                               error:&error];
     
     NSParameterAssert(videoWriter);
@@ -283,14 +283,14 @@
     //now i will combine track and video
     AVMutableComposition* composition = [AVMutableComposition composition];
     
-    AVURLAsset* videoAsset = [[AVURLAsset alloc]initWithURL:[NSURL fileURLWithPath:[[ShowDAO getUserDocumentDir] stringByAppendingString:videoFilename]] options:nil];
+    AVURLAsset* videoAsset = [[AVURLAsset alloc]initWithURL:[NSURL fileURLWithPath:[[ShowDAO userDocumentDirectory] stringByAppendingString:videoFilename]] options:nil];
     
     __block AVMutableCompositionTrack *compositionAudioTrack1 = NULL;
     [[delegate getExportAudioURLs] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         NSURL *audioURL = (NSURL*)obj;
         AVURLAsset* audioAsset1 = [[AVURLAsset alloc]initWithURL:audioURL options:nil];
 //        NSLog(@"audioAsset : %@",[audioAsset1 URL]);
-//        NSLog(@"is it this %@",[NSURL fileURLWithPath:[[ShowDAO getUserDocumentDir] stringByAppendingString:audio.path]]);
+//        NSLog(@"is it this %@",[NSURL fileURLWithPath:[[ShowDAO userDocumentDirectory] stringByAppendingString:audio.path]]);
         compositionAudioTrack1 = [composition addMutableTrackWithMediaType:AVMediaTypeAudio preferredTrackID:kCMPersistentTrackID_Invalid];
         [compositionAudioTrack1 insertTimeRange:CMTimeRangeMake(kCMTimeZero,audioAsset1.duration) 
                                         ofTrack:[[audioAsset1 tracksWithMediaType:AVMediaTypeAudio]objectAtIndex:0] 
@@ -314,7 +314,7 @@
                                                initWithAsset:composition presetName:AVAssetExportPresetHighestQuality];
         
         
-        exportSession.outputURL = [NSURL fileURLWithPath:[[ShowDAO getUserDocumentDir] stringByAppendingString:self.exportFilename]];
+        exportSession.outputURL = [NSURL fileURLWithPath:[[ShowDAO userDocumentDirectory] stringByAppendingString:self.exportFilename]];
         exportSession.outputFileType = AVFileTypeQuickTimeMovie;
         
         CMTime start = CMTimeMakeWithSeconds(0, 1);
@@ -351,7 +351,7 @@
     }
 
 //    //play the fucking player
-//    NSURL *url = [NSURL fileURLWithPath:[[ShowDAO getUserDocumentDir] stringByAppendingString:self.exportFilename]];
+//    NSURL *url = [NSURL fileURLWithPath:[[ShowDAO userDocumentDirectory] stringByAppendingString:self.exportFilename]];
 //    [delegate playMovie:url];
 
 }
@@ -360,7 +360,7 @@
 {
     
 //    NSLog(@"exportMANFilename : %@",self.exportFilename);
-    NSURL *url = [NSURL fileURLWithPath:[[ShowDAO getUserDocumentDir] stringByAppendingString:self.exportFilename]];
+    NSURL *url = [NSURL fileURLWithPath:[[ShowDAO userDocumentDirectory] stringByAppendingString:self.exportFilename]];
     [delegate playMovie:url];
 }
 

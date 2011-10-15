@@ -7,40 +7,23 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ShowDAO.h"
-#import "Show.h"
-#import "Cover.h"
-#import "ChoiceSelectionViewController.h"
-
-#import "SceneViewController.h"
-#import "DSActivityView.h"
 
 @class NewOpenViewController;
 @class UndownloadedShow;
+@class Show;
+@class ShowDAO;
 
-@interface MenuViewController : UIViewController <NSFetchedResultsControllerDelegate> {
-    IBOutlet UIScrollView *scrollView; 
+@interface MenuViewController : UIViewController <NSFetchedResultsControllerDelegate>
 
-    NSMutableArray *buttonArray;
-    
-    NSFetchedResultsController *fetchedResultsController;
-    NSManagedObjectContext *managedObjectContext;
-    
-    UIView *currentSelectedMusical;
-    UIViewController *currentSelectedCoversList;
-}
-
-@property (assign, nonatomic) NSArray *shows;
-@property (retain, nonatomic) UIView *currentSelectedMusical;
-@property (retain, nonatomic) UIViewController *currentSelectedCoversList;
-@property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @property (retain, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (retain, nonatomic) NSMutableArray *buttonArray;
+@property (retain, nonatomic) ShowDAO *showDAO;
 
 - (void)createScrollViewOfShows;
 - (UIButton *)createButtonForShow:(Show *)aShow frame:(CGRect)buttonFrame;
 - (UIButton *)createButtonForUndownloadedShow:(UndownloadedShow *)aShow frame:(CGRect)buttonFrame;
--(IBAction)musicalButtonWasPressed: (UIButton*)sender;
-- (void)displaySpinnerOnShow:(UndownloadedShow *)aShow;
+- (void)downloadMusical:(UIButton *)sender;
+-(void)selectMusical:(UIImageView *)musicalButton;
 
 @end

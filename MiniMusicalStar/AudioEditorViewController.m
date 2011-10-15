@@ -450,7 +450,7 @@
     
     NSFileManager *fileManager = [NSFileManager defaultManager];
     
-    NSString *userDocumentDirectory = [ShowDAO getUserDocumentDir];
+    NSString *userDocumentDirectory = [ShowDAO userDocumentDirectory];
     NSString *uniqueFilename = [AudioEditorViewController getUniqueFilenameWithoutExt];
     
     NSString *audioCoverFilepath = [userDocumentDirectory stringByAppendingFormat:@"/%@.caf", uniqueFilename];    //we are going to use .caf files because i am going to encode in IMA4
