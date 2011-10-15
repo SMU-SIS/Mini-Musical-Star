@@ -9,7 +9,7 @@
 #import "Show.h"
 
 @implementation Show
-@synthesize data, scenes, scenesOrder, title, author, createdDate, iTunesAlbumLink, iBooksBookLink, showAssetsLocation, showID, coverPicture;
+@synthesize data, scenes, scenesOrder, title, author, createdDate, iTunesAlbumLink, iBooksBookLink, showAssetsLocation, showID, coverPicture, showDescription;
 
 
 - (void)dealloc
@@ -24,6 +24,7 @@
     [iTunesAlbumLink release];
     [iBooksBookLink release];
     [showAssetsLocation release];
+    [showDescription release];
     [super dealloc];
 }
 
@@ -53,6 +54,7 @@
         self.showID = [[root objectForKey:@"id"] intValue];
         self.title = [root objectForKey:@"title"];
         self.author = [root objectForKey:@"author"];
+        self.showDescription = [root objectForKey:@"description"];
         self.iTunesAlbumLink = [root objectForKey:@"iTunesAlbumLink"];
         self.iBooksBookLink = [root objectForKey:@"iBooksBookLink"];
         self.createdDate = [root objectForKey:@"created"];

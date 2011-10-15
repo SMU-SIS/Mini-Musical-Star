@@ -28,6 +28,9 @@
 @property (retain, nonatomic) UIView *currentSelectedMusical;
 @property (retain, nonatomic) NSFetchedResultsController *frc;
 
+@property (retain, nonatomic) IBOutlet UILabel *showTitle;
+@property (retain, nonatomic) IBOutlet UITextView *showDescription;
+
 -(ChoiceSelectionViewController *)initWithAShowForSelection:(Show *)aShow context:(NSManagedObjectContext *)aContext;
 
 -(IBAction)createMusical:(UIButton*)sender;

@@ -175,6 +175,7 @@
 		95C526AF1438DA740008AE13 /* CoversListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95C526AD1438DA740008AE13 /* CoversListViewController.xib */; };
 		95D2069714482984004B6E8B /* UndownloadedShow.m in Sources */ = {isa = PBXBuildFile; fileRef = 95D2069614482984004B6E8B /* UndownloadedShow.m */; };
 		95D2069B1449B0F8004B6E8B /* 40-inbox.png in Resources */ = {isa = PBXBuildFile; fileRef = 95D2069A1449B0F8004B6E8B /* 40-inbox.png */; };
+		95D2069D1449E480004B6E8B /* scene page helper graphic.png in Resources */ = {isa = PBXBuildFile; fileRef = 95D2069C1449E480004B6E8B /* scene page helper graphic.png */; };
 		95DAE87F141480F80039201D /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95DAE87E141480F80039201D /* CFNetwork.framework */; };
 		95DAE881141481160039201D /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95DAE880141481160039201D /* MobileCoreServices.framework */; };
 		95DAE883141481210039201D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95DAE882141481210039201D /* Security.framework */; };
@@ -198,7 +199,6 @@
 		EDA2A1DB13F26F8400B64EA5 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA2A1DA13F26F8400B64EA5 /* MenuViewController.m */; };
 		EDA2A1DE13F26F8400B64EA5 /* MenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDA2A1DC13F26F8400B64EA5 /* MenuViewController.xib */; };
 		EDC5CC3313F6260400EAF813 /* PlaybackViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDC5CC3113F6260400EAF813 /* PlaybackViewController.xib */; };
-		EDC5CC3913F6261500EAF813 /* CoverViewConroller.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDC5CC3713F6261500EAF813 /* CoverViewConroller.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -392,6 +392,7 @@
 		95D2069514482984004B6E8B /* UndownloadedShow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UndownloadedShow.h; sourceTree = "<group>"; };
 		95D2069614482984004B6E8B /* UndownloadedShow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UndownloadedShow.m; sourceTree = "<group>"; };
 		95D2069A1449B0F8004B6E8B /* 40-inbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "40-inbox.png"; sourceTree = "<group>"; };
+		95D2069C1449E480004B6E8B /* scene page helper graphic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scene page helper graphic.png"; sourceTree = "<group>"; };
 		95DAE87E141480F80039201D /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		95DAE880141481160039201D /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		95DAE882141481210039201D /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -429,7 +430,6 @@
 		EDA2A1DA13F26F8400B64EA5 /* MenuViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
 		EDA2A1DD13F26F8400B64EA5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MenuViewController.xib; sourceTree = "<group>"; };
 		EDC5CC3113F6260400EAF813 /* PlaybackViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlaybackViewController.xib; sourceTree = "<group>"; };
-		EDC5CC3713F6261500EAF813 /* CoverViewConroller.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CoverViewConroller.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -771,6 +771,7 @@
 		820E2A1E140A0A2A00B80BBC /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				95D2069C1449E480004B6E8B /* scene page helper graphic.png */,
 				95D206991449B0EA004B6E8B /* Icons */,
 				950060031440B5FF000BB0A6 /* musical_placeholder.png */,
 				950060041440B5FF000BB0A6 /* scene_placeholder.png */,
@@ -893,7 +894,6 @@
 				EDA2A1DC13F26F8400B64EA5 /* MenuViewController.xib */,
 				EDC5CC3113F6260400EAF813 /* PlaybackViewController.xib */,
 				820511BE13F3BB9B0016F87E /* SceneViewController.xib */,
-				EDC5CC3713F6261500EAF813 /* CoverViewConroller.xib */,
 				9569E05D1418A2B10016DAF3 /* AudioEditorViewController.xib */,
 				9569E05E1418A2B10016DAF3 /* PhotoEditorViewController.xib */,
 				9569E0611418A2C90016DAF3 /* SceneEditViewController.xib */,
@@ -1056,7 +1056,6 @@
 				EDA2A1DE13F26F8400B64EA5 /* MenuViewController.xib in Resources */,
 				820511C013F3BB9B0016F87E /* SceneViewController.xib in Resources */,
 				EDC5CC3313F6260400EAF813 /* PlaybackViewController.xib in Resources */,
-				EDC5CC3913F6261500EAF813 /* CoverViewConroller.xib in Resources */,
 				9569E05F1418A2B10016DAF3 /* AudioEditorViewController.xib in Resources */,
 				9569E0601418A2B10016DAF3 /* PhotoEditorViewController.xib in Resources */,
 				9569E0621418A2C90016DAF3 /* SceneEditViewController.xib in Resources */,
@@ -1121,6 +1120,7 @@
 				95F856C5144409400089C62D /* NewOpenViewController.xib in Resources */,
 				737716CC1445D61500BF2036 /* ChoiceSelectionViewController.xib in Resources */,
 				95D2069B1449B0F8004B6E8B /* 40-inbox.png in Resources */,
+				95D2069D1449E480004B6E8B /* scene page helper graphic.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

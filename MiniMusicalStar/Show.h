@@ -22,6 +22,7 @@
 @property (retain, nonatomic) NSString *author;
 @property (retain, nonatomic) NSDate *createdDate;
 @property (retain) UIImage *coverPicture;
+@property (retain, nonatomic) NSString  *showDescription;
 @property (retain, nonatomic) NSString *iTunesAlbumLink;
 @property (retain, nonatomic) NSString *iBooksBookLink;
 

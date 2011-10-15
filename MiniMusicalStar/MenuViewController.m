@@ -111,7 +111,7 @@
             downloadIconFrame.size.height = 60;
             
             downloadLabel = [[UILabel alloc] initWithFrame:downloadIconFrame];
-            downloadLabel.tag = 1; //used to identify the label later on
+            downloadLabel.tag = -1; //used to identify the label later on
             downloadLabel.text = @"Tap to Download";
             downloadLabel.textAlignment = UITextAlignmentCenter;
             downloadLabel.font = [downloadLabel.font fontWithSize:26.0];
@@ -165,18 +165,18 @@
     //create a progress indicator
     CGRect progressBarFrame;
     progressBarFrame.size.width = 250;
-    progressBarFrame.size.height = 10;
+    progressBarFrame.size.height = 20;
     progressBarFrame.origin.x = 10;
     progressBarFrame.origin.y = sender.frame.size.height - 20;
     
     UIProgressView *progressBar = [[UIProgressView alloc] initWithFrame:progressBarFrame];
-    progressBar.tag = 2; //progress bar tag is 2
+    progressBar.tag = -2; //progress bar tag is 2
     [sender.superview addSubview:progressBar];
     
     [self.showDAO downloadShow:[self.showDAO.loadedShows objectAtIndex:sender.tag] progressIndicatorDelegate:progressBar];
     
     //change the label text (the label has a tag of 1) to "tap to cancel"
-    UILabel *downloadLabel = (UILabel *)[sender.superview viewWithTag:1];
+    UILabel *downloadLabel = (UILabel *)[sender.superview viewWithTag:-1];
     downloadLabel.text = @"Tap to Cancel";
     [sender removeTarget:self action:@selector(downloadMusical:) forControlEvents:UIControlEventTouchUpInside];
     [sender addTarget:self action:@selector(cancelDownloadOfShow:) forControlEvents:UIControlEventTouchUpInside];
@@ -192,12 +192,12 @@
 - (void)resetToCleanStateForPartiallyDownloadedShow:(UndownloadedShow *)aShow
 {
     UIButton *showButton = [buttonArray objectAtIndex:[self.showDAO.loadedShows indexOfObject:aShow]];
-    [[showButton.superview viewWithTag:2] removeFromSuperview]; //remove the progress bar
+    [[showButton.superview viewWithTag:-2] removeFromSuperview]; //remove the progress bar
     
     [showButton removeTarget:self action:@selector(cancelDownloadOfShow:) forControlEvents:UIControlEventTouchUpInside];
     [showButton addTarget:self action:@selector(downloadMusical:) forControlEvents:UIControlEventTouchUpInside];
     
-    UILabel *downloadLabel = (UILabel *)[showButton.superview viewWithTag:1];
+    UILabel *downloadLabel = (UILabel *)[showButton.superview viewWithTag:-1];
     downloadLabel.text = @"Tap to Download";
 }
 
@@ -220,7 +220,7 @@
             [theButton addTarget:self action:@selector(selectMusical:) forControlEvents:UIControlEventTouchUpInside];
             
             //remove the label
-            [[theButton.superview viewWithTag:1] removeFromSuperview];
+            [[theButton.superview viewWithTag:-1] removeFromSuperview];
         }
     }
 }

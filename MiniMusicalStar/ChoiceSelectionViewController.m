@@ -14,6 +14,7 @@
 @synthesize currentSelectedCoversList;
 @synthesize currentSelectedMusical;
 @synthesize frc;
+@synthesize showTitle, showDescription;
 
 - (void)dealloc
 {
@@ -21,7 +22,8 @@
     [theShow release];
     [create release];
     [cover release];
-    
+    [showTitle release];
+    [showDescription release];
     [super dealloc];
 }
 
@@ -111,7 +113,10 @@
     // Do any additional setup after loading the view from its nib.
     
     showCover.image = theShow.coverPicture;
-    [self loadCoversForShow:theShow];    
+    [self loadCoversForShow:theShow];
+    
+    self.showTitle.text = self.theShow.title;
+    self.showDescription.text = self.theShow.showDescription;
     
 }
 
