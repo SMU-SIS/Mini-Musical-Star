@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <QuartzCore/QuartzCore.h>
 
 @class NewOpenViewController;
 @class UndownloadedShow;
@@ -26,6 +27,6 @@
 - (void)downloadMusical:(UIButton *)sender;
 - (void)cancelDownloadOfShow:(UIButton *)sender;
 - (void)resetToCleanStateForPartiallyDownloadedShow:(UndownloadedShow *)aShow;
--(void)selectMusical:(UIImageView *)musicalButton;
+- (void)selectMusical:(UIImageView *)musicalButton;
 
 @end

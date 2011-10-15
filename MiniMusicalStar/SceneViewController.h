@@ -7,36 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Show.h"
-#import "SceneEditViewController.h"
-#import "CoversListViewController.h"
-#import "Cover.h"
-#import "CoverScene.h"
-#import "DSActivityView.h"
 
-@interface SceneViewController : UIViewController{
-    IBOutlet UIImageView *showCover;
-    IBOutlet UIScrollView *sceneMenu;
-
-    int imageNum;
-
-}
+@class Show;
+@class Cover;
+@class SceneEditViewController;
+@interface SceneViewController : UIViewController
 
 @property (retain, nonatomic) NSManagedObjectContext *context;
-@property (nonatomic, assign) int imageNum;
 @property (retain, nonatomic) Show *theShow;
-@property (retain, nonatomic) Scene *chosenScene;
 @property (retain, nonatomic) Cover *theCover;
-
-@property (retain, nonatomic) UIButton *saveCoverButton;
-@property (retain, nonatomic) UITextField *userCoverName;
-
-@property (retain, nonatomic) CoversListViewController *coversList;
-@property (retain, nonatomic) UIPopoverController *coversPopover;
+@property (retain, nonatomic) IBOutlet UIImageView *showCover;
+@property (retain, nonatomic) IBOutlet UIScrollView *sceneMenu;
 
 -(SceneViewController *)initWithScenesFromShow:(Show *)aShow andCover:(Cover *)aCover andContext:(NSManagedObjectContext *)aContext;
-
+- (void)loadSceneSelectionScrollView;
 -(void)selectScene:(UIButton *)sender;
--(void)displaySceneImages:(NSArray *)images;
-
+-(void)loadSceneEditViewController:(UIButton *)sender;
+-(void)finishLoadingSceneEditViewController:(SceneEditViewController *)theController;
 @end

@@ -108,6 +108,12 @@
             
             undownloadedShow.coverImage = [UIImage imageWithData:imageData];
             
+            //use a placeholder image if there is no coverImage
+            if (!undownloadedShow.coverImage)
+            {
+                undownloadedShow.coverImage = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"musical_placeholder" ofType:@"png"]];
+            }
+            
             [self.loadedShows addObject:undownloadedShow];
         }
     }];

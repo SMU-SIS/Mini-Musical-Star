@@ -91,7 +91,7 @@
     
         self.currentSelectedCoversList = coversListNavController;
         [self.currentSelectedMusical removeFromSuperview];
-       
+        
     
         [UIView beginAnimations:nil context:NULL];
         [UIView setAnimationDuration:1.0];

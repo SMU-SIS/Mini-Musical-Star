@@ -70,7 +70,7 @@
     //create a buttonArray as the backing for the buttons in the scrollview (so we can refer to them later)
     self.buttonArray = [NSMutableArray arrayWithCapacity:self.showDAO.loadedShows.count];
     
-    //self.shows contains both downloaded and undownloaded shows, make sure to differentiate
+    //make sure to differentiate downloaded and undownloaded shows, 
     [self.showDAO.loadedShows enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         
         CGRect frame;
@@ -175,7 +175,7 @@
     
     [self.showDAO downloadShow:[self.showDAO.loadedShows objectAtIndex:sender.tag] progressIndicatorDelegate:progressBar];
     
-    //change the label text (the label has a tag of 1) to "tap to cancel"
+    //change the label text (the label has a tag of -1) to "tap to cancel"
     UILabel *downloadLabel = (UILabel *)[sender.superview viewWithTag:-1];
     downloadLabel.text = @"Tap to Cancel";
     [sender removeTarget:self action:@selector(downloadMusical:) forControlEvents:UIControlEventTouchUpInside];
