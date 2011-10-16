@@ -30,6 +30,8 @@
     //for the lyrics popover
     UIScrollView *lyricsScrollView;
     UILabel *lyricsLabel;
+    UIPopoverController *selectLyricsPopover;
+    UIToolbar *lyricsViewToolbar;
     
     //stores a pointer to the play/pause button to the scene editor
     UIButton *playPauseButton;
@@ -55,6 +57,8 @@
 //for the lyrics
 @property (nonatomic, retain) UIScrollView *lyricsScrollView;
 @property (nonatomic, retain) UILabel *lyricsLabel;
+@property (nonatomic, retain) UIPopoverController *selectLyricsPopover;
+@property (nonatomic, retain) UIToolbar *lyricsViewToolbar;
 
 @property (nonatomic, retain) MixPlayerRecorder *thePlayer;
 @property (nonatomic, retain) NSArray *theAudioObjects;
@@ -89,12 +93,14 @@
 - (CAGradientLayer*)createGradientLayer:(CGRect)frame firstColor:(UIColor*)firstColor andSecondColor:(UIColor*)secondColor;
 - (UIScrollView*)createLyricsScrollView;
 - (UILabel*)createLyricsLabel;
+- (void)loadLyrics:(NSString*)someLyrics;
 
 + (NSString*)getUniqueFilenameWithoutExt;
 
 - (NSArray*)getExportAudioURLs;
 
-- (void)showPopoverSelectTrackLyrics:(id*)sender;
+- (void)showSelectLyricsPopover:(id*)sender;
+- (UIPopoverController*)createSelectLyricsPopover;
 
 - (void)consolidateOriginalAndCoverTracks;
 - (void)consolidateReplaceableAudios;

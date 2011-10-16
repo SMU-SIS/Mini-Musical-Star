@@ -16,7 +16,7 @@
 @synthesize thePlayer, theAudioObjects, theCoverScene, context;
 @synthesize tracksForView;
 @synthesize trackTableView, recordImage, recordingImage, mutedImage, unmutedImage, trashbinImage;
-@synthesize lyricsScrollView, lyricsLabel;
+@synthesize lyricsScrollView, lyricsLabel, selectLyricsPopover, lyricsViewToolbar;
 @synthesize lyrics;
 @synthesize currentRecordingURL, currentRecordingAudio;
 @synthesize playPauseButton;
@@ -42,6 +42,7 @@
     
     [lyricsScrollView release];
     [lyricsLabel release];
+    [selectLyricsPopover release];
     
     [arrayOfReplaceableAudios release];
     
@@ -86,8 +87,6 @@
     return self;
 }
 
-
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -121,6 +120,13 @@
     
     //set default value
     currentRecordingTrack = -1; //representing no track is being recorded
+    
+    //load first replaceable audio's lyrics
+    if (arrayOfReplaceableAudios != nil && [arrayOfReplaceableAudios count] != 0)
+    {
+        Audio *anAudio = (Audio*) [arrayOfReplaceableAudios objectAtIndex:0];
+        [self loadLyrics:anAudio.lyrics];
+    }
 }
 
 - (void)viewDidUnload
@@ -149,7 +155,16 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    if (tableView.tag == 1)
+    {
+        [selectLyricsPopover dismissPopoverAnimated:YES];
+        
+        int row = [indexPath row];
+        
+        Audio *anAudio = (Audio*) [arrayOfReplaceableAudios objectAtIndex:row];
+        
+        [self loadLyrics:anAudio.lyrics];
+    }
 }
 
 // We will only have 1 section, so don't change the value here.
@@ -619,7 +634,7 @@
 
 /* constants related to displaying lyrics */
 #define LYRICS_VIEW_WIDTH 1024-500 //the entire width of the landscape screen
-#define LYRICS_VIEW_HEIGHT 580
+#define LYRICS_VIEW_HEIGHT 580-44
 #define LYRICS_VIEW_X 500
 #define LYRICS_VIEW_Y 0
 
@@ -627,7 +642,32 @@
 {
     [self createLyricsScrollView];
     [self createLyricsLabel];
+    [self createSelectLyricsPopover];
     
+    lyricsViewToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(LYRICS_VIEW_X, LYRICS_VIEW_HEIGHT, LYRICS_VIEW_WIDTH, 44)];
+    
+    
+    UIBarButtonItem *flexibleSpaceLeft = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];    //this is used to force the button to the right
+    
+    UIBarButtonItem *selectTracksLyricsBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Select Track" style:UIBarButtonItemStylePlain target:self action:@selector(showSelectLyricsPopover:)];
+    
+    NSArray *barButtonItemsArray = [NSArray arrayWithObjects:flexibleSpaceLeft, selectTracksLyricsBarButtonItem, nil];
+    
+    [lyricsViewToolbar setItems:barButtonItemsArray animated:NO];
+    
+    [selectTracksLyricsBarButtonItem release];
+    [flexibleSpaceLeft release];
+    
+    [lyricsScrollView addSubview:lyricsLabel];
+    [self.view addSubview:lyricsScrollView];
+    
+    [self.view addSubview:lyricsViewToolbar];
+    
+    [lyricsViewToolbar release];
+}
+
+- (void)loadLyrics:(NSString*)someLyrics
+{
     CGRect lyricsLabelFrame = lyricsLabel.bounds; //get the CGRect representing the bounds of the UILabel
     
     lyricsLabelFrame.size = [lyrics sizeWithFont:lyricsLabel.font constrainedToSize:CGSizeMake(LYRICS_VIEW_WIDTH-20, 100000) lineBreakMode:lyricsLabel.lineBreakMode]; //get a CGRect for dynamically resizing the label based on the text. cool.
@@ -636,52 +676,42 @@
     
     [lyricsScrollView setContentSize:CGSizeMake(lyricsLabel.frame.size.width, lyricsLabelFrame.size.height)]; //set content size of scroll view using calculated size of the text on the label
     
-    lyricsLabel.text = lyrics;
-
-    //UIToolbar *lyricsViewToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, LYRICS_VIEW_HEIGHT-44, LYRICS_VIEW_WIDTH, 44)];
-    //[lyricsScrollView addSubview:lyricsViewToolbar];
-    
-    
-    
-    
-//    UIBarButtonItem *flexibleSpaceLeft = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];    //this is used to force the button to the right
-//    
-//    UIBarButtonItem *selectTracksLyricsBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Select Track" style:UIBarButtonItemStylePlain target:self action:@selector(showPopoverSelectTrackLyrics:)];
-//    
-//    NSArray *barButtonItemsArray = [NSArray arrayWithObjects:flexibleSpaceLeft, selectTracksLyricsBarButtonItem, nil];
-//    
-//    [lyricsViewToolbar setItems:barButtonItemsArray animated:NO];
-//    
-//    [selectTracksLyricsBarButtonItem release];
-//    [flexibleSpaceLeft release];
-//       
-//    
-    [lyricsScrollView addSubview:lyricsLabel];
-    [self.view addSubview:lyricsScrollView];
-    
-    //[lyricsScrollView bringSubviewToFront:lyricsViewToolbar];
-
+    lyricsLabel.text = someLyrics;
 }
 
-//- (void)showPopoverSelectTrackLyrics:(id*)sender
-//{
-//    UITableViewController *trackLyricsTableViewController = [[UITableViewController alloc] initWithStyle:UITableViewStylePlain];
-//    
-//    UITableView *trackLyricsTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 100, 800)];
-//    trackLyricsTableViewController.tableView = trackLyricsTableView;
-//    
-//    trackLyricsTableView.tag = 1;
-//    trackLyricsTableView.delegate = self;
-//    trackLyricsTableView.dataSource = self;
-//    
-//    UIPopoverController *popoverSelectTrackLyrics = [[UIPopoverController alloc] initWithContentViewController:trackLyricsTableViewController];
-//    
-//    [popoverSelectTrackLyrics presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionDown animated:YES];
-//    
-//    
-//
-//    
-//}
+- (void)showSelectLyricsPopover:(id*)sender
+{
+    UIBarButtonItem *aBarButtonItem = (UIBarButtonItem*)sender;
+    
+    [selectLyricsPopover presentPopoverFromBarButtonItem:aBarButtonItem permittedArrowDirections:UIPopoverArrowDirectionDown animated:YES];
+}
+
+- (UIPopoverController*)createSelectLyricsPopover
+{
+    UITableViewController *selectLyricsTableViewController = [[UITableViewController alloc] initWithStyle:UITableViewStylePlain];
+    selectLyricsTableViewController.contentSizeForViewInPopover = CGSizeMake(200, 200);
+    
+    UITableView *selectLyricsTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 100, 800)];
+    
+    CGRect selectLyricsTableViewFrame = selectLyricsTableView.frame;
+    selectLyricsTableViewFrame.size.height = 500;
+    selectLyricsTableView.frame = selectLyricsTableViewFrame;
+    
+    selectLyricsTableViewController.tableView = selectLyricsTableView;
+    
+    selectLyricsTableView.tag = 1;
+    selectLyricsTableView.delegate = self;
+    selectLyricsTableView.dataSource = self;
+
+    selectLyricsPopover = [[UIPopoverController alloc] initWithContentViewController:selectLyricsTableViewController];
+    
+    
+
+    [selectLyricsTableViewController release];  //being retained by popover controller
+    [selectLyricsTableView release];    //being retained by the table view controller
+    
+    return selectLyricsPopover;
+}
 
 - (UIScrollView*)createLyricsScrollView {
     lyricsScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(LYRICS_VIEW_X, LYRICS_VIEW_Y, LYRICS_VIEW_WIDTH, LYRICS_VIEW_HEIGHT)]; 
