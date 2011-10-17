@@ -14,6 +14,7 @@
 
 - (void)dealloc
 {
+    [showID release];
     [data release];
     [scenesOrder release];
     [coverPicture release];
@@ -51,7 +52,7 @@
         self.showAssetsLocation = [[showPath path] stringByAppendingPathComponent:@"assets"];
         
         //populate the properties of the Show model
-        self.showID = [[root objectForKey:@"id"] intValue];
+        self.showID = [root objectForKey:@"id"];
         self.title = [root objectForKey:@"title"];
         self.author = [root objectForKey:@"author"];
         self.showDescription = [root objectForKey:@"description"];

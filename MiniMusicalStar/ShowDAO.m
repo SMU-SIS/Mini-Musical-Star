@@ -12,6 +12,7 @@
 #import "ASIHTTPRequest.h"
 #import "ASINetworkQueue.h"
 #import "ZipArchive.h"
+#import "SBJson.h"
 
 @implementation ShowDAO
 @synthesize loadedShows, activeDownloads, delegate;
@@ -99,41 +100,88 @@
 
 - (void)checkForNewShowsFromServer
 {
-    
-    NSString *urlStr = [[NSString alloc] 
-                        initWithFormat:@"http://dl.dropbox.com/u/23645/shows.plist?seedVar=%f", 
-                        (float)random()/RAND_MAX];
-    NSURL *url = [NSURL URLWithString:urlStr];
-    NSDictionary *root = [[NSDictionary alloc] initWithContentsOfURL:url];
-    
-    NSArray *showCatalogue = [root objectForKey:@"shows"];
-    
-    //find shows that are not in already local, then create UndownloadShow objects for them
-    [showCatalogue enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        NSDictionary *showInCatalogue = (NSDictionary *)obj;
-        int showID = [[showInCatalogue objectForKey:@"id"] intValue];
-        if (![self checkIfExistsLocally:showID])
-        {
-            //don't download now, just give the user an option to download
-            UndownloadedShow *undownloadedShow = [[UndownloadedShow alloc] init];
-            
-            undownloadedShow.showID = showID;
-            undownloadedShow.title = [showInCatalogue objectForKey:@"title"];
-            undownloadedShow.downloadURL = [NSURL URLWithString:[showInCatalogue objectForKey:@"zip_url"]];
-            
-            NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[showInCatalogue objectForKey:@"cover-photo-url"]]];
-            
-            undownloadedShow.coverImage = [UIImage imageWithData:imageData];
-            
-            //use a placeholder image if there is no coverImage
-            if (!undownloadedShow.coverImage)
+    // get the list of purchaseable shows returned as an array of product identifiers
+    __block ASIHTTPRequest *showsRequest = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:@"http://mmsmusicalstore.appspot.com/shows"]];
+    [showsRequest setCompletionBlock:^{
+        NSString *responseString = [showsRequest responseString];
+        SBJsonParser *parser = [[SBJsonParser alloc] init];
+        NSArray *responseArray = [parser objectWithString:responseString];
+        
+        [parser release];
+        
+        //create an array of product identifiers
+        NSMutableSet *productIdentifiers = [NSSet setWithArray:responseArray];
+        
+        __block NSMutableSet *undownloadedProductIdentifiers = [NSSet set];
+        
+        //filter out those that already exists on localhost
+        [productIdentifiers enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
+            if (![self checkIfExistsLocally:(NSString *)obj])
             {
-                undownloadedShow.coverImage = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"musical_placeholder" ofType:@"png"]];
+                [undownloadedProductIdentifiers addObject:obj];
             }
+        }];
+        
+        if (undownloadedProductIdentifiers.count > 0)
+        {
+            SKProductsRequest *productsRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:productIdentifiers];
+            productsRequest.delegate = self;
             
-            [self.loadedShows addObject:undownloadedShow];
+            [productsRequest start];
         }
+        
+        else
+        {
+            //no need to query app store, user has downloaded every single show we have to sell
+        }
+        
     }];
+    
+    [showsRequest setFailedBlock:^{
+        NSLog(@"Request failed. :(");
+    }];
+    
+    [showsRequest startAsynchronous];
+    
+}
+
+- (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response
+{
+    NSArray *storeProducts = response.products;
+    
+    /*
+     SKProduct:
+     localizedDescription
+     localizedTitle
+     price
+     priceLocale
+     productIdentifier
+     */
+    
+    [storeProducts enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        
+        SKProduct *skProduct = (SKProduct *)obj;
+        
+        //create UndownloadShow objects for all of them
+        UndownloadedShow *newShow = [[UndownloadedShow alloc] init];
+        
+        newShow.showID = skProduct.productIdentifier;
+        newShow.title = skProduct.localizedTitle;
+        newShow.showDescription = skProduct.localizedDescription;
+        newShow.price = skProduct.price;
+        
+        //grab the new show's cover image from our server
+        NSString *coverImageString = [NSString stringWithFormat:@"http://mmsmusicalstore.appspot.com/shows/%@/cover_image", skProduct.productIdentifier];
+        NSURL *coverImageURL = [NSURL URLWithString:coverImageString];
+        NSData *coverImageData = [NSData dataWithContentsOfURL:coverImageURL]; //this needs error handling
+        
+        newShow.coverImage = [UIImage imageWithData:coverImageData];
+        
+        [loadedShows addObject:newShow];
+        
+    }];
+    
+    [request autorelease];
 }
 
 - (void)downloadShow:(UndownloadedShow *)aShow progressIndicatorDelegate:(id)aDelegate
@@ -189,12 +237,12 @@
     [request cancel];
 }
             
-- (BOOL)checkIfExistsLocally:(int)showID
+- (BOOL)checkIfExistsLocally:(NSString *)productIdentifier
 {
     for (int i = 0; i < self.loadedShows.count; i++)
     {
         Show *aShow = [self.loadedShows objectAtIndex:i];
-        if (showID == aShow.showID)
+        if ([productIdentifier isEqualToString:aShow.showID])
         {
             return YES;
         }

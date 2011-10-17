@@ -172,6 +172,7 @@
 		95368B0C144C4CC5003BDDEF /* SBJsonTokeniser.m in Sources */ = {isa = PBXBuildFile; fileRef = 95368AFE144C4CC5003BDDEF /* SBJsonTokeniser.m */; };
 		95368B0D144C4CC5003BDDEF /* SBJsonUTF8Stream.m in Sources */ = {isa = PBXBuildFile; fileRef = 95368B00144C4CC5003BDDEF /* SBJsonUTF8Stream.m */; };
 		95368B0E144C4CC5003BDDEF /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 95368B02144C4CC5003BDDEF /* SBJsonWriter.m */; };
+		95368B1F144C523E003BDDEF /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95368B1E144C523E003BDDEF /* StoreKit.framework */; };
 		9569E05B1418A2A80016DAF3 /* AudioEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9569E0581418A2A80016DAF3 /* AudioEditorViewController.m */; };
 		9569E05C1418A2A80016DAF3 /* PhotoEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9569E05A1418A2A80016DAF3 /* PhotoEditorViewController.m */; };
 		9569E05F1418A2B10016DAF3 /* AudioEditorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9569E05D1418A2B10016DAF3 /* AudioEditorViewController.xib */; };
@@ -404,6 +405,7 @@
 		95368B00144C4CC5003BDDEF /* SBJsonUTF8Stream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonUTF8Stream.m; sourceTree = "<group>"; };
 		95368B01144C4CC5003BDDEF /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		95368B02144C4CC5003BDDEF /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
+		95368B1E144C523E003BDDEF /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		9569E0571418A2A80016DAF3 /* AudioEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioEditorViewController.h; sourceTree = "<group>"; };
 		9569E0581418A2A80016DAF3 /* AudioEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioEditorViewController.m; sourceTree = "<group>"; };
 		9569E0591418A2A80016DAF3 /* PhotoEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoEditorViewController.h; sourceTree = "<group>"; };
@@ -499,6 +501,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95368B1F144C523E003BDDEF /* StoreKit.framework in Frameworks */,
 				3A5F7C791440D8E700E9C570 /* MediaPlayer.framework in Frameworks */,
 				3A5F7C681440CE1D00E9C570 /* CoreVideo.framework in Frameworks */,
 				3A5F7C661440CE1600E9C570 /* CoreMedia.framework in Frameworks */,
@@ -980,6 +983,7 @@
 		EDA2A1B513F26F8300B64EA5 = {
 			isa = PBXGroup;
 			children = (
+				95368B1E144C523E003BDDEF /* StoreKit.framework */,
 				820E2A1E140A0A2A00B80BBC /* Resources */,
 				EDA2A1CA13F26F8400B64EA5 /* MiniMusicalStar */,
 				3A68378A142CBF95000485F2 /* MiniMusicalStarTests */,

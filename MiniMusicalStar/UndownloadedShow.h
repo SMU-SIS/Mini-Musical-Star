@@ -10,9 +10,11 @@
 
 @interface UndownloadedShow : NSObject
 
-@property (nonatomic) int showID;
+@property (retain, nonatomic) NSString *showID;
 @property (retain, nonatomic) NSString *title;
 @property (retain, nonatomic) NSURL *downloadURL;
 @property (retain, nonatomic) UIImage *coverImage;
+@property (retain, nonatomic) NSString *showDescription;
+@property (retain, nonatomic) NSDecimalNumber *price;
 
 @end

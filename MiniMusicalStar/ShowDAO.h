@@ -7,10 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <StoreKit/StoreKit.h>
 
 @class UndownloadedShow;
 @class Show;
-@interface ShowDAO : NSObject
+@interface ShowDAO : NSObject <SKProductsRequestDelegate>
 
 @property (retain, nonatomic) NSMutableArray *loadedShows;
 @property (retain, nonatomic) NSMutableDictionary *activeDownloads;
@@ -24,6 +25,7 @@
 - (void)checkForNewShowsFromServer;
 - (void)downloadShow:(UndownloadedShow *)aShow progressIndicatorDelegate:(id)aDelegate;
 - (void)cancelDownloadForShow:(UndownloadedShow *)aShow;
-- (BOOL)checkIfExistsLocally:(int)showID;
+- (BOOL)checkIfExistsLocally:(NSString *)productIdentifier;
 - (void)unzipDownloadedShowURL:(NSString *)localShowZipPath toPath:(NSString *)unzipPath;
+
 @end
