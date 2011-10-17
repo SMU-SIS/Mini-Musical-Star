@@ -12,10 +12,14 @@
 #import "Scene.h"
 #import "CoverScene.h"
 #import "CoverSceneAudio.h"
+#import <AVFoundation/AVFoundation.h>
+
 @class Audio;
 @interface AudioEditorViewController : UIViewController
 <UITableViewDelegate, UITableViewDataSource, UIPopoverControllerDelegate>
 {
+    OSStatus error;
+    
     UITableView *trackTableView;
     UIImage *recordImage;
     UIImage *recordingImage;
@@ -106,5 +110,7 @@
 - (void)consolidateReplaceableAudios;
 
 - (NSString*)findFirstReplaceableTrackAndSetLyrics;
+
+- (NSString*)getCurrentAudioRoute;
 
 @end
