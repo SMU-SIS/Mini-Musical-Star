@@ -11,7 +11,11 @@
 #import "SceneViewController.h"
 #import "Cover.h"
 #import "CoversListViewController.h"
+<<<<<<< HEAD
 #import "ExportTableViewController.h"
+=======
+#import "AlertPrompt.h"
+>>>>>>> weijie
 
 @interface ChoiceSelectionViewController : UIViewController{
     IBOutlet UIImageView *showCover;
@@ -19,15 +23,13 @@
     IBOutlet UIButton *cover;
     
     NSManagedObjectContext *managedObjectContext;
-    UIViewController *currentSelectedCoversList;
-    UIView *currentSelectedMusical;
 }
 
 @property (retain, nonatomic) Show *theShow;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
-@property (retain, nonatomic) UIViewController *currentSelectedCoversList;
-@property (retain, nonatomic) UIView *currentSelectedMusical;
 @property (retain, nonatomic) NSFetchedResultsController *frc;
+@property (retain, nonatomic) UIViewController *currentSelectedCoversList;
+@property (retain, nonatomic) NSString *coverName;
 
 @property (nonatomic, retain) ExportTableViewController *exportTableController;
 @property (nonatomic, retain) UIBarButtonItem *mediaManagementButton;
@@ -36,8 +38,10 @@
 
 -(ChoiceSelectionViewController *)initWithAShowForSelection:(Show *)aShow context:(NSManagedObjectContext *)aContext;
 
--(IBAction)createMusical:(UIButton*)sender;
--(IBAction)listCoversForMusical:(UIButton*)sender;
+-(void)createMusical;
+-(IBAction)loadCoversList:(UIButton*)sender;
+
+-(IBAction)promptForCoverName:(UIButton*)sender;
 
 - (void)loadCoversForShow:(Show *)aShow;
 

@@ -11,12 +11,15 @@
 @implementation ChoiceSelectionViewController
 @synthesize theShow;
 @synthesize managedObjectContext;
-@synthesize currentSelectedCoversList;
-@synthesize currentSelectedMusical;
 @synthesize frc;
+<<<<<<< HEAD
 @synthesize showTitle, showDescription;
 @synthesize exportTableController;
 @synthesize mediaManagementButton;
+=======
+@synthesize currentSelectedCoversList;
+@synthesize coverName;
+>>>>>>> weijie
 
 - (void)dealloc
 {
@@ -49,6 +52,7 @@
     return self;
 }
 
+<<<<<<< HEAD
 - (IBAction)createMusical: (UIButton*)sender {
     
     Cover *newCover = [NSEntityDescription insertNewObjectForEntityForName:@"Cover" inManagedObjectContext:managedObjectContext];
@@ -62,52 +66,47 @@
     [self.navigationController pushViewController:sceneView animated:YES];
     
     [sceneView release];
+=======
+- (IBAction)promptForCoverName: (UIButton*)sender
+{
+    AlertPrompt *prompt = [AlertPrompt alloc];
+	prompt = [prompt initWithTitle:@"Give your cover a name!" message:@" " delegate:self cancelButtonTitle:@"Cancel" okButtonTitle:@"Okay"];
+	[prompt show];
+	[prompt release];
+>>>>>>> weijie
 }
 
-- (IBAction)listCoversForMusical:(UIButton*)sender
+- (void)createMusical
 {
-    
-    UIView *parentView = self.view;
-    
-    CGRect coversFrame;
-    coversFrame.origin.x = 542;
-    coversFrame.origin.y = 0;
-    coversFrame.size.width = 500;
-    coversFrame.size.height = parentView.frame.size.height;
-    
-    //NSLog(@"KNS AGAIN %i", [[[frc sections] objectAtIndex:0] numberOfObjects]);
-    
-    if ([[[frc sections] objectAtIndex:0] numberOfObjects] == 0) 
-    {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"OPPS!" message:@"Please create your first cover!" delegate:self cancelButtonTitle:@"OK!" otherButtonTitles:nil, nil];
+    if ([coverName length] == 0) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"OPPS!" message:@"Please enter something!" delegate:self cancelButtonTitle:@"OK!" otherButtonTitles:nil, nil];
         [alert show];
-        [alert release];
+        [alert release]; 
     }
     else
     {
-        CoversListViewController *coversView = [[CoversListViewController alloc] initWithShow:theShow context:self.managedObjectContext];
-        coversView.view.frame = coversFrame;
-        coversView.delegate = self;
-
-        UINavigationController *coversListNavController = [[UINavigationController alloc] initWithRootViewController:coversView];
-        coversListNavController.view.frame = coversFrame;
+    Cover *newCover = [NSEntityDescription insertNewObjectForEntityForName:@"Cover" inManagedObjectContext:managedObjectContext];
+    newCover.cover_of_showID = [NSNumber numberWithInt:[theShow showID]];
     
+<<<<<<< HEAD
         self.currentSelectedCoversList = coversListNavController;
         [self.currentSelectedMusical removeFromSuperview];
         
+=======
+    SceneViewController *sceneView = [[SceneViewController alloc] initWithScenesFromShow:theShow andCover:newCover andContext:managedObjectContext];
     
-        [UIView beginAnimations:nil context:NULL];
-        [UIView setAnimationDuration:1.0];
-        [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:parentView cache:YES];
-        [UIView setAnimationDuration:1.0];
+    newCover.title = coverName;
+>>>>>>> weijie
     
-        //CGAffineTransform transform = CGAffineTransformMakeScale(1.2, 1.2);
-        //parentView.transform = transform;
+    NSError *error;
+    [managedObjectContext save:&error];
     
-        [UIView commitAnimations];
-        [parentView addSubview:coversListNavController.view]; 
+    sceneView.title = [theShow title];
+    
+    [self.navigationController pushViewController:sceneView animated:YES];
+    
+    [sceneView release];
     }
-
 }
 
 - (void)viewDidLoad
@@ -119,6 +118,7 @@
     
     showCover.image = theShow.coverPicture;
     [self loadCoversForShow:theShow];
+<<<<<<< HEAD
     
     self.showTitle.text = self.theShow.title;
     self.showDescription.text = self.theShow.showDescription;
@@ -136,6 +136,8 @@
     [self.navigationController pushViewController:exportTableController animated:NO];
     [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:self.navigationController.view cache:NO];
     [UIView commitAnimations];
+=======
+>>>>>>> weijie
     
 }
 
@@ -152,18 +154,25 @@
 	return YES;
 }
 
-
 - (void)loadCoversForShow:(Show *)aShow
 {
-    NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"Cover" inManagedObjectContext:self.managedObjectContext];
+    NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"Cover" inManagedObjectContext:managedObjectContext];
     NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
     [request setEntity:entityDescription];
     
     [request setFetchBatchSize:20];
     
     //predicate...
+<<<<<<< HEAD
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"cover_of_showHash == %@", aShow.showHash];
+=======
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"cover_of_showID == %i", theShow.showID];
+>>>>>>> weijie
     [request setPredicate:predicate];
+    
+    //error here, the ID doesnt match with the shows
+    NSLog(@"The show ID is %i", theShow.showID);
+    NSLog(@"The show is KNS %@", theShow.title);
     
     //sort descriptor...
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"title" ascending:NO];
@@ -171,19 +180,65 @@
     [request setSortDescriptors:descriptors];
     
     
-    NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Root"];
+    NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:managedObjectContext sectionNameKeyPath:nil cacheName:@"Root"];
     fetchedResultsController.delegate = self;
     
     self.frc = fetchedResultsController;
     
     NSError *error;
-    if (![[self frc] performFetch:&error]) {
-		// Update to handle the error appropriately.
-		NSLog(@"WEIJIE %@, %@", error, [error userInfo]);
-	}
+    [frc performFetch:&error];
     
     [fetchedResultsController release], fetchedResultsController = nil;
-
 }
 
+
+- (IBAction)loadCoversList:(UIButton *)sender
+{
+    UIView *parentView = self.view;
+
+    CGRect coversFrame;
+    coversFrame.origin.x = 500;
+    coversFrame.origin.y = 0;
+    coversFrame.size.width = 500;
+    coversFrame.size.height = parentView.frame.size.height;
+    
+    NSLog(@"the selected show is %@", theShow.title);
+    
+    
+    if ([[[frc sections] objectAtIndex:0] numberOfObjects] == 0) 
+    {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"OPPS!" message:@"Please create your first cover!" delegate:self cancelButtonTitle:@"OK!" otherButtonTitles:nil, nil];
+            [alert show];
+            [alert release];
+    }
+    else
+    {
+     
+    CoversListViewController *coversView = [[CoversListViewController alloc] initWithShow:self.theShow context:self.managedObjectContext];
+    coversView.view.frame = coversFrame;
+    coversView.delegate = self;
+    
+    UINavigationController *coversListNavController = [[UINavigationController alloc] initWithRootViewController:coversView];
+    coversListNavController.view.frame = coversFrame;
+    
+    self.currentSelectedCoversList = coversListNavController;
+    
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:1.0];
+    [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:parentView cache:YES];
+    [UIView setAnimationDuration:1.0];
+    
+    [UIView commitAnimations];    
+    [parentView addSubview:coversListNavController.view];
+    }
+}
+
+- (void)alertView:(UIAlertView *)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+	if (buttonIndex != [alertView cancelButtonIndex])
+	{
+		coverName = [(AlertPrompt *)alertView enteredText];
+        [self createMusical];
+	}
+}
 @end

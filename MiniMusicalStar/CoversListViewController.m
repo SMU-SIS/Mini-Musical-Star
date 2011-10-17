@@ -148,8 +148,6 @@
     id <NSFetchedResultsSectionInfo> sectionInfo = nil;
     sectionInfo = [[frc sections] objectAtIndex:section];
     NSLog(@"we have %i objects in database", [sectionInfo numberOfObjects]);
-
-    
     return [sectionInfo numberOfObjects];
     
 }
@@ -162,12 +160,9 @@
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
-
     
-    // Configure the cell... 
-
-    [self configureCell:cell atIndexPath:indexPath]; 
-
+    // Configure the cell...
+    [self configureCell:cell atIndexPath:indexPath];
     return cell;
 }
 
@@ -175,12 +170,9 @@
 {
     NSManagedObject *mo = nil;
     NSString *temp = nil;
-    
     mo = [frc objectAtIndexPath:indexPath];
-    
     temp = [[mo valueForKey:@"title"] description]; 
-    [[cell textLabel] setText:temp]; 
-
+    [[cell textLabel] setText:temp];
 }
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController*)controller
