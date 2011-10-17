@@ -7,7 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Show.h"
+
+@protocol ExportTableViewControllerDelegate <NSObject>
+
+-(void)didTap:(NSString *)string;
+
+@end
 
 @interface ExportTableViewController : UITableViewController
+{
+    id delegate;
+}
+
+@property (retain, nonatomic) Show *theShow;
+@property (nonatomic, assign) id<ExportTableViewControllerDelegate> delegate;
 
 @end

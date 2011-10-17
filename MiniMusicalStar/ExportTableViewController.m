@@ -10,6 +10,14 @@
 
 @implementation ExportTableViewController
 
+@synthesize theShow;
+
+-(void)dealloc
+{
+    [theShow release];
+    [super dealloc];
+}
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -79,14 +87,14 @@
 {
 #warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return [[theShow.scenes allValues] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -99,8 +107,11 @@
     }
     
     // Configure the cell...
-    
+    Scene *scene = [[theShow.scenes allValues] objectAtIndex:indexPath.row];
+    cell.imageView.image = scene.coverPicture;
+    cell.textLabel.text = [scene title];
     return cell;
+    [scene release];
 }
 
 /*
@@ -154,6 +165,8 @@
      [self.navigationController pushViewController:detailViewController animated:YES];
      [detailViewController release];
      */
+    
+    [self.delegate didTap:[[[theShow.scenes allValues] objectAtIndex:indexPath.row] title]];
 }
 
 @end

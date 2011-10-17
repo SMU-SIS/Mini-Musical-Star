@@ -21,9 +21,11 @@
 @synthesize showCover;
 @synthesize popoverController;
 @synthesize exportButton;
+@synthesize exportTableController;
 
 - (void)dealloc
 {
+    [exportTableController release];
     [popoverController release];
     [exportButton release];
     [context release];
@@ -64,7 +66,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    exportButton = [[UIBarButtonItem alloc] initWithTitle:@"Export Musicals" style:UIBarButtonItemStylePlain target:self action:@selector(popover:)];          
+    exportButton = [[UIBarButtonItem alloc] initWithTitle:@"Export Musicals" style:UIBarButtonItemStylePlain target:self action:@selector(popoverExports:)];          
     self.navigationItem.rightBarButtonItem = exportButton;
     [exportButton release];
     
@@ -74,22 +76,21 @@
     [self loadSceneSelectionScrollView];
 }
 
-//- (void) popover: (id)sender
-//{
-//    self.popoverController = [[UIPopoverController alloc]
-//                              initWithContentViewController:[[UITableView alloc] init]];
-//}
-
--(void) popover: (id)sender{
+-(void) popoverExports: (id)sender{
     
     if ([popoverController isPopoverVisible]) {
         
         [popoverController dismissPopoverAnimated:YES];
         
     } else {
-        popoverController = [[UIPopoverController alloc] initWithContentViewController:[[ExportTableViewController alloc]init]];
-        popoverController.popoverContentSize = CGSizeMake(250, 300);
+        
+        exportTableController = [[ExportTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+        exportTableController.theShow = theShow;
+        
+        popoverController = [[UIPopoverController alloc] initWithContentViewController:exportTableController];
+        popoverController.popoverContentSize = CGSizeMake(400, 600);
         [popoverController presentPopoverFromBarButtonItem:exportButton permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+        
         
     }
     
