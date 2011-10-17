@@ -66,9 +66,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    exportButton = [[UIBarButtonItem alloc] initWithTitle:@"Export Musicals" style:UIBarButtonItemStylePlain target:self action:@selector(popoverExports:)];          
-    self.navigationItem.rightBarButtonItem = exportButton;
-//    [exportButton release];
+//    exportButton = [[UIBarButtonItem alloc] initWithTitle:@"Export Musicals" style:UIBarButtonItemStylePlain target:self action:@selector(popoverExports:)];          
+//    self.navigationItem.rightBarButtonItem = exportButton;
     
     //set the Show's cover image at the top of the scene
     showCover.image = theShow.coverPicture;
@@ -76,14 +75,14 @@
     [self loadSceneSelectionScrollView];
 }
 
--(void) viewWillDisappear:(BOOL)animated
-{
-    if ([popoverController isPopoverVisible]) {
-        
-        [popoverController dismissPopoverAnimated:YES];
-        
-    } 
-}
+//-(void) viewWillDisappear:(BOOL)animated
+//{
+//    if ([popoverController isPopoverVisible]) {
+//        
+//        [popoverController dismissPopoverAnimated:YES];
+//        
+//    }
+//}
 
 -(void) popoverExports: (id)sender{
     

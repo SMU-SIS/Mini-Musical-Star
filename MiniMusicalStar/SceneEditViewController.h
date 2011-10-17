@@ -13,6 +13,10 @@
 #import "CoverScene.h"
 #import "MixPlayerRecorder.h"
 
+@protocol SceneEditViewDelegate <NSObject>
+- (NSArray*) getExportAudioURLs;
+@end
+
 @interface SceneEditViewController : UIViewController <UIScrollViewDelegate, UIAlertViewDelegate, PhotoEditorViewDelegate> {
     // To be used when scrolls originate from the UIPageControl
     BOOL pageControlUsed;
@@ -20,8 +24,12 @@
     BOOL isReallyStop;
     BOOL isAlertShown;
     
+    id <SceneEditViewDelegate> delegate;
+    
     IBOutlet UIButton *playPauseButton;
 }
+
+@property (nonatomic, assign) id <SceneEditViewDelegate> delegate;
 
 @property (retain, nonatomic) AudioEditorViewController *audioView;
 @property (retain, nonatomic) PhotoEditorViewController *photoView;

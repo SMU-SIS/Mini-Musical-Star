@@ -10,10 +10,11 @@
 #import "SceneEditViewController.h"
 
 @implementation SceneEditViewController
-@synthesize audioView, photoView, playPauseButton, containerView, elapsedTimeLabel, totalTimeLabel, songInfoLabel, playPositionSlider, micVolumeSlider, theScene, theCoverScene, context, containerToggleButton;
+@synthesize audioView, photoView, playPauseButton, containerView, elapsedTimeLabel, totalTimeLabel, songInfoLabel, playPositionSlider, micVolumeSlider, theScene, theCoverScene, context, containerToggleButton, delegate;
 
 - (void)dealloc
 {
+    [delegate release];
     [audioView release];
     [photoView release];
     [playPauseButton release];

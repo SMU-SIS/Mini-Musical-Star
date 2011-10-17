@@ -15,9 +15,12 @@
 @synthesize currentSelectedMusical;
 @synthesize frc;
 @synthesize showTitle, showDescription;
+@synthesize exportTableController;
+@synthesize mediaManagementButton;
 
 - (void)dealloc
 {
+    [exportTableController release];
     [showCover release];
     [theShow release];
     [create release];
@@ -111,12 +114,27 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    mediaManagementButton = [[UIBarButtonItem alloc] initWithTitle:@"Export Musicals" style:UIBarButtonItemStylePlain target:self action:@selector(showMediaManagement:)];          
+    self.navigationItem.rightBarButtonItem = mediaManagementButton;
     
     showCover.image = theShow.coverPicture;
     [self loadCoversForShow:theShow];
     
     self.showTitle.text = self.theShow.title;
     self.showDescription.text = self.theShow.showDescription;
+    
+}
+
+-(void) showMediaManagement: (id)sender{
+    
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+    [UIView setAnimationDuration:0.75];
+    exportTableController = [[ExportTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    exportTableController.theShow = theShow;
+    [self.navigationController pushViewController:exportTableController animated:NO];
+    [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:self.navigationController.view cache:NO];
+    [UIView commitAnimations];
     
 }
 

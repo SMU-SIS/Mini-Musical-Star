@@ -27,6 +27,7 @@
 		3A12E378142F7551004B97BE /* AFItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFFDECB142C7CCD000D8494 /* AFItemView.m */; };
 		3A12E379142F7556004B97BE /* AFUIImageReflection.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFFDED0142C7CCD000D8494 /* AFUIImageReflection.m */; };
 		3A12E37C142F81A7004B97BE /* SceneTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A12E37B142F81A7004B97BE /* SceneTest.m */; };
+		3A54B196144C4BEE008E52CC /* SceneUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A54B195144C4BEE008E52CC /* SceneUtility.m */; };
 		3A5F7C661440CE1600E9C570 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A5F7C651440CE1600E9C570 /* CoreMedia.framework */; };
 		3A5F7C681440CE1D00E9C570 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A5F7C671440CE1D00E9C570 /* CoreVideo.framework */; };
 		3A5F7C6C1440D74E00E9C570 /* VideoPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A5F7C6A1440D74D00E9C570 /* VideoPlayerViewController.m */; };
@@ -224,6 +225,8 @@
 		3A12E371142F2A7A004B97BE /* OCMockRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMockRecorder.h; sourceTree = "<group>"; };
 		3A12E37A142F81A6004B97BE /* SceneTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneTest.h; sourceTree = "<group>"; };
 		3A12E37B142F81A7004B97BE /* SceneTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SceneTest.m; sourceTree = "<group>"; };
+		3A54B194144C4BED008E52CC /* SceneUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneUtility.h; sourceTree = "<group>"; };
+		3A54B195144C4BEE008E52CC /* SceneUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SceneUtility.m; sourceTree = "<group>"; };
 		3A5C9B77142C8EB200176351 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		3A5F7C651440CE1600E9C570 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		3A5F7C671440CE1D00E9C570 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
@@ -869,6 +872,8 @@
 				9572E0D2140E118400713F45 /* PictureCue.m */,
 				9572E0D3140E118400713F45 /* Scene.h */,
 				9572E0D4140E118400713F45 /* Scene.m */,
+				3A54B194144C4BED008E52CC /* SceneUtility.h */,
+				3A54B195144C4BEE008E52CC /* SceneUtility.m */,
 				9572E0D5140E118400713F45 /* Show.h */,
 				9572E0D6140E118400713F45 /* Show.m */,
 				95D2069514482984004B6E8B /* UndownloadedShow.h */,
@@ -1329,6 +1334,7 @@
 				95368B0C144C4CC5003BDDEF /* SBJsonTokeniser.m in Sources */,
 				95368B0D144C4CC5003BDDEF /* SBJsonUTF8Stream.m in Sources */,
 				95368B0E144C4CC5003BDDEF /* SBJsonWriter.m in Sources */,
+				3A54B196144C4BEE008E52CC /* SceneUtility.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

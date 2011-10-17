@@ -11,6 +11,7 @@
 #import "SceneViewController.h"
 #import "Cover.h"
 #import "CoversListViewController.h"
+#import "ExportTableViewController.h"
 
 @interface ChoiceSelectionViewController : UIViewController{
     IBOutlet UIImageView *showCover;
@@ -28,6 +29,8 @@
 @property (retain, nonatomic) UIView *currentSelectedMusical;
 @property (retain, nonatomic) NSFetchedResultsController *frc;
 
+@property (nonatomic, retain) ExportTableViewController *exportTableController;
+@property (nonatomic, retain) UIBarButtonItem *mediaManagementButton;
 @property (retain, nonatomic) IBOutlet UILabel *showTitle;
 @property (retain, nonatomic) IBOutlet UITextView *showDescription;
 
