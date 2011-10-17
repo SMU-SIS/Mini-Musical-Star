@@ -7,16 +7,24 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "MixPlayerRecorder.h"
 @class Scene;
 @class CoverScene;
 @class Audio;
 @class CoverSceneAudio;
 
 @interface SceneUtility : NSObject
+{
+    NSMutableArray *arrayOfAllTracks;
+    MixPlayerRecorder *thePlayer;
+}
 
 @property (retain,nonatomic) Scene *theScene;
 @property (retain,nonatomic) CoverScene *theCoverScene;
 
--(void) initWithSceneAndCoverScene:(Scene*)scene :(CoverScene*)coverScene;
+@property (retain,nonatomic) NSMutableArray *arrayOfAllTracks;
+@property (retain,nonatomic) MixPlayerRecorder *thePlayer;
+
+- (void) initWithSceneAndCoverSceneAndMixPlayer:(Scene*)scene :(CoverScene*)coverScene :(MixPlayerRecorder*)aPlayer;
 
 @end
