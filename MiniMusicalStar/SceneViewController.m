@@ -68,7 +68,7 @@
     
     exportButton = [[UIBarButtonItem alloc] initWithTitle:@"Export Musicals" style:UIBarButtonItemStylePlain target:self action:@selector(popoverExports:)];          
     self.navigationItem.rightBarButtonItem = exportButton;
-    [exportButton release];
+//    [exportButton release];
     
     //set the Show's cover image at the top of the scene
     showCover.image = theShow.coverPicture;

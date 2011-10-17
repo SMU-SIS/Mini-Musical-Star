@@ -166,7 +166,7 @@
      [detailViewController release];
      */
     
-    [self.delegate didTap:[[[theShow.scenes allValues] objectAtIndex:indexPath.row] title]];
+//    [self.delegate didTap:[[[theShow.scenes allValues] objectAtIndex:indexPath.row] title]];
 }
 
 @end

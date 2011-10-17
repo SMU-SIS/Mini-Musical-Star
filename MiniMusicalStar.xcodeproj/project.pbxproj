@@ -1307,6 +1307,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/Libraries/**";
 				INFOPLIST_FILE = "MiniMusicalStarTests/MiniMusicalStarTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/MiniMusicalStarTests\"",
@@ -1339,6 +1340,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/Libraries/**";
 				INFOPLIST_FILE = "MiniMusicalStarTests/MiniMusicalStarTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/MiniMusicalStarTests\"",
@@ -1404,6 +1406,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MiniMusicalStar/MiniMusicalStar-Prefix.pch";
 				INFOPLIST_FILE = "MiniMusicalStar/MiniMusicalStar-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_AFTER_BUILD = NO;
 				TEST_HOST = "";
@@ -1425,6 +1428,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MiniMusicalStar/MiniMusicalStar-Prefix.pch";
 				INFOPLIST_FILE = "MiniMusicalStar/MiniMusicalStar-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_AFTER_BUILD = NO;
 				TEST_HOST = "";
