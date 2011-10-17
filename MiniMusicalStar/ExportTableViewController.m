@@ -11,18 +11,20 @@
 @implementation ExportTableViewController
 
 @synthesize theShow;
+@synthesize theSceneUtility;
 
 -(void)dealloc
 {
+    [theSceneUtility release];
     [theShow release];
     [super dealloc];
 }
 
-- (id)initWithStyle:(UITableViewStyle)style
+- (id)initWithStyle:(UITableViewStyle)style: (SceneUtility*) sceneUtil
 {
     self = [super initWithStyle:style];
     if (self) {
-        // Custom initialization
+        theSceneUtility = sceneUtil;
     }
     return self;
 }
@@ -309,7 +311,7 @@
     }else if(section == 2){
         return 2;
     }
-    return nil;
+    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

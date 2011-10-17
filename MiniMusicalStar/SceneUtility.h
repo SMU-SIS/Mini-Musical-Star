@@ -12,6 +12,7 @@
 @class CoverScene;
 @class Audio;
 @class CoverSceneAudio;
+@class Picture;
 
 @interface SceneUtility : NSObject
 {

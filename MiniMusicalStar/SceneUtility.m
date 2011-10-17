@@ -11,6 +11,7 @@
 #import "CoverScene.h"
 #import "Audio.h"
 #import "CoverSceneAudio.h"
+#import "Picture.h"
 
 @implementation SceneUtility
 
@@ -30,6 +31,41 @@
     theScene = scene;
     theCoverScene = coverScene;
     thePlayer = aPlayer;
+}
+
+- (NSMutableArray*) getMergedImagesArray
+{
+    
+    int seconds = 0;
+    int processedImages = 0;
+    int numberOfImages = [theScene.pictureDict count];
+    NSMutableArray *imagesArray = [[NSMutableArray alloc] init];
+    
+    while (processedImages < numberOfImages)
+    {
+        Picture *thePicture = [theScene pictureForAbsoluteSecond:seconds];
+        if (thePicture)
+        {
+            //check if there is a cover picture
+            CoverScenePicture *coverPicture = [theCoverScene pictureForOriginalHash:thePicture.hash];
+            
+            if (coverPicture)
+            {
+                [imagesArray addObject:[coverPicture image]];
+            }
+            
+            else
+            {
+                [imagesArray addObject:thePicture.image];
+                
+            }
+            
+            processedImages++;
+        }
+        
+        seconds++;
+    }
+    return imagesArray;
 }
 
 - (void)consolidateOriginalAndCoverTracks

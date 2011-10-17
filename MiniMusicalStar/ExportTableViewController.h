@@ -11,19 +11,11 @@
 #import "DSActivityView.h"
 #import "AudioEditorViewController.h"
 #import "ShowDAO.h"
-
-//@protocol ExportTableViewControllerDelegate <NSObject>
-//
-//-(void)didTap:(NSString *)string;
-//
-//@end
+#import "SceneUtility.h"
 
 @interface ExportTableViewController : UITableViewController
-{
-//    id delegate;
-}
 
 @property (retain, nonatomic) Show *theShow;
-//@property (nonatomic, assign) id<ExportTableViewControllerDelegate> delegate;
+@property (retain, nonatomic) SceneUtility *theSceneUtility;
 
 @end
