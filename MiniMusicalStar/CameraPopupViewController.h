@@ -18,10 +18,7 @@
 @interface CameraPopupViewController : UIViewController
 <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPopoverControllerDelegate>
 {
-    UIPopoverController *popoverController;
-    
     id <CameraPopupViewDelegate> delegate;
-
 }
 
 @property (nonatomic, assign) id <CameraPopupViewDelegate> delegate;

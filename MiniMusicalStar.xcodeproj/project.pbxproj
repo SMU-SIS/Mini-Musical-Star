@@ -66,6 +66,8 @@
 		3ADA7AFE142F86830045F53E /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 95DAE886141481400039201D /* libxml2.dylib */; };
 		3ADA7AFF142F86860045F53E /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 95DAE888141481470039201D /* libz.dylib */; };
 		3ADA7B00142F869D0045F53E /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFFDEB6142C7CB8000D8494 /* Reachability.m */; };
+		3AF97A34144BE6FE00133C47 /* ExportTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF97A32144BE6FE00133C47 /* ExportTableViewController.m */; };
+		3AF97A35144BE6FE00133C47 /* ExportTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AF97A33144BE6FE00133C47 /* ExportTableViewController.xib */; };
 		3AFFDE1E142C7191000D8494 /* bass.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3AFFDDEB142C7191000D8494 /* bass.mp3 */; };
 		3AFFDE20142C7191000D8494 /* drums.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3AFFDDEC142C7191000D8494 /* drums.mp3 */; };
 		3AFFDE22142C7191000D8494 /* guitar.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3AFFDDED142C7191000D8494 /* guitar.mp3 */; };
@@ -240,6 +242,9 @@
 		3ADA7AEA142F85B40045F53E /* AudioFileRingBufferTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioFileRingBufferTest.m; sourceTree = "<group>"; };
 		3ADA7AEB142F85B40045F53E /* MixPlayerRecorderTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MixPlayerRecorderTest.h; sourceTree = "<group>"; };
 		3ADA7AEC142F85B40045F53E /* MixPlayerRecorderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MixPlayerRecorderTest.m; sourceTree = "<group>"; };
+		3AF97A31144BE6FE00133C47 /* ExportTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExportTableViewController.h; sourceTree = "<group>"; };
+		3AF97A32144BE6FE00133C47 /* ExportTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExportTableViewController.m; sourceTree = "<group>"; };
+		3AF97A33144BE6FE00133C47 /* ExportTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExportTableViewController.xib; sourceTree = "<group>"; };
 		3AFFDDEB142C7191000D8494 /* bass.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bass.mp3; sourceTree = "<group>"; };
 		3AFFDDEC142C7191000D8494 /* drums.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = drums.mp3; sourceTree = "<group>"; };
 		3AFFDDED142C7191000D8494 /* guitar.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = guitar.mp3; sourceTree = "<group>"; };
@@ -862,6 +867,8 @@
 				737716C81445D61500BF2036 /* ChoiceSelectionViewController.h */,
 				737716C91445D61500BF2036 /* ChoiceSelectionViewController.m */,
 				95F9FFC31425C60400A18463 /* CameraPopupViewController.h */,
+				3AF97A31144BE6FE00133C47 /* ExportTableViewController.h */,
+				3AF97A32144BE6FE00133C47 /* ExportTableViewController.m */,
 				95F9FFC41425C60400A18463 /* CameraPopupViewController.m */,
 				9569E0571418A2A80016DAF3 /* AudioEditorViewController.h */,
 				9569E0581418A2A80016DAF3 /* AudioEditorViewController.m */,
@@ -895,6 +902,7 @@
 				9569E0611418A2C90016DAF3 /* SceneEditViewController.xib */,
 				95C526AD1438DA740008AE13 /* CoversListViewController.xib */,
 				3A5F7C6B1440D74D00E9C570 /* VideoPlayerViewController.xib */,
+				3AF97A33144BE6FE00133C47 /* ExportTableViewController.xib */,
 			);
 			name = XIB;
 			sourceTree = "<group>";
@@ -1116,6 +1124,7 @@
 				95D2069B1449B0F8004B6E8B /* 40-inbox.png in Resources */,
 				95D2069D1449E480004B6E8B /* scene page helper graphic.png in Resources */,
 				9536045E144A011200598D76 /* howling_dog.zip in Resources */,
+				3AF97A35144BE6FE00133C47 /* ExportTableViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1234,6 +1243,7 @@
 				3A5F7C6C1440D74E00E9C570 /* VideoPlayerViewController.m in Sources */,
 				737716CB1445D61500BF2036 /* ChoiceSelectionViewController.m in Sources */,
 				95D2069714482984004B6E8B /* UndownloadedShow.m in Sources */,
+				3AF97A34144BE6FE00133C47 /* ExportTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

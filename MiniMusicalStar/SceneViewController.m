@@ -19,9 +19,13 @@
 @synthesize context;
 @synthesize sceneMenu;
 @synthesize showCover;
+@synthesize popoverController;
+@synthesize exportButton;
 
 - (void)dealloc
 {
+    [popoverController release];
+    [exportButton release];
     [context release];
     [sceneMenu release];
     [theShow release];
@@ -60,10 +64,35 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+    exportButton = [[UIBarButtonItem alloc] initWithTitle:@"Export Musicals" style:UIBarButtonItemStylePlain target:self action:@selector(popover:)];          
+    self.navigationItem.rightBarButtonItem = exportButton;
+    [exportButton release];
+    
     //set the Show's cover image at the top of the scene
     showCover.image = theShow.coverPicture;
     
     [self loadSceneSelectionScrollView];
+}
+
+//- (void) popover: (id)sender
+//{
+//    self.popoverController = [[UIPopoverController alloc]
+//                              initWithContentViewController:[[UITableView alloc] init]];
+//}
+
+-(void) popover: (id)sender{
+    
+    if ([popoverController isPopoverVisible]) {
+        
+        [popoverController dismissPopoverAnimated:YES];
+        
+    } else {
+        popoverController = [[UIPopoverController alloc] initWithContentViewController:[[ExportTableViewController alloc]init]];
+        popoverController.popoverContentSize = CGSizeMake(250, 300);
+        [popoverController presentPopoverFromBarButtonItem:exportButton permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+        
+    }
+    
 }
 
 - (void)loadSceneSelectionScrollView
