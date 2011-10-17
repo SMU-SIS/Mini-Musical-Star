@@ -12,14 +12,11 @@
 @synthesize theShow;
 @synthesize managedObjectContext;
 @synthesize frc;
-<<<<<<< HEAD
 @synthesize showTitle, showDescription;
 @synthesize exportTableController;
 @synthesize mediaManagementButton;
-=======
 @synthesize currentSelectedCoversList;
 @synthesize coverName;
->>>>>>> weijie
 
 - (void)dealloc
 {
@@ -52,28 +49,13 @@
     return self;
 }
 
-<<<<<<< HEAD
-- (IBAction)createMusical: (UIButton*)sender {
-    
-    Cover *newCover = [NSEntityDescription insertNewObjectForEntityForName:@"Cover" inManagedObjectContext:managedObjectContext];
-    newCover.cover_of_showHash = theShow.showHash;
-    
-    SceneViewController *sceneView = [[SceneViewController alloc] initWithScenesFromShow:theShow andCover:newCover andContext:managedObjectContext];
-
-    
-    sceneView.title = [theShow title];
-    
-    [self.navigationController pushViewController:sceneView animated:YES];
-    
-    [sceneView release];
-=======
 - (IBAction)promptForCoverName: (UIButton*)sender
 {
     AlertPrompt *prompt = [AlertPrompt alloc];
 	prompt = [prompt initWithTitle:@"Give your cover a name!" message:@" " delegate:self cancelButtonTitle:@"Cancel" okButtonTitle:@"Okay"];
 	[prompt show];
 	[prompt release];
->>>>>>> weijie
+
 }
 
 - (void)createMusical
@@ -86,17 +68,12 @@
     else
     {
     Cover *newCover = [NSEntityDescription insertNewObjectForEntityForName:@"Cover" inManagedObjectContext:managedObjectContext];
-    newCover.cover_of_showID = [NSNumber numberWithInt:[theShow showID]];
-    
-<<<<<<< HEAD
-        self.currentSelectedCoversList = coversListNavController;
-        [self.currentSelectedMusical removeFromSuperview];
+    newCover.cover_of_showHash = [theShow showHash];
+
         
-=======
     SceneViewController *sceneView = [[SceneViewController alloc] initWithScenesFromShow:theShow andCover:newCover andContext:managedObjectContext];
     
     newCover.title = coverName;
->>>>>>> weijie
     
     NSError *error;
     [managedObjectContext save:&error];
@@ -118,7 +95,6 @@
     
     showCover.image = theShow.coverPicture;
     [self loadCoversForShow:theShow];
-<<<<<<< HEAD
     
     self.showTitle.text = self.theShow.title;
     self.showDescription.text = self.theShow.showDescription;
@@ -135,10 +111,7 @@
     exportTableController.theShow = theShow;
     [self.navigationController pushViewController:exportTableController animated:NO];
     [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:self.navigationController.view cache:NO];
-    [UIView commitAnimations];
-=======
->>>>>>> weijie
-    
+    [UIView commitAnimations];    
 }
 
 - (void)viewDidUnload
@@ -163,16 +136,13 @@
     [request setFetchBatchSize:20];
     
     //predicate...
-<<<<<<< HEAD
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"cover_of_showHash == %@", aShow.showHash];
-=======
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"cover_of_showID == %i", theShow.showID];
->>>>>>> weijie
+
     [request setPredicate:predicate];
     
     //error here, the ID doesnt match with the shows
-    NSLog(@"The show ID is %i", theShow.showID);
-    NSLog(@"The show is KNS %@", theShow.title);
+    NSLog(@"The show ID is %@", aShow.showHash);
+    NSLog(@"The show is KNS %@", aShow.title);
     
     //sort descriptor...
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"title" ascending:NO];
@@ -185,8 +155,8 @@
     
     self.frc = fetchedResultsController;
     
-    NSError *error;
-    [frc performFetch:&error];
+    //NSError *error;
+    //[frc performFetch:&error];
     
     [fetchedResultsController release], fetchedResultsController = nil;
 }
