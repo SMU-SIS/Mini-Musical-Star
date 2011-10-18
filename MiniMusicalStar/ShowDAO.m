@@ -173,6 +173,7 @@
         //grab the new show's cover image from our server
         NSString *coverImageString = [NSString stringWithFormat:@"http://mmsmusicalstore.appspot.com/shows/%@/cover_image", skProduct.productIdentifier];
         NSURL *coverImageURL = [NSURL URLWithString:coverImageString];
+        //NSData *coverImageData = [NSData dataWithContentsOfURL:coverImageUEL options:NSData error:<#(NSError **)#>
         NSData *coverImageData = [NSData dataWithContentsOfURL:coverImageURL]; //this needs error handling
         
         newShow.coverImage = [UIImage imageWithData:coverImageData];
