@@ -128,10 +128,11 @@
 
 -(void) sessionExport: (AVMutableComposition*) composition: (NSString*)exportFilename
 {
+    
     NSArray *compatiblePresets = [AVAssetExportSession exportPresetsCompatibleWithAsset:composition];
-    if ([compatiblePresets containsObject:AVAssetExportPresetLowQuality]) {
+    if ([compatiblePresets containsObject:AVAssetExportPresetHighestQuality]) {
         AVAssetExportSession *exportSession = [[AVAssetExportSession alloc]
-                                               initWithAsset:composition presetName:AVAssetExportPresetLowQuality];
+                                               initWithAsset:composition presetName:AVAssetExportPresetHighestQuality];
         
         
         exportSession.outputURL = [NSURL fileURLWithPath:[[ShowDAO userDocumentDirectory] stringByAppendingString:exportFilename]];
@@ -141,7 +142,6 @@
         CMTime duration = CMTimeMakeWithSeconds(1000, 1);
         CMTimeRange range = CMTimeRangeMake(start, duration);
         exportSession.timeRange = range;
-        
         [exportSession exportAsynchronouslyWithCompletionHandler:^{
             switch ([exportSession status]) {
                 case AVAssetExportSessionStatusCompleted:
@@ -158,9 +158,7 @@
                     break;
             }
             
-            
         }];
-        
         [exportSession release];
         
     }   
@@ -250,7 +248,7 @@
     [videoWriter finishWriting];
 }
 
--(IBAction)generateVideo: (Scene*) theScene: (NSArray*) imagesArray:(NSArray*) audioExportURLs
+-(IBAction)generateVideo: (Scene*) theScene: (NSArray*) imagesArray:(NSArray*) audioExportURLs: (UIProgressView*)prog
 {
     __block NSError *error = nil;
     [DSBezelActivityView newActivityViewForView:self.view withLabel:@"Exporting...Wait OK?! otherwise your ipad might EXPLODE"];
@@ -286,6 +284,8 @@
     [compositionVideoTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero,videoAsset.duration) 
                                    ofTrack:[[videoAsset tracksWithMediaType:AVMediaTypeVideo]objectAtIndex:0] 
                                     atTime:kCMTimeZero error:&error];
+    
+    [prog setProgress:0.5];
     
     //session export
     [self sessionExport:composition:exportFilename];
@@ -339,7 +339,6 @@
         cell.imageView.image = scene.coverPicture;
         cell.textLabel.text = scene.title;
         
-        [cell.contentView addSubview:[[UIButton alloc]init]];
         return cell;
         [scene release];        
     }
@@ -389,12 +388,20 @@
 
 - (void)exportScene:(Scene*) scene:(CoverScene*) coverScene
 {
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:1];
+    UITableViewCell *cell = (UITableViewCell *)[(UITableView *)self.view cellForRowAtIndexPath:indexPath];
+    
+    UIProgressView *prog = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleBar];
+    [cell.contentView addSubview:prog];
+    [prog setProgress:0];
     
     theSceneUtility = [[SceneUtility alloc] initWithSceneAndCoverScene: scene:coverScene];
     
-    [self generateVideo:scene:[theSceneUtility getMergedImagesArray]:[theSceneUtility getExportAudioURLs]];
+    [self generateVideo:scene:[theSceneUtility getMergedImagesArray]:[theSceneUtility getExportAudioURLs]:prog];
     
     [theSceneUtility release];
+    
+    [prog setProgress:1];
     
     
 }
