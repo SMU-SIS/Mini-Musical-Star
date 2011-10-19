@@ -8,13 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
+#import "ShowDAO.h" //importing this because of the delegate protocol required
 
 @class NewOpenViewController;
 @class UndownloadedShow;
 @class Show;
-@class ShowDAO;
 
-@interface MenuViewController : UIViewController <NSFetchedResultsControllerDelegate>
+@interface MenuViewController : UIViewController <NSFetchedResultsControllerDelegate, ShowDAOStateDelegate>
 
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @property (retain, nonatomic) IBOutlet UIScrollView *scrollView;

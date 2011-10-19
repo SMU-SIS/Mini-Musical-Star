@@ -7,7 +7,6 @@
 //
 
 #import "MenuViewController.h"
-//#import "NewOpenViewController.h"
 #import "UndownloadedShow.h"
 #import "ShowDAO.h"
 #import "Show.h"
@@ -52,9 +51,20 @@
     //load the shows on the local disk
     self.showDAO = [[ShowDAO alloc] initWithDelegate:self];
     
-    [self createScrollViewOfShows];
-    [self.showDAO addObserver:self forKeyPath:@"loadedShows" options:NSKeyValueObservingOptionNew context:@"NewShowDownloaded"];
+    //show the spinner as ShowDAO communicates with the app store for IAP
+    [DSBezelActivityView newActivityViewForView:self.view withLabel:@"Loading Shows..."];
 
+}
+
+- (void)showDAO:(id)aShowDAO didFinishLoadingShows:(NSArray *)loadedShows
+{
+    //set up the scrollview
+    [self createScrollViewOfShows];
+    
+    //add the KVO to loadedShows on ShowDAO
+    [self.showDAO addObserver:self forKeyPath:@"loadedShows" options:NSKeyValueObservingOptionNew context:@"NewShowDownloaded"];
+    
+    [DSBezelActivityView removeViewAnimated:YES];
 }
 
 - (void)createScrollViewOfShows

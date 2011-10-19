@@ -11,6 +11,13 @@
 
 @class UndownloadedShow;
 @class Show;
+
+@protocol ShowDAOStateDelegate <NSObject>
+@required
+- (void)showDAO:(id)aShowDAO didFinishLoadingShows:(NSArray *)loadedShows;
+
+@end
+
 @interface ShowDAO : NSObject <SKProductsRequestDelegate>
 
 @property (retain, nonatomic) NSMutableArray *loadedShows;

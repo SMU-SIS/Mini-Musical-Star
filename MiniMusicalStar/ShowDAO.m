@@ -33,7 +33,7 @@
         
         [self seedTutorialMusical];
         [self loadLocalShows];
-        [self checkForNewShowsFromServer];
+        [self checkForNewShowsFromServer]; //this will talk to App Store for IAP, will return asynchronously so must handle it
         
         self.activeDownloads = [NSMutableDictionary dictionary];
     }
@@ -112,7 +112,7 @@
         //create an array of product identifiers
         NSMutableSet *productIdentifiers = [NSSet setWithArray:responseArray];
         
-        __block NSMutableSet *undownloadedProductIdentifiers = [NSSet set];
+        __block NSMutableSet *undownloadedProductIdentifiers = [NSMutableSet set];
         
         //filter out those that already exists on localhost
         [productIdentifiers enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
@@ -132,13 +132,22 @@
         
         else
         {
-            //no need to query app store, user has downloaded every single show we have to sell
+            NSLog(@"undownloadProductIdentifiers count is 0");
+            if([self.delegate respondsToSelector:@selector(showDAO:didFinishLoadingShows:)])
+            {
+                [self.delegate showDAO:self didFinishLoadingShows:self.loadedShows];
+            }
         }
         
     }];
     
     [showsRequest setFailedBlock:^{
-        NSLog(@"Request failed. :(");
+        NSLog(@"Cannot communicate with content server. Moving on...");
+        
+        if([self.delegate respondsToSelector:@selector(showDAO:didFinishLoadingShows:)])
+        {
+            [self.delegate showDAO:self didFinishLoadingShows:self.loadedShows];
+        }
     }];
     
     [showsRequest startAsynchronous];
@@ -183,6 +192,11 @@
     }];
     
     [request autorelease];
+    
+    if([self.delegate respondsToSelector:@selector(showDAO:didFinishLoadingShows:)])
+    {
+        [self.delegate showDAO:self didFinishLoadingShows:self.loadedShows];
+    }
 }
 
 - (void)downloadShow:(UndownloadedShow *)aShow progressIndicatorDelegate:(id)aDelegate
