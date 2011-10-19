@@ -126,15 +126,50 @@
     return pxbuffer;
 }
 
--(IBAction)generateVideo: (Scene*) theScene: (NSArray*) imagesArray:(NSArray*) audioExportURLS
+-(void) sessionExport: (AVMutableComposition*) composition: (NSString*)exportFilename
 {
-    [DSBezelActivityView newActivityViewForView:self.view withLabel:@"Exporting...Wait OK?! otherwise your ipad might EXPLODE"];
-    CGSize size = CGSizeMake(640, 480);
-    NSString *videoFilename = [@"/" stringByAppendingString:[[AudioEditorViewController getUniqueFilenameWithoutExt] stringByAppendingString:@".mov"]];
-    NSString *exportFilename = [@"/" stringByAppendingString:[[AudioEditorViewController getUniqueFilenameWithoutExt] stringByAppendingString:@".mov"]];
-    NSLog(@"exportFilename : %@",exportFilename);
-    __block NSError *error = nil;
+    NSArray *compatiblePresets = [AVAssetExportSession exportPresetsCompatibleWithAsset:composition];
+    if ([compatiblePresets containsObject:AVAssetExportPresetLowQuality]) {
+        AVAssetExportSession *exportSession = [[AVAssetExportSession alloc]
+                                               initWithAsset:composition presetName:AVAssetExportPresetLowQuality];
+        
+        
+        exportSession.outputURL = [NSURL fileURLWithPath:[[ShowDAO userDocumentDirectory] stringByAppendingString:exportFilename]];
+        exportSession.outputFileType = AVFileTypeQuickTimeMovie;
+        
+        CMTime start = CMTimeMakeWithSeconds(0, 1);
+        CMTime duration = CMTimeMakeWithSeconds(1000, 1);
+        CMTimeRange range = CMTimeRangeMake(start, duration);
+        exportSession.timeRange = range;
+        
+        [exportSession exportAsynchronouslyWithCompletionHandler:^{
+            switch ([exportSession status]) {
+                case AVAssetExportSessionStatusCompleted:
+                    NSLog(@"Export Completed");
+                    [DSBezelActivityView removeViewAnimated:YES];
+                    break;
+                case AVAssetExportSessionStatusFailed:
+                    NSLog(@"Export failed: %@", [[exportSession error] localizedDescription]);
+                    break;
+                case AVAssetExportSessionStatusCancelled:
+                    NSLog(@"Export cancelled");
+                    break;
+                default:
+                    break;
+            }
+            
+            
+        }];
+        
+        [exportSession release];
+        
+    }   
+}
+
+-(void) createImagesConvertedToVideo: (Scene*) theScene: (NSArray*) imagesArray: (NSString*) videoFilename :(CGSize) size
+{
     
+    __block NSError *error = nil;
     AVAssetWriter *videoWriter = [[AVAssetWriter alloc] initWithURL:
                                   [NSURL fileURLWithPath:[[ShowDAO userDocumentDirectory] stringByAppendingString:videoFilename]] fileType:AVFileTypeQuickTimeMovie
                                                               error:&error];
@@ -164,9 +199,7 @@
     //add to buffer
     __block CVPixelBufferRef buffer = NULL;
     __block BOOL retry = NO;
-    
     __block int i = 0;
-    
     //sort the fucking array
     __block NSMutableArray *sortedTimingsArray = [NSMutableArray arrayWithArray:[theScene.pictureTimingDict allKeys]];
     [sortedTimingsArray sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
@@ -215,19 +248,31 @@
     [writerInput markAsFinished];
     [videoWriter endSessionAtSourceTime:CMTimeMake(1000, 1)];
     [videoWriter finishWriting];
+}
+
+-(IBAction)generateVideo: (Scene*) theScene: (NSArray*) imagesArray:(NSArray*) audioExportURLs
+{
+    __block NSError *error = nil;
+    [DSBezelActivityView newActivityViewForView:self.view withLabel:@"Exporting...Wait OK?! otherwise your ipad might EXPLODE"];
+    CGSize size = CGSizeMake(640, 480);
+    NSString *videoFilename = [@"/" stringByAppendingString:[[AudioEditorViewController getUniqueFilenameWithoutExt] stringByAppendingString:@".mov"]];
+    NSString *exportFilename = [@"/" stringByAppendingString:[[AudioEditorViewController getUniqueFilenameWithoutExt] stringByAppendingString:@".mov"]];
+    NSLog(@"exportFilename : %@",exportFilename);
+
+    //write image to video conversion
+    [self createImagesConvertedToVideo:theScene :imagesArray :videoFilename :size];
     
     //now i will combine track and video
-    AVMutableComposition* composition = [AVMutableComposition composition];
+    AVMutableComposition *composition = [AVMutableComposition composition];
     
     AVURLAsset* videoAsset = [[AVURLAsset alloc]initWithURL:[NSURL fileURLWithPath:[[ShowDAO userDocumentDirectory] stringByAppendingString:videoFilename]] options:nil];
     
     __block AVMutableCompositionTrack *compositionAudioTrack1 = NULL;
-    NSLog(@"AUDIO URLS %@",audioExportURLS);
-    [audioExportURLS enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+    NSLog(@"AUDIO URLS %@",audioExportURLs);
+    [audioExportURLs enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         NSURL *audioURL = (NSURL*)obj;
         AVURLAsset* audioAsset1 = [[AVURLAsset alloc]initWithURL:audioURL options:nil];
-        //        NSLog(@"audioAsset : %@",[audioAsset1 URL]);
-        //        NSLog(@"is it this %@",[NSURL fileURLWithPath:[[ShowDAO userDocumentDirectory] stringByAppendingString:audio.path]]);
+        
         compositionAudioTrack1 = [composition addMutableTrackWithMediaType:AVMediaTypeAudio preferredTrackID:kCMPersistentTrackID_Invalid];
         [compositionAudioTrack1 insertTimeRange:CMTimeRangeMake(kCMTimeZero,audioAsset1.duration) 
                                         ofTrack:[[audioAsset1 tracksWithMediaType:AVMediaTypeAudio]objectAtIndex:0] 
@@ -242,49 +287,14 @@
                                    ofTrack:[[videoAsset tracksWithMediaType:AVMediaTypeVideo]objectAtIndex:0] 
                                     atTime:kCMTimeZero error:&error];
     
+    //session export
+    [self sessionExport:composition:exportFilename];
     
-    //NOW I EXPORT, FINALLYZZZZ
-    //    __block BOOL ready = NO;
-    NSArray *compatiblePresets = [AVAssetExportSession exportPresetsCompatibleWithAsset:composition];
-    if ([compatiblePresets containsObject:AVAssetExportPresetLowQuality]) {
-        AVAssetExportSession *exportSession = [[AVAssetExportSession alloc]
-                                               initWithAsset:composition presetName:AVAssetExportPresetHighestQuality];
-        
-        
-        exportSession.outputURL = [NSURL fileURLWithPath:[[ShowDAO userDocumentDirectory] stringByAppendingString:exportFilename]];
-        exportSession.outputFileType = AVFileTypeQuickTimeMovie;
-        
-        CMTime start = CMTimeMakeWithSeconds(0, 1);
-        CMTime duration = CMTimeMakeWithSeconds(1000, 1);
-        CMTimeRange range = CMTimeRangeMake(start, duration);
-        exportSession.timeRange = range;
-        
-        [exportSession exportAsynchronouslyWithCompletionHandler:^{
-            switch ([exportSession status]) {
-                case AVAssetExportSessionStatusCompleted:
-                    NSLog(@"Export Completed");
-                    [DSBezelActivityView removeViewAnimated:YES];
-                    break;
-                case AVAssetExportSessionStatusFailed:
-                    NSLog(@"Export failed: %@", [[exportSession error] localizedDescription]);
-                    break;
-                case AVAssetExportSessionStatusCancelled:
-                    NSLog(@"Export cancelled");
-                    break;
-                default:
-                    break;
-            }
-            
-            
-        }];
-        
-        [exportSession release];
-        
-    }
+    //delete unused video file
+    [[NSFileManager defaultManager] removeItemAtPath: [[ShowDAO userDocumentDirectory] stringByAppendingString:videoFilename] error: NULL];
     
     //    //play the fucking player
-    //    NSURL *url = [NSURL fileURLWithPath:[[ShowDAO userDocumentDirectory] stringByAppendingString:self.exportFilename]];
-    //    [delegate playMovie:url];
+    //    NSURL *url = [NSURL fileURLWithPath:[[ShowDAO userDocumentDirectory] stringByAppendingString:self.exportFilename]
     
 }
 
@@ -399,6 +409,7 @@
      [self.navigationController pushViewController:detailViewController animated:YES];
      [detailViewController release];
      */
+    
     if(indexPath.section == 0){
 
     }else if(indexPath.section == 1){
@@ -406,6 +417,7 @@
         CoverScene *selectedCoverScene = [theCover coverSceneForSceneHash:selectedScene.hash];
         [self exportScene:selectedScene:selectedCoverScene];
     }
+    
    
 }
 
