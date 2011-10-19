@@ -11,6 +11,7 @@
 @implementation ExportTableViewController
 
 @synthesize theShow;
+@synthesize theCover;
 @synthesize theSceneUtility;
 
 -(void)dealloc
@@ -20,11 +21,10 @@
     [super dealloc];
 }
 
-- (id)initWithStyle:(UITableViewStyle)style: (SceneUtility*) sceneUtil
+- (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
-        theSceneUtility = sceneUtil;
     }
     return self;
 }
@@ -126,7 +126,7 @@
     return pxbuffer;
 }
 
--(IBAction)generateVideo: (Scene*) theScene: (NSArray*) imagesArray
+-(IBAction)generateVideo: (Scene*) theScene: (NSArray*) imagesArray:(NSArray*) audioExportURLS
 {
     [DSBezelActivityView newActivityViewForView:self.view withLabel:@"Exporting...Wait OK?! otherwise your ipad might EXPLODE"];
     CGSize size = CGSizeMake(640, 480);
@@ -222,7 +222,7 @@
     AVURLAsset* videoAsset = [[AVURLAsset alloc]initWithURL:[NSURL fileURLWithPath:[[ShowDAO userDocumentDirectory] stringByAppendingString:videoFilename]] options:nil];
     
     __block AVMutableCompositionTrack *compositionAudioTrack1 = NULL;
-    [[AudioEditorViewController getExportAudioURLs] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+    [audioExportURLS enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         NSURL *audioURL = (NSURL*)obj;
         AVURLAsset* audioAsset1 = [[AVURLAsset alloc]initWithURL:audioURL options:nil];
         //        NSLog(@"audioAsset : %@",[audioAsset1 URL]);
@@ -277,11 +277,6 @@
             
         }];
         
-        //        while(!ready){
-        //            //do nothing
-        //            NSLog(@"loading... : %f",exportSession.progress);
-        //            sleep(1);
-        //        }
         [exportSession release];
         
     }
@@ -381,8 +376,15 @@
 
 #pragma mark - Table view delegate
 
-- (void)exportScene:(Scene*) scene
+- (void)exportScene:(Scene*) scene:(CoverScene*) coverScene
 {
+    
+    theSceneUtility = [[SceneUtility alloc] initWithSceneAndCoverScene:scene:coverScene];
+    
+    [self generateVideo:scene:[theSceneUtility getMergedImagesArray]:[theSceneUtility getExportAudioURLs]];
+    
+    [theSceneUtility release];
+    
     
 }
 
@@ -399,7 +401,12 @@
     if(indexPath.section == 0){
 
     }else if(indexPath.section == 1){
-       [self exportScene:[[theShow.scenes allValues] objectAtIndex:indexPath.row]];
+        Scene *selectedScene = [[theShow.scenes allValues] objectAtIndex:indexPath.row];
+        NSLog(@"INDEX PATH %@",indexPath.row);
+        NSLog(@"SELECTED SCENE %@",selectedScene.hash);
+        NSLog(@"SCENE ALL VALUES%@",[theShow.scenes allValues]);
+        CoverScene *selectedCoverScene = [theCover coverSceneForSceneHash:selectedScene.hash];
+        [self exportScene:selectedScene:selectedCoverScene];
     }
    
 }

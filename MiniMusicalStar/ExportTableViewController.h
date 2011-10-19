@@ -12,10 +12,12 @@
 #import "AudioEditorViewController.h"
 #import "ShowDAO.h"
 #import "SceneUtility.h"
+#import "Cover.h"
 
 @interface ExportTableViewController : UITableViewController
 
 @property (retain, nonatomic) Show *theShow;
+@property (retain, nonatomic) Cover *theCover;
 @property (retain, nonatomic) SceneUtility *theSceneUtility;
 
 @end

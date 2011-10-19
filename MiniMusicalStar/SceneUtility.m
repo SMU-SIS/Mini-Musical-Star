@@ -12,13 +12,14 @@
 #import "Audio.h"
 #import "CoverSceneAudio.h"
 #import "Picture.h"
+#import "CoverScenePicture.h"
 
 @implementation SceneUtility
 
 @synthesize theScene;
 @synthesize theCoverScene;
 @synthesize arrayOfAllTracks;
-@synthesize thePlayer;
+//@synthesize thePlayer;
 
 - (void)dealloc
 {
@@ -27,10 +28,12 @@
     [super dealloc];
 }
 
-- (void) initWithSceneAndCoverSceneAndMixPlayer:(Scene*)scene :(CoverScene*)coverScene :(MixPlayerRecorder*)aPlayer {
+- (SceneUtility*) initWithSceneAndCoverSceneAndMixPlayer:(Scene*)scene :(CoverScene*)coverScene {
     theScene = scene;
     theCoverScene = coverScene;
-    thePlayer = aPlayer;
+//    thePlayer = aPlayer;
+    
+    return self;
 }
 
 - (NSMutableArray*) getMergedImagesArray
@@ -81,19 +84,6 @@
     }];
 }
 
-//+ (NSArray*) exportLastStateAudioURLS
-//{
-//    NSMutableArray *tracksForView = [NSMutableArray arrayWithCapacity:theAudioObjects.count + theCoverScene.Audio.count];
-//    
-//    [theAudioObjects enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-//        [self.tracksForView addObject:obj];
-//    }];
-//    
-//    [theCoverScene.Audio enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
-//        [self.tracksForView addObject:obj];
-//    }];
-//}
-
 - (NSArray*)getExportAudioURLs
 {
     NSMutableArray *mutableArrayOfAudioURLs = [NSMutableArray arrayWithCapacity:1]; //don't know how big it will be, just start with 1 
@@ -105,11 +95,11 @@
             NSURL *audioURL = [NSURL fileURLWithPath:anAudio.path];
             
             //add only if the audio is not muted
-            if ([thePlayer busNumberIsMuted:idx] == NO)
-            {
+//            if ([thePlayer busNumberIsMuted:idx] == NO)
+//            {
                 [mutableArrayOfAudioURLs addObject:audioURL];
                 
-            }
+//            }
             
         } else if ([obj isKindOfClass:[CoverSceneAudio class]])
         {
@@ -117,11 +107,11 @@
             NSURL *audioURL = [NSURL fileURLWithPath:anCoverSceneAudio.path];
             
             //add only if the audio is not muted
-            if ([thePlayer busNumberIsMuted:idx] == NO)
-            {
+//            if ([thePlayer busNumberIsMuted:idx] == NO)
+//            {
                 [mutableArrayOfAudioURLs addObject:audioURL];
                 
-            }
+//            }
         }
         
     }];

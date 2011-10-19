@@ -132,6 +132,8 @@
     [UIView setAnimationDuration:0.75];
     exportTableController = [[ExportTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
     exportTableController.theShow = theShow;
+    exportTableController.theCover = showCover;
+    exportTableController.theShow = theShow;
     [self.navigationController pushViewController:exportTableController animated:NO];
     [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:self.navigationController.view cache:NO];
     [UIView commitAnimations];
