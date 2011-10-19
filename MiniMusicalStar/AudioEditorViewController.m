@@ -13,52 +13,6 @@
 
 #import "ShowDAO.h"
 
-void audioRouteChangeListenerCallback (
-                                       void                      *inUserData,
-                                       AudioSessionPropertyID    inPropertyID,
-                                       UInt32                    inPropertyValueSize,
-                                       const void                *inPropertyValue) 
-{
-    if (inPropertyID != kAudioSessionProperty_AudioRouteChange) return;
-    
-    //AudioEditorViewController *controller = (AudioEditorViewController *) inUserData;
-    
-    CFDictionaryRef routeChangeDictionary = inPropertyValue;
-    CFNumberRef routeChangeReasonRef =
-    CFDictionaryGetValue (
-                          routeChangeDictionary,
-                          CFSTR (kAudioSession_AudioRouteChangeKey_Reason));
-    
-    SInt32 routeChangeReason;
-    
-    CFNumberGetValue (
-                      routeChangeReasonRef,
-                      kCFNumberSInt32Type,
-                      &routeChangeReason);
-    
-    CFStringRef oldRouteRef =
-    CFDictionaryGetValue (
-                          routeChangeDictionary,
-                          CFSTR (kAudioSession_AudioRouteChangeKey_OldRoute));
-    
-    NSString *oldRouteString = (NSString *)oldRouteRef;
-    
-    NSLog(@"%@", oldRouteString);
-    
-    //SpeakerAndMicrophone
-    //HeadphonesAndMicrophone
-    
-    if (routeChangeReason == kAudioSessionRouteChangeReason_OldDeviceUnavailable) {
-        
-//        if ((controller.audioPlayer.playing == YES) &&
-//            (([oldRouteString isEqualToString:@"Headphone"]) ||
-//             ([oldRouteString isEqualToString:@"LineOut"])))
-//        {
-//            [controller.audioPlayer pause];
-//        }
-    }
-}
-
 @implementation AudioEditorViewController
 @synthesize thePlayer, theAudioObjects, theCoverScene, context;
 @synthesize tracksForView;
@@ -175,15 +129,9 @@ void audioRouteChangeListenerCallback (
         [self loadLyrics:anAudio.lyrics];
     }
     
-    [[AVAudioSession sharedInstance] setDelegate: self];
+        
     
-    AudioSessionAddPropertyListener (
-                                     kAudioSessionProperty_AudioRouteChange,
-                                     audioRouteChangeListenerCallback,
-                                     self);
-    
-    
-    NSLog(@"%@", [self getCurrentAudioRoute]);
+
 }
 
 
@@ -889,23 +837,6 @@ void audioRouteChangeListenerCallback (
     }];
     
     return theLyrics;
-}
-
-- (NSString*)getCurrentAudioRoute
-{
-    //possible returns: Headphones, Speaker or empty string
-    
-    CFDictionaryRef audioRoute;
-    UInt32 propSize = sizeof(audioRoute);
-    error = AudioSessionGetProperty(kAudioSessionProperty_AudioRouteDescription, &propSize, &audioRoute);
-    CheckError(error, "Error getting audio session!");
-    
-    NSDictionary *audioRouteDict = (NSDictionary*)audioRoute;
-    NSArray *outputsArray = [audioRouteDict objectForKey:@"RouteDetailedDescription_Outputs"];
-    NSDictionary *outputsDict = [outputsArray objectAtIndex:0];
-    NSString *hardware = [outputsDict objectForKey:@"RouteDetailedDescription_PortType"];
-    
-    return hardware;
 }
 
 #pragma mark - class methods

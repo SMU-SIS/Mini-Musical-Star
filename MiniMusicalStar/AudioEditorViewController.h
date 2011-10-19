@@ -111,6 +111,4 @@
 
 - (NSString*)findFirstReplaceableTrackAndSetLyrics;
 
-- (NSString*)getCurrentAudioRoute;
-
 @end
