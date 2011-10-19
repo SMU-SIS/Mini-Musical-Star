@@ -28,7 +28,7 @@
     [super dealloc];
 }
 
-- (SceneUtility*) initWithSceneAndCoverSceneAndMixPlayer:(Scene*)scene :(CoverScene*)coverScene {
+- (SceneUtility*) initWithSceneAndCoverScene:(Scene*)scene :(CoverScene*)coverScene {
     theScene = scene;
     theCoverScene = coverScene;
 //    thePlayer = aPlayer;

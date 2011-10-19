@@ -222,6 +222,7 @@
     AVURLAsset* videoAsset = [[AVURLAsset alloc]initWithURL:[NSURL fileURLWithPath:[[ShowDAO userDocumentDirectory] stringByAppendingString:videoFilename]] options:nil];
     
     __block AVMutableCompositionTrack *compositionAudioTrack1 = NULL;
+    NSLog(@"AUDIO URLS %@",audioExportURLS);
     [audioExportURLS enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         NSURL *audioURL = (NSURL*)obj;
         AVURLAsset* audioAsset1 = [[AVURLAsset alloc]initWithURL:audioURL options:nil];
@@ -379,7 +380,7 @@
 - (void)exportScene:(Scene*) scene:(CoverScene*) coverScene
 {
     
-    theSceneUtility = [[SceneUtility alloc] initWithSceneAndCoverScene:scene:coverScene];
+    theSceneUtility = [[SceneUtility alloc] initWithSceneAndCoverScene: scene:coverScene];
     
     [self generateVideo:scene:[theSceneUtility getMergedImagesArray]:[theSceneUtility getExportAudioURLs]];
     
@@ -402,9 +403,6 @@
 
     }else if(indexPath.section == 1){
         Scene *selectedScene = [[theShow.scenes allValues] objectAtIndex:indexPath.row];
-        NSLog(@"INDEX PATH %@",indexPath.row);
-        NSLog(@"SELECTED SCENE %@",selectedScene.hash);
-        NSLog(@"SCENE ALL VALUES%@",[theShow.scenes allValues]);
         CoverScene *selectedCoverScene = [theCover coverSceneForSceneHash:selectedScene.hash];
         [self exportScene:selectedScene:selectedCoverScene];
     }
