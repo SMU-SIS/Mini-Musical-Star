@@ -57,7 +57,7 @@
     [manager createDirectoryAtPath:showsDirectory withIntermediateDirectories:NO attributes:nil error:&error];
     
     BOOL isDirectory = YES;
-    if (![manager fileExistsAtPath:@"Howling Dog" isDirectory:&isDirectory])
+    if (![manager fileExistsAtPath:[showsDirectory stringByAppendingPathComponent:@"Howling Dog"] isDirectory:&isDirectory])
     {
         //then seed the tutorial
         NSString *howlingDogZip = [[NSBundle mainBundle] pathForResource:@"howling_dog" ofType:@"zip"];
@@ -111,13 +111,13 @@
     //find shows that are not in already local, then create UndownloadShow objects for them
     [showCatalogue enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         NSDictionary *showInCatalogue = (NSDictionary *)obj;
-        int showID = [[showInCatalogue objectForKey:@"id"] intValue];
-        if (![self checkIfExistsLocally:showID])
+        NSString *showHash = [showInCatalogue objectForKey:@"id"];
+        if (![self checkIfExistsLocally:showHash])
         {
             //don't download now, just give the user an option to download
             UndownloadedShow *undownloadedShow = [[UndownloadedShow alloc] init];
             
-            undownloadedShow.showID = showID;
+            undownloadedShow.showHash = showHash;
             undownloadedShow.title = [showInCatalogue objectForKey:@"title"];
             undownloadedShow.downloadURL = [NSURL URLWithString:[showInCatalogue objectForKey:@"zip_url"]];
             
@@ -189,12 +189,12 @@
     [request cancel];
 }
             
-- (BOOL)checkIfExistsLocally:(int)showID
+- (BOOL)checkIfExistsLocally:(NSString *)showHash
 {
     for (int i = 0; i < self.loadedShows.count; i++)
     {
         Show *aShow = [self.loadedShows objectAtIndex:i];
-        if (showID == aShow.showID)
+        if ([showHash isEqualToString:aShow.showHash])
         {
             return YES;
         }

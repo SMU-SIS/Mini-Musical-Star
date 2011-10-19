@@ -17,7 +17,7 @@
 
 @property (retain, nonatomic) NSMutableDictionary *scenes;
 @property (retain, nonatomic) NSMutableArray *scenesOrder;
-@property (nonatomic) int showID;
+@property (retain, nonatomic) NSString *showHash;
 @property (retain, nonatomic) NSString *title;
 @property (retain, nonatomic) NSString *author;
 @property (retain, nonatomic) NSDate *createdDate;

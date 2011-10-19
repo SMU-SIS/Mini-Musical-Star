@@ -52,7 +52,7 @@
 - (IBAction)createMusical: (UIButton*)sender {
     
     Cover *newCover = [NSEntityDescription insertNewObjectForEntityForName:@"Cover" inManagedObjectContext:managedObjectContext];
-    newCover.cover_of_showID = [NSNumber numberWithInt:[theShow showID]];
+    newCover.cover_of_showHash = theShow.showHash;
     
     SceneViewController *sceneView = [[SceneViewController alloc] initWithScenesFromShow:theShow andCover:newCover andContext:managedObjectContext];
 
@@ -161,7 +161,7 @@
     [request setFetchBatchSize:20];
     
     //predicate...
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"cover_of_showID == %i", aShow.showID];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"cover_of_showHash == %@", aShow.showHash];
     [request setPredicate:predicate];
     
     //sort descriptor...

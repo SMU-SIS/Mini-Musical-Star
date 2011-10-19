@@ -13,7 +13,7 @@
 
 
 @implementation CoverScene
-@dynamic SceneNum;
+@dynamic sceneHash;
 @dynamic Audio;
 @dynamic Cover;
 @dynamic Picture;

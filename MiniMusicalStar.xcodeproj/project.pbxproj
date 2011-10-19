@@ -160,7 +160,7 @@
 		9510D17A142F882C00908ABC /* guitar.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3AFFDDED142C7191000D8494 /* guitar.mp3 */; };
 		9510D17B142F882F00908ABC /* keys.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3AFFDDEE142C7191000D8494 /* keys.mp3 */; };
 		9510D17C142F883200908ABC /* vocals.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3AFFDDEF142C7191000D8494 /* vocals.mp3 */; };
-		9536045E144A011200598D76 /* howling_dog.zip in Resources */ = {isa = PBXBuildFile; fileRef = 9536045D144A011200598D76 /* howling_dog.zip */; };
+		9533AAEA144E8F5E0092725C /* howling_dog.zip in Resources */ = {isa = PBXBuildFile; fileRef = 9533AAE9144E8F5E0092725C /* howling_dog.zip */; };
 		95368B03144C4CC5003BDDEF /* NSObject+SBJson.m in Sources */ = {isa = PBXBuildFile; fileRef = 95368AEB144C4CC5003BDDEF /* NSObject+SBJson.m */; };
 		95368B04144C4CC5003BDDEF /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 95368AEE144C4CC5003BDDEF /* SBJsonParser.m */; };
 		95368B05144C4CC5003BDDEF /* SBJsonStreamParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 95368AF0144C4CC5003BDDEF /* SBJsonStreamParser.m */; };
@@ -381,7 +381,7 @@
 		82BA9DBB143B828300D9D54A /* Default-Landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape.png"; sourceTree = "<group>"; };
 		950060031440B5FF000BB0A6 /* musical_placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = musical_placeholder.png; sourceTree = "<group>"; };
 		950060041440B5FF000BB0A6 /* scene_placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scene_placeholder.png; sourceTree = "<group>"; };
-		9536045D144A011200598D76 /* howling_dog.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = howling_dog.zip; sourceTree = "<group>"; };
+		9533AAE9144E8F5E0092725C /* howling_dog.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = howling_dog.zip; sourceTree = "<group>"; };
 		95368AEA144C4CC5003BDDEF /* NSObject+SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJson.h"; sourceTree = "<group>"; };
 		95368AEB144C4CC5003BDDEF /* NSObject+SBJson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJson.m"; sourceTree = "<group>"; };
 		95368AEC144C4CC5003BDDEF /* SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJson.h; sourceTree = "<group>"; };
@@ -813,7 +813,7 @@
 		820E2A1E140A0A2A00B80BBC /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				9536045D144A011200598D76 /* howling_dog.zip */,
+				9533AAE9144E8F5E0092725C /* howling_dog.zip */,
 				95D2069C1449E480004B6E8B /* scene page helper graphic.png */,
 				95D206991449B0EA004B6E8B /* Icons */,
 				950060031440B5FF000BB0A6 /* musical_placeholder.png */,
@@ -1201,8 +1201,8 @@
 				737716CC1445D61500BF2036 /* ChoiceSelectionViewController.xib in Resources */,
 				95D2069B1449B0F8004B6E8B /* 40-inbox.png in Resources */,
 				95D2069D1449E480004B6E8B /* scene page helper graphic.png in Resources */,
-				9536045E144A011200598D76 /* howling_dog.zip in Resources */,
 				3AF97A35144BE6FE00133C47 /* ExportTableViewController.xib in Resources */,
+				9533AAEA144E8F5E0092725C /* howling_dog.zip in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -160,9 +160,16 @@
     //attempt to get the Scene from the Scenes dictionary for the key, which in turn is gotten from the scene order array
     Scene *selectedScene = [self.theShow.scenes objectForKey:[self.theShow.scenesOrder objectAtIndex:sender.tag]];
     
-    __block CoverScene *selectedCoverScene = nil;
-    selectedCoverScene = [NSEntityDescription insertNewObjectForEntityForName:@"CoverScene" inManagedObjectContext:context];
-    [self.theCover addScenesObject:selectedCoverScene];
+    CoverScene *selectedCoverScene = [theCover coverSceneForSceneHash:selectedScene.hash];
+    
+    if (!selectedCoverScene)
+    {
+        //create a new CoverScene
+        selectedCoverScene = [NSEntityDescription insertNewObjectForEntityForName:@"CoverScene" inManagedObjectContext:context];
+        selectedCoverScene.SceneHash = selectedScene.hash;
+        [self.theCover addScenesObject:selectedCoverScene];
+        [self.context save:nil];
+    }
 
     SceneEditViewController *editController = [[SceneEditViewController alloc] initWithScene:selectedScene andSceneCover:selectedCoverScene andContext:context];
     editController.title = selectedScene.title;

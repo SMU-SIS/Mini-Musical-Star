@@ -9,13 +9,14 @@
 #import "UndownloadedShow.h"
 
 @implementation UndownloadedShow
-@synthesize showID, title, downloadURL, coverImage;
+@synthesize showHash, title, downloadURL, coverImage;
 
 -(void)dealloc
 {
     [title release];
     [downloadURL release];
     [coverImage release];
+    [showHash release];
     [super dealloc];
 }
 

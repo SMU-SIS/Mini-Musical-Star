@@ -14,7 +14,7 @@
 @private
 }
 @property (nonatomic, retain) NSString * author;
-@property (nonatomic, retain) NSNumber * cover_of_showID;
+@property (nonatomic, retain) NSString * cover_of_showHash;
 @property (retain, nonatomic) NSString *originalHash;
 @property (nonatomic, retain) NSDate * created_date;
 @property (nonatomic, retain) NSString * title;
@@ -30,4 +30,5 @@
 
 - (BOOL)showWasEdited;
 - (void)purgeRelatedFiles;
+- (CoverScene *)coverSceneForSceneHash:(NSString *)sceneHash;
 @end

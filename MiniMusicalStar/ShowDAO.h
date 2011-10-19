@@ -24,6 +24,6 @@
 - (void)checkForNewShowsFromServer;
 - (void)downloadShow:(UndownloadedShow *)aShow progressIndicatorDelegate:(id)aDelegate;
 - (void)cancelDownloadForShow:(UndownloadedShow *)aShow;
-- (BOOL)checkIfExistsLocally:(int)showID;
+- (BOOL)checkIfExistsLocally:(NSString *)showHash;
 - (void)unzipDownloadedShowURL:(NSString *)localShowZipPath toPath:(NSString *)unzipPath;
 @end

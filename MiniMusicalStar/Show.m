@@ -9,7 +9,7 @@
 #import "Show.h"
 
 @implementation Show
-@synthesize data, scenes, scenesOrder, title, author, createdDate, iTunesAlbumLink, iBooksBookLink, showAssetsLocation, showID, coverPicture, showDescription;
+@synthesize data, scenes, scenesOrder, title, author, createdDate, iTunesAlbumLink, iBooksBookLink, showAssetsLocation, showHash, coverPicture, showDescription;
 
 
 - (void)dealloc
@@ -25,6 +25,7 @@
     [iBooksBookLink release];
     [showAssetsLocation release];
     [showDescription release];
+    [showHash release];
     [super dealloc];
 }
 
@@ -51,7 +52,7 @@
         self.showAssetsLocation = [[showPath path] stringByAppendingPathComponent:@"assets"];
         
         //populate the properties of the Show model
-        self.showID = [[root objectForKey:@"id"] intValue];
+        self.showHash = [root objectForKey:@"id"];
         self.title = [root objectForKey:@"title"];
         self.author = [root objectForKey:@"author"];
         self.showDescription = [root objectForKey:@"description"];

@@ -24,7 +24,7 @@
     
     // Override point for customization after application launch.
     
-    self.viewController.managedObjectContext = self.managedObjectContext;
+    self.viewController.managedObjectContext = [self managedObjectContext];
 
     self.window.rootViewController = self.naviController;
     [self.window makeKeyAndVisible];
