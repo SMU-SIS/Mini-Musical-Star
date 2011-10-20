@@ -47,6 +47,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.tableView.rowHeight = 100.0;
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -131,18 +133,29 @@
     return pxbuffer;
 }
 
--(void) sessionExport: (AVMutableComposition*) composition: (NSString*)exportFilename: (NSString*)videoFilename
+-(void) sessionExport: (AVMutableComposition*) composition: (NSString*)exportFilename: (NSString*)videoFilename: (NSIndexPath*) indexPath
 {
     
     NSArray *compatiblePresets = [AVAssetExportSession exportPresetsCompatibleWithAsset:composition];
     if ([compatiblePresets containsObject:AVAssetExportPresetHighestQuality]) {
         self.exportSession = [[AVAssetExportSession alloc]
                                                initWithAsset:composition presetName:AVAssetExportPresetHighestQuality];
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:1];
-        UITableViewCell *cell = (UITableViewCell *)[(UITableView *)self.view cellForRowAtIndexPath:indexPath];
         
-//        UIProgressView *prog = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleBar];
-//        [cell.contentView addSubview:prog];
+        //draw the progress bar
+        CGRect progressBarFrame;
+        progressBarFrame.size.width = 300;
+        progressBarFrame.size.height = 300;
+        progressBarFrame.origin.x = 600;
+        progressBarFrame.origin.y = 45;
+        
+        UITableViewCell *cell = (UITableViewCell *)[(UITableView *)self.view cellForRowAtIndexPath:indexPath];
+        UIProgressView *prog = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleBar];
+//        CGAffineTransform transform = CGAffineTransformMakeScale(10.0f, 10.0f);
+//        prog.transform = transform;
+        prog.frame= progressBarFrame;
+        [cell.contentView addSubview:prog];
+        [prog setProgress:0];
+        
         exportSession.outputURL = [NSURL fileURLWithPath:[[ShowDAO userDocumentDirectory] stringByAppendingString:exportFilename]];
         exportSession.outputFileType = AVFileTypeQuickTimeMovie;
         
@@ -151,18 +164,22 @@
         CMTimeRange range = CMTimeRangeMake(start, duration);
         exportSession.timeRange = range;
         exportRunning = YES;
-        //[exportSession addObserver:self forKeyPath:@"progress" options:0 context:@"export progress changed"];
-        NSLog(@"imm printing progress! %f", exportSession.progress);
-        UIProgressView *prog = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleBar];
-        [cell.contentView addSubview:prog];
+        [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(refreshProgressBar:) userInfo:prog repeats:YES];
         [exportSession exportAsynchronouslyWithCompletionHandler:^{
             switch ([exportSession status]) {
                 case AVAssetExportSessionStatusCompleted:
                     NSLog(@"Export Completed");
-                    //[DSBezelActivityView removeViewAnimated:YES];
                     //delete unused video file
                     [[NSFileManager defaultManager] removeItemAtPath: [[ShowDAO userDocumentDirectory] stringByAppendingString:videoFilename] error: NULL];
                     exportRunning = NO;
+                    [prog removeFromSuperview];
+//                    [self.tableView beginUpdates];
+//                    NSIndexPath *path1 = [NSIndexPath indexPathForRow:1 inSection:0];
+////                    NSIndexPath *path2 = [NSIndexPath indexPathForRow:1 inSection:0];
+//                    NSArray *indexArray = [NSArray arrayWithObjects:path1,nil];
+//                    [self.tableView insertRowsAtIndexPaths:indexArray withRowAnimation:UITableViewRowAnimationTop];
+//                    [self.tableView endUpdates];
+//                    
                     break;
                 case AVAssetExportSessionStatusFailed:
                     NSLog(@"Export failed: %@", [[exportSession error] localizedDescription]);
@@ -173,26 +190,19 @@
                 default:
                     break;
             }
-            
-            //[exportSession release];
+            [prog release];
+            [exportSession release];
 
         }];
 
-        [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(lalala:) userInfo:prog repeats:YES];
     }
 }
 
-
-
-- (void)lalala:(NSTimer*) aTimer
+- (void)refreshProgressBar:(NSTimer*) aTimer
 {
-    NSLog(@"this is exportSession %@", self.exportSession);
-    NSLog(@"progress has changed, currently it is dunno what %f", self.exportSession.progress);
     [aTimer.userInfo setProgress:self.exportSession.progress*75];
 
 }
-
-
 
 -(void) createImagesConvertedToVideo: (Scene*) theScene: (NSArray*) imagesArray: (NSString*) videoFilename :(CGSize) size
 {
@@ -278,14 +288,12 @@
     [videoWriter finishWriting];
 }
 
--(IBAction)generateVideo: (Scene*) theScene: (NSArray*) imagesArray:(NSArray*) audioExportURLs
+-(NSString*)generateVideo: (Scene*) theScene: (NSArray*) imagesArray:(NSArray*) audioExportURLs:(NSIndexPath*) indexPath
 {
     __block NSError *error = nil;
-    //[DSBezelActivityView newActivityViewForView:self.view withLabel:@"Exporting...Wait OK?! otherwise your ipad might EXPLODE"];
     CGSize size = CGSizeMake(640, 480);
     NSString *videoFilename = [@"/" stringByAppendingString:[[AudioEditorViewController getUniqueFilenameWithoutExt] stringByAppendingString:@".mov"]];
     NSString *exportFilename = [@"/" stringByAppendingString:[[AudioEditorViewController getUniqueFilenameWithoutExt] stringByAppendingString:@".mov"]];
-    NSLog(@"exportFilename : %@",exportFilename);
 
     //write image to video conversion
     [self createImagesConvertedToVideo:theScene :imagesArray :videoFilename :size];
@@ -296,7 +304,7 @@
     AVURLAsset* videoAsset = [[AVURLAsset alloc]initWithURL:[NSURL fileURLWithPath:[[ShowDAO userDocumentDirectory] stringByAppendingString:videoFilename]] options:nil];
     
     __block AVMutableCompositionTrack *compositionAudioTrack1 = NULL;
-    NSLog(@"AUDIO URLS %@",audioExportURLs);
+    
     [audioExportURLs enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         NSURL *audioURL = (NSURL*)obj;
         AVURLAsset* audioAsset1 = [[AVURLAsset alloc]initWithURL:audioURL options:nil];
@@ -315,14 +323,9 @@
                                    ofTrack:[[videoAsset tracksWithMediaType:AVMediaTypeVideo]objectAtIndex:0] 
                                     atTime:kCMTimeZero error:&error];
     
-    
     //session export
-    [self sessionExport:composition:exportFilename:videoFilename];
-    
-    
-    //    //play the fucking player
-    //    NSURL *url = [NSURL fileURLWithPath:[[ShowDAO userDocumentDirectory] stringByAppendingString:self.exportFilename]
-    
+    [self sessionExport:composition:exportFilename:videoFilename:indexPath];
+    return exportFilename;
 }
 
 
@@ -361,13 +364,20 @@
         cell.imageView.image = theShow.coverPicture;
         cell.textLabel.text = theShow.title;
         return cell;
-    }else{
+    }else if(indexPath.section ==1){
         Scene *scene = [[theShow.scenes allValues] objectAtIndex:indexPath.row];
         cell.imageView.image = scene.coverPicture;
         cell.textLabel.text = scene.title;
         
         return cell;
         [scene release];        
+    }else{
+        Scene *scene = [[theShow.scenes allValues] objectAtIndex:indexPath.row];
+        cell.imageView.image = scene.coverPicture;
+        cell.textLabel.text = scene.title;
+        
+        return cell;
+        [scene release]; 
     }
 
 }
@@ -413,19 +423,11 @@
 
 #pragma mark - Table view delegate
 
-- (void)exportScene:(Scene*) scene:(CoverScene*) coverScene
+- (NSString*)exportScene:(Scene*) scene:(CoverScene*) coverScene: (NSIndexPath*) indexPath
 {
-//    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:1];
-//    UITableViewCell *cell = (UITableViewCell *)[(UITableView *)self.view cellForRowAtIndexPath:indexPath];
-//    UIProgressView *prog = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleBar];
-//    [cell.contentView addSubview:prog];
-//    [prog setProgress:0];
     theSceneUtility = [[SceneUtility alloc] initWithSceneAndCoverScene: scene:coverScene];
     
-    [self generateVideo:scene:[theSceneUtility getMergedImagesArray]:[theSceneUtility getExportAudioURLs]];
-    [theSceneUtility release];
-//    [prog setProgress:1];
-    
+    return [self generateVideo:scene:[theSceneUtility getMergedImagesArray]:[theSceneUtility getExportAudioURLs]:indexPath];
 }
 
 - (void)exportMusical:(Show*)show
@@ -454,7 +456,7 @@
     }else if(indexPath.section == 1){
         Scene *selectedScene = [[theShow.scenes allValues] objectAtIndex:indexPath.row];
         CoverScene *selectedCoverScene = [theCover coverSceneForSceneHash:selectedScene.hash];
-        [self exportScene:selectedScene:selectedCoverScene];
+        NSString *exportFilename = [self exportScene:selectedScene:selectedCoverScene:indexPath];
     }
     
    
