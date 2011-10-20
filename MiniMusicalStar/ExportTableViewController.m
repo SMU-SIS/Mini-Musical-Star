@@ -13,9 +13,14 @@
 @synthesize theShow;
 @synthesize theCover;
 @synthesize theSceneUtility;
+@synthesize exportRunning;
+@synthesize exportSession;
+@synthesize timer;
 
 -(void)dealloc
 {
+    [timer release];
+    [exportSession release];
     [theSceneUtility release];
     [theShow release];
     [super dealloc];
@@ -126,15 +131,18 @@
     return pxbuffer;
 }
 
--(void) sessionExport: (AVMutableComposition*) composition: (NSString*)exportFilename
+-(void) sessionExport: (AVMutableComposition*) composition: (NSString*)exportFilename: (NSString*)videoFilename
 {
     
     NSArray *compatiblePresets = [AVAssetExportSession exportPresetsCompatibleWithAsset:composition];
     if ([compatiblePresets containsObject:AVAssetExportPresetHighestQuality]) {
-        AVAssetExportSession *exportSession = [[AVAssetExportSession alloc]
+        self.exportSession = [[AVAssetExportSession alloc]
                                                initWithAsset:composition presetName:AVAssetExportPresetHighestQuality];
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:1];
+        UITableViewCell *cell = (UITableViewCell *)[(UITableView *)self.view cellForRowAtIndexPath:indexPath];
         
-        
+//        UIProgressView *prog = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleBar];
+//        [cell.contentView addSubview:prog];
         exportSession.outputURL = [NSURL fileURLWithPath:[[ShowDAO userDocumentDirectory] stringByAppendingString:exportFilename]];
         exportSession.outputFileType = AVFileTypeQuickTimeMovie;
         
@@ -142,11 +150,19 @@
         CMTime duration = CMTimeMakeWithSeconds(1000, 1);
         CMTimeRange range = CMTimeRangeMake(start, duration);
         exportSession.timeRange = range;
+        exportRunning = YES;
+        //[exportSession addObserver:self forKeyPath:@"progress" options:0 context:@"export progress changed"];
+        NSLog(@"imm printing progress! %f", exportSession.progress);
+        UIProgressView *prog = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleBar];
+        [cell.contentView addSubview:prog];
         [exportSession exportAsynchronouslyWithCompletionHandler:^{
             switch ([exportSession status]) {
                 case AVAssetExportSessionStatusCompleted:
                     NSLog(@"Export Completed");
-                    [DSBezelActivityView removeViewAnimated:YES];
+                    //[DSBezelActivityView removeViewAnimated:YES];
+                    //delete unused video file
+                    [[NSFileManager defaultManager] removeItemAtPath: [[ShowDAO userDocumentDirectory] stringByAppendingString:videoFilename] error: NULL];
+                    exportRunning = NO;
                     break;
                 case AVAssetExportSessionStatusFailed:
                     NSLog(@"Export failed: %@", [[exportSession error] localizedDescription]);
@@ -158,11 +174,25 @@
                     break;
             }
             
+            //[exportSession release];
+
         }];
-        [exportSession release];
-        
-    }   
+
+        [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(lalala:) userInfo:prog repeats:YES];
+
 }
+
+
+
+- (void)lalala:(NSTimer*) aTimer
+{
+    NSLog(@"this is exportSession %@", self.exportSession);
+    NSLog(@"progress has changed, currently it is dunno what %f", self.exportSession.progress);
+    [aTimer.userInfo setProgress:self.exportSession.progress*75];
+
+}
+
+
 
 -(void) createImagesConvertedToVideo: (Scene*) theScene: (NSArray*) imagesArray: (NSString*) videoFilename :(CGSize) size
 {
@@ -248,10 +278,10 @@
     [videoWriter finishWriting];
 }
 
--(IBAction)generateVideo: (Scene*) theScene: (NSArray*) imagesArray:(NSArray*) audioExportURLs: (UIProgressView*)prog
+-(IBAction)generateVideo: (Scene*) theScene: (NSArray*) imagesArray:(NSArray*) audioExportURLs
 {
     __block NSError *error = nil;
-    [DSBezelActivityView newActivityViewForView:self.view withLabel:@"Exporting...Wait OK?! otherwise your ipad might EXPLODE"];
+    //[DSBezelActivityView newActivityViewForView:self.view withLabel:@"Exporting...Wait OK?! otherwise your ipad might EXPLODE"];
     CGSize size = CGSizeMake(640, 480);
     NSString *videoFilename = [@"/" stringByAppendingString:[[AudioEditorViewController getUniqueFilenameWithoutExt] stringByAppendingString:@".mov"]];
     NSString *exportFilename = [@"/" stringByAppendingString:[[AudioEditorViewController getUniqueFilenameWithoutExt] stringByAppendingString:@".mov"]];
@@ -285,13 +315,10 @@
                                    ofTrack:[[videoAsset tracksWithMediaType:AVMediaTypeVideo]objectAtIndex:0] 
                                     atTime:kCMTimeZero error:&error];
     
-    [prog setProgress:0.5];
     
     //session export
-    [self sessionExport:composition:exportFilename];
+    [self sessionExport:composition:exportFilename:videoFilename];
     
-    //delete unused video file
-    [[NSFileManager defaultManager] removeItemAtPath: [[ShowDAO userDocumentDirectory] stringByAppendingString:videoFilename] error: NULL];
     
     //    //play the fucking player
     //    NSURL *url = [NSURL fileURLWithPath:[[ShowDAO userDocumentDirectory] stringByAppendingString:self.exportFilename]
@@ -388,21 +415,26 @@
 
 - (void)exportScene:(Scene*) scene:(CoverScene*) coverScene
 {
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:1];
-    UITableViewCell *cell = (UITableViewCell *)[(UITableView *)self.view cellForRowAtIndexPath:indexPath];
-    
-    UIProgressView *prog = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleBar];
-    [cell.contentView addSubview:prog];
-    [prog setProgress:0];
-    
+//    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:1];
+//    UITableViewCell *cell = (UITableViewCell *)[(UITableView *)self.view cellForRowAtIndexPath:indexPath];
+//    UIProgressView *prog = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleBar];
+//    [cell.contentView addSubview:prog];
+//    [prog setProgress:0];
     theSceneUtility = [[SceneUtility alloc] initWithSceneAndCoverScene: scene:coverScene];
     
-    [self generateVideo:scene:[theSceneUtility getMergedImagesArray]:[theSceneUtility getExportAudioURLs]:prog];
-    
+    [self generateVideo:scene:[theSceneUtility getMergedImagesArray]:[theSceneUtility getExportAudioURLs]];
     [theSceneUtility release];
+//    [prog setProgress:1];
     
-    [prog setProgress:1];
-    
+}
+
+- (void)exportMusical:(Show*)show
+{
+//    [imagesArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+//    while(exportRunning)
+//    {
+//        NSLog(@"waiting for export to finish");
+//    }
     
 }
 
