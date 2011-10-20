@@ -77,6 +77,8 @@
     
     NSError *error;
     [managedObjectContext save:&error];
+        
+        NSLog(@"Covername is %@", coverName);
     
     sceneView.title = [theShow title];
     
@@ -155,8 +157,8 @@
     
     self.frc = fetchedResultsController;
     
-    //NSError *error;
-    //[frc performFetch:&error];
+    NSError *error;
+    [frc performFetch:&error];
     
     [fetchedResultsController release], fetchedResultsController = nil;
 }
@@ -175,6 +177,7 @@
     NSLog(@"the selected show is %@", theShow.title);
     
     
+    
     if ([[[frc sections] objectAtIndex:0] numberOfObjects] == 0) 
     {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"OPPS!" message:@"Please create your first cover!" delegate:self cancelButtonTitle:@"OK!" otherButtonTitles:nil, nil];
@@ -183,6 +186,7 @@
     }
     else
     {
+     
      
     CoversListViewController *coversView = [[CoversListViewController alloc] initWithShow:self.theShow context:self.managedObjectContext];
     coversView.view.frame = coversFrame;

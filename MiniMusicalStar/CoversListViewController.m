@@ -50,7 +50,7 @@
     [request setFetchBatchSize:20];
     
     //predicate...
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"cover_of_showID == %@", theShow.showHash];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"cover_of_showHash == %@", theShow.showHash];
     [request setPredicate:predicate];
     
     //sort descriptor...

@@ -15,7 +15,7 @@
 #import "AlertPrompt.h"
 
 
-@interface ChoiceSelectionViewController : UIViewController{
+@interface ChoiceSelectionViewController : UIViewController {
     IBOutlet UIImageView *showCover;
     IBOutlet UIButton *create;
     IBOutlet UIButton *cover;
