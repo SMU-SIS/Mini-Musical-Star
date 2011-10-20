@@ -41,5 +41,6 @@
 -(IBAction)promptForCoverName:(UIButton*)sender;
 
 - (void)loadCoversForShow:(Show *)aShow;
+-(void)selectedSavedCover;
 
 @end

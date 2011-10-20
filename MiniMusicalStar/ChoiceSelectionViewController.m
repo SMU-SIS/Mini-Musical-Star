@@ -215,4 +215,15 @@
         [self createMusical];
 	}
 }
+
+-(void)selectedSavedCover:(Cover*)aCover
+{
+    SceneViewController *sceneView = [[SceneViewController alloc] initWithScenesFromShow:theShow andCover:aCover andContext:managedObjectContext];
+    
+    sceneView.title = [aCover title];
+    
+    [self.navigationController pushViewController:sceneView animated:YES];
+    
+    [sceneView release];
+}
 @end
