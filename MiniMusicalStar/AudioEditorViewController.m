@@ -129,9 +129,15 @@
         [self loadLyrics:anAudio.lyrics];
     }
     
-        
-    
+    //Applying autosave here
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(autosaveWhenContextDidChange:) name:NSManagedObjectContextObjectsDidChangeNotification object:context];
 
+}
+
+-(void)autosaveWhenContextDidChange:(NSNotification*)notification
+{
+    NSError *thisError;
+    [context save:&thisError];
 }
 
 

@@ -110,5 +110,6 @@
 - (void)consolidateReplaceableAudios;
 
 - (NSString*)findFirstReplaceableTrackAndSetLyrics;
+-(void)autosaveWhenContextDidChange:(NSNotification*)notification;
 
 @end

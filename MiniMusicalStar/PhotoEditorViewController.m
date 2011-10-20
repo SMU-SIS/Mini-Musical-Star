@@ -57,6 +57,15 @@
     ((AFOpenFlowView *)self.view).viewDelegate = self;
     [self performSelector:@selector(loadImagesIntoOpenFlow)];
     
+    //Applying autosave here
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(autosaveWhenContextDidChange:) name:NSManagedObjectContextObjectsDidChangeNotification object:context];
+    
+}
+
+-(void)autosaveWhenContextDidChange:(NSNotification*)notification
+{
+    NSError *thisError;
+    [context save:&thisError];
 }
 
 - (void) loadImagesIntoOpenFlow
