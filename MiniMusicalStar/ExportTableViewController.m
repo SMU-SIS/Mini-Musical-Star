@@ -179,7 +179,7 @@
         }];
 
         [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(lalala:) userInfo:prog repeats:YES];
-
+    }
 }
 
 
