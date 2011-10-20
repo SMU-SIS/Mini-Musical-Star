@@ -96,7 +96,6 @@
     self.navigationItem.rightBarButtonItem = mediaManagementButton;
     
     showCover.image = theShow.coverPicture;
-    [self loadCoversForShow:theShow];
     
     self.showTitle.text = self.theShow.title;
     self.showDescription.text = self.theShow.showDescription;
@@ -176,8 +175,9 @@
     
     NSLog(@"the selected show is %@", theShow.title);
     
+    [self loadCoversForShow:theShow];
     
-    
+    /*
     if ([[[frc sections] objectAtIndex:0] numberOfObjects] == 0) 
     {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"OPPS!" message:@"Please create your first cover!" delegate:self cancelButtonTitle:@"OK!" otherButtonTitles:nil, nil];
@@ -186,6 +186,7 @@
     }
     else
     {
+     */
      
      
     CoversListViewController *coversView = [[CoversListViewController alloc] initWithShow:self.theShow context:self.managedObjectContext];
@@ -204,7 +205,7 @@
     
     [UIView commitAnimations];    
     [parentView addSubview:coversListNavController.view];
-    }
+    //}
 }
 
 - (void)alertView:(UIAlertView *)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex

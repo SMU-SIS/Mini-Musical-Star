@@ -63,6 +63,7 @@
     fetchedResultsController.delegate = self;
     
     self.frc = fetchedResultsController;
+    
     [fetchedResultsController release], fetchedResultsController = nil;
 
 }
