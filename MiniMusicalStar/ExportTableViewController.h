@@ -25,6 +25,7 @@
 @property (nonatomic) __block bool exportRunning;
 @property (nonatomic, retain) AVAssetExportSession *exportSession;
 @property (nonatomic, retain) NSTimer *timer;
+@property (nonatomic, retain) NSString *exportFilename;
 -(void) progress;
 -(void) loadArrays;
 - (id)initWithStyle:(UITableViewStyle)style:(Show*)theShow:(Cover*)cover;

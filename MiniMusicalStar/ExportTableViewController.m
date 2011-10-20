@@ -7,7 +7,7 @@
 //
 
 #import "ExportTableViewController.h"
-
+#import <MediaPlayer/MediaPlayer.h>
 @implementation ExportTableViewController
 
 @synthesize theShow;
@@ -19,9 +19,11 @@
 @synthesize musicalArray;
 @synthesize scenesArray;
 @synthesize exportedFilesArray;
+@synthesize exportFilename;
 
 -(void)dealloc
 {
+    [exportFilename release];
     [musicalArray release];
     [scenesArray release];
     [exportedFilesArray release];
@@ -31,6 +33,7 @@
     [theShow release];
     [super dealloc];
 }
+
 
 - (id)initWithStyle:(UITableViewStyle)style:(Show*)show:(Cover*)cover
 {
@@ -149,7 +152,7 @@
     return pxbuffer;
 }
 
--(void) sessionExport: (AVMutableComposition*) composition: (NSString*)exportFilename: (NSString*)videoFilename: (NSIndexPath*) indexPath
+-(void) sessionExport: (AVMutableComposition*) composition: (NSString*)videoFilename: (NSIndexPath*) indexPath
 {
     
     NSArray *compatiblePresets = [AVAssetExportSession exportPresetsCompatibleWithAsset:composition];
@@ -189,13 +192,23 @@
                     [[NSFileManager defaultManager] removeItemAtPath: [[ShowDAO userDocumentDirectory] stringByAppendingString:videoFilename] error: NULL];
                     exportRunning = NO;
                     [prog removeFromSuperview];
+                    [exportedFilesArray addObject:@"hihi"];
+                    [self.tableView reloadData];
+//                     NSIndexPath *path1 = [NSIndexPath indexPathForRow:0 inSection:2];
+//                    NSArray *indexArray = [NSArray arrayWithObjects:path1,nil];
 //                    [self.tableView beginUpdates];
-//                    NSIndexPath *path1 = [NSIndexPath indexPathForRow:1 inSection:0];
+//                    [self.tableView reloadRowsAtIndexPaths:indexArray withRowAnimation:UITableViewRowAnimationTop]; 
+//                    [self.tableView endUpdates];
+////                    UITableViewCell *newCell = (UITableViewCell *)[(UITableView *)self.view cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:2]];
+////                    newCell.textLabel.text = @"hihi";
+////                    [self.tableView reloadData];
+////                    [self.tableView beginUpdates];
+//                   
 ////                    NSIndexPath *path2 = [NSIndexPath indexPathForRow:1 inSection:0];
 //                    NSArray *indexArray = [NSArray arrayWithObjects:path1,nil];
 //                    [self.tableView insertRowsAtIndexPaths:indexArray withRowAnimation:UITableViewRowAnimationTop];
 //                    [self.tableView endUpdates];
-//                    
+                   
                     break;
                 case AVAssetExportSessionStatusFailed:
                     NSLog(@"Export failed: %@", [[exportSession error] localizedDescription]);
@@ -304,12 +317,12 @@
     [videoWriter finishWriting];
 }
 
--(NSString*)generateVideo: (Scene*) theScene: (NSArray*) imagesArray:(NSArray*) audioExportURLs:(NSIndexPath*) indexPath
+-(void)generateVideo: (Scene*) theScene: (NSArray*) imagesArray:(NSArray*) audioExportURLs:(NSIndexPath*) indexPath
 {
     __block NSError *error = nil;
     CGSize size = CGSizeMake(640, 480);
     NSString *videoFilename = [@"/" stringByAppendingString:[[AudioEditorViewController getUniqueFilenameWithoutExt] stringByAppendingString:@".mov"]];
-    NSString *exportFilename = [@"/" stringByAppendingString:[[AudioEditorViewController getUniqueFilenameWithoutExt] stringByAppendingString:@".mov"]];
+    self.exportFilename = [@"/" stringByAppendingString:[[AudioEditorViewController getUniqueFilenameWithoutExt] stringByAppendingString:@".mov"]];
 
     //write image to video conversion
     [self createImagesConvertedToVideo:theScene :imagesArray :videoFilename :size];
@@ -340,8 +353,8 @@
                                     atTime:kCMTimeZero error:&error];
     
     //session export
-    [self sessionExport:composition:exportFilename:videoFilename:indexPath];
-    return exportFilename;
+    [self sessionExport:composition:videoFilename:indexPath];
+
 }
 
 
@@ -377,23 +390,20 @@
     
     // Configure the cell...
     if(indexPath.section ==0){
-        cell.imageView.image = theShow.coverPicture;
-        cell.textLabel.text = theShow.title;
+        Show *show = [musicalArray objectAtIndex:0];
+        cell.imageView.image = show.coverPicture;
+        cell.textLabel.text = show.title;
         return cell;
     }else if(indexPath.section ==1){
         Scene *scene = [scenesArray objectAtIndex:indexPath.row];
         cell.imageView.image = scene.coverPicture;
         cell.textLabel.text = scene.title;
-        [scene release];        
+        return cell;
+    }else{
+        cell.textLabel.text = exportFilename;
+        cell.detailTextLabel.text = @"click to play";
         return cell;
 
-    }else{
-//        Scene *scene = [[theShow.scenes allValues] objectAtIndex:indexPath.row];
-//        cell.imageView.image = scene.coverPicture;
-//        cell.textLabel.text = scene.title;
-//        
-//        return cell;
-//        [scene release]; 
     }
 
 }
@@ -439,11 +449,11 @@
 
 #pragma mark - Table view delegate
 
-- (NSString*)exportScene:(Scene*) scene:(CoverScene*) coverScene: (NSIndexPath*) indexPath
+- (void)exportScene:(Scene*) scene:(CoverScene*) coverScene: (NSIndexPath*) indexPath
 {
     theSceneUtility = [[SceneUtility alloc] initWithSceneAndCoverScene: scene:coverScene];
     
-    return [self generateVideo:scene:[theSceneUtility getMergedImagesArray]:[theSceneUtility getExportAudioURLs]:indexPath];
+    [self generateVideo:scene:[theSceneUtility getMergedImagesArray]:[theSceneUtility getExportAudioURLs]:indexPath];
 }
 
 - (void)exportMusical:(Show*)show
@@ -470,12 +480,55 @@
     if(indexPath.section == 0){
 
     }else if(indexPath.section == 1){
-        Scene *selectedScene = [[theShow.scenes allValues] objectAtIndex:indexPath.row];
+        Scene *selectedScene = [scenesArray objectAtIndex:indexPath.row];
         CoverScene *selectedCoverScene = [theCover coverSceneForSceneHash:selectedScene.hash];
-        NSString *exportFilename = [self exportScene:selectedScene:selectedCoverScene:indexPath];
+        [self exportScene:selectedScene:selectedCoverScene:indexPath];
+//        exportFilename = NULL;
+    }else if(indexPath.section == 2){
+        UITableViewCell *cell = (UITableViewCell *)[(UITableView *)self.view cellForRowAtIndexPath:indexPath];
+        NSURL *fileURL = [NSURL fileURLWithPath:[[ShowDAO userDocumentDirectory] stringByAppendingString:cell.textLabel.text]];
+        [self playMovie:fileURL];
     }
     
    
 }
+
+- (void) playMovie:(NSURL*)filePath
+{
+    MPMoviePlayerController *moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:filePath];
+    
+    // Register to receive a notification when the movie has finished playing.
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(moviePlayBackDidFinish:)
+                                                 name:MPMoviePlayerPlaybackDidFinishNotification
+                                               object:moviePlayer];
+    
+    if ([moviePlayer respondsToSelector:@selector(setFullscreen:animated:)]) {
+        // Use the new 3.2 style API
+        
+        [moviePlayer.view setFrame:self.view.bounds];
+        moviePlayer.controlStyle = MPMovieControlStyleFullscreen;
+        moviePlayer.shouldAutoplay = YES;
+        [self.view setBackgroundColor:[UIColor blackColor]];
+        [self.view addSubview:moviePlayer.view];
+        [moviePlayer play];
+    }   
+}
+
+- (void) moviePlayBackDidFinish:(NSNotification*)notification {
+    MPMoviePlayerController *moviePlayer = [notification object];
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:MPMoviePlayerPlaybackDidFinishNotification
+                                                  object:moviePlayer];
+    
+    // If the moviePlayer.view was added to the view, it needs to be removed
+    if ([moviePlayer respondsToSelector:@selector(setFullscreen:animated:)]) {
+        [moviePlayer.view removeFromSuperview];
+    }
+    
+    [moviePlayer release];
+}
+
+
 
 @end
