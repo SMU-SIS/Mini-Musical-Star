@@ -16,9 +16,15 @@
 @synthesize exportRunning;
 @synthesize exportSession;
 @synthesize timer;
+@synthesize musicalArray;
+@synthesize scenesArray;
+@synthesize exportedFilesArray;
 
 -(void)dealloc
 {
+    [musicalArray release];
+    [scenesArray release];
+    [exportedFilesArray release];
     [timer release];
     [exportSession release];
     [theSceneUtility release];
@@ -26,12 +32,22 @@
     [super dealloc];
 }
 
-- (id)initWithStyle:(UITableViewStyle)style
+- (id)initWithStyle:(UITableViewStyle)style:(Show*)show:(Cover*)cover
 {
     self = [super initWithStyle:style];
     if (self) {
+        self.theShow = show;
+        self.theCover = cover;
+        self.musicalArray = [NSArray arrayWithObject:show];
+        self.scenesArray = [show.scenes allValues];
+        self.exportedFilesArray = [[NSMutableArray alloc] initWithCapacity:0];
     }
     return self;
+}
+
+- (void) loadArrays
+{
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -341,11 +357,11 @@
 {
     // Return the number of rows in the section.
     if (section == 0){
-        return 1;
+        return [musicalArray count];
     }else if (section == 1){
-        return [[theShow.scenes allValues] count];
+        return [scenesArray count];
     }else if(section == 2){
-        return 2;
+        return [exportedFilesArray count];
     }
     return 0;
 }
@@ -365,19 +381,19 @@
         cell.textLabel.text = theShow.title;
         return cell;
     }else if(indexPath.section ==1){
-        Scene *scene = [[theShow.scenes allValues] objectAtIndex:indexPath.row];
+        Scene *scene = [scenesArray objectAtIndex:indexPath.row];
         cell.imageView.image = scene.coverPicture;
         cell.textLabel.text = scene.title;
-        
-        return cell;
         [scene release];        
-    }else{
-        Scene *scene = [[theShow.scenes allValues] objectAtIndex:indexPath.row];
-        cell.imageView.image = scene.coverPicture;
-        cell.textLabel.text = scene.title;
-        
         return cell;
-        [scene release]; 
+
+    }else{
+//        Scene *scene = [[theShow.scenes allValues] objectAtIndex:indexPath.row];
+//        cell.imageView.image = scene.coverPicture;
+//        cell.textLabel.text = scene.title;
+//        
+//        return cell;
+//        [scene release]; 
     }
 
 }

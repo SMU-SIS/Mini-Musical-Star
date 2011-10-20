@@ -16,6 +16,9 @@
 
 @interface ExportTableViewController : UITableViewController
 
+@property (retain, nonatomic) NSArray *musicalArray;
+@property (retain, nonatomic) NSArray *scenesArray;
+@property (retain, nonatomic) NSMutableArray *exportedFilesArray;
 @property (retain, nonatomic) Show *theShow;
 @property (retain, nonatomic) Cover *theCover;
 @property (retain, nonatomic) SceneUtility *theSceneUtility;
@@ -23,5 +26,7 @@
 @property (nonatomic, retain) AVAssetExportSession *exportSession;
 @property (nonatomic, retain) NSTimer *timer;
 -(void) progress;
+-(void) loadArrays;
+- (id)initWithStyle:(UITableViewStyle)style:(Show*)theShow:(Cover*)cover;
 
 @end

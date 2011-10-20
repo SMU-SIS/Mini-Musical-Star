@@ -107,9 +107,9 @@
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
     [UIView setAnimationDuration:0.75];
-    exportTableController = [[ExportTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
-    exportTableController.theCover = [NSEntityDescription insertNewObjectForEntityForName:@"Cover" inManagedObjectContext:managedObjectContext];
-    exportTableController.theShow = theShow;
+    exportTableController = [[ExportTableViewController alloc] initWithStyle:UITableViewStyleGrouped:theShow
+                            :
+                             [NSEntityDescription insertNewObjectForEntityForName:@"Cover" inManagedObjectContext:managedObjectContext]];
     [self.navigationController pushViewController:exportTableController animated:NO];
     [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:self.navigationController.view cache:NO];
     [UIView commitAnimations];    
