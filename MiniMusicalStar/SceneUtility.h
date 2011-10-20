@@ -29,5 +29,6 @@
 - (NSMutableArray*) getMergedImagesArray;
 - (NSArray*)getExportAudioURLs;
 - (SceneUtility*) initWithSceneAndCoverScene:(Scene*)scene :(CoverScene*)coverScene;
+- (void)consolidateOriginalAndCoverTracks;
 
 @end

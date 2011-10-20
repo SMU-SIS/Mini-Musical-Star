@@ -33,6 +33,8 @@
     theCoverScene = coverScene;
 //    thePlayer = aPlayer;
     
+    [self consolidateOriginalAndCoverTracks];
+    
     return self;
 }
 
