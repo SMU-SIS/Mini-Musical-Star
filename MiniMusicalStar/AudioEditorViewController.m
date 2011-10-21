@@ -211,7 +211,7 @@
 
         if (cell == nil)
         {
-            cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifierTracksLyrics] autorelease];
+            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifierTracksLyrics] autorelease];
 
             Audio *anAudio = (Audio*) [arrayOfReplaceableAudios objectAtIndex:[indexPath row]];
             cell.textLabel.text = anAudio.title;            
@@ -235,7 +235,7 @@
     if (cell == nil)
     {
         //create all the new objects
-        cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
         
         cell.contentView.backgroundColor = [UIColor blackColor];
         [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
