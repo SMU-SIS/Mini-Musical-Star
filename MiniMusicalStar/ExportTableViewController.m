@@ -8,6 +8,8 @@
 
 #import "ExportTableViewController.h"
 #import <MediaPlayer/MediaPlayer.h>
+#import "MMSFacebook.h"
+
 @implementation ExportTableViewController
 
 @synthesize theShow;
@@ -20,6 +22,8 @@
 @synthesize scenesArray;
 @synthesize exportedFilesArray;
 @synthesize exportFilename;
+@synthesize uploadBarButtonItem;
+@synthesize mmsFacebook;
 
 -(void)dealloc
 {
@@ -31,6 +35,7 @@
     [exportSession release];
     [theSceneUtility release];
     [theShow release];
+    [mmsFacebook release];
     [super dealloc];
 }
 
@@ -74,6 +79,16 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    uploadBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Upload" style:UIBarButtonItemStylePlain target:self action:@selector(uploadToFacebook)];          
+    self.navigationItem.rightBarButtonItem = uploadBarButtonItem;
+    
+    mmsFacebook = [[MMSFacebook alloc] init];
+}
+
+- (void)uploadToFacebook
+{
+    [mmsFacebook uploadToFacebook];
 }
 
 - (void)viewDidUnload

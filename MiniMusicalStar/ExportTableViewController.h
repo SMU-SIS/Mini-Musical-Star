@@ -13,8 +13,12 @@
 #import "ShowDAO.h"
 #import "SceneUtility.h"
 #import "Cover.h"
+#import "MMSFacebook.h"
 
 @interface ExportTableViewController : UITableViewController
+{
+    MMSFacebook *mmsFacebook;
+}
 
 @property (retain, nonatomic) NSArray *musicalArray;
 @property (retain, nonatomic) NSArray *scenesArray;
@@ -26,8 +30,11 @@
 @property (nonatomic, retain) AVAssetExportSession *exportSession;
 @property (nonatomic, retain) NSTimer *timer;
 @property (nonatomic, retain) NSString *exportFilename;
+@property (nonatomic, retain) UIBarButtonItem *uploadBarButtonItem;
+@property (nonatomic, retain) MMSFacebook *mmsFacebook;
 -(void) progress;
 -(void) loadArrays;
 - (id)initWithStyle:(UITableViewStyle)style:(Show*)theShow:(Cover*)cover;
+- (void)uploadToFacebook;
 
 @end

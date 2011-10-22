@@ -166,6 +166,8 @@
 		64985A2914527E0F00485F4D /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 64985A1F14527E0F00485F4D /* NSString+SBJSON.m */; };
 		64985A2A14527E0F00485F4D /* SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 64985A2114527E0F00485F4D /* SBJSON.m */; };
 		64985A2B14527E0F00485F4D /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 64985A2314527E0F00485F4D /* SBJsonBase.m */; };
+		64985A36145288DD00485F4D /* MMSFacebook.m in Sources */ = {isa = PBXBuildFile; fileRef = 64985A35145288DD00485F4D /* MMSFacebook.m */; };
+		64985A3B14528E5400485F4D /* sample.mov in Resources */ = {isa = PBXBuildFile; fileRef = 64985A3A14528E5400485F4D /* sample.mov */; };
 		737716CB1445D61500BF2036 /* ChoiceSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 737716C91445D61500BF2036 /* ChoiceSelectionViewController.m */; };
 		737716CC1445D61500BF2036 /* ChoiceSelectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 737716CA1445D61500BF2036 /* ChoiceSelectionViewController.xib */; };
 		73843EAD144CDD2C00C55337 /* AlertPrompt.m in Sources */ = {isa = PBXBuildFile; fileRef = 73843EAC144CDD2C00C55337 /* AlertPrompt.m */; };
@@ -422,6 +424,9 @@
 		64985A2114527E0F00485F4D /* SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJSON.m; sourceTree = "<group>"; };
 		64985A2214527E0F00485F4D /* SBJsonBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonBase.h; sourceTree = "<group>"; };
 		64985A2314527E0F00485F4D /* SBJsonBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonBase.m; sourceTree = "<group>"; };
+		64985A34145288DD00485F4D /* MMSFacebook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSFacebook.h; sourceTree = "<group>"; };
+		64985A35145288DD00485F4D /* MMSFacebook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSFacebook.m; sourceTree = "<group>"; };
+		64985A3A14528E5400485F4D /* sample.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; name = sample.mov; path = Resources/sample.mov; sourceTree = "<group>"; };
 		737716C81445D61500BF2036 /* ChoiceSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChoiceSelectionViewController.h; sourceTree = "<group>"; };
 		737716C91445D61500BF2036 /* ChoiceSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChoiceSelectionViewController.m; sourceTree = "<group>"; };
 		737716CA1445D61500BF2036 /* ChoiceSelectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChoiceSelectionViewController.xib; sourceTree = "<group>"; };
@@ -883,6 +888,8 @@
 				649859FE14527D7900485F4D /* FBLoginDialog.m */,
 				649859FF14527D7900485F4D /* FBRequest.h */,
 				64985A0014527D7900485F4D /* FBRequest.m */,
+				64985A34145288DD00485F4D /* MMSFacebook.h */,
+				64985A35145288DD00485F4D /* MMSFacebook.m */,
 			);
 			path = Facebook;
 			sourceTree = "<group>";
@@ -916,6 +923,7 @@
 		820E2A1E140A0A2A00B80BBC /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				64985A3A14528E5400485F4D /* sample.mov */,
 				9533AAE9144E8F5E0092725C /* howling_dog.zip */,
 				95D2069C1449E480004B6E8B /* scene page helper graphic.png */,
 				95D206991449B0EA004B6E8B /* Icons */,
@@ -1277,6 +1285,7 @@
 				95D2069D1449E480004B6E8B /* scene page helper graphic.png in Resources */,
 				3AF97A35144BE6FE00133C47 /* ExportTableViewController.xib in Resources */,
 				9533AAEA144E8F5E0092725C /* howling_dog.zip in Resources */,
+				64985A3B14528E5400485F4D /* sample.mov in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1418,6 +1427,7 @@
 				64985A2914527E0F00485F4D /* NSString+SBJSON.m in Sources */,
 				64985A2A14527E0F00485F4D /* SBJSON.m in Sources */,
 				64985A2B14527E0F00485F4D /* SBJsonBase.m in Sources */,
+				64985A36145288DD00485F4D /* MMSFacebook.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -18,6 +18,8 @@
 @synthesize viewController=_viewController;
 @synthesize naviController=_naviController;
 
+@synthesize facebook;
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     //sleep(2);
@@ -115,6 +117,9 @@
     return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
 }
 
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+    return [facebook handleOpenURL:url];
+}
 
 - (void)dealloc
 {
