@@ -188,10 +188,10 @@
         if(indexPath !=nil)
         {
             UITableViewCell *cell = (UITableViewCell *)[(UITableView *)self.view cellForRowAtIndexPath:indexPath];
-            UIProgressView *prog = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleBar];
-            prog.frame= progressBarFrame;
-            [cell.contentView addSubview:prog];
-            [prog setProgress:0];
+//            UIProgressView *prog = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleBar];
+//            prog.frame= progressBarFrame;
+//            [cell.contentView addSubview:prog];
+//            [prog setProgress:0];
             
             exportSession.outputURL = [NSURL fileURLWithPath:[[ShowDAO userDocumentDirectory] stringByAppendingString:exportFilename]];
             exportSession.outputFileType = AVFileTypeQuickTimeMovie;
@@ -200,14 +200,14 @@
             CMTime duration = CMTimeMakeWithSeconds(1000, 1);
             CMTimeRange range = CMTimeRangeMake(start, duration);
             exportSession.timeRange = range;
-            [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(refreshProgressBar:) userInfo:prog repeats:YES];
+//            [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(refreshProgressBar:) userInfo:prog repeats:YES];
             [exportSession exportAsynchronouslyWithCompletionHandler:^{
                 switch ([exportSession status]) {
                     case AVAssetExportSessionStatusCompleted:
                         NSLog(@"Export Completed");
                         //delete unused video file
                         [[NSFileManager defaultManager] removeItemAtPath: [[ShowDAO userDocumentDirectory] stringByAppendingString:videoFilename] error: NULL];
-                        [prog removeFromSuperview];
+//                        [prog removeFromSuperview];
                         [exportedFilesArray addObject:@"hihi"];
                         [self.tableView reloadData];
                         break;
@@ -220,7 +220,7 @@
                     default:
                         break;
                 }
-                [prog release];
+//                [prog release];
                 [exportSession release];
 
             }];

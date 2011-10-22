@@ -132,6 +132,7 @@
 - (void)openFlowView:(AFOpenFlowView *)openFlowView selectionDidChange:(int)index
 {    
     [self.delegate setSliderPosition:[self.theScene startTimeOfPictureIndex:index]];
+    self.currentSelectedCover = index;
 }
 
 - (void)openFlowView:(AFOpenFlowView *)openFlowView requestImageForIndex:(int)index
