@@ -81,7 +81,7 @@
                      andHttpMethod:@"POST"
                        andDelegate:self];
     
-    NSLog(@"The facebook upload has started!");
+    NSLog(@"The facebook upload has started! Please wait for next NSLog to confirm upload.");
 }
 
 - (void)fbDidNotLogin:(BOOL)cancelled {

@@ -87,7 +87,8 @@
 
 - (void)uploadToFacebook
 {
-    //[mmsFacebook uploadToFacebook];
+//    FacebookUploader *facebookUploader = [[[FacebookUploader alloc] init] autorelease];
+//    [facebookUploader uploadToFacebook];
     
     YouTubeUploader *youtubeUploader = [[[YouTubeUploader alloc] init] autorelease];
     [youtubeUploader uploadVideoFile];

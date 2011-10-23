@@ -131,7 +131,7 @@
     
     //[self updateUI];
     
-    NSLog(@"here here i am here");
+    NSLog(@"The upload to youtube has started.");
 }
 
 #pragma mark -
@@ -173,7 +173,7 @@
     if (error == nil) {
         // tell the user that the add worked
         //[self displayAlert:@"Uploaded" format:@"Uploaded video: %@",[[videoEntry title] stringValue]];
-        NSLog(@"tell the user that the add worked");
+        NSLog(@"The upload to youtube has succeeded. View at www.youtube.com/giantmusicalstar");
         
         // refetch the current entries, in case the list of uploads
         // has changed
@@ -181,7 +181,7 @@
     } else {
         //[self displayAlert:@"Upload failed"
         //format:@"Upload failed: %@", error];
-        NSLog(@"tell the user that the add failed");
+        NSLog(@"The upload to youtube has failed.");
         
     }
     // [mUploadProgressIndicator setDoubleValue:0.0];
