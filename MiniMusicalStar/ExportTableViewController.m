@@ -8,7 +8,7 @@
 
 #import "ExportTableViewController.h"
 #import <MediaPlayer/MediaPlayer.h>
-#import "MMSFacebook.h"
+#import "FacebookUploader.h"
 
 @implementation ExportTableViewController
 
@@ -83,7 +83,7 @@
     uploadBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Upload" style:UIBarButtonItemStylePlain target:self action:@selector(uploadToFacebook)];          
     self.navigationItem.rightBarButtonItem = uploadBarButtonItem;
     
-    mmsFacebook = [[MMSFacebook alloc] init];
+    mmsFacebook = [[FacebookUploader alloc] init];
 }
 
 - (void)uploadToFacebook

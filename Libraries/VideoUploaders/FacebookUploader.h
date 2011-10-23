@@ -10,7 +10,7 @@
 #import "Facebook.h"
 
 
-@interface MMSFacebook : NSObject
+@interface FacebookUploader : NSObject
     <FBSessionDelegate, FBRequestDelegate>
 {
     Facebook *facebook;

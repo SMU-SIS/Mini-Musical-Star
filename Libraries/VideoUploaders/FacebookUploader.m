@@ -6,10 +6,10 @@
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "MMSFacebook.h"
+#import "FacebookUploader.h"
 #import "MiniMusicalStarAppDelegate.h"
 
-@implementation MMSFacebook
+@implementation FacebookUploader
 
 @synthesize facebook;
 @synthesize videoNSURL;
