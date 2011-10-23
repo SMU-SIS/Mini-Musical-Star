@@ -8,7 +8,7 @@
 
 #import "ExportTableViewController.h"
 #import <MediaPlayer/MediaPlayer.h>
-#import "FacebookUploader.h"
+#import "YouTubeUploader.h"
 
 @implementation ExportTableViewController
 
@@ -80,15 +80,17 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
+    //following codes is for testing uploading, they will be removed
     uploadBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Upload" style:UIBarButtonItemStylePlain target:self action:@selector(uploadToFacebook)];          
     self.navigationItem.rightBarButtonItem = uploadBarButtonItem;
-    
-    mmsFacebook = [[FacebookUploader alloc] init];
 }
 
 - (void)uploadToFacebook
 {
-    [mmsFacebook uploadToFacebook];
+    //[mmsFacebook uploadToFacebook];
+    
+    YouTubeUploader *youtubeUploader = [[[YouTubeUploader alloc] init] autorelease];
+    [youtubeUploader uploadVideoFile];
 }
 
 - (void)viewDidUnload

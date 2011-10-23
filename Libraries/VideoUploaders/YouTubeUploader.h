@@ -9,13 +9,16 @@
 #import <Foundation/Foundation.h>
 
 #import "GDataServiceGoogleYouTube.h"
-#import "GDataEntryPhotoAlbum.h"
-#import "GDataEntryPhoto.h"
-#import "GDataFeedPhoto.h"
-#import "GDataEntryYouTubeUpload.h"
-
-#import "GDataYouTubeConstants.h"
 
 @interface YouTubeUploader : NSObject
+{
+    GDataServiceTicket *mUploadTicket;
+}
+
+- (GDataServiceGoogleYouTube *)youTubeService;
+
+- (void)setUploadTicket:(GDataServiceTicket *)ticket;
+
+- (void)uploadVideoFile;
 
 @end
