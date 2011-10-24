@@ -26,10 +26,18 @@
         <attribute name="Path" optional="YES" attributeType="String"/>
         <relationship name="CoverScene" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="CoverScene" inverseName="Picture" inverseEntity="CoverScene"/>
     </entity>
+    <entity name="ExportedAsset" representedClassName="ExportedAsset" syncable="YES">
+        <attribute name="exportHash" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="exportPath" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isFullShow" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="originalHash" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <elements>
         <element name="Cover" positionX="-0" positionY="258" width="128" height="135"/>
         <element name="CoverScene" positionX="-38" positionY="72" width="128" height="105"/>
         <element name="CoverSceneAudio" positionX="342" positionY="18" width="128" height="90"/>
         <element name="CoverScenePicture" positionX="331" positionY="135" width="128" height="105"/>
+        <element name="ExportedAsset" positionX="160" positionY="192" width="128" height="120"/>
     </elements>
 </model>
