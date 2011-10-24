@@ -27,12 +27,14 @@
 @property (retain, nonatomic) Cover *theCover;
 @property (retain, nonatomic) SceneUtility *theSceneUtility;
 @property (nonatomic, retain) NSTimer *timer;
-@property (nonatomic, retain) NSString *exportFilename;
 @property (nonatomic, retain) UIBarButtonItem *uploadBarButtonItem;
 @property (nonatomic, retain) FacebookUploader *mmsFacebook;
+@property (retain, nonatomic) NSMutableArray *tempMusicalContainer;
+
 -(void) progress;
 -(void) loadArrays;
 - (id)initWithStyle:(UITableViewStyle)style:(Show*)theShow:(Cover*)cover;
 - (void)uploadToFacebook;
+- (void)generateMusical;
 
 @end
