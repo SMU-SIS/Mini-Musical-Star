@@ -12,9 +12,8 @@
 @class ShowDAO;
 @class SceneUtility;
 @class Cover;
-@class DSActivityView;
-@class AudioEditorViewController;
 @class FacebookUploader;
+@class YouTubeUploader;
 @interface ExportTableViewController : UITableViewController
 {
     FacebookUploader *mmsFacebook;

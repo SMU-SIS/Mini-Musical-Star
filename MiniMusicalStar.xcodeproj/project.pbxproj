@@ -27,6 +27,7 @@
 		3A12E378142F7551004B97BE /* AFItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFFDECB142C7CCD000D8494 /* AFItemView.m */; };
 		3A12E379142F7556004B97BE /* AFUIImageReflection.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFFDED0142C7CCD000D8494 /* AFUIImageReflection.m */; };
 		3A12E37C142F81A7004B97BE /* SceneTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A12E37B142F81A7004B97BE /* SceneTest.m */; };
+		3A4EB699145592CE005A662F /* ImageToVideoConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A4EB698145592CE005A662F /* ImageToVideoConverter.m */; };
 		3A54B196144C4BEE008E52CC /* SceneUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A54B195144C4BEE008E52CC /* SceneUtility.m */; };
 		3A5F7C661440CE1600E9C570 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A5F7C651440CE1600E9C570 /* CoreMedia.framework */; };
 		3A5F7C681440CE1D00E9C570 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A5F7C671440CE1D00E9C570 /* CoreVideo.framework */; };
@@ -278,6 +279,8 @@
 		3A12E367142F1D9A004B97BE /* libOCMock.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOCMock.a; path = ../Libraries/libOCMock.a; sourceTree = "<group>"; };
 		3A12E37A142F81A6004B97BE /* SceneTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneTest.h; sourceTree = "<group>"; };
 		3A12E37B142F81A7004B97BE /* SceneTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SceneTest.m; sourceTree = "<group>"; };
+		3A4EB697145592CE005A662F /* ImageToVideoConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageToVideoConverter.h; sourceTree = "<group>"; };
+		3A4EB698145592CE005A662F /* ImageToVideoConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageToVideoConverter.m; sourceTree = "<group>"; };
 		3A54B194144C4BED008E52CC /* SceneUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneUtility.h; sourceTree = "<group>"; };
 		3A54B195144C4BEE008E52CC /* SceneUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SceneUtility.m; sourceTree = "<group>"; };
 		3A5C9B77142C8EB200176351 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -924,6 +927,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3A4EB69A145592DF005A662F /* CustomVideoLibraries */ = {
+			isa = PBXGroup;
+			children = (
+				3A4EB697145592CE005A662F /* ImageToVideoConverter.h */,
+				3A4EB698145592CE005A662F /* ImageToVideoConverter.m */,
+			);
+			name = CustomVideoLibraries;
+			sourceTree = "<group>";
+		};
 		3A68378A142CBF95000485F2 /* MiniMusicalStarTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -1705,6 +1717,7 @@
 				3AFFDF0C142C7E69000D8494 /* DSActivityView */,
 				3AFFDF07142C7E16000D8494 /* Image+Resize */,
 				3AFFDEEE142C7E0F000D8494 /* CustomAudioLibraries */,
+				3A4EB69A145592DF005A662F /* CustomVideoLibraries */,
 				3AFFDED7142C7CF8000D8494 /* ZipArchive */,
 				3AFFDEC9142C7CCD000D8494 /* AFOpenFlow */,
 				3AFFDE9F142C7CB7000D8494 /* ASIHTTPRequest */,
@@ -1782,7 +1795,6 @@
 		EDA2A1B513F26F8300B64EA5 = {
 			isa = PBXGroup;
 			children = (
-				646E54B814542DEA00F066F6 /* GData.xcodeproj */,
 				820E2A1E140A0A2A00B80BBC /* Resources */,
 				EDA2A1CA13F26F8400B64EA5 /* MiniMusicalStar */,
 				3A68378A142CBF95000485F2 /* MiniMusicalStarTests */,
@@ -1803,6 +1815,7 @@
 		EDA2A1C313F26F8400B64EA5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				646E54B814542DEA00F066F6 /* GData.xcodeproj */,
 				3A5F7C781440D8E700E9C570 /* MediaPlayer.framework */,
 				3A5F7C671440CE1D00E9C570 /* CoreVideo.framework */,
 				3A5F7C651440CE1600E9C570 /* CoreMedia.framework */,
@@ -2191,6 +2204,7 @@
 				646E4D51145419C000F066F6 /* FacebookUploader.m in Sources */,
 				646E4EB414541D3D00F066F6 /* YouTubeUploader.m in Sources */,
 				95DB46E9145586E100DA7DF2 /* ExportedAsset.m in Sources */,
+				3A4EB699145592CE005A662F /* ImageToVideoConverter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
