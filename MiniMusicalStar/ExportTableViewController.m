@@ -7,7 +7,13 @@
 //
 
 #import "ExportTableViewController.h"
-#import <MediaPlayer/MediaPlayer.h>
+#import "Show.h"
+#import "ShowDAO.h"
+#import "SceneUtility.h"
+#import "Cover.h"
+#import "DSActivityView.h"
+#import "AudioEditorViewController.h"
+#import "FacebookUploader.h"
 #import "YouTubeUploader.h"
 
 @implementation ExportTableViewController
@@ -19,13 +25,13 @@
 @synthesize musicalArray;
 @synthesize scenesArray;
 @synthesize exportedFilesArray;
-@synthesize exportFilename;
 @synthesize uploadBarButtonItem;
 @synthesize mmsFacebook;
+@synthesize tempMusicalContainer;
 
 -(void)dealloc
 {
-    [exportFilename release];
+    [tempMusicalContainer release];
     [musicalArray release];
     [scenesArray release];
     [exportedFilesArray release];
@@ -46,13 +52,83 @@
         self.musicalArray = [NSArray arrayWithObject:show];
         self.scenesArray = [show.scenes allValues];
         self.exportedFilesArray = [[NSMutableArray alloc] initWithCapacity:0];
+        self.tempMusicalContainer = [[NSMutableArray alloc] init];
+        [self prepareMusicalNotification];
     }
     return self;
 }
 
-- (void) loadArrays
-{
+- (void) generateMusical{
+    //now i will combine track and video
+    __block AVMutableComposition *composition = [AVMutableComposition composition];
+    [tempMusicalContainer enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        AVURLAsset *videoAsset = [[AVURLAsset alloc]initWithURL:[NSURL fileURLWithPath:[[ShowDAO userDocumentDirectory] stringByAppendingString:obj]] options:nil];
+//        NSLog(@"here : %@",[NSURL fileURLWithPath:[[ShowDAO userDocumentDirectory] stringByAppendingString:obj]]);
+        CMTime startTime = kCMTimeZero;
+        if(idx > 0){
+            AVURLAsset *previousVideoAsset = [[AVURLAsset alloc]initWithURL:[NSURL fileURLWithPath:[[ShowDAO userDocumentDirectory] stringByAppendingString:[tempMusicalContainer objectAtIndex:(idx-1)]]] options:nil];
+            startTime = previousVideoAsset.duration;
+        }
+        [composition insertTimeRange: CMTimeRangeMake(kCMTimeZero,videoAsset.duration)
+                             ofAsset:videoAsset atTime:startTime error:nil];
+        
+    }];
+    
+    //session export
+    NSArray *compatiblePresets = [AVAssetExportSession exportPresetsCompatibleWithAsset:composition];
+    if ([compatiblePresets containsObject:AVAssetExportPresetHighestQuality]) {
+        AVAssetExportSession *exportSession = [[AVAssetExportSession alloc]
+                                               initWithAsset:composition presetName:AVAssetExportPresetLowQuality];
+        //draw the progress bar
+        CGRect progressBarFrame;
+        progressBarFrame.size.width = 300;
+        progressBarFrame.size.height = 300;
+        progressBarFrame.origin.x = 600;
+        progressBarFrame.origin.y = 45;
+        
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+        UITableViewCell *cell = (UITableViewCell *)[(UITableView *)self.view cellForRowAtIndexPath:indexPath];
+        UIProgressView *prog = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleBar];
+        prog.frame= progressBarFrame;
+        [cell.contentView addSubview:prog];
+        [prog setProgress:0];
+        
+        exportSession.outputURL = [NSURL fileURLWithPath:[[ShowDAO userDocumentDirectory] stringByAppendingString:@"/musical.mov"]];
+        exportSession.outputFileType = AVFileTypeQuickTimeMovie;
+        
+        NSArray *userInfo = [NSArray arrayWithObjects:prog,exportSession,nil];
+        NSTimer *progressBarLoader = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(refreshProgressBar:) userInfo:userInfo repeats:YES];
+        [exportSession exportAsynchronouslyWithCompletionHandler:^{
+            switch ([exportSession status]) {
+                case AVAssetExportSessionStatusCompleted:
+                    NSLog(@"Export Completed");
+                    [prog removeFromSuperview];
+                    [progressBarLoader invalidate];
+                    [self.exportedFilesArray addObject:@"musical"];
+                    [self.tableView reloadData];
+                    [progressBarLoader release];
+                    break;
+                case AVAssetExportSessionStatusFailed:
+                    NSLog(@"Export failed: %@", [[exportSession error] localizedDescription]);
+                    break;
+                case AVAssetExportSessionStatusCancelled:
+                    NSLog(@"Export cancelled");
+                    break;
+                default:
+                    break;
+            }
+            [prog release];
+            [exportSession release];
+            
+        }];
+        
+    }
 
+}
+
+- (void) prepareMusicalNotification
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(generateMusical) name:@"scenesFinished" object:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -135,6 +211,32 @@
     return nil;
 }
 
+- (void) exportSession: (AVMutableComposition*) composition: (NSString*) exportFilename
+{
+    NSArray *compatiblePresets = [AVAssetExportSession exportPresetsCompatibleWithAsset:composition];
+    if ([compatiblePresets containsObject:AVAssetExportPresetHighestQuality]) {
+        AVAssetExportSession *exportSession = [[AVAssetExportSession alloc]
+                                               initWithAsset:composition presetName:AVAssetExportPresetHighestQuality];
+   
+        exportSession.outputURL = [NSURL fileURLWithPath:[[ShowDAO userDocumentDirectory] stringByAppendingString:exportFilename]];
+        exportSession.outputFileType = AVFileTypeQuickTimeMovie;
+        [exportSession exportAsynchronouslyWithCompletionHandler:^{
+            switch ([exportSession status]) {
+                case AVAssetExportSessionStatusCompleted:
+                    NSLog(@"Export Completed");
+                    break;
+                case AVAssetExportSessionStatusFailed:
+                    NSLog(@"Export failed: %@", [[exportSession error] localizedDescription]);
+                    break;
+                default:
+                    break;
+            }
+            [exportSession release];
+        }];
+    }
+        
+}
+
 - (CVPixelBufferRef) pixelBufferFromCGImage: (CGImageRef) image size:(CGSize) size{
     NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
                              [NSNumber numberWithBool:YES], kCVPixelBufferCGImageCompatibilityKey,
@@ -167,73 +269,83 @@
     return pxbuffer;
 }
 
--(void) sessionExport: (AVMutableComposition*) composition: (NSString*)videoFilename: (NSIndexPath*) indexPath
+-(void) sessionExport: (AVMutableComposition*) composition: (NSURL*)videoFileURL: (NSURL*)outputFileURL: (NSIndexPath*) indexPath: (BOOL) doMusical
 {
+    
+    //draw the progress bar
+    CGRect progressBarFrame;
+    progressBarFrame.size.width = 300;
+    progressBarFrame.size.height = 300;
+    progressBarFrame.origin.x = 600;
+    progressBarFrame.origin.y = 45;
+    
+    UITableViewCell *cell = (UITableViewCell *)[(UITableView *)self.view cellForRowAtIndexPath:indexPath];
+    UIProgressView *prog = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleBar];
+    prog.frame= progressBarFrame;
+    [cell.contentView addSubview:prog];
+    [prog setProgress:0];
     
     NSArray *compatiblePresets = [AVAssetExportSession exportPresetsCompatibleWithAsset:composition];
     if ([compatiblePresets containsObject:AVAssetExportPresetHighestQuality]) {
         AVAssetExportSession *exportSession = [[AVAssetExportSession alloc]
                                                initWithAsset:composition presetName:AVAssetExportPresetHighestQuality];
         
-        //draw the progress bar
-        CGRect progressBarFrame;
-        progressBarFrame.size.width = 300;
-        progressBarFrame.size.height = 300;
-        progressBarFrame.origin.x = 600;
-        progressBarFrame.origin.y = 45;
-        
-        if(indexPath !=nil)
-        {
-            UITableViewCell *cell = (UITableViewCell *)[(UITableView *)self.view cellForRowAtIndexPath:indexPath];
-            UIProgressView *prog = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleBar];
-            prog.frame= progressBarFrame;
-            [cell.contentView addSubview:prog];
-            [prog setProgress:0];
-            
-            exportSession.outputURL = [NSURL fileURLWithPath:[[ShowDAO userDocumentDirectory] stringByAppendingString:exportFilename]];
-            exportSession.outputFileType = AVFileTypeQuickTimeMovie;
-            
-            CMTime start = CMTimeMakeWithSeconds(0, 1);
-            CMTime duration = CMTimeMakeWithSeconds(1000, 1);
-            CMTimeRange range = CMTimeRangeMake(start, duration);
-            exportSession.timeRange = range;
-            NSArray *userInfo = [NSArray arrayWithObjects:prog,exportSession,nil];
-            NSTimer *progressBarLoader = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(refreshProgressBar:) userInfo:userInfo repeats:YES];
-            [exportSession exportAsynchronouslyWithCompletionHandler:^{
-                switch ([exportSession status]) {
-                    case AVAssetExportSessionStatusCompleted:
-                        NSLog(@"Export Completed");
-                        //delete unused video file
-                        [[NSFileManager defaultManager] removeItemAtPath: [[ShowDAO userDocumentDirectory] stringByAppendingString:videoFilename] error: NULL];
-                        [prog removeFromSuperview];
-                        [progressBarLoader invalidate];
-                        [exportedFilesArray addObject:@"hihi"]; 
-                        [self.tableView reloadData];
-                        break;
-                    case AVAssetExportSessionStatusFailed:
-                        NSLog(@"Export failed: %@", [[exportSession error] localizedDescription]);
-                        break;
-                    case AVAssetExportSessionStatusCancelled:
-                        NSLog(@"Export cancelled");
-                        break;
-                    default:
-                        break;
-                }
-                [prog release];
-                [exportSession release];
+        exportSession.outputURL = outputFileURL;
+        exportSession.outputFileType = AVFileTypeQuickTimeMovie;
+        NSArray *userInfo = [NSArray arrayWithObjects:prog,exportSession,nil];
+        NSTimer *progressBarLoader = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(refreshProgressBar:) userInfo:userInfo repeats:YES];
+        [exportSession exportAsynchronouslyWithCompletionHandler:^{
+            switch ([exportSession status]) {
+                case AVAssetExportSessionStatusCompleted:
+                    NSLog(@"Export Completed");
+                    //delete unused video file
+                    [self removeFileAtPath:videoFileURL];
+                    [prog removeFromSuperview];
+                    [progressBarLoader invalidate];
+                    [prog release];
+                    if (!doMusical){
+                        [self.exportedFilesArray addObject:[outputFileURL lastPathComponent]];
+                    }else{
+                        [self.tempMusicalContainer addObject:[outputFileURL lastPathComponent]];
+                        [self allScenesExportedNotificationSender];
+                    }
+                    [self.tableView reloadData];
+                    break;
+                case AVAssetExportSessionStatusFailed:
+                    NSLog(@"Export failed: %@", [[exportSession error] localizedDescription]);
+                    break;
+                default:
+                    break;
+            }
+            [exportSession release];
 
-            }];
-        }
-
+        }];
     }
+
+    
+}
+
+- (void) removeFileAtPath: (NSURL*) filePath
+{
+    [[NSFileManager defaultManager] removeItemAtPath:[filePath absoluteString] error: NULL];
 }
 
 - (void)refreshProgressBar:(NSTimer*) aTimer
 {
     UIProgressView *prog = [aTimer.userInfo objectAtIndex:0];
     AVAssetExportSession *exportSession = [aTimer.userInfo objectAtIndex:1];
-    [prog setProgress: exportSession.progress * 50];
+    NSLog(@"export timer : %f",exportSession.progress);
+    [prog setProgress: exportSession.progress];
 
+}
+
+- (void) allScenesExportedNotificationSender
+{
+    if ([tempMusicalContainer count] == [scenesArray count]){
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"scenesFinished" object:self];
+        [tempMusicalContainer removeAllObjects];
+    }
+    
 }
 
 -(void) createImagesConvertedToVideo: (Scene*) theScene: (NSArray*) imagesArray: (NSString*) videoFilename :(CGSize) size
@@ -320,33 +432,34 @@
     [videoWriter finishWriting];
 }
 
--(void)generateVideo: (Scene*) theScene: (NSArray*) imagesArray:(NSArray*) audioExportURLs:(NSIndexPath*) indexPath
+-(void)generateSceneVideo: (Scene*) theScene: (NSArray*) imagesArray:(NSArray*) audioExportURLs:(NSIndexPath*) indexPath: (BOOL) doMusical
 {
     __block NSError *error = nil;
     CGSize size = CGSizeMake(640, 480);
     NSString *videoFilename = [@"/" stringByAppendingString:[[AudioEditorViewController getUniqueFilenameWithoutExt] stringByAppendingString:@".mov"]];
-    self.exportFilename = [@"/" stringByAppendingString:[[AudioEditorViewController getUniqueFilenameWithoutExt] stringByAppendingString:@".mov"]];
-
+    NSURL *videoFileURL = [NSURL fileURLWithPath:[[ShowDAO userDocumentDirectory] stringByAppendingString:videoFilename]];
+    
+    NSString *exportFilename = [@"/" stringByAppendingString:[[AudioEditorViewController getUniqueFilenameWithoutExt] stringByAppendingString:@".mov"]];
+    NSURL *outputFileURL = [NSURL fileURLWithPath:[[ShowDAO userDocumentDirectory] stringByAppendingString:exportFilename]];
     //write image to video conversion
     [self createImagesConvertedToVideo:theScene :imagesArray :videoFilename :size];
     
     //now i will combine track and video
     AVMutableComposition *composition = [AVMutableComposition composition];
     
-    AVURLAsset* videoAsset = [[AVURLAsset alloc]initWithURL:[NSURL fileURLWithPath:[[ShowDAO userDocumentDirectory] stringByAppendingString:videoFilename]] options:nil];
+    AVURLAsset* videoAsset = [[AVURLAsset alloc]initWithURL:videoFileURL options:nil];
     
-    __block AVMutableCompositionTrack *compositionAudioTrack1 = NULL;
+    __block AVMutableCompositionTrack *compositionAudioTrack = NULL;
     
     [audioExportURLs enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         NSURL *audioURL = (NSURL*)obj;
-        AVURLAsset* audioAsset1 = [[AVURLAsset alloc]initWithURL:audioURL options:nil];
+        AVURLAsset* audioAsset = [[AVURLAsset alloc]initWithURL:audioURL options:nil];
         
-        compositionAudioTrack1 = [composition addMutableTrackWithMediaType:AVMediaTypeAudio preferredTrackID:kCMPersistentTrackID_Invalid];
-        [compositionAudioTrack1 insertTimeRange:CMTimeRangeMake(kCMTimeZero,audioAsset1.duration) 
-                                        ofTrack:[[audioAsset1 tracksWithMediaType:AVMediaTypeAudio]objectAtIndex:0] 
+        compositionAudioTrack = [composition addMutableTrackWithMediaType:AVMediaTypeAudio preferredTrackID:kCMPersistentTrackID_Invalid];
+        [compositionAudioTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero,audioAsset.duration) 
+                                        ofTrack:[[audioAsset tracksWithMediaType:AVMediaTypeAudio]objectAtIndex:0] 
                                          atTime:kCMTimeZero
                                           error:&error];
-        
     }];
     
     AVMutableCompositionTrack *compositionVideoTrack = [composition addMutableTrackWithMediaType:AVMediaTypeVideo preferredTrackID:kCMPersistentTrackID_Invalid];
@@ -356,7 +469,7 @@
                                     atTime:kCMTimeZero error:&error];
     
     //session export
-    [self sessionExport:composition:videoFilename:indexPath];
+    [self sessionExport:composition:videoFileURL:outputFileURL:indexPath:doMusical];
 
 }
 
@@ -403,8 +516,7 @@
         cell.textLabel.text = scene.title;
         return cell;
     }else{
-        cell.textLabel.text = exportFilename;
-        cell.detailTextLabel.text = @"click to play";
+        cell.textLabel.text = [exportedFilesArray objectAtIndex:indexPath.row];
         return cell;
     }
 
@@ -455,17 +567,18 @@
 {
     theSceneUtility = [[SceneUtility alloc] initWithSceneAndCoverScene: scene:coverScene];
     
-    [self generateVideo:scene:[theSceneUtility getMergedImagesArray]:[theSceneUtility getExportAudioURLs]:indexPath];
+    [self generateSceneVideo:scene:[theSceneUtility getMergedImagesArray]:[theSceneUtility getExportAudioURLs]:indexPath:NO];
 }
-
 - (void)exportMusical:(Show*)show
 {
+    
+
     [scenesArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:idx inSection:1];
         Scene *scene = (Scene*)obj;
         CoverScene *coverScene = [theCover coverSceneForSceneHash:scene.hash];
         theSceneUtility = [[SceneUtility alloc] initWithSceneAndCoverScene: scene:coverScene];
-        [self generateVideo:scene:[theSceneUtility getMergedImagesArray]:[theSceneUtility getExportAudioURLs]:indexPath];
+        [self generateSceneVideo:scene:[theSceneUtility getMergedImagesArray]:[theSceneUtility getExportAudioURLs]:indexPath:YES];
     }];
     
 }

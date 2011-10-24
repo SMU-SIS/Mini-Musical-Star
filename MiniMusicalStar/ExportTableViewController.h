@@ -7,14 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Show.h"
-#import "DSActivityView.h"
-#import "AudioEditorViewController.h"
-#import "ShowDAO.h"
-#import "SceneUtility.h"
-#import "Cover.h"
-#import "FacebookUploader.h"
-
+#import <MediaPlayer/MediaPlayer.h>
+@class Show;
+@class ShowDAO;
+@class SceneUtility;
+@class Cover;
+@class DSActivityView;
+@class AudioEditorViewController;
+@class FacebookUploader;
 @interface ExportTableViewController : UITableViewController
 {
     FacebookUploader *mmsFacebook;
@@ -27,12 +27,12 @@
 @property (retain, nonatomic) Cover *theCover;
 @property (retain, nonatomic) SceneUtility *theSceneUtility;
 @property (nonatomic, retain) NSTimer *timer;
-@property (nonatomic, retain) NSString *exportFilename;
 @property (nonatomic, retain) UIBarButtonItem *uploadBarButtonItem;
 @property (nonatomic, retain) FacebookUploader *mmsFacebook;
--(void) progress;
--(void) loadArrays;
+@property (retain, nonatomic) NSMutableArray *tempMusicalContainer;
+
 - (id)initWithStyle:(UITableViewStyle)style:(Show*)theShow:(Cover*)cover;
 - (void)uploadToFacebook;
+- (void)generateMusical;
 
 @end
