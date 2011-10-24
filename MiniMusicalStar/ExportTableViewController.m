@@ -211,19 +211,22 @@
     return nil;
 }
 
-- (void) exportSession: (AVMutableComposition*) composition: (NSString*) exportFilename
+- (void) processExportSession: (AVMutableComposition*) composition: (NSURL*) videoFileURL: (NSURL*) outputFileURL: (UIProgressView*) prog: (BOOL) doMusical
 {
     NSArray *compatiblePresets = [AVAssetExportSession exportPresetsCompatibleWithAsset:composition];
     if ([compatiblePresets containsObject:AVAssetExportPresetHighestQuality]) {
         AVAssetExportSession *exportSession = [[AVAssetExportSession alloc]
                                                initWithAsset:composition presetName:AVAssetExportPresetHighestQuality];
-   
-        exportSession.outputURL = [NSURL fileURLWithPath:[[ShowDAO userDocumentDirectory] stringByAppendingString:exportFilename]];
+        
+        exportSession.outputURL = outputFileURL;
         exportSession.outputFileType = AVFileTypeQuickTimeMovie;
+        NSArray *userInfo = [NSArray arrayWithObjects:prog,exportSession,nil];
+        NSTimer *progressBarLoader = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(refreshProgressBar:) userInfo:userInfo repeats:YES];
         [exportSession exportAsynchronouslyWithCompletionHandler:^{
             switch ([exportSession status]) {
                 case AVAssetExportSessionStatusCompleted:
                     NSLog(@"Export Completed");
+                    [self exportCompleted:videoFileURL:outputFileURL:prog:progressBarLoader:doMusical];
                     break;
                 case AVAssetExportSessionStatusFailed:
                     NSLog(@"Export failed: %@", [[exportSession error] localizedDescription]);
@@ -232,6 +235,7 @@
                     break;
             }
             [exportSession release];
+
         }];
     }
         
@@ -283,46 +287,24 @@
     UIProgressView *prog = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleBar];
     prog.frame= progressBarFrame;
     [cell.contentView addSubview:prog];
-    [prog setProgress:0];
     
-    NSArray *compatiblePresets = [AVAssetExportSession exportPresetsCompatibleWithAsset:composition];
-    if ([compatiblePresets containsObject:AVAssetExportPresetHighestQuality]) {
-        AVAssetExportSession *exportSession = [[AVAssetExportSession alloc]
-                                               initWithAsset:composition presetName:AVAssetExportPresetHighestQuality];
-        
-        exportSession.outputURL = outputFileURL;
-        exportSession.outputFileType = AVFileTypeQuickTimeMovie;
-        NSArray *userInfo = [NSArray arrayWithObjects:prog,exportSession,nil];
-        NSTimer *progressBarLoader = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(refreshProgressBar:) userInfo:userInfo repeats:YES];
-        [exportSession exportAsynchronouslyWithCompletionHandler:^{
-            switch ([exportSession status]) {
-                case AVAssetExportSessionStatusCompleted:
-                    NSLog(@"Export Completed");
-                    //delete unused video file
-                    [self removeFileAtPath:videoFileURL];
-                    [prog removeFromSuperview];
-                    [progressBarLoader invalidate];
-                    [prog release];
-                    if (!doMusical){
-                        [self.exportedFilesArray addObject:[outputFileURL lastPathComponent]];
-                    }else{
-                        [self.tempMusicalContainer addObject:[outputFileURL lastPathComponent]];
-                        [self allScenesExportedNotificationSender];
-                    }
-                    [self.tableView reloadData];
-                    break;
-                case AVAssetExportSessionStatusFailed:
-                    NSLog(@"Export failed: %@", [[exportSession error] localizedDescription]);
-                    break;
-                default:
-                    break;
-            }
-            [exportSession release];
-
-        }];
+    [self processExportSession:composition:videoFileURL:outputFileURL:prog:doMusical];
+    
+}
+- (void) exportCompleted: (NSURL*) videoFileURL: (NSURL*) outputFileURL: (UIProgressView*) prog: (NSTimer*) progressBarLoader: (BOOL) doMusical
+{
+    //delete unused video file
+    [self removeFileAtPath:videoFileURL];
+    [prog removeFromSuperview];
+    [progressBarLoader invalidate];
+    [prog release];
+    if (!doMusical){
+        [self.exportedFilesArray addObject:[outputFileURL lastPathComponent]];
+    }else{
+        [self.tempMusicalContainer addObject:[outputFileURL lastPathComponent]];
+        [self allScenesExportedNotificationSender];
     }
-
-    
+    [self.tableView reloadData];
 }
 
 - (void) removeFileAtPath: (NSURL*) filePath
