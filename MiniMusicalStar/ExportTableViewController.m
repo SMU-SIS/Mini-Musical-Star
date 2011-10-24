@@ -15,8 +15,6 @@
 @synthesize theShow;
 @synthesize theCover;
 @synthesize theSceneUtility;
-@synthesize exportRunning;
-@synthesize exportSession;
 @synthesize timer;
 @synthesize musicalArray;
 @synthesize scenesArray;
@@ -32,7 +30,6 @@
     [scenesArray release];
     [exportedFilesArray release];
     [timer release];
-    [exportSession release];
     [theSceneUtility release];
     [theShow release];
     [mmsFacebook release];
@@ -175,7 +172,7 @@
     
     NSArray *compatiblePresets = [AVAssetExportSession exportPresetsCompatibleWithAsset:composition];
     if ([compatiblePresets containsObject:AVAssetExportPresetHighestQuality]) {
-        self.exportSession = [[AVAssetExportSession alloc]
+        AVAssetExportSession *exportSession = [[AVAssetExportSession alloc]
                                                initWithAsset:composition presetName:AVAssetExportPresetHighestQuality];
         
         //draw the progress bar
@@ -188,10 +185,10 @@
         if(indexPath !=nil)
         {
             UITableViewCell *cell = (UITableViewCell *)[(UITableView *)self.view cellForRowAtIndexPath:indexPath];
-//            UIProgressView *prog = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleBar];
-//            prog.frame= progressBarFrame;
-//            [cell.contentView addSubview:prog];
-//            [prog setProgress:0];
+            UIProgressView *prog = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleBar];
+            prog.frame= progressBarFrame;
+            [cell.contentView addSubview:prog];
+            [prog setProgress:0];
             
             exportSession.outputURL = [NSURL fileURLWithPath:[[ShowDAO userDocumentDirectory] stringByAppendingString:exportFilename]];
             exportSession.outputFileType = AVFileTypeQuickTimeMovie;
@@ -200,15 +197,17 @@
             CMTime duration = CMTimeMakeWithSeconds(1000, 1);
             CMTimeRange range = CMTimeRangeMake(start, duration);
             exportSession.timeRange = range;
-//            [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(refreshProgressBar:) userInfo:prog repeats:YES];
+            NSArray *userInfo = [NSArray arrayWithObjects:prog,exportSession,nil];
+            NSTimer *progressBarLoader = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(refreshProgressBar:) userInfo:userInfo repeats:YES];
             [exportSession exportAsynchronouslyWithCompletionHandler:^{
                 switch ([exportSession status]) {
                     case AVAssetExportSessionStatusCompleted:
                         NSLog(@"Export Completed");
                         //delete unused video file
                         [[NSFileManager defaultManager] removeItemAtPath: [[ShowDAO userDocumentDirectory] stringByAppendingString:videoFilename] error: NULL];
-//                        [prog removeFromSuperview];
-                        [exportedFilesArray addObject:@"hihi"];
+                        [prog removeFromSuperview];
+                        [progressBarLoader invalidate];
+                        [exportedFilesArray addObject:@"hihi"]; 
                         [self.tableView reloadData];
                         break;
                     case AVAssetExportSessionStatusFailed:
@@ -220,47 +219,20 @@
                     default:
                         break;
                 }
-//                [prog release];
+                [prog release];
                 [exportSession release];
 
             }];
         }
-//        else{
-//            exportSession.outputURL = [NSURL fileURLWithPath:[[ShowDAO userDocumentDirectory] stringByAppendingString:exportFilename]];
-//            exportSession.outputFileType = AVFileTypeQuickTimeMovie;
-//            
-//            CMTime start = CMTimeMakeWithSeconds(0, 1);
-//            CMTime duration = CMTimeMakeWithSeconds(1000, 1);
-//            CMTimeRange range = CMTimeRangeMake(start, duration);
-//            exportSession.timeRange = range;
-//            [exportSession exportAsynchronouslyWithCompletionHandler:^{
-//                switch ([exportSession status]) {
-//                    case AVAssetExportSessionStatusCompleted:
-//                        NSLog(@"Export Completed");
-//                        //delete unused video file
-//                        [[NSFileManager defaultManager] removeItemAtPath: [[ShowDAO userDocumentDirectory] stringByAppendingString:videoFilename] error: NULL];
-//                        break;
-//                    case AVAssetExportSessionStatusFailed:
-//                        NSLog(@"Export failed: %@", [[exportSession error] localizedDescription]);
-//                        break;
-//                    case AVAssetExportSessionStatusCancelled:
-//                        NSLog(@"Export cancelled");
-//                        break;
-//                    default:
-//                        break;
-//                }
-//                [exportSession release];
-//                
-//            }];
-//        
-//        }
 
     }
 }
 
 - (void)refreshProgressBar:(NSTimer*) aTimer
 {
-    [aTimer.userInfo setProgress:self.exportSession.progress*50];
+    UIProgressView *prog = [aTimer.userInfo objectAtIndex:0];
+    AVAssetExportSession *exportSession = [aTimer.userInfo objectAtIndex:1];
+    [prog setProgress: exportSession.progress * 50];
 
 }
 
