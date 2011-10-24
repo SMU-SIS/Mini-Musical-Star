@@ -28,6 +28,7 @@
 		3A12E379142F7556004B97BE /* AFUIImageReflection.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFFDED0142C7CCD000D8494 /* AFUIImageReflection.m */; };
 		3A12E37C142F81A7004B97BE /* SceneTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A12E37B142F81A7004B97BE /* SceneTest.m */; };
 		3A4EB699145592CE005A662F /* ImageToVideoConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A4EB698145592CE005A662F /* ImageToVideoConverter.m */; };
+		3A4EB6B114559BCA005A662F /* lastclip.m4v in Resources */ = {isa = PBXBuildFile; fileRef = 3A4EB6B014559BCA005A662F /* lastclip.m4v */; };
 		3A54B196144C4BEE008E52CC /* SceneUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A54B195144C4BEE008E52CC /* SceneUtility.m */; };
 		3A5F7C661440CE1600E9C570 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A5F7C651440CE1600E9C570 /* CoreMedia.framework */; };
 		3A5F7C681440CE1D00E9C570 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A5F7C671440CE1D00E9C570 /* CoreVideo.framework */; };
@@ -281,6 +282,7 @@
 		3A12E37B142F81A7004B97BE /* SceneTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SceneTest.m; sourceTree = "<group>"; };
 		3A4EB697145592CE005A662F /* ImageToVideoConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageToVideoConverter.h; sourceTree = "<group>"; };
 		3A4EB698145592CE005A662F /* ImageToVideoConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageToVideoConverter.m; sourceTree = "<group>"; };
+		3A4EB6B014559BCA005A662F /* lastclip.m4v */ = {isa = PBXFileReference; lastKnownFileType = file; name = lastclip.m4v; path = MiniMusicalStar/lastclip.m4v; sourceTree = "<group>"; };
 		3A54B194144C4BED008E52CC /* SceneUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneUtility.h; sourceTree = "<group>"; };
 		3A54B195144C4BEE008E52CC /* SceneUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SceneUtility.m; sourceTree = "<group>"; };
 		3A5C9B77142C8EB200176351 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -1646,6 +1648,7 @@
 		820E2A1E140A0A2A00B80BBC /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				3A4EB6B014559BCA005A662F /* lastclip.m4v */,
 				64985A3A14528E5400485F4D /* sample.mov */,
 				9533AAE9144E8F5E0092725C /* howling_dog.zip */,
 				95D2069C1449E480004B6E8B /* scene page helper graphic.png */,
@@ -2060,6 +2063,7 @@
 				3AF97A35144BE6FE00133C47 /* ExportTableViewController.xib in Resources */,
 				9533AAEA144E8F5E0092725C /* howling_dog.zip in Resources */,
 				64985A3B14528E5400485F4D /* sample.mov in Resources */,
+				3A4EB6B114559BCA005A662F /* lastclip.m4v in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

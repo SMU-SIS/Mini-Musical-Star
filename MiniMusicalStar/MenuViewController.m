@@ -50,7 +50,7 @@
     [super viewDidLoad];
     
     //hide the navigation bar
-    self.navigationController.navigationBarHidden = YES;
+//    self.navigationController.navigationBarHidden = YES;
     
     //load the shows on the local disk
     self.showDAO = [[ShowDAO alloc] initWithDelegate:self];

@@ -90,7 +90,8 @@
     [cell.contentView addSubview:prog];
     [prog setProgress:0];
 
-    NSURL *outputFileURL = [NSURL fileURLWithPath:[[ShowDAO userDocumentDirectory] stringByAppendingString:@"/musical.mov"]];
+    NSString *exportFilename = [@"/musical_" stringByAppendingString:[[AudioEditorViewController getUniqueFilenameWithoutExt] stringByAppendingString:@".mov"]];
+    NSURL *outputFileURL = [NSURL fileURLWithPath:[[ShowDAO userDocumentDirectory] stringByAppendingString:exportFilename]];
     [self processExportSession:composition:nil:outputFileURL:prog:@"musical appending"];
 
 }
@@ -183,9 +184,9 @@
 - (void) processExportSession: (AVMutableComposition*) composition:(NSURL*)videoFileURL: (NSURL*) outputFileURL: (UIProgressView*) prog: (NSString*) state
 {
     NSArray *compatiblePresets = [AVAssetExportSession exportPresetsCompatibleWithAsset:composition];
-    if ([compatiblePresets containsObject:AVAssetExportPresetHighestQuality]) {
+    if ([compatiblePresets containsObject:AVAssetExportPreset640x480]) {
         AVAssetExportSession *exportSession = [[AVAssetExportSession alloc]
-                                               initWithAsset:composition presetName:AVAssetExportPresetHighestQuality];
+                                               initWithAsset:composition presetName:AVAssetExportPreset640x480];
         
         exportSession.outputURL = outputFileURL;
         exportSession.outputFileType = AVFileTypeQuickTimeMovie;
@@ -226,7 +227,7 @@
     prog.frame= progressBarFrame;
     [cell.contentView addSubview:prog];
     
-    [self processExportSession:composition:videoFileURL:outputFileURL:prog:state];
+    [self processExportSession :composition:videoFileURL:outputFileURL:prog:state];
     
 }
 - (void) exportCompleted: (NSURL*) videoFileURL: (NSURL*) outputFileURL: (UIProgressView*) prog: (NSTimer*) progressBarLoader: (NSString*) state
@@ -240,6 +241,10 @@
         [self removeFileAtPath:videoFileURL];
     }else if ([state isEqualToString: @"musical appending"]){
         [self.exportedFilesArray addObject:@"musical"];
+        [tempMusicalContainer enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            [self removeFileAtPath:obj];
+        }];
+        [tempMusicalContainer removeAllObjects];
     }
     [prog removeFromSuperview];
     [progressBarLoader invalidate];
@@ -248,7 +253,7 @@
 
 - (void) removeFileAtPath: (NSURL*) filePath
 {
-    [[NSFileManager defaultManager] removeItemAtPath:[filePath absoluteString] error: NULL];
+    [[NSFileManager defaultManager] removeItemAtURL:filePath error: NULL];
 }
 
 - (void)refreshProgressBar:(NSTimer*) aTimer
@@ -264,7 +269,6 @@
 {
     if ([tempMusicalContainer count] == [scenesArray count]){
         [[NSNotificationCenter defaultCenter] postNotificationName:@"scenesFinished" object:self];
-        [tempMusicalContainer removeAllObjects];
     }
     
 }
@@ -273,10 +277,10 @@
 {
     __block NSError *error = nil;
     CGSize size = CGSizeMake(640, 480);
-    NSString *videoFilename = [@"/" stringByAppendingString:[[AudioEditorViewController getUniqueFilenameWithoutExt] stringByAppendingString:@".mov"]];
+    NSString *videoFilename = [@"/vid_" stringByAppendingString:[[AudioEditorViewController getUniqueFilenameWithoutExt] stringByAppendingString:@".mov"]];
     NSURL *videoFileURL = [NSURL fileURLWithPath:[[ShowDAO userDocumentDirectory] stringByAppendingString:videoFilename]];
     
-    NSString *exportFilename = [@"/" stringByAppendingString:[[AudioEditorViewController getUniqueFilenameWithoutExt] stringByAppendingString:@".mov"]];
+    NSString *exportFilename = [@"/scene_" stringByAppendingString:[[AudioEditorViewController getUniqueFilenameWithoutExt] stringByAppendingString:@".mov"]];
     NSURL *outputFileURL = [NSURL fileURLWithPath:[[ShowDAO userDocumentDirectory] stringByAppendingString:exportFilename]];
     //write image to video conversion
     [ImageToVideoConverter createImagesConvertedToVideo:theScene :imagesArray :videoFileURL :size];
@@ -305,8 +309,28 @@
                                    ofTrack:[[videoAsset tracksWithMediaType:AVMediaTypeVideo]objectAtIndex:0] 
                                     atTime:kCMTimeZero error:&error];
     
+    NSString *brandAssetPath =[[NSBundle mainBundle] pathForResource:@"sample" ofType:@"mov"];
+    AVURLAsset *brandAsset = [AVURLAsset URLAssetWithURL:[NSURL fileURLWithPath:brandAssetPath] options:nil];
+    CMTimeRangeShow(CMTimeRangeMake(kCMTimeZero,brandAsset.duration));
+//    [composition insertEmptyTimeRange:CMTimeRangeMake(videoAsset.duration, CMTimeMake(5,1))];
+    [composition insertTimeRange:CMTimeRangeMake(kCMTimeZero,kCMTimePositiveInfinity) 
+                         ofAsset:brandAsset
+                         atTime:videoAsset.duration
+                           error:&error];
+//    NSLog(@"Brand tracks %@",brandAsset.tracks);
+//    NSLog(@"tracks: %@",composition.tracks);
+    [composition.tracks enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        AVMutableCompositionTrack *track = (AVMutableCompositionTrack*) obj;
+//        NSLog(@"track : %@",track.segments);
+        BOOL prob = [track validateTrackSegments:track.segments error:&error];
+        if(!prob){
+//            NSLog(@"ASDASD %@",error);
+        }
+//        NSLog(@"Track segment check: %i",[track validateTrackSegments:track.segments error:&error]);
+        
+    }];
     //session export
-    [self sessionExport:composition:videoFileURL:outputFileURL:indexPath:state];
+    [self sessionExport :composition:videoFileURL:outputFileURL:indexPath:state];
 
 }
 
