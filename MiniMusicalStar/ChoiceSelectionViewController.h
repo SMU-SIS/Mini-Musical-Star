@@ -15,7 +15,7 @@
 #import "AlertPrompt.h"
 
 
-@interface ChoiceSelectionViewController : UIViewController {
+@interface ChoiceSelectionViewController : UIViewController <CoversListDelegate> {
     IBOutlet UIImageView *showCover;
     IBOutlet UIButton *create;
     IBOutlet UIButton *cover;
@@ -42,5 +42,7 @@
 
 - (void)loadCoversForShow:(Show *)aShow;
 -(void)selectedSavedCover;
+
+- (void)dismissCoversList;
 
 @end

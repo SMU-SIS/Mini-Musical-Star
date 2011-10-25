@@ -211,7 +211,16 @@
     
     [UIView commitAnimations];    
     [parentView addSubview:coversListNavController.view];
+    
+    [coversListNavController release];
+    
     //}
+}
+
+- (void)dismissCoversList
+{
+    [self.currentSelectedCoversList.view removeFromSuperview];
+    self.currentSelectedCoversList = nil;
 }
 
 - (void)alertView:(UIAlertView *)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex

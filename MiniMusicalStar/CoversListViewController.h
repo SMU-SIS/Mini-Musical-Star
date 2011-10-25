@@ -10,6 +10,12 @@
 #import "Show.h"
 #import "Cover.h"
 
+@protocol CoversListDelegate <NSObject>
+
+- (void)dismissCoversList;
+
+@end
+
 @interface CoversListViewController : UITableViewController <NSFetchedResultsControllerDelegate>
 
 @property (assign, nonatomic) id delegate;

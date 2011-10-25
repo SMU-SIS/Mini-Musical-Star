@@ -105,11 +105,20 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:delegate action:@selector(flipCoversBackToFront)];          
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(flipCoversBackToFront:)];          
     self.navigationItem.leftBarButtonItem = backButton;
     [backButton release];
     [super viewWillAppear:animated];
 
+}
+
+- (void)flipCoversBackToFront:(id)sender
+{
+    if ([self.delegate respondsToSelector:@selector(dismissCoversList)])
+    {
+        [self.delegate performSelector:@selector(dismissCoversList)];
+        
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
