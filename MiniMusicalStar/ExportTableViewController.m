@@ -241,14 +241,14 @@
 - (void) exportCompleted: (NSURL*) videoFileURL: (NSURL*) outputFileURL: (UIProgressView*) prog: (NSTimer*) progressBarLoader: (NSString*) state
 {
     if ([state isEqualToString: @"scene only"]){
-        [self.exportedFilesArray addObject:[outputFileURL lastPathComponent]];
+        [self.exportedFilesArray addObject:outputFileURL];
         [self removeFileAtPath:videoFileURL];
     }else if ([state isEqualToString: @"scenes for musical"]){
         [self.tempMusicalContainer addObject:outputFileURL];
         [self allScenesExportedNotificationSender];
         [self removeFileAtPath:videoFileURL];
     }else if ([state isEqualToString: @"musical appending"]){
-        [self.exportedFilesArray addObject:@"musical"];
+        [self.exportedFilesArray addObject:outputFileURL];
         [tempMusicalContainer enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             [self removeFileAtPath:obj];
         }];
@@ -317,12 +317,7 @@
     [compositionVideoTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero,videoAsset.duration) 
                                    ofTrack:[[videoAsset tracksWithMediaType:AVMediaTypeVideo]objectAtIndex:0] 
                                     atTime:kCMTimeZero error:&error];
-//    CMTimeRangeShow(CMTimeRangeMake(kCMTimeZero,videoAsset.duration));
-    
 
-//    CMTimeRangeShow(CMTimeRangeMake(kCMTimeZero,brandAsset.duration));
-//    CMTimeShow(composition.duration);
-//    [composition insertEmptyTimeRange:CMTimeRangeMake(videoAsset.duration, CMTimeMake(5,1))];
     if([state isEqualToString: @"scene only"]){
         NSString *brandAssetPath =[[NSBundle mainBundle] pathForResource:@"lastclip" ofType:@"mov"];
         AVURLAsset *brandAsset = [AVURLAsset URLAssetWithURL:[NSURL fileURLWithPath:brandAssetPath] options:nil];
@@ -331,19 +326,6 @@
                          atTime:composition.duration
                            error:&error];
     }
-//    CMTimeShow(videoAsset.duration);
-//    CMTimeShow(composition.duration);
-    
-//    [composition.tracks enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-//        AVMutableCompositionTrack *track = obj;
-//        NSLog(@"%@",track.description);
-//    }];
-
-//    NSLog(@"PRINT %@",ok);
-//    NSLog(@"err %@", error);
-//    NSLog(@"Brand tracks %@",brandAsset.tracks);
-//    NSLog(@"tracks: %@",composition.tracks);
-    
 
     //session export
     [self sessionExport :composition:videoFileURL:outputFileURL:indexPath:state];
@@ -393,7 +375,21 @@
         cell.textLabel.text = scene.title;
         return cell;
     }else{
-        cell.textLabel.text = [exportedFilesArray objectAtIndex:indexPath.row];
+        cell.textLabel.text = [[exportedFilesArray objectAtIndex:indexPath.row] absoluteString];
+        /*
+         Instructions for use:
+         
+         ExportedAsset *foo = [NSEntityDescription insertNewObjectForEntityForName: @"ExportedAsset" inManagedObjectContext: context];
+         foo.title = @"Blah blah blah";
+         ...
+         NSError *error;
+         [context save: error];
+         
+         if (error)
+         {
+         //handle the saving error
+         }
+         */
         return cell;
     }
 
@@ -478,8 +474,8 @@
         CoverScene *selectedCoverScene = [theCover coverSceneForSceneHash:selectedScene.hash];
         [self exportScene:selectedScene:selectedCoverScene:indexPath];
     }else if(indexPath.section == 2){
-        UITableViewCell *cell = (UITableViewCell *)[(UITableView *)self.view cellForRowAtIndexPath:indexPath];
-        NSURL *fileURL = [NSURL fileURLWithPath:[[ShowDAO userDocumentDirectory] stringByAppendingString:cell.textLabel.text]];
+//        UITableViewCell *cell = (UITableViewCell *)[(UITableView *)self.view cellForRowAtIndexPath:indexPath];
+        NSURL *fileURL = [exportedFilesArray objectAtIndex:indexPath.row];
         [self playMovie:fileURL];
     }
     
@@ -489,7 +485,7 @@
 - (void) playMovie:(NSURL*)filePath
 {
     MPMoviePlayerController *moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:filePath];
-    
+
     // Register to receive a notification when the movie has finished playing.
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(moviePlayBackDidFinish:)
@@ -499,11 +495,13 @@
     if ([moviePlayer respondsToSelector:@selector(setFullscreen:animated:)]) {
         // Use the new 3.2 style API
         
+        [moviePlayer setFullscreen:YES animated:YES];
         [moviePlayer.view setFrame:self.view.bounds];
         moviePlayer.controlStyle = MPMovieControlStyleFullscreen;
         moviePlayer.shouldAutoplay = YES;
-        [self.view setBackgroundColor:[UIColor blackColor]];
+//        [self.view setBackgroundColor:[UIColor blackColor]];
         [self.view addSubview:moviePlayer.view];
+        self.navigationController.navigationBarHidden = YES;
         [moviePlayer play];
     }   
 }
@@ -518,6 +516,7 @@
     if ([moviePlayer respondsToSelector:@selector(setFullscreen:animated:)]) {
         [moviePlayer.view removeFromSuperview];
     }
+    self.navigationController.navigationBarHidden = NO;
     
     [moviePlayer release];
 }

@@ -179,7 +179,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
         //save to coredata
         CoverScenePicture *newPicture = [NSEntityDescription insertNewObjectForEntityForName:@"CoverScenePicture" inManagedObjectContext:context];
         newPicture.OriginalHash = self.originalHash;
-        newPicture.OrderNumber = [NSNumber numberWithInt:(selectedIndex)];
+        newPicture.OrderNumber = [[NSNumber numberWithInt:(selectedIndex)] stringValue];
         newPicture.Path = documentsDirectoryImage;
         [theCoverScene addPictureObject:newPicture];
     }
