@@ -50,7 +50,7 @@
     [super viewDidLoad];
     
     //hide the navigation bar
-//    self.navigationController.navigationBarHidden = YES;
+    self.navigationController.navigationBarHidden = YES;
     
     //load the shows on the local disk
     self.showDAO = [[ShowDAO alloc] initWithDelegate:self];
@@ -231,11 +231,15 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     scrollView.hidden = YES;
+
 }
 - (void)viewDidAppear:(BOOL)animated
 {
     scrollView.hidden = NO;
+    //hide the navigation bar
+    self.navigationController.navigationBarHidden = YES;
 }
+
 
 - (void)viewDidUnload
 {

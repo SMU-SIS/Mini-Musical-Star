@@ -102,6 +102,12 @@
     
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    //show the navigation bar
+    self.navigationController.navigationBarHidden = NO;
+}
+
 -(void) showMediaManagement: (id)sender{
     
     [UIView beginAnimations:nil context:NULL];
