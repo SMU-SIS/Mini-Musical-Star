@@ -26,7 +26,7 @@
 @property (retain, nonatomic) Show *theShow;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @property (retain, nonatomic) NSFetchedResultsController *frc;
-@property (retain, nonatomic) UIViewController *currentSelectedCoversList;
+@property (retain, nonatomic) UINavigationController *currentSelectedCoversList;
 @property (retain, nonatomic) NSString *coverName;
 @property (nonatomic, retain) ExportTableViewController *exportTableController;
 @property (nonatomic, retain) UIBarButtonItem *mediaManagementButton;

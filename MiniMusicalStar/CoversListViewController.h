@@ -26,4 +26,5 @@
 - (id)initWithShow:(Show *)aShow context:(NSManagedObjectContext *)aContext;
 - (void)createFetchedResultsController;
 - (void)configureCell:(UITableViewCell*)cell atIndexPath:(NSIndexPath*)indexPath;
+- (int)numberOfCovers;
 @end

@@ -142,6 +142,11 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+- (int)numberOfCovers
+{
+    return [[[frc sections] objectAtIndex:0] numberOfObjects];
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

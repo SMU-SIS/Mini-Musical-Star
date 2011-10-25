@@ -46,6 +46,25 @@
     //store the current show as an ivar
     self.theShow = aShow;
     self.managedObjectContext = aContext;
+    //[self loadCoversForShow:theShow];
+    
+    UIView *parentView = self.view;
+    
+    CGRect coversFrame;
+    coversFrame.origin.x = 500;
+    coversFrame.origin.y = 0;
+    coversFrame.size.width = 500;
+    coversFrame.size.height = parentView.frame.size.height;
+    
+    CoversListViewController *coversView = [[CoversListViewController alloc] initWithShow:self.theShow context:self.managedObjectContext];
+    coversView.view.frame = coversFrame;
+    coversView.delegate = self;
+    
+    self.currentSelectedCoversList = [[UINavigationController alloc] initWithRootViewController:coversView];
+    self.currentSelectedCoversList.view.frame = coversFrame;
+    
+    [coversView release];
+    
     return self;
 }
 
@@ -143,7 +162,7 @@
     [request setFetchBatchSize:20];
     
     //predicate...
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"cover_of_showHash == %@", aShow.showHash];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"cover_of_showHash == %@", theShow.showHash];
 
     [request setPredicate:predicate];
     
@@ -171,56 +190,37 @@
 
 - (IBAction)loadCoversList:(UIButton *)sender
 {
-    UIView *parentView = self.view;
 
-    CGRect coversFrame;
-    coversFrame.origin.x = 500;
-    coversFrame.origin.y = 0;
-    coversFrame.size.width = 500;
-    coversFrame.size.height = parentView.frame.size.height;
     
     NSLog(@"the selected show is %@", theShow.title);
     
-    [self loadCoversForShow:theShow];
-    
-    /*
-    if ([[[frc sections] objectAtIndex:0] numberOfObjects] == 0) 
+    if ([(CoversListViewController *)[self.currentSelectedCoversList topViewController] numberOfCovers] == 0) 
     {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"OPPS!" message:@"Please create your first cover!" delegate:self cancelButtonTitle:@"OK!" otherButtonTitles:nil, nil];
             [alert show];
             [alert release];
     }
+    
     else
     {
-     */
      
-     
-    CoversListViewController *coversView = [[CoversListViewController alloc] initWithShow:self.theShow context:self.managedObjectContext];
-    coversView.view.frame = coversFrame;
-    coversView.delegate = self;
+        //NSLog(@"number of objects is  %i", [[[self.frc sections] objectAtIndex:0] numberOfObjects]);
+
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationDuration:1.0];
+        [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:self.view cache:YES];
+        [UIView setAnimationDuration:1.0];
+        
+        [UIView commitAnimations];    
+        [self.view addSubview:self.currentSelectedCoversList.view];
     
-    UINavigationController *coversListNavController = [[UINavigationController alloc] initWithRootViewController:coversView];
-    coversListNavController.view.frame = coversFrame;
-    
-    self.currentSelectedCoversList = coversListNavController;
-    
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:1.0];
-    [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:parentView cache:YES];
-    [UIView setAnimationDuration:1.0];
-    
-    [UIView commitAnimations];    
-    [parentView addSubview:coversListNavController.view];
-    
-    [coversListNavController release];
-    
-    //}
+    }
 }
 
 - (void)dismissCoversList
 {
     [self.currentSelectedCoversList.view removeFromSuperview];
-    self.currentSelectedCoversList = nil;
+    //self.currentSelectedCoversList = nil;
 }
 
 - (void)alertView:(UIAlertView *)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex
