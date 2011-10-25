@@ -75,15 +75,6 @@
     [self loadSceneSelectionScrollView];
 }
 
-//-(void) viewWillDisappear:(BOOL)animated
-//{
-//    if ([popoverController isPopoverVisible]) {
-//        
-//        [popoverController dismissPopoverAnimated:YES];
-//        
-//    }
-//}
-
 -(void) popoverExports: (id)sender{
     
     if ([popoverController isPopoverVisible]) {
