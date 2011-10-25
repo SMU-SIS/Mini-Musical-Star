@@ -71,9 +71,17 @@
             startTime = previousVideoAsset.duration;
         }
         [composition insertTimeRange: CMTimeRangeMake(kCMTimeZero,videoAsset.duration)
-                             ofAsset:videoAsset atTime:startTime error:nil];
+                             ofAsset:videoAsset atTime:composition.duration error:nil];
         
     }];
+    
+    //add credits
+    NSString *brandAssetPath =[[NSBundle mainBundle] pathForResource:@"lastclip" ofType:@"mov"];
+    AVURLAsset *brandAsset = [AVURLAsset URLAssetWithURL:[NSURL fileURLWithPath:brandAssetPath] options:nil];
+    [composition insertTimeRange:CMTimeRangeMake(kCMTimeZero,brandAsset.duration) 
+                         ofAsset:brandAsset
+                          atTime:composition.duration
+                           error:nil];
     
     //session export
     //draw the progress bar
@@ -186,7 +194,7 @@
     NSArray *compatiblePresets = [AVAssetExportSession exportPresetsCompatibleWithAsset:composition];
     if ([compatiblePresets containsObject:AVAssetExportPreset640x480]) {
         AVAssetExportSession *exportSession = [[AVAssetExportSession alloc]
-                                               initWithAsset:composition presetName:AVAssetExportPreset640x480];
+                                               initWithAsset:composition presetName:AVAssetExportPresetPassthrough];
         
         exportSession.outputURL = outputFileURL;
         exportSession.outputFileType = AVFileTypeQuickTimeMovie;
@@ -301,6 +309,7 @@
                                         ofTrack:[[audioAsset tracksWithMediaType:AVMediaTypeAudio]objectAtIndex:0] 
                                          atTime:kCMTimeZero
                                           error:&error];
+         CMTimeRangeShow(CMTimeRangeMake(kCMTimeZero,audioAsset.duration));
     }];
     
     AVMutableCompositionTrack *compositionVideoTrack = [composition addMutableTrackWithMediaType:AVMediaTypeVideo preferredTrackID:kCMPersistentTrackID_Invalid];
@@ -308,15 +317,30 @@
     [compositionVideoTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero,videoAsset.duration) 
                                    ofTrack:[[videoAsset tracksWithMediaType:AVMediaTypeVideo]objectAtIndex:0] 
                                     atTime:kCMTimeZero error:&error];
+//    CMTimeRangeShow(CMTimeRangeMake(kCMTimeZero,videoAsset.duration));
     
-    NSString *brandAssetPath =[[NSBundle mainBundle] pathForResource:@"sample" ofType:@"mov"];
-    AVURLAsset *brandAsset = [AVURLAsset URLAssetWithURL:[NSURL fileURLWithPath:brandAssetPath] options:nil];
-    CMTimeRangeShow(CMTimeRangeMake(kCMTimeZero,brandAsset.duration));
+
+//    CMTimeRangeShow(CMTimeRangeMake(kCMTimeZero,brandAsset.duration));
+//    CMTimeShow(composition.duration);
 //    [composition insertEmptyTimeRange:CMTimeRangeMake(videoAsset.duration, CMTimeMake(5,1))];
-//    [composition insertTimeRange:CMTimeRangeMake(kCMTimeZero,kCMTimePositiveInfinity) 
-//                         ofAsset:brandAsset
-//                         atTime:videoAsset.duration
-//                           error:&error];
+    if([state isEqualToString: @"scene only"]){
+        NSString *brandAssetPath =[[NSBundle mainBundle] pathForResource:@"lastclip" ofType:@"mov"];
+        AVURLAsset *brandAsset = [AVURLAsset URLAssetWithURL:[NSURL fileURLWithPath:brandAssetPath] options:nil];
+        [composition insertTimeRange:CMTimeRangeMake(kCMTimeZero,brandAsset.duration) 
+                         ofAsset:brandAsset
+                         atTime:composition.duration
+                           error:&error];
+    }
+//    CMTimeShow(videoAsset.duration);
+//    CMTimeShow(composition.duration);
+    
+//    [composition.tracks enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+//        AVMutableCompositionTrack *track = obj;
+//        NSLog(@"%@",track.description);
+//    }];
+
+//    NSLog(@"PRINT %@",ok);
+//    NSLog(@"err %@", error);
 //    NSLog(@"Brand tracks %@",brandAsset.tracks);
 //    NSLog(@"tracks: %@",composition.tracks);
     
