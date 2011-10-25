@@ -217,7 +217,6 @@
 
         }];
     }
-        
 }
 
 -(void) sessionExport: (AVMutableComposition*) composition: (NSURL*)videoFileURL: (NSURL*)outputFileURL: (NSIndexPath*) indexPath: (NSString*) state
