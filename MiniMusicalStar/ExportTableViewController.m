@@ -313,22 +313,14 @@
     AVURLAsset *brandAsset = [AVURLAsset URLAssetWithURL:[NSURL fileURLWithPath:brandAssetPath] options:nil];
     CMTimeRangeShow(CMTimeRangeMake(kCMTimeZero,brandAsset.duration));
 //    [composition insertEmptyTimeRange:CMTimeRangeMake(videoAsset.duration, CMTimeMake(5,1))];
-    [composition insertTimeRange:CMTimeRangeMake(kCMTimeZero,kCMTimePositiveInfinity) 
-                         ofAsset:brandAsset
-                         atTime:videoAsset.duration
-                           error:&error];
+//    [composition insertTimeRange:CMTimeRangeMake(kCMTimeZero,kCMTimePositiveInfinity) 
+//                         ofAsset:brandAsset
+//                         atTime:videoAsset.duration
+//                           error:&error];
 //    NSLog(@"Brand tracks %@",brandAsset.tracks);
 //    NSLog(@"tracks: %@",composition.tracks);
-    [composition.tracks enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        AVMutableCompositionTrack *track = (AVMutableCompositionTrack*) obj;
-//        NSLog(@"track : %@",track.segments);
-        BOOL prob = [track validateTrackSegments:track.segments error:&error];
-        if(!prob){
-//            NSLog(@"ASDASD %@",error);
-        }
-//        NSLog(@"Track segment check: %i",[track validateTrackSegments:track.segments error:&error]);
-        
-    }];
+    
+
     //session export
     [self sessionExport :composition:videoFileURL:outputFileURL:indexPath:state];
 
