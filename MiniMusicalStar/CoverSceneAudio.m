@@ -16,4 +16,10 @@
 @dynamic title;
 @dynamic CoverScene;
 
+- (BOOL)deleteAudioFile
+{
+    NSFileManager *manager = [NSFileManager defaultManager];
+    return [manager removeItemAtPath:self.path error:nil];
+}
+
 @end

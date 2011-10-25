@@ -19,4 +19,6 @@
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) CoverScene *CoverScene;
 
+- (BOOL)deleteAudioFile;
+
 @end
