@@ -292,6 +292,12 @@
     //write image to video conversion
     [ImageToVideoConverter createImagesConvertedToVideo:theScene :imagesArray :videoFileURL :size];
     
+    //write credits to video
+    NSArray *creditsList = [NSArray arrayWithObjects:@"TESTING 1",@"TESTING 2", nil];
+    NSString *creditsFilename = [@"/credits_" stringByAppendingString:[[AudioEditorViewController getUniqueFilenameWithoutExt] stringByAppendingString:@".mov"]];
+    NSURL *creditsURL = [NSURL fileURLWithPath:[[ShowDAO userDocumentDirectory] stringByAppendingString:creditsFilename]];
+    [ImageToVideoConverter createTextConvertedToVideo:creditsList:creditsURL :size];
+    
     //now i will combine track and video
     AVMutableComposition *composition = [AVMutableComposition composition];
     
@@ -325,6 +331,7 @@
                          atTime:composition.duration
                            error:&error];
     }
+    
 
     //session export
     [self sessionExport :composition:videoFileURL:outputFileURL:indexPath:state];
