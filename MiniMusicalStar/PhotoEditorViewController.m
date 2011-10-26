@@ -82,7 +82,8 @@
         if (thePicture)
         {
             //check if there is a cover picture
-            CoverScenePicture *coverPicture = [theCoverScene pictureForOriginalHash:thePicture.hash];
+            NSString *hash = thePicture.hash;
+            CoverScenePicture *coverPicture = [theCoverScene pictureForOriginalHash:hash];
             
             if (coverPicture)
             {
@@ -94,7 +95,6 @@
             {
                 [(AFOpenFlowView *)self.view setImage: thePicture.image forIndex: processedImages];
                 [self.imagesArray addObject:thePicture.image];
-//                NSLog(@" AHHH %@",[self.imagesArray count]);
 
             }
             

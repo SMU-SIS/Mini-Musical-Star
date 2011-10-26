@@ -9,6 +9,7 @@
 
 #import "MiniMusicalStarAppDelegate.h"
 #import "MenuViewController.h"
+#import "ConsoleManager.h"
 
 @implementation MiniMusicalStarAppDelegate
 
@@ -28,6 +29,8 @@
     
     self.viewController.managedObjectContext = [self managedObjectContext];
 
+    [ConsoleManager run];
+    
     self.window.rootViewController = self.naviController;
     [self.window makeKeyAndVisible];
     return YES;
