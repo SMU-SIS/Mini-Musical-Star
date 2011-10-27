@@ -158,6 +158,8 @@
 {
     NSArray *storeProducts = response.products;
     
+    NSLog(@"The invalid products are %@", response.invalidProductIdentifiers);
+    
     /*
      SKProduct:
      localizedDescription
