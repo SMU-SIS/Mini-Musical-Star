@@ -1120,7 +1120,8 @@
 				3A4EBBD01457E311005A662F /* manager */,
 				3A4EBBD31457E311005A662F /* touch */,
 			);
-			path = PrivateAPI;
+			name = PrivateAPI;
+			path = ../PrivateAPI;
 			sourceTree = "<group>";
 		};
 		3A4EBBD01457E311005A662F /* manager */ = {
@@ -1203,7 +1204,8 @@
 				3AB141D51457FF3700173EAD /* UIBlock */,
 				3AB141E21457FF3700173EAD /* UnitTest */,
 			);
-			path = libcat;
+			name = libcat;
+			path = ../libcat;
 			sourceTree = "<group>";
 		};
 		3AB141731457FF3700173EAD /* Block */ = {
@@ -2126,6 +2128,8 @@
 		95DAE8F31414DFD00039201D /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				3AB141721457FF3700173EAD /* libcat */,
+				3A4EBBC41457E311005A662F /* PrivateAPI */,
 				646E54D314542F7300F066F6 /* GDataHeaders */,
 				646E4D5814541A1600F066F6 /* OCMock */,
 				646E4D4E145419C000F066F6 /* VideoUploaders */,
@@ -2217,8 +2221,6 @@
 		EDA2A1B513F26F8300B64EA5 = {
 			isa = PBXGroup;
 			children = (
-				3AB141721457FF3700173EAD /* libcat */,
-				3A4EBBC41457E311005A662F /* PrivateAPI */,
 				820E2A1E140A0A2A00B80BBC /* Resources */,
 				EDA2A1CA13F26F8400B64EA5 /* MiniMusicalStar */,
 				3A68378A142CBF95000485F2 /* MiniMusicalStarTests */,
