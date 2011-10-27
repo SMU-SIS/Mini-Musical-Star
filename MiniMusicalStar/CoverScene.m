@@ -24,7 +24,7 @@
     
     [self.Picture enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
         CoverScenePicture *theCoverPicture = (CoverScenePicture *)obj;
-        if ([theCoverPicture.OriginalHash isEqualToString:hash])
+        if ([theCoverPicture.originalHash isEqualToString:hash])
         {
             pictureToReturn = theCoverPicture;
             *stop = YES;
@@ -75,6 +75,10 @@
 {
     [self.Audio enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
         [obj performSelector:@selector(deleteAudioFile)];
+    }];
+    
+    [self.Picture enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
+        [obj performSelector:@selector(deletePictureFile)];
     }];
 }
 

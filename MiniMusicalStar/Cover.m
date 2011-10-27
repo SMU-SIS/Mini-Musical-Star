@@ -1,19 +1,21 @@
 //
 //  Cover.m
-//  MMS-UI
+//  MiniMusicalStar
 //
-//  Created by Jun Kit Lee on 17/9/11.
-//  Copyright (c) 2011 mohawk.riceball@gmail.com. All rights reserved.
+//  Created by Lee Jun Kit on 27/10/11.
+//  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
 #import "Cover.h"
 #import "CoverScene.h"
 
+
 @implementation Cover
+
 @dynamic author;
-@dynamic cover_of_showHash;
-@dynamic originalHash;
+@dynamic coverOfShowHash;
 @dynamic created_date;
+@dynamic originalHash;
 @dynamic title;
 @dynamic Scenes;
 

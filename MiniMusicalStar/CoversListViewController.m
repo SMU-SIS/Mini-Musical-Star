@@ -50,7 +50,8 @@
     [request setFetchBatchSize:20];
     
     //predicate...
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"cover_of_showHash == %@", theShow.showHash];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(coverOfShowHash == %@)", theShow.showHash];
+    NSLog(@"%@", predicate);
     [request setPredicate:predicate];
     
     //sort descriptor...
@@ -59,7 +60,7 @@
     [request setSortDescriptors:descriptors];
     
     
-    NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:self.context sectionNameKeyPath:nil cacheName:@"Root"];
+    NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:self.context sectionNameKeyPath:nil cacheName:nil];
     fetchedResultsController.delegate = self;
     
     self.frc = fetchedResultsController;

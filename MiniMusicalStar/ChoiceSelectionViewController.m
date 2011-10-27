@@ -87,7 +87,7 @@
     else
     {
     Cover *newCover = [NSEntityDescription insertNewObjectForEntityForName:@"Cover" inManagedObjectContext:managedObjectContext];
-    newCover.cover_of_showHash = [theShow showHash];
+    newCover.coverOfShowHash = [theShow showHash];
 
         
     SceneViewController *sceneView = [[SceneViewController alloc] initWithScenesFromShow:theShow andCover:newCover andContext:managedObjectContext];

@@ -270,6 +270,11 @@
     [prog removeFromSuperview];
     [progressBarLoader invalidate];
     [self.tableView reloadData];
+    
+    //temp only, trying CALayer
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0,0,640,480)];
+    
+    [self.view addSubview:view];
 }
 
 - (void) removeFileAtPath: (NSURL*) filePath
@@ -337,7 +342,6 @@
     NSURL *creditsFileURL = [NSURL fileURLWithPath:[[ShowDAO userDocumentDirectory] stringByAppendingString:creditsFilename]];
     if([state isEqualToString: @"scene only"]){
         //write credits to video
-
         [ImageToVideoConverter createTextConvertedToVideo:creditsList:creditsFileURL :size];
         //append credits
         AVURLAsset *creditsAsset = [AVURLAsset URLAssetWithURL:creditsFileURL options:nil];

@@ -2,9 +2,9 @@
 <model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="872" systemVersion="11C74" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Cover" representedClassName="Cover">
         <attribute name="author" optional="YES" attributeType="String"/>
-        <attribute name="cover_of_showHash" optional="YES" attributeType="String"/>
+        <attribute name="coverOfShowHash" optional="YES" attributeType="String"/>
         <attribute name="created_date" optional="YES" attributeType="Date"/>
-        <attribute name="originalhash" optional="YES" attributeType="String"/>
+        <attribute name="originalHash" optional="YES" attributeType="String"/>
         <attribute name="title" optional="YES" attributeType="String"/>
         <relationship name="Scenes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CoverScene" inverseName="Cover" inverseEntity="CoverScene"/>
     </entity>
