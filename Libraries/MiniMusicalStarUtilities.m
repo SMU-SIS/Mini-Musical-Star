@@ -6,14 +6,14 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "CoversFilenameGenerator.h"
+#import "MiniMusicalStarUtilities.h"
 
 #import <CommonCrypto/CommonDigest.h>
 
-@implementation CoversFilenameGenerator
+@implementation MiniMusicalStarUtilities
 
 //generate md5 hash from data
-+(NSString *) returnMD5HashOfData:(NSData*)aData 
++ (NSString *) returnMD5HashOfData:(NSData*)aData 
 {
     unsigned char result[CC_MD5_DIGEST_LENGTH];
     CC_MD5(aData.bytes, aData.length, result);
@@ -26,7 +26,7 @@
 }
 
 //generate md5 hash from data
-+(NSString *) returnMD5HashOfString:(NSString*)aString 
++ (NSString *) returnMD5HashOfString:(NSString*)aString 
 {
     // Create pointer to the string as UTF8
     const char *ptr = [aString UTF8String];
@@ -43,6 +43,13 @@
         [output appendFormat:@"%02x",md5Buffer[i]];
     
     return output;
+}
+
++ (NSString*)getUniqueFilenameWithoutExt
+{
+    NSString *timeIntervalInString = [NSString stringWithFormat:@"%f", [[NSDate date] timeIntervalSince1970]];
+    NSString *uniqueFilename = [MiniMusicalStarUtilities returnMD5HashOfString:timeIntervalInString];
+    return uniqueFilename;
 }
 
 @end

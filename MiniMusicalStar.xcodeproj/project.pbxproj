@@ -202,7 +202,7 @@
 		3AFFDF05142C7E0F000D8494 /* TPCircularBuffer.c in Sources */ = {isa = PBXBuildFile; fileRef = 3AFFDEF9142C7E0F000D8494 /* TPCircularBuffer.c */; };
 		3AFFDF0A142C7E16000D8494 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFFDF09142C7E16000D8494 /* UIImage+Resize.m */; };
 		3AFFDF0F142C7E69000D8494 /* DSActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFFDF0E142C7E69000D8494 /* DSActivityView.m */; };
-		6410AF33143A00900062B04D /* CoversFilenameGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6410AF32143A00900062B04D /* CoversFilenameGenerator.m */; };
+		6410AF33143A00900062B04D /* MiniMusicalStarUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 6410AF32143A00900062B04D /* MiniMusicalStarUtilities.m */; };
 		641B32D91441E98100F4A93D /* trashbin.png in Resources */ = {isa = PBXBuildFile; fileRef = 641B32D71441E98100F4A93D /* trashbin.png */; };
 		641B32DA1441E98100F4A93D /* unmuted.png in Resources */ = {isa = PBXBuildFile; fileRef = 641B32D81441E98100F4A93D /* unmuted.png */; };
 		641B32DD1441E99500F4A93D /* muted.png in Resources */ = {isa = PBXBuildFile; fileRef = 641B32DC1441E99500F4A93D /* muted.png */; };
@@ -597,8 +597,8 @@
 		3AFFDF09142C7E16000D8494 /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
 		3AFFDF0D142C7E69000D8494 /* DSActivityView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSActivityView.h; sourceTree = "<group>"; };
 		3AFFDF0E142C7E69000D8494 /* DSActivityView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSActivityView.m; sourceTree = "<group>"; };
-		6410AF31143A00900062B04D /* CoversFilenameGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CoversFilenameGenerator.h; path = Libraries/CoversFilenameGenerator.h; sourceTree = SOURCE_ROOT; };
-		6410AF32143A00900062B04D /* CoversFilenameGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CoversFilenameGenerator.m; path = Libraries/CoversFilenameGenerator.m; sourceTree = SOURCE_ROOT; };
+		6410AF31143A00900062B04D /* MiniMusicalStarUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; name = MiniMusicalStarUtilities.h; path = Libraries/MiniMusicalStarUtilities.h; sourceTree = SOURCE_ROOT; };
+		6410AF32143A00900062B04D /* MiniMusicalStarUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MiniMusicalStarUtilities.m; path = Libraries/MiniMusicalStarUtilities.m; sourceTree = SOURCE_ROOT; };
 		641B32D71441E98100F4A93D /* trashbin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trashbin.png; sourceTree = "<group>"; };
 		641B32D81441E98100F4A93D /* unmuted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unmuted.png; sourceTree = "<group>"; };
 		641B32DC1441E99500F4A93D /* muted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = muted.png; sourceTree = "<group>"; };
@@ -2133,8 +2133,8 @@
 				646E4D101454199300F066F6 /* FBJson */,
 				646E4D1E1454199300F066F6 /* SBJson */,
 				73843EA9144CDD1100C55337 /* Prompt */,
-				6410AF31143A00900062B04D /* CoversFilenameGenerator.h */,
-				6410AF32143A00900062B04D /* CoversFilenameGenerator.m */,
+				6410AF31143A00900062B04D /* MiniMusicalStarUtilities.h */,
+				6410AF32143A00900062B04D /* MiniMusicalStarUtilities.m */,
 				3A12E367142F1D9A004B97BE /* libOCMock.a */,
 				3AFFDF0C142C7E69000D8494 /* DSActivityView */,
 				3AFFDF07142C7E16000D8494 /* Image+Resize */,
@@ -2606,7 +2606,7 @@
 				3AFFDF0A142C7E16000D8494 /* UIImage+Resize.m in Sources */,
 				3AFFDF0F142C7E69000D8494 /* DSActivityView.m in Sources */,
 				95C526AE1438DA740008AE13 /* CoversListViewController.m in Sources */,
-				6410AF33143A00900062B04D /* CoversFilenameGenerator.m in Sources */,
+				6410AF33143A00900062B04D /* MiniMusicalStarUtilities.m in Sources */,
 				3A5F7C6C1440D74E00E9C570 /* VideoPlayerViewController.m in Sources */,
 				737716CB1445D61500BF2036 /* ChoiceSelectionViewController.m in Sources */,
 				95D2069714482984004B6E8B /* UndownloadedShow.m in Sources */,

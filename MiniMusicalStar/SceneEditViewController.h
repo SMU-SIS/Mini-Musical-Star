@@ -44,16 +44,12 @@
 @property (retain, nonatomic) UIBarButtonItem *containerToggleButton;
 @property (retain, nonatomic) Scene *theScene;
 @property (retain, nonatomic) CoverScene *theCoverScene;
-
 @property (retain, nonatomic) NSManagedObjectContext *context;
 
 - (SceneEditViewController *)initWithScene:(Scene *)aScene andSceneCover:(CoverScene *)aCoverScene andContext:(NSManagedObjectContext *)aContext;
 - (void)loadChildViewControllers;
 - (void)setSliderPosition:(int) targetSeconds;
-- (void)showReallyAlertView;
-- (void)playPauseButtonIsPressed;
 - (void)stopPlayer;
-- (BOOL)isRecording;
 - (NSArray*) getExportAudioURLs;
 - (void) playMovie:(NSURL*)filePath;
     

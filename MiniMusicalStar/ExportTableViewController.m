@@ -16,6 +16,7 @@
 #import "FacebookUploader.h"
 #import "YouTubeUploader.h"
 #import "ImageToVideoConverter.h"
+#import "MiniMusicalStarUtilities.h"
 
 @implementation ExportTableViewController
 
@@ -77,7 +78,7 @@
     
     //write credits to video
     NSArray *creditsList = [NSArray arrayWithObjects:@"Drawn With CoreText",@"Made by Adrian!", nil];
-    NSString *creditsFilename = [@"/credits_" stringByAppendingString:[[AudioEditorViewController getUniqueFilenameWithoutExt] stringByAppendingString:@".mov"]];
+    NSString *creditsFilename = [@"/credits_" stringByAppendingString:[[MiniMusicalStarUtilities getUniqueFilenameWithoutExt] stringByAppendingString:@".mov"]];
     NSURL *creditsFileURL = [NSURL fileURLWithPath:[[ShowDAO userDocumentDirectory] stringByAppendingString:creditsFilename]];
     [ImageToVideoConverter createTextConvertedToVideo:creditsList:creditsFileURL :CGSizeMake(640,480)];
     //append credits
@@ -109,7 +110,7 @@
     [cell.contentView addSubview:prog];
     [prog setProgress:0];
 
-    NSString *exportFilename = [@"/musical_" stringByAppendingString:[[AudioEditorViewController getUniqueFilenameWithoutExt] stringByAppendingString:@".mov"]];
+    NSString *exportFilename = [@"/musical_" stringByAppendingString:[[MiniMusicalStarUtilities getUniqueFilenameWithoutExt] stringByAppendingString:@".mov"]];
     NSURL *outputFileURL = [NSURL fileURLWithPath:[[ShowDAO userDocumentDirectory] stringByAppendingString:exportFilename]];
     [self processExportSession :composition:nil:creditsFileURL:outputFileURL:prog:@"musical appending"];
 
@@ -297,10 +298,10 @@
 {
     __block NSError *error = nil;
     CGSize size = CGSizeMake(640, 480);
-    NSString *videoFilename = [@"/vid_" stringByAppendingString:[[AudioEditorViewController getUniqueFilenameWithoutExt] stringByAppendingString:@".mov"]];
+    NSString *videoFilename = [@"/vid_" stringByAppendingString:[[MiniMusicalStarUtilities getUniqueFilenameWithoutExt] stringByAppendingString:@".mov"]];
     NSURL *videoFileURL = [NSURL fileURLWithPath:[[ShowDAO userDocumentDirectory] stringByAppendingString:videoFilename]];
     
-    NSString *exportFilename = [@"/scene_" stringByAppendingString:[[AudioEditorViewController getUniqueFilenameWithoutExt] stringByAppendingString:@".mov"]];
+    NSString *exportFilename = [@"/scene_" stringByAppendingString:[[MiniMusicalStarUtilities getUniqueFilenameWithoutExt] stringByAppendingString:@".mov"]];
     NSURL *outputFileURL = [NSURL fileURLWithPath:[[ShowDAO userDocumentDirectory] stringByAppendingString:exportFilename]];
     //write image to video conversion
     [ImageToVideoConverter createImagesConvertedToVideo:theScene :imagesArray :videoFileURL :size];
@@ -332,7 +333,7 @@
                                     atTime:kCMTimeZero error:&error];
 
     NSArray *creditsList = [NSArray arrayWithObjects:@"Drawn With CoreText",@"Made by Adrian!", nil];
-    NSString *creditsFilename = [@"/credits_" stringByAppendingString:[[AudioEditorViewController getUniqueFilenameWithoutExt] stringByAppendingString:@".mov"]];
+    NSString *creditsFilename = [@"/credits_" stringByAppendingString:[[MiniMusicalStarUtilities getUniqueFilenameWithoutExt] stringByAppendingString:@".mov"]];
     NSURL *creditsFileURL = [NSURL fileURLWithPath:[[ShowDAO userDocumentDirectory] stringByAppendingString:creditsFilename]];
     if([state isEqualToString: @"scene only"]){
         //write credits to video

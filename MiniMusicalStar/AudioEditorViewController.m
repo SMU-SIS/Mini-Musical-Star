@@ -8,17 +8,15 @@
 
 #import "AudioEditorViewController.h"
 #import "Audio.h"
-#import "CoversFilenameGenerator.h"
+#import "MiniMusicalStarUtilities.h"
 #import <AVFoundation/AVFoundation.h>
-
 #import "ShowDAO.h"
 
 @implementation AudioEditorViewController
-@synthesize thePlayer, theAudioObjects, theCoverScene, context;
-@synthesize tracksForView;
-@synthesize trackTableView, recordImage, recordingImage, mutedImage, unmutedImage, trashbinImage;
+@synthesize thePlayer, theScene, theCoverScene, context;
+@synthesize tracksForView, tracksForViewNSURL;
+@synthesize trackTableView, recordImage, mutedImage, unmutedImage, trashbinImage;
 @synthesize lyricsScrollView, lyricsLabel, selectLyricsPopover, lyricsViewToolbar;
-@synthesize lyrics;
 @synthesize currentRecordingURL, currentRecordingAudio;
 @synthesize playPauseButton;
 @synthesize arrayOfReplaceableAudios;
@@ -27,14 +25,14 @@
 {
     [thePlayer stop];
     [thePlayer release];
-    [theAudioObjects release];
+    [theScene release];
     [theCoverScene release];
     [context release];
     
     [tracksForView release];
+    [tracksForViewNSURL release];
     [trackTableView release];
     [recordImage release];
-    [recordingImage release];
     [mutedImage release];
     [trashbinImage release];
     
@@ -65,7 +63,7 @@
     self = [super init];
     if (self)
     {
-        self.theAudioObjects = [aScene audioTracks];
+        self.theScene = aScene;
         self.theCoverScene = aCoverScene;
         self.context = aContext;
         self.playPauseButton = aPlayPauseButton;
@@ -73,15 +71,12 @@
         isPlaying = NO;
         isRecording = NO;
         
-        //init the player with the audio tracks
-        thePlayer = [[MixPlayerRecorder alloc] initWithAudioFileURLs:[aScene arrayOfAudioTrackURLs]];
+        tracksForView = [[NSMutableArray alloc] initWithCapacity:1];
+        tracksForViewNSURL = [[NSMutableArray alloc] initWithCapacity:1];
         
-        [self performSelector:@selector(consolidateOriginalAndCoverTracks)];
-        
+        [self performSelector:@selector(consolidateArrays)];
         [self consolidateReplaceableAudios];
-        
-        lyrics = [self findFirstReplaceableTrackAndSetLyrics];
-        
+
         [self drawLyricsView];
     }
     
@@ -91,47 +86,38 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
     
     //KVO the Audio NSSet
     [self.theCoverScene addObserver:self forKeyPath:@"Audio" options:0 context:@"NewCoverTrackAdded"];
     
     self.view.backgroundColor = [UIColor blackColor];
     
-    // If you initialize the table view with the UIView method initWithFrame:,
-    //the UITableViewStylePlain style is used as a default.
     trackTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 100, 500, 300) style:UITableViewStylePlain];
     
     trackTableView.delegate = self;
     trackTableView.tag = 0;
 	trackTableView.dataSource = self;
-    trackTableView.bounces = NO;
-    trackTableView.backgroundColor = [UIColor blackColor];
+    trackTableView.backgroundColor = [UIColor whiteColor];
     
     [self.view addSubview:trackTableView];
     
-    trackTableView.separatorColor = [UIColor whiteColor];
+    trackTableView.separatorColor = [UIColor blackColor];
     
     //load images
     recordImage = [UIImage imageNamed:@"record.png"];
-    recordingImage = [UIImage imageNamed:@"recording.png"];
     mutedImage = [UIImage imageNamed:@"muted.png"];
     unmutedImage = [UIImage imageNamed:@"unmuted.png"];
     trashbinImage = [UIImage imageNamed:@"trashbin.png"];
     
-    //set default value
-    currentRecordingTrack = -1; //representing no track is being recorded
-    
     //load first replaceable audio's lyrics
-    if (arrayOfReplaceableAudios != nil && [arrayOfReplaceableAudios count] != 0)
-    {
+    if (arrayOfReplaceableAudios != nil && [arrayOfReplaceableAudios count] != 0) {
         Audio *anAudio = (Audio*) [arrayOfReplaceableAudios objectAtIndex:0];
         [self loadLyrics:anAudio.lyrics];
     }
-    
+
+       
     //Applying autosave here
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(autosaveWhenContextDidChange:) name:NSManagedObjectContextObjectsDidChangeNotification object:context];
-
 }
 
 -(void)autosaveWhenContextDidChange:(NSNotification*)notification
@@ -154,13 +140,6 @@
 {
     // Return YES for supported orientations
 	return YES;
-}
-
-#pragma mark - UIPopoverController delegate methods
-
-- (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
-{
-
 }
 
 #pragma mark - UITableView delegate methods
@@ -193,7 +172,7 @@
         return [arrayOfReplaceableAudios count];
     }    
     
-    return theAudioObjects.count + theCoverScene.Audio.count;
+    return self.theScene.audioTracks.count + self.theCoverScene.Audio.count;
 }
 
 #define TRACK_CELL_WIDTH 500
@@ -225,136 +204,74 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     UILabel *trackNameLabel;
     UIButton *recordOrTrashButton;
-    UIView *trackCellRightPanel;
-    UIView *trackCellRightIndicator;
-    UIButton *rightPanelButton;
-    
+    UIButton *muteOrUnmuteButton;
+
     //get the corresponding Audio object
     id audioForRow = [tracksForView objectAtIndex:[indexPath row]];
     
     if (cell == nil)
     {
-        //create all the new objects
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-        
-        cell.contentView.backgroundColor = [UIColor blackColor];
+        cell.contentView.backgroundColor = [UIColor whiteColor];
         [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
         
-        /* label which displays the track name */
-        trackNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 25, 120, 30)];
-        trackNameLabel.backgroundColor = [UIColor blackColor];
+        //label for track name
+        trackNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 10, 120, 30)];
+        trackNameLabel.backgroundColor = [UIColor whiteColor];
+        trackNameLabel.textColor = [UIColor blackColor];
         trackNameLabel.textAlignment =  UITextAlignmentCenter;
         [trackNameLabel setFont:[UIFont fontWithName:@"GillSans-Bold" size:18]];
-        [cell.contentView addSubview:trackNameLabel]; //add label to view
-        trackNameLabel.tag = 1; //tag the object to an integer value
+        [cell.contentView addSubview:trackNameLabel];
+        trackNameLabel.tag = 1;
         [trackNameLabel release];
         
-        /* button for the user to record a cover track */
-        //create an empty place holder for the record button
-        recordOrTrashButton = [[UIButton alloc] initWithFrame:CGRectMake(100, 50, 50, 50)];
+        //button for record and trash
+        recordOrTrashButton = [[UIButton alloc] initWithFrame:CGRectMake(200, 50, 50, 50)];
         [cell.contentView addSubview:recordOrTrashButton];
         recordOrTrashButton.tag = 2;
         [recordOrTrashButton release];
         
-        /* the right panel indicator */
-        trackCellRightIndicator = [[UIView alloc] initWithFrame:CGRectMake(150, 0, TRACK_CELL_RIGHT, TRACK_CELL_HEIGHT)];
-        [cell.contentView addSubview:trackCellRightIndicator];
-        trackCellRightIndicator.tag = 3;
-        [trackCellRightIndicator setBackgroundColor:[UIColor purpleColor]];
-        
-        /* draw the gradient-ed background of white to black */
-        [trackCellRightIndicator.layer insertSublayer:[self createGradientLayer:trackCellRightIndicator.bounds firstColor:[UIColor blackColor] andSecondColor:[UIColor whiteColor]] atIndex:0];
-        
-        [trackCellRightIndicator release];
-        
-        /* the right panel of the row */
-        trackCellRightPanel = [[UIView alloc] initWithFrame:CGRectMake(150, 0, TRACK_CELL_RIGHT, TRACK_CELL_HEIGHT)];
-        trackCellRightPanel.alpha = 0.8;
-        trackCellRightPanel.tag = 4;
-        [cell.contentView addSubview:trackCellRightPanel]; //add label to view
-                
-        //crgit eate the mute/unmute button for the track
-        rightPanelButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, TRACK_CELL_RIGHT, TRACK_CELL_HEIGHT)];
-        rightPanelButton.tag = 5;
-        [rightPanelButton setImage:unmutedImage forState:UIControlStateNormal];
-        rightPanelButton.titleLabel.font = [UIFont fontWithName:@"GillSans-Bold" size:30];
-        rightPanelButton.titleLabel.alpha = 0.5;
-        rightPanelButton.alpha = 0.8;
-        
-        [rightPanelButton addTarget:self action:@selector(muteToggleButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
-        
-        [trackCellRightPanel addSubview:rightPanelButton];
-        [trackCellRightPanel bringSubviewToFront:rightPanelButton];
-        
-        [rightPanelButton release];
-        [trackCellRightPanel release];
+        //button for mute and unmute
+        muteOrUnmuteButton = [[UIButton alloc] initWithFrame:CGRectMake(100, 50, 50, 50)];
+        [cell.contentView addSubview:muteOrUnmuteButton];
+        muteOrUnmuteButton.tag = 3;
+        [muteOrUnmuteButton release];
     }
     
-    // Here, you just configure the objects as appropriate for the row
+    //start configuring...
+    
     trackNameLabel = (UILabel*)[cell.contentView viewWithTag:1];
     trackNameLabel.text = [audioForRow valueForKey:@"title"]; //set the name of the track
     
-    //determine the color of the font by checking if the track is a original or audio
-    if ([audioForRow isKindOfClass:[Audio class]])
-    {
-        trackNameLabel.textColor = [UIColor whiteColor];
-    }
-    else if ([audioForRow isKindOfClass:[CoverSceneAudio class]])
-    {
-        trackNameLabel.textColor = [UIColor redColor];
-    }
-    
     recordOrTrashButton = (UIButton*)[cell.contentView viewWithTag:2];
     
-    //determines what button image should we load in the image placeholder for each row/track
-    if ([audioForRow isKindOfClass:[Audio class]] && [(NSNumber *)[audioForRow valueForKey:@"replaceable"] boolValue])
-    {
-        if (indexPath.row == currentRecordingTrack)
-        {
-            //if it is a replaceable Audio and a cover is being recorded
-            [recordOrTrashButton setImage:recordingImage forState:UIControlStateNormal];
-        }
-        else
-        {
-            //if it is a replaceable and a cover is not being recorded
+    muteOrUnmuteButton = (UIButton*)[cell.contentView viewWithTag:3];
+    
+    if ([audioForRow isKindOfClass:[Audio class]]) {
+        if ([(NSNumber *)[audioForRow valueForKey:@"replaceable"] boolValue]) {
             [recordOrTrashButton setImage:recordImage forState:UIControlStateNormal];
         }
-    } else if ([audioForRow isKindOfClass:[CoverSceneAudio class]])
-    {
-        //if it is a CoverSceneAudio and it can be trashed!
+        
+        if (![thePlayer busNumberIsMuted:[indexPath row]]) {
+            [muteOrUnmuteButton setImage:unmutedImage forState:UIControlStateNormal];
+        } else {
+            [muteOrUnmuteButton setImage:mutedImage forState:UIControlStateNormal];
+        }
+               
+    } else { //if CoverAudio
         [recordOrTrashButton setImage:trashbinImage forState:UIControlStateNormal];
-    }
-    
-    //previously UIControlEventTouchUpInside, now 
-    [recordOrTrashButton addTarget:self action:@selector(recordOrTrashButtonIsPressed:) forControlEvents:UIControlEventTouchDown];
-    
-    trackCellRightPanel = (UIView*)[cell.contentView viewWithTag:4];
-    
-    trackCellRightIndicator = (UIView*)[cell.contentView viewWithTag:3];
-    CALayer *layer = trackCellRightIndicator.layer;
-    layer.sublayers = nil; //remove all the sublayers inside the layer. if not we will keep adding additional layers.
-    
-    if (indexPath.row == currentRecordingTrack && isRecording == YES)
-    {
-        /* draw the gradient-ed background of red to black */            
-        [trackCellRightIndicator.layer insertSublayer:[self createGradientLayer:trackCellRightIndicator.bounds firstColor:[UIColor redColor] andSecondColor:[UIColor whiteColor]] atIndex:0];
-    }
-    else if (isRecording == NO && isPlaying == YES)
-    {      
-        if ([thePlayer busNumberIsMuted:indexPath.row])
-        {
-            [trackCellRightIndicator.layer insertSublayer:[self createGradientLayer:trackCellRightIndicator.bounds firstColor:[UIColor blackColor] andSecondColor:[UIColor whiteColor]] atIndex:0];
-        }
-        else
-        {           
-            [trackCellRightIndicator.layer insertSublayer:[self createGradientLayer:trackCellRightIndicator.bounds firstColor:[UIColor colorWithRed:34/255.0 green:139/255.0 blue:34/255.0 alpha:1] andSecondColor:[UIColor whiteColor]] atIndex:0];
+        
+        if (![thePlayer busNumberIsMuted:[indexPath row]]) {
+            [muteOrUnmuteButton setImage:unmutedImage forState:UIControlStateNormal];
+        } else {
+            [muteOrUnmuteButton setImage:mutedImage forState:UIControlStateNormal];
         }
     }
-    else
-    {            
-        /* draw the gradient-ed background of white to black */         
-        [trackCellRightIndicator.layer insertSublayer:[self createGradientLayer:trackCellRightIndicator.bounds firstColor:[UIColor blackColor] andSecondColor:[UIColor whiteColor]] atIndex:0];
-    }    
+    
+    [recordOrTrashButton addTarget:self action:@selector(recordOrTrashButtonIsPressed:) 
+                  forControlEvents:UIControlEventTouchDown];
+    [muteOrUnmuteButton addTarget:self action:@selector(muteOrUnmuteButtonIsPressed:) 
+                  forControlEvents:UIControlEventTouchDown];
     
     return cell;
 }
@@ -370,101 +287,160 @@
     return TRACK_CELL_HEIGHT;
 }
 
-#pragma mark - audio manipulation and recording methods
-
-#pragma mark - KVO callbacks
--(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)changeContext
-{    
-    NSString *kvoContext = (NSString *)changeContext;
-    if ([kvoContext isEqualToString:@"NewCoverTrackAdded"])
-    {
-        //refresh the table
-        [self performSelector:@selector(consolidateOriginalAndCoverTracks)];
-        [trackTableView reloadData];
-    }
-}
-
 #pragma mark - IBAction events
-- (void)muteToggleButtonTapped:(UIButton *)sender
+
+- (void)muteOrUnmuteButtonIsPressed:(UIButton *)sender
 {    
-    //check which row's rightPanelButton was clicked
-    UIButton *rightPanelButton = (UIButton*)sender;
-    UITableViewCell *trackCell = (UITableViewCell*) rightPanelButton.superview.superview.superview;
+    UIButton *muteOrUnmuteButton = (UIButton*)sender;
+    UITableViewCell *trackCell = (UITableViewCell*) muteOrUnmuteButton.superview.superview;
     UITableView *tableView = (UITableView*)[trackCell superview];
     NSIndexPath *indexPath = [tableView indexPathForCell:trackCell];
     
     int busNumber = indexPath.row;
     
-    if ([thePlayer busNumberIsMuted:busNumber])
-    {
+    if ([thePlayer busNumberIsMuted:busNumber]) {
         [thePlayer unmuteBusNumber:busNumber]; 
-        [rightPanelButton setImage:unmutedImage forState:UIControlStateNormal];
-    }
-    else
-    {
+    } else {
         [thePlayer muteBusNumber:busNumber];
-        [rightPanelButton setImage:mutedImage forState:UIControlStateNormal];
+        
     }
     
-    [trackTableView reloadData];    //refresh the table view
+    [trackTableView reloadData];
 }
 
 -(void)recordOrTrashButtonIsPressed:(UIButton *)sender
 {    
+    NSLog(@"recordOrTrashButtonIsPressed");
+    
     int row = -1;
     
-    if (isRecording == YES)
-    {        
+    if (isRecording == YES) {        
         UIAlertView *recordButtonHitWhenRecordingAlert = [[UIAlertView alloc] initWithTitle:@"Opps!" message:@"You are not supposed to hit me when recording!" delegate:nil cancelButtonTitle:@"I'm sorry!" otherButtonTitles:nil];
         [recordButtonHitWhenRecordingAlert show];
         [recordButtonHitWhenRecordingAlert release];
-        
         return;
     }
-    
-    //checks which track the user is trying to record by checking which row the button came from
-    UIButton *recordButton = (UIButton *)sender;
-    UIView *cellContentView = (UIView*)recordButton.superview;
-    UITableViewCell *trackCell = (UITableViewCell*)[cellContentView superview];
+
+    UIButton *recordOrTrashButton = (UIButton *)sender;
+    UITableViewCell *trackCell = (UITableViewCell*)recordOrTrashButton.superview.superview;
     UITableView *tableView = (UITableView*)[trackCell superview];
     NSIndexPath *indexPath = [tableView indexPathForCell:trackCell];
     row = indexPath.row;
     
-    //get the corresponding Audio object
+     //get the corresponding Audio object
     id audioForRow = [tracksForView objectAtIndex:row];
     
-    //if this is a recorded track or a replaceable track, exit this method
-    if ([audioForRow isKindOfClass:[CoverSceneAudio class]])
-    {
+    NSLog(@"class of audioforrow: %@", [audioForRow class]);
+
+    
+    if ([audioForRow isKindOfClass:[CoverSceneAudio class]]) {
         //if this is a recorded track, delete
         [self trashCoverAudio:row];
         return;
-    }
-    else if ([audioForRow isKindOfClass:[Audio class]])
-    {
+    } else if ([audioForRow isKindOfClass:[Audio class]]) {
         //check if it is a replaceable audio
         
         Audio *audio = (Audio*)audioForRow;
         NSNumber *isAudioReplaceable = audio.replaceable;
         
-        if ([isAudioReplaceable intValue] == 0)
-        {
+        if ([isAudioReplaceable intValue] == 0){
+            NSLog(@"it cannot be replaced muahaha");
             //if the audio track is cannot be replaced
             return;
         }
         
+        NSLog(@"here can start liao!");
         //if the audiotrack can be replaced, start recording
         [self startCoverAudioRecording:row];
     }
 }
 
+#pragma mark - instance methods for player
+
+- (void)playPauseButtonIsPressed
+{
+    NSLog(@"play pause button is pressed");
+    
+    if (isPlaying == YES && isRecording == NO) //if the player is playing
+    {
+        //is playing
+        [self.thePlayer stop];
+        [self.playPauseButton setTitle:@"Play" forState:UIControlStateNormal];
+        
+        isPlaying = NO;    
+        isRecording = NO;   //to be safe
+        
+    } else if (isPlaying == NO && isRecording == YES) //if the player is recording
+    {
+        //is recording
+        if (!stopButtonPressWhenRecordingWarningHasDisplayed)
+        {
+            UIAlertView *stopWhenRecordingAlertView = [[[UIAlertView alloc] initWithTitle:@"Stop?" message:@"Do you realy want to stop? :(" delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil] autorelease];
+            stopWhenRecordingAlertView.tag = 1;
+            [stopWhenRecordingAlertView show];
+
+            return;
+        }
+        
+        [[NSNotificationCenter defaultCenter] removeObserver:self];
+               
+        [self.thePlayer seekTo:0];
+        [self.thePlayer stop];
+        [self.playPauseButton setTitle:@"Play" forState:UIControlStateNormal];
+        stopButtonPressWhenRecordingWarningHasDisplayed = NO;   //reset
+        
+        isPlaying = NO;    
+        isRecording = NO;   //to be safe
+        
+        currentRecordingTrack = -1;
+        
+        if (!thePlayer.stoppedBecauseReachedEnd)
+        {
+            //if file exists delete the file first
+            NSFileManager *fileManager = [NSFileManager defaultManager];
+            [fileManager removeItemAtURL:currentRecordingURL error:nil];
+        }
+        
+        //clear values
+        currentRecordingAudio = nil;
+        currentRecordingURL = nil;
+    }
+    else //player is neither playing or recording
+    {
+        //if the play pause button is press, we only expect it to be playing
+        isPlaying = YES;    
+        isRecording = NO;
+        
+        [self.thePlayer play];
+        [playPauseButton setTitle:@"Stop" forState:UIControlStateNormal];
+    }
+    
+    [trackTableView reloadData];
+}
+
+- (void)reInitPlayer
+{
+    if (self.thePlayer != nil) {
+        [self.thePlayer release];
+    }
+    
+    thePlayer = [[MixPlayerRecorder alloc] initWithAudioFileURLs:self.tracksForViewNSURL];
+    [self.thePlayer seekTo:0];
+    [self.thePlayer stop];
+}
+
+- (void)giveMePlayPauseButton:(UIButton*)aButton
+{
+    self.playPauseButton = aButton;
+}
+
 #pragma mark - instance methods
+
 - (void)startCoverAudioRecording:(int)indexInConsolidatedAudioTracksArray
 {
     //get the corresponding Audio object
     id audioForRow = [tracksForView objectAtIndex:indexInConsolidatedAudioTracksArray];
     
-    currentRecordingTrack = indexInConsolidatedAudioTracksArray;
     isRecording = YES;
     
     //reload the tableviewcell
@@ -478,7 +454,7 @@
     NSFileManager *fileManager = [NSFileManager defaultManager];
     
     NSString *userDocumentDirectory = [ShowDAO userDocumentDirectory];
-    NSString *uniqueFilename = [AudioEditorViewController getUniqueFilenameWithoutExt];
+    NSString *uniqueFilename = [MiniMusicalStarUtilities getUniqueFilenameWithoutExt];
     
     NSString *audioCoverFilepath = [userDocumentDirectory stringByAppendingFormat:@"/%@.caf", uniqueFilename];    //we are going to use .caf files because i am going to encode in IMA4
     
@@ -522,110 +498,27 @@
     
     [self.theCoverScene removeAudioObject:audioToBeRemoved];    //remove audio object from coverscene object
     
-    [self consolidateOriginalAndCoverTracks];   //reconsolidate to reflect the update
+    [self consolidateArrays];   //reconsolidate to reflect the update
     
     [trackTableView reloadData];
-}
-
-- (CAGradientLayer*)createGradientLayer:(CGRect)frame firstColor:(UIColor*)firstColor andSecondColor:(UIColor*)secondColor {
-    CAGradientLayer *gradientLayer = [CAGradientLayer layer];
-    
-    gradientLayer.frame = frame;
-    gradientLayer.colors = [NSArray arrayWithObjects:(id)[firstColor CGColor], (id)[secondColor CGColor], nil];            
-    
-    return gradientLayer;
-}
-
-- (void)resetRecordingValues
-{
-    currentRecordingAudio = nil;
-    currentRecordingURL = nil;
 }
 
 - (void)recordingIsCompleted
 {
-    currentRecordingTrack = -1;
     isRecording = NO;
       
     CoverSceneAudio *newCoverSceneAudio = [NSEntityDescription insertNewObjectForEntityForName:@"CoverSceneAudio" inManagedObjectContext:context];
-
     newCoverSceneAudio.title = currentRecordingAudio.title;
     newCoverSceneAudio.path = [currentRecordingURL path];
     newCoverSceneAudio.OriginalHash = currentRecordingAudio.hash;
-    
-    [self.theCoverScene addAudioObject:newCoverSceneAudio]; //receing EXC_BAD_ACCESS here when exit and record
-    
-    //init the player with the original audio tracks and cover tracks
-    NSMutableArray *tracksForViewNSURL = [NSMutableArray arrayWithCapacity:[tracksForView count]-1];
-    
-    //populate the NSURLs of each audios into an array
-    [tracksForView enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        Audio *anAudio = (Audio*)obj;
-        NSString *path = anAudio.path;
-        [tracksForViewNSURL addObject:[NSURL fileURLWithPath:path]];
-    }];
-    
-    [thePlayer release];
-    
-    //reinit the player
-    thePlayer = [[MixPlayerRecorder alloc] initWithAudioFileURLs:tracksForViewNSURL];
-    
+    [self.theCoverScene addAudioObject:newCoverSceneAudio];
+
     [playPauseButton setTitle:@"Play" forState:UIControlStateNormal];
     
-    [self resetRecordingValues];
-    
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-    
-    //bring the seeker of player back to the starting point
-    [thePlayer seekTo:0]; //seekTo:0 is causing the NSNotification to call this method
-    [thePlayer stop];
+    currentRecordingAudio = nil;
+    currentRecordingURL = nil;
     
     [trackTableView reloadData];
-}
-
-- (void)playButtonIsPressed
-{
-    if (isRecording) 
-    {
-        //nothing should be done here.
-    }
-    else if (!isPlaying)
-    {
-        isPlaying = YES;
-        [trackTableView reloadData];
-    }
-}
-
-- (void)stopButtonIsPresssed
-{
-    if (isRecording) {
-        [[NSNotificationCenter defaultCenter] removeObserver:self];
-        
-        currentRecordingTrack = -1;
-        isRecording = NO;
-        
-        [trackTableView reloadData];
-        
-        if (!thePlayer.stoppedBecauseReachedEnd)
-        {
-            //if file exists delete the file first
-            NSFileManager *fileManager = [NSFileManager defaultManager];
-            [fileManager removeItemAtURL:currentRecordingURL error:nil];
-        }
-        
-        //bring the seeker of player back to the starting point
-        [thePlayer seekTo:0];
-        [thePlayer stop];
-        
-        //clear values
-        [self resetRecordingValues];
-    }
-    else if (isPlaying)
-    {
-        isPlaying = NO;
-        [trackTableView reloadData];
-        
-    }
 }
 
 - (bool)isRecording
@@ -633,16 +526,96 @@
     return isRecording;
 }
 
-//This is for scene edit view to pass me a pointer to the play pause button
-- (void)giveMePlayPauseButton:(UIButton*)aButton
-{
-    self.playPauseButton = aButton;
-}
-
 - (void)registerNotifications
 {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(recordingIsCompleted) name:kMixPlayerRecorderPlaybackStopped object:nil];
 }
+
+- (void)deRegisterFromNSNotifcationCenter
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+#pragma mark - instance methods for the audio and coveraudio arrays
+
+- (NSArray*)getExportAudioURLs
+{
+    NSMutableArray *mutableArrayOfAudioURLs = [NSMutableArray arrayWithCapacity:1]; //don't know how big it will be, just start with 1 
+    
+    [tracksForView enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {        
+        if ([obj isKindOfClass:[Audio class]])
+        {
+            Audio *anAudio = (Audio*)obj;
+            NSURL *audioURL = [NSURL fileURLWithPath:anAudio.path];
+            
+            //add only if the audio is not muted
+            if ([thePlayer busNumberIsMuted:idx] == NO)
+            {
+                [mutableArrayOfAudioURLs addObject:audioURL];
+                
+            }
+            
+        } else if ([obj isKindOfClass:[CoverSceneAudio class]])
+        {
+            CoverSceneAudio *anCoverSceneAudio = (CoverSceneAudio*)obj;
+            NSURL *audioURL = [NSURL fileURLWithPath:anCoverSceneAudio.path];
+            
+            //add only if the audio is not muted
+            if ([thePlayer busNumberIsMuted:idx] == NO)
+            {
+                [mutableArrayOfAudioURLs addObject:audioURL];
+                
+            }
+        }
+        
+    }];
+    
+    NSArray *arrayOfAudioURLs = [[[NSArray alloc] initWithArray:mutableArrayOfAudioURLs] autorelease];
+    
+    return arrayOfAudioURLs;
+}
+
+- (void)consolidateArrays
+{       
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
+    [self.tracksForView removeAllObjects];
+    [self.tracksForViewNSURL removeAllObjects];
+    
+    
+    [self.theScene.audioTracks enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        [self.tracksForView addObject:obj];
+    }];
+    
+    [self.theCoverScene.Audio enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
+        [self.tracksForView addObject:obj];
+    }];
+    
+    [self.tracksForView enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        Audio *anAudio = (Audio*)obj;
+        NSString *path = anAudio.path;
+        [self.tracksForViewNSURL addObject:[NSURL fileURLWithPath:path]];
+    }];
+    
+    [self reInitPlayer];    
+}
+
+- (void)consolidateReplaceableAudios
+{
+    self.arrayOfReplaceableAudios = [NSMutableArray arrayWithCapacity:1];
+    
+    [self.theScene.audioTracks enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        if ([obj isKindOfClass:[Audio class]]) {
+            Audio *anAudio = (Audio*)obj;
+            
+            if ([anAudio.replaceable intValue] == 1) {
+                [self.arrayOfReplaceableAudios addObject:anAudio];
+            }
+        }
+    }];
+}
+
+#pragma mark - instance methods for gui
 
 /* constants related to displaying lyrics */
 #define LYRICS_VIEW_WIDTH 1024-500 //the entire width of the landscape screen
@@ -682,7 +655,7 @@
 {
     CGRect lyricsLabelFrame = lyricsLabel.bounds; //get the CGRect representing the bounds of the UILabel
     
-    lyricsLabelFrame.size = [lyrics sizeWithFont:lyricsLabel.font constrainedToSize:CGSizeMake(LYRICS_VIEW_WIDTH-20, 100000) lineBreakMode:lyricsLabel.lineBreakMode]; //get a CGRect for dynamically resizing the label based on the text. cool.
+    lyricsLabelFrame.size = [someLyrics sizeWithFont:lyricsLabel.font constrainedToSize:CGSizeMake(LYRICS_VIEW_WIDTH-20, 100000) lineBreakMode:lyricsLabel.lineBreakMode]; //get a CGRect for dynamically resizing the label based on the text.
     
     lyricsLabel.frame = CGRectMake(0, 0, lyricsLabel.frame.size.width-10, lyricsLabelFrame.size.height); //set the new size of the label, we are only changing the height
     
@@ -716,8 +689,6 @@
     selectLyricsTableView.dataSource = self;
 
     selectLyricsPopover = [[UIPopoverController alloc] initWithContentViewController:selectLyricsTableViewController];
-    
-    
 
     [selectLyricsTableViewController release];  //being retained by popover controller
     [selectLyricsTableView release];    //being retained by the table view controller
@@ -752,105 +723,39 @@
     return lyricsLabel;
 }
 
-- (void)deRegisterFromNSNotifcationCenter
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
 
-- (NSArray*)getExportAudioURLs
+#pragma mark - UIAlertViewDelegate Protocol methods
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    NSMutableArray *mutableArrayOfAudioURLs = [NSMutableArray arrayWithCapacity:1]; //don't know how big it will be, just start with 1 
-    
-    [tracksForView enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {        
-        if ([obj isKindOfClass:[Audio class]])
+    if (alertView.tag == 1)
+    {
+        if (buttonIndex == 1) 
         {
-            Audio *anAudio = (Audio*)obj;
-            NSURL *audioURL = [NSURL fileURLWithPath:anAudio.path];
-            
-            //add only if the audio is not muted
-            if ([thePlayer busNumberIsMuted:idx] == NO)
-            {
-                [mutableArrayOfAudioURLs addObject:audioURL];
-                
-            }
-            
-        } else if ([obj isKindOfClass:[CoverSceneAudio class]])
-        {
-            CoverSceneAudio *anCoverSceneAudio = (CoverSceneAudio*)obj;
-            NSURL *audioURL = [NSURL fileURLWithPath:anCoverSceneAudio.path];
-            
-            //add only if the audio is not muted
-            if ([thePlayer busNumberIsMuted:idx] == NO)
-            {
-                [mutableArrayOfAudioURLs addObject:audioURL];
-                
-            }
+            //user pressed yes
+            stopButtonPressWhenRecordingWarningHasDisplayed = YES;
+            [self playPauseButtonIsPressed];
         }
-        
-    }];
-    
-    NSArray *arrayOfAudioURLs = [[[NSArray alloc] initWithArray:mutableArrayOfAudioURLs] autorelease];
-    
-    return arrayOfAudioURLs;
-}
-
-- (void)consolidateOriginalAndCoverTracks
-{  
-    self.tracksForView = [NSMutableArray arrayWithCapacity:theAudioObjects.count + theCoverScene.Audio.count];
-    
-    [theAudioObjects enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        [self.tracksForView addObject:obj];
-    }];
-    
-    [theCoverScene.Audio enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
-        [self.tracksForView addObject:obj];
-    }];
-}
-
-//this method helps to consolidate all replaceable audios into an array
-- (void)consolidateReplaceableAudios
-{
-    self.arrayOfReplaceableAudios = [NSMutableArray arrayWithCapacity:1];
-    
-    [theAudioObjects enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        if ([obj isKindOfClass:[Audio class]])
+        else if (buttonIndex == 0)
         {
-            Audio *anAudio = (Audio*)obj;
-            
-            if ([anAudio.replaceable intValue] == 1)
-            {
-                [self.arrayOfReplaceableAudios addObject:anAudio];
-            }
+            //user pressed no
+            stopButtonPressWhenRecordingWarningHasDisplayed = NO;   //reset to default value
         }
-    }];
+    }
+    
 }
 
-//this is a temporary method
-- (NSString*)findFirstReplaceableTrackAndSetLyrics
-{
-    __block NSString *theLyrics;
-    
-    [theAudioObjects enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        if ([obj isKindOfClass:[Audio class]])
-        {
-            Audio *anAudio = (Audio*)obj;
-            
-            if ([anAudio.replaceable intValue] == 1)
-            {
-                 theLyrics = anAudio.lyrics;
-            }
-        }
-    }];
-    
-    return theLyrics;
-}
+#pragma mark - KVO callbacks
 
-#pragma mark - class methods
-+ (NSString*)getUniqueFilenameWithoutExt
-{
-    NSString *timeIntervalInString = [NSString stringWithFormat:@"%f", [[NSDate date] timeIntervalSince1970]];
-    NSString *uniqueFilename = [CoversFilenameGenerator returnMD5HashOfString:timeIntervalInString];
-    return uniqueFilename;
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)changeContext
+{    
+    NSString *kvoContext = (NSString *)changeContext;
+    if ([kvoContext isEqualToString:@"NewCoverTrackAdded"])
+    {
+        //refresh the table
+        [self performSelector:@selector(consolidateArrays)];
+        [trackTableView reloadData];
+    }
 }
 
 @end

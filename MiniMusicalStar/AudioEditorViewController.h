@@ -22,7 +22,6 @@
     
     UITableView *trackTableView;
     UIImage *recordImage;
-    UIImage *recordingImage;
     UIImage *mutedImage;
     UIImage *unMutedImage;
     UIImage *trashbinImage;
@@ -42,21 +41,22 @@
     
     //variables to store values temporarily when recording covers
     int currentRecordingTrack;
-    NSString *lyrics;
+    //NSString *lyrics;
     NSURL *currentRecordingURL;
     Audio *currentRecordingAudio;
     
     NSMutableArray *arrayOfReplaceableAudios;
+    
+    bool stopButtonPressWhenRecordingWarningHasDisplayed;
 }
 
 @property (nonatomic, retain) UITableView *trackTableView;
 @property (nonatomic, retain) UIImage *recordImage;
-@property (nonatomic, retain) UIImage *recordingImage;
 @property (nonatomic, retain) UIImage *mutedImage;
 @property (nonatomic, retain) UIImage *unmutedImage;
 @property (nonatomic, retain) UIImage *trashbinImage;
 
-@property (nonatomic, retain) NSString *lyrics;
+//@property (nonatomic, retain) NSString *lyrics;
 
 //for the lyrics
 @property (nonatomic, retain) UIScrollView *lyricsScrollView;
@@ -65,9 +65,11 @@
 @property (nonatomic, retain) UIToolbar *lyricsViewToolbar;
 
 @property (nonatomic, retain) MixPlayerRecorder *thePlayer;
-@property (nonatomic, retain) NSArray *theAudioObjects;
+
+@property (nonatomic, retain) Scene *theScene;
 @property (nonatomic, retain) CoverScene *theCoverScene;
 @property (nonatomic, retain) NSMutableArray *tracksForView;
+@property (nonatomic, retain) NSMutableArray *tracksForViewNSURL;
 
 @property (nonatomic, retain) NSManagedObjectContext *context;
 
@@ -80,36 +82,28 @@
 
 - (id)initWithScene:(Scene *)theScene andCoverScene:(CoverScene *)aCoverScene andContext:(NSManagedObjectContext *)aContext andPlayPauseButton:(UIButton*)aPlayPauseButton;
 
-- (void)playButtonIsPressed;
-- (void)stopButtonIsPresssed;
-
 - (void)startCoverAudioRecording:(int)indexInConsolidatedAudioTracksArray;
 - (void)trashCoverAudio:(int)indexInConsolidatedAudioTracksArray;
 
 - (bool)isRecording;
 
+- (void)playPauseButtonIsPressed;
 - (void)giveMePlayPauseButton:(UIButton*)aButton;
 
-- (void)deRegisterFromNSNotifcationCenter;
 - (void)registerNotifications;
+- (void)deRegisterFromNSNotifcationCenter;
 
 - (void)drawLyricsView;
-- (CAGradientLayer*)createGradientLayer:(CGRect)frame firstColor:(UIColor*)firstColor andSecondColor:(UIColor*)secondColor;
 - (UIScrollView*)createLyricsScrollView;
 - (UILabel*)createLyricsLabel;
 - (void)loadLyrics:(NSString*)someLyrics;
-
-+ (NSString*)getUniqueFilenameWithoutExt;
-
-- (NSArray*)getExportAudioURLs;
-
 - (void)showSelectLyricsPopover:(id*)sender;
 - (UIPopoverController*)createSelectLyricsPopover;
 
-- (void)consolidateOriginalAndCoverTracks;
+- (void)consolidateArrays;
 - (void)consolidateReplaceableAudios;
+- (NSArray*)getExportAudioURLs;
 
-- (NSString*)findFirstReplaceableTrackAndSetLyrics;
--(void)autosaveWhenContextDidChange:(NSNotification*)notification;
+- (void)autosaveWhenContextDidChange:(NSNotification*)notification;
 
 @end
