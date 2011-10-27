@@ -75,7 +75,18 @@
         
     }];
     
-    //add credits
+    //write credits to video
+    NSArray *creditsList = [NSArray arrayWithObjects:@"Drawn With CoreText",@"Made by Adrian!", nil];
+    NSString *creditsFilename = [@"/credits_" stringByAppendingString:[[AudioEditorViewController getUniqueFilenameWithoutExt] stringByAppendingString:@".mov"]];
+    NSURL *creditsFileURL = [NSURL fileURLWithPath:[[ShowDAO userDocumentDirectory] stringByAppendingString:creditsFilename]];
+    [ImageToVideoConverter createTextConvertedToVideo:creditsList:creditsFileURL :CGSizeMake(640,480)];
+    //append credits
+    AVURLAsset *creditsAsset = [AVURLAsset URLAssetWithURL:creditsFileURL options:nil];
+    [composition insertTimeRange:CMTimeRangeMake(kCMTimeZero,creditsAsset.duration) 
+                         ofAsset:creditsAsset
+                          atTime:composition.duration
+                           error:nil];      
+    //add brand asset path
     NSString *brandAssetPath =[[NSBundle mainBundle] pathForResource:@"lastclip" ofType:@"mov"];
     AVURLAsset *brandAsset = [AVURLAsset URLAssetWithURL:[NSURL fileURLWithPath:brandAssetPath] options:nil];
     [composition insertTimeRange:CMTimeRangeMake(kCMTimeZero,brandAsset.duration) 
@@ -100,7 +111,7 @@
 
     NSString *exportFilename = [@"/musical_" stringByAppendingString:[[AudioEditorViewController getUniqueFilenameWithoutExt] stringByAppendingString:@".mov"]];
     NSURL *outputFileURL = [NSURL fileURLWithPath:[[ShowDAO userDocumentDirectory] stringByAppendingString:exportFilename]];
-    [self processExportSession:composition:nil:outputFileURL:prog:@"musical appending"];
+    [self processExportSession :composition:nil:creditsFileURL:outputFileURL:prog:@"musical appending"];
 
 }
 
