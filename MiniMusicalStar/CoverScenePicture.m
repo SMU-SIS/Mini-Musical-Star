@@ -11,7 +11,7 @@
 
 
 @implementation CoverScenePicture
-@dynamic OriginalHash;
+@dynamic originalHash;
 @dynamic OrderNumber;
 @dynamic Path;
 @dynamic CoverScene;
@@ -19,6 +19,12 @@
 -(UIImage *)image
 {
     return [UIImage imageWithContentsOfFile:self.Path];
+}
+
+- (BOOL)deletePictureFile
+{
+    NSFileManager *manager = [NSFileManager defaultManager];
+    return [manager removeItemAtPath:self.Path error:nil];
 }
 
 @end

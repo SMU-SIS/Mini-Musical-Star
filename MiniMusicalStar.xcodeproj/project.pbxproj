@@ -271,10 +271,10 @@
 		95DAE883141481210039201D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95DAE882141481210039201D /* Security.framework */; };
 		95DAE885141481310039201D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95DAE884141481300039201D /* SystemConfiguration.framework */; };
 		95DB46E9145586E100DA7DF2 /* ExportedAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 95DB46E8145586E100DA7DF2 /* ExportedAsset.m */; };
+		95DB474614592E6E00DA7DF2 /* Cover.m in Sources */ = {isa = PBXBuildFile; fileRef = 95DB474514592E6E00DA7DF2 /* Cover.m */; };
 		95F9FFC21425C5DF00A18463 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95F9FFC11425C5DF00A18463 /* CoreData.framework */; };
 		95F9FFC51425C60400A18463 /* CameraPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95F9FFC41425C60400A18463 /* CameraPopupViewController.m */; };
 		95F9FFC71425C63700A18463 /* CameraPopupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95F9FFC61425C63700A18463 /* CameraPopupViewController.xib */; };
-		95F9FFDC1425C86B00A18463 /* Cover.m in Sources */ = {isa = PBXBuildFile; fileRef = 95F9FFD31425C86B00A18463 /* Cover.m */; };
 		95F9FFDD1425C86B00A18463 /* Covers.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 95F9FFD41425C86B00A18463 /* Covers.xcdatamodeld */; };
 		95F9FFDE1425C86B00A18463 /* CoverScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 95F9FFD71425C86B00A18463 /* CoverScene.m */; };
 		95F9FFDF1425C86B00A18463 /* CoverSceneAudio.m in Sources */ = {isa = PBXBuildFile; fileRef = 95F9FFD91425C86B00A18463 /* CoverSceneAudio.m */; };
@@ -1024,12 +1024,12 @@
 		95DAE888141481470039201D /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		95DB46E7145586E100DA7DF2 /* ExportedAsset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExportedAsset.h; sourceTree = "<group>"; };
 		95DB46E8145586E100DA7DF2 /* ExportedAsset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExportedAsset.m; sourceTree = "<group>"; };
+		95DB474414592E6E00DA7DF2 /* Cover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cover.h; sourceTree = "<group>"; };
+		95DB474514592E6E00DA7DF2 /* Cover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cover.m; sourceTree = "<group>"; };
 		95F9FFC11425C5DF00A18463 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		95F9FFC31425C60400A18463 /* CameraPopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraPopupViewController.h; sourceTree = "<group>"; };
 		95F9FFC41425C60400A18463 /* CameraPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraPopupViewController.m; sourceTree = "<group>"; };
 		95F9FFC61425C63700A18463 /* CameraPopupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CameraPopupViewController.xib; sourceTree = "<group>"; };
-		95F9FFD21425C86B00A18463 /* Cover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cover.h; sourceTree = "<group>"; };
-		95F9FFD31425C86B00A18463 /* Cover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cover.m; sourceTree = "<group>"; };
 		95F9FFD51425C86B00A18463 /* Covers.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Covers.xcdatamodel; sourceTree = "<group>"; };
 		95F9FFD61425C86B00A18463 /* CoverScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoverScene.h; sourceTree = "<group>"; };
 		95F9FFD71425C86B00A18463 /* CoverScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoverScene.m; sourceTree = "<group>"; };
@@ -2150,8 +2150,6 @@
 		95F9FFD01425C85600A18463 /* Cover CoreData Models */ = {
 			isa = PBXGroup;
 			children = (
-				95F9FFD21425C86B00A18463 /* Cover.h */,
-				95F9FFD31425C86B00A18463 /* Cover.m */,
 				95F9FFD41425C86B00A18463 /* Covers.xcdatamodeld */,
 				95F9FFD61425C86B00A18463 /* CoverScene.h */,
 				95F9FFD71425C86B00A18463 /* CoverScene.m */,
@@ -2161,6 +2159,8 @@
 				95F9FFDB1425C86B00A18463 /* CoverScenePicture.m */,
 				95DB46E7145586E100DA7DF2 /* ExportedAsset.h */,
 				95DB46E8145586E100DA7DF2 /* ExportedAsset.m */,
+				95DB474414592E6E00DA7DF2 /* Cover.h */,
+				95DB474514592E6E00DA7DF2 /* Cover.m */,
 			);
 			name = "Cover CoreData Models";
 			sourceTree = "<group>";
@@ -2575,7 +2575,6 @@
 				9569E05C1418A2A80016DAF3 /* PhotoEditorViewController.m in Sources */,
 				9569E0651418A2D30016DAF3 /* SceneEditViewController.m in Sources */,
 				95F9FFC51425C60400A18463 /* CameraPopupViewController.m in Sources */,
-				95F9FFDC1425C86B00A18463 /* Cover.m in Sources */,
 				95F9FFDD1425C86B00A18463 /* Covers.xcdatamodeld in Sources */,
 				95F9FFDE1425C86B00A18463 /* CoverScene.m in Sources */,
 				95F9FFDF1425C86B00A18463 /* CoverSceneAudio.m in Sources */,
@@ -2691,6 +2690,7 @@
 				3AB1421D1457FF3700173EAD /* Inspect.m in Sources */,
 				3AB1421E1457FF3700173EAD /* Logger.m in Sources */,
 				3AB1421F1457FF3700173EAD /* UnitTest.m in Sources */,
+				95DB474614592E6E00DA7DF2 /* Cover.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

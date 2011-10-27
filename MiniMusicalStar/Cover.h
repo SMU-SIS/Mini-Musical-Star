@@ -14,9 +14,9 @@
 @interface Cover : NSManagedObject
 
 @property (nonatomic, retain) NSString * author;
-@property (nonatomic, retain) NSString * cover_of_showHash;
+@property (nonatomic, retain) NSString * coverOfShowHash;
 @property (nonatomic, retain) NSDate * created_date;
-@property (nonatomic, retain) NSString * originalhash;
+@property (nonatomic, retain) NSString * originalHash;
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSSet *Scenes;
 @end
