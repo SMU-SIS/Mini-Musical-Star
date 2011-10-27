@@ -215,7 +215,7 @@
             switch ([exportSession status]) {
                 case AVAssetExportSessionStatusCompleted:
                     NSLog(@"Export Completed");
-                    [self exportCompleted:videoFileURL:creditsFileURL:outputFileURL:prog:progressBarLoader:state];
+                    [self exportCompleted: videoFileURL:creditsFileURL:outputFileURL:prog:progressBarLoader:state];
                     break;
                 case AVAssetExportSessionStatusFailed:
                     NSLog(@"Export failed: %@", [[exportSession error] localizedDescription]);
@@ -305,11 +305,6 @@
     //write image to video conversion
     [ImageToVideoConverter createImagesConvertedToVideo:theScene :imagesArray :videoFileURL :size];
     
-    //write credits to video
-    NSArray *creditsList = [NSArray arrayWithObjects:@"Drawn With CoreText",@"Made by Adrian!", nil];
-    NSString *creditsFilename = [@"/credits_" stringByAppendingString:[[AudioEditorViewController getUniqueFilenameWithoutExt] stringByAppendingString:@".mov"]];
-    NSURL *creditsFileURL = [NSURL fileURLWithPath:[[ShowDAO userDocumentDirectory] stringByAppendingString:creditsFilename]];
-    [ImageToVideoConverter createTextConvertedToVideo:creditsList:creditsFileURL :size];
     
     //now i will combine track and video
     AVMutableComposition *composition = [AVMutableComposition composition];
@@ -336,7 +331,13 @@
                                    ofTrack:[[videoAsset tracksWithMediaType:AVMediaTypeVideo]objectAtIndex:0] 
                                     atTime:kCMTimeZero error:&error];
 
+    NSArray *creditsList = [NSArray arrayWithObjects:@"Drawn With CoreText",@"Made by Adrian!", nil];
+    NSString *creditsFilename = [@"/credits_" stringByAppendingString:[[AudioEditorViewController getUniqueFilenameWithoutExt] stringByAppendingString:@".mov"]];
+    NSURL *creditsFileURL = [NSURL fileURLWithPath:[[ShowDAO userDocumentDirectory] stringByAppendingString:creditsFilename]];
     if([state isEqualToString: @"scene only"]){
+        //write credits to video
+
+        [ImageToVideoConverter createTextConvertedToVideo:creditsList:creditsFileURL :size];
         //append credits
         AVURLAsset *creditsAsset = [AVURLAsset URLAssetWithURL:creditsFileURL options:nil];
         [composition insertTimeRange:CMTimeRangeMake(kCMTimeZero,creditsAsset.duration) 
