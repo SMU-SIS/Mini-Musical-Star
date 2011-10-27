@@ -189,7 +189,7 @@
     return nil;
 }
 
-- (void) processExportSession: (AVMutableComposition*) composition:(NSURL*)videoFileURL: (NSURL*) outputFileURL: (UIProgressView*) prog: (NSString*) state
+- (void) processExportSession: (AVMutableComposition*) composition:(NSURL*)videoFileURL:(NSURL*)creditsFileURL: (NSURL*) outputFileURL: (UIProgressView*) prog: (NSString*) state
 {
     NSArray *compatiblePresets = [AVAssetExportSession exportPresetsCompatibleWithAsset:composition];
     if ([compatiblePresets containsObject:AVAssetExportPreset640x480]) {
@@ -204,7 +204,7 @@
             switch ([exportSession status]) {
                 case AVAssetExportSessionStatusCompleted:
                     NSLog(@"Export Completed");
-                    [self exportCompleted:videoFileURL:outputFileURL:prog:progressBarLoader:state];
+                    [self exportCompleted:videoFileURL:creditsFileURL:outputFileURL:prog:progressBarLoader:state];
                     break;
                 case AVAssetExportSessionStatusFailed:
                     NSLog(@"Export failed: %@", [[exportSession error] localizedDescription]);
@@ -219,7 +219,7 @@
     }
 }
 
--(void) sessionExport: (AVMutableComposition*) composition: (NSURL*)videoFileURL: (NSURL*)outputFileURL: (NSIndexPath*) indexPath: (NSString*) state
+-(void) sessionExport: (AVMutableComposition*) composition: (NSURL*)videoFileURL: (NSURL*)creditsFileURL: (NSURL*)outputFileURL: (NSIndexPath*) indexPath: (NSString*) state
 {
     
     //draw the progress bar
@@ -234,14 +234,15 @@
     prog.frame= progressBarFrame;
     [cell.contentView addSubview:prog];
     
-    [self processExportSession :composition:videoFileURL:outputFileURL:prog:state];
+    [self processExportSession :composition:videoFileURL:creditsFileURL:outputFileURL:prog:state];
     
 }
-- (void) exportCompleted: (NSURL*) videoFileURL: (NSURL*) outputFileURL: (UIProgressView*) prog: (NSTimer*) progressBarLoader: (NSString*) state
+- (void) exportCompleted: (NSURL*) videoFileURL: (NSURL*) creditsFileURL: (NSURL*) outputFileURL: (UIProgressView*) prog: (NSTimer*) progressBarLoader: (NSString*) state
 {
     if ([state isEqualToString: @"scene only"]){
         [self.exportedFilesArray addObject:outputFileURL];
         [self removeFileAtPath:videoFileURL];
+        [self removeFileAtPath:creditsFileURL];
     }else if ([state isEqualToString: @"scenes for musical"]){
         [self.tempMusicalContainer addObject:outputFileURL];
         [self allScenesExportedNotificationSender];
@@ -251,6 +252,7 @@
         [tempMusicalContainer enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             [self removeFileAtPath:obj];
         }];
+        [self removeFileAtPath:creditsFileURL];
         [tempMusicalContainer removeAllObjects];
     }
     [prog removeFromSuperview];
@@ -293,10 +295,10 @@
     [ImageToVideoConverter createImagesConvertedToVideo:theScene :imagesArray :videoFileURL :size];
     
     //write credits to video
-    NSArray *creditsList = [NSArray arrayWithObjects:@"TESTING 1",@"TESTING 2", nil];
+    NSArray *creditsList = [NSArray arrayWithObjects:@"Drawn With CoreText",@"Made by Adrian!", nil];
     NSString *creditsFilename = [@"/credits_" stringByAppendingString:[[AudioEditorViewController getUniqueFilenameWithoutExt] stringByAppendingString:@".mov"]];
-    NSURL *creditsURL = [NSURL fileURLWithPath:[[ShowDAO userDocumentDirectory] stringByAppendingString:creditsFilename]];
-    [ImageToVideoConverter createTextConvertedToVideo:creditsList:creditsURL :size];
+    NSURL *creditsFileURL = [NSURL fileURLWithPath:[[ShowDAO userDocumentDirectory] stringByAppendingString:creditsFilename]];
+    [ImageToVideoConverter createTextConvertedToVideo:creditsList:creditsFileURL :size];
     
     //now i will combine track and video
     AVMutableComposition *composition = [AVMutableComposition composition];
@@ -324,6 +326,13 @@
                                     atTime:kCMTimeZero error:&error];
 
     if([state isEqualToString: @"scene only"]){
+        //append credits
+        AVURLAsset *creditsAsset = [AVURLAsset URLAssetWithURL:creditsFileURL options:nil];
+        [composition insertTimeRange:CMTimeRangeMake(kCMTimeZero,creditsAsset.duration) 
+                             ofAsset:creditsAsset
+                              atTime:composition.duration
+                               error:&error];        
+        //append made by minimusicalstar
         NSString *brandAssetPath =[[NSBundle mainBundle] pathForResource:@"lastclip" ofType:@"mov"];
         AVURLAsset *brandAsset = [AVURLAsset URLAssetWithURL:[NSURL fileURLWithPath:brandAssetPath] options:nil];
         [composition insertTimeRange:CMTimeRangeMake(kCMTimeZero,brandAsset.duration) 
@@ -334,7 +343,7 @@
     
 
     //session export
-    [self sessionExport :composition:videoFileURL:outputFileURL:indexPath:state];
+    [self sessionExport :composition:videoFileURL:creditsFileURL:outputFileURL:indexPath:state];
 
 }
 
@@ -446,7 +455,7 @@
 {
     theSceneUtility = [[SceneUtility alloc] initWithSceneAndCoverScene: scene:coverScene];
     
-    [self generateSceneVideo:scene:[theSceneUtility getMergedImagesArray]:[theSceneUtility getExportAudioURLs]:indexPath:@"scene only"];
+    [self generateSceneVideo :scene:[theSceneUtility getMergedImagesArray]:[theSceneUtility getExportAudioURLs]:indexPath:@"scene only"];
 }
 - (void)exportMusical:(Show*)show
 {
@@ -478,7 +487,7 @@
     }else if(indexPath.section == 1){
         Scene *selectedScene = [scenesArray objectAtIndex:indexPath.row];
         CoverScene *selectedCoverScene = [theCover coverSceneForSceneHash:selectedScene.hash];
-        [self exportScene:selectedScene:selectedCoverScene:indexPath];
+        [self exportScene :selectedScene:selectedCoverScene:indexPath];
     }else if(indexPath.section == 2){
 //        UITableViewCell *cell = (UITableViewCell *)[(UITableView *)self.view cellForRowAtIndexPath:indexPath];
         NSURL *fileURL = [exportedFilesArray objectAtIndex:indexPath.row];

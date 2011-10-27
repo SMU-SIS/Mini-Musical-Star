@@ -36,6 +36,34 @@
     CGContextConcatCTM(context, CGAffineTransformMakeRotation(0));
     CGContextDrawImage(context, CGRectMake(0, 0, CGImageGetWidth(image), 
                                            CGImageGetHeight(image)), image);
+    
+//    UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
+//    UIGraphicsEndImageContext();    
+//    
+//    NSString  *pngPath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/woo.png"];
+//    NSString  *jpgPath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/woo.jpg"];
+//    
+//    // Write a UIImage to JPEG with minimum compression (best quality)
+//    // The value 'image' must be a UIImage object
+//    // The value '1.0' represents image compression quality as value from 0.0 to 1.0
+//    [UIImageJPEGRepresentation(img, 1.0) writeToFile:jpgPath atomically:YES];
+//    
+//    // Write image to PNG
+//    [UIImagePNGRepresentation(img) writeToFile:pngPath atomically:YES];
+//    
+//    // Let's check to see if files were successfully written...
+//    
+//    // Create file manager
+//    NSError *error;
+//    NSFileManager *fileMgr = [NSFileManager defaultManager];
+//    
+//    // Point to Document directory
+//    NSString *documentsDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+//    
+//    // Write out the contents of home directory to console
+//    NSLog(@"Documents directory: %@", [fileMgr contentsOfDirectoryAtPath:documentsDirectory error:&error]);
+
+    
     CGColorSpaceRelease(rgbColorSpace);
     CGContextRelease(context);
     
@@ -104,6 +132,13 @@
             buffer = [self pixelBufferFromCGImage:img.CGImage size:size];
             BOOL pixelBufferResult = [adaptor appendPixelBuffer:buffer withPresentationTime:presentTime];
             
+//            CALayer *myLayer = [CALayer layer];
+//            myLayer.contents = CGImageRetain(img.CGImage);
+//            myLayer.bounds = CGRectMake(0,0,640.0, 480.0);
+//            myLayer.position = CGPointMake(0,0);
+////            [self.layer addSublayer:myLayer];
+//            [adaptor displayLayer:myLayer];
+            
             if (pixelBufferResult == NO)
             {
                 NSLog(@"failed to append buffer");
@@ -130,26 +165,7 @@
 
 +(UIImage *)imageFromText:(NSString *)text
 {
-//    // set the font type and size
-//    UIFont *font = [UIFont systemFontOfSize:20.0];  
-//    CGSize size  = [text sizeWithFont:font];
-//    
-//    // check if UIGraphicsBeginImageContextWithOptions is available (iOS is 4.0+)
-//    if (UIGraphicsBeginImageContextWithOptions != NULL)
-//        UIGraphicsBeginImageContextWithOptions(size,NO,0.0);
-//    else
-//        // iOS is < 4.0 
-//        UIGraphicsBeginImageContext(size);
-//    
-//    // optional: add a shadow, to avoid clipping the shadow you should make the context size bigger 
-//    //
-//    CGContextRef ctx = UIGraphicsGetCurrentContext();
-//    // CGContextSetShadowWithColor(ctx, CGSizeMake(1.0, 1.0), 5.0, [[UIColor grayColor] CGColor]);
-//    
-//    // draw in context, you can use also drawInRect:withFont:
-//    NSLog(@"test : %@",text);
-//    [text drawInRect:CGRectMake(0, 0, 640, 480) withFont:font];
-    
+
     float white[] = {1.0, 1.0, 1.0, 1.0};
     UIGraphicsBeginImageContext(CGSizeMake(640,480));
     
@@ -157,41 +173,43 @@
 	CGContextSetFillColor(context, white);
 	CGContextFillRect(context, CGRectMake(0, 0, 640, 480));
 	
+    const char *charText = [text UTF8String];
 	CGContextSetTextDrawingMode(context, kCGTextStroke);
-//    CGContextSetRGBFillColor(context, 1.0, 0.0, 0.0, 1.0);
-	CGContextSelectFont(context, "Times", 12.0, kCGEncodingMacRoman);
-//	CGAffineTransform transform = CGAffineTransformMake(1.0, 0.0, 0.0, -1.0, 0.0, 0.0);
-//    CGContextSetTextMatrix(context, transform);
-	CGContextShowTextAtPoint(context, 100.0, 100.0, "test", strlen("test"));
+    CGContextSetRGBFillColor(context, 1.0, 0.0, 0.0, 1.0);
+	CGContextSelectFont(context, "Arial", 50.0, kCGEncodingMacRoman);
+	CGAffineTransform transform = CGAffineTransformMake(1.0, 0.0, 0.0, -1.0, 0.0, 0.0);
+    CGContextSetTextMatrix(context, transform);
+//    CGFloat textSize = CGContextGetTextWidthAndHeight(context, text);
+	CGContextShowTextAtPoint(context, 10.0, 240.0, charText, strlen(charText));
     
     // transfer image
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();    
     
-    NSString  *pngPath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/Test.png"];
-    NSString  *jpgPath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/Test.jpg"];
-    
-    // Write a UIImage to JPEG with minimum compression (best quality)
-    // The value 'image' must be a UIImage object
-    // The value '1.0' represents image compression quality as value from 0.0 to 1.0
-    [UIImageJPEGRepresentation(image, 1.0) writeToFile:jpgPath atomically:YES];
-    
-    // Write image to PNG
-    [UIImagePNGRepresentation(image) writeToFile:pngPath atomically:YES];
-    
-    // Let's check to see if files were successfully written...
-    
-    // Create file manager
-    NSError *error;
-    NSFileManager *fileMgr = [NSFileManager defaultManager];
-    
-    // Point to Document directory
-    NSString *documentsDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
-    
-    // Write out the contents of home directory to console
-    NSLog(@"Documents directory: %@", [fileMgr contentsOfDirectoryAtPath:documentsDirectory error:&error]);
-
-    
+//    NSString  *pngPath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/Test.png"];
+//    NSString  *jpgPath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/Test.jpg"];
+//    
+//    // Write a UIImage to JPEG with minimum compression (best quality)
+//    // The value 'image' must be a UIImage object
+//    // The value '1.0' represents image compression quality as value from 0.0 to 1.0
+//    [UIImageJPEGRepresentation(image, 1.0) writeToFile:jpgPath atomically:YES];
+//    
+//    // Write image to PNG
+//    [UIImagePNGRepresentation(image) writeToFile:pngPath atomically:YES];
+//    
+//    // Let's check to see if files were successfully written...
+//    
+//    // Create file manager
+//    NSError *error;
+//    NSFileManager *fileMgr = [NSFileManager defaultManager];
+//    
+//    // Point to Document directory
+//    NSString *documentsDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+//    
+//    // Write out the contents of home directory to console
+//    NSLog(@"Documents directory: %@", [fileMgr contentsOfDirectoryAtPath:documentsDirectory error:&error]);
+//
+//    
     return image;
 }
 
@@ -233,7 +251,7 @@
         UIImage *img = [self imageFromText:text];
         if (adaptor.assetWriterInput.readyForMoreMediaData && !retry) 
         {
-            CMTime presentTime=CMTimeMake(idx,1);
+            CMTime presentTime=CMTimeMake(idx * 3,1);
             buffer = [self pixelBufferFromCGImage:img.CGImage size:size];
             BOOL pixelBufferResult = [adaptor appendPixelBuffer:buffer withPresentationTime:presentTime];
             
