@@ -8,6 +8,7 @@
 
 #import "CameraPopupViewController.h"
 #import <MobileCoreServices/MobileCoreServices.h>
+#import "AudioEditorViewController.h"
 
 @implementation CameraPopupViewController
 
@@ -167,7 +168,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
         //save photo to documents directory, then store path in core data
         
         //write image
-        NSString *imageFileName = [NSString stringWithFormat:@"user_%i.jpg", selectedIndex];
+        NSString *imageFileName = [AudioEditorViewController getUniqueFilenameWithoutExt];
 
         NSString  *jpgPath = [NSHomeDirectory() stringByAppendingPathComponent:[@"Documents" stringByAppendingPathComponent:imageFileName]];
         

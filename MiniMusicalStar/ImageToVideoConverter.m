@@ -37,6 +37,12 @@
     CGContextDrawImage(context, CGRectMake(0, 0, CGImageGetWidth(image), 
                                            CGImageGetHeight(image)), image);
     
+    CALayer *myLayer = [CALayer layer];
+    myLayer.contents = image;
+    myLayer.bounds = CGRectMake(0,0,640.0, 480.0);
+    myLayer.position = CGPointMake(0,0);
+//    [self.layer addSublayer:myLayer];
+    
 //    UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
 //    UIGraphicsEndImageContext();    
 //    
