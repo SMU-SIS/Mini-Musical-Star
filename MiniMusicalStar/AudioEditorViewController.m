@@ -15,8 +15,8 @@
 @implementation AudioEditorViewController
 @synthesize thePlayer, theScene, theCoverScene, context;
 @synthesize tracksForView, tracksForViewNSURL;
-@synthesize trackTableView, recordImage, mutedImage, unmutedImage, trashbinImage;
-@synthesize lyricsScrollView, lyricsLabel, selectLyricsPopover, lyricsViewToolbar;
+@synthesize trackTableView, recordImage, mutedImage, unmutedImage, trashbinImage, showLyricsImage;
+@synthesize lyricsScrollView, lyricsLabel;
 @synthesize currentRecordingURL, currentRecordingAudio;
 @synthesize playPauseButton;
 @synthesize arrayOfReplaceableAudios;
@@ -31,17 +31,21 @@
     
     [tracksForView release];
     [tracksForViewNSURL release];
+    
     [trackTableView release];
     [recordImage release];
     [mutedImage release];
+    [unmutedImage release];
     [trashbinImage release];
-    
-    [currentRecordingAudio release];
-    [currentRecordingURL release];
+    [showLyricsImage release];
     
     [lyricsScrollView release];
     [lyricsLabel release];
-    [selectLyricsPopover release];
+    
+    [currentRecordingURL release];
+    [currentRecordingAudio release];
+    
+    [playPauseButton release];
     
     [arrayOfReplaceableAudios release];
     
@@ -108,6 +112,7 @@
     mutedImage = [UIImage imageNamed:@"muted.png"];
     unmutedImage = [UIImage imageNamed:@"unmuted.png"];
     trashbinImage = [UIImage imageNamed:@"trashbin.png"];
+    showLyricsImage = [UIImage imageNamed:@"templyrics.png"];
     
     //load first replaceable audio's lyrics
     if (arrayOfReplaceableAudios != nil && [arrayOfReplaceableAudios count] != 0) {
@@ -125,7 +130,6 @@
     NSError *thisError;
     [context save:&thisError];
 }
-
 
 - (void)viewDidUnload
 {
@@ -146,16 +150,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (tableView.tag == 1)
-    {
-        [selectLyricsPopover dismissPopoverAnimated:YES];
-        
-        int row = [indexPath row];
-        
-        Audio *anAudio = (Audio*) [arrayOfReplaceableAudios objectAtIndex:row];
-        
-        [self loadLyrics:anAudio.lyrics];
-    }
 }
 
 // We will only have 1 section, so don't change the value here.
@@ -167,11 +161,6 @@
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {   
-    if (tableView.tag == 1)
-    {
-        return [arrayOfReplaceableAudios count];
-    }    
-    
     return self.theScene.audioTracks.count + self.theCoverScene.Audio.count;
 }
 
@@ -181,30 +170,13 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //this part has to be refractored
-    if (tableView.tag == 1)
-    {
-        static NSString *CellIdentifierTracksLyrics = @"CellCell";
-        
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifierTracksLyrics];
-
-        if (cell == nil)
-        {
-            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifierTracksLyrics] autorelease];
-
-            Audio *anAudio = (Audio*) [arrayOfReplaceableAudios objectAtIndex:[indexPath row]];
-            cell.textLabel.text = anAudio.title;            
-        }
-        
-        return cell;
-    }
-    
     static NSString *CellIdentifier = @"Cell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     UILabel *trackNameLabel;
     UIButton *recordOrTrashButton;
     UIButton *muteOrUnmuteButton;
+    UIButton *showLyricsButton;
 
     //get the corresponding Audio object
     id audioForRow = [tracksForView objectAtIndex:[indexPath row]];
@@ -236,6 +208,12 @@
         [cell.contentView addSubview:muteOrUnmuteButton];
         muteOrUnmuteButton.tag = 3;
         [muteOrUnmuteButton release];
+        
+        //button to show lyrics
+        showLyricsButton = [[UIButton alloc] initWithFrame:CGRectMake(300, 50, 50, 50)];
+        [cell.contentView addSubview:showLyricsButton];
+        showLyricsButton.tag = 4;
+        [showLyricsButton release];
     }
     
     //start configuring...
@@ -244,14 +222,16 @@
     trackNameLabel.text = [audioForRow valueForKey:@"title"]; //set the name of the track
     
     recordOrTrashButton = (UIButton*)[cell.contentView viewWithTag:2];
-    
     muteOrUnmuteButton = (UIButton*)[cell.contentView viewWithTag:3];
+    showLyricsButton = (UIButton*)[cell.contentView viewWithTag:4];
     
     if ([audioForRow isKindOfClass:[Audio class]]) {
         if ([(NSNumber *)[audioForRow valueForKey:@"replaceable"] boolValue]) {
             [recordOrTrashButton setImage:recordImage forState:UIControlStateNormal];
+            [showLyricsButton setImage:showLyricsImage forState:UIControlStateNormal];
         } else {
             [recordOrTrashButton setImage:nil forState:UIControlStateNormal];
+            [showLyricsButton setImage:nil forState:UIControlStateNormal];
         }
         
         if (![thePlayer busNumberIsMuted:[indexPath row]]) {
@@ -274,18 +254,15 @@
                   forControlEvents:UIControlEventTouchDown];
     [muteOrUnmuteButton addTarget:self action:@selector(muteOrUnmuteButtonIsPressed:) 
                   forControlEvents:UIControlEventTouchDown];
-    
+    [showLyricsButton addTarget:self action:@selector(showLyricsButtonIsPressed:) 
+               forControlEvents:UIControlEventTouchDown];
+
     return cell;
 }
 
 //This method is for you to set the height of the table view.
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (tableView.tag == 1)
-    {
-        return 32; //default when in landscape
-    }
-    
     return TRACK_CELL_HEIGHT;
 }
 
@@ -304,13 +281,12 @@
         [thePlayer unmuteBusNumber:busNumber]; 
     } else {
         [thePlayer muteBusNumber:busNumber];
-        
     }
     
     [trackTableView reloadData];
 }
 
--(void)recordOrTrashButtonIsPressed:(UIButton *)sender
+- (void)recordOrTrashButtonIsPressed:(UIButton*)sender
 {    
     int row = -1;
     
@@ -347,6 +323,21 @@
         //if the audiotrack can be replaced, start recording
         [self startCoverAudioRecording:row];
     }
+}
+
+- (void)showLyricsButtonIsPressed:(UIButton*)sender
+{
+    UIButton *recordOrTrashButton = (UIButton *)sender;
+    UITableViewCell *trackCell = (UITableViewCell*)recordOrTrashButton.superview.superview;
+    UITableView *tableView = (UITableView*)[trackCell superview];
+    NSIndexPath *indexPath = [tableView indexPathForCell:trackCell];
+    int row = indexPath.row;
+    
+    //get the corresponding Audio object
+    id audioForRow = [tracksForView objectAtIndex:row];
+    Audio *audio = (Audio*)audioForRow;
+    
+    [self loadLyrics:[audio lyrics]];
 }
 
 #pragma mark - instance methods for player
@@ -604,26 +595,9 @@
 {
     [self createLyricsScrollView];
     [self createLyricsLabel];
-    [self createSelectLyricsPopover];
-    
-    lyricsViewToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(LYRICS_VIEW_X, LYRICS_VIEW_HEIGHT, LYRICS_VIEW_WIDTH, 44)];
-    
-    UIBarButtonItem *flexibleSpaceLeft = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];    //this is used to force the button to the right
-    
-    UIBarButtonItem *selectTracksLyricsBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Select Track" style:UIBarButtonItemStylePlain target:self action:@selector(showSelectLyricsPopover:)];
-    
-    NSArray *barButtonItemsArray = [NSArray arrayWithObjects:flexibleSpaceLeft, selectTracksLyricsBarButtonItem, nil];
-    
-    [lyricsViewToolbar setItems:barButtonItemsArray animated:NO];
-    
-    [selectTracksLyricsBarButtonItem release];
-    [flexibleSpaceLeft release];
     
     [lyricsScrollView addSubview:lyricsLabel];
     [self.view addSubview:lyricsScrollView];
-    
-    [self.view addSubview:lyricsViewToolbar];
-    [lyricsViewToolbar release];
 }
 
 - (void)loadLyrics:(NSString*)someLyrics
@@ -637,38 +611,6 @@
     [lyricsScrollView setContentSize:CGSizeMake(lyricsLabel.frame.size.width, lyricsLabelFrame.size.height)]; //set content size of scroll view using calculated size of the text on the label
     
     lyricsLabel.text = someLyrics;
-}
-
-- (void)showSelectLyricsPopover:(id*)sender
-{
-    UIBarButtonItem *aBarButtonItem = (UIBarButtonItem*)sender;
-    
-    [selectLyricsPopover presentPopoverFromBarButtonItem:aBarButtonItem permittedArrowDirections:UIPopoverArrowDirectionDown animated:YES];
-}
-
-- (UIPopoverController*)createSelectLyricsPopover
-{
-    UITableViewController *selectLyricsTableViewController = [[UITableViewController alloc] initWithStyle:UITableViewStylePlain];
-    selectLyricsTableViewController.contentSizeForViewInPopover = CGSizeMake(200, 200);
-    
-    UITableView *selectLyricsTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 100, 800)];
-    
-    CGRect selectLyricsTableViewFrame = selectLyricsTableView.frame;
-    selectLyricsTableViewFrame.size.height = 500;
-    selectLyricsTableView.frame = selectLyricsTableViewFrame;
-    
-    selectLyricsTableViewController.tableView = selectLyricsTableView;
-    
-    selectLyricsTableView.tag = 1;
-    selectLyricsTableView.delegate = self;
-    selectLyricsTableView.dataSource = self;
-
-    selectLyricsPopover = [[UIPopoverController alloc] initWithContentViewController:selectLyricsTableViewController];
-
-    [selectLyricsTableViewController release];  //being retained by popover controller
-    [selectLyricsTableView release];    //being retained by the table view controller
-    
-    return selectLyricsPopover;
 }
 
 - (UIScrollView*)createLyricsScrollView {

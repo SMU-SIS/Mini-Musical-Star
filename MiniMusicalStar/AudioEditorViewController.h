@@ -17,32 +17,11 @@
 @class Audio;
 @interface AudioEditorViewController : UIViewController
 <UITableViewDelegate, UITableViewDataSource, UIPopoverControllerDelegate>
-{    
-    UITableView *trackTableView;
-    UIImage *recordImage;
-    UIImage *mutedImage;
-    UIImage *unMutedImage;
-    UIImage *trashbinImage;
-    
+{        
     //variables to track the state of the MixPlayer
     bool isRecording;
     bool isPlaying;
-    
-    //for the lyrics popover
-    UIScrollView *lyricsScrollView;
-    UILabel *lyricsLabel;
-    UIPopoverController *selectLyricsPopover;
-    UIToolbar *lyricsViewToolbar;
-    
-    //stores a pointer to the play/pause button to the scene editor
-    UIButton *playPauseButton;
 
-    //NSString *lyrics;
-    NSURL *currentRecordingURL;
-    Audio *currentRecordingAudio;
-    
-    NSMutableArray *arrayOfReplaceableAudios;
-    
     bool stopButtonPressWhenRecordingWarningHasDisplayed;
 }
 
@@ -51,11 +30,11 @@
 @property (nonatomic, retain) UIImage *mutedImage;
 @property (nonatomic, retain) UIImage *unmutedImage;
 @property (nonatomic, retain) UIImage *trashbinImage;
+@property (nonatomic, retain) UIImage *showLyricsImage;
 
+//for the lyrics popover
 @property (nonatomic, retain) UIScrollView *lyricsScrollView;
 @property (nonatomic, retain) UILabel *lyricsLabel;
-@property (nonatomic, retain) UIPopoverController *selectLyricsPopover;
-@property (nonatomic, retain) UIToolbar *lyricsViewToolbar;
 
 @property (nonatomic, retain) MixPlayerRecorder *thePlayer;
 
@@ -94,8 +73,6 @@
 //instance methods for gui
 - (void)drawLyricsView;
 - (void)loadLyrics:(NSString*)someLyrics;
-- (void)showSelectLyricsPopover:(id*)sender;
-- (UIPopoverController*)createSelectLyricsPopover;
 - (UIScrollView*)createLyricsScrollView;
 - (UILabel*)createLyricsLabel;
 
