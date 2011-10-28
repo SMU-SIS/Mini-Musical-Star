@@ -250,6 +250,8 @@
     if ([audioForRow isKindOfClass:[Audio class]]) {
         if ([(NSNumber *)[audioForRow valueForKey:@"replaceable"] boolValue]) {
             [recordOrTrashButton setImage:recordImage forState:UIControlStateNormal];
+        } else {
+            [recordOrTrashButton setImage:nil forState:UIControlStateNormal];
         }
         
         if (![thePlayer busNumberIsMuted:[indexPath row]]) {
@@ -258,7 +260,7 @@
             [muteOrUnmuteButton setImage:mutedImage forState:UIControlStateNormal];
         }
                
-    } else { //if CoverAudio
+    } else { //if CoverAudio        
         [recordOrTrashButton setImage:trashbinImage forState:UIControlStateNormal];
         
         if (![thePlayer busNumberIsMuted:[indexPath row]]) {
@@ -310,8 +312,6 @@
 
 -(void)recordOrTrashButtonIsPressed:(UIButton *)sender
 {    
-    NSLog(@"recordOrTrashButtonIsPressed");
-    
     int row = -1;
     
     if (isRecording == YES) {        
@@ -330,9 +330,6 @@
      //get the corresponding Audio object
     id audioForRow = [tracksForView objectAtIndex:row];
     
-    NSLog(@"class of audioforrow: %@", [audioForRow class]);
-
-    
     if ([audioForRow isKindOfClass:[CoverSceneAudio class]]) {
         //if this is a recorded track, delete
         [self trashCoverAudio:row];
@@ -344,12 +341,10 @@
         NSNumber *isAudioReplaceable = audio.replaceable;
         
         if ([isAudioReplaceable intValue] == 0){
-            NSLog(@"it cannot be replaced muahaha");
             //if the audio track is cannot be replaced
             return;
         }
         
-        NSLog(@"here can start liao!");
         //if the audiotrack can be replaced, start recording
         [self startCoverAudioRecording:row];
     }
@@ -359,8 +354,6 @@
 
 - (void)playPauseButtonIsPressed
 {
-    NSLog(@"play pause button is pressed");
-    
     if (isPlaying == YES && isRecording == NO) //if the player is playing
     {
         //is playing
