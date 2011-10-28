@@ -17,9 +17,7 @@
 @class Audio;
 @interface AudioEditorViewController : UIViewController
 <UITableViewDelegate, UITableViewDataSource, UIPopoverControllerDelegate>
-{
-    OSStatus error;
-    
+{    
     UITableView *trackTableView;
     UIImage *recordImage;
     UIImage *mutedImage;
@@ -38,9 +36,7 @@
     
     //stores a pointer to the play/pause button to the scene editor
     UIButton *playPauseButton;
-    
-    //variables to store values temporarily when recording covers
-    int currentRecordingTrack;
+
     //NSString *lyrics;
     NSURL *currentRecordingURL;
     Audio *currentRecordingAudio;
@@ -56,9 +52,6 @@
 @property (nonatomic, retain) UIImage *unmutedImage;
 @property (nonatomic, retain) UIImage *trashbinImage;
 
-//@property (nonatomic, retain) NSString *lyrics;
-
-//for the lyrics
 @property (nonatomic, retain) UIScrollView *lyricsScrollView;
 @property (nonatomic, retain) UILabel *lyricsLabel;
 @property (nonatomic, retain) UIPopoverController *selectLyricsPopover;
@@ -68,8 +61,10 @@
 
 @property (nonatomic, retain) Scene *theScene;
 @property (nonatomic, retain) CoverScene *theCoverScene;
+
 @property (nonatomic, retain) NSMutableArray *tracksForView;
 @property (nonatomic, retain) NSMutableArray *tracksForViewNSURL;
+@property (nonatomic, retain) NSMutableArray *arrayOfReplaceableAudios;
 
 @property (nonatomic, retain) NSManagedObjectContext *context;
 
@@ -78,32 +73,30 @@
 
 @property (nonatomic, retain) UIButton *playPauseButton;
 
-@property (nonatomic, retain) NSMutableArray *arrayOfReplaceableAudios;
-
 - (id)initWithScene:(Scene *)theScene andCoverScene:(CoverScene *)aCoverScene andContext:(NSManagedObjectContext *)aContext andPlayPauseButton:(UIButton*)aPlayPauseButton;
 
+- (void)autosaveWhenContextDidChange:(NSNotification*)notification;
+
+//instance methods
 - (void)startCoverAudioRecording:(int)indexInConsolidatedAudioTracksArray;
 - (void)trashCoverAudio:(int)indexInConsolidatedAudioTracksArray;
-
 - (bool)isRecording;
-
 - (void)playPauseButtonIsPressed;
 - (void)giveMePlayPauseButton:(UIButton*)aButton;
-
 - (void)registerNotifications;
 - (void)deRegisterFromNSNotifcationCenter;
 
+//instance methods for the audio and coveraudio arrays
+- (NSArray*)getExportAudioURLs;
+- (void)consolidateArrays;
+- (void)consolidateReplaceableAudios;
+
+//instance methods for gui
 - (void)drawLyricsView;
-- (UIScrollView*)createLyricsScrollView;
-- (UILabel*)createLyricsLabel;
 - (void)loadLyrics:(NSString*)someLyrics;
 - (void)showSelectLyricsPopover:(id*)sender;
 - (UIPopoverController*)createSelectLyricsPopover;
-
-- (void)consolidateArrays;
-- (void)consolidateReplaceableAudios;
-- (NSArray*)getExportAudioURLs;
-
-- (void)autosaveWhenContextDidChange:(NSNotification*)notification;
+- (UIScrollView*)createLyricsScrollView;
+- (UILabel*)createLyricsLabel;
 
 @end

@@ -335,12 +335,11 @@
         [self trashCoverAudio:row];
         return;
     } else if ([audioForRow isKindOfClass:[Audio class]]) {
-        //check if it is a replaceable audio
         
         Audio *audio = (Audio*)audioForRow;
         NSNumber *isAudioReplaceable = audio.replaceable;
         
-        if ([isAudioReplaceable intValue] == 0){
+        if ([isAudioReplaceable intValue] == 0) {
             //if the audio track is cannot be replaced
             return;
         }
@@ -354,8 +353,7 @@
 
 - (void)playPauseButtonIsPressed
 {
-    if (isPlaying == YES && isRecording == NO) //if the player is playing
-    {
+    if (isPlaying == YES && isRecording == NO) { //if the player is playing
         //is playing
         [self.thePlayer stop];
         [self.playPauseButton setTitle:@"Play" forState:UIControlStateNormal];
@@ -363,11 +361,10 @@
         isPlaying = NO;    
         isRecording = NO;   //to be safe
         
-    } else if (isPlaying == NO && isRecording == YES) //if the player is recording
-    {
+    } else if (isPlaying == NO && isRecording == YES) { //if the player is recording
+    
         //is recording
-        if (!stopButtonPressWhenRecordingWarningHasDisplayed)
-        {
+        if (!stopButtonPressWhenRecordingWarningHasDisplayed) {
             UIAlertView *stopWhenRecordingAlertView = [[[UIAlertView alloc] initWithTitle:@"Stop?" message:@"Do you realy want to stop? :(" delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil] autorelease];
             stopWhenRecordingAlertView.tag = 1;
             [stopWhenRecordingAlertView show];
@@ -385,10 +382,7 @@
         isPlaying = NO;    
         isRecording = NO;   //to be safe
         
-        currentRecordingTrack = -1;
-        
-        if (!thePlayer.stoppedBecauseReachedEnd)
-        {
+        if (!thePlayer.stoppedBecauseReachedEnd) {
             //if file exists delete the file first
             NSFileManager *fileManager = [NSFileManager defaultManager];
             [fileManager removeItemAtURL:currentRecordingURL error:nil];
@@ -471,10 +465,9 @@
 {
     id audioForRow = [tracksForView objectAtIndex:indexInConsolidatedAudioTracksArray];
     
-    //check to make sure it is not an Audio
-    if ([audioForRow isKindOfClass:[Audio class]])
-    {
-        //NSLog(@"Jialat liao, you trying to remove an orignal track. You think you director ah!");
+    if ([audioForRow isKindOfClass:[Audio class]]) {
+        NSLog(@"Trying to delete an audio track, crazy.");
+        return;
     }
     
     CoverSceneAudio *audioToBeRemoved = (CoverSceneAudio*)audioForRow;
@@ -483,16 +476,12 @@
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSError *error;
     
-    //remove audio object from cover scene
-    if (![fileManager removeItemAtURL:urlOfAudioToBeRemoved error:&error])
-    {
-        //NSLog(@"I tried to delete the audio file but failed: %@", error);
+    if (![fileManager removeItemAtURL:urlOfAudioToBeRemoved error:&error]) {
+        NSLog(@"I tried to delete the audio file but failed: %@", error);
     }
     
-    [self.theCoverScene removeAudioObject:audioToBeRemoved];    //remove audio object from coverscene object
-    
-    [self consolidateArrays];   //reconsolidate to reflect the update
-    
+    [self.theCoverScene removeAudioObject:audioToBeRemoved];
+    [self consolidateArrays];
     [trackTableView reloadData];
 }
 
@@ -542,22 +531,17 @@
             NSURL *audioURL = [NSURL fileURLWithPath:anAudio.path];
             
             //add only if the audio is not muted
-            if ([thePlayer busNumberIsMuted:idx] == NO)
-            {
-                [mutableArrayOfAudioURLs addObject:audioURL];
-                
+            if ([thePlayer busNumberIsMuted:idx] == NO) {
+                [mutableArrayOfAudioURLs addObject:audioURL];                
             }
             
-        } else if ([obj isKindOfClass:[CoverSceneAudio class]])
-        {
+        } else if ([obj isKindOfClass:[CoverSceneAudio class]]) {
             CoverSceneAudio *anCoverSceneAudio = (CoverSceneAudio*)obj;
             NSURL *audioURL = [NSURL fileURLWithPath:anCoverSceneAudio.path];
             
             //add only if the audio is not muted
-            if ([thePlayer busNumberIsMuted:idx] == NO)
-            {
+            if ([thePlayer busNumberIsMuted:idx] == NO) {
                 [mutableArrayOfAudioURLs addObject:audioURL];
-                
             }
         }
         
@@ -624,7 +608,6 @@
     
     lyricsViewToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(LYRICS_VIEW_X, LYRICS_VIEW_HEIGHT, LYRICS_VIEW_WIDTH, 44)];
     
-    
     UIBarButtonItem *flexibleSpaceLeft = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];    //this is used to force the button to the right
     
     UIBarButtonItem *selectTracksLyricsBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Select Track" style:UIBarButtonItemStylePlain target:self action:@selector(showSelectLyricsPopover:)];
@@ -640,7 +623,6 @@
     [self.view addSubview:lyricsScrollView];
     
     [self.view addSubview:lyricsViewToolbar];
-    
     [lyricsViewToolbar release];
 }
 
@@ -721,21 +703,16 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (alertView.tag == 1)
-    {
-        if (buttonIndex == 1) 
-        {
+    if (alertView.tag == 1) {
+        if (buttonIndex == 1) {
             //user pressed yes
             stopButtonPressWhenRecordingWarningHasDisplayed = YES;
             [self playPauseButtonIsPressed];
-        }
-        else if (buttonIndex == 0)
-        {
+        } else if (buttonIndex == 0) {
             //user pressed no
             stopButtonPressWhenRecordingWarningHasDisplayed = NO;   //reset to default value
         }
     }
-    
 }
 
 #pragma mark - KVO callbacks
@@ -743,9 +720,7 @@
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)changeContext
 {    
     NSString *kvoContext = (NSString *)changeContext;
-    if ([kvoContext isEqualToString:@"NewCoverTrackAdded"])
-    {
-        //refresh the table
+    if ([kvoContext isEqualToString:@"NewCoverTrackAdded"]) {
         [self performSelector:@selector(consolidateArrays)];
         [trackTableView reloadData];
     }
