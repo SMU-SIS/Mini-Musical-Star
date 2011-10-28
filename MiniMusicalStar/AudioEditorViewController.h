@@ -49,6 +49,7 @@
 
 @property (nonatomic, retain) NSURL *currentRecordingURL;
 @property (nonatomic, retain) Audio *currentRecordingAudio;
+@property (nonatomic, retain) UILabel *recordingLabel;
 
 @property (nonatomic, retain) UIButton *playPauseButton;
 

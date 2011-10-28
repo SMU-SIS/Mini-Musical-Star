@@ -17,7 +17,7 @@
 @synthesize tracksForView, tracksForViewNSURL;
 @synthesize trackTableView, recordImage, mutedImage, unmutedImage, trashbinImage, showLyricsImage;
 @synthesize lyricsScrollView, lyricsLabel;
-@synthesize currentRecordingURL, currentRecordingAudio;
+@synthesize currentRecordingURL, currentRecordingAudio, recordingLabel;
 @synthesize playPauseButton;
 @synthesize arrayOfReplaceableAudios;
 
@@ -44,6 +44,7 @@
     
     [currentRecordingURL release];
     [currentRecordingAudio release];
+    [recordingLabel release];
     
     [playPauseButton release];
     
@@ -119,7 +120,11 @@
         Audio *anAudio = (Audio*) [arrayOfReplaceableAudios objectAtIndex:0];
         [self loadLyrics:anAudio.lyrics];
     }
-
+    
+    self.recordingLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 450, 300, 50)];
+    [self.recordingLabel setBackgroundColor:[UIColor blackColor]];
+    [self.recordingLabel setTextColor:[UIColor redColor]];
+    [self.view addSubview:recordingLabel];
        
     //Applying autosave here
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(autosaveWhenContextDidChange:) name:NSManagedObjectContextObjectsDidChangeNotification object:context];
@@ -320,6 +325,8 @@
             return;
         }
         
+        [self.recordingLabel setText:@"RECORDING"];
+        
         //if the audiotrack can be replaced, start recording
         [self startCoverAudioRecording:row];
     }
@@ -382,6 +389,8 @@
         //clear values
         currentRecordingAudio = nil;
         currentRecordingURL = nil;
+        
+        [self.recordingLabel setText:@""];
     }
     else //player is neither playing or recording
     {
@@ -490,6 +499,8 @@
     
     currentRecordingAudio = nil;
     currentRecordingURL = nil;
+    
+    [self.recordingLabel setText:@""];
     
     [trackTableView reloadData];
 }
