@@ -275,6 +275,26 @@
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0,0,640,480)];
     
     [self.view addSubview:view];
+    UIImage *image = [[UIImage alloc] initWithContentsOfFile:[NSHomeDirectory() stringByAppendingPathComponent:[@"Documents" stringByAppendingPathComponent:@"coverflow1.png"]]];
+//    //temp only, trying CALayer
+//    UIImageView *view = [[UIImageView alloc] initWithImage:image];
+//    
+//    self.view = view;
+//    
+//
+//    view.frame = CGRectMake(320,0,640,480); // some frame that zooms in on the image;
+//
+//    KensBurner *kensBurner = [[KensBurner alloc] initWithImageView:self.view];
+//    [kensBurner startAnimation];
+//    [UIView beginAnimations:nil context:nil];
+//    [UIView setAnimationDuration:3];
+//    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+    
+//    view.frame = CGRectMake(100.0,100.0,640,480);// original frame
+//    view.center = CGPointMake(0,0);// original centerpoint
+    
+//    [UIView commitAnimations];
+    
 }
 
 - (void) removeFileAtPath: (NSURL*) filePath

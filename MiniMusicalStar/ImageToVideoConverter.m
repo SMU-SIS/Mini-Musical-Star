@@ -9,6 +9,7 @@
 #import "ImageToVideoConverter.h"
 #import "Show.h"
 #import "SceneUtility.h"
+#import "KensBurner.h"
 
 @implementation ImageToVideoConverter
 
@@ -134,19 +135,18 @@
     
     [imagesArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         UIImage *img = (UIImage *)obj;
+        
+        UIImageView *view = [[UIImageView alloc] initWithImage:img];
+        view.frame = CGRectMake(320,0,640,480); // some frame that zooms in on the image;
+        KensBurner *kensBurner = [[KensBurner alloc] initWithImageView:view];
+        [kensBurner startAnimation];
+        img = [self imageFromLayer:view.layer];
         if (adaptor.assetWriterInput.readyForMoreMediaData && !retry) 
         {
             int timeAt = [[sortedTimingsArray objectAtIndex:i] intValue];   
             CMTime presentTime=CMTimeMake(timeAt,1);
             buffer = [self pixelBufferFromCGImage:img.CGImage size:size];
             BOOL pixelBufferResult = [adaptor appendPixelBuffer:buffer withPresentationTime:presentTime];
-            
-//            CALayer *myLayer = [CALayer layer];
-//            myLayer.contents = CGImageRetain(img.CGImage);
-//            myLayer.bounds = CGRectMake(0,0,640.0, 480.0);
-//            myLayer.position = CGPointMake(0,0);
-////            [self.layer addSublayer:myLayer];
-//            [adaptor displayLayer:myLayer];
             
             if (pixelBufferResult == NO)
             {
@@ -170,6 +170,17 @@
     [writerInput markAsFinished];
     [videoWriter endSessionAtSourceTime:CMTimeMake(1000, 1)];
     [videoWriter finishWriting];
+}
++ (UIImage *)imageFromLayer:(CALayer *)layer
+{
+    UIGraphicsBeginImageContext([layer frame].size);
+    
+    [layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *outputImage = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    
+    return outputImage;
 }
 
 +(UIImage *)imageFromText:(NSString *)text
