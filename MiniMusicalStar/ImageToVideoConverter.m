@@ -41,10 +41,10 @@
     CGContextDrawImage(context, CGRectMake(0, 0, CGImageGetWidth(image), 
                                            CGImageGetHeight(image)), image);
     
-    CALayer *myLayer = [CALayer layer];
-    myLayer.bounds = CGRectMake(0,0,640.0, 480.0);
-    myLayer.position = CGPointMake(0,0);
-    [myLayer drawInContext:context];
+//    CALayer *myLayer = [CALayer layer];
+//    myLayer.bounds = CGRectMake(0,0,640.0, 480.0);
+//    myLayer.position = CGPointMake(0,0);
+//    [myLayer drawInContext:context];
 //    [self.layer addSublayer:myLayer];
     
 //    UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
@@ -136,11 +136,12 @@
     [imagesArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         UIImage *img = (UIImage *)obj;
         
-        UIImageView *view = [[UIImageView alloc] initWithImage:img];
-        view.frame = CGRectMake(320,0,640,480); // some frame that zooms in on the image;
-        KensBurner *kensBurner = [[KensBurner alloc] initWithImageView:view];
-        [kensBurner startAnimation];
-        img = [self imageFromLayer:view.layer];
+//        UIImageView *view = [[UIImageView alloc] initWithImage:img];
+//        view.frame = CGRectMake(320,0,640,480); // some frame that zooms in on the image;
+//        KensBurner *kensBurner = [[KensBurner alloc] initWithImageView:view];
+//        [kensBurner startAnimation];
+//        
+//        img = [self imageFromLayer:view.layer];
         if (adaptor.assetWriterInput.readyForMoreMediaData && !retry) 
         {
             int timeAt = [[sortedTimingsArray objectAtIndex:i] intValue];   
