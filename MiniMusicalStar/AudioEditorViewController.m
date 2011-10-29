@@ -20,6 +20,8 @@
 @synthesize currentRecordingURL, currentRecordingAudio, recordingLabel;
 @synthesize playPauseButton;
 @synthesize arrayOfReplaceableAudios;
+@synthesize playButtonImage;
+@synthesize pauseButtonImage;
 
 - (void)dealloc
 {
@@ -42,6 +44,8 @@
     [unmutedImage release];
     [trashbinImage release];
     [showLyricsImage release];
+    [playButtonImage release];
+    [pauseButtonImage release];
     
     [lyricsScrollView release];
     [lyricsLabel release];
@@ -127,6 +131,8 @@
     unmutedImage = [UIImage imageNamed:@"unmuted.png"];
     trashbinImage = [UIImage imageNamed:@"trashbin.png"];
     showLyricsImage = [UIImage imageNamed:@"lyrics_button.png"];
+    playButtonImage = [UIImage imageNamed:@"play.png"];
+    pauseButtonImage = [UIImage imageNamed:@"pause.png"];
     
     //load first replaceable audio's lyrics
     if (arrayOfReplaceableAudios != nil && [arrayOfReplaceableAudios count] != 0) {
@@ -355,7 +361,7 @@
     if (isPlaying == YES && isRecording == NO) { //if the player is playing
         //is playing
         [self.thePlayer stop];
-        [self.playPauseButton setTitle:@"Play" forState:UIControlStateNormal];
+        [self.playPauseButton setImage:playButtonImage forState:UIControlStateNormal];
         
         isPlaying = NO;    
         isRecording = NO;   //to be safe
@@ -375,7 +381,7 @@
                
         [self.thePlayer seekTo:0];
         [self.thePlayer stop];
-        [self.playPauseButton setTitle:@"Play" forState:UIControlStateNormal];
+        [self.playPauseButton setImage:playButtonImage forState:UIControlStateNormal];
         stopButtonPressWhenRecordingWarningHasDisplayed = NO;   //reset
         
         isPlaying = NO;    
@@ -400,7 +406,7 @@
         isRecording = NO;
         
         [self.thePlayer play];
-        [playPauseButton setTitle:@"Stop" forState:UIControlStateNormal];
+        [self.playPauseButton setImage:pauseButtonImage forState:UIControlStateNormal];
     }
     
     [trackTableView reloadData];
@@ -496,7 +502,7 @@
     newCoverSceneAudio.OriginalHash = currentRecordingAudio.hash;
     [self.theCoverScene addAudioObject:newCoverSceneAudio];
 
-    [playPauseButton setTitle:@"Play" forState:UIControlStateNormal];
+    [self.playPauseButton setImage:playButtonImage forState:UIControlStateNormal];
     
     currentRecordingAudio = nil;
     currentRecordingURL = nil;
@@ -650,7 +656,7 @@
     lyricsScrollView.showsHorizontalScrollIndicator = NO;
     lyricsScrollView.showsVerticalScrollIndicator = YES;
     lyricsScrollView.bounces = NO;
-    [lyricsScrollView setBackgroundColor:[UIColor whiteColor]];
+    [lyricsScrollView setBackgroundColor:[UIColor clearColor]];
     
     return lyricsScrollView;
 }
@@ -664,6 +670,8 @@
     [lyricsLabel setFont:[UIFont fontWithName:@"MarkerFelt-Wide" size:24]];
     lyricsLabel.textColor = [UIColor blackColor];
     lyricsLabel.textAlignment =  UITextAlignmentCenter;
+    UIColor *background = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"track.png"]];
+    [self.view setBackgroundColor:background];
     lyricsLabel.backgroundColor = [UIColor whiteColor];
     
     return lyricsLabel;
