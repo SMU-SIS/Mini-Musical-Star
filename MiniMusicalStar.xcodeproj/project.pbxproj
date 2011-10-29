@@ -234,7 +234,6 @@
 		646E4EB414541D3D00F066F6 /* YouTubeUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = 646E4EB314541D3D00F066F6 /* YouTubeUploader.m */; };
 		646E54D114542E0700F066F6 /* libGDataTouchStaticLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 646E54C714542DEB00F066F6 /* libGDataTouchStaticLib.a */; };
 		64985A3B14528E5400485F4D /* sample.mov in Resources */ = {isa = PBXBuildFile; fileRef = 64985A3A14528E5400485F4D /* sample.mov */; };
-		64CF0B81145B1C0400A9BF08 /* templyrics.png in Resources */ = {isa = PBXBuildFile; fileRef = 64CF0B80145B1C0400A9BF08 /* templyrics.png */; };
 		64CF0B94145BA6A800A9BF08 /* facebook_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 64CF0B92145BA6A800A9BF08 /* facebook_32.png */; };
 		64CF0B95145BA6A800A9BF08 /* youtube_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 64CF0B93145BA6A800A9BF08 /* youtube_32.png */; };
 		737716CB1445D61500BF2036 /* ChoiceSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 737716C91445D61500BF2036 /* ChoiceSelectionViewController.m */; };
@@ -980,7 +979,6 @@
 		646E560A14542F7400F066F6 /* GTMOAuth2ViewControllerTouch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMOAuth2ViewControllerTouch.h; sourceTree = "<group>"; };
 		646E560B14542F7400F066F6 /* GTMReadMonitorInputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMReadMonitorInputStream.h; sourceTree = "<group>"; };
 		64985A3A14528E5400485F4D /* sample.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; name = sample.mov; path = Resources/sample.mov; sourceTree = "<group>"; };
-		64CF0B80145B1C0400A9BF08 /* templyrics.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = templyrics.png; sourceTree = "<group>"; };
 		64CF0B92145BA6A800A9BF08 /* facebook_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facebook_32.png; sourceTree = "<group>"; };
 		64CF0B93145BA6A800A9BF08 /* youtube_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = youtube_32.png; sourceTree = "<group>"; };
 		73241EB7145BD13200C67586 /* scroller.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = scroller.png; path = ../scroller.png; sourceTree = "<group>"; };
@@ -1449,7 +1447,6 @@
 			children = (
 				64CF0B92145BA6A800A9BF08 /* facebook_32.png */,
 				64CF0B93145BA6A800A9BF08 /* youtube_32.png */,
-				64CF0B80145B1C0400A9BF08 /* templyrics.png */,
 				641B32DC1441E99500F4A93D /* muted.png */,
 				641B32D71441E98100F4A93D /* trashbin.png */,
 				641B32D81441E98100F4A93D /* unmuted.png */,
@@ -2515,7 +2512,6 @@
 				3AB141FD1457FF3700173EAD /* PropertyRootViewController.xib in Resources */,
 				3AB142021457FF3700173EAD /* libcat_statusbar.png in Resources */,
 				3AB142031457FF3700173EAD /* libcat_statusbar~ipad.png in Resources */,
-				64CF0B81145B1C0400A9BF08 /* templyrics.png in Resources */,
 				64CF0B94145BA6A800A9BF08 /* facebook_32.png in Resources */,
 				64CF0B95145BA6A800A9BF08 /* youtube_32.png in Resources */,
 				3A10EFBD145BEFA4006F8EEC /* menuViewTitleBanner.png in Resources */,
