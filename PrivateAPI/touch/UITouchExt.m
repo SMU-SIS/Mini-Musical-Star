@@ -101,6 +101,7 @@
 }
 -(unsigned int) isWarped {
 //	return _touchFlags._isWarped;
+    return nil;
 }
 -(unsigned int) isDelayed {
 	return _touchFlags._isDelayed;

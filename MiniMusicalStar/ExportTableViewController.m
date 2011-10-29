@@ -294,11 +294,11 @@
     [progressBarLoader invalidate];
     [self.tableView reloadData];
     
-    //temp only, trying CALayer
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0,0,640,480)];
-    
-    [self.view addSubview:view];
-    UIImage *image = [[UIImage alloc] initWithContentsOfFile:[NSHomeDirectory() stringByAppendingPathComponent:[@"Documents" stringByAppendingPathComponent:@"coverflow1.png"]]];
+//    //temp only, trying CALayer
+//    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0,0,640,480)];
+//    
+//    [self.view addSubview:view];
+//    UIImage *image = [[UIImage alloc] initWithContentsOfFile:[NSHomeDirectory() stringByAppendingPathComponent:[@"Documents" stringByAppendingPathComponent:@"coverflow1.png"]]];
 //    //temp only, trying CALayer
 //    UIImageView *view = [[UIImageView alloc] initWithImage:image];
 //    
