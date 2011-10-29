@@ -29,6 +29,8 @@
 @property (nonatomic, retain) UIBarButtonItem *uploadBarButtonItem;
 @property (nonatomic, retain) FacebookUploader *mmsFacebook;
 @property (retain, nonatomic) NSMutableArray *tempMusicalContainer;
+@property (retain, nonatomic) UIImage *facebookUploadImage;
+@property (retain, nonatomic) UIImage *youtubeUploadImage;
 
 - (id)initWithStyle:(UITableViewStyle)style:(Show*)theShow:(Cover*)cover;
 - (void)uploadToFacebook;
