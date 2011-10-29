@@ -27,6 +27,7 @@
 - (void)removeScenesObject:(CoverScene *)value;
 - (void)addScenes:(NSSet *)values;
 - (void)removeScenes:(NSSet *)values;
+- (CoverScene *)coverSceneForSceneHash:(NSString *)sceneHash;
 
 - (void)purgeRelatedFiles;
 

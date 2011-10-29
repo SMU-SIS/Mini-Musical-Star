@@ -18,7 +18,6 @@
 @implementation MenuViewController
 @synthesize managedObjectContext, scrollView, buttonArray, showDAO;
 
-
 - (void)dealloc
 {
     [managedObjectContext release];
@@ -51,6 +50,10 @@
     
     //hide the navigation bar
     self.navigationController.navigationBarHidden = YES;
+    
+    //load background    
+    UIColor *background = [[UIColor alloc] initWithPatternImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"menuViewTitleBanner" ofType:@"png"]]];
+    [self.view setBackgroundColor:background];
     
     //load the shows on the local disk
     self.showDAO = [[ShowDAO alloc] initWithDelegate:self];

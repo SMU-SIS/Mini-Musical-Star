@@ -12,7 +12,6 @@
 #import "GDataEntryPhoto.h"
 #import "GDataFeedPhoto.h"
 #import "GDataEntryYouTubeUpload.h"
-
 #import "GDataYouTubeConstants.h"
 
 @interface YouTubeUploader (PrivateMethods)
@@ -52,11 +51,23 @@
 //- (void)fetchStandardCategories;
 @end
 
-
 @implementation YouTubeUploader
 
-- (void)uploadVideoFile {
-    
+@synthesize username;
+@synthesize password;
+
+- (void)dealloc
+{
+    [username release];
+    [password release];
+    [super dealloc];
+}
+
+- (void)uploadWithProperties:(NSURL*)aVideoNSURL title:(NSString*)aTitle desription:(NSString*)aDescription {
+    if (self.username == nil && self.password == nil) {
+        self.username = @"giantmusicalstar@gmail.com";
+        self.password = @"thebiggiant";
+    }
     
     NSString *devKey = @"AI39si6jvKKhixI_WBcgVtGeWafmfxyzawb2Cfq44TXRRdAZB35iLmb-g_toRr11oXoXMFAhiYLRGjz4FNLsmxNpz21KZyo1-w";
     
@@ -66,25 +77,24 @@
     NSURL *url = [GDataServiceGoogleYouTube youTubeUploadURLForUserID:kGDataServiceDefaultUser];
     
     // load the file data
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"sample" ofType:@"mov"];
+    NSString *path = [aVideoNSURL path];
     NSFileHandle *fileHandle = [NSFileHandle fileHandleForReadingAtPath:path];
     NSString *filename = [path lastPathComponent];
     
     // gather all the metadata needed for the mediaGroup
-    NSString *titleStr = @"mms test";
+    NSString *titleStr = aTitle;
     GDataMediaTitle *title = [GDataMediaTitle textConstructWithString:titleStr];
     
     NSString *categoryStr = @"Education";
     GDataMediaCategory *category = [GDataMediaCategory mediaCategoryWithString:categoryStr];
     [category setScheme:kGDataSchemeYouTubeCategory];
     
-    NSString *descStr = @"mms uploaded video";
+    NSString *descStr = aDescription;
     GDataMediaDescription *desc = [GDataMediaDescription textConstructWithString:descStr];
     
-    NSString *keywordsStr = @"mini musical star";
+    NSString *keywordsStr = @"mini musical star ios ipad";
     GDataMediaKeywords *keywords = [GDataMediaKeywords keywordsWithString:keywordsStr];
     
-    //BOOL isPrivate = ([mPrivateCheckbox state] == NSOnState);
     BOOL isPrivate = NO;
     
     GDataYouTubeMediaGroup *mediaGroup = [GDataYouTubeMediaGroup mediaGroup];
@@ -158,14 +168,13 @@
     NSString *devKey = @"AI39si6jvKKhixI_WBcgVtGeWafmfxyzawb2Cfq44TXRRdAZB35iLmb";
     [service setYouTubeDeveloperKey:devKey];
     [service setUserAgent:@"Mini Musical Star"];
-    [service setUserCredentialsWithUsername:@"giantmusicalstar@gmail.com" password:@"thebiggiant"];
+    [service setUserCredentialsWithUsername:self.username password:self.password];
     
     return service;
 }
 
-
-
 #pragma mark -
+
 // upload callback
 - (void)uploadTicket:(GDataServiceTicket *)ticket
    finishedWithEntry:(GDataEntryYouTubeVideo *)videoEntry
@@ -195,6 +204,12 @@
 - (void)setUploadTicket:(GDataServiceTicket *)ticket {
     [mUploadTicket release];
     mUploadTicket = [ticket retain];
+}
+
+#pragma mark instance methods
+- (void)setUserCredentials:(NSString*)aUsername password:(NSString*)aPassword {
+    self.username = aUsername;
+    self.password = aPassword;
 }
 
 @end

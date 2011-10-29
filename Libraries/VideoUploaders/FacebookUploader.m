@@ -23,7 +23,7 @@
         facebook = [[Facebook alloc] initWithAppId:@"185884178157618" andDelegate:self];
         
         MiniMusicalStarAppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
-        [appDelegate setFacebook:facebook];
+        appDelegate.facebook = self.facebook;
     }
     
     return self;
@@ -39,20 +39,7 @@
     [super dealloc];
 }
 
-//to be deleted in future
-- (void)uploadToFacebook
-{
-    self.videoTitle = @"Uploaded from Mini Musical Star!";
-    self.videoDescription = @"Uploaded from Mini Musical Star";
-    
-    NSArray* permissions = [[NSArray alloc] initWithObjects:
-                            @"publish_stream", nil];
-    [facebook authorize:permissions];
-    [permissions release];
-}
-
-//to be used in future
-- (void)uploadVideoWithProperties:(NSURL*)aVideoNSURL title:(NSString*)aTitle desription:(NSString*)aDescription
+- (void)uploadWithProperties:(NSURL*)aVideoNSURL title:(NSString*)aTitle desription:(NSString*)aDescription
 {
     self.videoNSURL = aVideoNSURL;
     self.videoTitle = aTitle;
@@ -67,8 +54,8 @@
 #pragma mark - FBSession delegate methods
 
 - (void)fbDidLogin {
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"sample" ofType:@"mov"];
-    //NSString *filePath = [videoNSURL path];
+    NSString *filePath = [videoNSURL path];
+
     NSData *videoData = [NSData dataWithContentsOfFile:filePath];
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                    videoData, @"video.mov",

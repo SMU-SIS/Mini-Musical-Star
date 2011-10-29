@@ -17,6 +17,7 @@
 #import "YouTubeUploader.h"
 #import "ImageToVideoConverter.h"
 #import "MiniMusicalStarUtilities.h"
+#import "ExportedAsset.h"
 
 @implementation ExportTableViewController
 
@@ -26,26 +27,35 @@
 @synthesize timer;
 @synthesize musicalArray;
 @synthesize scenesArray;
-@synthesize exportedFilesArray;
+@synthesize exportedAssetsArray;
 @synthesize uploadBarButtonItem;
-@synthesize mmsFacebook;
 @synthesize tempMusicalContainer;
+@synthesize facebookUploadImage;
+@synthesize youtubeUploadImage;
+@synthesize facebookUploader;
+@synthesize youTubeUploader;
+@synthesize context;
 
 -(void)dealloc
 {
     [tempMusicalContainer release];
     [musicalArray release];
     [scenesArray release];
-    [exportedFilesArray release];
+    [exportedAssetsArray release];
     [timer release];
     [theSceneUtility release];
     [theShow release];
-    [mmsFacebook release];
+    [context release];
+    [facebookUploadImage release];
+    [youtubeUploadImage release];
+    [facebookUploader release];
+    [youTubeUploader release];
+    
     [super dealloc];
 }
 
 
-- (id)initWithStyle:(UITableViewStyle)style:(Show*)show:(Cover*)cover
+- (id)initWithStyle:(UITableViewStyle)style:(Show*)show:(Cover*)cover context:(NSManagedObjectContext *)aContext
 {
     self = [super initWithStyle:style];
     if (self) {
@@ -53,8 +63,9 @@
         self.theCover = cover;
         self.musicalArray = [NSArray arrayWithObject:show];
         self.scenesArray = [show.scenes allValues];
-        self.exportedFilesArray = [[NSMutableArray alloc] initWithCapacity:0];
+        self.exportedAssetsArray = [[NSMutableArray alloc] initWithCapacity:0];
         self.tempMusicalContainer = [[NSMutableArray alloc] init];
+        self.context = aContext;
         [self prepareMusicalNotification];
     }
     return self;
@@ -143,18 +154,8 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    //following codes is for testing uploading, they will be removed
-    uploadBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Upload" style:UIBarButtonItemStylePlain target:self action:@selector(uploadToFacebook)];          
-    self.navigationItem.rightBarButtonItem = uploadBarButtonItem;
-}
-
-- (void)uploadToFacebook
-{
-//    FacebookUploader *facebookUploader = [[[FacebookUploader alloc] init] autorelease];
-//    [facebookUploader uploadToFacebook];
-    
-    YouTubeUploader *youtubeUploader = [[[YouTubeUploader alloc] init] autorelease];
-    [youtubeUploader uploadVideoFile];
+    facebookUploadImage = [UIImage imageNamed:@"facebook_32.png"];
+    youtubeUploadImage = [UIImage imageNamed:@"youtube_32.png"];
 }
 
 - (void)viewDidUnload
@@ -252,7 +253,18 @@
 - (void) exportCompleted: (NSURL*) videoFileURL: (NSURL*) creditsFileURL: (NSURL*) outputFileURL: (UIProgressView*) prog: (NSTimer*) progressBarLoader: (NSString*) state
 {
     if ([state isEqualToString: @"scene only"]){
-        [self.exportedFilesArray addObject:outputFileURL];
+        //save the URL into a new model
+        ExportedAsset *newAsset = [NSEntityDescription insertNewObjectForEntityForName:@"ExportedAsset" inManagedObjectContext:self.context];
+        newAsset.isFullShow = NO;
+        newAsset.exportPath = [outputFileURL absoluteString];
+        newAsset.title = @"Your Exported Scene";
+        newAsset.originalHash = @"The hash of the original scene that you exported from";
+        newAsset.exportHash = @"Use some kind of unique hash down here";
+        
+        [self.context save:nil];
+        
+        [self.exportedAssetsArray addObject:newAsset];
+        
         [self removeFileAtPath:videoFileURL];
         [self removeFileAtPath:creditsFileURL];
     }else if ([state isEqualToString: @"scenes for musical"]){
@@ -260,7 +272,18 @@
         [self allScenesExportedNotificationSender];
         [self removeFileAtPath:videoFileURL];
     }else if ([state isEqualToString: @"musical appending"]){
-        [self.exportedFilesArray addObject:outputFileURL];
+        //save the URL into a new model
+        ExportedAsset *newAsset = [NSEntityDescription insertNewObjectForEntityForName:@"ExportedAsset" inManagedObjectContext:self.context];
+        newAsset.isFullShow = YES;
+        newAsset.exportPath = [outputFileURL absoluteString];
+        newAsset.title = @"Your Exported Musical";
+        newAsset.originalHash = @"The hash of the original scene that you exported from";
+        newAsset.exportHash = @"Use some kind of unique hash down here";
+        
+        [self.context save:nil];
+        
+        [self.exportedAssetsArray addObject:newAsset];
+        
         [tempMusicalContainer enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             [self removeFileAtPath:obj];
         }];
@@ -401,7 +424,7 @@
     }else if (section == 1){
         return [scenesArray count];
     }else if(section == 2){
-        return [exportedFilesArray count];
+        return [exportedAssetsArray count];
     }
     return 0;
 }
@@ -409,10 +432,29 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
+    UIButton *facebookUploadButton;
+    UIButton *youtubeUploadButton;
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        
+        cell.textLabel.backgroundColor = [UIColor clearColor];
+        
+        facebookUploadButton = [[UIButton alloc] initWithFrame:CGRectMake(800, 25, 32, 32)];
+        [cell.contentView addSubview:facebookUploadButton];
+        facebookUploadButton.tag = 1;
+        [facebookUploadButton release];
+        
+        youtubeUploadButton = [[UIButton alloc] initWithFrame:CGRectMake(850, 25, 32, 32)];
+        [cell.contentView addSubview:youtubeUploadButton];
+        youtubeUploadButton.tag = 2;
+        [youtubeUploadButton release];
+        
+        [facebookUploadButton addTarget:self action:@selector(facebookUploadButtonIsPressed:) 
+                      forControlEvents:UIControlEventTouchDown];
+        [youtubeUploadButton addTarget:self action:@selector(youtubeUploadButtonIsPressed:) 
+                      forControlEvents:UIControlEventTouchDown];
     }
     
     // Configure the cell...
@@ -420,14 +462,19 @@
         Show *show = [musicalArray objectAtIndex:0];
         cell.imageView.image = show.coverPicture;
         cell.textLabel.text = show.title;
-        return cell;
+        
     }else if(indexPath.section ==1){
         Scene *scene = [scenesArray objectAtIndex:indexPath.row];
         cell.imageView.image = scene.coverPicture;
         cell.textLabel.text = scene.title;
-        return cell;
+        
     }else{
-        cell.textLabel.text = [[exportedFilesArray objectAtIndex:indexPath.row] absoluteString];
+        //use the ExportedAsset model here
+        ExportedAsset *theAsset = [exportedAssetsArray objectAtIndex:indexPath.row];
+        cell.textLabel.text =  theAsset.title;
+        
+        //cell.textLabel.backgroundColor = [UIColor whiteColor];
+        
         /*
          Instructions for use:
          
@@ -442,9 +489,16 @@
          //handle the saving error
          }
          */
-        return cell;
+        
+        facebookUploadButton = (UIButton*)[cell.contentView viewWithTag:1];
+        youtubeUploadButton = (UIButton*)[cell.contentView  viewWithTag:2];
+        [facebookUploadButton setImage:facebookUploadImage forState:UIControlStateNormal];
+        [youtubeUploadButton setImage:youtubeUploadImage forState:UIControlStateNormal];
     }
-
+    
+    return cell;
+    
+    
 }
 
 /*
@@ -527,7 +581,7 @@
         [self exportScene :selectedScene:selectedCoverScene:indexPath];
     }else if(indexPath.section == 2){
 //        UITableViewCell *cell = (UITableViewCell *)[(UITableView *)self.view cellForRowAtIndexPath:indexPath];
-        NSURL *fileURL = [exportedFilesArray objectAtIndex:indexPath.row];
+        NSURL *fileURL = [exportedAssetsArray objectAtIndex:indexPath.row];
         [self playMovie:fileURL];
     }
     
@@ -573,6 +627,30 @@
     [moviePlayer release];
 }
 
+#pragma mark - IBAction events
 
+- (void)facebookUploadButtonIsPressed:(UIButton*)sender
+{
+    ExportedAsset *selectedAsset = (ExportedAsset*)[exportedAssetsArray objectAtIndex:[self getTableViewRow:sender]];
+    facebookUploader = [[FacebookUploader alloc] init];
+    NSURL *url = [NSURL URLWithString:selectedAsset.exportPath];
+    [facebookUploader uploadWithProperties:url title:@"Uploaded with Mini Musical Star" desription:@""];
+}
+
+- (void)youtubeUploadButtonIsPressed:(UIButton*)sender
+{
+    ExportedAsset *selectedAsset = (ExportedAsset*)[exportedAssetsArray objectAtIndex:[self getTableViewRow:sender]];
+    youTubeUploader = [[YouTubeUploader alloc] init];
+    NSURL *url = [NSURL URLWithString:selectedAsset.exportPath];
+    [youTubeUploader uploadWithProperties:url title:@"Uploaded with Mini Musical Star" desription:@""];
+}
+
+- (int)getTableViewRow:(UIButton*)sender
+{
+    UITableViewCell *cell = (UITableViewCell*)sender.superview.superview;
+    UITableView *table = (UITableView*)cell.superview;
+    NSIndexPath *indexPath = [table indexPathForCell:cell];
+    return [indexPath row];
+}
 
 @end

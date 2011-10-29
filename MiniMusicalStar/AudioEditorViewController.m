@@ -80,6 +80,12 @@
         self.context = aContext;
         self.playPauseButton = aPlayPauseButton;
         
+//        [self.titleBanner setImage:];
+//        UIImageView *clipBoardImage = [[UIImageView alloc] initWithImage:];
+        UIColor *background = [[UIColor alloc] initWithPatternImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"softboard" ofType:@"png"]]];
+        [self.view setBackgroundColor:background];
+        
+        
         isPlaying = NO;
         isRecording = NO;
         
@@ -102,9 +108,9 @@
     //KVO the Audio NSSet
     [self.theCoverScene addObserver:self forKeyPath:@"Audio" options:0 context:@"NewCoverTrackAdded"];
     
-    self.view.backgroundColor = [UIColor blackColor];
+//    self.view.backgroundColor = [UIColor clearColor];
     
-    trackTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 100, 500, 300) style:UITableViewStylePlain];
+    trackTableView = [[UITableView alloc] initWithFrame:CGRectMake(30, 100, 450, 300) style:UITableViewStylePlain];
     
     trackTableView.delegate = self;
     trackTableView.tag = 0;
@@ -129,7 +135,7 @@
     }
     
     self.recordingLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 450, 300, 50)];
-    [self.recordingLabel setBackgroundColor:[UIColor blackColor]];
+    [self.recordingLabel setBackgroundColor:[UIColor clearColor]];
     [self.recordingLabel setTextColor:[UIColor redColor]];
     [self.view addSubview:recordingLabel];
        
@@ -177,7 +183,7 @@
     return self.theScene.audioTracks.count + self.theCoverScene.Audio.count;
 }
 
-#define TRACK_CELL_WIDTH 500
+#define TRACK_CELL_WIDTH 450
 #define TRACK_CELL_HEIGHT 100
 #define TRACK_CELL_RIGHT 350    //500-150
 
@@ -227,6 +233,13 @@
         [cell.contentView addSubview:showLyricsButton];
         showLyricsButton.tag = 4;
         [showLyricsButton release];
+        
+        [recordOrTrashButton addTarget:self action:@selector(recordOrTrashButtonIsPressed:) 
+                      forControlEvents:UIControlEventTouchDown];
+        [muteOrUnmuteButton addTarget:self action:@selector(muteOrUnmuteButtonIsPressed:) 
+                     forControlEvents:UIControlEventTouchDown];
+        [showLyricsButton addTarget:self action:@selector(showLyricsButtonIsPressed:) 
+                   forControlEvents:UIControlEventTouchDown];
     }
     
     //start configuring...
@@ -263,13 +276,6 @@
         }
     }
     
-    [recordOrTrashButton addTarget:self action:@selector(recordOrTrashButtonIsPressed:) 
-                  forControlEvents:UIControlEventTouchDown];
-    [muteOrUnmuteButton addTarget:self action:@selector(muteOrUnmuteButtonIsPressed:) 
-                  forControlEvents:UIControlEventTouchDown];
-    [showLyricsButton addTarget:self action:@selector(showLyricsButtonIsPressed:) 
-               forControlEvents:UIControlEventTouchDown];
-
     return cell;
 }
 
@@ -283,12 +289,7 @@
 
 - (void)muteOrUnmuteButtonIsPressed:(UIButton *)sender
 {    
-    UIButton *muteOrUnmuteButton = (UIButton*)sender;
-    UITableViewCell *trackCell = (UITableViewCell*) muteOrUnmuteButton.superview.superview;
-    UITableView *tableView = (UITableView*)[trackCell superview];
-    NSIndexPath *indexPath = [tableView indexPathForCell:trackCell];
-    
-    int busNumber = indexPath.row;
+    int busNumber = [self getTableViewRow:sender];
     
     if ([thePlayer busNumberIsMuted:busNumber]) {
         [thePlayer unmuteBusNumber:busNumber]; 
@@ -309,12 +310,8 @@
         [recordButtonHitWhenRecordingAlert release];
         return;
     }
-
-    UIButton *recordOrTrashButton = (UIButton *)sender;
-    UITableViewCell *trackCell = (UITableViewCell*)recordOrTrashButton.superview.superview;
-    UITableView *tableView = (UITableView*)[trackCell superview];
-    NSIndexPath *indexPath = [tableView indexPathForCell:trackCell];
-    row = indexPath.row;
+    
+    row = [self getTableViewRow:sender];
     
      //get the corresponding Audio object
     id audioForRow = [tracksForView objectAtIndex:row];
@@ -342,11 +339,7 @@
 
 - (void)showLyricsButtonIsPressed:(UIButton*)sender
 {
-    UIButton *recordOrTrashButton = (UIButton *)sender;
-    UITableViewCell *trackCell = (UITableViewCell*)recordOrTrashButton.superview.superview;
-    UITableView *tableView = (UITableView*)[trackCell superview];
-    NSIndexPath *indexPath = [tableView indexPathForCell:trackCell];
-    int row = indexPath.row;
+    int row = [self getTableViewRow:sender];
     
     //get the corresponding Audio object
     id audioForRow = [tracksForView objectAtIndex:row];
@@ -528,6 +521,14 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+- (int)getTableViewRow:(UIButton*)sender
+{
+    UITableViewCell *trackCell = (UITableViewCell*)sender.superview.superview;
+    UITableView *tableView = (UITableView*)[trackCell superview];
+    NSIndexPath *indexPath = [tableView indexPathForCell:trackCell];
+    return indexPath.row;
+}
+
 #pragma mark - instance methods for the audio and coveraudio arrays
 
 - (NSArray*)getExportAudioURLs
@@ -605,22 +606,31 @@
 #pragma mark - instance methods for gui
 
 /* constants related to displaying lyrics */
-#define LYRICS_VIEW_WIDTH 1024-500 //the entire width of the landscape screen
-#define LYRICS_VIEW_HEIGHT 580-44
+#define LYRICS_VIEW_WIDTH 1024-570 //the entire width of the landscape screen
+#define LYRICS_VIEW_HEIGHT 580-70
 #define LYRICS_VIEW_X 500
-#define LYRICS_VIEW_Y 0
+#define LYRICS_VIEW_Y 20
 
 - (void) drawLyricsView
 {
     [self createLyricsScrollView];
     [self createLyricsLabel];
     
-    [lyricsScrollView addSubview:lyricsLabel];
+    //[lyricsScrollView addSubview:lyricsLabel];
     [self.view addSubview:lyricsScrollView];
 }
 
 - (void)loadLyrics:(NSString*)someLyrics
 {
+    if (lyricsLabel != nil) {
+        [lyricsLabel removeFromSuperview];
+        [lyricsLabel release];
+    }
+    
+    [self createLyricsLabel];
+    [lyricsScrollView addSubview:lyricsLabel];
+    
+    
     CGRect lyricsLabelFrame = lyricsLabel.bounds; //get the CGRect representing the bounds of the UILabel
     
     lyricsLabelFrame.size = [someLyrics sizeWithFont:lyricsLabel.font constrainedToSize:CGSizeMake(LYRICS_VIEW_WIDTH-20, 100000) lineBreakMode:lyricsLabel.lineBreakMode]; //get a CGRect for dynamically resizing the label based on the text.
@@ -640,7 +650,7 @@
     lyricsScrollView.showsHorizontalScrollIndicator = NO;
     lyricsScrollView.showsVerticalScrollIndicator = YES;
     lyricsScrollView.bounces = NO;
-    [lyricsScrollView setBackgroundColor:[UIColor blackColor]];
+    [lyricsScrollView setBackgroundColor:[UIColor whiteColor]];
     
     return lyricsScrollView;
 }
@@ -652,9 +662,9 @@
     lyricsLabel.lineBreakMode = UILineBreakModeWordWrap; //line break, word wrap
 	lyricsLabel.numberOfLines = 0; //0 - dynamic ngit umber of lines
     [lyricsLabel setFont:[UIFont fontWithName:@"MarkerFelt-Wide" size:24]];
-    lyricsLabel.textColor = [UIColor whiteColor];
+    lyricsLabel.textColor = [UIColor blackColor];
     lyricsLabel.textAlignment =  UITextAlignmentCenter;
-    lyricsLabel.backgroundColor = [UIColor blackColor];
+    lyricsLabel.backgroundColor = [UIColor whiteColor];
     
     return lyricsLabel;
 }

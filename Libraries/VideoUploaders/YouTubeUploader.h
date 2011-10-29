@@ -15,10 +15,12 @@
     GDataServiceTicket *mUploadTicket;
 }
 
+@property (nonatomic, retain) NSString *username;
+@property (nonatomic, retain) NSString *password;
+
 - (GDataServiceGoogleYouTube *)youTubeService;
-
 - (void)setUploadTicket:(GDataServiceTicket *)ticket;
-
-- (void)uploadVideoFile;
+- (void)uploadWithProperties:(NSURL*)aVideoNSURL title:(NSString*)aTitle desription:(NSString*)aDescription;
+- (void)setUserCredentials:(NSString*)aUsername password:(NSString*)aPassword;
 
 @end

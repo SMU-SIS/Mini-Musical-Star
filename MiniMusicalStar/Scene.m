@@ -32,9 +32,12 @@
         // Initialization code here.
         self.hash = aHash;
         self.title = [dictionary objectForKey:@"title"];
-        self.coverPicture = [[UIImage alloc] initWithContentsOfFile:[assetPath stringByAppendingString:[dictionary objectForKey:@"cover-picture"]]];
-        self.description = [dictionary objectForKey:@"description"];
         
+        NSString *picturePath = [assetPath stringByAppendingPathComponent:[dictionary objectForKey:@"cover-picture"]];
+        self.coverPicture = [[UIImage alloc] initWithContentsOfFile:picturePath];
+        
+        self.description = [dictionary objectForKey:@"description"];
+        NSLog(@"%@", self.coverPicture);
         //init the audio stuff here
         NSMutableDictionary *plistAudioDict = [dictionary objectForKey:@"audio"];
         self.audioDict = [NSMutableDictionary dictionaryWithCapacity:[plistAudioDict count]];
@@ -132,13 +135,15 @@
 - (UIImage *)coverPicture
 {
     
-    if (coverPicture)
+    if (coverPicture != nil)
     {
+        NSLog(@"here!");
         return coverPicture;
     }
     
     else
     {
+        NSLog(@"hereandthere!");
         NSString *placeholderSceneImage = [[NSBundle mainBundle] pathForResource:@"scene_placeholder" ofType:@"png"];
         return [[[UIImage alloc] initWithContentsOfFile:placeholderSceneImage] autorelease];
     }

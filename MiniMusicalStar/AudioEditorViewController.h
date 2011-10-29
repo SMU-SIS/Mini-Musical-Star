@@ -65,6 +65,7 @@
 - (void)giveMePlayPauseButton:(UIButton*)aButton;
 - (void)registerNotifications;
 - (void)deRegisterFromNSNotifcationCenter;
+- (int)getTableViewRow:(UIButton*)sender;
 
 //instance methods for the audio and coveraudio arrays
 - (NSArray*)getExportAudioURLs;
