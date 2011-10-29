@@ -27,7 +27,7 @@
 
 @property (retain, nonatomic) NSArray *musicalArray;
 @property (retain, nonatomic) NSArray *scenesArray;
-@property (retain, nonatomic) NSMutableArray *exportedFilesArray;
+@property (retain, nonatomic) NSMutableArray *exportedAssetsArray;
 @property (retain, nonatomic) NSMutableArray *exportedFileNamesArray;
 @property (retain, nonatomic) Show *theShow;
 @property (retain, nonatomic) Cover *theCover;
@@ -38,8 +38,9 @@
 @property (retain, nonatomic) NSMutableArray *tempMusicalContainer;
 @property (retain, nonatomic) UIImage *facebookUploadImage;
 @property (retain, nonatomic) UIImage *youtubeUploadImage;
+@property (retain, nonatomic) NSManagedObjectContext *context;
 
-- (id)initWithStyle:(UITableViewStyle)style:(Show*)theShow:(Cover*)cover;
+- (id)initWithStyle:(UITableViewStyle)style:(Show*)show:(Cover*)cover context:(NSManagedObjectContext *)aContext;
 - (void) generateMusical;
 - (void) prepareMusicalNotification;
 - (void)uploadToFacebook;

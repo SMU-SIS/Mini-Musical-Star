@@ -17,6 +17,7 @@
 #import "YouTubeUploader.h"
 #import "ImageToVideoConverter.h"
 #import "MiniMusicalStarUtilities.h"
+#import "ExportedAsset.h"
 
 @implementation ExportTableViewController
 
@@ -26,24 +27,25 @@
 @synthesize timer;
 @synthesize musicalArray;
 @synthesize scenesArray;
-@synthesize exportedFilesArray;
+@synthesize exportedAssetsArray;
 @synthesize uploadBarButtonItem;
 @synthesize mmsFacebook;
 @synthesize tempMusicalContainer;
 @synthesize facebookUploadImage;
 @synthesize youtubeUploadImage;
+@synthesize context;
 
 -(void)dealloc
 {
     [tempMusicalContainer release];
     [musicalArray release];
     [scenesArray release];
-    [exportedFilesArray release];
+    [exportedAssetsArray release];
     [timer release];
     [theSceneUtility release];
     [theShow release];
     [mmsFacebook release];
-    
+    [context release];
     [facebookUploadImage release];
     [youtubeUploadImage release];
     
@@ -51,7 +53,7 @@
 }
 
 
-- (id)initWithStyle:(UITableViewStyle)style:(Show*)show:(Cover*)cover
+- (id)initWithStyle:(UITableViewStyle)style:(Show*)show:(Cover*)cover context:(NSManagedObjectContext *)aContext
 {
     self = [super initWithStyle:style];
     if (self) {
@@ -59,8 +61,9 @@
         self.theCover = cover;
         self.musicalArray = [NSArray arrayWithObject:show];
         self.scenesArray = [show.scenes allValues];
-        self.exportedFilesArray = [[NSMutableArray alloc] initWithCapacity:0];
+        self.exportedAssetsArray = [[NSMutableArray alloc] initWithCapacity:0];
         self.tempMusicalContainer = [[NSMutableArray alloc] init];
+        self.context = aContext;
         [self prepareMusicalNotification];
     }
     return self;
@@ -261,7 +264,18 @@
 - (void) exportCompleted: (NSURL*) videoFileURL: (NSURL*) creditsFileURL: (NSURL*) outputFileURL: (UIProgressView*) prog: (NSTimer*) progressBarLoader: (NSString*) state
 {
     if ([state isEqualToString: @"scene only"]){
-        [self.exportedFilesArray addObject:outputFileURL];
+        //save the URL into a new model
+        ExportedAsset *newAsset = [NSEntityDescription insertNewObjectForEntityForName:@"ExportedAsset" inManagedObjectContext:self.context];
+        newAsset.isFullShow = NO;
+        newAsset.exportPath = [outputFileURL absoluteString];
+        newAsset.title = @"Your Exported Scene";
+        newAsset.originalHash = @"The hash of the original scene that you exported from";
+        newAsset.exportHash = @"Use some kind of unique hash down here";
+        
+        [self.context save:nil];
+        
+        [self.exportedAssetsArray addObject:newAsset];
+        
         [self removeFileAtPath:videoFileURL];
         [self removeFileAtPath:creditsFileURL];
     }else if ([state isEqualToString: @"scenes for musical"]){
@@ -269,7 +283,18 @@
         [self allScenesExportedNotificationSender];
         [self removeFileAtPath:videoFileURL];
     }else if ([state isEqualToString: @"musical appending"]){
-        [self.exportedFilesArray addObject:outputFileURL];
+        //save the URL into a new model
+        ExportedAsset *newAsset = [NSEntityDescription insertNewObjectForEntityForName:@"ExportedAsset" inManagedObjectContext:self.context];
+        newAsset.isFullShow = YES;
+        newAsset.exportPath = [outputFileURL absoluteString];
+        newAsset.title = @"Your Exported Musical";
+        newAsset.originalHash = @"The hash of the original scene that you exported from";
+        newAsset.exportHash = @"Use some kind of unique hash down here";
+        
+        [self.context save:nil];
+        
+        [self.exportedAssetsArray addObject:newAsset];
+        
         [tempMusicalContainer enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             [self removeFileAtPath:obj];
         }];
@@ -410,7 +435,7 @@
     }else if (section == 1){
         return [scenesArray count];
     }else if(section == 2){
-        return [exportedFilesArray count];
+        return [exportedAssetsArray count];
     }
     return 0;
 }
@@ -453,7 +478,9 @@
         cell.textLabel.text = scene.title;
         
     }else{
-        cell.textLabel.text = [[exportedFilesArray objectAtIndex:indexPath.row] absoluteString];
+        //use the ExportedAsset model here
+        ExportedAsset *theAsset = [exportedAssetsArray objectAtIndex:indexPath.row];
+        cell.textLabel.text =  theAsset.title;
         
         //cell.textLabel.backgroundColor = [UIColor whiteColor];
         
@@ -564,7 +591,7 @@
         [self exportScene :selectedScene:selectedCoverScene:indexPath];
     }else if(indexPath.section == 2){
 //        UITableViewCell *cell = (UITableViewCell *)[(UITableView *)self.view cellForRowAtIndexPath:indexPath];
-        NSURL *fileURL = [exportedFilesArray objectAtIndex:indexPath.row];
+        NSURL *fileURL = [exportedAssetsArray objectAtIndex:indexPath.row];
         [self playMovie:fileURL];
     }
     
