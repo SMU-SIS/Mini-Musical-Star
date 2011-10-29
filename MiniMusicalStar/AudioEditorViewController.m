@@ -214,11 +214,11 @@
         [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
         
         //label for track name
-        trackNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 10, 300, 30)];
+        trackNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 40, 300, 30)];
         trackNameLabel.backgroundColor = [UIColor whiteColor];
         trackNameLabel.textColor = [UIColor blackColor];
         trackNameLabel.textAlignment =  UITextAlignmentCenter;
-        [trackNameLabel setFont:[UIFont fontWithName:@"GillSans-Bold" size:18]];
+        [trackNameLabel setFont:[UIFont fontWithName:@"GillSans-Bold" size:30]];
         [cell.contentView addSubview:trackNameLabel];
         trackNameLabel.tag = 1;
         [trackNameLabel release];
