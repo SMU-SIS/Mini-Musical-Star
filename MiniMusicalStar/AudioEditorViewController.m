@@ -17,11 +17,12 @@
 @synthesize tracksForView, tracksForViewNSURL;
 @synthesize trackTableView, recordImage, mutedImage, unmutedImage, trashbinImage, showLyricsImage;
 @synthesize lyricsScrollView, lyricsLabel;
-@synthesize currentRecordingURL, currentRecordingAudio, recordingLabel;
+@synthesize currentRecordingURL, currentRecordingAudio;
 @synthesize playPauseButton;
 @synthesize arrayOfReplaceableAudios;
 @synthesize playButtonImage;
 @synthesize pauseButtonImage;
+@synthesize recordingImage;
 
 - (void)dealloc
 {
@@ -52,7 +53,6 @@
     
     [currentRecordingURL release];
     [currentRecordingAudio release];
-    [recordingLabel release];
     
     [playPauseButton release];
     
@@ -92,6 +92,8 @@
         
         isPlaying = NO;
         isRecording = NO;
+        
+        currentRecordingIndex = -1;
         
         tracksForView = [[NSMutableArray alloc] initWithCapacity:1];
         tracksForViewNSURL = [[NSMutableArray alloc] initWithCapacity:1];
@@ -133,17 +135,13 @@
     showLyricsImage = [UIImage imageNamed:@"lyrics_button.png"];
     playButtonImage = [UIImage imageNamed:@"play.png"];
     pauseButtonImage = [UIImage imageNamed:@"pause.png"];
+    recordingImage = [UIImage imageNamed:@"recording.png"];
     
     //load first replaceable audio's lyrics
     if (arrayOfReplaceableAudios != nil && [arrayOfReplaceableAudios count] != 0) {
         Audio *anAudio = (Audio*) [arrayOfReplaceableAudios objectAtIndex:0];
         [self loadLyrics:anAudio.lyrics];
     }
-    
-    self.recordingLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 450, 300, 50)];
-    [self.recordingLabel setBackgroundColor:[UIColor clearColor]];
-    [self.recordingLabel setTextColor:[UIColor redColor]];
-    [self.view addSubview:recordingLabel];
        
     //Applying autosave here
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(autosaveWhenContextDidChange:) name:NSManagedObjectContextObjectsDidChangeNotification object:context];
@@ -214,8 +212,8 @@
         [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
         
         //label for track name
-        trackNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 40, 300, 30)];
-        trackNameLabel.backgroundColor = [UIColor whiteColor];
+        trackNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 20, 300, 30)];
+        trackNameLabel.backgroundColor = [UIColor clearColor];
         trackNameLabel.textColor = [UIColor blackColor];
         trackNameLabel.textAlignment =  UITextAlignmentCenter;
         [trackNameLabel setFont:[UIFont fontWithName:@"GillSans-Bold" size:30]];
@@ -260,7 +258,13 @@
     
     if ([audioForRow isKindOfClass:[Audio class]]) {
         if ([(NSNumber *)[audioForRow valueForKey:@"replaceable"] boolValue]) {
-            [recordOrTrashButton setImage:recordImage forState:UIControlStateNormal];
+            
+            if (isRecording && [indexPath row] == currentRecordingIndex) {
+                [recordOrTrashButton setImage:recordingImage forState:UIControlStateNormal];
+            } else {
+                [recordOrTrashButton setImage:recordImage forState:UIControlStateNormal];
+            }
+            
             [showLyricsButton setImage:showLyricsImage forState:UIControlStateNormal];
         } else {
             [recordOrTrashButton setImage:nil forState:UIControlStateNormal];
@@ -337,7 +341,7 @@
             return;
         }
         
-        [self.recordingLabel setText:@"RECORDING"];
+        currentRecordingIndex = row;
         
         //if the audiotrack can be replaced, start recording
         [self startCoverAudioRecording:row];
@@ -387,6 +391,7 @@
         
         isPlaying = NO;    
         isRecording = NO;   //to be safe
+        currentRecordingIndex = -1;
         
         if (!thePlayer.stoppedBecauseReachedEnd) {
             //if file exists delete the file first
@@ -397,8 +402,6 @@
         //clear values
         currentRecordingAudio = nil;
         currentRecordingURL = nil;
-        
-        [self.recordingLabel setText:@""];
     }
     else //player is neither playing or recording
     {
@@ -507,8 +510,7 @@
     
     currentRecordingAudio = nil;
     currentRecordingURL = nil;
-    
-    [self.recordingLabel setText:@""];
+    currentRecordingIndex = -1;
     
     [trackTableView reloadData];
 }

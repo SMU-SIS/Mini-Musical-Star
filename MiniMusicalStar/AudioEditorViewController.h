@@ -23,6 +23,8 @@
     bool isPlaying;
 
     bool stopButtonPressWhenRecordingWarningHasDisplayed;
+
+    int currentRecordingIndex;
 }
 
 @property (nonatomic, retain) UITableView *trackTableView;
@@ -33,6 +35,7 @@
 @property (nonatomic, retain) UIImage *showLyricsImage;
 @property (nonatomic, retain) UIImage *playButtonImage;
 @property (nonatomic, retain) UIImage *pauseButtonImage;
+@property (nonatomic, retain) UIImage *recordingImage;
 
 //for the lyrics popover
 @property (nonatomic, retain) UIScrollView *lyricsScrollView;
@@ -51,7 +54,6 @@
 
 @property (nonatomic, retain) NSURL *currentRecordingURL;
 @property (nonatomic, retain) Audio *currentRecordingAudio;
-@property (nonatomic, retain) UILabel *recordingLabel;
 
 @property (nonatomic, retain) UIButton *playPauseButton;
 
