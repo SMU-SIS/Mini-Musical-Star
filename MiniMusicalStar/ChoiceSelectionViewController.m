@@ -137,20 +137,18 @@
     self.navigationController.navigationBarHidden = NO;
 }
 
--(void) removeSceneMenu
-{
-    [self.sceneMenu removeFromSuperview];
-}
 
 - (void)loadSceneSelectionScrollView
 {
     if (self.sceneMenu.superview != nil){
-        [UIView animateWithDuration:0.5 animations:^(void) {
+        [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationCurveEaseIn animations:^{
             CGAffineTransform moveRight = CGAffineTransformMakeTranslation(1024, 0);
+            
             self.sceneMenu.transform = moveRight;
+        } completion:^(BOOL finished) {
+            [self.sceneMenu removeFromSuperview];
         }];
         
-        [self performSelector:@selector(removeSceneMenu) withObject:self afterDelay:0.5];
         return;
     }
     self.sceneMenu.backgroundColor = [UIColor blueColor];
@@ -160,9 +158,12 @@
     self.sceneMenu.pagingEnabled = NO;
     self.sceneMenu.clipsToBounds = NO;
     [self.view addSubview:self.sceneMenu];
-    [UIView animateWithDuration:0.5 animations:^(void) {
+    [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationCurveEaseIn animations:^{
         CGAffineTransform moveLeft = CGAffineTransformMakeTranslation(-1024, 0);
+        
         self.sceneMenu.transform = moveLeft;
+    } completion:^(BOOL finished) {
+        //do nothing
     }];
     
     //look at the scene order dictionary in the Show object to place the scenes in the correct order
