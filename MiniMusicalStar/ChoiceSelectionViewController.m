@@ -8,6 +8,7 @@
 
 #import "ChoiceSelectionViewController.h"
 #import "DSActivityView.h"
+#import "SceneStripController.h"
 
 @implementation ChoiceSelectionViewController
 @synthesize theShow;
@@ -17,7 +18,7 @@
 @synthesize exportTableController;
 @synthesize mediaManagementButton;
 @synthesize coverName;
-@synthesize sceneMenu;
+@synthesize sceneStripController;
 @synthesize coversTableView;
 @synthesize currentSelectedCoversList;
 
@@ -25,7 +26,7 @@
 {
     [currentSelectedCoversList release];
     [coversTableView release];
-    [sceneMenu release];
+    [sceneStripController release];
     [exportTableController release];
     [showCover release];
     [theShow release];
@@ -54,11 +55,7 @@
     self.managedObjectContext = aContext;
     //[self loadCoversForShow:theShow];
 //    [self loadSceneSelectionScrollView];
-    self.sceneMenu = [[UIScrollView alloc] initWithFrame:CGRectMake(1024,450,1024,200)];
-    UIButton *tempButtonToSlide = [[UIButton alloc] initWithFrame:CGRectMake(200,200,400,100)];
-    [self.view addSubview:tempButtonToSlide];
-    [tempButtonToSlide setTitle:@"click me to slide! hee" forState:UIControlStateNormal];
-    [tempButtonToSlide addTarget:self action:@selector(loadSceneSelectionScrollView) forControlEvents:UIControlEventTouchUpInside];
+
     
     
     self.currentSelectedCoversList = [[CoversListViewController alloc] initWithShow:self.theShow context:self.managedObjectContext];
@@ -78,33 +75,22 @@
 
 }
 
-- (void)createMusical
+- (void)alertView:(UIAlertView *)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex
 {
-    if ([coverName length] == 0) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"OPPS!" message:@"Please enter something!" delegate:self cancelButtonTitle:@"OK!" otherButtonTitles:nil, nil];
-        [alert show];
-        [alert release]; 
-    }
-    else
+    if (buttonIndex == 1)
     {
-    Cover *newCover = [NSEntityDescription insertNewObjectForEntityForName:@"Cover" inManagedObjectContext:managedObjectContext];
-    newCover.coverOfShowHash = [theShow showHash];
-
-        
-    SceneViewController *sceneView = [[SceneViewController alloc] initWithScenesFromShow:theShow andCover:newCover andContext:managedObjectContext];
-    
-    newCover.title = coverName;
-    
-    NSError *error;
-    [managedObjectContext save:&error];
-        
-        NSLog(@"Covername is %@", coverName);
-    
-    sceneView.title = [theShow title];
-    
-    [self.navigationController pushViewController:sceneView animated:YES];
-    
-    [sceneView release];
+        AlertPrompt *prompt = (AlertPrompt *)alertView;
+        if (prompt.enteredText.length == 0) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"OPPS!" message:@"Please enter something!" delegate:self cancelButtonTitle:@"OK!" otherButtonTitles:nil, nil];
+            [alert show];
+            [alert release]; 
+        }
+        else
+        {
+            Cover *newCover = [NSEntityDescription insertNewObjectForEntityForName:@"Cover" inManagedObjectContext:managedObjectContext];
+            newCover.title = prompt.enteredText;
+            [self loadSceneSelectionScrollViewWithCover:newCover];
+        }
     }
 }
 
@@ -129,110 +115,61 @@
 }
 
 
-- (void)loadSceneSelectionScrollView
+- (void)loadSceneSelectionScrollViewWithCover:(Cover *)aCover
 {
-    if (self.sceneMenu.superview != nil){
+    //just animate out
+    if (self.sceneStripController.view.superview != nil)
+    {
         [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationCurveEaseIn animations:^{
             CGAffineTransform moveRight = CGAffineTransformMakeTranslation(1024, 0);
+            self.sceneStripController.view.transform = moveRight;
             
-            self.sceneMenu.transform = moveRight;
+            [self.sceneStripController.view.subviews enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                UIView *subview = (UIView *)obj;
+                subview.transform = moveRight;
+            }];
+            
         } completion:^(BOOL finished) {
-            [self.sceneMenu removeFromSuperview];
+            [self.sceneStripController.view removeFromSuperview];
+            self.sceneStripController = nil;
         }];
         
         return;
     }
-    self.sceneMenu.backgroundColor = [UIColor blueColor];
-    self.sceneMenu.scrollEnabled = YES;
-    self.sceneMenu.showsHorizontalScrollIndicator = NO;
-    self.sceneMenu.showsVerticalScrollIndicator = NO;
-    self.sceneMenu.pagingEnabled = NO;
-    self.sceneMenu.clipsToBounds = NO;
-    [self.view addSubview:self.sceneMenu];
+    
+    //create an instance of SceneStripController
+    self.sceneStripController = [[SceneStripController alloc] initWithShow:self.theShow Cover:aCover];
+    self.sceneStripController.delegate = self;
+    sceneStripController.context = self.managedObjectContext;
+    
+    [self.view addSubview:self.sceneStripController.view];
     [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationCurveEaseIn animations:^{
         CGAffineTransform moveLeft = CGAffineTransformMakeTranslation(-1024, 0);
         
-        self.sceneMenu.transform = moveLeft;
+        self.sceneStripController.view.transform = moveLeft;
+        
+        [self.sceneStripController.view.subviews enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            UIView *subview = (UIView *)obj;
+            subview.transform = moveLeft;
+        }];
+        
     } completion:^(BOOL finished) {
         //do nothing
     }];
     
-    //look at the scene order dictionary in the Show object to place the scenes in the correct order
-    [self.theShow.scenesOrder enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        NSString *sceneHash = (NSString *)obj;
-        Scene *theScene = [self.theShow.scenes objectForKey:sceneHash];
-        
-        NSLog(@"%@",theScene);
-        
-        //do a bit of sanity check
-        if (!theScene) NSLog(@"Cannot find scene with hash %@ in the plist file.\n", sceneHash);
-        
-        //create the button's frame
-        CGRect frame;
-        frame.origin.x = sceneMenu.frame.origin.x + idx * 230;
-        frame.origin.y = 10;
-        frame.size.width = 200;
-        frame.size.height = 150;
-        
-        //create the actual button
-        UIButton *button = [[UIButton alloc] initWithFrame:frame];
-        
-        //set tag number for each scene button to correspond with the scene order dict
-        [button setTag:idx];
-        [button setImage: theScene.coverPicture forState:(UIControlStateNormal)];
-        [button addTarget:self action:@selector(selectScene:) forControlEvents:UIControlEventTouchUpInside];
-        [sceneMenu addSubview:button];
-        [button release];
-    }];
-    
-    //set the content size of the scrollview and check to see if the scrollview is overflowing
-    int extend = 0;    
-    if (self.theShow.scenes.count > 4) extend = self.theShow.scenes.count - 4;
-    
-    [self.sceneMenu setContentSize:CGSizeMake(self.sceneMenu.frame.size.width + (extend * 200), 0)];
-   
+    NSLog(@"hello i am here");
+
 }
 
--(void)selectScene:(UIButton *)sender
+- (void)showActivitySpinner
 {
     [DSBezelActivityView newActivityViewForView:self.view withLabel:@"Loading..."];
-    [self performSelectorInBackground:@selector(loadSceneEditViewController:) withObject:sender];
 }
 
-//need to do this because it takes some time to load the next controller. can display the loading spinner like that.
-//-(void)loadSceneEditViewController:(UIButton *)sender
-//{
-//    //this method is run in a separate thread so need an autorelease pool specially for this
-//    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-//    
-//    //attempt to get the Scene from the Scenes dictionary for the key, which in turn is gotten from the scene order array
-//    Scene *selectedScene = [self.theShow.scenes objectForKey:[self.theShow.scenesOrder objectAtIndex:sender.tag]];
-//    
-//    CoverScene *selectedCoverScene = [theCover coverSceneForSceneHash:selectedScene.hash];
-//    
-//    if (!selectedCoverScene)
-//    {
-//        //create a new CoverScene
-//        selectedCoverScene = [NSEntityDescription insertNewObjectForEntityForName:@"CoverScene" inManagedObjectContext:managedObjectContext];
-//        selectedCoverScene.SceneHash = selectedScene.hash;
-//        [self.theCover addScenesObject:selectedCoverScene];
-//        [self.context save:nil];
-//    }
-//    
-//    SceneEditViewController *editController = [[SceneEditViewController alloc] initWithScene:selectedScene andSceneCover:selectedCoverScene andContext:context];
-//    editController.title = selectedScene.title;
-//    
-//    [pool release];
-//    
-//    [self performSelectorOnMainThread:@selector(finishLoadingSceneEditViewController:) withObject:editController waitUntilDone:NO];
-//}
-
--(void)finishLoadingSceneEditViewController:(SceneEditViewController *)theController
+- (void)pushSceneEditViewController: (SceneEditViewController *)theController
 {
     [DSBezelActivityView removeViewAnimated:YES];
     [self.navigationController pushViewController:theController animated:YES];
-    
-    [theController release];
 }
 
 -(void) showMediaManagement: (id)sender{
@@ -282,7 +219,6 @@
     NSArray *descriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
     [request setSortDescriptors:descriptors];
     
-    
     NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:managedObjectContext sectionNameKeyPath:nil cacheName:@"Root"];
     fetchedResultsController.delegate = self;
     
@@ -322,15 +258,6 @@
 //        [self.view addSubview:self.currentSelectedCoversList.view];
 //    
 //    }
-}
-
-- (void)alertView:(UIAlertView *)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex
-{
-	if (buttonIndex != [alertView cancelButtonIndex])
-	{
-		coverName = [(AlertPrompt *)alertView enteredText];
-        [self createMusical];
-	}
 }
 
 -(void)selectedSavedCover:(Cover*)aCover

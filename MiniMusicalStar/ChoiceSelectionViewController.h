@@ -14,6 +14,7 @@
 #import "ExportTableViewController.h"
 #import "AlertPrompt.h"
 
+@class SceneStripController;
 
 @interface ChoiceSelectionViewController : UIViewController <CoversListDelegate> {
     IBOutlet UIImageView *showCover;
@@ -32,11 +33,11 @@
 @property (nonatomic, retain) UIBarButtonItem *mediaManagementButton;
 @property (retain, nonatomic) IBOutlet UILabel *showTitle;
 @property (retain, nonatomic) IBOutlet UITextView *showDescription;
-@property (retain, nonatomic) IBOutlet UIScrollView *sceneMenu;
+@property (retain, nonatomic) IBOutlet SceneStripController *sceneStripController;
 @property (retain, nonatomic) IBOutlet UITableView *coversTableView;
 
 -(ChoiceSelectionViewController *)initWithAShowForSelection:(Show *)aShow context:(NSManagedObjectContext *)aContext;
-
+- (void)loadSceneSelectionScrollViewWithCover:(Cover *)aCover;
 -(void)createMusical;
 -(IBAction)loadCoversList:(UIButton*)sender;
 
