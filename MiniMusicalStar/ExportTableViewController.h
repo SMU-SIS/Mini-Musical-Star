@@ -26,24 +26,22 @@
 
 @property (retain, nonatomic) NSArray *musicalArray;
 @property (retain, nonatomic) NSArray *scenesArray;
-@property (retain, nonatomic) NSMutableArray *exportedFilesArray;
-@property (retain, nonatomic) NSMutableArray *exportedFileNamesArray;
+@property (retain, nonatomic) NSMutableArray *exportedAssetsArray;
 @property (retain, nonatomic) Show *theShow;
 @property (retain, nonatomic) Cover *theCover;
 @property (retain, nonatomic) SceneUtility *theSceneUtility;
 @property (nonatomic, retain) NSTimer *timer;
 @property (nonatomic, retain) UIBarButtonItem *uploadBarButtonItem;
-@property (nonatomic, retain) FacebookUploader *mmsFacebook;
 @property (retain, nonatomic) NSMutableArray *tempMusicalContainer;
 @property (retain, nonatomic) UIImage *facebookUploadImage;
 @property (retain, nonatomic) UIImage *youtubeUploadImage;
+@property (retain, nonatomic) NSManagedObjectContext *context;
 @property (retain, nonatomic) FacebookUploader *facebookUploader;
 
-- (id)initWithStyle:(UITableViewStyle)style:(Show*)theShow:(Cover*)cover;
 
+- (id)initWithStyle:(UITableViewStyle)style:(Show*)show:(Cover*)cover context:(NSManagedObjectContext *)aContext;
 - (void) generateMusical;
 - (void) prepareMusicalNotification;
-- (void)uploadToFacebook;
 - (void) processExportSession: (AVMutableComposition*) composition:(NSURL*)videoFileURL:(NSURL*)creditsFileURL: (NSURL*) outputFileURL: (UIProgressView*) prog: (NSString*) state;
 -(void) sessionExport: (AVMutableComposition*) composition: (NSURL*)videoFileURL: (NSURL*)creditsFileURL: (NSURL*)outputFileURL: (NSIndexPath*) indexPath: (NSString*) state;
 - (void)exportScene:(Scene*) scene:(CoverScene*) coverScene: (NSIndexPath*) indexPath;

@@ -16,11 +16,10 @@
 #import "DSActivityView.h"
 
 @implementation MenuViewController
-@synthesize managedObjectContext, scrollView, buttonArray, showDAO, titleBanner;
+@synthesize managedObjectContext, scrollView, buttonArray, showDAO;
 
 - (void)dealloc
 {
-    [titleBanner release];
     [managedObjectContext release];
     [scrollView release];
     [buttonArray release];
@@ -52,8 +51,9 @@
     //hide the navigation bar
     self.navigationController.navigationBarHidden = YES;
     
-    //load titleBanner
-    [self.titleBanner setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"menuViewTitleBanner" ofType:@"png"]]];
+    //load background    
+    UIColor *background = [[UIColor alloc] initWithPatternImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"menuViewTitleBanner" ofType:@"png"]]];
+    [self.view setBackgroundColor:background];
     
     //load the shows on the local disk
     self.showDAO = [[ShowDAO alloc] initWithDelegate:self];

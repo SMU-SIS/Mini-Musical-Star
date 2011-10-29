@@ -38,6 +38,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    UIImage *takePhotoImage = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"camera" ofType:@"png"]];
+    [takePhotoButton setImage:takePhotoImage forState:UIControlStateNormal];
+    UIImage *photoLibraryImage = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"photo_library" ofType:@"png"]];
+    [replacePictureButton setImage:photoLibraryImage forState:UIControlStateNormal];
 }
 
 - (void)viewDidUnload

@@ -16,12 +16,15 @@
 @synthesize showTitle, showDescription;
 @synthesize exportTableController;
 @synthesize mediaManagementButton;
-@synthesize currentSelectedCoversList;
 @synthesize coverName;
 @synthesize sceneMenu;
+@synthesize coversTableView;
+@synthesize currentSelectedCoversList;
 
 - (void)dealloc
 {
+    [currentSelectedCoversList release];
+    [coversTableView release];
     [sceneMenu release];
     [exportTableController release];
     [showCover release];
@@ -52,28 +55,16 @@
     //[self loadCoversForShow:theShow];
 //    [self loadSceneSelectionScrollView];
     self.sceneMenu = [[UIScrollView alloc] initWithFrame:CGRectMake(1024,450,1024,200)];
-    UIButton *tempButtonToSlide = [[UIButton alloc] initWithFrame:CGRectMake(500,200,400,100)];
+    UIButton *tempButtonToSlide = [[UIButton alloc] initWithFrame:CGRectMake(200,200,400,100)];
     [self.view addSubview:tempButtonToSlide];
     [tempButtonToSlide setTitle:@"click me to slide! hee" forState:UIControlStateNormal];
     [tempButtonToSlide addTarget:self action:@selector(loadSceneSelectionScrollView) forControlEvents:UIControlEventTouchUpInside];
     
     
-    UIView *parentView = self.view;
-    
-    CGRect coversFrame;
-    coversFrame.origin.x = 500;
-    coversFrame.origin.y = 0;
-    coversFrame.size.width = 500;
-    coversFrame.size.height = parentView.frame.size.height;
-    
-    CoversListViewController *coversView = [[CoversListViewController alloc] initWithShow:self.theShow context:self.managedObjectContext];
-    coversView.view.frame = coversFrame;
-    coversView.delegate = self;
-    
-    self.currentSelectedCoversList = [[UINavigationController alloc] initWithRootViewController:coversView];
-    self.currentSelectedCoversList.view.frame = coversFrame;
-    
-    [coversView release];
+    self.currentSelectedCoversList = [[CoversListViewController alloc] initWithShow:self.theShow context:self.managedObjectContext];
+    self.currentSelectedCoversList.view.frame = CGRectMake(512,0,512,768);
+//    self.coversTableView = (UITableView* )self.currentSelectedCoversList.view;
+    [self.view addSubview:self.currentSelectedCoversList.view];
     
     return self;
 }
@@ -249,9 +240,8 @@
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
     [UIView setAnimationDuration:0.75];
-    exportTableController = [[ExportTableViewController alloc] initWithStyle:UITableViewStyleGrouped:theShow
-                            :
-                             [NSEntityDescription insertNewObjectForEntityForName:@"Cover" inManagedObjectContext:managedObjectContext]];
+    Cover *aCover = [NSEntityDescription insertNewObjectForEntityForName:@"Cover" inManagedObjectContext:managedObjectContext];
+    self.exportTableController = [[ExportTableViewController alloc] initWithStyle:UITableViewStyleGrouped :theShow :aCover context:self.managedObjectContext];
     [self.navigationController pushViewController:exportTableController animated:NO];
     [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:self.navigationController.view cache:NO];
     [UIView commitAnimations];    
@@ -311,33 +301,27 @@
     
     NSLog(@"the selected show is %@", theShow.title);
     
-    if ([(CoversListViewController *)[self.currentSelectedCoversList topViewController] numberOfCovers] == 0) 
+    if ([self.currentSelectedCoversList numberOfCovers] == 0) 
     {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"OPPS!" message:@"Please create your first cover!" delegate:self cancelButtonTitle:@"OK!" otherButtonTitles:nil, nil];
             [alert show];
             [alert release];
     }
     
-    else
-    {
-     
-        //NSLog(@"number of objects is  %i", [[[self.frc sections] objectAtIndex:0] numberOfObjects]);
-
-        [UIView beginAnimations:nil context:NULL];
-        [UIView setAnimationDuration:1.0];
-        [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:self.view cache:YES];
-        [UIView setAnimationDuration:1.0];
-        
-        [UIView commitAnimations];    
-        [self.view addSubview:self.currentSelectedCoversList.view];
-    
-    }
-}
-
-- (void)dismissCoversList
-{
-    [self.currentSelectedCoversList.view removeFromSuperview];
-    //self.currentSelectedCoversList = nil;
+//    else
+//    {
+//     
+//        //NSLog(@"number of objects is  %i", [[[self.frc sections] objectAtIndex:0] numberOfObjects]);
+//
+//        [UIView beginAnimations:nil context:NULL];
+//        [UIView setAnimationDuration:1.0];
+//        [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:self.view cache:YES];
+//        [UIView setAnimationDuration:1.0];
+//        
+//        [UIView commitAnimations];
+//        [self.view addSubview:self.currentSelectedCoversList.view];
+//    
+//    }
 }
 
 - (void)alertView:(UIAlertView *)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex

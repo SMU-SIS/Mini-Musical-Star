@@ -80,6 +80,12 @@
         self.context = aContext;
         self.playPauseButton = aPlayPauseButton;
         
+//        [self.titleBanner setImage:];
+//        UIImageView *clipBoardImage = [[UIImageView alloc] initWithImage:];
+        UIColor *background = [[UIColor alloc] initWithPatternImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"softboard" ofType:@"png"]]];
+        [self.view setBackgroundColor:background];
+        
+        
         isPlaying = NO;
         isRecording = NO;
         
@@ -102,9 +108,9 @@
     //KVO the Audio NSSet
     [self.theCoverScene addObserver:self forKeyPath:@"Audio" options:0 context:@"NewCoverTrackAdded"];
     
-    self.view.backgroundColor = [UIColor blackColor];
+//    self.view.backgroundColor = [UIColor clearColor];
     
-    trackTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 100, 500, 300) style:UITableViewStylePlain];
+    trackTableView = [[UITableView alloc] initWithFrame:CGRectMake(30, 100, 450, 300) style:UITableViewStylePlain];
     
     trackTableView.delegate = self;
     trackTableView.tag = 0;
@@ -129,7 +135,7 @@
     }
     
     self.recordingLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 450, 300, 50)];
-    [self.recordingLabel setBackgroundColor:[UIColor blackColor]];
+    [self.recordingLabel setBackgroundColor:[UIColor clearColor]];
     [self.recordingLabel setTextColor:[UIColor redColor]];
     [self.view addSubview:recordingLabel];
        
@@ -177,7 +183,7 @@
     return self.theScene.audioTracks.count + self.theCoverScene.Audio.count;
 }
 
-#define TRACK_CELL_WIDTH 500
+#define TRACK_CELL_WIDTH 450
 #define TRACK_CELL_HEIGHT 100
 #define TRACK_CELL_RIGHT 350    //500-150
 
@@ -600,10 +606,10 @@
 #pragma mark - instance methods for gui
 
 /* constants related to displaying lyrics */
-#define LYRICS_VIEW_WIDTH 1024-500 //the entire width of the landscape screen
-#define LYRICS_VIEW_HEIGHT 580-44
+#define LYRICS_VIEW_WIDTH 1024-570 //the entire width of the landscape screen
+#define LYRICS_VIEW_HEIGHT 580-70
 #define LYRICS_VIEW_X 500
-#define LYRICS_VIEW_Y 0
+#define LYRICS_VIEW_Y 20
 
 - (void) drawLyricsView
 {
@@ -635,7 +641,7 @@
     lyricsScrollView.showsHorizontalScrollIndicator = NO;
     lyricsScrollView.showsVerticalScrollIndicator = YES;
     lyricsScrollView.bounces = NO;
-    [lyricsScrollView setBackgroundColor:[UIColor blackColor]];
+    [lyricsScrollView setBackgroundColor:[UIColor whiteColor]];
     
     return lyricsScrollView;
 }
@@ -647,9 +653,9 @@
     lyricsLabel.lineBreakMode = UILineBreakModeWordWrap; //line break, word wrap
 	lyricsLabel.numberOfLines = 0; //0 - dynamic ngit umber of lines
     [lyricsLabel setFont:[UIFont fontWithName:@"MarkerFelt-Wide" size:24]];
-    lyricsLabel.textColor = [UIColor whiteColor];
+    lyricsLabel.textColor = [UIColor blackColor];
     lyricsLabel.textAlignment =  UITextAlignmentCenter;
-    lyricsLabel.backgroundColor = [UIColor blackColor];
+    lyricsLabel.backgroundColor = [UIColor whiteColor];
     
     return lyricsLabel;
 }
