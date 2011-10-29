@@ -34,7 +34,7 @@ void uncaughtExceptionHandler(NSException *exception) {
     
     self.viewController.managedObjectContext = [self managedObjectContext];
 
-    //[ConsoleManager run];
+    [ConsoleManager run];
     
     self.window.rootViewController = self.naviController;
     [self.window makeKeyAndVisible];

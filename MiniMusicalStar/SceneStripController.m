@@ -47,7 +47,7 @@
     self.view.pagingEnabled = NO;
     self.view.clipsToBounds = NO;
     
-    self.view.backgroundColor = [UIColor blueColor];
+    self.view.backgroundColor = [UIColor whiteColor];
     
     //look at the scene order dictionary in the Show object to place the scenes in the correct order
     [self.theShow.scenesOrder enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
