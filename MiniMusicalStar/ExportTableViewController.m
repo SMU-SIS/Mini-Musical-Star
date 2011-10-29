@@ -17,6 +17,7 @@
 #import "YouTubeUploader.h"
 #import "ImageToVideoConverter.h"
 #import "MiniMusicalStarUtilities.h"
+#import "MiniMusicalStarAppDelegate.h"
 
 @implementation ExportTableViewController
 
@@ -32,6 +33,7 @@
 @synthesize tempMusicalContainer;
 @synthesize facebookUploadImage;
 @synthesize youtubeUploadImage;
+@synthesize facebookUploader;
 
 -(void)dealloc
 {
@@ -46,6 +48,7 @@
     
     [facebookUploadImage release];
     [youtubeUploadImage release];
+    [facebookUploader release];
     
     [super dealloc];
 }
@@ -155,15 +158,6 @@
     
     facebookUploadImage = [UIImage imageNamed:@"facebook_32.png"];
     youtubeUploadImage = [UIImage imageNamed:@"youtube_32.png"];
-}
-
-- (void)uploadToFacebook
-{
-//    FacebookUploader *facebookUploader = [[[FacebookUploader alloc] init] autorelease];
-//    [facebookUploader uploadToFacebook];
-    
-    YouTubeUploader *youtubeUploader = [[[YouTubeUploader alloc] init] autorelease];
-    [youtubeUploader uploadVideoFile];
 }
 
 - (void)viewDidUnload
@@ -429,7 +423,6 @@
         
         facebookUploadButton = [[UIButton alloc] initWithFrame:CGRectMake(800, 25, 32, 32)];
         [cell.contentView addSubview:facebookUploadButton];
-        [cell.contentView bringSubviewToFront:facebookUploadButton];
         facebookUploadButton.tag = 1;
         [facebookUploadButton release];
         
@@ -438,7 +431,10 @@
         youtubeUploadButton.tag = 2;
         [youtubeUploadButton release];
         
-        [cell bringSubviewToFront:cell.contentView];
+        [facebookUploadButton addTarget:self action:@selector(facebookUploadButtonIsPressed:) 
+                      forControlEvents:UIControlEventTouchDown];
+        [youtubeUploadButton addTarget:self action:@selector(youtubeUploadButtonIsPressed:) 
+                      forControlEvents:UIControlEventTouchDown];
     }
     
     // Configure the cell...
@@ -476,7 +472,6 @@
         youtubeUploadButton = (UIButton*)[cell.contentView  viewWithTag:2];
         [facebookUploadButton setImage:facebookUploadImage forState:UIControlStateNormal];
         [youtubeUploadButton setImage:youtubeUploadImage forState:UIControlStateNormal];
-        
     }
     
     return cell;
@@ -610,6 +605,23 @@
     [moviePlayer release];
 }
 
+#pragma mark - IBAction events
+
+- (void)facebookUploadButtonIsPressed:(UIButton*)sender
+{
+    facebookUploader = [[FacebookUploader alloc] init];
+    
+    UITableViewCell *cell = (UITableViewCell*)sender.superview.superview;
+    NSURL *url = [NSURL URLWithString:cell.textLabel.text];
+    
+    [facebookUploader uploadWithProperties:url title:@"Uploaded with Mini Musical Star" desription:@""];
+}
+
+- (void)youtubeUploadButtonIsPressed:(UIButton*)sender
+{
+    YouTubeUploader *youtubeUploader = [[[YouTubeUploader alloc] init] autorelease];
+    [youtubeUploader uploadVideoFile];
+}
 
 
 @end

@@ -22,7 +22,6 @@
 
 @interface ExportTableViewController : UITableViewController
 {
-    FacebookUploader *mmsFacebook;
 }
 
 @property (retain, nonatomic) NSArray *musicalArray;
@@ -38,12 +37,12 @@
 @property (retain, nonatomic) NSMutableArray *tempMusicalContainer;
 @property (retain, nonatomic) UIImage *facebookUploadImage;
 @property (retain, nonatomic) UIImage *youtubeUploadImage;
+@property (retain, nonatomic) FacebookUploader *facebookUploader;
 
 - (id)initWithStyle:(UITableViewStyle)style:(Show*)theShow:(Cover*)cover;
+
 - (void) generateMusical;
 - (void) prepareMusicalNotification;
-- (void)uploadToFacebook;
-- (void)generateMusical;
 - (void)uploadToFacebook;
 - (void) processExportSession: (AVMutableComposition*) composition:(NSURL*)videoFileURL:(NSURL*)creditsFileURL: (NSURL*) outputFileURL: (UIProgressView*) prog: (NSString*) state;
 -(void) sessionExport: (AVMutableComposition*) composition: (NSURL*)videoFileURL: (NSURL*)creditsFileURL: (NSURL*)outputFileURL: (NSIndexPath*) indexPath: (NSString*) state;

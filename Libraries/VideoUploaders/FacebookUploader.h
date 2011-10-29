@@ -12,16 +12,12 @@
 
 @interface FacebookUploader : NSObject
     <FBSessionDelegate, FBRequestDelegate>
-{
-    Facebook *facebook;
-}
 
 @property (nonatomic, retain) Facebook *facebook;
 @property (nonatomic, retain) NSURL *videoNSURL;
 @property (nonatomic, retain) NSString *videoTitle;
 @property (nonatomic, retain) NSString *videoDescription;
 
-- (void)uploadToFacebook;
-- (void)uploadVideoWithProperties:(NSURL*)aVideoNSURL title:(NSString*)aTitle desription:(NSString*)aDescription;
+- (void)uploadWithProperties:(NSURL*)aVideoNSURL title:(NSString*)aTitle desription:(NSString*)aDescription;
 
 @end

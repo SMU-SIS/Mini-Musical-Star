@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-
 #import "Facebook.h"
 
 @class MenuViewController;
@@ -16,8 +15,6 @@
     NSManagedObjectModel *managedObjectModel;
     NSManagedObjectContext *managedObjectContext;
     NSPersistentStoreCoordinator *persistentStoreCoordinator;
-    
-    Facebook *facebook;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;

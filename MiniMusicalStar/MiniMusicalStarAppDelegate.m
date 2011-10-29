@@ -13,12 +13,10 @@
 
 @implementation MiniMusicalStarAppDelegate
 
-
 @synthesize window=_window;
 
 @synthesize viewController=_viewController;
 @synthesize naviController=_naviController;
-
 @synthesize facebook;
 
 //workaround to get a proper stacktrace in Xcode 4.2
@@ -36,7 +34,7 @@ void uncaughtExceptionHandler(NSException *exception) {
     
     self.viewController.managedObjectContext = [self managedObjectContext];
 
-    [ConsoleManager run];
+    //[ConsoleManager run];
     
     self.window.rootViewController = self.naviController;
     [self.window makeKeyAndVisible];
