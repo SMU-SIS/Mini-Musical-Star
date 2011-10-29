@@ -154,10 +154,6 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    //following codes is for testing uploading, they will be removed
-    uploadBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Upload" style:UIBarButtonItemStylePlain target:self action:@selector(uploadToFacebook)];          
-    self.navigationItem.rightBarButtonItem = uploadBarButtonItem;
-    
     facebookUploadImage = [UIImage imageNamed:@"facebook_32.png"];
     youtubeUploadImage = [UIImage imageNamed:@"youtube_32.png"];
 }
