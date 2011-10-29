@@ -126,7 +126,7 @@
     mutedImage = [UIImage imageNamed:@"muted.png"];
     unmutedImage = [UIImage imageNamed:@"unmuted.png"];
     trashbinImage = [UIImage imageNamed:@"trashbin.png"];
-    showLyricsImage = [UIImage imageNamed:@"templyrics.png"];
+    showLyricsImage = [UIImage imageNamed:@"lyrics_button.png"];
     
     //load first replaceable audio's lyrics
     if (arrayOfReplaceableAudios != nil && [arrayOfReplaceableAudios count] != 0) {

@@ -510,7 +510,6 @@
 		3AFFDDEE142C7191000D8494 /* keys.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = keys.mp3; sourceTree = "<group>"; };
 		3AFFDDEF142C7191000D8494 /* vocals.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = vocals.mp3; sourceTree = "<group>"; };
 		3AFFDDF3142C7191000D8494 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
-		3AFFDDF4142C7191000D8494 /* camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera.png; sourceTree = "<group>"; };
 		3AFFDDF5142C7191000D8494 /* empty textbox right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "empty textbox right.png"; sourceTree = "<group>"; };
 		3AFFDDF6142C7191000D8494 /* empty textbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "empty textbox.png"; sourceTree = "<group>"; };
 		3AFFDDF7142C7191000D8494 /* folder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = folder.png; sourceTree = "<group>"; };
@@ -1472,7 +1471,6 @@
 			isa = PBXGroup;
 			children = (
 				3AFFDDF3142C7191000D8494 /* back.png */,
-				3AFFDDF4142C7191000D8494 /* camera.png */,
 				3AFFDDF5142C7191000D8494 /* empty textbox right.png */,
 				3AFFDDF6142C7191000D8494 /* empty textbox.png */,
 				3AFFDDF7142C7191000D8494 /* folder.png */,
