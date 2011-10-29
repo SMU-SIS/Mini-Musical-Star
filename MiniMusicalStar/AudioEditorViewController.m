@@ -114,7 +114,7 @@
     
 //    self.view.backgroundColor = [UIColor clearColor];
     
-    trackTableView = [[UITableView alloc] initWithFrame:CGRectMake(30, 100, 450, 300) style:UITableViewStylePlain];
+    trackTableView = [[UITableView alloc] initWithFrame:CGRectMake(30, 50, 500, 480) style:UITableViewStylePlain];
     
     trackTableView.delegate = self;
     trackTableView.tag = 0;
@@ -189,8 +189,8 @@
     return self.theScene.audioTracks.count + self.theCoverScene.Audio.count;
 }
 
-#define TRACK_CELL_WIDTH 450
-#define TRACK_CELL_HEIGHT 100
+#define TRACK_CELL_WIDTH 500
+#define TRACK_CELL_HEIGHT 180
 #define TRACK_CELL_RIGHT 350    //500-150
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -214,7 +214,7 @@
         [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
         
         //label for track name
-        trackNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 10, 120, 30)];
+        trackNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 10, 300, 30)];
         trackNameLabel.backgroundColor = [UIColor whiteColor];
         trackNameLabel.textColor = [UIColor blackColor];
         trackNameLabel.textAlignment =  UITextAlignmentCenter;
@@ -613,10 +613,10 @@
 #pragma mark - instance methods for gui
 
 /* constants related to displaying lyrics */
-#define LYRICS_VIEW_WIDTH 1024-570 //the entire width of the landscape screen
-#define LYRICS_VIEW_HEIGHT 580-70
-#define LYRICS_VIEW_X 500
-#define LYRICS_VIEW_Y 20
+#define LYRICS_VIEW_WIDTH 460 //the entire width of the landscape screen
+#define LYRICS_VIEW_HEIGHT 530
+#define LYRICS_VIEW_X 520
+#define LYRICS_VIEW_Y 30
 
 - (void) drawLyricsView
 {
@@ -642,7 +642,7 @@
     
     lyricsLabelFrame.size = [someLyrics sizeWithFont:lyricsLabel.font constrainedToSize:CGSizeMake(LYRICS_VIEW_WIDTH-20, 100000) lineBreakMode:lyricsLabel.lineBreakMode]; //get a CGRect for dynamically resizing the label based on the text.
     
-    lyricsLabel.frame = CGRectMake(0, 0, lyricsLabel.frame.size.width-10, lyricsLabelFrame.size.height); //set the new size of the label, we are only changing the height
+    lyricsLabel.frame = CGRectMake(30, 50, lyricsLabel.frame.size.width-100, lyricsLabelFrame.size.height); //set the new size of the label, we are only changing the height
     
     [lyricsScrollView setContentSize:CGSizeMake(lyricsLabel.frame.size.width, lyricsLabelFrame.size.height)]; //set content size of scroll view using calculated size of the text on the label
     
