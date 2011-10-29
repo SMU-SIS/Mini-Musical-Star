@@ -616,12 +616,21 @@
     [self createLyricsScrollView];
     [self createLyricsLabel];
     
-    [lyricsScrollView addSubview:lyricsLabel];
+    //[lyricsScrollView addSubview:lyricsLabel];
     [self.view addSubview:lyricsScrollView];
 }
 
 - (void)loadLyrics:(NSString*)someLyrics
 {
+    if (lyricsLabel != nil) {
+        [lyricsLabel removeFromSuperview];
+        [lyricsLabel release];
+    }
+    
+    [self createLyricsLabel];
+    [lyricsScrollView addSubview:lyricsLabel];
+    
+    
     CGRect lyricsLabelFrame = lyricsLabel.bounds; //get the CGRect representing the bounds of the UILabel
     
     lyricsLabelFrame.size = [someLyrics sizeWithFont:lyricsLabel.font constrainedToSize:CGSizeMake(LYRICS_VIEW_WIDTH-20, 100000) lineBreakMode:lyricsLabel.lineBreakMode]; //get a CGRect for dynamically resizing the label based on the text.
