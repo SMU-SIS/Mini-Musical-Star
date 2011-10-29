@@ -52,5 +52,6 @@
 - (void)stopPlayer;
 - (NSArray*) getExportAudioURLs;
 - (void) playMovie:(NSURL*)filePath;
+-(void)drawPlaySlider;
     
 @end

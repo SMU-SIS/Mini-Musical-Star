@@ -99,6 +99,8 @@
     //set the mic volume control value
     micVolumeSlider.value = [self.audioView.thePlayer getMicVolume];
     
+    [self drawPlaySlider];
+    
 }
 
 - (void)viewDidUnload
@@ -308,6 +310,24 @@
 {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationLandscapeLeft || interfaceOrientation == UIInterfaceOrientationLandscapeRight);
+}
+
+-(void)drawPlaySlider
+{
+    // Setup custom slider images
+	UIImage *maxImage = [UIImage imageNamed:@"empty.png"];
+	UIImage *minImage = [UIImage imageNamed:@"scroller.png"];
+	UIImage *tumbImage= [UIImage imageNamed:@"star.png"];	
+    
+	minImage=[minImage stretchableImageWithLeftCapWidth:10.0 topCapHeight:0.0];
+	maxImage=[maxImage stretchableImageWithLeftCapWidth:10.0 topCapHeight:0.0];
+    
+	// Setup the Playback slider
+	[playPositionSlider setMinimumTrackImage:minImage forState:UIControlStateNormal];
+	[playPositionSlider setMaximumTrackImage:maxImage forState:UIControlStateNormal];
+	[playPositionSlider setThumbImage:tumbImage forState:UIControlStateNormal];
+    
+    playPositionSlider.continuous = YES;
 }
 
 @end
