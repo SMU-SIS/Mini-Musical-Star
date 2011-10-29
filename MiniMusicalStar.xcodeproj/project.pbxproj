@@ -19,6 +19,10 @@
 		3A010660142F15170054A0BB /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 820E2A1B140A0A1E00B80BBC /* AudioToolbox.framework */; };
 		3A010670142F18D10054A0BB /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 95DAE888141481470039201D /* libz.dylib */; };
 		3A010671142F18D40054A0BB /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 95DAE886141481400039201D /* libxml2.dylib */; };
+		3A10EFBD145BEFA4006F8EEC /* menuViewTitleBanner.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A10EFBC145BEFA4006F8EEC /* menuViewTitleBanner.png */; };
+		3A10EFC0145BF56F006F8EEC /* camera.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A10EFBE145BF56F006F8EEC /* camera.png */; };
+		3A10EFC1145BF56F006F8EEC /* photo_library.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A10EFBF145BF56F006F8EEC /* photo_library.png */; };
+		3A10EFC3145BF7D1006F8EEC /* softboard.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A10EFC2145BF7D1006F8EEC /* softboard.png */; };
 		3A12E368142F1D9A004B97BE /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A12E367142F1D9A004B97BE /* libOCMock.a */; };
 		3A12E374142F2BD3004B97BE /* Picture.m in Sources */ = {isa = PBXBuildFile; fileRef = 9572E0D0140E118400713F45 /* Picture.m */; };
 		3A12E375142F2C2D004B97BE /* PictureCue.m in Sources */ = {isa = PBXBuildFile; fileRef = 9572E0D2140E118400713F45 /* PictureCue.m */; };
@@ -339,6 +343,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3A10EFBC145BEFA4006F8EEC /* menuViewTitleBanner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = menuViewTitleBanner.png; path = Resources/menuViewTitleBanner.png; sourceTree = "<group>"; };
+		3A10EFBE145BF56F006F8EEC /* camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = camera.png; path = Resources/camera.png; sourceTree = "<group>"; };
+		3A10EFBF145BF56F006F8EEC /* photo_library.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = photo_library.png; path = Resources/photo_library.png; sourceTree = "<group>"; };
+		3A10EFC2145BF7D1006F8EEC /* softboard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = softboard.png; path = Resources/softboard.png; sourceTree = "<group>"; };
 		3A12E367142F1D9A004B97BE /* libOCMock.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOCMock.a; path = ../Libraries/libOCMock.a; sourceTree = "<group>"; };
 		3A12E37A142F81A6004B97BE /* SceneTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneTest.h; sourceTree = "<group>"; };
 		3A12E37B142F81A7004B97BE /* SceneTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SceneTest.m; sourceTree = "<group>"; };
@@ -2076,6 +2084,10 @@
 		820E2A1E140A0A2A00B80BBC /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				3A10EFC2145BF7D1006F8EEC /* softboard.png */,
+				3A10EFBE145BF56F006F8EEC /* camera.png */,
+				3A10EFBF145BF56F006F8EEC /* photo_library.png */,
+				3A10EFBC145BEFA4006F8EEC /* menuViewTitleBanner.png */,
 				64985A3A14528E5400485F4D /* sample.mov */,
 				3A4EB6B41456A8CF005A662F /* lastclip.mov */,
 				9533AAE9144E8F5E0092725C /* howling_dog.zip */,
@@ -2504,6 +2516,10 @@
 				64CF0B81145B1C0400A9BF08 /* templyrics.png in Resources */,
 				64CF0B94145BA6A800A9BF08 /* facebook_32.png in Resources */,
 				64CF0B95145BA6A800A9BF08 /* youtube_32.png in Resources */,
+				3A10EFBD145BEFA4006F8EEC /* menuViewTitleBanner.png in Resources */,
+				3A10EFC0145BF56F006F8EEC /* camera.png in Resources */,
+				3A10EFC1145BF56F006F8EEC /* photo_library.png in Resources */,
+				3A10EFC3145BF7D1006F8EEC /* softboard.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

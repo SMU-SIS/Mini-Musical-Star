@@ -59,6 +59,9 @@
     ((AFOpenFlowView *)self.view).viewDelegate = self;
     [self performSelector:@selector(loadImagesIntoOpenFlow)];
     
+    UIColor *background = [[UIColor alloc] initWithPatternImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"softboard" ofType:@"png"]]];
+    [self.view setBackgroundColor:background];
+    
     //Applying autosave here
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(autosaveWhenContextDidChange:) name:NSManagedObjectContextObjectsDidChangeNotification object:context];
     

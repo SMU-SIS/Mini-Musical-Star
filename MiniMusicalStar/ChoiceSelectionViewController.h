@@ -26,13 +26,14 @@
 @property (retain, nonatomic) Show *theShow;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @property (retain, nonatomic) NSFetchedResultsController *frc;
-@property (retain, nonatomic) UINavigationController *currentSelectedCoversList;
 @property (retain, nonatomic) NSString *coverName;
 @property (nonatomic, retain) ExportTableViewController *exportTableController;
+@property (nonatomic, retain) CoversListViewController *currentSelectedCoversList;
 @property (nonatomic, retain) UIBarButtonItem *mediaManagementButton;
 @property (retain, nonatomic) IBOutlet UILabel *showTitle;
 @property (retain, nonatomic) IBOutlet UITextView *showDescription;
 @property (retain, nonatomic) IBOutlet UIScrollView *sceneMenu;
+@property (retain, nonatomic) IBOutlet UITableView *coversTableView;
 
 -(ChoiceSelectionViewController *)initWithAShowForSelection:(Show *)aShow context:(NSManagedObjectContext *)aContext;
 
