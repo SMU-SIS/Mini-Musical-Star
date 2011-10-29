@@ -119,11 +119,11 @@
     trackTableView.delegate = self;
     trackTableView.tag = 0;
 	trackTableView.dataSource = self;
-    trackTableView.backgroundColor = [UIColor whiteColor];
+    trackTableView.backgroundColor = [UIColor clearColor];
     
     [self.view addSubview:trackTableView];
     
-    trackTableView.separatorColor = [UIColor blackColor];
+    trackTableView.separatorColor = [UIColor clearColor];
     
     //load images
     recordImage = [UIImage imageNamed:@"record.png"];
@@ -209,7 +209,8 @@
     if (cell == nil)
     {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-        cell.contentView.backgroundColor = [UIColor whiteColor];
+        UIColor *background = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"track.png"]];
+        cell.contentView.backgroundColor = background;
         [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
         
         //label for track name
@@ -656,7 +657,8 @@
     lyricsScrollView.showsHorizontalScrollIndicator = NO;
     lyricsScrollView.showsVerticalScrollIndicator = YES;
     lyricsScrollView.bounces = NO;
-    [lyricsScrollView setBackgroundColor:[UIColor clearColor]];
+    UIColor *background = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed: @"note_for_lyrics.png"]];
+    [lyricsScrollView setBackgroundColor:background];
     
     return lyricsScrollView;
 }
@@ -670,9 +672,7 @@
     [lyricsLabel setFont:[UIFont fontWithName:@"MarkerFelt-Wide" size:24]];
     lyricsLabel.textColor = [UIColor blackColor];
     lyricsLabel.textAlignment =  UITextAlignmentCenter;
-    UIColor *background = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"track.png"]];
-    [self.view setBackgroundColor:background];
-    lyricsLabel.backgroundColor = [UIColor whiteColor];
+    lyricsLabel.backgroundColor = [UIColor clearColor];
     
     return lyricsLabel;
 }
