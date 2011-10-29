@@ -581,8 +581,8 @@
         [self exportScene :selectedScene:selectedCoverScene:indexPath];
     }else if(indexPath.section == 2){
 //        UITableViewCell *cell = (UITableViewCell *)[(UITableView *)self.view cellForRowAtIndexPath:indexPath];
-        NSURL *fileURL = [exportedAssetsArray objectAtIndex:indexPath.row];
-        [self playMovie:fileURL];
+        ExportedAsset *theAsset = [exportedAssetsArray objectAtIndex:indexPath.row];
+        [self playMovie:[NSURL URLWithString:theAsset.exportPath]];
     }
     
    
