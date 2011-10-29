@@ -28,4 +28,6 @@
 - (void)addScenes:(NSSet *)values;
 - (void)removeScenes:(NSSet *)values;
 
+- (void)purgeRelatedFiles;
+
 @end

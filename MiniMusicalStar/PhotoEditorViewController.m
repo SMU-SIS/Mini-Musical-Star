@@ -23,6 +23,8 @@
     [theCoverScene release];
     [context release];
     [cameraPopupViewController release];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [super dealloc];
 }
 

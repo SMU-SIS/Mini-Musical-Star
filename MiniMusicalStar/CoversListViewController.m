@@ -215,7 +215,7 @@
         [selectedCover purgeRelatedFiles];
         [self.context deleteObject:selectedCover];
         
-        NSError *err;
+        NSError *err = nil;
         if (![self.context save:&err])
         {
             NSLog(@"Deletion error occured: %@", err);
