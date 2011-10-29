@@ -33,6 +33,7 @@
 @synthesize facebookUploadImage;
 @synthesize youtubeUploadImage;
 @synthesize facebookUploader;
+@synthesize youTubeUploader;
 @synthesize context;
 
 -(void)dealloc
@@ -48,6 +49,7 @@
     [facebookUploadImage release];
     [youtubeUploadImage release];
     [facebookUploader release];
+    [youTubeUploader release];
     
     [super dealloc];
 }
@@ -633,24 +635,26 @@
 
 - (void)facebookUploadButtonIsPressed:(UIButton*)sender
 {
-    UITableViewCell *cell = (UITableViewCell*)sender.superview.superview;
-    UITableView *table = (UITableView*)cell.superview;
-    NSIndexPath *indexPath = [table indexPathForCell:cell];
-    
-    ExportedAsset *selectedAsset = (ExportedAsset*)[exportedAssetsArray objectAtIndex:[indexPath row]];
-    
+    ExportedAsset *selectedAsset = (ExportedAsset*)[exportedAssetsArray objectAtIndex:[self getTableViewRow:sender]];
     facebookUploader = [[FacebookUploader alloc] init];
-    
     NSURL *url = [NSURL URLWithString:selectedAsset.exportPath];
-    
     [facebookUploader uploadWithProperties:url title:@"Uploaded with Mini Musical Star" desription:@""];
 }
 
 - (void)youtubeUploadButtonIsPressed:(UIButton*)sender
 {
-    YouTubeUploader *youtubeUploader = [[[YouTubeUploader alloc] init] autorelease];
-    [youtubeUploader uploadVideoFile];
+    ExportedAsset *selectedAsset = (ExportedAsset*)[exportedAssetsArray objectAtIndex:[self getTableViewRow:sender]];
+    youTubeUploader = [[YouTubeUploader alloc] init];
+    NSURL *url = [NSURL URLWithString:selectedAsset.exportPath];
+    [youTubeUploader uploadWithProperties:url title:@"Uploaded with Mini Musical Star" desription:@""];
 }
 
+- (int)getTableViewRow:(UIButton*)sender
+{
+    UITableViewCell *cell = (UITableViewCell*)sender.superview.superview;
+    UITableView *table = (UITableView*)cell.superview;
+    NSIndexPath *indexPath = [table indexPathForCell:cell];
+    return [indexPath row];
+}
 
 @end
