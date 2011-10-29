@@ -32,6 +32,7 @@
 @property (nonatomic, retain) UIBarButtonItem *mediaManagementButton;
 @property (retain, nonatomic) IBOutlet UILabel *showTitle;
 @property (retain, nonatomic) IBOutlet UITextView *showDescription;
+@property (retain, nonatomic) IBOutlet UIScrollView *sceneMenu;
 
 -(ChoiceSelectionViewController *)initWithAShowForSelection:(Show *)aShow context:(NSManagedObjectContext *)aContext;
 
