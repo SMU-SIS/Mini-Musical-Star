@@ -52,7 +52,7 @@
     self.navigationController.navigationBarHidden = YES;
     
     //load background    
-    UIColor *background = [[UIColor alloc] initWithPatternImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"menuViewTitleBanner" ofType:@"png"]]];
+    UIColor *background = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"main_background.png"]];
     [self.view setBackgroundColor:background];
     
     //load the shows on the local disk

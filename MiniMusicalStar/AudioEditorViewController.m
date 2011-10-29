@@ -642,7 +642,7 @@
     
     lyricsLabelFrame.size = [someLyrics sizeWithFont:lyricsLabel.font constrainedToSize:CGSizeMake(LYRICS_VIEW_WIDTH-20, 100000) lineBreakMode:lyricsLabel.lineBreakMode]; //get a CGRect for dynamically resizing the label based on the text.
     
-    lyricsLabel.frame = CGRectMake(30, 50, lyricsLabel.frame.size.width-100, lyricsLabelFrame.size.height); //set the new size of the label, we are only changing the height
+    lyricsLabel.frame = CGRectMake(30, 60, lyricsLabel.frame.size.width-100, lyricsLabelFrame.size.height); //set the new size of the label, we are only changing the height
     
     [lyricsScrollView setContentSize:CGSizeMake(lyricsLabel.frame.size.width, lyricsLabelFrame.size.height)]; //set content size of scroll view using calculated size of the text on the label
     
