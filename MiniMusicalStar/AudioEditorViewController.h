@@ -31,6 +31,9 @@
 @property (nonatomic, retain) UIImage *unmutedImage;
 @property (nonatomic, retain) UIImage *trashbinImage;
 @property (nonatomic, retain) UIImage *showLyricsImage;
+@property (nonatomic, retain) UIImage *playButtonImage;
+@property (nonatomic, retain) UIImage *pauseButtonImage;
+@property (nonatomic, retain) UIImage *stopButtonImage;
 
 //for the lyrics popover
 @property (nonatomic, retain) UIScrollView *lyricsScrollView;
