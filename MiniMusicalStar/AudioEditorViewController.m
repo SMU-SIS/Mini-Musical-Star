@@ -23,6 +23,10 @@
 
 - (void)dealloc
 {
+    NSLog(@"%p deallocating now", self);
+    [self deRegisterFromNSNotifcationCenter];
+    [self.theCoverScene removeObserver:self forKeyPath:@"Audio"];
+    
     [thePlayer stop];
     [thePlayer release];
     [theScene release];
@@ -50,6 +54,8 @@
     
     [arrayOfReplaceableAudios release];
     
+    
+    
     [super dealloc];
 }
 
@@ -66,6 +72,7 @@
 - (AudioEditorViewController *)initWithScene:(Scene *)aScene andCoverScene:(CoverScene *)aCoverScene andContext:(NSManagedObjectContext *)aContext andPlayPauseButton:(UIButton*)aPlayPauseButton
 {
     self = [super init];
+    NSLog(@"INIT %p", self);
     if (self)
     {
         self.theScene = aScene;
@@ -143,6 +150,7 @@
     // e.g. self.myOutlet = nil;
     
     [self.theCoverScene removeObserver:self forKeyPath:@"Audio"];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

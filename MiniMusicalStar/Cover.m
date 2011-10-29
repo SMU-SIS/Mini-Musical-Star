@@ -35,7 +35,6 @@
         if ([theScene.sceneHash isEqualToString:sceneHash])
         {
             returnScene = theScene;
-            
             *stop = YES;
         }
     }];
