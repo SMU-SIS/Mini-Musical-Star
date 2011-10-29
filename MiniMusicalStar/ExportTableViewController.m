@@ -30,6 +30,8 @@
 @synthesize uploadBarButtonItem;
 @synthesize mmsFacebook;
 @synthesize tempMusicalContainer;
+@synthesize facebookUploadImage;
+@synthesize youtubeUploadImage;
 
 -(void)dealloc
 {
@@ -41,6 +43,10 @@
     [theSceneUtility release];
     [theShow release];
     [mmsFacebook release];
+    
+    [facebookUploadImage release];
+    [youtubeUploadImage release];
+    
     [super dealloc];
 }
 
@@ -146,6 +152,9 @@
     //following codes is for testing uploading, they will be removed
     uploadBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Upload" style:UIBarButtonItemStylePlain target:self action:@selector(uploadToFacebook)];          
     self.navigationItem.rightBarButtonItem = uploadBarButtonItem;
+    
+    facebookUploadImage = [UIImage imageNamed:@"facebook_32.png"];
+    youtubeUploadImage = [UIImage imageNamed:@"youtube_32.png"];
 }
 
 - (void)uploadToFacebook
@@ -409,10 +418,27 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
+    UIButton *facebookUploadButton;
+    UIButton *youtubeUploadButton;
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        
+        cell.textLabel.backgroundColor = [UIColor clearColor];
+        
+        facebookUploadButton = [[UIButton alloc] initWithFrame:CGRectMake(800, 25, 32, 32)];
+        [cell.contentView addSubview:facebookUploadButton];
+        [cell.contentView bringSubviewToFront:facebookUploadButton];
+        facebookUploadButton.tag = 1;
+        [facebookUploadButton release];
+        
+        youtubeUploadButton = [[UIButton alloc] initWithFrame:CGRectMake(850, 25, 32, 32)];
+        [cell.contentView addSubview:youtubeUploadButton];
+        youtubeUploadButton.tag = 2;
+        [youtubeUploadButton release];
+        
+        [cell bringSubviewToFront:cell.contentView];
     }
     
     // Configure the cell...
@@ -420,14 +446,17 @@
         Show *show = [musicalArray objectAtIndex:0];
         cell.imageView.image = show.coverPicture;
         cell.textLabel.text = show.title;
-        return cell;
+        
     }else if(indexPath.section ==1){
         Scene *scene = [scenesArray objectAtIndex:indexPath.row];
         cell.imageView.image = scene.coverPicture;
         cell.textLabel.text = scene.title;
-        return cell;
+        
     }else{
         cell.textLabel.text = [[exportedFilesArray objectAtIndex:indexPath.row] absoluteString];
+        
+        //cell.textLabel.backgroundColor = [UIColor whiteColor];
+        
         /*
          Instructions for use:
          
@@ -442,9 +471,17 @@
          //handle the saving error
          }
          */
-        return cell;
+        
+        facebookUploadButton = (UIButton*)[cell.contentView viewWithTag:1];
+        youtubeUploadButton = (UIButton*)[cell.contentView  viewWithTag:2];
+        [facebookUploadButton setImage:facebookUploadImage forState:UIControlStateNormal];
+        [youtubeUploadButton setImage:youtubeUploadImage forState:UIControlStateNormal];
+        
     }
-
+    
+    return cell;
+    
+    
 }
 
 /*

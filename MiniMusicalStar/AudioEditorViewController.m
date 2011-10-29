@@ -227,6 +227,13 @@
         [cell.contentView addSubview:showLyricsButton];
         showLyricsButton.tag = 4;
         [showLyricsButton release];
+        
+        [recordOrTrashButton addTarget:self action:@selector(recordOrTrashButtonIsPressed:) 
+                      forControlEvents:UIControlEventTouchDown];
+        [muteOrUnmuteButton addTarget:self action:@selector(muteOrUnmuteButtonIsPressed:) 
+                     forControlEvents:UIControlEventTouchDown];
+        [showLyricsButton addTarget:self action:@selector(showLyricsButtonIsPressed:) 
+                   forControlEvents:UIControlEventTouchDown];
     }
     
     //start configuring...
@@ -263,13 +270,6 @@
         }
     }
     
-    [recordOrTrashButton addTarget:self action:@selector(recordOrTrashButtonIsPressed:) 
-                  forControlEvents:UIControlEventTouchDown];
-    [muteOrUnmuteButton addTarget:self action:@selector(muteOrUnmuteButtonIsPressed:) 
-                  forControlEvents:UIControlEventTouchDown];
-    [showLyricsButton addTarget:self action:@selector(showLyricsButtonIsPressed:) 
-               forControlEvents:UIControlEventTouchDown];
-
     return cell;
 }
 
@@ -283,12 +283,7 @@
 
 - (void)muteOrUnmuteButtonIsPressed:(UIButton *)sender
 {    
-    UIButton *muteOrUnmuteButton = (UIButton*)sender;
-    UITableViewCell *trackCell = (UITableViewCell*) muteOrUnmuteButton.superview.superview;
-    UITableView *tableView = (UITableView*)[trackCell superview];
-    NSIndexPath *indexPath = [tableView indexPathForCell:trackCell];
-    
-    int busNumber = indexPath.row;
+    int busNumber = [self getTableViewRow:sender];
     
     if ([thePlayer busNumberIsMuted:busNumber]) {
         [thePlayer unmuteBusNumber:busNumber]; 
@@ -309,12 +304,8 @@
         [recordButtonHitWhenRecordingAlert release];
         return;
     }
-
-    UIButton *recordOrTrashButton = (UIButton *)sender;
-    UITableViewCell *trackCell = (UITableViewCell*)recordOrTrashButton.superview.superview;
-    UITableView *tableView = (UITableView*)[trackCell superview];
-    NSIndexPath *indexPath = [tableView indexPathForCell:trackCell];
-    row = indexPath.row;
+    
+    row = [self getTableViewRow:sender];
     
      //get the corresponding Audio object
     id audioForRow = [tracksForView objectAtIndex:row];
@@ -342,11 +333,7 @@
 
 - (void)showLyricsButtonIsPressed:(UIButton*)sender
 {
-    UIButton *recordOrTrashButton = (UIButton *)sender;
-    UITableViewCell *trackCell = (UITableViewCell*)recordOrTrashButton.superview.superview;
-    UITableView *tableView = (UITableView*)[trackCell superview];
-    NSIndexPath *indexPath = [tableView indexPathForCell:trackCell];
-    int row = indexPath.row;
+    int row = [self getTableViewRow:sender];
     
     //get the corresponding Audio object
     id audioForRow = [tracksForView objectAtIndex:row];
@@ -526,6 +513,14 @@
 - (void)deRegisterFromNSNotifcationCenter
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (int)getTableViewRow:(UIButton*)sender
+{
+    UITableViewCell *trackCell = (UITableViewCell*)sender.superview.superview;
+    UITableView *tableView = (UITableView*)[trackCell superview];
+    NSIndexPath *indexPath = [tableView indexPathForCell:trackCell];
+    return indexPath.row;
 }
 
 #pragma mark - instance methods for the audio and coveraudio arrays

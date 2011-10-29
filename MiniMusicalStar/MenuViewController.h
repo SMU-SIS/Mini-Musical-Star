@@ -18,6 +18,7 @@
 
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @property (retain, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (retain, nonatomic) IBOutlet UIImageView *titleBanner;
 @property (retain, nonatomic) NSMutableArray *buttonArray;
 @property (retain, nonatomic) ShowDAO *showDAO;
 
