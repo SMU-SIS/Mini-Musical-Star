@@ -19,6 +19,7 @@
 @property (assign, nonatomic) id delegate;
 @property (retain, nonatomic) NSManagedObjectContext *context;
 
+- (void)setCoverTitleLabel:(NSString*) text;
 - (id)initWithShow:(Show *)aShow Cover:(Cover *)aCover;
 - (void)loadSceneSelectionScrollView;
 

@@ -12,7 +12,7 @@
 
 @protocol CoversListDelegate <NSObject>
 
--(void)selectedSavedCover:(Cover*)aCover;
+- (void)loadSceneSelectionScrollViewWithCover:(Cover *)aCover;
 
 @end
 

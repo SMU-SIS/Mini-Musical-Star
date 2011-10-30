@@ -250,7 +250,7 @@
 {
     //get the Cover object
     Cover *selectedCover = [frc objectAtIndexPath:indexPath];
-    [delegate performSelector:@selector(selectedSavedCover:) withObject:selectedCover];
+    [delegate performSelector:@selector(loadSceneSelectionScrollViewWithCover:) withObject:selectedCover];
 }
 
 @end

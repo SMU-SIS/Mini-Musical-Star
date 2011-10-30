@@ -59,6 +59,7 @@
     
     
     self.currentSelectedCoversList = [[CoversListViewController alloc] initWithShow:self.theShow context:self.managedObjectContext];
+    [self.currentSelectedCoversList setDelegate:self];
     self.currentSelectedCoversList.view.frame = CGRectMake(724,100,300,668);
 //    self.coversTableView = (UITableView* )self.currentSelectedCoversList.view;
     [self.view addSubview:self.currentSelectedCoversList.view];
@@ -114,7 +115,7 @@
     self.navigationController.navigationBarHidden = NO;
 }
 
-- (void)removeScrollStrip
+- (BOOL)removeScrollStrip
 {
     //just animate out
     if (self.sceneStripController.view.superview != nil)
@@ -133,16 +134,17 @@
             self.sceneStripController = nil;
         }];
         
-        return;
+        return YES;
     }
+    return NO;
 }
 
-- (void)loadSceneSelectionScrollViewWithCover:(Cover *)aCover
+- (void) addScrollStrip: (Cover*) aCover
 {
-    
     //create an instance of SceneStripController
     self.sceneStripController = [[SceneStripController alloc] initWithShow:self.theShow Cover:aCover];
     self.sceneStripController.delegate = self;
+    [self.sceneStripController setCoverTitleLabel:aCover.title];
     sceneStripController.context = self.managedObjectContext;
     
     [self.view addSubview:self.sceneStripController.view];
@@ -160,8 +162,15 @@
         //do nothing
     }];
     
-    NSLog(@"hello i am here");
+}
 
+- (void)loadSceneSelectionScrollViewWithCover:(Cover *)aCover
+{
+    if([self removeScrollStrip]){
+//        [self performSelector:@selector(addScrollStrip:) withObject:self afterDelay:0.5];
+        return;
+    };
+    [self addScrollStrip:aCover];
 }
 
 - (void)showActivitySpinner
@@ -194,10 +203,9 @@
     // e.g. self.myOutlet = nil;
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     // Return YES for supported orientations
-	return YES;
+    return (interfaceOrientation == UIInterfaceOrientationLandscapeLeft || interfaceOrientation == UIInterfaceOrientationLandscapeRight);
 }
 
 - (void)loadCoversForShow:(Show *)aShow
