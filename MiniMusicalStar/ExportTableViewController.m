@@ -35,10 +35,11 @@
 @synthesize facebookUploader;
 @synthesize youTubeUploader;
 @synthesize context;
-@synthesize 
+@synthesize videoUploaderViewController;
 
 -(void)dealloc
 {
+    [videoUploaderViewController release];
     [tempMusicalContainer release];
     [musicalArray release];
     [scenesArray release];

@@ -265,12 +265,13 @@
 
 -(void)selectedSavedCover:(Cover*)aCover
 {
-    SceneViewController *sceneView = [[SceneViewController alloc] initWithScenesFromShow:theShow andCover:aCover andContext:managedObjectContext];
-    
-    sceneView.title = [aCover title];
-    
-    [self.navigationController pushViewController:sceneView animated:YES];
-    
-    [sceneView release];
+//    SceneViewController *sceneView = [[SceneViewController alloc] initWithScenesFromShow:theShow andCover:aCover andContext:managedObjectContext];
+//    
+//    sceneView.title = [aCover title];
+//    
+//    [self.navigationController pushViewController:sceneView animated:YES];
+//    
+//    [sceneView release];
+    [self loadSceneSelectionScrollViewWithCover:aCover];
 }
 @end

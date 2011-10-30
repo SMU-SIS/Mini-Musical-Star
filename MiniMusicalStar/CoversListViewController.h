@@ -12,7 +12,7 @@
 
 @protocol CoversListDelegate <NSObject>
 
-- (void)dismissCoversList;
+-(void)selectedSavedCover:(Cover*)aCover;
 
 @end
 

@@ -40,7 +40,7 @@
 @property (retain, nonatomic) NSManagedObjectContext *context;
 @property (retain, nonatomic) FacebookUploader *facebookUploader;
 @property (retain, nonatomic) YouTubeUploader *youTubeUploader;
-@property (retain, nonatomic) VideoUploaderViewController videoUploaderViewController;
+@property (retain, nonatomic) VideoUploaderViewController *videoUploaderViewController;
 
 - (id)initWithStyle:(UITableViewStyle)style:(Show*)show:(Cover*)cover context:(NSManagedObjectContext *)aContext;
 - (void) generateMusical;
