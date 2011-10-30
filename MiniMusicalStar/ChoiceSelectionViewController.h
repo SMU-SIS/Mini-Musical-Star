@@ -41,7 +41,7 @@
 - (void)loadSceneSelectionScrollViewWithCover:(Cover *)aCover;
 -(void)createMusical;
 -(IBAction)loadCoversList:(UIButton*)sender;
-
+- (IBAction)removeScrollStrip:(id) sender;
 -(IBAction)promptForCoverName:(UIButton*)sender;
 - (IBAction)goToExportPage: (id)sender;
 

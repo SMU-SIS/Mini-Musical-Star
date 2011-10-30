@@ -130,7 +130,7 @@
     self.navigationController.navigationBarHidden = NO;
 }
 
-- (BOOL)removeScrollStrip
+- (IBAction)removeScrollStrip:(id) sender
 {
     //just animate out
     if (self.sceneStripController.view.superview != nil)
@@ -147,6 +147,28 @@
         } completion:^(BOOL finished) {
             [self.sceneStripController.view removeFromSuperview];
             self.sceneStripController = nil;
+        }];
+    }
+}
+
+- (BOOL)bounceScrollStrip: (Cover*) aCover
+{
+    //just animate out
+    if (self.sceneStripController.view.superview != nil)
+    {
+        [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationCurveEaseIn animations:^{
+            CGAffineTransform moveRight = CGAffineTransformMakeTranslation(1024, 0);
+            self.sceneStripController.view.transform = moveRight;
+            
+            [self.sceneStripController.view.subviews enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                UIView *subview = (UIView *)obj;
+                subview.transform = moveRight;
+            }];
+            
+        } completion:^(BOOL finished) {
+            [self.sceneStripController.view removeFromSuperview];
+            self.sceneStripController = nil;
+            [self addScrollStrip:aCover];
         }];
         
         return YES;
@@ -181,7 +203,8 @@
 
 - (void)loadSceneSelectionScrollViewWithCover:(Cover *)aCover
 {
-    if([self removeScrollStrip]){
+    if(self.sceneStripController.view.superview != nil){
+        [self bounceScrollStrip:aCover];
 //        [self performSelector:@selector(addScrollStrip:) withObject:self afterDelay:0.5];
         return;
     };
