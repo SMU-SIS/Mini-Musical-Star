@@ -2267,16 +2267,12 @@
 				95674E15145BFE6A00836B5F /* SceneStripController.m */,
 				64D6CCC6145D4A3F00D172D2 /* FacebookUploaderViewController.h */,
 				64D6CCC7145D4A3F00D172D2 /* FacebookUploaderViewController.m */,
-				64D6CCC8145D4A3F00D172D2 /* FacebookUploaderViewController.xib */,
 				3A219516145D58920052C0FE /* MediaManagementViewController.h */,
 				3A219517145D58920052C0FE /* MediaManagementViewController.m */,
-				3A219518145D58920052C0FE /* MediaManagementViewController.xib */,
 				64D6CD25145D612C00D172D2 /* ExportViewController.h */,
 				64D6CD26145D612C00D172D2 /* ExportViewController.m */,
-				64D6CD27145D612C00D172D2 /* ExportViewController.xib */,
 				6457E058145DA2FF00ABBF87 /* ShareTableViewController.h */,
 				6457E059145DA2FF00ABBF87 /* ShareTableViewController.m */,
-				6457E05A145DA2FF00ABBF87 /* ShareTableViewController.xib */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -2296,6 +2292,10 @@
 				95C526AD1438DA740008AE13 /* CoversListViewController.xib */,
 				3A5F7C6B1440D74D00E9C570 /* VideoPlayerViewController.xib */,
 				3AF97A33144BE6FE00133C47 /* ExportTableViewController.xib */,
+				64D6CCC8145D4A3F00D172D2 /* FacebookUploaderViewController.xib */,
+				3A219518145D58920052C0FE /* MediaManagementViewController.xib */,
+				64D6CD27145D612C00D172D2 /* ExportViewController.xib */,
+				6457E05A145DA2FF00ABBF87 /* ShareTableViewController.xib */,
 			);
 			name = XIB;
 			sourceTree = "<group>";
