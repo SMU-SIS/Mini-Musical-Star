@@ -214,6 +214,9 @@
 		641B32DA1441E98100F4A93D /* unmuted.png in Resources */ = {isa = PBXBuildFile; fileRef = 641B32D81441E98100F4A93D /* unmuted.png */; };
 		641B32DD1441E99500F4A93D /* muted.png in Resources */ = {isa = PBXBuildFile; fileRef = 641B32DC1441E99500F4A93D /* muted.png */; };
 		643AC0ED142FF2AE00F65B85 /* AudioEditViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 643AC0EC142FF2AD00F65B85 /* AudioEditViewControllerTest.m */; };
+		6457E04F145D9E1E00ABBF87 /* camera.png in Resources */ = {isa = PBXBuildFile; fileRef = 6457E04C145D9E1E00ABBF87 /* camera.png */; };
+		6457E050145D9E1E00ABBF87 /* lyrics_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 6457E04D145D9E1E00ABBF87 /* lyrics_button.png */; };
+		6457E051145D9E1E00ABBF87 /* pause.png in Resources */ = {isa = PBXBuildFile; fileRef = 6457E04E145D9E1E00ABBF87 /* pause.png */; };
 		646E4D381454199300F066F6 /* Facebook.m in Sources */ = {isa = PBXBuildFile; fileRef = 646E4D081454199300F066F6 /* Facebook.m */; };
 		646E4D391454199300F066F6 /* FBDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 646E4D0B1454199300F066F6 /* FBDialog.m */; };
 		646E4D3A1454199300F066F6 /* FBLoginDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 646E4D0D1454199300F066F6 /* FBLoginDialog.m */; };
@@ -631,6 +634,9 @@
 		641B32DC1441E99500F4A93D /* muted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = muted.png; sourceTree = "<group>"; };
 		643AC0EB142FF2AD00F65B85 /* AudioEditViewControllerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioEditViewControllerTest.h; sourceTree = "<group>"; };
 		643AC0EC142FF2AD00F65B85 /* AudioEditViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioEditViewControllerTest.m; sourceTree = "<group>"; };
+		6457E04C145D9E1E00ABBF87 /* camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera.png; sourceTree = "<group>"; };
+		6457E04D145D9E1E00ABBF87 /* lyrics_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lyrics_button.png; sourceTree = "<group>"; };
+		6457E04E145D9E1E00ABBF87 /* pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pause.png; sourceTree = "<group>"; };
 		646E4D071454199300F066F6 /* Facebook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Facebook.h; sourceTree = "<group>"; };
 		646E4D081454199300F066F6 /* Facebook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Facebook.m; sourceTree = "<group>"; };
 		646E4D091454199300F066F6 /* FBConnect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBConnect.h; sourceTree = "<group>"; };
@@ -1474,6 +1480,9 @@
 		3AFFDDF1142C7191000D8494 /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
+				6457E04C145D9E1E00ABBF87 /* camera.png */,
+				6457E04D145D9E1E00ABBF87 /* lyrics_button.png */,
+				6457E04E145D9E1E00ABBF87 /* pause.png */,
 				64E0E127145D8AB90074D133 /* export.png */,
 				64CF0B92145BA6A800A9BF08 /* facebook_32.png */,
 				64CF0B93145BA6A800A9BF08 /* youtube_32.png */,
@@ -2571,6 +2580,9 @@
 				64E0E124145D70150074D133 /* note_for_lyrics.png in Resources */,
 				64E0E126145D7E2C0074D133 /* track.png in Resources */,
 				64E0E128145D8AB90074D133 /* export.png in Resources */,
+				6457E04F145D9E1E00ABBF87 /* camera.png in Resources */,
+				6457E050145D9E1E00ABBF87 /* lyrics_button.png in Resources */,
+				6457E051145D9E1E00ABBF87 /* pause.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
