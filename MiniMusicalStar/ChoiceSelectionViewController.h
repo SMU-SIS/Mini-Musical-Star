@@ -35,6 +35,7 @@
 @property (retain, nonatomic) IBOutlet UITextView *showDescription;
 @property (retain, nonatomic) IBOutlet SceneStripController *sceneStripController;
 @property (retain, nonatomic) IBOutlet UITableView *coversTableView;
+@property (retain, nonatomic) IBOutlet UIButton *exportButton;
 
 -(ChoiceSelectionViewController *)initWithAShowForSelection:(Show *)aShow context:(NSManagedObjectContext *)aContext;
 - (void)loadSceneSelectionScrollViewWithCover:(Cover *)aCover;
@@ -42,6 +43,7 @@
 -(IBAction)loadCoversList:(UIButton*)sender;
 
 -(IBAction)promptForCoverName:(UIButton*)sender;
+- (IBAction)goToExportPage: (id)sender;
 
 - (void)loadCoversForShow:(Show *)aShow;
 -(void)selectedSavedCover;

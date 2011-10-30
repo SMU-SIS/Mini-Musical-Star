@@ -59,7 +59,7 @@
 						<string key="NSFrame">{{679, 40}, {345, 60}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="587816527"/>
+						<reference key="NSNextKeyView" ref="450520366"/>
 						<string key="NSReuseIdentifierKey">_NS:237</string>
 						<object class="NSColor" key="IBUIBackgroundColor" id="254793842">
 							<int key="NSColorSpace">3</int>
@@ -159,7 +159,7 @@
 							<int key="NSfFlags">16</int>
 						</object>
 					</object>
-					<object class="IBUIButton" id="587816527">
+					<object class="IBUIButton" id="450520366">
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{107, 520}, {313, 106}}</string>
@@ -249,6 +249,14 @@
 					<int key="connectionID">12</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">exportButton</string>
+						<reference key="source" ref="841351856"/>
+						<reference key="destination" ref="450520366"/>
+					</object>
+					<int key="connectionID">27</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">promptForCoverName:</string>
 						<reference key="source" ref="695467738"/>
@@ -256,6 +264,15 @@
 						<int key="IBEventType">7</int>
 					</object>
 					<int key="connectionID">15</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">goToExportPage:</string>
+						<reference key="source" ref="450520366"/>
+						<reference key="destination" ref="841351856"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">29</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -289,7 +306,7 @@
 							<reference ref="343781229"/>
 							<reference ref="800726562"/>
 							<reference ref="695467738"/>
-							<reference ref="587816527"/>
+							<reference ref="450520366"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -315,7 +332,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">26</int>
-						<reference key="object" ref="587816527"/>
+						<reference key="object" ref="450520366"/>
 						<reference key="parent" ref="766721923"/>
 					</object>
 				</object>
@@ -361,7 +378,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">26</int>
+			<int key="maxID">29</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -373,11 +390,13 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>goToExportPage:</string>
 							<string>loadCoversList:</string>
 							<string>promptForCoverName:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>UIButton</string>
 							<string>UIButton</string>
 						</object>
@@ -386,11 +405,16 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>goToExportPage:</string>
 							<string>loadCoversList:</string>
 							<string>promptForCoverName:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBActionInfo">
+								<string key="name">goToExportPage:</string>
+								<string key="candidateClassName">id</string>
+							</object>
 							<object class="IBActionInfo">
 								<string key="name">loadCoversList:</string>
 								<string key="candidateClassName">UIButton</string>
@@ -408,6 +432,7 @@
 							<string>cover</string>
 							<string>coversTableView</string>
 							<string>create</string>
+							<string>exportButton</string>
 							<string>sceneStripController</string>
 							<string>showCover</string>
 							<string>showDescription</string>
@@ -417,6 +442,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>UIButton</string>
 							<string>UITableView</string>
+							<string>UIButton</string>
 							<string>UIButton</string>
 							<string>SceneStripController</string>
 							<string>UIImageView</string>
@@ -431,6 +457,7 @@
 							<string>cover</string>
 							<string>coversTableView</string>
 							<string>create</string>
+							<string>exportButton</string>
 							<string>sceneStripController</string>
 							<string>showCover</string>
 							<string>showDescription</string>
@@ -448,6 +475,10 @@
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">create</string>
+								<string key="candidateClassName">UIButton</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">exportButton</string>
 								<string key="candidateClassName">UIButton</string>
 							</object>
 							<object class="IBToOneOutletInfo">

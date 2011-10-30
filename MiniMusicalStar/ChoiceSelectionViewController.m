@@ -21,9 +21,11 @@
 @synthesize sceneStripController;
 @synthesize coversTableView;
 @synthesize currentSelectedCoversList;
+@synthesize exportButton;
 
 - (void)dealloc
 {
+    [exportButton release];
     [currentSelectedCoversList release];
     [coversTableView release];
     [sceneStripController release];
@@ -67,10 +69,23 @@
     return self;
 }
 
+- (IBAction)goToExportPage: (id)sender
+{
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+    [UIView setAnimationDuration:0.75];
+    Cover *aCover = [NSEntityDescription insertNewObjectForEntityForName:@"Cover" inManagedObjectContext:managedObjectContext];
+    self.exportTableController = [[ExportTableViewController alloc] initWithStyle:UITableViewStyleGrouped :theShow :aCover context:self.managedObjectContext];
+    [self.navigationController pushViewController:exportTableController animated:NO];
+    [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:self.navigationController.view cache:NO];
+    [UIView commitAnimations];
+}
+
 - (IBAction)promptForCoverName: (UIButton*)sender
 {
     AlertPrompt *prompt = [AlertPrompt alloc];
 	prompt = [prompt initWithTitle:@"Give your cover a name!" message:@" " delegate:self cancelButtonTitle:@"Cancel" okButtonTitle:@"Okay"];
+    [prompt setFrame:CGRectMake(412,311,200,150)];
 	[prompt show];
 	[prompt release];
 
@@ -99,8 +114,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    mediaManagementButton = [[UIBarButtonItem alloc] initWithTitle:@"Export Musicals" style:UIBarButtonItemStylePlain target:self action:@selector(showMediaManagement:)];          
-    self.navigationItem.rightBarButtonItem = mediaManagementButton;
+//    mediaManagementButton = [[UIBarButtonItem alloc] initWithTitle:@"Export Musicals" style:UIBarButtonItemStylePlain target:self action:@selector(showMediaManagement:)];          
+//    self.navigationItem.rightBarButtonItem = mediaManagementButton;
     
     showCover.image = theShow.coverPicture;
     
