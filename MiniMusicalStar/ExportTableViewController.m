@@ -35,6 +35,7 @@
 @synthesize facebookUploader;
 @synthesize youTubeUploader;
 @synthesize context;
+@synthesize 
 
 -(void)dealloc
 {

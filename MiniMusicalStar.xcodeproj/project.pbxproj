@@ -205,6 +205,8 @@
 		3AFFDF05142C7E0F000D8494 /* TPCircularBuffer.c in Sources */ = {isa = PBXBuildFile; fileRef = 3AFFDEF9142C7E0F000D8494 /* TPCircularBuffer.c */; };
 		3AFFDF0A142C7E16000D8494 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFFDF09142C7E16000D8494 /* UIImage+Resize.m */; };
 		3AFFDF0F142C7E69000D8494 /* DSActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFFDF0E142C7E69000D8494 /* DSActivityView.m */; };
+		6409C7B6145C50C3002536DF /* VideoUploaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6409C7B4145C50C3002536DF /* VideoUploaderViewController.m */; };
+		6409C7B7145C50C3002536DF /* VideoUploaderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6409C7B5145C50C3002536DF /* VideoUploaderViewController.xib */; };
 		6410AF33143A00900062B04D /* MiniMusicalStarUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 6410AF32143A00900062B04D /* MiniMusicalStarUtilities.m */; };
 		641B32D91441E98100F4A93D /* trashbin.png in Resources */ = {isa = PBXBuildFile; fileRef = 641B32D71441E98100F4A93D /* trashbin.png */; };
 		641B32DA1441E98100F4A93D /* unmuted.png in Resources */ = {isa = PBXBuildFile; fileRef = 641B32D81441E98100F4A93D /* unmuted.png */; };
@@ -236,10 +238,6 @@
 		64985A3B14528E5400485F4D /* sample.mov in Resources */ = {isa = PBXBuildFile; fileRef = 64985A3A14528E5400485F4D /* sample.mov */; };
 		64CF0B94145BA6A800A9BF08 /* facebook_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 64CF0B92145BA6A800A9BF08 /* facebook_32.png */; };
 		64CF0B95145BA6A800A9BF08 /* youtube_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 64CF0B93145BA6A800A9BF08 /* youtube_32.png */; };
-		73241EE6145BDA7900C67586 /* track.png in Resources */ = {isa = PBXBuildFile; fileRef = 73241EE3145BDA7900C67586 /* track.png */; };
-		73241EE8145BDAD700C67586 /* scroller.png in Resources */ = {isa = PBXBuildFile; fileRef = 73241EE7145BDAD700C67586 /* scroller.png */; };
-		73241EEA145BDAE300C67586 /* empty.png in Resources */ = {isa = PBXBuildFile; fileRef = 73241EE9145BDAE300C67586 /* empty.png */; };
-		73241EEC145BDAEF00C67586 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 73241EEB145BDAEF00C67586 /* star.png */; };
 		737716CB1445D61500BF2036 /* ChoiceSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 737716C91445D61500BF2036 /* ChoiceSelectionViewController.m */; };
 		737716CC1445D61500BF2036 /* ChoiceSelectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 737716CA1445D61500BF2036 /* ChoiceSelectionViewController.xib */; };
 		73843EAD144CDD2C00C55337 /* AlertPrompt.m in Sources */ = {isa = PBXBuildFile; fileRef = 73843EAC144CDD2C00C55337 /* AlertPrompt.m */; };
@@ -611,6 +609,9 @@
 		3AFFDF09142C7E16000D8494 /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
 		3AFFDF0D142C7E69000D8494 /* DSActivityView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSActivityView.h; sourceTree = "<group>"; };
 		3AFFDF0E142C7E69000D8494 /* DSActivityView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSActivityView.m; sourceTree = "<group>"; };
+		6409C7B3145C50C3002536DF /* VideoUploaderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoUploaderViewController.h; sourceTree = "<group>"; };
+		6409C7B4145C50C3002536DF /* VideoUploaderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoUploaderViewController.m; sourceTree = "<group>"; };
+		6409C7B5145C50C3002536DF /* VideoUploaderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoUploaderViewController.xib; sourceTree = "<group>"; };
 		6410AF31143A00900062B04D /* MiniMusicalStarUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MiniMusicalStarUtilities.h; path = Libraries/MiniMusicalStarUtilities.h; sourceTree = SOURCE_ROOT; };
 		6410AF32143A00900062B04D /* MiniMusicalStarUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MiniMusicalStarUtilities.m; path = Libraries/MiniMusicalStarUtilities.m; sourceTree = SOURCE_ROOT; };
 		641B32D71441E98100F4A93D /* trashbin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trashbin.png; sourceTree = "<group>"; };
@@ -988,10 +989,6 @@
 		64CF0B80145B1C0400A9BF08 /* templyrics.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = templyrics.png; sourceTree = "<group>"; };
 		64CF0B92145BA6A800A9BF08 /* facebook_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facebook_32.png; sourceTree = "<group>"; };
 		64CF0B93145BA6A800A9BF08 /* youtube_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = youtube_32.png; sourceTree = "<group>"; };
-		73241EE3145BDA7900C67586 /* track.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = track.png; path = Resources/track.png; sourceTree = "<group>"; };
-		73241EE7145BDAD700C67586 /* scroller.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = scroller.png; path = Resources/scroller.png; sourceTree = "<group>"; };
-		73241EE9145BDAE300C67586 /* empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = empty.png; path = Resources/empty.png; sourceTree = "<group>"; };
-		73241EEB145BDAEF00C67586 /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = star.png; path = Resources/star.png; sourceTree = "<group>"; };
 		737716C81445D61500BF2036 /* ChoiceSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChoiceSelectionViewController.h; sourceTree = "<group>"; };
 		737716C91445D61500BF2036 /* ChoiceSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChoiceSelectionViewController.m; sourceTree = "<group>"; };
 		737716CA1445D61500BF2036 /* ChoiceSelectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChoiceSelectionViewController.xib; sourceTree = "<group>"; };
@@ -2093,10 +2090,6 @@
 		820E2A1E140A0A2A00B80BBC /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				73241EEB145BDAEF00C67586 /* star.png */,
-				73241EE9145BDAE300C67586 /* empty.png */,
-				73241EE7145BDAD700C67586 /* scroller.png */,
-				73241EE3145BDA7900C67586 /* track.png */,
 				3A10F10B145C428C006F8EEC /* main_background.png */,
 				3A10EFC2145BF7D1006F8EEC /* softboard.png */,
 				3A10EFBE145BF56F006F8EEC /* camera.png */,
@@ -2227,6 +2220,8 @@
 				3A5F7C6A1440D74D00E9C570 /* VideoPlayerViewController.m */,
 				95674E14145BFE6A00836B5F /* SceneStripController.h */,
 				95674E15145BFE6A00836B5F /* SceneStripController.m */,
+				6409C7B3145C50C3002536DF /* VideoUploaderViewController.h */,
+				6409C7B4145C50C3002536DF /* VideoUploaderViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -2234,6 +2229,7 @@
 		ED885C2F140BC13100209530 /* XIB */ = {
 			isa = PBXGroup;
 			children = (
+				6409C7B5145C50C3002536DF /* VideoUploaderViewController.xib */,
 				95F9FFC61425C63700A18463 /* CameraPopupViewController.xib */,
 				737716CA1445D61500BF2036 /* ChoiceSelectionViewController.xib */,
 				EDA2A1D613F26F8400B64EA5 /* MainWindow.xib */,
@@ -2533,10 +2529,7 @@
 				3A10EFC1145BF56F006F8EEC /* photo_library.png in Resources */,
 				3A10EFC3145BF7D1006F8EEC /* softboard.png in Resources */,
 				3A10F10C145C428C006F8EEC /* main_background.png in Resources */,
-				73241EE6145BDA7900C67586 /* track.png in Resources */,
-				73241EE8145BDAD700C67586 /* scroller.png in Resources */,
-				73241EEA145BDAE300C67586 /* empty.png in Resources */,
-				73241EEC145BDAEF00C67586 /* star.png in Resources */,
+				6409C7B7145C50C3002536DF /* VideoUploaderViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2737,6 +2730,7 @@
 				3AB1421E1457FF3700173EAD /* Logger.m in Sources */,
 				3AB1421F1457FF3700173EAD /* UnitTest.m in Sources */,
 				95674E16145BFE6A00836B5F /* SceneStripController.m in Sources */,
+				6409C7B6145C50C3002536DF /* VideoUploaderViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
