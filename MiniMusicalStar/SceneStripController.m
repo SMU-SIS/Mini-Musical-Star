@@ -53,11 +53,12 @@
     self.view.pagingEnabled = NO;
     self.view.clipsToBounds = NO;
     
-    self.view.backgroundColor = [UIColor whiteColor];
+    UIColor *background = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"filmstrip.png"]];
+    self.view.backgroundColor = background;
     
     self.coverLabel = [[UILabel alloc] initWithFrame:CGRectMake(1024+30,0,500,75)];
-    [coverLabel setText:@"Cover: HAHAHA"];
     [coverLabel setFont:[UIFont fontWithName:@"Arial" size:30]];
+    [coverLabel setBackgroundColor:[UIColor clearColor]];
     [self.view addSubview:coverLabel];
     
     //look at the scene order dictionary in the Show object to place the scenes in the correct order

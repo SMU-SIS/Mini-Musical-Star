@@ -31,6 +31,7 @@
 		3A12E378142F7551004B97BE /* AFItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFFDECB142C7CCD000D8494 /* AFItemView.m */; };
 		3A12E379142F7556004B97BE /* AFUIImageReflection.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFFDED0142C7CCD000D8494 /* AFUIImageReflection.m */; };
 		3A12E37C142F81A7004B97BE /* SceneTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A12E37B142F81A7004B97BE /* SceneTest.m */; };
+		3A2194F7145D42660052C0FE /* filmstrip.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A2194F6145D42660052C0FE /* filmstrip.png */; };
 		3A4EB699145592CE005A662F /* ImageToVideoConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A4EB698145592CE005A662F /* ImageToVideoConverter.m */; };
 		3A4EB6B51456A8CF005A662F /* lastclip.mov in Resources */ = {isa = PBXBuildFile; fileRef = 3A4EB6B41456A8CF005A662F /* lastclip.mov */; };
 		3A4EBC171457E311005A662F /* CommandManagerTouchExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A4EBBD21457E311005A662F /* CommandManagerTouchExt.m */; };
@@ -351,6 +352,7 @@
 		3A12E367142F1D9A004B97BE /* libOCMock.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOCMock.a; path = ../Libraries/libOCMock.a; sourceTree = "<group>"; };
 		3A12E37A142F81A6004B97BE /* SceneTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneTest.h; sourceTree = "<group>"; };
 		3A12E37B142F81A7004B97BE /* SceneTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SceneTest.m; sourceTree = "<group>"; };
+		3A2194F6145D42660052C0FE /* filmstrip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = filmstrip.png; path = Resources/filmstrip.png; sourceTree = "<group>"; };
 		3A4EB697145592CE005A662F /* ImageToVideoConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageToVideoConverter.h; sourceTree = "<group>"; };
 		3A4EB698145592CE005A662F /* ImageToVideoConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageToVideoConverter.m; sourceTree = "<group>"; };
 		3A4EB6B41456A8CF005A662F /* lastclip.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; name = lastclip.mov; path = Libraries/DSActivityView/lastclip.mov; sourceTree = "<group>"; };
@@ -2090,6 +2092,7 @@
 		820E2A1E140A0A2A00B80BBC /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				3A2194F6145D42660052C0FE /* filmstrip.png */,
 				3A10F10B145C428C006F8EEC /* main_background.png */,
 				3A10EFC2145BF7D1006F8EEC /* softboard.png */,
 				3A10EFBE145BF56F006F8EEC /* camera.png */,
@@ -2530,6 +2533,7 @@
 				3A10EFC3145BF7D1006F8EEC /* softboard.png in Resources */,
 				3A10F10C145C428C006F8EEC /* main_background.png in Resources */,
 				6409C7B7145C50C3002536DF /* VideoUploaderViewController.xib in Resources */,
+				3A2194F7145D42660052C0FE /* filmstrip.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
