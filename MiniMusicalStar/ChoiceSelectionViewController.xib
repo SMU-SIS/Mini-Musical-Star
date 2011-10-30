@@ -163,7 +163,7 @@
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="246879005"/>
 						<string key="NSReuseIdentifierKey">_NS:237</string>
-						<object class="NSColor" key="IBUIBackgroundColor" id="344066932">
+						<object class="NSColor" key="IBUIBackgroundColor" id="133097135">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MCAwAA</bytes>
 						</object>
@@ -176,7 +176,7 @@
 						<reference key="IBUINormalTitleShadowColor" ref="739257295"/>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">createNEW.png</string>
+							<string key="NSResourceName">newcover.png</string>
 						</object>
 						<object class="IBUIFontDescription" key="IBUIFontDescription">
 							<string key="name">Helvetica-Bold</string>
@@ -194,7 +194,7 @@
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:241</string>
-						<reference key="IBUIBackgroundColor" ref="344066932"/>
+						<reference key="IBUIBackgroundColor" ref="133097135"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
@@ -342,8 +342,8 @@
 							<reference ref="800726562"/>
 							<reference ref="473453880"/>
 							<reference ref="343781229"/>
-							<reference ref="695467738"/>
 							<reference ref="246879005"/>
+							<reference ref="695467738"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -584,13 +584,13 @@
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<object class="NSArray" key="dict.sortedKeys">
 				<bool key="EncodedWithXMLCoder">YES</bool>
-				<string>createNEW.png</string>
 				<string>exportbutton.png</string>
+				<string>newcover.png</string>
 			</object>
 			<object class="NSMutableArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
-				<string>{300, 200}</string>
 				<string>{100, 100}</string>
+				<string>{275, 100}</string>
 			</object>
 		</object>
 		<string key="IBCocoaTouchPluginVersion">933</string>
