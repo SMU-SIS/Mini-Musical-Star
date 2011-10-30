@@ -189,7 +189,6 @@
 						<string key="NSFrame">{{107, 520}, {313, 106}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:241</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -288,12 +287,12 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">goToExportPage:</string>
+						<string key="label">showMediaManagement:</string>
 						<reference key="source" ref="246879005"/>
 						<reference key="destination" ref="841351856"/>
 						<int key="IBEventType">7</int>
 					</object>
-					<int key="connectionID">29</int>
+					<int key="connectionID">32</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -416,7 +415,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">31</int>
+			<int key="maxID">32</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -432,12 +431,14 @@
 							<string>loadCoversList:</string>
 							<string>promptForCoverName:</string>
 							<string>removeScrollStrip:</string>
+							<string>showMediaManagement:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>id</string>
 							<string>UIButton</string>
 							<string>UIButton</string>
+							<string>id</string>
 							<string>id</string>
 						</object>
 					</object>
@@ -449,6 +450,7 @@
 							<string>loadCoversList:</string>
 							<string>promptForCoverName:</string>
 							<string>removeScrollStrip:</string>
+							<string>showMediaManagement:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -466,6 +468,10 @@
 							</object>
 							<object class="IBActionInfo">
 								<string key="name">removeScrollStrip:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">showMediaManagement:</string>
 								<string key="candidateClassName">id</string>
 							</object>
 						</object>

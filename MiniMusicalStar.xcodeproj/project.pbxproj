@@ -32,6 +32,8 @@
 		3A12E379142F7556004B97BE /* AFUIImageReflection.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFFDED0142C7CCD000D8494 /* AFUIImageReflection.m */; };
 		3A12E37C142F81A7004B97BE /* SceneTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A12E37B142F81A7004B97BE /* SceneTest.m */; };
 		3A2194F7145D42660052C0FE /* filmstrip.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A2194F6145D42660052C0FE /* filmstrip.png */; };
+		3A219519145D58920052C0FE /* MediaManagementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A219517145D58920052C0FE /* MediaManagementViewController.m */; };
+		3A21951A145D58920052C0FE /* MediaManagementViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A219518145D58920052C0FE /* MediaManagementViewController.xib */; };
 		3A4EB699145592CE005A662F /* ImageToVideoConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A4EB698145592CE005A662F /* ImageToVideoConverter.m */; };
 		3A4EB6B51456A8CF005A662F /* lastclip.mov in Resources */ = {isa = PBXBuildFile; fileRef = 3A4EB6B41456A8CF005A662F /* lastclip.mov */; };
 		3A4EBC171457E311005A662F /* CommandManagerTouchExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A4EBBD21457E311005A662F /* CommandManagerTouchExt.m */; };
@@ -352,6 +354,9 @@
 		3A12E37A142F81A6004B97BE /* SceneTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneTest.h; sourceTree = "<group>"; };
 		3A12E37B142F81A7004B97BE /* SceneTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SceneTest.m; sourceTree = "<group>"; };
 		3A2194F6145D42660052C0FE /* filmstrip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = filmstrip.png; path = Resources/filmstrip.png; sourceTree = "<group>"; };
+		3A219516145D58920052C0FE /* MediaManagementViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaManagementViewController.h; sourceTree = "<group>"; };
+		3A219517145D58920052C0FE /* MediaManagementViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaManagementViewController.m; sourceTree = "<group>"; };
+		3A219518145D58920052C0FE /* MediaManagementViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MediaManagementViewController.xib; sourceTree = "<group>"; };
 		3A4EB697145592CE005A662F /* ImageToVideoConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageToVideoConverter.h; sourceTree = "<group>"; };
 		3A4EB698145592CE005A662F /* ImageToVideoConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageToVideoConverter.m; sourceTree = "<group>"; };
 		3A4EB6B41456A8CF005A662F /* lastclip.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; name = lastclip.mov; path = Libraries/DSActivityView/lastclip.mov; sourceTree = "<group>"; };
@@ -2225,6 +2230,9 @@
 				64D6CCC6145D4A3F00D172D2 /* FacebookUploaderViewController.h */,
 				64D6CCC7145D4A3F00D172D2 /* FacebookUploaderViewController.m */,
 				64D6CCC8145D4A3F00D172D2 /* FacebookUploaderViewController.xib */,
+				3A219516145D58920052C0FE /* MediaManagementViewController.h */,
+				3A219517145D58920052C0FE /* MediaManagementViewController.m */,
+				3A219518145D58920052C0FE /* MediaManagementViewController.xib */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -2531,6 +2539,7 @@
 				3A10F10C145C428C006F8EEC /* main_background.png in Resources */,
 				3A2194F7145D42660052C0FE /* filmstrip.png in Resources */,
 				64D6CCCA145D4A3F00D172D2 /* FacebookUploaderViewController.xib in Resources */,
+				3A21951A145D58920052C0FE /* MediaManagementViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2731,6 +2740,7 @@
 				3AB1421F1457FF3700173EAD /* UnitTest.m in Sources */,
 				95674E16145BFE6A00836B5F /* SceneStripController.m in Sources */,
 				64D6CCC9145D4A3F00D172D2 /* FacebookUploaderViewController.m in Sources */,
+				3A219519145D58920052C0FE /* MediaManagementViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
