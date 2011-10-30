@@ -10,12 +10,14 @@
 
 @implementation FacebookUploaderViewController
 
+@synthesize delegate;
 @synthesize okButton;
 @synthesize facebook;
 @synthesize videoNSURL;
 @synthesize videoTitle;
 @synthesize videoDescription;
 @synthesize uploadIndicator;
+@synthesize centerView;
 
 - (id)initWithProperties:(NSURL*)aVideoNSURL title:(NSString*)aTitle description:(NSString*)aDescription 
 {
@@ -48,6 +50,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     okButton.enabled = NO;
+
 }
 
 - (void)viewDidUnload
@@ -69,6 +72,7 @@
     [videoNSURL release];
     [videoTitle release];
     [videoDescription release];
+    delegate = nil;
     
     [super dealloc];
 }
@@ -121,8 +125,14 @@
     NSLog(@"The facebook upload is completed");
     
     [self.uploadIndicator stopAnimating];
-    self.okButton.titleLabel.text = @"Ok";
+    [okButton setTitle:@"OK" forState:UIControlStateNormal];
     self.okButton.enabled = YES;
+    
+    if (delegate == nil) {
+        NSLog(@"fuck me");
+    } else {
+        NSLog(@"hahahahaha");
+    }
 }
 
 - (void)request:(FBRequest *)request didFailWithError:(NSError *)error {
@@ -135,8 +145,13 @@
 }
 
 #pragma mark - IBAction methods
-- (IBAction)killMe
+- (IBAction)okButtonIsPressed
 {
+    if (delegate == nil) {
+        NSLog(@"fuck u");
+    }
+    
+    [delegate uploadSuccess];
 }
 
 @end

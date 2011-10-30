@@ -12,22 +12,27 @@
 
 @protocol FacebookUploaderViewControllerDelegate <NSObject>
 @required
-- (void) uploadSuccessful: (BOOL)success;
+- (void)uploadSuccess;
 @end
 
 @interface FacebookUploaderViewController : UIViewController
     <FBSessionDelegate, FBRequestDelegate>
+{
+    id <FacebookUploaderViewControllerDelegate> delegate;
+}
 
 @property (nonatomic, retain) IBOutlet UIButton *okButton;
 @property (nonatomic, retain) IBOutlet UIActivityIndicatorView *uploadIndicator;
+@property (nonatomic, retain) IBOutlet UIView *centerView;
+
+@property (nonatomic, assign) id delegate;
 
 @property (nonatomic, retain) Facebook *facebook;
 @property (nonatomic, retain) NSURL *videoNSURL;
 @property (nonatomic, retain) NSString *videoTitle;
 @property (nonatomic, retain) NSString *videoDescription;
-//@property (nonatomic, retain) ExportTableViewController *exportTableViewController;
 
-//- (id)initWithProperties:(NSURL*)aVideoNSURL title:(NSString*)aTitle description:(NSString*)aDescription exportTableViewController:(ExportTableViewController*)aExportTableViewController;
-//- (void)startUpload;
+- (id)initWithProperties:(NSURL*)aVideoNSURL title:(NSString*)aTitle description:(NSString*)aDescription;
+- (void)startUpload;
 
 @end

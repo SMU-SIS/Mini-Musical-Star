@@ -23,6 +23,7 @@
 @class MiniMusicalStarUtilities;
 
 @interface ExportTableViewController : UITableViewController
+    <FacebookUploaderViewControllerDelegate>
 
 @property (retain, nonatomic) NSArray *musicalArray;
 @property (retain, nonatomic) NSArray *scenesArray;

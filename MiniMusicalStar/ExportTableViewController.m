@@ -636,6 +636,7 @@
     
     facebookUploaderViewController = [[FacebookUploaderViewController alloc] initWithProperties:url title:@"Uploaded with Mini Musical Star" description:@""];
     
+    self.facebookUploaderViewController.delegate = self;
     [self.view addSubview:facebookUploaderViewController.view];
     
     [facebookUploaderViewController startUpload];
@@ -644,6 +645,8 @@
 - (void)youtubeUploadButtonIsPressed:(UIButton*)sender
 {
     ExportedAsset *selectedAsset = (ExportedAsset*)[exportedAssetsArray objectAtIndex:[self getTableViewRow:sender]];
+    
+    
     youTubeUploader = [[YouTubeUploader alloc] init];
     NSURL *url = [NSURL URLWithString:selectedAsset.exportPath];
     [youTubeUploader uploadWithProperties:url title:@"Uploaded with Mini Musical Star" desription:@""];
@@ -659,7 +662,9 @@
     return [indexPath row];
 }
 
-- (void)killFacebookUploaderViewController
+#pragma - FacebookUploaderViewControllerDelegate methods
+
+- (void)uploadSuccess 
 {
     [facebookUploaderViewController release];
 }
