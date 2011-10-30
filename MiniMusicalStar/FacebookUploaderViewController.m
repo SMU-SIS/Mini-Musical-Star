@@ -10,12 +10,14 @@
 
 @implementation FacebookUploaderViewController
 
+@synthesize okButton;
 @synthesize facebook;
 @synthesize videoNSURL;
 @synthesize videoTitle;
 @synthesize videoDescription;
+@synthesize uploadIndicator;
 
-- (id)initWithProperties:(NSURL*)aVideoNSURL title:(NSString*)aTitle description:(NSString*)aDescription
+- (id)initWithProperties:(NSURL*)aVideoNSURL title:(NSString*)aTitle description:(NSString*)aDescription 
 {
     self = [super initWithNibName:@"FacebookUploaderViewController" bundle:nil];
     if (self) {
@@ -45,6 +47,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    okButton.enabled = NO;
 }
 
 - (void)viewDidUnload
@@ -70,15 +73,16 @@
     [super dealloc];
 }
 
-#pragma mark - FBSession delegate methods
+#pragma mark - instance methods
 
 - (void)startUpload
 {
+    [self.uploadIndicator startAnimating];
+    
     NSArray* permissions = [[NSArray alloc] initWithObjects:
                             @"publish_stream", nil];
     [facebook authorize:permissions];
     [permissions release];
-
 }
 
 #pragma mark - FBSession delegate methods
@@ -99,8 +103,6 @@
                        andDelegate:self];
     
     NSLog(@"The facebook upload has started! Please wait for next NSLog to confirm upload.");
-    
-//    [videoUploaderController facebookUploadHasStarted];
 }
 
 - (void)fbDidNotLogin:(BOOL)cancelled {
@@ -114,14 +116,27 @@
 	if ([result isKindOfClass:[NSArray class]]) {
 		result = [result objectAtIndex:0];
 	}
-	//NSLog(@"Result of API call: %@", result);
+	
+    //NSLog(@"Result of API call: %@", result);
     NSLog(@"The facebook upload is completed");
+    
+    [self.uploadIndicator stopAnimating];
+    self.okButton.titleLabel.text = @"Ok";
+    self.okButton.enabled = YES;
 }
 
 - (void)request:(FBRequest *)request didFailWithError:(NSError *)error {
     NSLog(@"The facebook upload failed");
     NSLog(@"Failed with error: %@", [error localizedDescription]);
     NSLog(@"Err details: %@", [error description]);
+    
+    self.okButton.titleLabel.text = @"Ok";
+    self.okButton.enabled = YES;
+}
+
+#pragma mark - IBAction methods
+- (IBAction)killMe
+{
 }
 
 @end

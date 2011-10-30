@@ -52,5 +52,6 @@
 - (void) exportCompleted: (NSURL*) videoFileURL: (NSURL*) creditsFileURL: (NSURL*) outputFileURL: (UIProgressView*) prog: (NSTimer*) progressBarLoader: (NSString*) state;
 - (void) allScenesExportedNotificationSender;
 - (int)getTableViewRow:(UIButton*)sender;
+- (void)killFacebookUploaderViewController;
 
 @end

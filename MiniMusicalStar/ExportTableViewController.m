@@ -13,7 +13,6 @@
 #import "SceneUtility.h"
 #import "Cover.h"
 #import "AudioEditorViewController.h"
-#import "FacebookUploader.h"
 #import "YouTubeUploader.h"
 #import "ImageToVideoConverter.h"
 #import "MiniMusicalStarUtilities.h"
@@ -637,6 +636,8 @@
     
     facebookUploaderViewController = [[FacebookUploaderViewController alloc] initWithProperties:url title:@"Uploaded with Mini Musical Star" description:@""];
     
+    [self.view addSubview:facebookUploaderViewController.view];
+    
     [facebookUploaderViewController startUpload];
 }
 
@@ -656,6 +657,11 @@
     UITableView *table = (UITableView*)cell.superview;
     NSIndexPath *indexPath = [table indexPathForCell:cell];
     return [indexPath row];
+}
+
+- (void)killFacebookUploaderViewController
+{
+    [facebookUploaderViewController release];
 }
 
 @end
