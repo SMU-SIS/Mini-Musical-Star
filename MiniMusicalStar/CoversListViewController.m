@@ -179,6 +179,7 @@
     
     // Configure the cell...
     [self configureCell:cell atIndexPath:indexPath];
+    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     return cell;
 }
 
