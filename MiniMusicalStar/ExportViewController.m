@@ -43,12 +43,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.background = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"exportpage.png"]];
+    self.background = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"tempexportpage.png"]];
     self.view.backgroundColor = background;
 
     self.exportTableViewController.tableView.backgroundView.alpha = 0.0;
     CGRect frame = self.exportTableViewController.tableView.frame;
-    frame.size.width = 400;
+    frame.size.width = 850;
     frame.size.height = 450;
     exportTableViewController.tableView.frame = frame;
     [self.exportContainerView addSubview:exportTableViewController.tableView];

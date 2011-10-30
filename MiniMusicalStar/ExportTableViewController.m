@@ -110,8 +110,8 @@
     CGRect progressBarFrame;
     progressBarFrame.size.width = 300;
     progressBarFrame.size.height = 300;
-    progressBarFrame.origin.x = 600;
-    progressBarFrame.origin.y = 45;
+    progressBarFrame.origin.x = 500;
+    progressBarFrame.origin.y = 25;
     
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     UITableViewCell *cell = (UITableViewCell *)[(UITableView *)self.view cellForRowAtIndexPath:indexPath];
@@ -238,8 +238,8 @@
     CGRect progressBarFrame;
     progressBarFrame.size.width = 300;
     progressBarFrame.size.height = 300;
-    progressBarFrame.origin.x = 600;
-    progressBarFrame.origin.y = 45;
+    progressBarFrame.origin.x = 400;
+    progressBarFrame.origin.y = 25;
     
     UITableViewCell *cell = (UITableViewCell *)[(UITableView *)self.view cellForRowAtIndexPath:indexPath];
     UIProgressView *prog = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleBar];
@@ -503,6 +503,31 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 50;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+	// create the parent view that will hold header Label
+	UIView* customView = [[UIView alloc] initWithFrame:CGRectMake(10.0, 0.0, 300.0, 44.0)];
+	
+	// create the button object
+	UILabel * headerLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+	headerLabel.backgroundColor = [UIColor clearColor];
+	headerLabel.opaque = NO;
+	headerLabel.textColor = [UIColor whiteColor];
+	headerLabel.frame = CGRectMake(10.0, 0.0, 300.0, 44.0);
+    
+    if (section == 0) {
+        headerLabel.text = @"Export Musical";
+    } else if (section == 1) {
+        headerLabel.text = @"Export Scenes";
+    } else if (section == 2) {
+        headerLabel.text = @"Exported Content";
+    }
+    
+	[customView addSubview:headerLabel];
+    
+	return customView;
 }
 
 /*

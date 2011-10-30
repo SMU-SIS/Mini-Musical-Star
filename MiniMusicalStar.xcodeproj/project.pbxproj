@@ -220,6 +220,7 @@
 		6457E057145DA26400ABBF87 /* newcover.png in Resources */ = {isa = PBXBuildFile; fileRef = 6457E056145DA26400ABBF87 /* newcover.png */; };
 		6457E05B145DA2FF00ABBF87 /* ShareTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6457E059145DA2FF00ABBF87 /* ShareTableViewController.m */; };
 		6457E05C145DA2FF00ABBF87 /* ShareTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6457E05A145DA2FF00ABBF87 /* ShareTableViewController.xib */; };
+		6457E05E145DA60200ABBF87 /* tempexportpage.png in Resources */ = {isa = PBXBuildFile; fileRef = 6457E05D145DA60200ABBF87 /* tempexportpage.png */; };
 		646E4D381454199300F066F6 /* Facebook.m in Sources */ = {isa = PBXBuildFile; fileRef = 646E4D081454199300F066F6 /* Facebook.m */; };
 		646E4D391454199300F066F6 /* FBDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 646E4D0B1454199300F066F6 /* FBDialog.m */; };
 		646E4D3A1454199300F066F6 /* FBLoginDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 646E4D0D1454199300F066F6 /* FBLoginDialog.m */; };
@@ -644,6 +645,7 @@
 		6457E058145DA2FF00ABBF87 /* ShareTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareTableViewController.h; sourceTree = "<group>"; };
 		6457E059145DA2FF00ABBF87 /* ShareTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareTableViewController.m; sourceTree = "<group>"; };
 		6457E05A145DA2FF00ABBF87 /* ShareTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShareTableViewController.xib; sourceTree = "<group>"; };
+		6457E05D145DA60200ABBF87 /* tempexportpage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tempexportpage.png; path = Resources/tempexportpage.png; sourceTree = "<group>"; };
 		646E4D071454199300F066F6 /* Facebook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Facebook.h; sourceTree = "<group>"; };
 		646E4D081454199300F066F6 /* Facebook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Facebook.m; sourceTree = "<group>"; };
 		646E4D091454199300F066F6 /* FBConnect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBConnect.h; sourceTree = "<group>"; };
@@ -2128,6 +2130,7 @@
 		820E2A1E140A0A2A00B80BBC /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				6457E05D145DA60200ABBF87 /* tempexportpage.png */,
 				64E0E125145D7E2C0074D133 /* track.png */,
 				64E0E123145D70150074D133 /* note_for_lyrics.png */,
 				64D6CD2B145D61E200D172D2 /* exportpage.png */,
@@ -2596,6 +2599,7 @@
 				6457E051145D9E1E00ABBF87 /* pause.png in Resources */,
 				6457E057145DA26400ABBF87 /* newcover.png in Resources */,
 				6457E05C145DA2FF00ABBF87 /* ShareTableViewController.xib in Resources */,
+				6457E05E145DA60200ABBF87 /* tempexportpage.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
