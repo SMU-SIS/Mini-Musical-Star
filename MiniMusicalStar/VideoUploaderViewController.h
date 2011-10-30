@@ -10,4 +10,10 @@
 
 @interface VideoUploaderViewController : UIViewController
 
+@property (nonatomic, retain) IBOutlet UILabel *statusLabel;
+@property (nonatomic, retain) IBOutlet UIActivityIndicatorView *uploadingIndicator;
+
+- (void)facebookUploadHasStarted;
+- (void)facebookUploadHasCompleted;
+
 @end

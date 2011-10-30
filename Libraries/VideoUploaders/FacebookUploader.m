@@ -15,8 +15,9 @@
 @synthesize videoNSURL;
 @synthesize videoTitle;
 @synthesize videoDescription;
+@synthesize videoUploaderController;
 
-- (id)init
+- (id)initWithUploaderController:(VideoUploaderViewController*)aVideoUploaderController
 {
     self = [super init];
     if (self) {
@@ -24,6 +25,8 @@
         
         MiniMusicalStarAppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
         appDelegate.facebook = self.facebook;
+        
+        self.videoUploaderController = aVideoUploaderController;
     }
     
     return self;
@@ -31,11 +34,12 @@
 
 - (void)dealloc
 {
+    [facebook release];
     [videoNSURL release];
     [videoTitle release];
     [videoDescription release];
+    [videoUploaderController release];
     
-    [facebook release];
     [super dealloc];
 }
 
@@ -69,6 +73,8 @@
                        andDelegate:self];
     
     NSLog(@"The facebook upload has started! Please wait for next NSLog to confirm upload.");
+    
+    [videoUploaderController facebookUploadHasStarted];
 }
 
 - (void)fbDidNotLogin:(BOOL)cancelled {
@@ -84,6 +90,8 @@
 	}
 	//NSLog(@"Result of API call: %@", result);
     NSLog(@"The facebook upload is completed");
+    
+    [videoUploaderController facebookUploadHasCompleted];
 }
 
 - (void)request:(FBRequest *)request didFailWithError:(NSError *)error {

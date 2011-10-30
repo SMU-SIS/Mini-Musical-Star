@@ -10,6 +10,9 @@
 
 @implementation VideoUploaderViewController
 
+@synthesize uploadingIndicator;
+@synthesize statusLabel;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -33,6 +36,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    self.uploadingIndicator.hidesWhenStopped = YES;
+    self.statusLabel.textAlignment = UITextAlignmentCenter;
 }
 
 - (void)viewDidUnload
@@ -46,6 +51,21 @@
 {
     // Return YES for supported orientations
 	return YES;
+}
+
+#pragma instance methods
+- (void)facebookUploadHasStarted
+{
+    NSLog(@"i'm in facebookUploadHasStarted");
+    
+    [self.statusLabel setText:@"Uploading..."];
+    [uploadingIndicator startAnimating];
+}
+
+- (void)facebookUploadHasCompleted
+{
+    [self.statusLabel setText:@"Uploading complete"];
+    [uploadingIndicator stopAnimating];
 }
 
 @end

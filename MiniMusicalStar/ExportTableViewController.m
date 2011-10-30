@@ -52,6 +52,7 @@
     [youtubeUploadImage release];
     [facebookUploader release];
     [youTubeUploader release];
+    [videoUploaderViewController release];
     
     [super dealloc];
 }
@@ -634,8 +635,16 @@
 - (void)facebookUploadButtonIsPressed:(UIButton*)sender
 {
     ExportedAsset *selectedAsset = (ExportedAsset*)[exportedAssetsArray objectAtIndex:[self getTableViewRow:sender]];
-    facebookUploader = [[FacebookUploader alloc] init];
+    
     NSURL *url = [NSURL URLWithString:selectedAsset.exportPath];
+    
+    videoUploaderViewController = [[VideoUploaderViewController alloc] initWithNibName:@"VideoUploaderViewController" bundle:nil];
+    
+    facebookUploader = [[FacebookUploader alloc] initWithUploaderController:videoUploaderViewController];
+    
+    [self.view addSubview:videoUploaderViewController.view];
+    
+    //start uploading
     [facebookUploader uploadWithProperties:url title:@"Uploaded with Mini Musical Star" desription:@""];
 }
 
@@ -646,6 +655,8 @@
     NSURL *url = [NSURL URLWithString:selectedAsset.exportPath];
     [youTubeUploader uploadWithProperties:url title:@"Uploaded with Mini Musical Star" desription:@""];
 }
+
+#pragma instance methods
 
 - (int)getTableViewRow:(UIButton*)sender
 {
