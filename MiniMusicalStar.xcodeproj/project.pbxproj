@@ -241,6 +241,10 @@
 		64CF0B95145BA6A800A9BF08 /* youtube_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 64CF0B93145BA6A800A9BF08 /* youtube_32.png */; };
 		64D6CCC9145D4A3F00D172D2 /* FacebookUploaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D6CCC7145D4A3F00D172D2 /* FacebookUploaderViewController.m */; };
 		64D6CCCA145D4A3F00D172D2 /* FacebookUploaderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64D6CCC8145D4A3F00D172D2 /* FacebookUploaderViewController.xib */; };
+		64D6CD28145D612C00D172D2 /* ExportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D6CD26145D612C00D172D2 /* ExportViewController.m */; };
+		64D6CD29145D612C00D172D2 /* ExportViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64D6CD27145D612C00D172D2 /* ExportViewController.xib */; };
+		64D6CD2C145D61E200D172D2 /* exportbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = 64D6CD2A145D61E200D172D2 /* exportbutton.png */; };
+		64D6CD2D145D61E200D172D2 /* exportpage.png in Resources */ = {isa = PBXBuildFile; fileRef = 64D6CD2B145D61E200D172D2 /* exportpage.png */; };
 		737716CB1445D61500BF2036 /* ChoiceSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 737716C91445D61500BF2036 /* ChoiceSelectionViewController.m */; };
 		737716CC1445D61500BF2036 /* ChoiceSelectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 737716CA1445D61500BF2036 /* ChoiceSelectionViewController.xib */; };
 		73843EAD144CDD2C00C55337 /* AlertPrompt.m in Sources */ = {isa = PBXBuildFile; fileRef = 73843EAC144CDD2C00C55337 /* AlertPrompt.m */; };
@@ -995,6 +999,11 @@
 		64D6CCC6145D4A3F00D172D2 /* FacebookUploaderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookUploaderViewController.h; sourceTree = "<group>"; };
 		64D6CCC7145D4A3F00D172D2 /* FacebookUploaderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookUploaderViewController.m; sourceTree = "<group>"; };
 		64D6CCC8145D4A3F00D172D2 /* FacebookUploaderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FacebookUploaderViewController.xib; sourceTree = "<group>"; };
+		64D6CD25145D612C00D172D2 /* ExportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExportViewController.h; sourceTree = "<group>"; };
+		64D6CD26145D612C00D172D2 /* ExportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExportViewController.m; sourceTree = "<group>"; };
+		64D6CD27145D612C00D172D2 /* ExportViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExportViewController.xib; sourceTree = "<group>"; };
+		64D6CD2A145D61E200D172D2 /* exportbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = exportbutton.png; path = Resources/exportbutton.png; sourceTree = "<group>"; };
+		64D6CD2B145D61E200D172D2 /* exportpage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = exportpage.png; path = Resources/exportpage.png; sourceTree = "<group>"; };
 		737716C81445D61500BF2036 /* ChoiceSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChoiceSelectionViewController.h; sourceTree = "<group>"; };
 		737716C91445D61500BF2036 /* ChoiceSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChoiceSelectionViewController.m; sourceTree = "<group>"; };
 		737716CA1445D61500BF2036 /* ChoiceSelectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChoiceSelectionViewController.xib; sourceTree = "<group>"; };
@@ -2096,6 +2105,8 @@
 		820E2A1E140A0A2A00B80BBC /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				64D6CD2A145D61E200D172D2 /* exportbutton.png */,
+				64D6CD2B145D61E200D172D2 /* exportpage.png */,
 				3A21951B145D5F9B0052C0FE /* selection_background.png */,
 				3A2194F6145D42660052C0FE /* filmstrip.png */,
 				3A10F10B145C428C006F8EEC /* main_background.png */,
@@ -2236,6 +2247,9 @@
 				3A219516145D58920052C0FE /* MediaManagementViewController.h */,
 				3A219517145D58920052C0FE /* MediaManagementViewController.m */,
 				3A219518145D58920052C0FE /* MediaManagementViewController.xib */,
+				64D6CD25145D612C00D172D2 /* ExportViewController.h */,
+				64D6CD26145D612C00D172D2 /* ExportViewController.m */,
+				64D6CD27145D612C00D172D2 /* ExportViewController.xib */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -2544,6 +2558,9 @@
 				64D6CCCA145D4A3F00D172D2 /* FacebookUploaderViewController.xib in Resources */,
 				3A21951A145D58920052C0FE /* MediaManagementViewController.xib in Resources */,
 				3A21951C145D5F9B0052C0FE /* selection_background.png in Resources */,
+				64D6CD29145D612C00D172D2 /* ExportViewController.xib in Resources */,
+				64D6CD2C145D61E200D172D2 /* exportbutton.png in Resources */,
+				64D6CD2D145D61E200D172D2 /* exportpage.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2745,6 +2762,7 @@
 				95674E16145BFE6A00836B5F /* SceneStripController.m in Sources */,
 				64D6CCC9145D4A3F00D172D2 /* FacebookUploaderViewController.m in Sources */,
 				3A219519145D58920052C0FE /* MediaManagementViewController.m in Sources */,
+				64D6CD28145D612C00D172D2 /* ExportViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
