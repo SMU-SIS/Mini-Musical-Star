@@ -56,7 +56,8 @@
     UIColor *background = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"filmstrip.png"]];
     self.view.backgroundColor = background;
     
-    self.coverLabel = [[UILabel alloc] initWithFrame:CGRectMake(1024+30,0,500,75)];
+    self.coverLabel = [[UILabel alloc] initWithFrame:CGRectMake(1024+100,20,500,75)];
+    coverLabel.transform = CGAffineTransformMakeRotation( 45 );
     [coverLabel setFont:[UIFont fontWithName:@"Arial" size:30]];
     [coverLabel setBackgroundColor:[UIColor clearColor]];
     [self.view addSubview:coverLabel];
@@ -71,8 +72,8 @@
         
         //create the button's frame
         CGRect frame;
-        frame.origin.x = 30 + view.frame.origin.x + idx * 230;
-        frame.origin.y = 80;
+        frame.origin.x = 38 + view.frame.origin.x + idx * 274;
+        frame.origin.y = 93;
         frame.size.width = 200;
         frame.size.height = 150;
         
