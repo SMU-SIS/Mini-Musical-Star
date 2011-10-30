@@ -57,7 +57,7 @@
     self.view.backgroundColor = background;
     
     self.coverLabel = [[UILabel alloc] initWithFrame:CGRectMake(1024+100,20,500,75)];
-    coverLabel.transform = CGAffineTransformMakeRotation( 45 );
+//    self.coverLabel.transform = CGAffineTransformMakeRotation(90);
     [coverLabel setFont:[UIFont fontWithName:@"Arial" size:30]];
     [coverLabel setBackgroundColor:[UIColor clearColor]];
     [self.view addSubview:coverLabel];

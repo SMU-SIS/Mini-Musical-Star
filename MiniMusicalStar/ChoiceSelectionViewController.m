@@ -84,7 +84,7 @@
 - (IBAction)promptForCoverName: (UIButton*)sender
 {
     AlertPrompt *prompt = [AlertPrompt alloc];
-	prompt = [prompt initWithTitle:@"Give a name for your new Cover" message:@" " delegate:self cancelButtonTitle:@"Cancel" okButtonTitle:@"Okay"];
+	prompt = [prompt initWithTitle:@"Give a name for your new Cover!" message:@" " delegate:self cancelButtonTitle:@"Cancel" okButtonTitle:@"Okay"];
 //    [prompt setFrame:CGRectMake(412,600,200,150)];
 	[prompt show];
 	[prompt release];
@@ -104,7 +104,7 @@
         else
         {
             Cover *newCover = [NSEntityDescription insertNewObjectForEntityForName:@"Cover" inManagedObjectContext:managedObjectContext];
-            newCover.title = [@"Cover: " stringByAppendingString: prompt.enteredText];
+            newCover.title = prompt.enteredText;
             [self loadSceneSelectionScrollViewWithCover:newCover];
         }
     }
