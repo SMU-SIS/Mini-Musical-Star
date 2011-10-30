@@ -60,7 +60,7 @@
     
     self.currentSelectedCoversList = [[CoversListViewController alloc] initWithShow:self.theShow context:self.managedObjectContext];
     [self.currentSelectedCoversList setDelegate:self];
-    self.currentSelectedCoversList.view.frame = CGRectMake(724,100,300,668);
+    self.currentSelectedCoversList.view.frame = CGRectMake(680,100,345,668);
 //    self.coversTableView = (UITableView* )self.currentSelectedCoversList.view;
     [self.view addSubview:self.currentSelectedCoversList.view];
     
