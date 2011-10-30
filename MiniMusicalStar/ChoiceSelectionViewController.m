@@ -57,7 +57,8 @@
     self.managedObjectContext = aContext;
     //[self loadCoversForShow:theShow];
 //    [self loadSceneSelectionScrollView];
-
+    UIColor *background = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"selection_background.png"]];
+    [self.view setBackgroundColor:background];
     
     
     self.currentSelectedCoversList = [[CoversListViewController alloc] initWithShow:self.theShow context:self.managedObjectContext];

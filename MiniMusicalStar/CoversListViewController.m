@@ -175,11 +175,16 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+        UIButton *selectSceneButton = [[UIButton alloc] initWithFrame:CGRectMake(20,0,30,30)];
+        [selectSceneButton setBackgroundColor:[UIColor blackColor]];
+        [selectSceneButton setTitle:@"select scene" forState:UIControlStateNormal];
+        [cell.contentView addSubview:selectSceneButton];
     }
-    
     // Configure the cell...
     [self configureCell:cell atIndexPath:indexPath];
-    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+    
+
     return cell;
 }
 

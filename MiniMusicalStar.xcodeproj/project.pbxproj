@@ -34,6 +34,7 @@
 		3A2194F7145D42660052C0FE /* filmstrip.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A2194F6145D42660052C0FE /* filmstrip.png */; };
 		3A219519145D58920052C0FE /* MediaManagementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A219517145D58920052C0FE /* MediaManagementViewController.m */; };
 		3A21951A145D58920052C0FE /* MediaManagementViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A219518145D58920052C0FE /* MediaManagementViewController.xib */; };
+		3A21951C145D5F9B0052C0FE /* selection_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A21951B145D5F9B0052C0FE /* selection_background.png */; };
 		3A4EB699145592CE005A662F /* ImageToVideoConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A4EB698145592CE005A662F /* ImageToVideoConverter.m */; };
 		3A4EB6B51456A8CF005A662F /* lastclip.mov in Resources */ = {isa = PBXBuildFile; fileRef = 3A4EB6B41456A8CF005A662F /* lastclip.mov */; };
 		3A4EBC171457E311005A662F /* CommandManagerTouchExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A4EBBD21457E311005A662F /* CommandManagerTouchExt.m */; };
@@ -357,6 +358,7 @@
 		3A219516145D58920052C0FE /* MediaManagementViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaManagementViewController.h; sourceTree = "<group>"; };
 		3A219517145D58920052C0FE /* MediaManagementViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaManagementViewController.m; sourceTree = "<group>"; };
 		3A219518145D58920052C0FE /* MediaManagementViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MediaManagementViewController.xib; sourceTree = "<group>"; };
+		3A21951B145D5F9B0052C0FE /* selection_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = selection_background.png; path = Resources/selection_background.png; sourceTree = "<group>"; };
 		3A4EB697145592CE005A662F /* ImageToVideoConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageToVideoConverter.h; sourceTree = "<group>"; };
 		3A4EB698145592CE005A662F /* ImageToVideoConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageToVideoConverter.m; sourceTree = "<group>"; };
 		3A4EB6B41456A8CF005A662F /* lastclip.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; name = lastclip.mov; path = Libraries/DSActivityView/lastclip.mov; sourceTree = "<group>"; };
@@ -2094,6 +2096,7 @@
 		820E2A1E140A0A2A00B80BBC /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				3A21951B145D5F9B0052C0FE /* selection_background.png */,
 				3A2194F6145D42660052C0FE /* filmstrip.png */,
 				3A10F10B145C428C006F8EEC /* main_background.png */,
 				3A10EFC2145BF7D1006F8EEC /* softboard.png */,
@@ -2540,6 +2543,7 @@
 				3A2194F7145D42660052C0FE /* filmstrip.png in Resources */,
 				64D6CCCA145D4A3F00D172D2 /* FacebookUploaderViewController.xib in Resources */,
 				3A21951A145D58920052C0FE /* MediaManagementViewController.xib in Resources */,
+				3A21951C145D5F9B0052C0FE /* selection_background.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
