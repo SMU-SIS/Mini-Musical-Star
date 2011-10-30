@@ -22,9 +22,11 @@
 @synthesize coversTableView;
 @synthesize currentSelectedCoversList;
 @synthesize exportButton;
+@synthesize exportViewController;
 
 - (void)dealloc
 {
+    [exportViewController release];
     [exportButton release];
     [currentSelectedCoversList release];
     [coversTableView release];
@@ -76,8 +78,10 @@
     [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
     [UIView setAnimationDuration:0.75];
     Cover *aCover = [NSEntityDescription insertNewObjectForEntityForName:@"Cover" inManagedObjectContext:managedObjectContext];
-    self.exportTableController = [[ExportTableViewController alloc] initWithStyle:UITableViewStyleGrouped :theShow :aCover context:self.managedObjectContext];
-    [self.navigationController pushViewController:exportTableController animated:NO];
+    
+    self.exportViewController = [[ExportViewController alloc] initWithNibName:@"ExportViewController" bundle:nil];
+    self.exportViewController = [[ExportViewController alloc] initWithStuff:theShow :aCover context:self.managedObjectContext];
+    [self.navigationController pushViewController:exportViewController animated:YES];
     [UIView setAnimationTransition:UIViewAnimationTransitionCurlUp forView:self.navigationController.view cache:NO];
     [UIView commitAnimations];
 }
@@ -229,10 +233,19 @@
     [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
     [UIView setAnimationDuration:0.75];
     Cover *aCover = [NSEntityDescription insertNewObjectForEntityForName:@"Cover" inManagedObjectContext:managedObjectContext];
-    self.exportTableController = [[ExportTableViewController alloc] initWithStyle:UITableViewStyleGrouped :theShow :aCover context:self.managedObjectContext];
-    [self.navigationController pushViewController:exportTableController animated:NO];
+    
+    self.exportViewController = [[ExportViewController alloc] initWithNibName:@"ExportViewController" bundle:nil];
+    
+    [self.navigationController pushViewController:exportViewController animated:YES];
+    
     [UIView setAnimationTransition:UIViewAnimationTransitionCurlUp forView:self.navigationController.view cache:NO];
-    [UIView commitAnimations];    
+    [UIView commitAnimations];
+
+    
+//    self.exportTableController = [[ExportTableViewController alloc] initWithStyle:UITableViewStyleGrouped :theShow :aCover context:self.managedObjectContext];
+//    [self.navigationController pushViewController:exportTableController animated:NO];
+//    [UIView setAnimationTransition:UIViewAnimationTransitionCurlUp forView:self.navigationController.view cache:NO];
+//    [UIView commitAnimations];    
 }
 
 - (void)viewDidUnload

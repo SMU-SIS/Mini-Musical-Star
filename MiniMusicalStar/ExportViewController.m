@@ -10,12 +10,20 @@
 
 @implementation ExportViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+@synthesize theShow, theCover, context;
+@synthesize background;
+@synthesize exportContainerView;
+@synthesize uploadContainerView;
+    
+- (ExportViewController*)initWithStuff:(Show*)show:(Cover*)cover context:(NSManagedObjectContext *)aContext;
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [super init];
     if (self) {
-        // Custom initialization
+        self.theShow = show;
+        self.theCover = cover;
+        self.context = aContext;
     }
+    
     return self;
 }
 
@@ -32,20 +40,27 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    self.background = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"exportpage.png"]];
+    self.view.backgroundColor = background;
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
 	return YES;
+}
+
+- (void)dealloc
+{
+    [super dealloc];
+    [background release];
+    [exportContainerView release];
+    [uploadContainerView release];
 }
 
 @end

@@ -13,6 +13,7 @@
 #import "CoversListViewController.h"
 #import "ExportTableViewController.h"
 #import "AlertPrompt.h"
+#import "ExportViewController.h"
 
 @class SceneStripController;
 
@@ -29,6 +30,7 @@
 @property (retain, nonatomic) NSFetchedResultsController *frc;
 @property (retain, nonatomic) NSString *coverName;
 @property (nonatomic, retain) ExportTableViewController *exportTableController;
+@property (nonatomic, retain) ExportViewController *exportViewController;
 @property (nonatomic, retain) CoversListViewController *currentSelectedCoversList;
 @property (nonatomic, retain) UIBarButtonItem *mediaManagementButton;
 @property (retain, nonatomic) IBOutlet UILabel *showTitle;

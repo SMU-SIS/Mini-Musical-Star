@@ -7,7 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Show.h"
+#import "Cover.h"
 
 @interface ExportViewController : UIViewController
+
+@property (retain, nonatomic) Show *theShow;
+@property (retain, nonatomic) Cover *theCover;
+@property (retain, nonatomic) NSManagedObjectContext *context;
+
+- (ExportViewController*)initWithStuff:(Show*)show:(Cover*)cover context:(NSManagedObjectContext *)aContext;
+
+@property (nonatomic, retain) UIColor *background;
+
+@property (nonatomic, retain) IBOutlet UIView *exportContainerView;
+@property (nonatomic, retain) IBOutlet UIView *uploadContainerView;
 
 @end
