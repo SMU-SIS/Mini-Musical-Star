@@ -247,6 +247,7 @@
 		64D6CD2D145D61E200D172D2 /* exportpage.png in Resources */ = {isa = PBXBuildFile; fileRef = 64D6CD2B145D61E200D172D2 /* exportpage.png */; };
 		64E0E124145D70150074D133 /* note_for_lyrics.png in Resources */ = {isa = PBXBuildFile; fileRef = 64E0E123145D70150074D133 /* note_for_lyrics.png */; };
 		64E0E126145D7E2C0074D133 /* track.png in Resources */ = {isa = PBXBuildFile; fileRef = 64E0E125145D7E2C0074D133 /* track.png */; };
+		64E0E128145D8AB90074D133 /* export.png in Resources */ = {isa = PBXBuildFile; fileRef = 64E0E127145D8AB90074D133 /* export.png */; };
 		737716CB1445D61500BF2036 /* ChoiceSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 737716C91445D61500BF2036 /* ChoiceSelectionViewController.m */; };
 		737716CC1445D61500BF2036 /* ChoiceSelectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 737716CA1445D61500BF2036 /* ChoiceSelectionViewController.xib */; };
 		73843EAD144CDD2C00C55337 /* AlertPrompt.m in Sources */ = {isa = PBXBuildFile; fileRef = 73843EAC144CDD2C00C55337 /* AlertPrompt.m */; };
@@ -1007,6 +1008,7 @@
 		64D6CD2B145D61E200D172D2 /* exportpage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = exportpage.png; path = Resources/exportpage.png; sourceTree = "<group>"; };
 		64E0E123145D70150074D133 /* note_for_lyrics.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = note_for_lyrics.png; path = Resources/note_for_lyrics.png; sourceTree = "<group>"; };
 		64E0E125145D7E2C0074D133 /* track.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = track.png; path = Resources/track.png; sourceTree = "<group>"; };
+		64E0E127145D8AB90074D133 /* export.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = export.png; sourceTree = "<group>"; };
 		737716C81445D61500BF2036 /* ChoiceSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChoiceSelectionViewController.h; sourceTree = "<group>"; };
 		737716C91445D61500BF2036 /* ChoiceSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChoiceSelectionViewController.m; sourceTree = "<group>"; };
 		737716CA1445D61500BF2036 /* ChoiceSelectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChoiceSelectionViewController.xib; sourceTree = "<group>"; };
@@ -1472,6 +1474,7 @@
 		3AFFDDF1142C7191000D8494 /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
+				64E0E127145D8AB90074D133 /* export.png */,
 				64CF0B92145BA6A800A9BF08 /* facebook_32.png */,
 				64CF0B93145BA6A800A9BF08 /* youtube_32.png */,
 				641B32DC1441E99500F4A93D /* muted.png */,
@@ -2567,6 +2570,7 @@
 				64D6CD2D145D61E200D172D2 /* exportpage.png in Resources */,
 				64E0E124145D70150074D133 /* note_for_lyrics.png in Resources */,
 				64E0E126145D7E2C0074D133 /* track.png in Resources */,
+				64E0E128145D8AB90074D133 /* export.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
