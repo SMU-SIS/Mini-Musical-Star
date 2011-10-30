@@ -14,6 +14,7 @@
 @synthesize background;
 @synthesize exportContainerView;
 @synthesize uploadContainerView;
+@synthesize exportTableViewController;
     
 - (ExportViewController*)initWithStuff:(Show*)show:(Cover*)cover context:(NSManagedObjectContext *)aContext;
 {
@@ -22,6 +23,8 @@
         self.theShow = show;
         self.theCover = cover;
         self.context = aContext;
+        
+        exportTableViewController = [[ExportTableViewController alloc] initWithStyle:UITableViewStyleGrouped :theShow :theCover context:context];
     }
     
     return self;
@@ -42,6 +45,14 @@
     [super viewDidLoad];
     self.background = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"exportpage.png"]];
     self.view.backgroundColor = background;
+
+    self.exportTableViewController.tableView.backgroundView.alpha = 0.0;
+    CGRect frame = self.exportTableViewController.tableView.frame;
+    frame.size.width = 400;
+    frame.size.height = 450;
+    exportTableViewController.tableView.frame = frame;
+    [self.exportContainerView addSubview:exportTableViewController.tableView];
+    [self.exportContainerView release]; //exportContainerView is incharge of releasing it
 }
 
 - (void)viewDidUnload

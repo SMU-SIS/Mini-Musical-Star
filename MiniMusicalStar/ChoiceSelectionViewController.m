@@ -234,18 +234,12 @@
     [UIView setAnimationDuration:0.75];
     Cover *aCover = [NSEntityDescription insertNewObjectForEntityForName:@"Cover" inManagedObjectContext:managedObjectContext];
     
-    self.exportViewController = [[ExportViewController alloc] initWithNibName:@"ExportViewController" bundle:nil];
+    self.exportViewController = [[ExportViewController alloc] initWithStuff:self.theShow :aCover context:managedObjectContext];
     
     [self.navigationController pushViewController:exportViewController animated:YES];
     
     [UIView setAnimationTransition:UIViewAnimationTransitionCurlUp forView:self.navigationController.view cache:NO];
     [UIView commitAnimations];
-
-    
-//    self.exportTableController = [[ExportTableViewController alloc] initWithStyle:UITableViewStyleGrouped :theShow :aCover context:self.managedObjectContext];
-//    [self.navigationController pushViewController:exportTableController animated:NO];
-//    [UIView setAnimationTransition:UIViewAnimationTransitionCurlUp forView:self.navigationController.view cache:NO];
-//    [UIView commitAnimations];    
 }
 
 - (void)viewDidUnload

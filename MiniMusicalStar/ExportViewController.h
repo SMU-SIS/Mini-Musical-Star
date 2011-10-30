@@ -9,12 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "Show.h"
 #import "Cover.h"
+#import "ExportTableViewController.h"
 
 @interface ExportViewController : UIViewController
 
 @property (retain, nonatomic) Show *theShow;
 @property (retain, nonatomic) Cover *theCover;
 @property (retain, nonatomic) NSManagedObjectContext *context;
+@property (retain, nonatomic) ExportTableViewController *exportTableViewController;
 
 - (ExportViewController*)initWithStuff:(Show*)show:(Cover*)cover context:(NSManagedObjectContext *)aContext;
 
