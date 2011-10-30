@@ -32,14 +32,12 @@
 @synthesize tempMusicalContainer;
 @synthesize facebookUploadImage;
 @synthesize youtubeUploadImage;
-@synthesize facebookUploader;
+@synthesize facebookUploaderViewController;
 @synthesize youTubeUploader;
 @synthesize context;
-@synthesize videoUploaderViewController;
 
 -(void)dealloc
 {
-    [videoUploaderViewController release];
     [tempMusicalContainer release];
     [musicalArray release];
     [scenesArray release];
@@ -50,9 +48,8 @@
     [context release];
     [facebookUploadImage release];
     [youtubeUploadImage release];
-    [facebookUploader release];
     [youTubeUploader release];
-    [videoUploaderViewController release];
+    [facebookUploaderViewController release];
     
     [super dealloc];
 }
@@ -638,14 +635,9 @@
     
     NSURL *url = [NSURL URLWithString:selectedAsset.exportPath];
     
-    videoUploaderViewController = [[VideoUploaderViewController alloc] initWithNibName:@"VideoUploaderViewController" bundle:nil];
+    facebookUploaderViewController = [[FacebookUploaderViewController alloc] initWithProperties:url title:@"Uploaded with Mini Musical Star" description:@""];
     
-    facebookUploader = [[FacebookUploader alloc] initWithUploaderController:videoUploaderViewController];
-    
-    [self.view addSubview:videoUploaderViewController.view];
-    
-    //start uploading
-    [facebookUploader uploadWithProperties:url title:@"Uploaded with Mini Musical Star" desription:@""];
+    [facebookUploaderViewController startUpload];
 }
 
 - (void)youtubeUploadButtonIsPressed:(UIButton*)sender

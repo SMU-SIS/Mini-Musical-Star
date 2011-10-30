@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <MediaPlayer/MediaPlayer.h>
 #import <AVFoundation/AVFoundation.h>
-#import "VideoUploaderViewController.h"
+#import "FacebookUploaderViewController.h"
 
 @class Show;
 @class ShowDAO;
@@ -23,8 +23,6 @@
 @class MiniMusicalStarUtilities;
 
 @interface ExportTableViewController : UITableViewController
-{
-}
 
 @property (retain, nonatomic) NSArray *musicalArray;
 @property (retain, nonatomic) NSArray *scenesArray;
@@ -38,9 +36,8 @@
 @property (retain, nonatomic) UIImage *facebookUploadImage;
 @property (retain, nonatomic) UIImage *youtubeUploadImage;
 @property (retain, nonatomic) NSManagedObjectContext *context;
-@property (retain, nonatomic) FacebookUploader *facebookUploader;
+@property (retain, nonatomic) FacebookUploaderViewController *facebookUploaderViewController;
 @property (retain, nonatomic) YouTubeUploader *youTubeUploader;
-@property (retain, nonatomic) VideoUploaderViewController *videoUploaderViewController;
 
 - (id)initWithStyle:(UITableViewStyle)style:(Show*)show:(Cover*)cover context:(NSManagedObjectContext *)aContext;
 - (void) generateMusical;

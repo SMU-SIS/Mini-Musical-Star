@@ -1,35 +1,63 @@
 //
-//  MMSFacebook.m
+//  FacebookUploaderViewController.m
 //  MiniMusicalStar
 //
-//  Created by Tommi on 22/10/11.
+//  Created by Tommi on 30/10/11.
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "FacebookUploader.h"
-#import "MiniMusicalStarAppDelegate.h"
+#import "FacebookUploaderViewController.h"
 
-@implementation FacebookUploader
+@implementation FacebookUploaderViewController
 
 @synthesize facebook;
 @synthesize videoNSURL;
 @synthesize videoTitle;
 @synthesize videoDescription;
-@synthesize videoUploaderController;
 
-- (id)initWithUploaderController:(VideoUploaderViewController*)aVideoUploaderController
+- (id)initWithProperties:(NSURL*)aVideoNSURL title:(NSString*)aTitle description:(NSString*)aDescription
 {
-    self = [super init];
+    self = [super initWithNibName:@"FacebookUploaderViewController" bundle:nil];
     if (self) {
         facebook = [[Facebook alloc] initWithAppId:@"185884178157618" andDelegate:self];
         
         MiniMusicalStarAppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
         appDelegate.facebook = self.facebook;
         
-        self.videoUploaderController = aVideoUploaderController;
+        self.videoNSURL = aVideoNSURL;
+        self.title = aTitle;
+        self.videoDescription = aDescription;
     }
-    
     return self;
+}
+
+- (void)didReceiveMemoryWarning
+{
+    // Releases the view if it doesn't have a superview.
+    [super didReceiveMemoryWarning];
+    
+    // Release any cached data, images, etc that aren't in use.
+}
+
+#pragma mark - View lifecycle
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    // Do any additional setup after loading the view from its nib.
+}
+
+- (void)viewDidUnload
+{
+    [super viewDidUnload];
+    // Release any retained subviews of the main view.
+    // e.g. self.myOutlet = nil;
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    // Return YES for supported orientations
+	return YES;
 }
 
 - (void)dealloc
@@ -38,28 +66,26 @@
     [videoNSURL release];
     [videoTitle release];
     [videoDescription release];
-    [videoUploaderController release];
     
     [super dealloc];
 }
 
-- (void)uploadWithProperties:(NSURL*)aVideoNSURL title:(NSString*)aTitle desription:(NSString*)aDescription
+#pragma mark - FBSession delegate methods
+
+- (void)startUpload
 {
-    self.videoNSURL = aVideoNSURL;
-    self.videoTitle = aTitle;
-    self.videoDescription = aDescription;
-    
     NSArray* permissions = [[NSArray alloc] initWithObjects:
                             @"publish_stream", nil];
     [facebook authorize:permissions];
     [permissions release];
+
 }
 
 #pragma mark - FBSession delegate methods
 
 - (void)fbDidLogin {
     NSString *filePath = [videoNSURL path];
-
+    
     NSData *videoData = [NSData dataWithContentsOfFile:filePath];
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                    videoData, @"video.mov",
@@ -74,7 +100,7 @@
     
     NSLog(@"The facebook upload has started! Please wait for next NSLog to confirm upload.");
     
-    [videoUploaderController facebookUploadHasStarted];
+//    [videoUploaderController facebookUploadHasStarted];
 }
 
 - (void)fbDidNotLogin:(BOOL)cancelled {
@@ -90,8 +116,6 @@
 	}
 	//NSLog(@"Result of API call: %@", result);
     NSLog(@"The facebook upload is completed");
-    
-    [videoUploaderController facebookUploadHasCompleted];
 }
 
 - (void)request:(FBRequest *)request didFailWithError:(NSError *)error {
