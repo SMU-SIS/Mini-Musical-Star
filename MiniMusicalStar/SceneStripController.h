@@ -13,6 +13,7 @@
 @interface SceneStripController : NSObject
 
 @property (retain, nonatomic) UIScrollView *view;
+@property (retain, nonatomic) UILabel *coverLabel;
 @property (retain, nonatomic) Show *theShow;
 @property (retain, nonatomic) Cover *theCover;
 @property (assign, nonatomic) id delegate;

@@ -13,10 +13,11 @@
 #import "SceneEditViewController.h"
 
 @implementation SceneStripController
-@synthesize view, theShow, theCover, context, delegate;
+@synthesize view, theShow, theCover, context, delegate, coverLabel;
 
 - (void)dealloc
 {
+    [coverLabel release];
     [context release];
     [theShow release];
     [theCover release];
@@ -29,7 +30,7 @@
     self = [super init];
     if (self)
     {
-        self.view = [[UIScrollView alloc] initWithFrame:CGRectMake(1024,450,1024,200)];
+        self.view = [[UIScrollView alloc] initWithFrame:CGRectMake(1024,368,1024,275)];
         self.theShow = aShow;
         self.theCover = aCover;
         
@@ -37,6 +38,11 @@
     }
     
     return self;
+}
+
+- (void)setCoverTitleLabel:(NSString*) text
+{
+    [self.coverLabel setText:text];
 }
 
 - (void)loadSceneSelectionScrollView
@@ -49,6 +55,11 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     
+    self.coverLabel = [[UILabel alloc] initWithFrame:CGRectMake(1024+30,0,500,75)];
+    [coverLabel setText:@"Cover: HAHAHA"];
+    [coverLabel setFont:[UIFont fontWithName:@"Arial" size:30]];
+    [self.view addSubview:coverLabel];
+    
     //look at the scene order dictionary in the Show object to place the scenes in the correct order
     [self.theShow.scenesOrder enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         NSString *sceneHash = (NSString *)obj;
@@ -59,8 +70,8 @@
         
         //create the button's frame
         CGRect frame;
-        frame.origin.x = view.frame.origin.x + idx * 230;
-        frame.origin.y = 10;
+        frame.origin.x = 30 + view.frame.origin.x + idx * 230;
+        frame.origin.y = 80;
         frame.size.width = 200;
         frame.size.height = 150;
         

@@ -114,8 +114,7 @@
     self.navigationController.navigationBarHidden = NO;
 }
 
-
-- (void)loadSceneSelectionScrollViewWithCover:(Cover *)aCover
+- (void)removeScrollStrip
 {
     //just animate out
     if (self.sceneStripController.view.superview != nil)
@@ -136,6 +135,10 @@
         
         return;
     }
+}
+
+- (void)loadSceneSelectionScrollViewWithCover:(Cover *)aCover
+{
     
     //create an instance of SceneStripController
     self.sceneStripController = [[SceneStripController alloc] initWithShow:self.theShow Cover:aCover];
