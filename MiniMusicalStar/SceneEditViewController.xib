@@ -96,7 +96,6 @@
 						<string key="NSFrame">{{927, 660}, {42, 21}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:327</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -128,7 +127,6 @@
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<float key="IBUIValue">0.5</float>
 					</object>
 					<object class="IBUIButton" id="356771238">
 						<reference key="NSNextResponder" ref="191373211"/>
@@ -351,10 +349,10 @@
 							<reference ref="210362702"/>
 							<reference ref="977884595"/>
 							<reference ref="982779271"/>
-							<reference ref="208303646"/>
 							<reference ref="37290082"/>
 							<reference ref="45996907"/>
 							<reference ref="356771238"/>
+							<reference ref="208303646"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
