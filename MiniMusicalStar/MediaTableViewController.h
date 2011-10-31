@@ -25,4 +25,6 @@
 
 - (id)initWithStyle:(UITableViewStyle)style withContext:(NSManagedObjectContext*)context;
 
+- (void) populateTable;
+
 @end

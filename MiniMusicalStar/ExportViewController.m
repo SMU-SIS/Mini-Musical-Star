@@ -45,16 +45,19 @@
     return self;
 }
 
-- (void) addExportedAsset: (ExportedAsset*) asset
+- (void) reloadMediaTable
 {
-    //do nothing
+//    NSLog(@"WAS I CALLED?");
+    [self.mediaTableViewController populateTable];
+    [self.mediaTableViewController.tableView reloadData];
 }
 
 - (void) playMovie:(NSURL*)filePath
 {
     MPMoviePlayerController *moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:filePath];
     
-    NSLog(@"the file URL is : %@",filePath);
+//    NSLog(@"the file URL is : %@",[filePath absoluteString]);
+//    NSLog(@"ASSET :%@",[AVURLAsset assetWithURL:filePath]);
     
     // Register to receive a notification when the movie has finished playing.
     [[NSNotificationCenter defaultCenter] addObserver:self

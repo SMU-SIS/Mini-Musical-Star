@@ -74,16 +74,19 @@
 
 #pragma mark - View lifecycle
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    
+- (void) populateTable{
     NSError *error;
     if (![[self frc] performFetch:&error]) {
 		// Update to handle the error appropriately.
 		NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
 	}
+}
 
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    [self populateTable];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  

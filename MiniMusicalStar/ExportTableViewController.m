@@ -292,6 +292,7 @@
     }
     [prog removeFromSuperview];
     [progressBarLoader invalidate];
+    [self.delegate reloadMediaTable];
     [self.tableView reloadData];
     
 //    //temp only, trying CALayer

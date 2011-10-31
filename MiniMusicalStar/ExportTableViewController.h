@@ -24,7 +24,7 @@
 @class MiniMusicalStarUtilities;
 
 @protocol ExportTableViewDelegate <NSObject>
-- (void) addExportedAsset: (ExportedAsset*) asset;
+- (void) reloadMediaTable;
 @end
 
 @interface ExportTableViewController : UITableViewController
