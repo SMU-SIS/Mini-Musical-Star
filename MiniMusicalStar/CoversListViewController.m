@@ -175,14 +175,10 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-        UIButton *selectSceneButton = [[UIButton alloc] initWithFrame:CGRectMake(20,0,30,30)];
-        [selectSceneButton setBackgroundColor:[UIColor blackColor]];
-        [selectSceneButton setTitle:@"select scene" forState:UIControlStateNormal];
-        [cell.contentView addSubview:selectSceneButton];
+        // Configure the cell...
+        [self configureCell:cell atIndexPath:indexPath];
     }
-    // Configure the cell...
-    [self configureCell:cell atIndexPath:indexPath];
+
     
 
     return cell;
@@ -195,6 +191,13 @@
     mo = [frc objectAtIndexPath:indexPath];
     temp = [[mo valueForKey:@"title"] description]; 
     [[cell textLabel] setText:temp];
+    [[cell textLabel] setBackgroundColor:[UIColor clearColor]];
+    
+    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+    UIButton *selectSceneButton = [[UIButton alloc] initWithFrame:CGRectMake(100,0,100,30)];
+    [selectSceneButton setBackgroundColor:[UIColor blackColor]];
+    [selectSceneButton setTitle:@"select scene" forState:UIControlStateNormal];
+    [cell.contentView addSubview:selectSceneButton];
 }
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController*)controller
