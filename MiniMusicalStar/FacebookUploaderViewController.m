@@ -49,8 +49,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    okButton.enabled = NO;
-
+    okButton.enabled = NO; 
+    self.uploadIndicator.hidesWhenStopped = YES;
 }
 
 - (void)viewDidUnload
@@ -145,7 +145,7 @@
 
 - (IBAction)okButtonIsPressed
 {    
-    [delegate uploadSuccess];
+    [delegate facebookUploadSuccess];
 }
 
 @end

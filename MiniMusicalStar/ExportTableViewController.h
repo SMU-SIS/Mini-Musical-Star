@@ -28,7 +28,7 @@
 @end
 
 @interface ExportTableViewController : UITableViewController
-    <FacebookUploaderViewControllerDelegate>
+
 {
     id <ExportTableViewDelegate> delegate;
 }

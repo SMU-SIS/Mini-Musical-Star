@@ -2279,7 +2279,6 @@
 				64D6CCC7145D4A3F00D172D2 /* FacebookUploaderViewController.m */,
 				6427849B145EEF1C00B8C740 /* YouTubeUploaderViewController.h */,
 				6427849C145EEF1C00B8C740 /* YouTubeUploaderViewController.m */,
-				6427849D145EEF1C00B8C740 /* YouTubeUploaderViewController.xib */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -2303,6 +2302,7 @@
 				3AF97A33144BE6FE00133C47 /* ExportTableViewController.xib */,
 				64D6CD27145D612C00D172D2 /* ExportViewController.xib */,
 				6457E05A145DA2FF00ABBF87 /* ShareTableViewController.xib */,
+				6427849D145EEF1C00B8C740 /* YouTubeUploaderViewController.xib */,
 			);
 			name = XIB;
 			sourceTree = "<group>";

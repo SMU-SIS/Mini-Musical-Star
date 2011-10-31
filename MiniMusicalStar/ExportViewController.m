@@ -15,6 +15,7 @@
 @synthesize exportTableViewController;
 @synthesize mediaTableViewController;
 @synthesize facebookUploaderViewController;
+@synthesize youtubeUploaderViewController;
     
 - (ExportViewController*)initWithStuff:(Show*)show:(Cover*)cover context:(NSManagedObjectContext *)aContext
 {
@@ -143,16 +144,30 @@
     [super dealloc];
 }
 
-#pragma - FacebookUploaderViewControllerDelegate methods
+#pragma - FacebookUploaderDelegate methods
 
-- (void)uploadSuccess
+- (void)facebookUploadSuccess
 {  
     NSLog(@"uploadSuccess");
-    [facebookUploaderViewController.view removeFromSuperview];
-   [facebookUploaderViewController release];
+    [self.facebookUploaderViewController.view removeFromSuperview];
+   [self.facebookUploaderViewController release];
 }
 
-- (void)uploadFailed
+- (void)facebookUploadFailed
+{
+    
+}
+
+#pragma - YouTubeUploaderDelegate methods
+
+- (void)youTubeUploadSuccess
+{
+    NSLog(@"uploadSuccess");
+    [self.youtubeUploaderViewController.view removeFromSuperview];
+    [self.youtubeUploaderViewController release];
+}
+
+- (void)youTubeUploadFailed
 {
     
 }
@@ -175,7 +190,15 @@
 
 - (void) uploadToYouTube:(NSURL*)filePath
 {
+    youtubeUploaderViewController = [[YouTubeUploaderViewController alloc] initWithProperties:filePath title:@"Uploaded with Mini Musical Star" description:@"Uploaded with Mini Musical Star"];
+
+    self.youtubeUploaderViewController.delegate = self;
+    [self.view addSubview:youtubeUploaderViewController.view];
+    youtubeUploaderViewController.view.alpha = 0.9;
+    youtubeUploaderViewController.centerView.alpha = 1;
+    youtubeUploaderViewController.centerView.backgroundColor = [UIColor whiteColor];
     
+    [youtubeUploaderViewController startUpload];
 }
 
 @end

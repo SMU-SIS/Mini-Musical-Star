@@ -10,16 +10,16 @@
 #import "Facebook.h"
 #import "MiniMusicalStarAppDelegate.h"
 
-@protocol FacebookUploaderViewControllerDelegate <NSObject>
+@protocol FacebookUploaderDelegate <NSObject>
 @required
-- (void)uploadSuccess;
-- (void)uploadFailed;
+- (void)facebookUploadSuccess;
+- (void)facebookUploadFailed;
 @end
 
 @interface FacebookUploaderViewController : UIViewController
     <FBSessionDelegate, FBRequestDelegate>
 {
-    id <FacebookUploaderViewControllerDelegate> delegate;
+    id <FacebookUploaderDelegate> delegate;
 }
 
 @property (nonatomic, retain) IBOutlet UIButton *okButton;

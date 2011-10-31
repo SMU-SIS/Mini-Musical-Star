@@ -169,7 +169,7 @@
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
         
-        facebookUploadButton = [[UIButton alloc] initWithFrame:CGRectMake(230, 5, 32, 32)];
+        facebookUploadButton = [[UIButton alloc] initWithFrame:CGRectMake(240, 5, 32, 32)];
         [cell.contentView addSubview:facebookUploadButton];
         facebookUploadButton.tag = 1;
         [facebookUploadButton release];
@@ -267,17 +267,14 @@
 {
     ExportedAsset *selectedAsset = (ExportedAsset*)[self.frc objectAtIndexPath:[self getIndexPath:sender]];
     NSURL *url = [NSURL URLWithString:selectedAsset.exportPath];
-    
     [self.delegate uploadToFacebook:url];
 }
 
 - (void)youtubeUploadButtonIsPressed:(UIButton*)sender
 {
-//    ExportedAsset *selectedAsset = (ExportedAsset*)[self.frc objectAtIndexPath:[self getIndexPath:sender]];
-//    NSURL *url = [NSURL URLWithString:selectedAsset.exportPath];
-//    
-//    youTubeUploader = [[YouTubeUploader alloc] init];
-    //[youTubeUploader uploadWithProperties:url title:@"Uploaded with Mini Musical Star" desription:@""];
+    ExportedAsset *selectedAsset = (ExportedAsset*)[self.frc objectAtIndexPath:[self getIndexPath:sender]];
+    NSURL *url = [NSURL URLWithString:selectedAsset.exportPath];
+    [self.delegate uploadToYouTube:url];
 }
 
 #pragma instance methods
