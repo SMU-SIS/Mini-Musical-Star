@@ -222,11 +222,11 @@
     [DSBezelActivityView newActivityViewForView:self.view withLabel:@"Loading..."];
 }
 
-- (void)pushSceneEditViewController: (SceneEditViewController *)theController
-{
-    [DSBezelActivityView removeViewAnimated:YES];
-    [self.navigationController pushViewController:theController animated:YES];
-}
+//- (void)pushSceneEditViewController: (SceneEditViewController *)theController
+//{
+//    [DSBezelActivityView removeViewAnimated:YES];
+//    [self.navigationController pushViewController:theController animated:YES];
+//}
 
 -(IBAction) showMediaManagement: (id)sender{
     

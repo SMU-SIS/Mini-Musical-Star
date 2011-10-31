@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "Show.h"
-#import "SceneViewController.h"
 #import "Cover.h"
 #import "CoversListViewController.h"
 #import "ExportTableViewController.h"

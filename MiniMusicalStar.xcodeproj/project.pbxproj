@@ -32,10 +32,10 @@
 		3A12E379142F7556004B97BE /* AFUIImageReflection.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFFDED0142C7CCD000D8494 /* AFUIImageReflection.m */; };
 		3A12E37C142F81A7004B97BE /* SceneTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A12E37B142F81A7004B97BE /* SceneTest.m */; };
 		3A2194F7145D42660052C0FE /* filmstrip.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A2194F6145D42660052C0FE /* filmstrip.png */; };
-		3A219519145D58920052C0FE /* MediaManagementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A219517145D58920052C0FE /* MediaManagementViewController.m */; };
-		3A21951A145D58920052C0FE /* MediaManagementViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A219518145D58920052C0FE /* MediaManagementViewController.xib */; };
 		3A21951C145D5F9B0052C0FE /* selection_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A21951B145D5F9B0052C0FE /* selection_background.png */; };
 		3A21953C145E3B7A0052C0FE /* export.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A21953B145E3B7A0052C0FE /* export.png */; };
+		3A219540145E4E400052C0FE /* MediaTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A21953E145E4E3E0052C0FE /* MediaTableViewController.m */; };
+		3A219541145E4E400052C0FE /* MediaTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A21953F145E4E3F0052C0FE /* MediaTableViewController.xib */; };
 		3A4EB699145592CE005A662F /* ImageToVideoConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A4EB698145592CE005A662F /* ImageToVideoConverter.m */; };
 		3A4EB6B51456A8CF005A662F /* lastclip.mov in Resources */ = {isa = PBXBuildFile; fileRef = 3A4EB6B41456A8CF005A662F /* lastclip.mov */; };
 		3A4EBC171457E311005A662F /* CommandManagerTouchExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A4EBBD21457E311005A662F /* CommandManagerTouchExt.m */; };
@@ -369,11 +369,11 @@
 		3A12E37A142F81A6004B97BE /* SceneTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneTest.h; sourceTree = "<group>"; };
 		3A12E37B142F81A7004B97BE /* SceneTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SceneTest.m; sourceTree = "<group>"; };
 		3A2194F6145D42660052C0FE /* filmstrip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = filmstrip.png; path = Resources/filmstrip.png; sourceTree = "<group>"; };
-		3A219516145D58920052C0FE /* MediaManagementViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaManagementViewController.h; sourceTree = "<group>"; };
-		3A219517145D58920052C0FE /* MediaManagementViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaManagementViewController.m; sourceTree = "<group>"; };
-		3A219518145D58920052C0FE /* MediaManagementViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MediaManagementViewController.xib; sourceTree = "<group>"; };
 		3A21951B145D5F9B0052C0FE /* selection_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = selection_background.png; path = Resources/selection_background.png; sourceTree = "<group>"; };
 		3A21953B145E3B7A0052C0FE /* export.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = export.png; path = Resources/export.png; sourceTree = "<group>"; };
+		3A21953D145E4E3E0052C0FE /* MediaTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaTableViewController.h; sourceTree = "<group>"; };
+		3A21953E145E4E3E0052C0FE /* MediaTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaTableViewController.m; sourceTree = "<group>"; };
+		3A21953F145E4E3F0052C0FE /* MediaTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MediaTableViewController.xib; sourceTree = "<group>"; };
 		3A4EB697145592CE005A662F /* ImageToVideoConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageToVideoConverter.h; sourceTree = "<group>"; };
 		3A4EB698145592CE005A662F /* ImageToVideoConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageToVideoConverter.m; sourceTree = "<group>"; };
 		3A4EB6B41456A8CF005A662F /* lastclip.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; name = lastclip.mov; path = Libraries/DSActivityView/lastclip.mov; sourceTree = "<group>"; };
@@ -2252,6 +2252,8 @@
 				95C526AC1438DA740008AE13 /* CoversListViewController.m */,
 				95F9FFC31425C60400A18463 /* CameraPopupViewController.h */,
 				95F9FFC41425C60400A18463 /* CameraPopupViewController.m */,
+				64D6CD25145D612C00D172D2 /* ExportViewController.h */,
+				64D6CD26145D612C00D172D2 /* ExportViewController.m */,
 				3AF97A31144BE6FE00133C47 /* ExportTableViewController.h */,
 				3AF97A32144BE6FE00133C47 /* ExportTableViewController.m */,
 				9569E0571418A2A80016DAF3 /* AudioEditorViewController.h */,
@@ -2268,12 +2270,10 @@
 				95674E15145BFE6A00836B5F /* SceneStripController.m */,
 				64D6CCC6145D4A3F00D172D2 /* FacebookUploaderViewController.h */,
 				64D6CCC7145D4A3F00D172D2 /* FacebookUploaderViewController.m */,
-				3A219516145D58920052C0FE /* MediaManagementViewController.h */,
-				3A219517145D58920052C0FE /* MediaManagementViewController.m */,
-				64D6CD25145D612C00D172D2 /* ExportViewController.h */,
-				64D6CD26145D612C00D172D2 /* ExportViewController.m */,
 				6457E058145DA2FF00ABBF87 /* ShareTableViewController.h */,
 				6457E059145DA2FF00ABBF87 /* ShareTableViewController.m */,
+				3A21953D145E4E3E0052C0FE /* MediaTableViewController.h */,
+				3A21953E145E4E3E0052C0FE /* MediaTableViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -2294,7 +2294,7 @@
 				3A5F7C6B1440D74D00E9C570 /* VideoPlayerViewController.xib */,
 				3AF97A33144BE6FE00133C47 /* ExportTableViewController.xib */,
 				64D6CCC8145D4A3F00D172D2 /* FacebookUploaderViewController.xib */,
-				3A219518145D58920052C0FE /* MediaManagementViewController.xib */,
+				3A21953F145E4E3F0052C0FE /* MediaTableViewController.xib */,
 				64D6CD27145D612C00D172D2 /* ExportViewController.xib */,
 				6457E05A145DA2FF00ABBF87 /* ShareTableViewController.xib */,
 			);
@@ -2584,7 +2584,6 @@
 				3A10F10C145C428C006F8EEC /* main_background.png in Resources */,
 				3A2194F7145D42660052C0FE /* filmstrip.png in Resources */,
 				64D6CCCA145D4A3F00D172D2 /* FacebookUploaderViewController.xib in Resources */,
-				3A21951A145D58920052C0FE /* MediaManagementViewController.xib in Resources */,
 				3A21951C145D5F9B0052C0FE /* selection_background.png in Resources */,
 				64D6CD29145D612C00D172D2 /* ExportViewController.xib in Resources */,
 				64D6CD2C145D61E200D172D2 /* exportbutton.png in Resources */,
@@ -2599,6 +2598,7 @@
 				6457E05C145DA2FF00ABBF87 /* ShareTableViewController.xib in Resources */,
 				6457E05E145DA60200ABBF87 /* tempexportpage.png in Resources */,
 				3A21953C145E3B7A0052C0FE /* export.png in Resources */,
+				3A219541145E4E400052C0FE /* MediaTableViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2798,9 +2798,9 @@
 				3AB1421F1457FF3700173EAD /* UnitTest.m in Sources */,
 				95674E16145BFE6A00836B5F /* SceneStripController.m in Sources */,
 				64D6CCC9145D4A3F00D172D2 /* FacebookUploaderViewController.m in Sources */,
-				3A219519145D58920052C0FE /* MediaManagementViewController.m in Sources */,
 				64D6CD28145D612C00D172D2 /* ExportViewController.m in Sources */,
 				6457E05B145DA2FF00ABBF87 /* ShareTableViewController.m in Sources */,
+				3A219540145E4E400052C0FE /* MediaTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
