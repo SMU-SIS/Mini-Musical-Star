@@ -198,6 +198,7 @@
     [selectSceneButton setBackgroundColor:[UIColor blackColor]];
     [selectSceneButton setTitle:@"edit" forState:UIControlStateNormal];
     [selectSceneButton addTarget:self action:@selector(chooseSceneStrip:) forControlEvents:UIControlEventTouchUpInside];
+    [selectSceneButton setTag:indexPath.row];
     [cell.contentView addSubview:selectSceneButton];
     
     UIButton *selectExportButton = [[UIButton alloc] initWithFrame:CGRectMake(300,5,96,32)];

@@ -214,7 +214,7 @@
         int xShift = 30;
         
         //label for track name
-        trackNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(15+xShift, 20, 300, 30)];
+        trackNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(30+xShift, 20, 300, 30)];
         trackNameLabel.backgroundColor = [UIColor clearColor];
         trackNameLabel.textColor = [UIColor blackColor];
         trackNameLabel.textAlignment =  UITextAlignmentCenter;
