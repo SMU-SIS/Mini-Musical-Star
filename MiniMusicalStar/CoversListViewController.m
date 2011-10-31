@@ -194,10 +194,14 @@
     [[cell textLabel] setBackgroundColor:[UIColor clearColor]];
     
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-    UIButton *selectSceneButton = [[UIButton alloc] initWithFrame:CGRectMake(100,0,100,30)];
+    UIButton *selectSceneButton = [[UIButton alloc] initWithFrame:CGRectMake(200,5,96,32)];
     [selectSceneButton setBackgroundColor:[UIColor blackColor]];
-    [selectSceneButton setTitle:@"select scene" forState:UIControlStateNormal];
+    [selectSceneButton setTitle:@"edit" forState:UIControlStateNormal];
     [cell.contentView addSubview:selectSceneButton];
+    
+    UIButton *selectExportButton = [[UIButton alloc] initWithFrame:CGRectMake(300,5,96,32)];
+    [selectExportButton setImage:[UIImage imageNamed:@"export.png"] forState:UIControlStateNormal];
+    [cell.contentView addSubview:selectExportButton];
 }
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController*)controller

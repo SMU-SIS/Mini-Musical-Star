@@ -35,6 +35,7 @@
 		3A219519145D58920052C0FE /* MediaManagementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A219517145D58920052C0FE /* MediaManagementViewController.m */; };
 		3A21951A145D58920052C0FE /* MediaManagementViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A219518145D58920052C0FE /* MediaManagementViewController.xib */; };
 		3A21951C145D5F9B0052C0FE /* selection_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A21951B145D5F9B0052C0FE /* selection_background.png */; };
+		3A21953C145E3B7A0052C0FE /* export.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A21953B145E3B7A0052C0FE /* export.png */; };
 		3A4EB699145592CE005A662F /* ImageToVideoConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A4EB698145592CE005A662F /* ImageToVideoConverter.m */; };
 		3A4EB6B51456A8CF005A662F /* lastclip.mov in Resources */ = {isa = PBXBuildFile; fileRef = 3A4EB6B41456A8CF005A662F /* lastclip.mov */; };
 		3A4EBC171457E311005A662F /* CommandManagerTouchExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A4EBBD21457E311005A662F /* CommandManagerTouchExt.m */; };
@@ -373,6 +374,7 @@
 		3A219517145D58920052C0FE /* MediaManagementViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaManagementViewController.m; sourceTree = "<group>"; };
 		3A219518145D58920052C0FE /* MediaManagementViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MediaManagementViewController.xib; sourceTree = "<group>"; };
 		3A21951B145D5F9B0052C0FE /* selection_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = selection_background.png; path = Resources/selection_background.png; sourceTree = "<group>"; };
+		3A21953B145E3B7A0052C0FE /* export.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = export.png; path = Resources/export.png; sourceTree = "<group>"; };
 		3A4EB697145592CE005A662F /* ImageToVideoConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageToVideoConverter.h; sourceTree = "<group>"; };
 		3A4EB698145592CE005A662F /* ImageToVideoConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageToVideoConverter.m; sourceTree = "<group>"; };
 		3A4EB6B41456A8CF005A662F /* lastclip.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; name = lastclip.mov; path = Libraries/DSActivityView/lastclip.mov; sourceTree = "<group>"; };
@@ -2130,6 +2132,7 @@
 		820E2A1E140A0A2A00B80BBC /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				3A21953B145E3B7A0052C0FE /* export.png */,
 				6457E05D145DA60200ABBF87 /* tempexportpage.png */,
 				64E0E125145D7E2C0074D133 /* track.png */,
 				64E0E123145D70150074D133 /* note_for_lyrics.png */,
@@ -2600,6 +2603,7 @@
 				6457E057145DA26400ABBF87 /* newcover.png in Resources */,
 				6457E05C145DA2FF00ABBF87 /* ShareTableViewController.xib in Resources */,
 				6457E05E145DA60200ABBF87 /* tempexportpage.png in Resources */,
+				3A21953C145E3B7A0052C0FE /* export.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
