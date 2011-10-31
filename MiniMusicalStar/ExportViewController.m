@@ -54,29 +54,20 @@
 
 - (void) playMovie:(NSURL*)filePath
 {
-    MPMoviePlayerController *moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:filePath];
-    
-//    NSLog(@"the file URL is : %@",[filePath absoluteString]);
-//    NSLog(@"ASSET :%@",[AVURLAsset assetWithURL:filePath]);
-    
-    // Register to receive a notification when the movie has finished playing.
+    MPMoviePlayerController *moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL: filePath];
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(moviePlayBackDidFinish:)
-                                                 name:MPMoviePlayerPlaybackDidFinishNotification
-                                               object:moviePlayer];
+                                            selector:@selector(moviePlayBackDidFinish:)
+                                                name:MPMoviePlayerPlaybackDidFinishNotification
+                                              object:moviePlayer];
+    [moviePlayer setFullscreen:YES animated:YES];
+    self.navigationController.navigationBarHidden = YES;
+    moviePlayer.controlStyle = MPMovieControlStyleFullscreen;
+    moviePlayer.shouldAutoplay = YES;
+    [moviePlayer.view setFrame: self.view.bounds];  // player's frame must match parent's
     
-    if ([moviePlayer respondsToSelector:@selector(setFullscreen:animated:)]) {
-        // Use the new 3.2 style API
-        
-        [moviePlayer setFullscreen:YES animated:YES];
-        [moviePlayer.view setFrame:self.view.bounds];
-        moviePlayer.controlStyle = MPMovieControlStyleFullscreen;
-        moviePlayer.shouldAutoplay = YES;
-        //        [self.view setBackgroundColor:[UIColor blackColor]];
-        [self.view addSubview:moviePlayer.view];
-        self.navigationController.navigationBarHidden = YES;
-        [moviePlayer play];
-    }   
+    [self.view addSubview: moviePlayer.view];
+
+    [moviePlayer play];
 }
 
 - (void) moviePlayBackDidFinish:(NSNotification*)notification {

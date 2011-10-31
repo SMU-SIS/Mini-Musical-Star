@@ -253,7 +253,7 @@
      */
     
     ExportedAsset *selectedExportedAsset = [frc objectAtIndexPath:indexPath];
-    NSURL *assetURL = [NSURL fileURLWithPath:selectedExportedAsset.exportPath];
+    NSURL *assetURL = [NSURL URLWithString:selectedExportedAsset.exportPath];
     [delegate performSelector:@selector(playMovie:) withObject:assetURL];
 }
 
