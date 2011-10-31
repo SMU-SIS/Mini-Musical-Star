@@ -6,6 +6,7 @@
         <attribute name="created_date" optional="YES" attributeType="Date"/>
         <attribute name="originalHash" optional="YES" attributeType="String"/>
         <attribute name="title" optional="YES" attributeType="String"/>
+        <relationship name="exportedAssets" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="ExportedAsset" inverseName="cover" inverseEntity="ExportedAsset" syncable="YES"/>
         <relationship name="Scenes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CoverScene" inverseName="Cover" inverseEntity="CoverScene"/>
     </entity>
     <entity name="CoverScene" representedClassName="CoverScene">
@@ -27,11 +28,13 @@
         <relationship name="CoverScene" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="CoverScene" inverseName="Picture" inverseEntity="CoverScene"/>
     </entity>
     <entity name="ExportedAsset" representedClassName="ExportedAsset" syncable="YES">
+        <attribute name="dateCreated" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="exportHash" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="exportPath" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="isFullShow" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="originalHash" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="cover" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Cover" inverseName="exportedAssets" inverseEntity="Cover" syncable="YES"/>
     </entity>
     <elements>
         <element name="Cover" positionX="-0" positionY="258" width="128" height="135"/>

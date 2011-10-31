@@ -56,7 +56,7 @@
 //    [request setPredicate:predicate];
     
     //sort descriptor...
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"title" ascending:NO];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"dateCreated" ascending:NO];
     NSArray *descriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
     [request setSortDescriptors:descriptors];
     
@@ -164,7 +164,7 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
         
         facebookUploadButton = [[UIButton alloc] initWithFrame:CGRectMake(230, 5, 32, 32)];
         [cell.contentView addSubview:facebookUploadButton];
@@ -186,11 +186,12 @@
     }
     
     // Configure the cell...
-    NSManagedObject *mo = nil;
-    NSString *temp = nil;
-    mo = [frc objectAtIndexPath:indexPath];
-    temp = [[mo valueForKey:@"title"] description]; 
-    [[cell textLabel] setText:temp];
+    NSManagedObject *mo = [frc objectAtIndexPath:indexPath];
+    NSString *title = [[mo valueForKey:@"title"] description];
+    NSString *dateCreated = [@"Created at " stringByAppendingString:[[mo valueForKey:@"dateCreated"] description]];
+    
+    [[cell textLabel] setText:title];
+    [[cell detailTextLabel] setText:dateCreated];
     [[cell textLabel] setBackgroundColor:[UIColor clearColor]];
     
     return cell;

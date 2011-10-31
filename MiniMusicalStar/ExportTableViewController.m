@@ -258,6 +258,7 @@
         newAsset.title = scene.title;
         newAsset.originalHash = scene.hash;
         newAsset.exportHash = [outputFileURL lastPathComponent];
+        newAsset.dateCreated = [NSDate date];
         
         [self.context save:nil];
         
@@ -272,11 +273,12 @@
     }else if ([state isEqualToString: @"musical appending"]){
         //save the URL into a new model
         ExportedAsset *newAsset = [NSEntityDescription insertNewObjectForEntityForName:@"ExportedAsset" inManagedObjectContext:self.context];
-        newAsset.isFullShow = YES;
+        newAsset.isFullShow = [NSNumber numberWithInt:1];
         newAsset.exportPath = [outputFileURL absoluteString];
         newAsset.title = theShow.title;
         newAsset.originalHash = theShow.showHash;
         newAsset.exportHash = [outputFileURL lastPathComponent];
+        newAsset.dateCreated = [NSDate date];
         
         [self.context save:nil];
         
