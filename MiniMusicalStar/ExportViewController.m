@@ -145,10 +145,10 @@
 
 - (void)dealloc
 {
-    [super dealloc];
     [mediaTableViewController release];
     [exportTableViewController release];
     [background release];
+    [super dealloc];
 }
 
 @end
