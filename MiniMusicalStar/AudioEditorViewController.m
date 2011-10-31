@@ -330,7 +330,15 @@
     id audioForRow = [tracksForView objectAtIndex:row];
     
     if ([audioForRow isKindOfClass:[CoverSceneAudio class]]) {
-        //if this is a recorded track, delete
+        
+        //check if player is playing
+        if (isPlaying == YES) {
+            [self.thePlayer stop];
+            isPlaying = NO;
+            isRecording = NO;
+        }
+        
+        //if this is a recorded track, delete   
         [self trashCoverAudio:row];
         return;
     } else if ([audioForRow isKindOfClass:[Audio class]]) {
