@@ -211,8 +211,10 @@
         cell.contentView.backgroundColor = background;
         [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
         
+        int xShift = 30;
+        
         //label for track name
-        trackNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 20, 300, 30)];
+        trackNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(15+xShift, 20, 300, 30)];
         trackNameLabel.backgroundColor = [UIColor clearColor];
         trackNameLabel.textColor = [UIColor blackColor];
         trackNameLabel.textAlignment =  UITextAlignmentCenter;
@@ -222,19 +224,19 @@
         [trackNameLabel release];
         
         //button for record and trash
-        recordOrTrashButton = [[UIButton alloc] initWithFrame:CGRectMake(200, 105, 50, 50)];
+        recordOrTrashButton = [[UIButton alloc] initWithFrame:CGRectMake(200+xShift, 105, 50, 50)];
         [cell.contentView addSubview:recordOrTrashButton];
         recordOrTrashButton.tag = 2;
         [recordOrTrashButton release];
         
         //button for mute and unmute
-        muteOrUnmuteButton = [[UIButton alloc] initWithFrame:CGRectMake(100, 105, 50, 50)];
+        muteOrUnmuteButton = [[UIButton alloc] initWithFrame:CGRectMake(100+xShift, 105, 50, 50)];
         [cell.contentView addSubview:muteOrUnmuteButton];
         muteOrUnmuteButton.tag = 3;
         [muteOrUnmuteButton release];
         
         //button to show lyrics
-        showLyricsButton = [[UIButton alloc] initWithFrame:CGRectMake(300, 105, 50, 50)];
+        showLyricsButton = [[UIButton alloc] initWithFrame:CGRectMake(300+xShift, 105, 50, 50)];
         [cell.contentView addSubview:showLyricsButton];
         showLyricsButton.tag = 4;
         [showLyricsButton release];
