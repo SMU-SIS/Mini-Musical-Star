@@ -196,8 +196,6 @@
         return @"Export Musicals";
     }else if (section==1){
         return @"Export Scenes";
-    }else if (section ==2){
-        return @"Exported Content";
     }
     return nil;
 }
@@ -414,7 +412,7 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return 3;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -424,8 +422,6 @@
         return [musicalArray count];
     }else if (section == 1){
         return [scenesArray count];
-    }else if(section == 2){
-        return [exportedAssetsArray count];
     }
     return 0;
 }
@@ -523,8 +519,6 @@
         headerLabel.text = @"Export Musical";
     } else if (section == 1) {
         headerLabel.text = @"Export Scenes";
-    } else if (section == 2) {
-        headerLabel.text = @"Exported Content";
     }
     
 	[customView addSubview:headerLabel];
@@ -609,10 +603,6 @@
         Scene *selectedScene = [scenesArray objectAtIndex:indexPath.row];
         CoverScene *selectedCoverScene = [theCover coverSceneForSceneHash:selectedScene.hash];
         [self exportScene :selectedScene:selectedCoverScene:indexPath];
-    }else if(indexPath.section == 2){
-//        UITableViewCell *cell = (UITableViewCell *)[(UITableView *)self.view cellForRowAtIndexPath:indexPath];
-        ExportedAsset *theAsset = [exportedAssetsArray objectAtIndex:indexPath.row];
-//        [self playMovie:[NSURL URLWithString:theAsset.exportPath]];
     }
     
    

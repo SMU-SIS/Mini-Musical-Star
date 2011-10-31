@@ -12,6 +12,7 @@
 #import "ExportTableViewController.h"
 #import "MediaTableViewController.h"
 #import "ExportedAsset.h"
+#import <MediaPlayer/MediaPlayer.h>
 
 @interface ExportViewController : UIViewController <ExportTableViewDelegate,MediaTableViewDelegate>
 
