@@ -25,7 +25,7 @@
     if (self) {
         facebook = [[Facebook alloc] initWithAppId:@"185884178157618" andDelegate:self];
         
-        MiniMusicalStarAppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+        MiniMusicalStarAppDelegate *appDelegate = (MiniMusicalStarAppDelegate*)[UIApplication sharedApplication].delegate;
         appDelegate.facebook = self.facebook;
         
         self.videoNSURL = aVideoNSURL;
@@ -68,12 +68,15 @@
 
 - (void)dealloc
 {
+ //   delegate = nil; //using assign dont need
+   MiniMusicalStarAppDelegate *appDelegate = (MiniMusicalStarAppDelegate*)[UIApplication sharedApplication].delegate;
+    appDelegate.facebook = nil;
+    
     [facebook release];
     [videoNSURL release];
     [videoTitle release];
     [videoDescription release];
-    delegate = nil;
-    
+        
     [super dealloc];
 }
 
@@ -127,12 +130,6 @@
     [self.uploadIndicator stopAnimating];
     [okButton setTitle:@"OK" forState:UIControlStateNormal];
     self.okButton.enabled = YES;
-    
-    if (delegate == nil) {
-        NSLog(@"fuck me");
-    } else {
-        NSLog(@"hahahahaha");
-    }
 }
 
 - (void)request:(FBRequest *)request didFailWithError:(NSError *)error {
@@ -145,12 +142,9 @@
 }
 
 #pragma mark - IBAction methods
+
 - (IBAction)okButtonIsPressed
-{
-    if (delegate == nil) {
-        NSLog(@"fuck u");
-    }
-    
+{    
     [delegate uploadSuccess];
 }
 

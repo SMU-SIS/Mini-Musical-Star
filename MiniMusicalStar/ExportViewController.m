@@ -14,8 +14,9 @@
 @synthesize background;
 @synthesize exportTableViewController;
 @synthesize mediaTableViewController;
+@synthesize facebookUploaderViewController;
     
-- (ExportViewController*)initWithStuff:(Show*)show:(Cover*)cover context:(NSManagedObjectContext *)aContext;
+- (ExportViewController*)initWithStuff:(Show*)show:(Cover*)cover context:(NSManagedObjectContext *)aContext
 {
     self = [super init];
     if (self) {
@@ -140,6 +141,41 @@
     [exportTableViewController release];
     [background release];
     [super dealloc];
+}
+
+#pragma - FacebookUploaderViewControllerDelegate methods
+
+- (void)uploadSuccess
+{  
+    NSLog(@"uploadSuccess");
+    [facebookUploaderViewController.view removeFromSuperview];
+   [facebookUploaderViewController release];
+}
+
+- (void)uploadFailed
+{
+    
+}
+
+#pragma - MediaTableViewDelegate methods
+
+- (void)uploadToFacebook:(NSURL *)filePath
+{
+    
+    facebookUploaderViewController = [[FacebookUploaderViewController alloc] initWithProperties:filePath title:@"Uploaded with Mini Musical Star" description:@""];
+    
+    self.facebookUploaderViewController.delegate = self;
+    [self.view addSubview:facebookUploaderViewController.view];
+    facebookUploaderViewController.view.alpha = 0.9;
+    facebookUploaderViewController.centerView.alpha = 1;
+    facebookUploaderViewController.centerView.backgroundColor = [UIColor whiteColor];
+    
+    [facebookUploaderViewController startUpload];
+}
+
+- (void) uploadToYouTube:(NSURL*)filePath
+{
+    
 }
 
 @end

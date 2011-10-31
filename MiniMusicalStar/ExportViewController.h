@@ -14,7 +14,8 @@
 #import "ExportedAsset.h"
 #import <MediaPlayer/MediaPlayer.h>
 
-@interface ExportViewController : UIViewController <ExportTableViewDelegate,MediaTableViewDelegate>
+@interface ExportViewController : UIViewController 
+    <ExportTableViewDelegate, MediaTableViewDelegate, FacebookUploaderViewControllerDelegate>
 
 @property (retain, nonatomic) Show *theShow;
 @property (retain, nonatomic) Cover *theCover;
@@ -22,6 +23,8 @@
 @property (retain, nonatomic) ExportTableViewController *exportTableViewController;
 @property (retain, nonatomic) MediaTableViewController *mediaTableViewController;
 @property (nonatomic, retain) UIColor *background;
+
+@property (nonatomic, retain) FacebookUploaderViewController *facebookUploaderViewController;
 
 - (ExportViewController*)initWithStuff:(Show*)show:(Cover*)cover context:(NSManagedObjectContext *)aContext;
 

@@ -11,6 +11,8 @@
 
 @protocol MediaTableViewDelegate <NSObject>
 - (void) playMovie:(NSURL*)filePath;
+- (void) uploadToFacebook:(NSURL*)filePath;
+- (void) uploadToYouTube:(NSURL*)filePath;
 @end
 
 @interface MediaTableViewController : UITableViewController
@@ -30,6 +32,8 @@
 
 - (id)initWithStyle:(UITableViewStyle)style withCover:(Cover*)cover withContext:(NSManagedObjectContext*)ctxt;
 
-- (void) populateTable;
+- (NSIndexPath*)getIndexPath:(UIButton*)sender;
+
+- (void)populateTable;
 
 @end

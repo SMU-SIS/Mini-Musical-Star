@@ -38,13 +38,13 @@
         self.context = ctxt;
         self.theCover = cover;
         [self createFetchedResultsController];
-        
         facebookUploadImage = [UIImage imageNamed:@"facebook_32.png"];
         youtubeUploadImage = [UIImage imageNamed:@"youtube_32.png"];
     }
     return self;
 }
 
+       
 - (void)createFetchedResultsController
 {
     NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"ExportedAsset" inManagedObjectContext:self.context];
@@ -252,9 +252,44 @@
      [detailViewController release];
      */
     
+
     ExportedAsset *selectedExportedAsset = [frc objectAtIndexPath:indexPath];
     NSURL *assetURL = [NSURL URLWithString:selectedExportedAsset.exportPath];
+
+    //ExportedAsset *selectedExportedAsset = [frc objectAtIndexPath:indexPath];
+    
     [delegate performSelector:@selector(playMovie:) withObject:assetURL];
 }
+
+#pragma mark - IBAction events
+
+- (void)facebookUploadButtonIsPressed:(UIButton*)sender
+{
+    ExportedAsset *selectedAsset = (ExportedAsset*)[self.frc objectAtIndexPath:[self getIndexPath:sender]];
+    NSURL *url = [NSURL URLWithString:selectedAsset.exportPath];
+    
+    [self.delegate uploadToFacebook:url];
+}
+
+- (void)youtubeUploadButtonIsPressed:(UIButton*)sender
+{
+//    ExportedAsset *selectedAsset = (ExportedAsset*)[self.frc objectAtIndexPath:[self getIndexPath:sender]];
+//    NSURL *url = [NSURL URLWithString:selectedAsset.exportPath];
+//    
+//    youTubeUploader = [[YouTubeUploader alloc] init];
+    //[youTubeUploader uploadWithProperties:url title:@"Uploaded with Mini Musical Star" desription:@""];
+}
+
+#pragma instance methods
+
+- (NSIndexPath*)getIndexPath:(UIButton*)sender
+{
+    UITableViewCell *cell = (UITableViewCell*)sender.superview.superview;
+    UITableView *table = (UITableView*)cell.superview;
+    return [table indexPathForCell:cell];
+}
+
+
+
 
 @end
