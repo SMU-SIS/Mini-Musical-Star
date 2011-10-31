@@ -98,7 +98,7 @@
     [composition insertTimeRange:CMTimeRangeMake(kCMTimeZero,creditsAsset.duration) 
                          ofAsset:creditsAsset
                           atTime:composition.duration
-                           error:nil];      
+                           error:nil];
     //add brand asset path
     NSString *brandAssetPath =[[NSBundle mainBundle] pathForResource:@"lastclip" ofType:@"mov"];
     AVURLAsset *brandAsset = [AVURLAsset URLAssetWithURL:[NSURL fileURLWithPath:brandAssetPath] options:nil];

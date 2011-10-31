@@ -32,11 +32,11 @@
         self.background = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"exportpage.png"]];
         self.view.backgroundColor = background;
         
-//        self.exportTableViewController.tableView.backgroundView.alpha = 0;
+        self.exportTableViewController.tableView.backgroundView.alpha = 0;
         self.exportTableViewController.tableView.frame = CGRectMake(50,200,400,450);
         
         self.mediaTableViewController.tableView.frame = CGRectMake(570,200,370,480);
-//        self.mediaTableViewController.tableView.backgroundView.alpha = 0;
+        self.mediaTableViewController.tableView.backgroundView.alpha = 0;
         
         [self.view addSubview:self.exportTableViewController.tableView];
         [self.view addSubview:self.mediaTableViewController.tableView];
