@@ -14,12 +14,14 @@
 @synthesize delegate;
 @synthesize exportedAssetArray;
 @synthesize context;
+@synthesize theCover;
 @synthesize frc;
 @synthesize youtubeUploadImage;
 @synthesize facebookUploadImage;
 
 - (void)dealloc
 {
+    [theCover release];
     [facebookUploadImage release];
     [youtubeUploadImage release];
     [frc release];
@@ -29,11 +31,12 @@
     [super dealloc];
 }
 
-- (id)initWithStyle:(UITableViewStyle)style withContext:(NSManagedObjectContext*)ctxt
+- (id)initWithStyle:(UITableViewStyle)style withCover:(Cover*)cover withContext:(NSManagedObjectContext*)ctxt
 {
     self = [super initWithStyle:style];
     if (self) {
         self.context = ctxt;
+        self.theCover = cover;
         [self createFetchedResultsController];
         
         facebookUploadImage = [UIImage imageNamed:@"facebook_32.png"];
@@ -50,10 +53,10 @@
     
     [request setFetchBatchSize:20];
     
-//    //predicate...
-//    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(coverOfShowHash == %@)", theShow.showHash];
-//    NSLog(@"%@", predicate);
-//    [request setPredicate:predicate];
+    //predicate...
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(originalHash == %@)", theCover.originalHash];
+    NSLog(@"%@", predicate);
+    [request setPredicate:predicate];
     
     //sort descriptor...
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"dateCreated" ascending:NO];

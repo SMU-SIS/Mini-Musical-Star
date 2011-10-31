@@ -256,7 +256,7 @@
         newAsset.isFullShow = NO;
         newAsset.exportPath = [outputFileURL absoluteString];
         newAsset.title = scene.title;
-        newAsset.originalHash = scene.hash;
+        newAsset.originalHash = theCover.originalHash;
         newAsset.exportHash = [outputFileURL lastPathComponent];
         newAsset.dateCreated = [NSDate date];
         
@@ -276,7 +276,7 @@
         newAsset.isFullShow = [NSNumber numberWithInt:1];
         newAsset.exportPath = [outputFileURL absoluteString];
         newAsset.title = theShow.title;
-        newAsset.originalHash = theShow.showHash;
+        newAsset.originalHash = theCover.originalHash;
         newAsset.exportHash = [outputFileURL lastPathComponent];
         newAsset.dateCreated = [NSDate date];
         
