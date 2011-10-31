@@ -19,4 +19,6 @@
 
 @property (nonatomic, assign) id <MediaTableViewDelegate> delegate;
 
+@property (nonatomic, retain) NSMutableArray *exportedAssetArray;
+
 @end

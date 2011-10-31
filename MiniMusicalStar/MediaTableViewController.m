@@ -7,13 +7,16 @@
 //
 
 #import "MediaTableViewController.h"
+#import "ExportedAsset.h"
 
 @implementation MediaTableViewController
 
 @synthesize delegate;
+@synthesize exportedAssetArray;
 
 - (void)dealloc
 {
+    [exportedAssetArray release];
     [delegate release];
     [super dealloc];
 }
