@@ -48,9 +48,6 @@
 {
     [super viewDidLoad];
     
-    //hide the navigation bar
-    self.navigationController.navigationBarHidden = YES;
-    
     //load background    
     UIColor *background = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"main_background.png"]];
     [self.view setBackgroundColor:background];
@@ -240,7 +237,7 @@
 {
     scrollView.hidden = NO;
     //hide the navigation bar
-    self.navigationController.navigationBarHidden = YES;
+    
 }
 
 

@@ -11,7 +11,7 @@
 
 @class MenuViewController;
 
-@interface MiniMusicalStarAppDelegate : NSObject <UIApplicationDelegate> {
+@interface MiniMusicalStarAppDelegate : NSObject <UIApplicationDelegate, UINavigationControllerDelegate> {
     NSManagedObjectModel *managedObjectModel;
     NSManagedObjectContext *managedObjectContext;
     NSPersistentStoreCoordinator *persistentStoreCoordinator;

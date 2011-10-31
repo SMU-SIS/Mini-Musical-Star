@@ -37,8 +37,21 @@ void uncaughtExceptionHandler(NSException *exception) {
     [ConsoleManager run];
     
     self.window.rootViewController = self.naviController;
+    self.naviController.delegate = self;
+    
+    //hide the navigation bar for the first view controller
+    self.naviController.navigationBarHidden = YES;
+    
     [self.window makeKeyAndVisible];
     return YES;
+}
+
+- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
+    if ( [viewController class] == [MenuViewController class] ) {
+        [navigationController setNavigationBarHidden:YES animated:animated];
+    } else if ( [navigationController isNavigationBarHidden] ) {
+        [navigationController setNavigationBarHidden:NO animated:animated];
+    }
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

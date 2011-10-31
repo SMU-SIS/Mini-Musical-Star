@@ -136,8 +136,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    //show the navigation bar
-    self.navigationController.navigationBarHidden = NO;
+    
 }
 
 - (IBAction)removeScrollStrip:(id) sender
