@@ -577,6 +577,20 @@
     theSceneUtility = [[SceneUtility alloc] initWithSceneAndCoverScene: scene:coverScene];
     
     [self generateSceneVideo :scene:[theSceneUtility getMergedImagesArray]:[theSceneUtility getExportAudioURLs]:indexPath:@"scene only"];
+    //prepare ExportedAsset for scene only
+    ExportedAsset *newAsset = [NSEntityDescription insertNewObjectForEntityForName:@"ExportedAsset" inManagedObjectContext:self.context];
+    newAsset.isFullShow = NO;
+    
+    NSString *exportFilename = [@"/scene_" stringByAppendingString:[[MiniMusicalStarUtilities getUniqueFilenameWithoutExt] stringByAppendingString:@".mov"]];
+    
+    newAsset.title = scene.title;
+    newAsset.originalHash = scene.hash;
+    newAsset.exportHash = exportFilename;
+    
+    NSURL *outputFileURL = [NSURL fileURLWithPath:[[ShowDAO userDocumentDirectory] stringByAppendingString:exportFilename]];
+    newAsset.exportPath = [outputFileURL absoluteString];
+    
+    [self generateSceneVideo : scene:[theSceneUtility getMergedImagesArray]:[theSceneUtility getExportAudioURLs]:indexPath:@"scene only"];
 }
 - (void)exportMusical:(Show*)show
 {
@@ -610,7 +624,7 @@
     }else if(indexPath.section == 2){
 //        UITableViewCell *cell = (UITableViewCell *)[(UITableView *)self.view cellForRowAtIndexPath:indexPath];
         ExportedAsset *theAsset = [exportedAssetsArray objectAtIndex:indexPath.row];
-        [self playMovie:[NSURL URLWithString:theAsset.exportPath]];
+//        [self playMovie:[NSURL URLWithString:theAsset.exportPath]];
     }
     
    

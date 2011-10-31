@@ -11,6 +11,7 @@
 #import "Cover.h"
 #import "ExportTableViewController.h"
 #import "MediaTableViewController.h"
+#import "ExportedAsset.h"
 
 @interface ExportViewController : UIViewController <ExportTableViewDelegate,MediaTableViewDelegate>
 
@@ -22,6 +23,9 @@
 @property (nonatomic, retain) UIColor *background;
 
 - (ExportViewController*)initWithStuff:(Show*)show:(Cover*)cover context:(NSManagedObjectContext *)aContext;
+
+- (void) addExportedAsset: (ExportedAsset*) asset;
+
 - (void) playMovie:(NSURL*)filePath;
 - (void) moviePlayBackDidFinish:(NSNotification*)notification;
 

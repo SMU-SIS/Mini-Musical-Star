@@ -10,6 +10,7 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import <AVFoundation/AVFoundation.h>
 #import "FacebookUploaderViewController.h"
+#import "ExportedAsset.h"
 
 @class Show;
 @class ShowDAO;
@@ -23,7 +24,7 @@
 @class MiniMusicalStarUtilities;
 
 @protocol ExportTableViewDelegate <NSObject>
-
+- (void) addExportedAsset: (ExportedAsset*) asset;
 @end
 
 @interface ExportTableViewController : UITableViewController

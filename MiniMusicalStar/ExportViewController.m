@@ -45,6 +45,11 @@
     return self;
 }
 
+- (void) addExportedAsset: (ExportedAsset*) asset
+{
+    
+}
+
 - (void) playMovie:(NSURL*)filePath
 {
     MPMoviePlayerController *moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:filePath];
