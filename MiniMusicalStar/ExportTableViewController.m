@@ -17,6 +17,7 @@
 #import "ImageToVideoConverter.h"
 #import "MiniMusicalStarUtilities.h"
 #import "ExportedAsset.h"
+#import "DSActivityView.h"
 
 @implementation ExportTableViewController
 
@@ -294,6 +295,7 @@
     [progressBarLoader invalidate];
     [self.delegate reloadMediaTable];
     [self.tableView reloadData];
+    [DSBezelActivityView removeViewAnimated:YES];
     
 //    //temp only, trying CALayer
 //    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0,0,640,480)];
@@ -573,11 +575,14 @@
 {
     theSceneUtility = [[SceneUtility alloc] initWithSceneAndCoverScene: scene:coverScene];
     
+    [DSBezelActivityView newActivityViewForView:self.view withLabel:@"Exporting your scene... WAIT OK!? otherwise your ipad might EXPLODE...BOOM!"];
+    
     [self generateSceneVideo :scene:[theSceneUtility getMergedImagesArray]:[theSceneUtility getExportAudioURLs]:indexPath:@"scene only"];
 
 }
 - (void)exportMusical:(Show*)show
 {
+    [DSBezelActivityView newActivityViewForView:self.view withLabel:@"Exporting your musical... WAIT OK!? otherwise your ipad might EXPLODE...BOOM!"];
     [scenesArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:idx inSection:1];
         Scene *scene = (Scene*)obj;

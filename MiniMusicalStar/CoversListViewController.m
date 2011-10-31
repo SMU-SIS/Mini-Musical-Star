@@ -41,6 +41,12 @@
     return self;
 }
 
+//This method is for you to set the height of the table view.
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 80;
+}
+
 - (void)createFetchedResultsController
 {
     NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"Cover" inManagedObjectContext:self.context];
@@ -190,6 +196,9 @@
 
 - (void)configureCell:(UITableViewCell*)cell atIndexPath:(NSIndexPath*)indexPath
 {
+    UIColor *background = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"cover_cell.png"]];
+    cell.contentView.backgroundColor = background;
+    
     NSManagedObject *mo = nil;
     NSString *temp = nil;
     mo = [frc objectAtIndexPath:indexPath];
@@ -197,7 +206,7 @@
     [[cell textLabel] setText:temp];
     [[cell textLabel] setBackgroundColor:[UIColor clearColor]];
     
-    UIButton *selectExportButton = [[UIButton alloc] initWithFrame:CGRectMake(220,8,96,32)];
+    UIButton *selectExportButton = [[UIButton alloc] initWithFrame:CGRectMake(220,30,96,32)];
     [selectExportButton setImage:[UIImage imageNamed:@"export.png"] forState:UIControlStateNormal];
     [selectExportButton addTarget:delegate action:@selector(showMediaManagement:) forControlEvents:UIControlEventTouchUpInside];
     [selectExportButton setTag:indexPath.row];
