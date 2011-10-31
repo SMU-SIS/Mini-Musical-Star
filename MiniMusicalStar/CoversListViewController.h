@@ -13,6 +13,7 @@
 @protocol CoversListDelegate <NSObject>
 
 - (void)loadSceneSelectionScrollViewWithCover:(Cover *)aCover;
+-(IBAction) showMediaManagement: (id)sender;
 
 @end
 
@@ -23,6 +24,7 @@
 @property (retain, nonatomic) NSManagedObjectContext *context;
 @property (retain, nonatomic) NSFetchedResultsController *frc;
 
+- (Cover*) getSelectedCover: (NSIndexPath *)indexPath;
 - (id)initWithShow:(Show *)aShow context:(NSManagedObjectContext *)aContext;
 - (void)createFetchedResultsController;
 - (void)configureCell:(UITableViewCell*)cell atIndexPath:(NSIndexPath*)indexPath;

@@ -201,6 +201,8 @@
     
     UIButton *selectExportButton = [[UIButton alloc] initWithFrame:CGRectMake(300,5,96,32)];
     [selectExportButton setImage:[UIImage imageNamed:@"export.png"] forState:UIControlStateNormal];
+    [selectExportButton addTarget:delegate action:@selector(showMediaManagement:) forControlEvents:UIControlEventTouchUpInside];
+    [selectExportButton setTag:indexPath.row];
     [cell.contentView addSubview:selectExportButton];
 }
 
@@ -258,6 +260,10 @@
 */
 
 #pragma mark - Table view delegate
+- (Cover*) getSelectedCover: (NSIndexPath *)indexPath
+{
+    return [frc objectAtIndexPath:indexPath];
+}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {

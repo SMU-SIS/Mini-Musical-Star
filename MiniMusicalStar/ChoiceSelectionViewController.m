@@ -229,10 +229,13 @@
 
 -(IBAction) showMediaManagement: (id)sender{
     
+    NSIndexPath *selectedIndexPath = [NSIndexPath indexPathForRow:[sender tag] inSection:0];
+    Cover *aCover = [self.currentSelectedCoversList getSelectedCover:selectedIndexPath];
+    
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
     [UIView setAnimationDuration:0.75];
-    Cover *aCover = [NSEntityDescription insertNewObjectForEntityForName:@"Cover" inManagedObjectContext:managedObjectContext];
+
     
     self.exportViewController = [[ExportViewController alloc] initWithStuff:self.theShow :aCover context:managedObjectContext];
     
