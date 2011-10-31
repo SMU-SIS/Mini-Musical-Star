@@ -47,11 +47,7 @@
 
 - (void) addExportedAsset: (ExportedAsset*) asset
 {
-<<<<<<< HEAD
-    
-=======
-    //do nothing first
->>>>>>> trying to refactor export function to cater to saving
+    //do nothing
 }
 
 - (void) playMovie:(NSURL*)filePath
