@@ -45,7 +45,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.background = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"tempexportpage.png"]];
+    self.background = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"exportpage.png"]];
     self.view.backgroundColor = background;
 
     self.exportTableViewController.tableView.backgroundView.alpha = 0.0;
@@ -55,6 +55,7 @@
     exportTableViewController.tableView.frame = frame;
     [self.exportContainerView addSubview:exportTableViewController.tableView];
     [self.exportContainerView release]; //exportContainerView is incharge of releasing it
+    [self.view addSubview:self.mediaTableViewController.view];
 
 }
 

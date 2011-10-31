@@ -579,8 +579,6 @@
 }
 - (void)exportMusical:(Show*)show
 {
-    
-
     [scenesArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:idx inSection:1];
         Scene *scene = (Scene*)obj;
