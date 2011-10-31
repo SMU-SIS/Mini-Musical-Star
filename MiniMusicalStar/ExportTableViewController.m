@@ -96,10 +96,10 @@
     [ImageToVideoConverter createTextConvertedToVideo:creditsList:creditsFileURL :CGSizeMake(640,480)];
     //append credits
     AVURLAsset *creditsAsset = [AVURLAsset URLAssetWithURL:creditsFileURL options:nil];
-//    [composition insertTimeRange:CMTimeRangeMake(kCMTimeZero,creditsAsset.duration) 
-//                         ofAsset:creditsAsset
-//                          atTime:composition.duration
-//                           error:nil];
+    [composition insertTimeRange:CMTimeRangeMake(kCMTimeZero,creditsAsset.duration) 
+                         ofAsset:creditsAsset
+                          atTime:composition.duration
+                           error:nil];
     //add brand asset path
     NSString *brandAssetPath =[[NSBundle mainBundle] pathForResource:@"lastclip" ofType:@"mov"];
     AVURLAsset *brandAsset = [AVURLAsset URLAssetWithURL:[NSURL fileURLWithPath:brandAssetPath] options:nil];
