@@ -30,9 +30,9 @@
         self.view.backgroundColor = background;
         
 //        self.exportTableViewController.tableView.backgroundView.alpha = 0;
-        self.exportTableViewController.tableView.frame = CGRectMake(20,100,400,450);
+        self.exportTableViewController.tableView.frame = CGRectMake(50,200,400,450);
         
-        self.mediaTableViewController.tableView.frame = CGRectMake(600,200,400,500);
+        self.mediaTableViewController.tableView.frame = CGRectMake(570,200,370,480);
 //        self.mediaTableViewController.tableView.backgroundView.alpha = 0;
         
         [self.view addSubview:self.exportTableViewController.tableView];
