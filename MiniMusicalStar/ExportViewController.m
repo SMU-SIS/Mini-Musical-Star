@@ -15,6 +15,7 @@
 @synthesize exportContainerView;
 @synthesize uploadContainerView;
 @synthesize exportTableViewController;
+@synthesize mediaTableViewController;
     
 - (ExportViewController*)initWithStuff:(Show*)show:(Cover*)cover context:(NSManagedObjectContext *)aContext;
 {
@@ -24,7 +25,8 @@
         self.theCover = cover;
         self.context = aContext;
         
-        exportTableViewController = [[ExportTableViewController alloc] initWithStyle:UITableViewStyleGrouped :theShow :theCover context:context];
+        self.exportTableViewController = [[ExportTableViewController alloc] initWithStyle:UITableViewStyleGrouped :theShow :theCover context:context];
+        self.mediaTableViewController = [[MediaTableViewController alloc] initWithStyle:UITableViewStylePlain];
     }
     
     return self;
@@ -53,6 +55,7 @@
     exportTableViewController.tableView.frame = frame;
     [self.exportContainerView addSubview:exportTableViewController.tableView];
     [self.exportContainerView release]; //exportContainerView is incharge of releasing it
+
 }
 
 - (void)viewDidUnload
@@ -69,6 +72,8 @@
 - (void)dealloc
 {
     [super dealloc];
+    [mediaTableViewController release];
+    [exportTableViewController release];
     [background release];
     [exportContainerView release];
     [uploadContainerView release];

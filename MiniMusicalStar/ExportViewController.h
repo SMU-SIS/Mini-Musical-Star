@@ -10,6 +10,7 @@
 #import "Show.h"
 #import "Cover.h"
 #import "ExportTableViewController.h"
+#import "MediaTableViewController.h"
 
 @interface ExportViewController : UIViewController
 
@@ -17,6 +18,7 @@
 @property (retain, nonatomic) Cover *theCover;
 @property (retain, nonatomic) NSManagedObjectContext *context;
 @property (retain, nonatomic) ExportTableViewController *exportTableViewController;
+@property (retain, nonatomic) MediaTableViewController *mediaTableViewController;
 
 - (ExportViewController*)initWithStuff:(Show*)show:(Cover*)cover context:(NSManagedObjectContext *)aContext;
 

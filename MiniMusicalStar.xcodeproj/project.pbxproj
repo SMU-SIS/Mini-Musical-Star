@@ -2256,6 +2256,8 @@
 				64D6CD26145D612C00D172D2 /* ExportViewController.m */,
 				3AF97A31144BE6FE00133C47 /* ExportTableViewController.h */,
 				3AF97A32144BE6FE00133C47 /* ExportTableViewController.m */,
+				3A21953D145E4E3E0052C0FE /* MediaTableViewController.h */,
+				3A21953E145E4E3E0052C0FE /* MediaTableViewController.m */,
 				9569E0571418A2A80016DAF3 /* AudioEditorViewController.h */,
 				9569E0581418A2A80016DAF3 /* AudioEditorViewController.m */,
 				9569E0591418A2A80016DAF3 /* PhotoEditorViewController.h */,
@@ -2272,8 +2274,6 @@
 				64D6CCC7145D4A3F00D172D2 /* FacebookUploaderViewController.m */,
 				6457E058145DA2FF00ABBF87 /* ShareTableViewController.h */,
 				6457E059145DA2FF00ABBF87 /* ShareTableViewController.m */,
-				3A21953D145E4E3E0052C0FE /* MediaTableViewController.h */,
-				3A21953E145E4E3E0052C0FE /* MediaTableViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
