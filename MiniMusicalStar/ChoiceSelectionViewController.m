@@ -65,7 +65,7 @@
     
     
     self.currentSelectedCoversList = [[CoversListViewController alloc] initWithShow:self.theShow context:self.managedObjectContext];
-    //self.currentSelectedCoversList.delegate = self;
+    self.currentSelectedCoversList.delegate = self;
     self.currentSelectedCoversList.view.frame = CGRectMake(625,160,400,668);
 //    self.coversTableView = (UITableView* )self.currentSelectedCoversList.view;
     [self.view addSubview:self.currentSelectedCoversList.view];
@@ -218,6 +218,7 @@
 //        [self performSelector:@selector(addScrollStrip:) withObject:self afterDelay:0.5];
         return;
     };
+    
     [self addScrollStrip:aCover];
 }
 
