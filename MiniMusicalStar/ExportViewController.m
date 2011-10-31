@@ -106,6 +106,28 @@
 
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    //create custom back button
+    UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(back)];
+    self.navigationItem.leftBarButtonItem = backBarButtonItem;
+    [backBarButtonItem release];
+}
+
+-(IBAction)back {
+    
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration: 0.75];
+    
+    [UIView setAnimationTransition:UIViewAnimationTransitionCurlDown forView:self.navigationController.view cache:YES];
+    
+    [[self navigationController] popViewControllerAnimated:NO];
+    
+    [UIView commitAnimations];
+    
+    
+}
+
 - (void)viewDidUnload
 {
     [super viewDidUnload];

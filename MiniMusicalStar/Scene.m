@@ -137,13 +137,11 @@
     
     if (coverPicture != nil)
     {
-        NSLog(@"here!");
         return coverPicture;
     }
     
     else
     {
-        NSLog(@"hereandthere!");
         NSString *placeholderSceneImage = [[NSBundle mainBundle] pathForResource:@"scene_placeholder" ofType:@"png"];
         return [[[UIImage alloc] initWithContentsOfFile:placeholderSceneImage] autorelease];
     }
