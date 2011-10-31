@@ -15,9 +15,13 @@
 @synthesize exportedAssetArray;
 @synthesize context;
 @synthesize frc;
+@synthesize youtubeUploadImage;
+@synthesize facebookUploadImage;
 
 - (void)dealloc
 {
+    [facebookUploadImage release];
+    [youtubeUploadImage release];
     [frc release];
     [context release];
     [exportedAssetArray release];
@@ -31,6 +35,9 @@
     if (self) {
         self.context = ctxt;
         [self createFetchedResultsController];
+        
+        facebookUploadImage = [UIImage imageNamed:@"facebook_32.png"];
+        youtubeUploadImage = [UIImage imageNamed:@"youtube_32.png"];
     }
     return self;
 }
@@ -151,20 +158,41 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
+ 
+    UIButton *facebookUploadButton;
+    UIButton *youtubeUploadButton;
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        
+        facebookUploadButton = [[UIButton alloc] initWithFrame:CGRectMake(230, 5, 32, 32)];
+        [cell.contentView addSubview:facebookUploadButton];
+        facebookUploadButton.tag = 1;
+        [facebookUploadButton release];
+        
+        youtubeUploadButton = [[UIButton alloc] initWithFrame:CGRectMake(300, 5, 32, 32)];
+        [cell.contentView addSubview:youtubeUploadButton];
+        youtubeUploadButton.tag = 2;
+        [youtubeUploadButton release];
+        
+        [facebookUploadButton setImage:self.facebookUploadImage forState:UIControlStateNormal];
+        [youtubeUploadButton setImage:self.youtubeUploadImage forState:UIControlStateNormal];
+        
+        [facebookUploadButton addTarget:self action:@selector(facebookUploadButtonIsPressed:) 
+                       forControlEvents:UIControlEventTouchDown];
+        [youtubeUploadButton addTarget:self action:@selector(youtubeUploadButtonIsPressed:) 
+                      forControlEvents:UIControlEventTouchDown];
     }
     
     // Configure the cell...
-    
     NSManagedObject *mo = nil;
     NSString *temp = nil;
     mo = [frc objectAtIndexPath:indexPath];
     temp = [[mo valueForKey:@"title"] description]; 
     [[cell textLabel] setText:temp];
     [[cell textLabel] setBackgroundColor:[UIColor clearColor]];
+    
     return cell;
 }
 

@@ -23,6 +23,9 @@
 
 @property (nonatomic, retain) NSMutableArray *exportedAssetArray;
 
+@property (nonatomic, retain) UIImage *facebookUploadImage;
+@property (nonatomic, retain) UIImage *youtubeUploadImage;
+
 - (id)initWithStyle:(UITableViewStyle)style withContext:(NSManagedObjectContext*)context;
 
 - (void) populateTable;
