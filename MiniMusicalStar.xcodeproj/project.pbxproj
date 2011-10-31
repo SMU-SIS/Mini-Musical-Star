@@ -245,7 +245,6 @@
 		646E4D4B1454199300F066F6 /* SBJsonTokeniser.m in Sources */ = {isa = PBXBuildFile; fileRef = 646E4D331454199300F066F6 /* SBJsonTokeniser.m */; };
 		646E4D4C1454199300F066F6 /* SBJsonUTF8Stream.m in Sources */ = {isa = PBXBuildFile; fileRef = 646E4D351454199300F066F6 /* SBJsonUTF8Stream.m */; };
 		646E4D4D1454199300F066F6 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 646E4D371454199300F066F6 /* SBJsonWriter.m */; };
-		646E4EB414541D3D00F066F6 /* YouTubeUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = 646E4EB314541D3D00F066F6 /* YouTubeUploader.m */; };
 		646E54D114542E0700F066F6 /* libGDataTouchStaticLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 646E54C714542DEB00F066F6 /* libGDataTouchStaticLib.a */; };
 		64985A3B14528E5400485F4D /* sample.mov in Resources */ = {isa = PBXBuildFile; fileRef = 64985A3A14528E5400485F4D /* sample.mov */; };
 		64CF0B94145BA6A800A9BF08 /* facebook_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 64CF0B92145BA6A800A9BF08 /* facebook_32.png */; };
@@ -702,8 +701,6 @@
 		646E4D5C14541A1600F066F6 /* OCMock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMock.h; sourceTree = "<group>"; };
 		646E4D5D14541A1600F066F6 /* OCMockObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMockObject.h; sourceTree = "<group>"; };
 		646E4D5E14541A1600F066F6 /* OCMockRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMockRecorder.h; sourceTree = "<group>"; };
-		646E4EB214541D3D00F066F6 /* YouTubeUploader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouTubeUploader.h; sourceTree = "<group>"; };
-		646E4EB314541D3D00F066F6 /* YouTubeUploader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YouTubeUploader.m; sourceTree = "<group>"; };
 		646E54B814542DEA00F066F6 /* GData.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GData.xcodeproj; path = GData/GData.xcodeproj; sourceTree = "<group>"; };
 		646E54D414542F7300F066F6 /* GData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GData.h; sourceTree = "<group>"; };
 		646E54D514542F7300F066F6 /* GDataACL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDataACL.h; sourceTree = "<group>"; };
@@ -1765,16 +1762,6 @@
 			path = Libraries/SBJson;
 			sourceTree = SOURCE_ROOT;
 		};
-		646E4D4E145419C000F066F6 /* VideoUploaders */ = {
-			isa = PBXGroup;
-			children = (
-				646E4EB214541D3D00F066F6 /* YouTubeUploader.h */,
-				646E4EB314541D3D00F066F6 /* YouTubeUploader.m */,
-			);
-			name = VideoUploaders;
-			path = Libraries/VideoUploaders;
-			sourceTree = SOURCE_ROOT;
-		};
 		646E4D5814541A1600F066F6 /* OCMock */ = {
 			isa = PBXGroup;
 			children = (
@@ -2208,7 +2195,6 @@
 				3A4EBBC41457E311005A662F /* PrivateAPI */,
 				646E54D314542F7300F066F6 /* GDataHeaders */,
 				646E4D5814541A1600F066F6 /* OCMock */,
-				646E4D4E145419C000F066F6 /* VideoUploaders */,
 				646E4D061454199300F066F6 /* Facebook */,
 				646E4D101454199300F066F6 /* FBJson */,
 				646E4D1E1454199300F066F6 /* SBJson */,
@@ -2747,7 +2733,6 @@
 				646E4D4B1454199300F066F6 /* SBJsonTokeniser.m in Sources */,
 				646E4D4C1454199300F066F6 /* SBJsonUTF8Stream.m in Sources */,
 				646E4D4D1454199300F066F6 /* SBJsonWriter.m in Sources */,
-				646E4EB414541D3D00F066F6 /* YouTubeUploader.m in Sources */,
 				3A4EB699145592CE005A662F /* ImageToVideoConverter.m in Sources */,
 				3A4EBC171457E311005A662F /* CommandManagerTouchExt.m in Sources */,
 				3A4EBC181457E311005A662F /* UIEventExt.m in Sources */,

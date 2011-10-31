@@ -13,7 +13,6 @@
 #import "SceneUtility.h"
 #import "Cover.h"
 #import "AudioEditorViewController.h"
-#import "YouTubeUploader.h"
 #import "ImageToVideoConverter.h"
 #import "MiniMusicalStarUtilities.h"
 #import "ExportedAsset.h"
@@ -33,7 +32,6 @@
 @synthesize facebookUploadImage;
 @synthesize youtubeUploadImage;
 @synthesize facebookUploaderViewController;
-@synthesize youTubeUploader;
 @synthesize context;
 @synthesize delegate;
 
@@ -50,7 +48,6 @@
     [context release];
     [facebookUploadImage release];
     [youtubeUploadImage release];
-    [youTubeUploader release];
     [facebookUploaderViewController release];
     
     [super dealloc];
@@ -611,51 +608,7 @@
         CoverScene *selectedCoverScene = [theCover coverSceneForSceneHash:selectedScene.hash];
         [self exportScene :selectedScene:selectedCoverScene:indexPath];
     }
-    
-   
-}
-
-#pragma mark - IBAction events
-
-- (void)facebookUploadButtonIsPressed:(UIButton*)sender
-{
-    ExportedAsset *selectedAsset = (ExportedAsset*)[exportedAssetsArray objectAtIndex:[self getTableViewRow:sender]];
-    
-    NSURL *url = [NSURL URLWithString:selectedAsset.exportPath];
-    
-    facebookUploaderViewController = [[FacebookUploaderViewController alloc] initWithProperties:url title:@"Uploaded with Mini Musical Star" description:@""];
-    
-    self.facebookUploaderViewController.delegate = self;
-    [self.view addSubview:facebookUploaderViewController.view];
-    
-    [facebookUploaderViewController startUpload];
-}
-
-- (void)youtubeUploadButtonIsPressed:(UIButton*)sender
-{
-    ExportedAsset *selectedAsset = (ExportedAsset*)[exportedAssetsArray objectAtIndex:[self getTableViewRow:sender]];
-    
-    
-    youTubeUploader = [[YouTubeUploader alloc] init];
-    NSURL *url = [NSURL URLWithString:selectedAsset.exportPath];
-    [youTubeUploader uploadWithProperties:url title:@"Uploaded with Mini Musical Star" desription:@""];
-}
-
-#pragma instance methods
-
-- (int)getTableViewRow:(UIButton*)sender
-{
-    UITableViewCell *cell = (UITableViewCell*)sender.superview.superview;
-    UITableView *table = (UITableView*)cell.superview;
-    NSIndexPath *indexPath = [table indexPathForCell:cell];
-    return [indexPath row];
-}
-
-#pragma - FacebookUploaderViewControllerDelegate methods
-
-- (void)uploadSuccess 
-{
-    [facebookUploaderViewController release];
+       
 }
 
 @end

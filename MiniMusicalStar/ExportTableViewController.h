@@ -49,7 +49,6 @@
 @property (retain, nonatomic) UIImage *youtubeUploadImage;
 @property (retain, nonatomic) NSManagedObjectContext *context;
 @property (retain, nonatomic) FacebookUploaderViewController *facebookUploaderViewController;
-@property (retain, nonatomic) YouTubeUploader *youTubeUploader;
 
 - (id)initWithStyle:(UITableViewStyle)style:(Show*)show:(Cover*)cover context:(NSManagedObjectContext *)aContext;
 - (void) generateMusical;
