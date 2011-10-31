@@ -124,7 +124,7 @@
 
     NSString *exportFilename = [@"/musical_" stringByAppendingString:[[MiniMusicalStarUtilities getUniqueFilenameWithoutExt] stringByAppendingString:@".mov"]];
     NSURL *outputFileURL = [NSURL fileURLWithPath:[[ShowDAO userDocumentDirectory] stringByAppendingString:exportFilename]];
-    [self processExportSession :composition:nil:creditsFileURL:outputFileURL:prog:@"musical appending"];
+    [self processExportSession: nil:composition:nil:creditsFileURL:outputFileURL:prog:@"musical appending"];
 
 }
 
@@ -202,7 +202,7 @@
     return nil;
 }
 
-- (void) processExportSession: (AVMutableComposition*) composition:(NSURL*)videoFileURL:(NSURL*)creditsFileURL: (NSURL*) outputFileURL: (UIProgressView*) prog: (NSString*) state
+- (void) processExportSession: (Scene*) scene :(AVMutableComposition*) composition:(NSURL*)videoFileURL:(NSURL*)creditsFileURL: (NSURL*) outputFileURL: (UIProgressView*) prog: (NSString*) state
 {
     NSArray *compatiblePresets = [AVAssetExportSession exportPresetsCompatibleWithAsset:composition];
     if ([compatiblePresets containsObject:AVAssetExportPreset640x480]) {
@@ -217,7 +217,7 @@
             switch ([exportSession status]) {
                 case AVAssetExportSessionStatusCompleted:
                     NSLog(@"Export Completed");
-                    [self exportCompleted: videoFileURL:creditsFileURL:outputFileURL:prog:progressBarLoader:state];
+                    [self exportCompleted: scene: videoFileURL:creditsFileURL:outputFileURL:prog:progressBarLoader:state];
                     break;
                 case AVAssetExportSessionStatusFailed:
                     NSLog(@"Export failed: %@", [[exportSession error] localizedDescription]);
@@ -232,7 +232,7 @@
     }
 }
 
--(void) sessionExport: (AVMutableComposition*) composition: (NSURL*)videoFileURL: (NSURL*)creditsFileURL: (NSURL*)outputFileURL: (NSIndexPath*) indexPath: (NSString*) state
+-(void) sessionExport: (Scene*)scene: (AVMutableComposition*) composition: (NSURL*)videoFileURL: (NSURL*)creditsFileURL: (NSURL*)outputFileURL: (NSIndexPath*) indexPath: (NSString*) state
 {
     
     //draw the progress bar
@@ -247,19 +247,19 @@
     prog.frame= progressBarFrame;
     [cell.contentView addSubview:prog];
     
-    [self processExportSession :composition:videoFileURL:creditsFileURL:outputFileURL:prog:state];
+    [self processExportSession :scene :composition:videoFileURL:creditsFileURL:outputFileURL:prog:state];
     
 }
-- (void) exportCompleted: (NSURL*) videoFileURL: (NSURL*) creditsFileURL: (NSURL*) outputFileURL: (UIProgressView*) prog: (NSTimer*) progressBarLoader: (NSString*) state
+- (void) exportCompleted: (Scene*) scene :(NSURL*) videoFileURL: (NSURL*) creditsFileURL: (NSURL*) outputFileURL: (UIProgressView*) prog: (NSTimer*) progressBarLoader: (NSString*) state
 {
     if ([state isEqualToString: @"scene only"]){
         //save the URL into a new model
         ExportedAsset *newAsset = [NSEntityDescription insertNewObjectForEntityForName:@"ExportedAsset" inManagedObjectContext:self.context];
         newAsset.isFullShow = NO;
         newAsset.exportPath = [outputFileURL absoluteString];
-        newAsset.title = @"Your Exported Scene";
-        newAsset.originalHash = @"The hash of the original scene that you exported from";
-        newAsset.exportHash = @"Use some kind of unique hash down here";
+        newAsset.title = scene.title;
+        newAsset.originalHash = scene.hash;
+        newAsset.exportHash = [outputFileURL lastPathComponent];
         
         [self.context save:nil];
         
@@ -276,9 +276,9 @@
         ExportedAsset *newAsset = [NSEntityDescription insertNewObjectForEntityForName:@"ExportedAsset" inManagedObjectContext:self.context];
         newAsset.isFullShow = YES;
         newAsset.exportPath = [outputFileURL absoluteString];
-        newAsset.title = @"Your Exported Musical";
-        newAsset.originalHash = @"The hash of the original scene that you exported from";
-        newAsset.exportHash = @"Use some kind of unique hash down here";
+        newAsset.title = theShow.title;
+        newAsset.originalHash = theShow.showHash;
+        newAsset.exportHash = [outputFileURL lastPathComponent];
         
         [self.context save:nil];
         
@@ -403,7 +403,7 @@
     
 
     //session export
-    [self sessionExport :composition:videoFileURL:creditsFileURL:outputFileURL:indexPath:state];
+    [self sessionExport: theScene:composition:videoFileURL:creditsFileURL:outputFileURL:indexPath:state];
 
 }
 
@@ -577,20 +577,7 @@
     theSceneUtility = [[SceneUtility alloc] initWithSceneAndCoverScene: scene:coverScene];
     
     [self generateSceneVideo :scene:[theSceneUtility getMergedImagesArray]:[theSceneUtility getExportAudioURLs]:indexPath:@"scene only"];
-    //prepare ExportedAsset for scene only
-    ExportedAsset *newAsset = [NSEntityDescription insertNewObjectForEntityForName:@"ExportedAsset" inManagedObjectContext:self.context];
-    newAsset.isFullShow = NO;
-    
-    NSString *exportFilename = [@"/scene_" stringByAppendingString:[[MiniMusicalStarUtilities getUniqueFilenameWithoutExt] stringByAppendingString:@".mov"]];
-    
-    newAsset.title = scene.title;
-    newAsset.originalHash = scene.hash;
-    newAsset.exportHash = exportFilename;
-    
-    NSURL *outputFileURL = [NSURL fileURLWithPath:[[ShowDAO userDocumentDirectory] stringByAppendingString:exportFilename]];
-    newAsset.exportPath = [outputFileURL absoluteString];
-    
-    [self generateSceneVideo : scene:[theSceneUtility getMergedImagesArray]:[theSceneUtility getExportAudioURLs]:indexPath:@"scene only"];
+
 }
 - (void)exportMusical:(Show*)show
 {

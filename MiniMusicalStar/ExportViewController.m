@@ -26,7 +26,7 @@
         self.exportTableViewController = [[ExportTableViewController alloc] initWithStyle:UITableViewStyleGrouped :theShow :theCover context:context];
         [self.exportTableViewController setDelegate:self];
         
-        self.mediaTableViewController = [[MediaTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+        self.mediaTableViewController = [[MediaTableViewController alloc] initWithStyle:UITableViewStyleGrouped :context];
         [self.mediaTableViewController setDelegate:self];
         
         self.background = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"exportpage.png"]];
@@ -47,7 +47,11 @@
 
 - (void) addExportedAsset: (ExportedAsset*) asset
 {
+<<<<<<< HEAD
     
+=======
+    //do nothing first
+>>>>>>> trying to refactor export function to cater to saving
 }
 
 - (void) playMovie:(NSURL*)filePath

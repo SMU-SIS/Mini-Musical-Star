@@ -13,9 +13,13 @@
 
 @synthesize delegate;
 @synthesize exportedAssetArray;
+@synthesize context;
+@synthesize frc;
 
 - (void)dealloc
 {
+    [frc release];
+    [context release];
     [exportedAssetArray release];
     [delegate release];
     [super dealloc];

@@ -18,6 +18,8 @@
 }
 
 @property (nonatomic, assign) id <MediaTableViewDelegate> delegate;
+@property (nonatomic, retain) NSManagedObjectContext *context;
+@property (retain, nonatomic) NSFetchedResultsController *frc;
 
 @property (nonatomic, retain) NSMutableArray *exportedAssetArray;
 
