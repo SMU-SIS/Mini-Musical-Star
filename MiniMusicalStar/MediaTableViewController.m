@@ -10,6 +10,14 @@
 
 @implementation MediaTableViewController
 
+@synthesize delegate;
+
+- (void)dealloc
+{
+    [delegate release];
+    [super dealloc];
+}
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];

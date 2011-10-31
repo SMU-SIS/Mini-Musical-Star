@@ -22,8 +22,15 @@
 @class ImageToVideoConverter;
 @class MiniMusicalStarUtilities;
 
+@protocol ExportTableViewDelegate <NSObject>
+
+@end
+
 @interface ExportTableViewController : UITableViewController
     <FacebookUploaderViewControllerDelegate>
+{
+    id <ExportTableViewDelegate> delegate;
+}
 
 @property (retain, nonatomic) NSArray *musicalArray;
 @property (retain, nonatomic) NSArray *scenesArray;
@@ -31,6 +38,9 @@
 @property (retain, nonatomic) Show *theShow;
 @property (retain, nonatomic) Cover *theCover;
 @property (retain, nonatomic) SceneUtility *theSceneUtility;
+
+@property (nonatomic, assign) id <ExportTableViewDelegate> delegate;
+
 @property (nonatomic, retain) NSTimer *timer;
 @property (nonatomic, retain) UIBarButtonItem *uploadBarButtonItem;
 @property (retain, nonatomic) NSMutableArray *tempMusicalContainer;

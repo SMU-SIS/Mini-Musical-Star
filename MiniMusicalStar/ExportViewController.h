@@ -12,7 +12,7 @@
 #import "ExportTableViewController.h"
 #import "MediaTableViewController.h"
 
-@interface ExportViewController : UIViewController
+@interface ExportViewController : UIViewController <ExportTableViewDelegate,MediaTableViewDelegate>
 
 @property (retain, nonatomic) Show *theShow;
 @property (retain, nonatomic) Cover *theCover;

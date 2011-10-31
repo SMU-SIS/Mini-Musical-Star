@@ -8,6 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol MediaTableViewDelegate <NSObject>
+
+@end
+
 @interface MediaTableViewController : UITableViewController
+{
+    id <MediaTableViewDelegate> delegate;
+}
+
+@property (nonatomic, assign) id <MediaTableViewDelegate> delegate;
 
 @end
