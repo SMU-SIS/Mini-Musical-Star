@@ -193,26 +193,11 @@
     [[cell textLabel] setText:temp];
     [[cell textLabel] setBackgroundColor:[UIColor clearColor]];
     
-    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-    UIButton *selectSceneButton = [[UIButton alloc] initWithFrame:CGRectMake(200,5,96,32)];
-    [selectSceneButton setBackgroundColor:[UIColor blackColor]];
-    [selectSceneButton setTitle:@"edit" forState:UIControlStateNormal];
-    [selectSceneButton addTarget:self action:@selector(chooseSceneStrip:) forControlEvents:UIControlEventTouchUpInside];
-    [selectSceneButton setTag:indexPath.row];
-    [cell.contentView addSubview:selectSceneButton];
-    
-    UIButton *selectExportButton = [[UIButton alloc] initWithFrame:CGRectMake(300,5,96,32)];
+    UIButton *selectExportButton = [[UIButton alloc] initWithFrame:CGRectMake(220,8,96,32)];
     [selectExportButton setImage:[UIImage imageNamed:@"export.png"] forState:UIControlStateNormal];
     [selectExportButton addTarget:delegate action:@selector(showMediaManagement:) forControlEvents:UIControlEventTouchUpInside];
     [selectExportButton setTag:indexPath.row];
     [cell.contentView addSubview:selectExportButton];
-}
-
-- (void) chooseSceneStrip: (id) sender
-{
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[sender tag] inSection:0];
-    Cover *selectedCover = [frc objectAtIndexPath:indexPath];
-    [delegate performSelector:@selector(loadSceneSelectionScrollViewWithCover:) withObject:selectedCover];
 }
 
 //called when there is a change in the covers list
@@ -238,6 +223,8 @@
     }
 }
 
+
+
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
@@ -262,14 +249,15 @@
         {
             NSLog(@"Deletion error occured: %@", err);
         }
-        
-        //commented out because the frc's change notificatin will take care of this
-        //[tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-        
     }   
- 
 }
 
+/*
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+
+}
+*/
 
 /*
 // Override to support rearranging the table view.
@@ -295,9 +283,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    //get the Cover object
-//    Cover *selectedCover = [frc objectAtIndexPath:indexPath];
-//    [delegate performSelector:@selector(loadSceneSelectionScrollViewWithCover:) withObject:selectedCover];
+    Cover *selectedCover = [frc objectAtIndexPath:indexPath];
+    [delegate performSelector:@selector(loadSceneSelectionScrollViewWithCover:) withObject:selectedCover];
 }
 
 @end
