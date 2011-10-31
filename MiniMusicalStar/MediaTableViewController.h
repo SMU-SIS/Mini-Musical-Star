@@ -21,4 +21,6 @@
 
 @property (nonatomic, retain) NSMutableArray *exportedAssetArray;
 
+- (id)initWithStyle:(UITableViewStyle)style withExportedAssetArray:(NSMutableArray*)array;
+
 @end
