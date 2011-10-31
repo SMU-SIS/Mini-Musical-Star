@@ -26,7 +26,7 @@
         self.exportTableViewController = [[ExportTableViewController alloc] initWithStyle:UITableViewStyleGrouped :theShow :theCover context:context];
         [self.exportTableViewController setDelegate:self];
         
-        self.mediaTableViewController = [[MediaTableViewController alloc] initWithStyle:UITableViewStyleGrouped :context];
+        self.mediaTableViewController = [[MediaTableViewController alloc] initWithStyle:UITableViewStyleGrouped withContext:context];
         [self.mediaTableViewController setDelegate:self];
         
         self.background = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"exportpage.png"]];
@@ -53,6 +53,8 @@
 - (void) playMovie:(NSURL*)filePath
 {
     MPMoviePlayerController *moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:filePath];
+    
+    NSLog(@"the file URL is : %@",filePath);
     
     // Register to receive a notification when the movie has finished playing.
     [[NSNotificationCenter defaultCenter] addObserver:self

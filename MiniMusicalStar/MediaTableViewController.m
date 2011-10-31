@@ -25,14 +25,44 @@
     [super dealloc];
 }
 
-- (id)initWithStyle:(UITableViewStyle)style withExportedAssetArray:(NSMutableArray*)array
+- (id)initWithStyle:(UITableViewStyle)style withContext:(NSManagedObjectContext*)ctxt
 {
     self = [super initWithStyle:style];
     if (self) {
-        self.exportedAssetArray = array;
+        self.context = ctxt;
+        [self createFetchedResultsController];
     }
     return self;
 }
+
+- (void)createFetchedResultsController
+{
+    NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"ExportedAsset" inManagedObjectContext:self.context];
+    NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
+    [request setEntity:entityDescription];
+    
+    [request setFetchBatchSize:20];
+    
+//    //predicate...
+//    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(coverOfShowHash == %@)", theShow.showHash];
+//    NSLog(@"%@", predicate);
+//    [request setPredicate:predicate];
+    
+    //sort descriptor...
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"title" ascending:NO];
+    NSArray *descriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
+    [request setSortDescriptors:descriptors];
+    
+    
+    NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:self.context sectionNameKeyPath:nil cacheName:nil];
+    fetchedResultsController.delegate = self;
+    
+    self.frc = fetchedResultsController;
+    
+    [fetchedResultsController release], fetchedResultsController = nil;
+    
+}
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -47,6 +77,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    NSError *error;
+    if (![[self frc] performFetch:&error]) {
+		// Update to handle the error appropriately.
+		NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+	}
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -91,16 +127,22 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return [[frc sections] count];;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return exportedAssetArray.count;
+    id <NSFetchedResultsSectionInfo> sectionInfo = nil;
+    sectionInfo = [[frc sections] objectAtIndex:section];
+    NSLog(@"we have %i objects in MEDIA TABLE VIEW", [sectionInfo numberOfObjects]);
+    return [sectionInfo numberOfObjects];
+}
+
+- (int)numberOfExportedAssets
+{
+    return [[[frc sections] objectAtIndex:0] numberOfObjects];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -113,6 +155,13 @@
     }
     
     // Configure the cell...
+    
+    NSManagedObject *mo = nil;
+    NSString *temp = nil;
+    mo = [frc objectAtIndexPath:indexPath];
+    temp = [[mo valueForKey:@"title"] description]; 
+    [[cell textLabel] setText:temp];
+    [[cell textLabel] setBackgroundColor:[UIColor clearColor]];
     return cell;
 }
 
@@ -167,6 +216,10 @@
      [self.navigationController pushViewController:detailViewController animated:YES];
      [detailViewController release];
      */
+    
+    ExportedAsset *selectedExportedAsset = [frc objectAtIndexPath:indexPath];
+    NSURL *assetURL = [NSURL fileURLWithPath:selectedExportedAsset.exportPath];
+    [delegate performSelector:@selector(playMovie:) withObject:assetURL];
 }
 
 @end
