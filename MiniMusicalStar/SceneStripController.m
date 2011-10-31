@@ -122,7 +122,12 @@
         selectedCoverScene = [NSEntityDescription insertNewObjectForEntityForName:@"CoverScene" inManagedObjectContext:context];
         selectedCoverScene.SceneHash = selectedScene.hash;
         [self.theCover addScenesObject:selectedCoverScene];
-        [self.context save:nil];
+        
+        NSError *err;
+        [self.context save:&err];
+        
+        //if (err != nil) NSLog(@"%@",[err localizedDescription]);
+            
     }
     
     SceneEditViewController *editController = [[SceneEditViewController alloc] initWithScene:selectedScene andSceneCover:selectedCoverScene andContext:context];

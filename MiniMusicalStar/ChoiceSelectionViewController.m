@@ -9,6 +9,7 @@
 #import "ChoiceSelectionViewController.h"
 #import "DSActivityView.h"
 #import "SceneStripController.h"
+#import "MiniMusicalStarUtilities.h"
 
 @implementation ChoiceSelectionViewController
 @synthesize theShow;
@@ -109,7 +110,11 @@
         else
         {
             Cover *newCover = [NSEntityDescription insertNewObjectForEntityForName:@"Cover" inManagedObjectContext:managedObjectContext];
+            
+            //set the attributes of the new cover object
             newCover.title = prompt.enteredText;
+            //newCover.originalHash = [MiniMusicalStarUtilities getUniqueFilenameWithoutExt];
+            newCover.coverOfShowHash = theShow.showHash;
             [self loadSceneSelectionScrollViewWithCover:newCover];
         }
     }
@@ -222,11 +227,13 @@
     [DSBezelActivityView newActivityViewForView:self.view withLabel:@"Loading..."];
 }
 
-//- (void)pushSceneEditViewController: (SceneEditViewController *)theController
-//{
-//    [DSBezelActivityView removeViewAnimated:YES];
-//    [self.navigationController pushViewController:theController animated:YES];
-//}
+
+- (void)pushSceneEditViewController:(UIViewController *)aController
+{
+    [DSBezelActivityView removeViewAnimated:YES];
+    [self.navigationController pushViewController:aController animated:YES];
+}
+
 
 -(IBAction) showMediaManagement: (id)sender{
     
@@ -258,78 +265,5 @@
     return (interfaceOrientation == UIInterfaceOrientationLandscapeLeft || interfaceOrientation == UIInterfaceOrientationLandscapeRight);
 }
 
-- (void)loadCoversForShow:(Show *)aShow
-{
-    NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"Cover" inManagedObjectContext:managedObjectContext];
-    NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
-    [request setEntity:entityDescription];
-    
-    [request setFetchBatchSize:20];
-    
-    //predicate...
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"cover_of_showHash == %@", theShow.showHash];
 
-    [request setPredicate:predicate];
-    
-    //error here, the ID doesnt match with the shows
-    NSLog(@"The show ID is %@", aShow.showHash);
-    NSLog(@"The show title is %@", aShow.title);
-    
-    //sort descriptor...
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"title" ascending:NO];
-    NSArray *descriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
-    [request setSortDescriptors:descriptors];
-    
-    NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:managedObjectContext sectionNameKeyPath:nil cacheName:@"Root"];
-    fetchedResultsController.delegate = self;
-    
-    self.frc = fetchedResultsController;
-    
-    NSError *error;
-    [frc performFetch:&error];
-    
-    [fetchedResultsController release], fetchedResultsController = nil;
-}
-
-
-- (IBAction)loadCoversList:(UIButton *)sender
-{
-
-    
-    NSLog(@"the selected show is %@", theShow.title);
-    
-    if ([self.currentSelectedCoversList numberOfCovers] == 0) 
-    {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"OPPS!" message:@"Please create your first cover!" delegate:self cancelButtonTitle:@"OK!" otherButtonTitles:nil, nil];
-            [alert show];
-            [alert release];
-    }
-    
-//    else
-//    {
-//     
-//        //NSLog(@"number of objects is  %i", [[[self.frc sections] objectAtIndex:0] numberOfObjects]);
-//
-//        [UIView beginAnimations:nil context:NULL];
-//        [UIView setAnimationDuration:1.0];
-//        [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:self.view cache:YES];
-//        [UIView setAnimationDuration:1.0];
-//        
-//        [UIView commitAnimations];
-//        [self.view addSubview:self.currentSelectedCoversList.view];
-//    
-//    }
-}
-
--(void)selectedSavedCover:(Cover*)aCover
-{
-//    SceneViewController *sceneView = [[SceneViewController alloc] initWithScenesFromShow:theShow andCover:aCover andContext:managedObjectContext];
-//    
-//    sceneView.title = [aCover title];
-//    
-//    [self.navigationController pushViewController:sceneView animated:YES];
-//    
-//    [sceneView release];
-    [self loadSceneSelectionScrollViewWithCover:aCover];
-}
 @end

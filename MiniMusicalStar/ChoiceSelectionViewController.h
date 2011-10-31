@@ -15,6 +15,7 @@
 #import "ExportViewController.h"
 
 @class SceneStripController;
+@class SceneEditViewController;
 
 @interface ChoiceSelectionViewController : UIViewController <CoversListDelegate> {
     IBOutlet UIImageView *showCover;
