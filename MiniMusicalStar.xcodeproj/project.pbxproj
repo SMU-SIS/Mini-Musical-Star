@@ -216,6 +216,8 @@
 		641B32D91441E98100F4A93D /* trashbin.png in Resources */ = {isa = PBXBuildFile; fileRef = 641B32D71441E98100F4A93D /* trashbin.png */; };
 		641B32DA1441E98100F4A93D /* unmuted.png in Resources */ = {isa = PBXBuildFile; fileRef = 641B32D81441E98100F4A93D /* unmuted.png */; };
 		641B32DD1441E99500F4A93D /* muted.png in Resources */ = {isa = PBXBuildFile; fileRef = 641B32DC1441E99500F4A93D /* muted.png */; };
+		6427849E145EEF1C00B8C740 /* YouTubeUploaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6427849C145EEF1C00B8C740 /* YouTubeUploaderViewController.m */; };
+		6427849F145EEF1C00B8C740 /* YouTubeUploaderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6427849D145EEF1C00B8C740 /* YouTubeUploaderViewController.xib */; };
 		643AC0ED142FF2AE00F65B85 /* AudioEditViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 643AC0EC142FF2AD00F65B85 /* AudioEditViewControllerTest.m */; };
 		6457E04F145D9E1E00ABBF87 /* camera.png in Resources */ = {isa = PBXBuildFile; fileRef = 6457E04C145D9E1E00ABBF87 /* camera.png */; };
 		6457E050145D9E1E00ABBF87 /* lyrics_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 6457E04D145D9E1E00ABBF87 /* lyrics_button.png */; };
@@ -640,6 +642,9 @@
 		641B32D71441E98100F4A93D /* trashbin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trashbin.png; sourceTree = "<group>"; };
 		641B32D81441E98100F4A93D /* unmuted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unmuted.png; sourceTree = "<group>"; };
 		641B32DC1441E99500F4A93D /* muted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = muted.png; sourceTree = "<group>"; };
+		6427849B145EEF1C00B8C740 /* YouTubeUploaderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouTubeUploaderViewController.h; sourceTree = "<group>"; };
+		6427849C145EEF1C00B8C740 /* YouTubeUploaderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YouTubeUploaderViewController.m; sourceTree = "<group>"; };
+		6427849D145EEF1C00B8C740 /* YouTubeUploaderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YouTubeUploaderViewController.xib; sourceTree = "<group>"; };
 		643AC0EB142FF2AD00F65B85 /* AudioEditViewControllerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioEditViewControllerTest.h; sourceTree = "<group>"; };
 		643AC0EC142FF2AD00F65B85 /* AudioEditViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioEditViewControllerTest.m; sourceTree = "<group>"; };
 		6457E04C145D9E1E00ABBF87 /* camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera.png; sourceTree = "<group>"; };
@@ -2272,6 +2277,9 @@
 				95674E15145BFE6A00836B5F /* SceneStripController.m */,
 				64D6CCC6145D4A3F00D172D2 /* FacebookUploaderViewController.h */,
 				64D6CCC7145D4A3F00D172D2 /* FacebookUploaderViewController.m */,
+				6427849B145EEF1C00B8C740 /* YouTubeUploaderViewController.h */,
+				6427849C145EEF1C00B8C740 /* YouTubeUploaderViewController.m */,
+				6427849D145EEF1C00B8C740 /* YouTubeUploaderViewController.xib */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -2598,6 +2606,7 @@
 				3A21953C145E3B7A0052C0FE /* export.png in Resources */,
 				3A219541145E4E400052C0FE /* MediaTableViewController.xib in Resources */,
 				3A065AD1145EC101001BCEA5 /* cover_cell.png in Resources */,
+				6427849F145EEF1C00B8C740 /* YouTubeUploaderViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2799,6 +2808,7 @@
 				64D6CD28145D612C00D172D2 /* ExportViewController.m in Sources */,
 				3A219540145E4E400052C0FE /* MediaTableViewController.m in Sources */,
 				3A065B04145ED9D4001BCEA5 /* ExportedAsset.m in Sources */,
+				6427849E145EEF1C00B8C740 /* YouTubeUploaderViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
