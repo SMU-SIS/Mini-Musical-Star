@@ -181,6 +181,7 @@
     return NO;
 }
 
+//called when adding a new cover, or selecting a cover from the list for the first time
 - (void) addScrollStrip: (Cover*) aCover
 {
     //create an instance of SceneStripController
@@ -272,7 +273,7 @@
     
     //error here, the ID doesnt match with the shows
     NSLog(@"The show ID is %@", aShow.showHash);
-    NSLog(@"The show is KNS %@", aShow.title);
+    NSLog(@"The show title is %@", aShow.title);
     
     //sort descriptor...
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"title" ascending:NO];

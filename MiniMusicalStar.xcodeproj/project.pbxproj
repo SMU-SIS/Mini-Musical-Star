@@ -259,7 +259,6 @@
 		737716CB1445D61500BF2036 /* ChoiceSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 737716C91445D61500BF2036 /* ChoiceSelectionViewController.m */; };
 		737716CC1445D61500BF2036 /* ChoiceSelectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 737716CA1445D61500BF2036 /* ChoiceSelectionViewController.xib */; };
 		73843EAD144CDD2C00C55337 /* AlertPrompt.m in Sources */ = {isa = PBXBuildFile; fileRef = 73843EAC144CDD2C00C55337 /* AlertPrompt.m */; };
-		820511BF13F3BB9B0016F87E /* SceneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 820511BD13F3BB9B0016F87E /* SceneViewController.m */; };
 		820511C013F3BB9B0016F87E /* SceneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 820511BE13F3BB9B0016F87E /* SceneViewController.xib */; };
 		820E2A1C140A0A1E00B80BBC /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 820E2A1B140A0A1E00B80BBC /* AudioToolbox.framework */; };
 		82BA9DB6143B7E3D00D9D54A /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 82BA9DB5143B7E3D00D9D54A /* Icon-72.png */; };
@@ -1031,8 +1030,6 @@
 		737716CA1445D61500BF2036 /* ChoiceSelectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChoiceSelectionViewController.xib; sourceTree = "<group>"; };
 		73843EAB144CDD2C00C55337 /* AlertPrompt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AlertPrompt.h; path = Libraries/Prompt/AlertPrompt.h; sourceTree = SOURCE_ROOT; };
 		73843EAC144CDD2C00C55337 /* AlertPrompt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AlertPrompt.m; path = Libraries/Prompt/AlertPrompt.m; sourceTree = SOURCE_ROOT; };
-		820511BC13F3BB9B0016F87E /* SceneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneViewController.h; sourceTree = "<group>"; };
-		820511BD13F3BB9B0016F87E /* SceneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SceneViewController.m; sourceTree = "<group>"; };
 		820511BE13F3BB9B0016F87E /* SceneViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SceneViewController.xib; sourceTree = "<group>"; };
 		820E2A1B140A0A1E00B80BBC /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		82BA9DB5143B7E3D00D9D54A /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
@@ -2261,8 +2258,6 @@
 				9569E0581418A2A80016DAF3 /* AudioEditorViewController.m */,
 				9569E0591418A2A80016DAF3 /* PhotoEditorViewController.h */,
 				9569E05A1418A2A80016DAF3 /* PhotoEditorViewController.m */,
-				820511BC13F3BB9B0016F87E /* SceneViewController.h */,
-				820511BD13F3BB9B0016F87E /* SceneViewController.m */,
 				9569E0631418A2D30016DAF3 /* SceneEditViewController.h */,
 				9569E0641418A2D30016DAF3 /* SceneEditViewController.m */,
 				EDA2A1D313F26F8400B64EA5 /* MiniMusicalStarAppDelegate.h */,
@@ -2675,7 +2670,6 @@
 				EDA2A1D213F26F8400B64EA5 /* main.m in Sources */,
 				EDA2A1D513F26F8400B64EA5 /* MiniMusicalStarAppDelegate.m in Sources */,
 				EDA2A1DB13F26F8400B64EA5 /* MenuViewController.m in Sources */,
-				820511BF13F3BB9B0016F87E /* SceneViewController.m in Sources */,
 				9572E0D7140E118400713F45 /* AudioCue.m in Sources */,
 				9572E0D8140E118400713F45 /* Audio.m in Sources */,
 				9572E0D9140E118400713F45 /* Picture.m in Sources */,
