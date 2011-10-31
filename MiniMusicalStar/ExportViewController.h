@@ -24,7 +24,4 @@
 
 @property (nonatomic, retain) UIColor *background;
 
-@property (nonatomic, retain) IBOutlet UIView *exportContainerView;
-@property (nonatomic, retain) IBOutlet UIView *uploadContainerView;
-
 @end

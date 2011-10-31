@@ -15,7 +15,6 @@
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
-        self.view.frame = CGRectMake(600,200,400,500);
     }
     return self;
 }

@@ -12,8 +12,6 @@
 
 @synthesize theShow, theCover, context;
 @synthesize background;
-@synthesize exportContainerView;
-@synthesize uploadContainerView;
 @synthesize exportTableViewController;
 @synthesize mediaTableViewController;
     
@@ -26,7 +24,19 @@
         self.context = aContext;
         
         self.exportTableViewController = [[ExportTableViewController alloc] initWithStyle:UITableViewStyleGrouped :theShow :theCover context:context];
-        self.mediaTableViewController = [[MediaTableViewController alloc] initWithStyle:UITableViewStylePlain];
+        self.mediaTableViewController = [[MediaTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+        
+        self.background = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"exportpage.png"]];
+        self.view.backgroundColor = background;
+        
+//        self.exportTableViewController.tableView.backgroundView.alpha = 0;
+        self.exportTableViewController.tableView.frame = CGRectMake(20,100,400,450);
+        
+        self.mediaTableViewController.tableView.frame = CGRectMake(600,200,400,500);
+//        self.mediaTableViewController.tableView.backgroundView.alpha = 0;
+        
+        [self.view addSubview:self.exportTableViewController.tableView];
+        [self.view addSubview:self.mediaTableViewController.tableView];
     }
     
     return self;
@@ -45,17 +55,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.background = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"exportpage.png"]];
-    self.view.backgroundColor = background;
-
-    self.exportTableViewController.tableView.backgroundView.alpha = 0.0;
-    CGRect frame = self.exportTableViewController.tableView.frame;
-    frame.size.width = 450;
-    frame.size.height = 450;
-    exportTableViewController.tableView.frame = frame;
-    [self.exportContainerView addSubview:exportTableViewController.tableView];
-    [self.exportContainerView release]; //exportContainerView is incharge of releasing it
-    [self.view addSubview:self.mediaTableViewController.view];
 
 }
 
@@ -76,8 +75,6 @@
     [mediaTableViewController release];
     [exportTableViewController release];
     [background release];
-    [exportContainerView release];
-    [uploadContainerView release];
 }
 
 @end
