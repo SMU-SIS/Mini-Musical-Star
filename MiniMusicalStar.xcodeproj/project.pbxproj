@@ -220,7 +220,6 @@
 		6457E050145D9E1E00ABBF87 /* lyrics_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 6457E04D145D9E1E00ABBF87 /* lyrics_button.png */; };
 		6457E051145D9E1E00ABBF87 /* pause.png in Resources */ = {isa = PBXBuildFile; fileRef = 6457E04E145D9E1E00ABBF87 /* pause.png */; };
 		6457E057145DA26400ABBF87 /* newcover.png in Resources */ = {isa = PBXBuildFile; fileRef = 6457E056145DA26400ABBF87 /* newcover.png */; };
-		6457E05B145DA2FF00ABBF87 /* ShareTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6457E059145DA2FF00ABBF87 /* ShareTableViewController.m */; };
 		6457E05C145DA2FF00ABBF87 /* ShareTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6457E05A145DA2FF00ABBF87 /* ShareTableViewController.xib */; };
 		6457E05E145DA60200ABBF87 /* tempexportpage.png in Resources */ = {isa = PBXBuildFile; fileRef = 6457E05D145DA60200ABBF87 /* tempexportpage.png */; };
 		646E4D381454199300F066F6 /* Facebook.m in Sources */ = {isa = PBXBuildFile; fileRef = 646E4D081454199300F066F6 /* Facebook.m */; };
@@ -645,8 +644,6 @@
 		6457E04D145D9E1E00ABBF87 /* lyrics_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lyrics_button.png; sourceTree = "<group>"; };
 		6457E04E145D9E1E00ABBF87 /* pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pause.png; sourceTree = "<group>"; };
 		6457E056145DA26400ABBF87 /* newcover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = newcover.png; sourceTree = "<group>"; };
-		6457E058145DA2FF00ABBF87 /* ShareTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareTableViewController.h; sourceTree = "<group>"; };
-		6457E059145DA2FF00ABBF87 /* ShareTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareTableViewController.m; sourceTree = "<group>"; };
 		6457E05A145DA2FF00ABBF87 /* ShareTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShareTableViewController.xib; sourceTree = "<group>"; };
 		6457E05D145DA60200ABBF87 /* tempexportpage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tempexportpage.png; path = Resources/tempexportpage.png; sourceTree = "<group>"; };
 		646E4D071454199300F066F6 /* Facebook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Facebook.h; sourceTree = "<group>"; };
@@ -2275,8 +2272,6 @@
 				95674E15145BFE6A00836B5F /* SceneStripController.m */,
 				64D6CCC6145D4A3F00D172D2 /* FacebookUploaderViewController.h */,
 				64D6CCC7145D4A3F00D172D2 /* FacebookUploaderViewController.m */,
-				6457E058145DA2FF00ABBF87 /* ShareTableViewController.h */,
-				6457E059145DA2FF00ABBF87 /* ShareTableViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -2803,7 +2798,6 @@
 				95674E16145BFE6A00836B5F /* SceneStripController.m in Sources */,
 				64D6CCC9145D4A3F00D172D2 /* FacebookUploaderViewController.m in Sources */,
 				64D6CD28145D612C00D172D2 /* ExportViewController.m in Sources */,
-				6457E05B145DA2FF00ABBF87 /* ShareTableViewController.m in Sources */,
 				3A219540145E4E400052C0FE /* MediaTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
