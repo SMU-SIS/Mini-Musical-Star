@@ -345,6 +345,8 @@
         
         currentRecordingIndex = row;
         
+        [self.playPauseButton setImage:pauseButtonImage forState:UIControlStateNormal];
+        
         //if the audiotrack can be replaced, start recording
         [self startCoverAudioRecording:row];
     }
