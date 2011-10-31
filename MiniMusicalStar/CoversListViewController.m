@@ -197,6 +197,7 @@
     UIButton *selectSceneButton = [[UIButton alloc] initWithFrame:CGRectMake(200,5,96,32)];
     [selectSceneButton setBackgroundColor:[UIColor blackColor]];
     [selectSceneButton setTitle:@"edit" forState:UIControlStateNormal];
+    [selectSceneButton addTarget:self action:@selector(chooseSceneStrip:) forControlEvents:UIControlEventTouchUpInside];
     [cell.contentView addSubview:selectSceneButton];
     
     UIButton *selectExportButton = [[UIButton alloc] initWithFrame:CGRectMake(300,5,96,32)];
@@ -204,6 +205,13 @@
     [selectExportButton addTarget:delegate action:@selector(showMediaManagement:) forControlEvents:UIControlEventTouchUpInside];
     [selectExportButton setTag:indexPath.row];
     [cell.contentView addSubview:selectExportButton];
+}
+
+- (void) chooseSceneStrip: (id) sender
+{
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[sender tag] inSection:0];
+    Cover *selectedCover = [frc objectAtIndexPath:indexPath];
+    [delegate performSelector:@selector(loadSceneSelectionScrollViewWithCover:) withObject:selectedCover];
 }
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController*)controller
@@ -267,9 +275,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //get the Cover object
-    Cover *selectedCover = [frc objectAtIndexPath:indexPath];
-    [delegate performSelector:@selector(loadSceneSelectionScrollViewWithCover:) withObject:selectedCover];
+//    //get the Cover object
+//    Cover *selectedCover = [frc objectAtIndexPath:indexPath];
+//    [delegate performSelector:@selector(loadSceneSelectionScrollViewWithCover:) withObject:selectedCover];
 }
 
 @end
