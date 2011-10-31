@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @protocol MediaTableViewDelegate <NSObject>
-
+- (void) playMovie:(NSURL*)filePath;
 @end
 
 @interface MediaTableViewController : UITableViewController

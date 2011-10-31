@@ -2292,9 +2292,9 @@
 				9569E0611418A2C90016DAF3 /* SceneEditViewController.xib */,
 				95C526AD1438DA740008AE13 /* CoversListViewController.xib */,
 				3A5F7C6B1440D74D00E9C570 /* VideoPlayerViewController.xib */,
-				3AF97A33144BE6FE00133C47 /* ExportTableViewController.xib */,
 				64D6CCC8145D4A3F00D172D2 /* FacebookUploaderViewController.xib */,
 				3A21953F145E4E3F0052C0FE /* MediaTableViewController.xib */,
+				3AF97A33144BE6FE00133C47 /* ExportTableViewController.xib */,
 				64D6CD27145D612C00D172D2 /* ExportViewController.xib */,
 				6457E05A145DA2FF00ABBF87 /* ShareTableViewController.xib */,
 			);

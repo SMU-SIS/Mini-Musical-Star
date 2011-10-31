@@ -19,9 +19,10 @@
 @property (retain, nonatomic) NSManagedObjectContext *context;
 @property (retain, nonatomic) ExportTableViewController *exportTableViewController;
 @property (retain, nonatomic) MediaTableViewController *mediaTableViewController;
+@property (nonatomic, retain) UIColor *background;
 
 - (ExportViewController*)initWithStuff:(Show*)show:(Cover*)cover context:(NSManagedObjectContext *)aContext;
-
-@property (nonatomic, retain) UIColor *background;
+- (void) playMovie:(NSURL*)filePath;
+- (void) moviePlayBackDidFinish:(NSNotification*)notification;
 
 @end

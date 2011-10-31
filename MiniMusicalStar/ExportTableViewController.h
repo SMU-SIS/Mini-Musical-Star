@@ -57,8 +57,7 @@
 -(void) sessionExport: (AVMutableComposition*) composition: (NSURL*)videoFileURL: (NSURL*)creditsFileURL: (NSURL*)outputFileURL: (NSIndexPath*) indexPath: (NSString*) state;
 - (void)exportScene:(Scene*) scene:(CoverScene*) coverScene: (NSIndexPath*) indexPath;
 - (void)exportMusical:(Show*)show;
-- (void) playMovie:(NSURL*)filePath;
-- (void) moviePlayBackDidFinish:(NSNotification*)notification;
+
 - (void) removeFileAtPath: (NSURL*) filePath;
 - (void) exportCompleted: (NSURL*) videoFileURL: (NSURL*) creditsFileURL: (NSURL*) outputFileURL: (UIProgressView*) prog: (NSTimer*) progressBarLoader: (NSString*) state;
 - (void) allScenesExportedNotificationSender;

@@ -186,10 +186,9 @@
     [super viewDidDisappear:animated];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     // Return YES for supported orientations
-	return YES;
+    return (interfaceOrientation == UIInterfaceOrientationLandscapeLeft || interfaceOrientation == UIInterfaceOrientationLandscapeRight);
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
@@ -504,7 +503,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 50;
+    return 100;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -615,45 +614,6 @@
     }
     
    
-}
-
-- (void) playMovie:(NSURL*)filePath
-{
-    MPMoviePlayerController *moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:filePath];
-
-    // Register to receive a notification when the movie has finished playing.
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(moviePlayBackDidFinish:)
-                                                 name:MPMoviePlayerPlaybackDidFinishNotification
-                                               object:moviePlayer];
-    
-    if ([moviePlayer respondsToSelector:@selector(setFullscreen:animated:)]) {
-        // Use the new 3.2 style API
-        
-        [moviePlayer setFullscreen:YES animated:YES];
-        [moviePlayer.view setFrame:self.view.bounds];
-        moviePlayer.controlStyle = MPMovieControlStyleFullscreen;
-        moviePlayer.shouldAutoplay = YES;
-//        [self.view setBackgroundColor:[UIColor blackColor]];
-        [self.view addSubview:moviePlayer.view];
-        self.navigationController.navigationBarHidden = YES;
-        [moviePlayer play];
-    }   
-}
-
-- (void) moviePlayBackDidFinish:(NSNotification*)notification {
-    MPMoviePlayerController *moviePlayer = [notification object];
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:MPMoviePlayerPlaybackDidFinishNotification
-                                                  object:moviePlayer];
-    
-    // If the moviePlayer.view was added to the view, it needs to be removed
-    if ([moviePlayer respondsToSelector:@selector(setFullscreen:animated:)]) {
-        [moviePlayer.view removeFromSuperview];
-    }
-    self.navigationController.navigationBarHidden = NO;
-    
-    [moviePlayer release];
 }
 
 #pragma mark - IBAction events
