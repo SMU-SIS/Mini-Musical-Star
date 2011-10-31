@@ -17,7 +17,7 @@
 @class SceneStripController;
 @class SceneEditViewController;
 
-@interface ChoiceSelectionViewController : UIViewController <CoversListDelegate> {
+@interface ChoiceSelectionViewController : UIViewController <CoversListDelegate, NSFetchedResultsControllerDelegate> {
     IBOutlet UIImageView *showCover;
     IBOutlet UIButton *create;
     IBOutlet UIButton *cover;

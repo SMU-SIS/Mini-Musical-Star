@@ -65,7 +65,7 @@
     
     
     self.currentSelectedCoversList = [[CoversListViewController alloc] initWithShow:self.theShow context:self.managedObjectContext];
-    [self.currentSelectedCoversList setDelegate:self];
+    //self.currentSelectedCoversList.delegate = self;
     self.currentSelectedCoversList.view.frame = CGRectMake(625,160,400,668);
 //    self.coversTableView = (UITableView* )self.currentSelectedCoversList.view;
     [self.view addSubview:self.currentSelectedCoversList.view];
@@ -113,7 +113,7 @@
             
             //set the attributes of the new cover object
             newCover.title = prompt.enteredText;
-            //newCover.originalHash = [MiniMusicalStarUtilities getUniqueFilenameWithoutExt];
+            newCover.originalHash = [MiniMusicalStarUtilities getUniqueFilenameWithoutExt];
             newCover.coverOfShowHash = theShow.showHash;
             [self loadSceneSelectionScrollViewWithCover:newCover];
         }

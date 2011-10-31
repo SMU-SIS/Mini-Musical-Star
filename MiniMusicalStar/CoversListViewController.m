@@ -215,9 +215,27 @@
     [delegate performSelector:@selector(loadSceneSelectionScrollViewWithCover:) withObject:selectedCover];
 }
 
-- (void)controllerWillChangeContent:(NSFetchedResultsController*)controller
+//called when there is a change in the covers list
+-(void)controller:(NSFetchedResultsController *)controller 
+  didChangeObject:(id)anObject 
+      atIndexPath:(NSIndexPath *)indexPath 
+    forChangeType:(NSFetchedResultsChangeType)type 
+     newIndexPath:(NSIndexPath *)newIndexPath;
 {
-    [[self tableView] reloadData];
+    switch (type) {
+        case NSFetchedResultsChangeInsert:
+            [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
+                                  withRowAnimation:UITableViewRowAnimationTop];
+            break;
+        case NSFetchedResultsChangeDelete:
+            [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+                                  withRowAnimation:UITableViewRowAnimationTop];
+            break;
+        case NSFetchedResultsChangeUpdate:
+            [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+                                  withRowAnimation:UITableViewRowAnimationFade];
+            break;
+    }
 }
 
 /*
@@ -245,7 +263,8 @@
             NSLog(@"Deletion error occured: %@", err);
         }
         
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        //commented out because the frc's change notificatin will take care of this
+        //[tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
         
     }   
  
