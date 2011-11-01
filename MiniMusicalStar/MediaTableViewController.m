@@ -169,12 +169,12 @@
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
         
-        facebookUploadButton = [[UIButton alloc] initWithFrame:CGRectMake(240, 5, 32, 32)];
+        facebookUploadButton = [[UIButton alloc] initWithFrame:CGRectMake(240, 5, 50, 50)];
         [cell.contentView addSubview:facebookUploadButton];
         facebookUploadButton.tag = 1;
         [facebookUploadButton release];
         
-        youtubeUploadButton = [[UIButton alloc] initWithFrame:CGRectMake(300, 5, 32, 32)];
+        youtubeUploadButton = [[UIButton alloc] initWithFrame:CGRectMake(300, 5, 50, 50)];
         [cell.contentView addSubview:youtubeUploadButton];
         youtubeUploadButton.tag = 2;
         [youtubeUploadButton release];
@@ -259,6 +259,11 @@
     //ExportedAsset *selectedExportedAsset = [frc objectAtIndexPath:indexPath];
     
     [delegate performSelector:@selector(playMovie:) withObject:assetURL];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 100;
 }
 
 #pragma instance methods
