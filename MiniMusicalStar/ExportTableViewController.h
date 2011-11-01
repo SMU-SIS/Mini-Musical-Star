@@ -45,10 +45,8 @@
 @property (nonatomic, retain) NSTimer *timer;
 @property (nonatomic, retain) UIBarButtonItem *uploadBarButtonItem;
 @property (retain, nonatomic) NSMutableArray *tempMusicalContainer;
-@property (retain, nonatomic) UIImage *facebookUploadImage;
-@property (retain, nonatomic) UIImage *youtubeUploadImage;
+
 @property (retain, nonatomic) NSManagedObjectContext *context;
-@property (retain, nonatomic) FacebookUploaderViewController *facebookUploaderViewController;
 
 - (id)initWithStyle:(UITableViewStyle)style:(Show*)show:(Cover*)cover context:(NSManagedObjectContext *)aContext;
 - (void) generateMusical;
@@ -62,6 +60,5 @@
 - (void) exportCompleted: (NSURL*) videoFileURL: (NSURL*) creditsFileURL: (NSURL*) outputFileURL: (UIProgressView*) prog: (NSTimer*) progressBarLoader: (NSString*) state;
 - (void) allScenesExportedNotificationSender;
 - (int)getTableViewRow:(UIButton*)sender;
-- (void)killFacebookUploaderViewController;
 
 @end

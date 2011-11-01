@@ -29,9 +29,6 @@
 @synthesize exportedAssetsArray;
 @synthesize uploadBarButtonItem;
 @synthesize tempMusicalContainer;
-@synthesize facebookUploadImage;
-@synthesize youtubeUploadImage;
-@synthesize facebookUploaderViewController;
 @synthesize context;
 @synthesize delegate;
 
@@ -46,9 +43,6 @@
     [theSceneUtility release];
     [theShow release];
     [context release];
-    [facebookUploadImage release];
-    [youtubeUploadImage release];
-    [facebookUploaderViewController release];
     
     [super dealloc];
 }
@@ -152,9 +146,6 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
-    facebookUploadImage = [UIImage imageNamed:@"facebook_32.png"];
-    youtubeUploadImage = [UIImage imageNamed:@"youtube_32.png"];
 }
 
 - (void)viewDidUnload
@@ -430,29 +421,12 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-    UIButton *facebookUploadButton;
-    UIButton *youtubeUploadButton;
-    
+      
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
         
         cell.textLabel.backgroundColor = [UIColor clearColor];
-        
-        facebookUploadButton = [[UIButton alloc] initWithFrame:CGRectMake(800, 25, 32, 32)];
-        [cell.contentView addSubview:facebookUploadButton];
-        facebookUploadButton.tag = 1;
-        [facebookUploadButton release];
-        
-        youtubeUploadButton = [[UIButton alloc] initWithFrame:CGRectMake(850, 25, 32, 32)];
-        [cell.contentView addSubview:youtubeUploadButton];
-        youtubeUploadButton.tag = 2;
-        [youtubeUploadButton release];
-        
-        [facebookUploadButton addTarget:self action:@selector(facebookUploadButtonIsPressed:) 
-                      forControlEvents:UIControlEventTouchDown];
-        [youtubeUploadButton addTarget:self action:@selector(youtubeUploadButtonIsPressed:) 
-                      forControlEvents:UIControlEventTouchDown];
     }
     
     // Configure the cell...
@@ -487,15 +461,9 @@
          //handle the saving error
          }
          */
-        
-        facebookUploadButton = (UIButton*)[cell.contentView viewWithTag:1];
-        youtubeUploadButton = (UIButton*)[cell.contentView  viewWithTag:2];
-        [facebookUploadButton setImage:facebookUploadImage forState:UIControlStateNormal];
-        [youtubeUploadButton setImage:youtubeUploadImage forState:UIControlStateNormal];
     }
     
     return cell;
-    
     
 }
 

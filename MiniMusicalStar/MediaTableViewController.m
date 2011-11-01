@@ -261,7 +261,7 @@
     [delegate performSelector:@selector(playMovie:) withObject:assetURL];
 }
 
-#pragma mark - IBAction events
+#pragma instance methods
 
 - (void)facebookUploadButtonIsPressed:(UIButton*)sender
 {
@@ -277,16 +277,11 @@
     [self.delegate uploadToYouTube:url];
 }
 
-#pragma instance methods
-
 - (NSIndexPath*)getIndexPath:(UIButton*)sender
 {
     UITableViewCell *cell = (UITableViewCell*)sender.superview.superview;
     UITableView *table = (UITableView*)cell.superview;
     return [table indexPathForCell:cell];
 }
-
-
-
 
 @end
