@@ -19,7 +19,6 @@
 @synthesize theScene;
 @synthesize theCoverScene;
 @synthesize arrayOfAllTracks;
-//@synthesize thePlayer;
 
 - (void)dealloc
 {
@@ -31,9 +30,8 @@
 - (SceneUtility*) initWithSceneAndCoverScene:(Scene*)scene :(CoverScene*)coverScene {
     theScene = scene;
     theCoverScene = coverScene;
-//    thePlayer = aPlayer;
     
-    [self consolidateOriginalAndCoverTracks];
+    //[self consolidateOriginalAndCoverTracks];
     
     return self;
 }
@@ -90,32 +88,21 @@
 {
     NSMutableArray *mutableArrayOfAudioURLs = [NSMutableArray arrayWithCapacity:1]; //don't know how big it will be, just start with 1 
     
-    [arrayOfAllTracks enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {        
-        if ([obj isKindOfClass:[Audio class]])
-        {
-            Audio *anAudio = (Audio*)obj;
-            NSURL *audioURL = [NSURL fileURLWithPath:anAudio.path];
-            
-            //add only if the audio is not muted
-//            if ([thePlayer busNumberIsMuted:idx] == NO)
-//            {
-                [mutableArrayOfAudioURLs addObject:audioURL];
-                
-//            }
-            
-        } else if ([obj isKindOfClass:[CoverSceneAudio class]])
-        {
-            CoverSceneAudio *anCoverSceneAudio = (CoverSceneAudio*)obj;
-            NSURL *audioURL = [NSURL fileURLWithPath:anCoverSceneAudio.path];
-            
-            //add only if the audio is not muted
-//            if ([thePlayer busNumberIsMuted:idx] == NO)
-//            {
-                [mutableArrayOfAudioURLs addObject:audioURL];
-                
-//            }
+    [theScene.audioTracks enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) { 
+        Audio *anAudio = (Audio*)obj;
+        NSURL *audioURL = nil;
+        
+        CoverSceneAudio *theCoverSceneAudio = [self hasCoverAudio:anAudio];
+        if (theCoverSceneAudio != nil) {
+            //if there is a cover scene audio
+            audioURL = [NSURL fileURLWithPath:theCoverSceneAudio.path];
+        } else {
+            //if there is no coverscene audio
+            audioURL = [NSURL fileURLWithPath:anAudio.path];
         }
         
+        [mutableArrayOfAudioURLs addObject:audioURL];
+
     }];
     
     NSArray *arrayOfAudioURLs = [[[NSArray alloc] initWithArray:mutableArrayOfAudioURLs] autorelease];
@@ -123,5 +110,20 @@
     return arrayOfAudioURLs;
 }
 
+- (CoverSceneAudio*)hasCoverAudio:(Audio*)anAudio
+{
+    __block CoverSceneAudio *aCoverSceneAudio = nil;
+    
+    [theCoverScene.Audio enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {   
+        aCoverSceneAudio = (CoverSceneAudio*)obj;
+        
+        if ([anAudio.hash isEqualToString:aCoverSceneAudio.OriginalHash]) {
+            *stop = YES;
+            NSLog(@"a cover scene exist for %@", anAudio.title);
+        }
+    }];
+     
+     return aCoverSceneAudio;
+}
 
 @end

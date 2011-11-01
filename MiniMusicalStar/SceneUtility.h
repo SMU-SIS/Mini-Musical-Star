@@ -17,18 +17,17 @@
 @interface SceneUtility : NSObject
 {
     NSMutableArray *arrayOfAllTracks;
-//    MixPlayerRecorder *thePlayer;
 }
 
 @property (retain,nonatomic) Scene *theScene;
 @property (retain,nonatomic) CoverScene *theCoverScene;
 
 @property (retain,nonatomic) NSMutableArray *arrayOfAllTracks;
-//@property (retain,nonatomic) MixPlayerRecorder *thePlayer;
 
 - (NSMutableArray*) getMergedImagesArray;
 - (NSArray*)getExportAudioURLs;
 - (SceneUtility*) initWithSceneAndCoverScene:(Scene*)scene :(CoverScene*)coverScene;
 - (void)consolidateOriginalAndCoverTracks;
+- (CoverSceneAudio*)hasCoverAudio:(Audio*)anAudio;
 
 @end
