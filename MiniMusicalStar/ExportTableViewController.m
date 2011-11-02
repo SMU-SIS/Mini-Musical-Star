@@ -381,22 +381,106 @@
         [ImageToVideoConverter createTextConvertedToVideo:creditsList:creditsFileURL :size];
         //append credits
         AVURLAsset *creditsAsset = [AVURLAsset URLAssetWithURL:creditsFileURL options:nil];
-        [composition insertTimeRange:CMTimeRangeMake(kCMTimeZero,creditsAsset.duration) 
-                             ofAsset:creditsAsset
-                              atTime:composition.duration
-                               error:&error];        
+//        [composition insertTimeRange:CMTimeRangeMake(kCMTimeZero,creditsAsset.duration) 
+//                             ofAsset:creditsAsset
+//                              atTime:composition.duration
+//                               error:&error];        
         //append made by minimusicalstar
         NSString *brandAssetPath =[[NSBundle mainBundle] pathForResource:@"lastclip" ofType:@"mov"];
         AVURLAsset *brandAsset = [AVURLAsset URLAssetWithURL:[NSURL fileURLWithPath:brandAssetPath] options:nil];
-        [composition insertTimeRange:CMTimeRangeMake(kCMTimeZero,brandAsset.duration) 
-                         ofAsset:brandAsset
-                         atTime:composition.duration
-                           error:&error];
+//        [composition insertTimeRange:CMTimeRangeMake(kCMTimeZero,brandAsset.duration) 
+//                         ofAsset:brandAsset
+//                         atTime:composition.duration
+//                           error:&error];
     }
     
+    CMTimeRange timeRange = CMTimeRangeMake(kCMTimeZero, [videoAsset duration]);
+    AVAssetTrack *clipVideoTrack = [[videoAsset tracksWithMediaType:AVMediaTypeVideo] objectAtIndex:0];
+    
+    CGSize videoSize = CGSizeApplyAffineTransform(clipVideoTrack.naturalSize, clipVideoTrack.preferredTransform);
+    videoSize.width = fabs(videoSize.width);
+    videoSize.height = fabs(videoSize.height);
+    
+    CMTime titleDuration = CMTimeMakeWithSeconds(5, 600);
+    CMTimeRange titleRange = CMTimeRangeMake(kCMTimeZero, titleDuration);
+    
+    AVMutableVideoComposition *videoComposition = [AVMutableVideoComposition videoComposition];
+    
+    AVMutableVideoCompositionInstruction *passThroughInstruction = [AVMutableVideoCompositionInstruction videoCompositionInstruction];
+    passThroughInstruction.timeRange = CMTimeRangeMake(kCMTimeZero, [composition duration]);
+    AVAssetTrack *videoTrack = [[composition tracksWithMediaType:AVMediaTypeVideo] objectAtIndex:0];
+    AVMutableVideoCompositionLayerInstruction *passThroughLayer = [AVMutableVideoCompositionLayerInstruction videoCompositionLayerInstructionWithAssetTrack:videoTrack];    
+    passThroughInstruction.layerInstructions = [NSArray arrayWithObject:passThroughLayer];
+    passThroughInstruction.enablePostProcessing = YES;
+    
+    videoComposition.instructions = [NSArray arrayWithObject:passThroughInstruction];       
+    videoComposition.frameDuration = CMTimeMake(1, 30); 
+    videoComposition.renderSize = videoSize;
+    videoComposition.renderScale = 1.0;
 
+    CALayer *animationLayer = [CALayer layer];
+    animationLayer.bounds = CGRectMake(0, 0, videoSize.width, videoSize.height);
+    
+
+//    
+    CABasicAnimation *fadeAnimation = [CABasicAnimation animationWithKeyPath:@"transform"];
+    
+    CGAffineTransform zoomIn = CGAffineTransformMakeScale(1.2, 0.8);
+    CGAffineTransform moveRight = CGAffineTransformMakeTranslation(50, 80);
+    CGAffineTransform combo1 = CGAffineTransformConcat(zoomIn, moveRight);
+    
+//    fadeAnimation.fromValue = [NSNumber numberWithFloat:1.0];
+    fadeAnimation.toValue = [NSValue valueWithCATransform3D:CATransform3DMakeAffineTransform(combo1)];
+    fadeAnimation.additive = NO;
+    fadeAnimation.removedOnCompletion = NO;
+    fadeAnimation.beginTime = AVCoreAnimationBeginTimeAtZero;
+    fadeAnimation.duration = 5;
+    fadeAnimation.fillMode = kCAFillModeBoth;
+    fadeAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
+    
+    CALayer *parentLayer = [CALayer layer];
+    CALayer *videoLayer = [CALayer layer];
+    
+    parentLayer.bounds = CGRectMake(0, 0, videoSize.width, videoSize.height);
+    parentLayer.anchorPoint =  CGPointMake(0, 0);
+    parentLayer.position = CGPointMake(0, 0);
+    
+    videoLayer.frame = CGRectMake(0, 0, videoSize.width, videoSize.height);
+    [parentLayer addSublayer:videoLayer];
+    videoLayer.anchorPoint =  CGPointMake(0.5, 0.5);
+    videoLayer.position = CGPointMake(CGRectGetMidX(parentLayer.bounds), CGRectGetMidY(parentLayer.bounds));
+    [parentLayer addSublayer:animationLayer];    
+    animationLayer.anchorPoint =  CGPointMake(0.5, 0.5);
+    animationLayer.position = CGPointMake(CGRectGetMidX(parentLayer.bounds), CGRectGetMidY(parentLayer.bounds));
+    
+    [videoLayer addAnimation:fadeAnimation forKey:nil];
+    
+    
+    videoComposition.animationTool = [AVVideoCompositionCoreAnimationTool videoCompositionCoreAnimationToolWithPostProcessingAsVideoLayer:videoLayer inLayer:parentLayer];
+    
+    
+    AVAssetExportSession *exportSession = [[[AVAssetExportSession alloc] initWithAsset:composition presetName:AVAssetExportPresetMediumQuality] autorelease];
+    exportSession.videoComposition = videoComposition; 
+    
+    exportSession.outputFileType = AVFileTypeQuickTimeMovie;
+    exportSession.outputURL = outputFileURL;
+    
+    
+    [exportSession exportAsynchronouslyWithCompletionHandler:^{
+        switch ([exportSession status]) {
+            case AVAssetExportSessionStatusFailed:
+                NSLog(@"Export failed: %@", [exportSession error]);
+                break;
+            case AVAssetExportSessionStatusCancelled:
+                NSLog(@"Export canceled");
+                break;
+            case AVAssetExportSessionStatusCompleted:
+                NSLog(@"Export done");
+                break;
+        }
+    }]; 
     //session export
-    [self sessionExport: theScene:composition:videoFileURL:creditsFileURL:outputFileURL:indexPath:state];
+//    [self sessionExport: theScene:composition:videoFileURL:creditsFileURL:outputFileURL:indexPath:state];
 
 }
 
