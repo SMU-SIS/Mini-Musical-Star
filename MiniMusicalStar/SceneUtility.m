@@ -91,39 +91,41 @@
     [theScene.audioTracks enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) { 
         Audio *anAudio = (Audio*)obj;
         NSURL *audioURL = nil;
+    
+        NSMutableArray *mutableArraysOfCoverSceneAudio = [self hasCoverAudio:anAudio];
         
-        CoverSceneAudio *theCoverSceneAudio = [self hasCoverAudio:anAudio];
-        if (theCoverSceneAudio != nil) {
+        if ([mutableArraysOfCoverSceneAudio count] > 0) {
             //if there is a cover scene audio
-            audioURL = [NSURL fileURLWithPath:theCoverSceneAudio.path];
+            [mutableArraysOfCoverSceneAudio enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) { 
+                CoverSceneAudio *anAudio = (CoverSceneAudio*)obj;
+                [mutableArrayOfAudioURLs addObject:[NSURL fileURLWithPath:anAudio.path]];
+            }];
+            
         } else {
             //if there is no coverscene audio
             audioURL = [NSURL fileURLWithPath:anAudio.path];
+            [mutableArrayOfAudioURLs addObject:audioURL];
         }
-        
-        [mutableArrayOfAudioURLs addObject:audioURL];
-
     }];
     
     NSArray *arrayOfAudioURLs = [[[NSArray alloc] initWithArray:mutableArrayOfAudioURLs] autorelease];
-    
     return arrayOfAudioURLs;
 }
 
-- (CoverSceneAudio*)hasCoverAudio:(Audio*)anAudio
+- (NSMutableArray*)hasCoverAudio:(Audio*)anAudio
 {
-    __block CoverSceneAudio *aCoverSceneAudio = nil;
+    __block NSMutableArray *mutableArraysOfCoverSceneAudio = [NSMutableArray arrayWithCapacity:0];
     
     [theCoverScene.Audio enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {   
-        aCoverSceneAudio = (CoverSceneAudio*)obj;
+        CoverSceneAudio *aCoverSceneAudio = (CoverSceneAudio*)obj;
         
         if ([anAudio.hash isEqualToString:aCoverSceneAudio.OriginalHash]) {
-            *stop = YES;
-            NSLog(@"a cover scene exist for %@", anAudio.title);
+            [mutableArraysOfCoverSceneAudio addObject:aCoverSceneAudio];
+            NSLog(@"a cover scene at %@ exist for audio %@", aCoverSceneAudio.path, anAudio.title);
         }
     }];
      
-     return aCoverSceneAudio;
+     return mutableArraysOfCoverSceneAudio;
 }
 
 @end

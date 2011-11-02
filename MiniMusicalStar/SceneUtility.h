@@ -28,6 +28,6 @@
 - (NSArray*)getExportAudioURLs;
 - (SceneUtility*) initWithSceneAndCoverScene:(Scene*)scene :(CoverScene*)coverScene;
 - (void)consolidateOriginalAndCoverTracks;
-- (CoverSceneAudio*)hasCoverAudio:(Audio*)anAudio;
+- (NSMutableArray*)hasCoverAudio:(Audio*)anAudio;
 
 @end
