@@ -66,7 +66,7 @@
     
     self.currentSelectedCoversList = [[CoversListViewController alloc] initWithShow:self.theShow context:self.managedObjectContext];
     self.currentSelectedCoversList.delegate = self;
-    self.currentSelectedCoversList.view.frame = CGRectMake(625,160,400,668);
+    self.currentSelectedCoversList.view.frame = CGRectMake(625,160,400,608);
 //    self.coversTableView = (UITableView* )self.currentSelectedCoversList.view;
     [self.currentSelectedCoversList.tableView setBackgroundColor:[UIColor clearColor]];
     self.currentSelectedCoversList.tableView.separatorColor = [UIColor clearColor];
