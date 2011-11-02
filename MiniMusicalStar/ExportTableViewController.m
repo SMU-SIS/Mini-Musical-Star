@@ -194,10 +194,12 @@
     NSArray *compatiblePresets = [AVAssetExportSession exportPresetsCompatibleWithAsset:composition];
     if ([compatiblePresets containsObject:AVAssetExportPreset640x480]) {
         AVAssetExportSession *exportSession = [[AVAssetExportSession alloc]
-                                               initWithAsset:composition presetName:AVAssetExportPresetPassthrough];
+                                               initWithAsset:composition presetName:AVAssetExportPresetHighestQuality];
         
         exportSession.outputURL = outputFileURL;
         exportSession.outputFileType = AVFileTypeQuickTimeMovie;
+        exportSession.timeRange = CMTimeRangeMake(kCMTimeZero,composition.duration);
+        
         NSArray *userInfo = [NSArray arrayWithObjects:prog,exportSession,nil];
         NSTimer *progressBarLoader = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(refreshProgressBar:) userInfo:userInfo repeats:YES];
         [exportSession exportAsynchronouslyWithCompletionHandler:^{
