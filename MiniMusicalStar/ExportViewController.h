@@ -7,12 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MediaPlayer/MediaPlayer.h>
+#import "AddCreditsViewController.h"
 #import "Show.h"
 #import "Cover.h"
 #import "ExportTableViewController.h"
 #import "MediaTableViewController.h"
 #import "ExportedAsset.h"
-#import <MediaPlayer/MediaPlayer.h>
 #import "YouTubeUploaderViewController.h"
 
 @interface ExportViewController : UIViewController 
@@ -23,6 +24,7 @@
 @property (retain, nonatomic) NSManagedObjectContext *context;
 @property (retain, nonatomic) ExportTableViewController *exportTableViewController;
 @property (retain, nonatomic) MediaTableViewController *mediaTableViewController;
+@property (retain, nonatomic) AddCreditsViewController *addCreditsViewController;
 
 @property (nonatomic, retain) IBOutlet UIButton *addCreditsButton;
 
@@ -33,6 +35,8 @@
 - (ExportViewController*)initWithStuff:(Show*)show:(Cover*)cover context:(NSManagedObjectContext *)aContext;
 
 - (void) addExportedAsset: (ExportedAsset*) asset;
+
+- (NSMutableArray*) getTextFieldArray;
 
 - (IBAction) togglePopoverForAddCredits;
 

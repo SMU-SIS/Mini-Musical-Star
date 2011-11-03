@@ -119,7 +119,12 @@
         }
         
     }];
-    
+//    
+//    CMTime presentTime=CMTimeMake(11,1);
+//    UIImage *blackImage = [UIImage imageNamed: @"blankblack.png"];
+//    buffer = [self pixelBufferFromCGImage:blackImage.CGImage size:size];
+//    [adaptor appendPixelBuffer:buffer withPresentationTime:presentTime];
+//    
     //Finish the session:
     [writerInput markAsFinished];
     [videoWriter endSessionAtSourceTime:CMTimeMake(1000, 1)];

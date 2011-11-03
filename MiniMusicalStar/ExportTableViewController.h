@@ -25,6 +25,7 @@
 
 @protocol ExportTableViewDelegate <NSObject>
 - (void) reloadMediaTable;
+- (NSMutableArray *) getTextFieldArray;
 @end
 
 @interface ExportTableViewController : UITableViewController

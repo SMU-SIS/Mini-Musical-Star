@@ -7,7 +7,6 @@
 //
 
 #import "ExportViewController.h"
-#import "AddCreditsViewController.h"
 
 @implementation ExportViewController
 
@@ -18,6 +17,7 @@
 @synthesize youtubeUploaderViewController;
 @synthesize addCreditsButton;
 @synthesize popoverController;
+@synthesize addCreditsViewController;
     
 - (void)dealloc
 {
@@ -28,12 +28,18 @@
     [popoverController release];
     [mediaTableViewController release];
     [exportTableViewController release];
+    [addCreditsViewController release];
     
     [youtubeUploaderViewController release];
     [facebookUploaderViewController release];
     
     [addCreditsButton release];
     [super dealloc];
+}
+
+- (NSMutableArray*) getTextFieldArray
+{
+    return [addCreditsViewController getTextFieldArray];
 }
 
 - (ExportViewController*)initWithStuff:(Show*)show:(Cover*)cover context:(NSManagedObjectContext *)aContext
@@ -44,9 +50,9 @@
         self.theCover = cover;
         self.context = aContext;
         
-        AddCreditsViewController *addCreditsViewController = [[AddCreditsViewController alloc] init];
-        self.popoverController = [[UIPopoverController alloc] initWithContentViewController:addCreditsViewController];
-        [self.popoverController setPopoverContentSize:CGSizeMake(400,400)];
+        self.addCreditsViewController = [[AddCreditsViewController alloc] init];
+        self.popoverController = [[UIPopoverController alloc] initWithContentViewController:self.addCreditsViewController];
+        [self.popoverController setPopoverContentSize:CGSizeMake(400,300)];
         
         self.exportTableViewController = [[ExportTableViewController alloc] initWithStyle:UITableViewStyleGrouped :theShow :theCover context:context];
         [self.exportTableViewController setDelegate:self];
@@ -85,7 +91,7 @@
 }
 - (IBAction) togglePopoverForAddCredits
 {
-    [self.popoverController presentPopoverFromRect:self.addCreditsButton.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+    [self.popoverController presentPopoverFromRect:self.addCreditsButton.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
 }
 
 - (void) reloadMediaTable

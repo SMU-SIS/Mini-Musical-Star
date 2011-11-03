@@ -70,7 +70,6 @@
     __block AVMutableComposition *composition = [AVMutableComposition composition];
     [tempMusicalContainer enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         AVURLAsset *videoAsset = [[AVURLAsset alloc]initWithURL:obj options:nil];
-//        NSLog(@"here : %@",[NSURL fileURLWithPath:[[ShowDAO userDocumentDirectory] stringByAppendingString:obj]]);
         CMTime startTime = kCMTimeZero;
         if(idx > 0){
             AVURLAsset *previousVideoAsset = [[AVURLAsset alloc]initWithURL:[tempMusicalContainer objectAtIndex:idx-1] options:nil];
@@ -205,7 +204,9 @@
         
         exportSession.outputURL = outputFileURL;
         exportSession.outputFileType = AVFileTypeQuickTimeMovie;
-        exportSession.timeRange = CMTimeRangeMake(kCMTimeZero,composition.duration);
+        exportSession.timeRange = CMTimeRangeMake(kCMTimeZero,CMTimeAdd(composition.duration,CMTimeMake(11,1)));
+        
+        CMTimeRangeShow(exportSession.timeRange);
         
         NSArray *userInfo = [NSArray arrayWithObjects:prog,exportSession,nil];
         NSTimer *progressBarLoader = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(refreshProgressBar:) userInfo:userInfo repeats:YES];
@@ -294,30 +295,6 @@
     [self.tableView reloadData];
     [DSBezelActivityView removeViewAnimated:YES];
     
-//    //temp only, trying CALayer
-//    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0,0,640,480)];
-//    
-//    [self.view addSubview:view];
-//    UIImage *image = [[UIImage alloc] initWithContentsOfFile:[NSHomeDirectory() stringByAppendingPathComponent:[@"Documents" stringByAppendingPathComponent:@"coverflow1.png"]]];
-//    //temp only, trying CALayer
-//    UIImageView *view = [[UIImageView alloc] initWithImage:image];
-//    
-//    self.view = view;
-//    
-//
-//    view.frame = CGRectMake(320,0,640,480); // some frame that zooms in on the image;
-//
-//    KensBurner *kensBurner = [[KensBurner alloc] initWithImageView:self.view];
-//    [kensBurner startAnimation];
-//    [UIView beginAnimations:nil context:nil];
-//    [UIView setAnimationDuration:3];
-//    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-    
-//    view.frame = CGRectMake(100.0,100.0,640,480);// original frame
-//    view.center = CGPointMake(0,0);// original centerpoint
-    
-//    [UIView commitAnimations];
-    
 }
 
 - (void) removeFileAtPath: (NSURL*) filePath
@@ -388,10 +365,10 @@
         [ImageToVideoConverter createTextConvertedToVideo:creditsList:creditsFileURL :size];
         //append credits
         AVURLAsset *creditsAsset = [AVURLAsset URLAssetWithURL:creditsFileURL options:nil];
-        [composition insertTimeRange:CMTimeRangeMake(kCMTimeZero,creditsAsset.duration) 
-                             ofAsset:creditsAsset
-                              atTime:composition.duration
-                               error:&error];        
+//        [composition insertTimeRange:CMTimeRangeMake(kCMTimeZero,creditsAsset.duration) 
+//                             ofAsset:creditsAsset
+//                              atTime:composition.duration
+//                               error:&error];        
         //append made by minimusicalstar
         NSString *brandAssetPath =[[NSBundle mainBundle] pathForResource:@"lastclip" ofType:@"mov"];
         AVURLAsset *brandAsset = [AVURLAsset URLAssetWithURL:[NSURL fileURLWithPath:brandAssetPath] options:nil];
@@ -414,7 +391,7 @@
     AVMutableVideoComposition *videoComposition = [AVMutableVideoComposition videoComposition];
     
     AVMutableVideoCompositionInstruction *passThroughInstruction = [AVMutableVideoCompositionInstruction videoCompositionInstruction];
-    passThroughInstruction.timeRange = CMTimeRangeMake(kCMTimeZero, [composition duration]);
+    passThroughInstruction.timeRange = CMTimeRangeMake(kCMTimeZero, CMTimeAdd([composition duration], CMTimeMake(11, 1)));
     AVAssetTrack *videoTrack = [[composition tracksWithMediaType:AVMediaTypeVideo] objectAtIndex:0];
     AVMutableVideoCompositionLayerInstruction *passThroughLayer = [AVMutableVideoCompositionLayerInstruction videoCompositionLayerInstructionWithAssetTrack:videoTrack];    
     passThroughInstruction.layerInstructions = [NSArray arrayWithObject:passThroughLayer];
@@ -425,6 +402,8 @@
     videoComposition.renderSize = videoSize;
     videoComposition.renderScale = 1.0;
 
+    [composition insertEmptyTimeRange:CMTimeRangeMake(composition.duration,CMTimeMake(11,1))];
+    
     CALayer *animationLayer = [CALayer layer];
     animationLayer.bounds = CGRectMake(0, 0, videoSize.width, videoSize.height);
     
@@ -441,7 +420,62 @@
     videoLayer.position = CGPointMake(CGRectGetMidX(parentLayer.bounds), CGRectGetMidY(parentLayer.bounds));
     [parentLayer addSublayer:animationLayer];    
     animationLayer.anchorPoint =  CGPointMake(0.5, 0.5);
-    animationLayer.position = CGPointMake(CGRectGetMidX(parentLayer.bounds), CGRectGetMidY(parentLayer.bounds));
+    animationLayer.position = CGPointMake(CGRectGetMidX(parentLayer.bounds),0);
+    
+    NSMutableArray *textFieldArray = [delegate getTextFieldArray];
+    
+    [textFieldArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        
+        UITextField *textField = (UITextField*) obj;
+        
+        NSLog(@"textfield %@",textField.text);
+        
+        CATextLayer *textLayer = [CATextLayer layer];
+        textLayer.string = textField.text;
+        textLayer.font = @"Lucida Grande";
+        textLayer.fontSize = 30;
+        
+        textLayer.alignmentMode = kCAAlignmentCenter;
+        textLayer.bounds = CGRectMake(0, 0, videoSize.width, videoSize.height);
+        
+        textLayer.position = CGPointMake(320, 250 -(idx * 50));
+        
+        [animationLayer addSublayer:textLayer];
+    }];
+
+    
+    [animationLayer setOpacity: 0.0];
+    
+    CABasicAnimation *appearAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
+    appearAnimation.fromValue = [NSNumber numberWithFloat:0.0];
+    appearAnimation.toValue = [NSNumber numberWithFloat:1.0];
+    appearAnimation.additive = NO;
+    appearAnimation.removedOnCompletion = NO;
+    appearAnimation.beginTime = CMTimeGetSeconds(composition.duration);
+    appearAnimation.duration = 1.0;
+    appearAnimation.fillMode = kCAFillModeForwards;
+    [animationLayer addAnimation:appearAnimation forKey:nil];
+    
+    CABasicAnimation *scrollAnimation = [CABasicAnimation animationWithKeyPath:@"transform.translation.y"];
+    scrollAnimation.fromValue = [NSNumber numberWithFloat:0.0];
+    scrollAnimation.toValue = [NSNumber numberWithFloat:500.0];
+    scrollAnimation.additive = NO;
+    scrollAnimation.removedOnCompletion = NO;
+    scrollAnimation.beginTime = CMTimeGetSeconds(composition.duration);
+    scrollAnimation.duration = 10.0;
+    scrollAnimation.fillMode = kCAFillModeForwards;
+    [animationLayer addAnimation:scrollAnimation forKey:nil];
+    
+    //add fade away for video layer for credits to show
+    CABasicAnimation *fadeAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
+    fadeAnimation.fromValue = [NSNumber numberWithFloat:1.0];
+    fadeAnimation.toValue = [NSNumber numberWithFloat:0.0];
+    fadeAnimation.additive = NO;
+    fadeAnimation.removedOnCompletion = NO;
+    fadeAnimation.beginTime = CMTimeGetSeconds(composition.duration);
+    fadeAnimation.duration = 0.1;
+    fadeAnimation.fillMode = kCAFillModeForwards;
+    [videoLayer addAnimation:fadeAnimation forKey:nil];
     
     //first i get the picturetimings array
     __block NSMutableArray *sortedTimingsArray = [theScene getOrderedPictureTimingArray];
@@ -469,6 +503,7 @@
         
         [videoLayer addAnimation:kensBurnAnimation forKey:nil];
     }
+    
     
     videoComposition.animationTool = [AVVideoCompositionCoreAnimationTool videoCompositionCoreAnimationToolWithPostProcessingAsVideoLayer:videoLayer inLayer:parentLayer];
     
