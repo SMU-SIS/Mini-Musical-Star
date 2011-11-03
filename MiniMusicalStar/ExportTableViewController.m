@@ -116,7 +116,7 @@
 
     NSString *exportFilename = [@"/musical_" stringByAppendingString:[[MiniMusicalStarUtilities getUniqueFilenameWithoutExt] stringByAppendingString:@".mov"]];
     NSURL *outputFileURL = [NSURL fileURLWithPath:[[ShowDAO userDocumentDirectory] stringByAppendingString:exportFilename]];
-    [self processExportSession: nil:composition:nil:creditsFileURL:outputFileURL:prog:@"musical appending"];
+    [self processExportSession: nil:composition :nil :nil:creditsFileURL:outputFileURL:prog:@"musical appending"];
 
 }
 
@@ -189,12 +189,18 @@
     return nil;
 }
 
-- (void) processExportSession: (Scene*) scene :(AVMutableComposition*) composition:(NSURL*)videoFileURL:(NSURL*)creditsFileURL: (NSURL*) outputFileURL: (UIProgressView*) prog: (NSString*) state
+- (void) processExportSession: (Scene*) scene :(AVMutableComposition*) composition :(AVMutableVideoComposition*)videoComposition :(NSURL*)videoFileURL:(NSURL*)creditsFileURL: (NSURL*) outputFileURL: (UIProgressView*) prog: (NSString*) state
 {
     NSArray *compatiblePresets = [AVAssetExportSession exportPresetsCompatibleWithAsset:composition];
+    
     if ([compatiblePresets containsObject:AVAssetExportPreset640x480]) {
         AVAssetExportSession *exportSession = [[AVAssetExportSession alloc]
                                                initWithAsset:composition presetName:AVAssetExportPresetHighestQuality];
+        
+        //wire the videoComposition
+        if(videoComposition){
+            exportSession.videoComposition = videoComposition;
+        }
         
         exportSession.outputURL = outputFileURL;
         exportSession.outputFileType = AVFileTypeQuickTimeMovie;
@@ -221,7 +227,7 @@
     }
 }
 
--(void) sessionExport: (Scene*)scene: (AVMutableComposition*) composition: (NSURL*)videoFileURL: (NSURL*)creditsFileURL: (NSURL*)outputFileURL: (NSIndexPath*) indexPath: (NSString*) state
+-(void) sessionExport: (Scene*)scene: (AVMutableComposition*) composition: (AVMutableVideoComposition*) videoComposition : (NSURL*)videoFileURL: (NSURL*)creditsFileURL: (NSURL*)outputFileURL: (NSIndexPath*) indexPath: (NSString*) state
 {
     
     //draw the progress bar
@@ -236,7 +242,7 @@
     prog.frame= progressBarFrame;
     [cell.contentView addSubview:prog];
     
-    [self processExportSession :scene :composition:videoFileURL:creditsFileURL:outputFileURL:prog:state];
+    [self processExportSession :scene :composition :videoComposition :videoFileURL:creditsFileURL:outputFileURL:prog:state];
     
 }
 - (void) exportCompleted: (Scene*) scene :(NSURL*) videoFileURL: (NSURL*) creditsFileURL: (NSURL*) outputFileURL: (UIProgressView*) prog: (NSTimer*) progressBarLoader: (NSString*) state
@@ -381,10 +387,10 @@
         [ImageToVideoConverter createTextConvertedToVideo:creditsList:creditsFileURL :size];
         //append credits
         AVURLAsset *creditsAsset = [AVURLAsset URLAssetWithURL:creditsFileURL options:nil];
-//        [composition insertTimeRange:CMTimeRangeMake(kCMTimeZero,creditsAsset.duration) 
-//                             ofAsset:creditsAsset
-//                              atTime:composition.duration
-//                               error:&error];        
+        [composition insertTimeRange:CMTimeRangeMake(kCMTimeZero,creditsAsset.duration) 
+                             ofAsset:creditsAsset
+                              atTime:composition.duration
+                               error:&error];        
         //append made by minimusicalstar
         NSString *brandAssetPath =[[NSBundle mainBundle] pathForResource:@"lastclip" ofType:@"mov"];
         AVURLAsset *brandAsset = [AVURLAsset URLAssetWithURL:[NSURL fileURLWithPath:brandAssetPath] options:nil];
@@ -458,29 +464,8 @@
     
     videoComposition.animationTool = [AVVideoCompositionCoreAnimationTool videoCompositionCoreAnimationToolWithPostProcessingAsVideoLayer:videoLayer inLayer:parentLayer];
     
-    
-    AVAssetExportSession *exportSession = [[[AVAssetExportSession alloc] initWithAsset:composition presetName:AVAssetExportPresetMediumQuality] autorelease];
-    exportSession.videoComposition = videoComposition; 
-    
-    exportSession.outputFileType = AVFileTypeQuickTimeMovie;
-    exportSession.outputURL = outputFileURL;
-    
-    
-    [exportSession exportAsynchronouslyWithCompletionHandler:^{
-        switch ([exportSession status]) {
-            case AVAssetExportSessionStatusFailed:
-                NSLog(@"Export failed: %@", [exportSession error]);
-                break;
-            case AVAssetExportSessionStatusCancelled:
-                NSLog(@"Export canceled");
-                break;
-            case AVAssetExportSessionStatusCompleted:
-                NSLog(@"Export done");
-                break;
-        }
-    }]; 
     //session export
-//    [self sessionExport: theScene:composition:videoFileURL:creditsFileURL:outputFileURL:indexPath:state];
+    [self sessionExport: theScene:composition:videoComposition:videoFileURL:creditsFileURL:outputFileURL:indexPath:state];
 
 }
 
