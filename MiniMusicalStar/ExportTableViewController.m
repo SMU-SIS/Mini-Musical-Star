@@ -17,6 +17,7 @@
 #import "MiniMusicalStarUtilities.h"
 #import "ExportedAsset.h"
 #import "DSActivityView.h"
+#import "KensBurnAnimation.h"
 
 @implementation ExportTableViewController
 
@@ -408,7 +409,7 @@
     videoSize.height = fabs(videoSize.height);
     
     CMTime titleDuration = CMTimeMakeWithSeconds(5, 600);
-    CMTimeRange titleRange = CMTimeRangeMake(kCMTimeZero, titleDuration);
+//    CMTimeRange titleRange = CMTimeRangeMake(kCMTimeZero, titleDuration);
     
     AVMutableVideoComposition *videoComposition = [AVMutableVideoComposition videoComposition];
     
@@ -427,23 +428,6 @@
     CALayer *animationLayer = [CALayer layer];
     animationLayer.bounds = CGRectMake(0, 0, videoSize.width, videoSize.height);
     
-
-//    
-//    CABasicAnimation *fadeAnimation = [CABasicAnimation animationWithKeyPath:@"transform"];
-//    
-//    CGAffineTransform zoomIn = CGAffineTransformMakeScale(1.2, 0.8);
-//    CGAffineTransform moveRight = CGAffineTransformMakeTranslation(50, 80);
-//    CGAffineTransform combo1 = CGAffineTransformConcat(zoomIn, moveRight);
-//    
-////    fadeAnimation.fromValue = [NSNumber numberWithFloat:1.0];
-//    fadeAnimation.toValue = [NSValue valueWithCATransform3D:CATransform3DMakeAffineTransform(combo1)];
-//    fadeAnimation.additive = NO;
-//    fadeAnimation.removedOnCompletion = NO;
-//    fadeAnimation.beginTime = AVCoreAnimationBeginTimeAtZero;
-//    fadeAnimation.duration = 5;
-//    fadeAnimation.fillMode = kCAFillModeBoth;
-//    fadeAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
-    
     CALayer *parentLayer = [CALayer layer];
     CALayer *videoLayer = [CALayer layer];
     
@@ -459,8 +443,52 @@
     animationLayer.anchorPoint =  CGPointMake(0.5, 0.5);
     animationLayer.position = CGPointMake(CGRectGetMidX(parentLayer.bounds), CGRectGetMidY(parentLayer.bounds));
     
-//    [videoLayer addAnimation:fadeAnimation forKey:nil];
+    //first i get the picturetimings array
+    __block NSMutableArray *sortedTimingsArray = [NSMutableArray arrayWithArray:[theScene.pictureTimingDict allKeys]];
+    [sortedTimingsArray sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        NSString *strObj1 = (NSString *)obj1;
+        NSString *strObj2 = (NSString *)obj2;
+        
+        if ([strObj1 intValue] > [strObj2 intValue])
+        {
+            return NSOrderedDescending;
+        }
+        
+        else
+        {
+            return NSOrderedAscending;
+        }
+    }];
     
+    for(int i =0 ; i<sortedTimingsArray.count ; i++)
+    {
+        float startTime = [[sortedTimingsArray objectAtIndex:i] floatValue];
+        
+        float duration = 0;
+        
+        if (i + 1 != sortedTimingsArray.count){
+            duration = [[sortedTimingsArray objectAtIndex:i+1] floatValue] - startTime;
+        }else{
+            Float64 videoLength = CMTimeGetSeconds(videoAsset.duration);
+            duration = videoLength - startTime;
+        }
+        
+        if(i==0){
+            startTime = startTime + 0.1;
+            duration = duration - 0.1;
+        }
+        
+        
+        KensBurnAnimation *kbAnim = [[KensBurnAnimation alloc] init];
+        CABasicAnimation *kensBurnAnimation = [kbAnim getKensBurnAnimationForImageAtTime:startTime andDuration:duration];
+        
+        [videoLayer addAnimation:kensBurnAnimation forKey:nil];
+    }
+    
+
+    
+//    kensBurnAnimation = [kbAnim getKensBurnAnimationForImageAtTime:10.0 andDuration:10.0];
+//    [videoLayer addAnimation:kensBurnAnimation forKey:nil];
     
     videoComposition.animationTool = [AVVideoCompositionCoreAnimationTool videoCompositionCoreAnimationToolWithPostProcessingAsVideoLayer:videoLayer inLayer:parentLayer];
     

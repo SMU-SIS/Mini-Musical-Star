@@ -40,40 +40,7 @@
     CGContextConcatCTM(context, CGAffineTransformMakeRotation(0));
     CGContextDrawImage(context, CGRectMake(0, 0, CGImageGetWidth(image), 
                                            CGImageGetHeight(image)), image);
-    
-//    CALayer *myLayer = [CALayer layer];
-//    myLayer.bounds = CGRectMake(0,0,640.0, 480.0);
-//    myLayer.position = CGPointMake(0,0);
-//    [myLayer drawInContext:context];
-//    [self.layer addSublayer:myLayer];
-    
-//    UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
-//    UIGraphicsEndImageContext();    
-//    
-//    NSString  *pngPath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/woo.png"];
-//    NSString  *jpgPath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/woo.jpg"];
-//    
-//    // Write a UIImage to JPEG with minimum compression (best quality)
-//    // The value 'image' must be a UIImage object
-//    // The value '1.0' represents image compression quality as value from 0.0 to 1.0
-//    [UIImageJPEGRepresentation(img, 1.0) writeToFile:jpgPath atomically:YES];
-//    
-//    // Write image to PNG
-//    [UIImagePNGRepresentation(img) writeToFile:pngPath atomically:YES];
-//    
-//    // Let's check to see if files were successfully written...
-//    
-//    // Create file manager
-//    NSError *error;
-//    NSFileManager *fileMgr = [NSFileManager defaultManager];
-//    
-//    // Point to Document directory
-//    NSString *documentsDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
-//    
-//    // Write out the contents of home directory to console
-//    NSLog(@"Documents directory: %@", [fileMgr contentsOfDirectoryAtPath:documentsDirectory error:&error]);
 
-    
     CGColorSpaceRelease(rgbColorSpace);
     CGContextRelease(context);
     
