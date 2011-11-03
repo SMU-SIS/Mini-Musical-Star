@@ -15,7 +15,7 @@
 - (void) uploadToYouTube:(NSURL*)filePath;
 @end
 
-@interface MediaTableViewController : UITableViewController
+@interface MediaTableViewController : UITableViewController <NSFetchedResultsControllerDelegate>
 {
     id <MediaTableViewDelegate> delegate;
 }
@@ -35,5 +35,6 @@
 - (NSIndexPath*)getIndexPath:(UIButton*)sender;
 
 - (void)populateTable;
+- (void)createFetchedResultsController;
 
 @end

@@ -49,7 +49,17 @@
 
 - (IBAction) editTable:(id)sender
 {
-    [self.mediaTableViewController.tableView setEditing:YES animated:YES];
+    if (self.mediaTableViewController.tableView.editing == YES)
+    {
+        [self.mediaTableViewController.tableView setEditing:NO animated:YES];
+        
+    }
+    
+    else
+    {
+        [self.mediaTableViewController.tableView setEditing:YES animated:YES];
+    }
+    
 }
 
 - (void) reloadMediaTable

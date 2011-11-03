@@ -20,4 +20,10 @@
 @dynamic dateCreated;
 @dynamic cover;
 
+- (BOOL) deleteExportFile
+{
+    NSFileManager *manager = [NSFileManager defaultManager];
+    return [manager removeItemAtPath:self.exportPath error:nil];
+}
+
 @end

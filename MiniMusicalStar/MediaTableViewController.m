@@ -169,23 +169,30 @@
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
         
-        facebookUploadButton = [[UIButton alloc] initWithFrame:CGRectMake(240, 5, 50, 50)];
-        [cell.contentView addSubview:facebookUploadButton];
+        //create the accessory view with the fb and youtube upload buttons
+        UIView *accessoryView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 110, 70)];
+        
+        facebookUploadButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 10, 50, 50)];
+        [facebookUploadButton setImage:self.facebookUploadImage forState:UIControlStateNormal];
         facebookUploadButton.tag = 1;
+        [accessoryView addSubview:facebookUploadButton];
+        //[cell.accessoryView addSubview:facebookUploadButton];
         [facebookUploadButton release];
         
-        youtubeUploadButton = [[UIButton alloc] initWithFrame:CGRectMake(300, 5, 50, 50)];
-        [cell.contentView addSubview:youtubeUploadButton];
+        youtubeUploadButton = [[UIButton alloc] initWithFrame:CGRectMake(60, 10, 50, 50)];
+        [youtubeUploadButton setImage:self.youtubeUploadImage forState:UIControlStateNormal];
+        [accessoryView addSubview:youtubeUploadButton];
         youtubeUploadButton.tag = 2;
         [youtubeUploadButton release];
-        
-        [facebookUploadButton setImage:self.facebookUploadImage forState:UIControlStateNormal];
-        [youtubeUploadButton setImage:self.youtubeUploadImage forState:UIControlStateNormal];
         
         [facebookUploadButton addTarget:self action:@selector(facebookUploadButtonIsPressed:) 
                        forControlEvents:UIControlEventTouchDown];
         [youtubeUploadButton addTarget:self action:@selector(youtubeUploadButtonIsPressed:) 
                       forControlEvents:UIControlEventTouchDown];
+        
+        [cell setAccessoryView:accessoryView];
+        
+        [accessoryView release];
     }
     
     // Configure the cell...
@@ -200,28 +207,71 @@
     return cell;
 }
 
-/*
+
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    
+//    //hide all the buttons in the accessory view
+//    [cell.accessoryView.subviews enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+//        UIView *aView = (UIView *)obj;
+//        aView.hidden = YES;
+//    }];
+    
     // Return NO if you do not want the specified item to be editable.
     return YES;
 }
-*/
 
-/*
+
+
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
+        
+        ExportedAsset *assetForDeletion = [frc objectAtIndexPath:indexPath];
+        [assetForDeletion deleteExportFile];
+        
+        //remove it from core data
+        [self.context deleteObject:assetForDeletion];
+        
+        NSError *err = nil;
+        if (![self.context save:&err])
+        {
+            NSLog(@"Deletion error occured: %@", err);
+        }
+        
+        NSLog(@"deletion is done");
+        
         // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+        //[tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }   
 }
-*/
+
+//called when there is a change in the covers list
+-(void)controller:(NSFetchedResultsController *)controller 
+  didChangeObject:(id)anObject 
+      atIndexPath:(NSIndexPath *)indexPath 
+    forChangeType:(NSFetchedResultsChangeType)type 
+     newIndexPath:(NSIndexPath *)newIndexPath;
+{
+    switch (type) {
+        case NSFetchedResultsChangeInsert:
+            [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
+                                  withRowAnimation:UITableViewRowAnimationTop];
+            break;
+        case NSFetchedResultsChangeDelete:
+            [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+                                  withRowAnimation:UITableViewRowAnimationTop];
+            break;
+        case NSFetchedResultsChangeUpdate:
+            [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+                                  withRowAnimation:UITableViewRowAnimationFade];
+            break;
+    }
+}
+
 
 /*
 // Override to support rearranging the table view.
@@ -287,6 +337,11 @@
     UITableViewCell *cell = (UITableViewCell*)sender.superview.superview;
     UITableView *table = (UITableView*)cell.superview;
     return [table indexPathForCell:cell];
+}
+
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
+{
+    NSLog(@"controller did change content!");
 }
 
 @end

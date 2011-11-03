@@ -21,4 +21,6 @@
 @property (nonatomic, retain) NSDate * dateCreated;
 @property (nonatomic, retain) Cover *cover;
 
+- (BOOL) deleteExportFile;
+
 @end
