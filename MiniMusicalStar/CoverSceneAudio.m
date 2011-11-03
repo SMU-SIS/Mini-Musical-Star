@@ -11,7 +11,7 @@
 
 
 @implementation CoverSceneAudio
-@synthesize OriginalHash;
+@dynamic originalHash;
 @dynamic path;
 @dynamic title;
 @dynamic CoverScene;

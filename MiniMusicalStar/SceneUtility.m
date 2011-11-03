@@ -119,7 +119,7 @@
     [theCoverScene.Audio enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {   
         CoverSceneAudio *aCoverSceneAudio = (CoverSceneAudio*)obj;
         
-        if ([anAudio.hash isEqualToString:aCoverSceneAudio.OriginalHash]) {
+        if ([anAudio.hash isEqualToString:aCoverSceneAudio.originalHash]) {
             [mutableArraysOfCoverSceneAudio addObject:aCoverSceneAudio];
             NSLog(@"a cover scene at %@ exist for audio %@", aCoverSceneAudio.path, anAudio.title);
         }
