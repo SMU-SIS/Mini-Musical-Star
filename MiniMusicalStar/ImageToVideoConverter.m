@@ -84,21 +84,7 @@
     __block BOOL retry = NO;
     __block int i = 0;
     //sort the fucking array
-    __block NSMutableArray *sortedTimingsArray = [NSMutableArray arrayWithArray:[theScene.pictureTimingDict allKeys]];
-    [sortedTimingsArray sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-        NSString *strObj1 = (NSString *)obj1;
-        NSString *strObj2 = (NSString *)obj2;
-        
-        if ([strObj1 intValue] > [strObj2 intValue])
-        {
-            return NSOrderedDescending;
-        }
-        
-        else
-        {
-            return NSOrderedAscending;
-        }
-    }];
+    __block NSMutableArray *sortedTimingsArray = theScene.getOrderedPictureTimingArray;
     
     [imagesArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         UIImage *img = (UIImage *)obj;

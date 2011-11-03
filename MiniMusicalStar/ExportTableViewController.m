@@ -444,21 +444,7 @@
     animationLayer.position = CGPointMake(CGRectGetMidX(parentLayer.bounds), CGRectGetMidY(parentLayer.bounds));
     
     //first i get the picturetimings array
-    __block NSMutableArray *sortedTimingsArray = [NSMutableArray arrayWithArray:[theScene.pictureTimingDict allKeys]];
-    [sortedTimingsArray sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-        NSString *strObj1 = (NSString *)obj1;
-        NSString *strObj2 = (NSString *)obj2;
-        
-        if ([strObj1 intValue] > [strObj2 intValue])
-        {
-            return NSOrderedDescending;
-        }
-        
-        else
-        {
-            return NSOrderedAscending;
-        }
-    }];
+    __block NSMutableArray *sortedTimingsArray = [theScene getOrderedPictureTimingArray];
     
     for(int i =0 ; i<sortedTimingsArray.count ; i++)
     {
@@ -478,17 +464,11 @@
             duration = duration - 0.1;
         }
         
-        
         KensBurnAnimation *kbAnim = [[KensBurnAnimation alloc] init];
         CABasicAnimation *kensBurnAnimation = [kbAnim getKensBurnAnimationForImageAtTime:startTime andDuration:duration];
         
         [videoLayer addAnimation:kensBurnAnimation forKey:nil];
     }
-    
-
-    
-//    kensBurnAnimation = [kbAnim getKensBurnAnimationForImageAtTime:10.0 andDuration:10.0];
-//    [videoLayer addAnimation:kensBurnAnimation forKey:nil];
     
     videoComposition.animationTool = [AVVideoCompositionCoreAnimationTool videoCompositionCoreAnimationToolWithPostProcessingAsVideoLayer:videoLayer inLayer:parentLayer];
     

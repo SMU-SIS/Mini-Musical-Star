@@ -132,6 +132,27 @@
     return [[self.pictureTimingsArray objectAtIndex:index] intValue];
 }
 
+- (NSMutableArray*) getOrderedPictureTimingArray
+{
+    NSMutableArray *sortedTimingsArray = [NSMutableArray arrayWithArray:[self.pictureTimingDict allKeys]];
+    [sortedTimingsArray sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        NSString *strObj1 = (NSString *)obj1;
+        NSString *strObj2 = (NSString *)obj2;
+        
+        if ([strObj1 intValue] > [strObj2 intValue])
+        {
+            return NSOrderedDescending;
+        }
+        
+        else
+        {
+            return NSOrderedAscending;
+        }
+    }];
+    
+    return sortedTimingsArray;
+}
+
 - (UIImage *)coverPicture
 {
     

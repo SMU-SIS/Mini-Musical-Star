@@ -70,7 +70,7 @@ NSInteger xMovement, yMovement, duration;
     kensBurnAnimation.removedOnCompletion = NO;
     kensBurnAnimation.beginTime = startTime;
     kensBurnAnimation.duration = duration;
-    kensBurnAnimation.fillMode = kCAFillModeBoth;
+    kensBurnAnimation.fillMode = kCAFillModeRemoved;
     kensBurnAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
     return kensBurnAnimation;
     
