@@ -7,6 +7,7 @@
 //
 
 #import "ExportViewController.h"
+#import "AddCreditsViewController.h"
 
 @implementation ExportViewController
 
@@ -47,8 +48,6 @@
         self.mediaTableViewController = [[MediaTableViewController alloc] initWithStyle:UITableViewStyleGrouped withCover:self.theCover withContext:context];
         [self.mediaTableViewController setDelegate:self];
         
-        
-        
         UIColor *background = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"exportpage.png"]];
         self.view.backgroundColor = background;
         
@@ -77,7 +76,12 @@
     {
         [self.mediaTableViewController.tableView setEditing:YES animated:YES];
     }
-    
+}
+- (void) loadAddCreditsPopover
+{
+    AddCreditsViewController *addCreditsViewController = [[AddCreditsViewController alloc] init];
+    UIPopoverController *popoverController = [[UIPopoverController alloc] initWithContentViewController:addCreditsViewController];
+    [popoverController presentPopoverFromRect:self.addCreditsButton.frame inView:[[UIApplication sharedApplication] keyWindow] permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
 }
 
 - (void) reloadMediaTable
@@ -143,6 +147,8 @@
     UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(back)];
     self.navigationItem.leftBarButtonItem = backBarButtonItem;
     [backBarButtonItem release];
+    
+    [self loadAddCreditsPopover];
 }
 
 -(IBAction)back {

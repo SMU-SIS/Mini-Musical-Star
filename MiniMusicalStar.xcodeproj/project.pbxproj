@@ -67,6 +67,8 @@
 		3A9FAC65146162AE00D2B642 /* SimpleEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A9FAC64146162AE00D2B642 /* SimpleEditor.m */; };
 		3A9FAC6714618C8200D2B642 /* coverflow2.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A9FAC6614618C8200D2B642 /* coverflow2.png */; };
 		3A9FAC8814622D1700D2B642 /* KensBurnAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A9FAC8714622D1700D2B642 /* KensBurnAnimation.m */; };
+		3A9FAC9B146256D600D2B642 /* AddCreditsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A9FAC99146256D500D2B642 /* AddCreditsViewController.m */; };
+		3A9FAC9C146256D600D2B642 /* AddCreditsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A9FAC9A146256D500D2B642 /* AddCreditsViewController.xib */; };
 		3AAD1EFB143F5DCE0090DD44 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AAD1EFA143F5DCE0090DD44 /* AVFoundation.framework */; };
 		3AAD1EFC143F5DD70090DD44 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AAD1EFA143F5DCE0090DD44 /* AVFoundation.framework */; };
 		3AB141EA1457FF3700173EAD /* Async.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AB141751457FF3700173EAD /* Async.m */; };
@@ -426,6 +428,9 @@
 		3A9FAC6614618C8200D2B642 /* coverflow2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coverflow2.png; sourceTree = "<group>"; };
 		3A9FAC8614622D1700D2B642 /* KensBurnAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KensBurnAnimation.h; sourceTree = "<group>"; };
 		3A9FAC8714622D1700D2B642 /* KensBurnAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KensBurnAnimation.m; sourceTree = "<group>"; };
+		3A9FAC98146256D400D2B642 /* AddCreditsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddCreditsViewController.h; sourceTree = "<group>"; };
+		3A9FAC99146256D500D2B642 /* AddCreditsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddCreditsViewController.m; sourceTree = "<group>"; };
+		3A9FAC9A146256D500D2B642 /* AddCreditsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddCreditsViewController.xib; sourceTree = "<group>"; };
 		3AAD1EFA143F5DCE0090DD44 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		3AB141741457FF3700173EAD /* Async.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Async.h; sourceTree = "<group>"; };
 		3AB141751457FF3700173EAD /* Async.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Async.m; sourceTree = "<group>"; };
@@ -2278,6 +2283,8 @@
 				64D6CCC7145D4A3F00D172D2 /* FacebookUploaderViewController.m */,
 				6427849B145EEF1C00B8C740 /* YouTubeUploaderViewController.h */,
 				6427849C145EEF1C00B8C740 /* YouTubeUploaderViewController.m */,
+				3A9FAC98146256D400D2B642 /* AddCreditsViewController.h */,
+				3A9FAC99146256D500D2B642 /* AddCreditsViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -2300,6 +2307,7 @@
 				3A21953F145E4E3F0052C0FE /* MediaTableViewController.xib */,
 				3AF97A33144BE6FE00133C47 /* ExportTableViewController.xib */,
 				64D6CD27145D612C00D172D2 /* ExportViewController.xib */,
+				3A9FAC9A146256D500D2B642 /* AddCreditsViewController.xib */,
 				6457E05A145DA2FF00ABBF87 /* ShareTableViewController.xib */,
 				6427849D145EEF1C00B8C740 /* YouTubeUploaderViewController.xib */,
 			);
@@ -2607,6 +2615,7 @@
 				3A065AD1145EC101001BCEA5 /* cover_cell.png in Resources */,
 				6427849F145EEF1C00B8C740 /* YouTubeUploaderViewController.xib in Resources */,
 				3A9FAC6714618C8200D2B642 /* coverflow2.png in Resources */,
+				3A9FAC9C146256D600D2B642 /* AddCreditsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2810,6 +2819,7 @@
 				6427849E145EEF1C00B8C740 /* YouTubeUploaderViewController.m in Sources */,
 				3A9FAC65146162AE00D2B642 /* SimpleEditor.m in Sources */,
 				3A9FAC8814622D1700D2B642 /* KensBurnAnimation.m in Sources */,
+				3A9FAC9B146256D600D2B642 /* AddCreditsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
