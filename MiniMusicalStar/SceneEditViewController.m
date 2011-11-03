@@ -80,7 +80,7 @@
     
     [self registerNotifications];
     
-    [audioView giveMePlayPauseButton:playPauseButton];
+    self.audioView.playPauseButton = self.playPauseButton;
     
     [containerView addSubview:audioView.view];
     photoView.view.hidden = YES;

@@ -66,7 +66,6 @@
 - (void)trashCoverAudio:(int)indexInConsolidatedAudioTracksArray;
 - (bool)isRecording;
 - (void)playPauseButtonIsPressed;
-- (void)giveMePlayPauseButton:(UIButton*)aButton;
 - (void)registerNotifications;
 - (void)deRegisterFromNSNotifcationCenter;
 - (int)getTableViewRow:(UIButton*)sender;

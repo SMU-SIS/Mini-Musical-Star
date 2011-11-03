@@ -438,11 +438,6 @@
     [self.thePlayer stop];
 }
 
-- (void)giveMePlayPauseButton:(UIButton*)aButton
-{
-    self.playPauseButton = aButton;
-}
-
 #pragma mark - instance methods
 
 - (void)startCoverAudioRecording:(int)indexInConsolidatedAudioTracksArray
