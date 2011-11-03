@@ -53,7 +53,7 @@
     self.view.pagingEnabled = NO;
     self.view.clipsToBounds = NO;
     
-    UIColor *background = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"filmstrip.png"]];
+    UIColor *background = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"stripsceneselection.png"]];
     self.view.backgroundColor = background;
     
     self.coverLabel = [[UILabel alloc] initWithFrame:CGRectMake(1024+100,20,500,75)];
