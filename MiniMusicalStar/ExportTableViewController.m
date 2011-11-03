@@ -429,20 +429,20 @@
     
 
 //    
-    CABasicAnimation *fadeAnimation = [CABasicAnimation animationWithKeyPath:@"transform"];
-    
-    CGAffineTransform zoomIn = CGAffineTransformMakeScale(1.2, 0.8);
-    CGAffineTransform moveRight = CGAffineTransformMakeTranslation(50, 80);
-    CGAffineTransform combo1 = CGAffineTransformConcat(zoomIn, moveRight);
-    
-//    fadeAnimation.fromValue = [NSNumber numberWithFloat:1.0];
-    fadeAnimation.toValue = [NSValue valueWithCATransform3D:CATransform3DMakeAffineTransform(combo1)];
-    fadeAnimation.additive = NO;
-    fadeAnimation.removedOnCompletion = NO;
-    fadeAnimation.beginTime = AVCoreAnimationBeginTimeAtZero;
-    fadeAnimation.duration = 5;
-    fadeAnimation.fillMode = kCAFillModeBoth;
-    fadeAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
+//    CABasicAnimation *fadeAnimation = [CABasicAnimation animationWithKeyPath:@"transform"];
+//    
+//    CGAffineTransform zoomIn = CGAffineTransformMakeScale(1.2, 0.8);
+//    CGAffineTransform moveRight = CGAffineTransformMakeTranslation(50, 80);
+//    CGAffineTransform combo1 = CGAffineTransformConcat(zoomIn, moveRight);
+//    
+////    fadeAnimation.fromValue = [NSNumber numberWithFloat:1.0];
+//    fadeAnimation.toValue = [NSValue valueWithCATransform3D:CATransform3DMakeAffineTransform(combo1)];
+//    fadeAnimation.additive = NO;
+//    fadeAnimation.removedOnCompletion = NO;
+//    fadeAnimation.beginTime = AVCoreAnimationBeginTimeAtZero;
+//    fadeAnimation.duration = 5;
+//    fadeAnimation.fillMode = kCAFillModeBoth;
+//    fadeAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
     
     CALayer *parentLayer = [CALayer layer];
     CALayer *videoLayer = [CALayer layer];
@@ -459,7 +459,7 @@
     animationLayer.anchorPoint =  CGPointMake(0.5, 0.5);
     animationLayer.position = CGPointMake(CGRectGetMidX(parentLayer.bounds), CGRectGetMidY(parentLayer.bounds));
     
-    [videoLayer addAnimation:fadeAnimation forKey:nil];
+//    [videoLayer addAnimation:fadeAnimation forKey:nil];
     
     
     videoComposition.animationTool = [AVVideoCompositionCoreAnimationTool videoCompositionCoreAnimationToolWithPostProcessingAsVideoLayer:videoLayer inLayer:parentLayer];
@@ -516,22 +516,6 @@
         ExportedAsset *theAsset = [exportedAssetsArray objectAtIndex:indexPath.row];
         cell.textLabel.text =  theAsset.title;
         
-        //cell.textLabel.backgroundColor = [UIColor whiteColor];
-        
-        /*
-         Instructions for use:
-         
-         ExportedAsset *foo = [NSEntityDescription insertNewObjectForEntityForName: @"ExportedAsset" inManagedObjectContext: context];
-         foo.title = @"Blah blah blah";
-         ...
-         NSError *error;
-         [context save: error];
-         
-         if (error)
-         {
-         //handle the saving error
-         }
-         */
     }
     
     return cell;
