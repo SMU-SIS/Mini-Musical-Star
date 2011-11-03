@@ -42,10 +42,9 @@
 					<object class="IBUIScrollView" id="1067273062">
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{31, 328}, {963, 400}}</string>
+						<string key="NSFrame">{{0, 328}, {1024, 400}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<int key="IBUIContentMode">1</int>
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>
@@ -55,7 +54,6 @@
 				<string key="NSFrame">{{0, 20}, {1024, 748}}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">1</int>
 					<bytes key="NSRGB">MC42MjUwNTk3ODM1IDAuNjI1MDU5NzgzNSAwLjYyNTA1OTc4MzUAA</bytes>

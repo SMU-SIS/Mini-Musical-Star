@@ -67,8 +67,8 @@
     scrollView.showsHorizontalScrollIndicator = NO;
     scrollView.showsVerticalScrollIndicator = NO;
     scrollView.pagingEnabled = NO;
-    scrollView.clipsToBounds = NO;    
-    [scrollView setContentSize:CGSizeMake(self.showDAO.loadedShows.count * (280 + 125), scrollView.frame.size.height)];
+    scrollView.clipsToBounds = YES;    
+    [scrollView setContentSize:CGSizeMake(35 + (self.showDAO.loadedShows.count * (280 + 125)), scrollView.frame.size.height)];
     
     //create a buttonArray as the backing for the buttons in the scrollview (so we can refer to them later)
     self.buttonArray = [NSMutableArray arrayWithCapacity:self.showDAO.loadedShows.count];
@@ -77,7 +77,7 @@
     [self.showDAO.loadedShows enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         
         CGRect frame;
-        frame.origin.x = (280 + 125) * idx;
+        frame.origin.x = 35 + ((280 + 125) * idx);
         frame.origin.y = 0;
         frame.size.width = 280;
         frame.size.height = scrollView.frame.size.height;
@@ -230,12 +230,12 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    scrollView.hidden = YES;
+    //scrollView.hidden = YES;
 
 }
 - (void)viewDidAppear:(BOOL)animated
 {
-    scrollView.hidden = NO;
+    //scrollView.hidden = NO;
     //hide the navigation bar
     
 }
