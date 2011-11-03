@@ -84,9 +84,8 @@
         self.context = aContext;
         self.playPauseButton = aPlayPauseButton;
         
-//        [self.titleBanner setImage:];
-//        UIImageView *clipBoardImage = [[UIImageView alloc] initWithImage:];
-        UIColor *background = [[UIColor alloc] initWithPatternImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"softboard" ofType:@"png"]]];
+        UIColor *background = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"softboard.png"]];
+        
         [self.view setBackgroundColor:background];
         
         
