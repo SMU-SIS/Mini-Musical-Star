@@ -11,12 +11,28 @@
 @implementation ExportViewController
 
 @synthesize theShow, theCover, context;
-@synthesize background;
 @synthesize exportTableViewController;
 @synthesize mediaTableViewController;
 @synthesize facebookUploaderViewController;
 @synthesize youtubeUploaderViewController;
+@synthesize addCreditsButton;
     
+- (void)dealloc
+{
+    [theShow release];
+    [theCover release];
+    [context release];
+    
+    [mediaTableViewController release];
+    [exportTableViewController release];
+    
+    [youtubeUploaderViewController release];
+    [facebookUploaderViewController release];
+    
+    [addCreditsButton release];
+    [super dealloc];
+}
+
 - (ExportViewController*)initWithStuff:(Show*)show:(Cover*)cover context:(NSManagedObjectContext *)aContext
 {
     self = [super init];
@@ -31,7 +47,9 @@
         self.mediaTableViewController = [[MediaTableViewController alloc] initWithStyle:UITableViewStyleGrouped withCover:self.theCover withContext:context];
         [self.mediaTableViewController setDelegate:self];
         
-        self.background = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"exportpage.png"]];
+        
+        
+        UIColor *background = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"exportpage.png"]];
         self.view.backgroundColor = background;
         
         self.exportTableViewController.tableView.backgroundView.alpha = 0;
@@ -151,13 +169,7 @@
     return (interfaceOrientation == UIInterfaceOrientationLandscapeLeft || interfaceOrientation == UIInterfaceOrientationLandscapeRight);
 }
 
-- (void)dealloc
-{
-    [mediaTableViewController release];
-    [exportTableViewController release];
-    [background release];
-    [super dealloc];
-}
+
 
 #pragma - FacebookUploaderDelegate methods
 

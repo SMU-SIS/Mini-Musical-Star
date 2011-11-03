@@ -23,7 +23,8 @@
 @property (retain, nonatomic) NSManagedObjectContext *context;
 @property (retain, nonatomic) ExportTableViewController *exportTableViewController;
 @property (retain, nonatomic) MediaTableViewController *mediaTableViewController;
-@property (nonatomic, retain) UIColor *background;
+
+@property (nonatomic, retain) IBOutlet UIButton *addCreditsButton;
 
 @property (nonatomic, retain) FacebookUploaderViewController *facebookUploaderViewController;
 @property (nonatomic, retain) YouTubeUploaderViewController *youtubeUploaderViewController;
