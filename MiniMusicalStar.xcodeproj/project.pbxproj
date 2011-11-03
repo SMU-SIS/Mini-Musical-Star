@@ -34,7 +34,6 @@
 		3A12E378142F7551004B97BE /* AFItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFFDECB142C7CCD000D8494 /* AFItemView.m */; };
 		3A12E379142F7556004B97BE /* AFUIImageReflection.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFFDED0142C7CCD000D8494 /* AFUIImageReflection.m */; };
 		3A12E37C142F81A7004B97BE /* SceneTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A12E37B142F81A7004B97BE /* SceneTest.m */; };
-		3A2194F7145D42660052C0FE /* filmstrip.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A2194F6145D42660052C0FE /* filmstrip.png */; };
 		3A21951C145D5F9B0052C0FE /* selection_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A21951B145D5F9B0052C0FE /* selection_background.png */; };
 		3A21953C145E3B7A0052C0FE /* export.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A21953B145E3B7A0052C0FE /* export.png */; };
 		3A219540145E4E400052C0FE /* MediaTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A21953E145E4E3E0052C0FE /* MediaTableViewController.m */; };
@@ -292,6 +291,7 @@
 		9572E0DB140E118400713F45 /* Scene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9572E0D4140E118400713F45 /* Scene.m */; };
 		9572E0DC140E118400713F45 /* Show.m in Sources */ = {isa = PBXBuildFile; fileRef = 9572E0D6140E118400713F45 /* Show.m */; };
 		9572E0E0140E11FF00713F45 /* ShowDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 9572E0DF140E11FF00713F45 /* ShowDAO.m */; };
+		9573CCDF1462D3860055B413 /* stripsceneselection.png in Resources */ = {isa = PBXBuildFile; fileRef = 9573CCDE1462D3860055B413 /* stripsceneselection.png */; };
 		9578443B141DD2F10033721D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9578443A141DD2F10033721D /* QuartzCore.framework */; };
 		95C526AE1438DA740008AE13 /* CoversListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C526AC1438DA740008AE13 /* CoversListViewController.m */; };
 		95C526AF1438DA740008AE13 /* CoversListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95C526AD1438DA740008AE13 /* CoversListViewController.xib */; };
@@ -378,7 +378,6 @@
 		3A12E367142F1D9A004B97BE /* libOCMock.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOCMock.a; path = ../Libraries/libOCMock.a; sourceTree = "<group>"; };
 		3A12E37A142F81A6004B97BE /* SceneTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneTest.h; sourceTree = "<group>"; };
 		3A12E37B142F81A7004B97BE /* SceneTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SceneTest.m; sourceTree = "<group>"; };
-		3A2194F6145D42660052C0FE /* filmstrip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = filmstrip.png; path = Resources/filmstrip.png; sourceTree = "<group>"; };
 		3A21951B145D5F9B0052C0FE /* selection_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = selection_background.png; path = Resources/selection_background.png; sourceTree = "<group>"; };
 		3A21953B145E3B7A0052C0FE /* export.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = export.png; path = Resources/export.png; sourceTree = "<group>"; };
 		3A21953D145E4E3E0052C0FE /* MediaTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaTableViewController.h; sourceTree = "<group>"; };
@@ -1078,6 +1077,7 @@
 		9572E0D6140E118400713F45 /* Show.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Show.m; sourceTree = "<group>"; };
 		9572E0DE140E11FF00713F45 /* ShowDAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowDAO.h; sourceTree = "<group>"; };
 		9572E0DF140E11FF00713F45 /* ShowDAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowDAO.m; sourceTree = "<group>"; };
+		9573CCDE1462D3860055B413 /* stripsceneselection.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stripsceneselection.png; sourceTree = "<group>"; };
 		9578443A141DD2F10033721D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		95C526AB1438DA740008AE13 /* CoversListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoversListViewController.h; sourceTree = "<group>"; };
 		95C526AC1438DA740008AE13 /* CoversListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoversListViewController.m; sourceTree = "<group>"; };
@@ -2142,8 +2142,8 @@
 				64E0E125145D7E2C0074D133 /* track.png */,
 				64E0E123145D70150074D133 /* note_for_lyrics.png */,
 				64D6CD2B145D61E200D172D2 /* exportpage.png */,
+				9573CCDE1462D3860055B413 /* stripsceneselection.png */,
 				3A21951B145D5F9B0052C0FE /* selection_background.png */,
-				3A2194F6145D42660052C0FE /* filmstrip.png */,
 				3A10F10B145C428C006F8EEC /* main_background.png */,
 				3A10EFC2145BF7D1006F8EEC /* softboard.png */,
 				3A10EFBE145BF56F006F8EEC /* camera.png */,
@@ -2595,7 +2595,6 @@
 				3A10EFC1145BF56F006F8EEC /* photo_library.png in Resources */,
 				3A10EFC3145BF7D1006F8EEC /* softboard.png in Resources */,
 				3A10F10C145C428C006F8EEC /* main_background.png in Resources */,
-				3A2194F7145D42660052C0FE /* filmstrip.png in Resources */,
 				64D6CCCA145D4A3F00D172D2 /* FacebookUploaderViewController.xib in Resources */,
 				3A21951C145D5F9B0052C0FE /* selection_background.png in Resources */,
 				64D6CD29145D612C00D172D2 /* ExportViewController.xib in Resources */,
@@ -2616,6 +2615,7 @@
 				6427849F145EEF1C00B8C740 /* YouTubeUploaderViewController.xib in Resources */,
 				3A9FAC6714618C8200D2B642 /* coverflow2.png in Resources */,
 				3A9FAC9C146256D600D2B642 /* AddCreditsViewController.xib in Resources */,
+				9573CCDF1462D3860055B413 /* stripsceneselection.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

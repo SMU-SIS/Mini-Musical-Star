@@ -17,6 +17,7 @@
 @synthesize facebookUploaderViewController;
 @synthesize youtubeUploaderViewController;
 @synthesize addCreditsButton;
+@synthesize popoverController;
     
 - (void)dealloc
 {
@@ -24,6 +25,7 @@
     [theCover release];
     [context release];
     
+    [popoverController release];
     [mediaTableViewController release];
     [exportTableViewController release];
     
@@ -41,6 +43,10 @@
         self.theShow = show;
         self.theCover = cover;
         self.context = aContext;
+        
+        AddCreditsViewController *addCreditsViewController = [[AddCreditsViewController alloc] init];
+        self.popoverController = [[UIPopoverController alloc] initWithContentViewController:addCreditsViewController];
+        [self.popoverController setPopoverContentSize:CGSizeMake(400,400)];
         
         self.exportTableViewController = [[ExportTableViewController alloc] initWithStyle:UITableViewStyleGrouped :theShow :theCover context:context];
         [self.exportTableViewController setDelegate:self];
@@ -77,16 +83,13 @@
         [self.mediaTableViewController.tableView setEditing:YES animated:YES];
     }
 }
-- (void) loadAddCreditsPopover
+- (IBAction) togglePopoverForAddCredits
 {
-    AddCreditsViewController *addCreditsViewController = [[AddCreditsViewController alloc] init];
-    UIPopoverController *popoverController = [[UIPopoverController alloc] initWithContentViewController:addCreditsViewController];
-    [popoverController presentPopoverFromRect:self.addCreditsButton.frame inView:[[UIApplication sharedApplication] keyWindow] permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+    [self.popoverController presentPopoverFromRect:self.addCreditsButton.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
 }
 
 - (void) reloadMediaTable
 {
-//    NSLog(@"WAS I CALLED?");
     [self.mediaTableViewController populateTable];
     [self.mediaTableViewController.tableView reloadData];
 }
@@ -147,8 +150,6 @@
     UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(back)];
     self.navigationItem.leftBarButtonItem = backBarButtonItem;
     [backBarButtonItem release];
-    
-    [self loadAddCreditsPopover];
 }
 
 -(IBAction)back {

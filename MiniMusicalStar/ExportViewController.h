@@ -26,12 +26,15 @@
 
 @property (nonatomic, retain) IBOutlet UIButton *addCreditsButton;
 
+@property (nonatomic, retain) UIPopoverController *popoverController;
 @property (nonatomic, retain) FacebookUploaderViewController *facebookUploaderViewController;
 @property (nonatomic, retain) YouTubeUploaderViewController *youtubeUploaderViewController;
 
 - (ExportViewController*)initWithStuff:(Show*)show:(Cover*)cover context:(NSManagedObjectContext *)aContext;
 
 - (void) addExportedAsset: (ExportedAsset*) asset;
+
+- (IBAction) togglePopoverForAddCredits;
 
 - (void) playMovie:(NSURL*)filePath;
 - (void) moviePlayBackDidFinish:(NSNotification*)notification;
