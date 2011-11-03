@@ -47,6 +47,11 @@
     return self;
 }
 
+- (IBAction) editTable:(id)sender
+{
+    [self.mediaTableViewController.tableView setEditing:YES animated:YES];
+}
+
 - (void) reloadMediaTable
 {
 //    NSLog(@"WAS I CALLED?");

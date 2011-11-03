@@ -35,4 +35,6 @@
 - (void) playMovie:(NSURL*)filePath;
 - (void) moviePlayBackDidFinish:(NSNotification*)notification;
 
+- (IBAction) editTable:(id)sender;
+
 @end
