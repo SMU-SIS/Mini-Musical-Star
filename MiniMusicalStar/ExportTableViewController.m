@@ -79,44 +79,10 @@
                              ofAsset:videoAsset atTime:composition.duration error:nil];
         
     }];
-    
-    //write credits to video
-    NSArray *creditsList = [NSArray arrayWithObjects:@"Drawn With CoreText",@"Made by Adrian!", nil];
-    NSString *creditsFilename = [@"/credits_" stringByAppendingString:[[MiniMusicalStarUtilities getUniqueFilenameWithoutExt] stringByAppendingString:@".mov"]];
-    NSURL *creditsFileURL = [NSURL fileURLWithPath:[[ShowDAO userDocumentDirectory] stringByAppendingString:creditsFilename]];
-    [ImageToVideoConverter createTextConvertedToVideo:creditsList:creditsFileURL :CGSizeMake(640,480)];
-    //append credits
-    AVURLAsset *creditsAsset = [AVURLAsset URLAssetWithURL:creditsFileURL options:nil];
-    [composition insertTimeRange:CMTimeRangeMake(kCMTimeZero,creditsAsset.duration) 
-                         ofAsset:creditsAsset
-                          atTime:composition.duration
-                           error:nil];
-    //add brand asset path
-    NSString *brandAssetPath =[[NSBundle mainBundle] pathForResource:@"lastclip" ofType:@"mov"];
-    AVURLAsset *brandAsset = [AVURLAsset URLAssetWithURL:[NSURL fileURLWithPath:brandAssetPath] options:nil];
-    [composition insertTimeRange:CMTimeRangeMake(kCMTimeZero,brandAsset.duration) 
-                         ofAsset:brandAsset
-                          atTime:composition.duration
-                           error:nil];
-    
-    //session export
-    //draw the progress bar
-    CGRect progressBarFrame;
-    progressBarFrame.size.width = 300;
-    progressBarFrame.size.height = 300;
-    progressBarFrame.origin.x = 500;
-    progressBarFrame.origin.y = 25;
-    
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-    UITableViewCell *cell = (UITableViewCell *)[(UITableView *)self.view cellForRowAtIndexPath:indexPath];
-    UIProgressView *prog = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleBar];
-    prog.frame= progressBarFrame;
-    [cell.contentView addSubview:prog];
-    [prog setProgress:0];
 
     NSString *exportFilename = [@"/musical_" stringByAppendingString:[[MiniMusicalStarUtilities getUniqueFilenameWithoutExt] stringByAppendingString:@".mov"]];
     NSURL *outputFileURL = [NSURL fileURLWithPath:[[ShowDAO userDocumentDirectory] stringByAppendingString:exportFilename]];
-    [self processExportSession: nil:composition :nil :nil:creditsFileURL:outputFileURL:prog:@"musical appending"];
+    [self processExportSession: nil:composition :nil :nil:outputFileURL:@"musical appending"];
 
 }
 
@@ -189,7 +155,7 @@
     return nil;
 }
 
-- (void) processExportSession: (Scene*) scene :(AVMutableComposition*) composition :(AVMutableVideoComposition*)videoComposition :(NSURL*)videoFileURL:(NSURL*)creditsFileURL: (NSURL*) outputFileURL: (UIProgressView*) prog: (NSString*) state
+- (void) processExportSession: (Scene*) scene :(AVMutableComposition*) composition :(AVMutableVideoComposition*)videoComposition :(NSURL*)videoFileURL: (NSURL*) outputFileURL: (NSString*) state
 {
     NSArray *compatiblePresets = [AVAssetExportSession exportPresetsCompatibleWithAsset:composition];
     
@@ -208,13 +174,13 @@
         
         CMTimeRangeShow(exportSession.timeRange);
         
-        NSArray *userInfo = [NSArray arrayWithObjects:prog,exportSession,nil];
-        NSTimer *progressBarLoader = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(refreshProgressBar:) userInfo:userInfo repeats:YES];
+//        NSArray *userInfo = [NSArray arrayWithObjects:prog,exportSession,nil];
+//        NSTimer *progressBarLoader = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(refreshProgressBar:) userInfo:userInfo repeats:YES];
         [exportSession exportAsynchronouslyWithCompletionHandler:^{
             switch ([exportSession status]) {
                 case AVAssetExportSessionStatusCompleted:
                     NSLog(@"Export Completed");
-                    [self exportCompleted: scene: videoFileURL:creditsFileURL:outputFileURL:prog:progressBarLoader:state];
+                    [self exportCompleted: scene: videoFileURL:outputFileURL:state];
                     break;
                 case AVAssetExportSessionStatusFailed:
                     NSLog(@"Export failed: %@", [[exportSession error] localizedDescription]);
@@ -222,32 +188,12 @@
                 default:
                     break;
             }
-            [prog release];
             [exportSession release];
 
         }];
     }
 }
-
--(void) sessionExport: (Scene*)scene: (AVMutableComposition*) composition: (AVMutableVideoComposition*) videoComposition : (NSURL*)videoFileURL: (NSURL*)creditsFileURL: (NSURL*)outputFileURL: (NSIndexPath*) indexPath: (NSString*) state
-{
-    
-    //draw the progress bar
-    CGRect progressBarFrame;
-    progressBarFrame.size.width = 300;
-    progressBarFrame.size.height = 300;
-    progressBarFrame.origin.x = 400;
-    progressBarFrame.origin.y = 25;
-    
-    UITableViewCell *cell = (UITableViewCell *)[(UITableView *)self.view cellForRowAtIndexPath:indexPath];
-    UIProgressView *prog = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleBar];
-    prog.frame= progressBarFrame;
-    [cell.contentView addSubview:prog];
-    
-    [self processExportSession :scene :composition :videoComposition :videoFileURL:creditsFileURL:outputFileURL:prog:state];
-    
-}
-- (void) exportCompleted: (Scene*) scene :(NSURL*) videoFileURL: (NSURL*) creditsFileURL: (NSURL*) outputFileURL: (UIProgressView*) prog: (NSTimer*) progressBarLoader: (NSString*) state
+- (void) exportCompleted: (Scene*) scene :(NSURL*) videoFileURL: (NSURL*) outputFileURL: (NSString*) state
 {
     if ([state isEqualToString: @"scene only"]){
         //save the URL into a new model
@@ -264,7 +210,6 @@
         [self.exportedAssetsArray addObject:newAsset];
         
         [self removeFileAtPath:videoFileURL];
-        [self removeFileAtPath:creditsFileURL];
     }else if ([state isEqualToString: @"scenes for musical"]){
         [self.tempMusicalContainer addObject:outputFileURL];
         [self allScenesExportedNotificationSender];
@@ -286,11 +231,8 @@
         [tempMusicalContainer enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             [self removeFileAtPath:obj];
         }];
-        [self removeFileAtPath:creditsFileURL];
         [tempMusicalContainer removeAllObjects];
     }
-    [prog removeFromSuperview];
-    [progressBarLoader invalidate];
     [self.delegate reloadMediaTable];
     [self.tableView reloadData];
     [DSBezelActivityView removeViewAnimated:YES];
@@ -317,6 +259,45 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:@"scenesFinished" object:self];
     }
     
+}
+
+-(CABasicAnimation*) getAppearAnimationAtTime:(float)startTime withDuration:(float)duration
+{
+    CABasicAnimation *appearAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
+    appearAnimation.fromValue = [NSNumber numberWithFloat:0.0];
+    appearAnimation.toValue = [NSNumber numberWithFloat:1.0];
+    appearAnimation.additive = NO;
+    appearAnimation.removedOnCompletion = NO;
+    appearAnimation.beginTime = startTime;
+    appearAnimation.duration = duration;
+    appearAnimation.fillMode = kCAFillModeForwards;
+    return appearAnimation;  
+}
+
+-(CABasicAnimation*) getScrollAnimationAtTime:(float)startTime withDuration:(float)duration
+{
+    CABasicAnimation *scrollAnimation = [CABasicAnimation animationWithKeyPath:@"transform.translation.y"];
+    scrollAnimation.fromValue = [NSNumber numberWithFloat:0.0];
+    scrollAnimation.toValue = [NSNumber numberWithFloat:500.0];
+    scrollAnimation.additive = NO;
+    scrollAnimation.removedOnCompletion = NO;
+    scrollAnimation.beginTime = startTime;
+    scrollAnimation.duration = duration;
+    scrollAnimation.fillMode = kCAFillModeForwards;
+    return scrollAnimation;
+}
+
+-(CABasicAnimation*) getFadeAnimationAtTime:(float)startTime withDuration:(float)duration
+{
+    CABasicAnimation *fadeAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
+    fadeAnimation.fromValue = [NSNumber numberWithFloat:1.0];
+    fadeAnimation.toValue = [NSNumber numberWithFloat:0.0];
+    fadeAnimation.additive = NO;
+    fadeAnimation.removedOnCompletion = NO;
+    fadeAnimation.beginTime = startTime;
+    fadeAnimation.duration = duration;
+    fadeAnimation.fillMode = kCAFillModeForwards;
+    return fadeAnimation;
 }
 
 -(void)generateSceneVideo: (Scene*) theScene: (NSArray*) imagesArray:(NSArray*) audioExportURLs:(NSIndexPath*) indexPath: (NSString*) state
@@ -357,25 +338,10 @@
                                    ofTrack:[[videoAsset tracksWithMediaType:AVMediaTypeVideo]objectAtIndex:0] 
                                     atTime:kCMTimeZero error:&error];
 
-    NSArray *creditsList = [NSArray arrayWithObjects:@"Drawn With CoreText",@"Made by Adrian!", nil];
-    NSString *creditsFilename = [@"/credits_" stringByAppendingString:[[MiniMusicalStarUtilities getUniqueFilenameWithoutExt] stringByAppendingString:@".mov"]];
-    NSURL *creditsFileURL = [NSURL fileURLWithPath:[[ShowDAO userDocumentDirectory] stringByAppendingString:creditsFilename]];
     if([state isEqualToString: @"scene only"]){
-        //write credits to video
-        [ImageToVideoConverter createTextConvertedToVideo:creditsList:creditsFileURL :size];
-        //append credits
-        AVURLAsset *creditsAsset = [AVURLAsset URLAssetWithURL:creditsFileURL options:nil];
-//        [composition insertTimeRange:CMTimeRangeMake(kCMTimeZero,creditsAsset.duration) 
-//                             ofAsset:creditsAsset
-//                              atTime:composition.duration
-//                               error:&error];        
-        //append made by minimusicalstar
-        NSString *brandAssetPath =[[NSBundle mainBundle] pathForResource:@"lastclip" ofType:@"mov"];
-        AVURLAsset *brandAsset = [AVURLAsset URLAssetWithURL:[NSURL fileURLWithPath:brandAssetPath] options:nil];
-//        [composition insertTimeRange:CMTimeRangeMake(kCMTimeZero,brandAsset.duration) 
-//                         ofAsset:brandAsset
-//                         atTime:composition.duration
-//                           error:&error];
+        
+        
+        
     }
     
     CMTimeRange timeRange = CMTimeRangeMake(kCMTimeZero, [videoAsset duration]);
@@ -446,35 +412,14 @@
     
     [animationLayer setOpacity: 0.0];
     
-    CABasicAnimation *appearAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
-    appearAnimation.fromValue = [NSNumber numberWithFloat:0.0];
-    appearAnimation.toValue = [NSNumber numberWithFloat:1.0];
-    appearAnimation.additive = NO;
-    appearAnimation.removedOnCompletion = NO;
-    appearAnimation.beginTime = CMTimeGetSeconds(composition.duration);
-    appearAnimation.duration = 1.0;
-    appearAnimation.fillMode = kCAFillModeForwards;
+    CABasicAnimation *appearAnimation = [self getAppearAnimationAtTime:CMTimeGetSeconds(composition.duration) withDuration: 1.0];
     [animationLayer addAnimation:appearAnimation forKey:nil];
     
-    CABasicAnimation *scrollAnimation = [CABasicAnimation animationWithKeyPath:@"transform.translation.y"];
-    scrollAnimation.fromValue = [NSNumber numberWithFloat:0.0];
-    scrollAnimation.toValue = [NSNumber numberWithFloat:500.0];
-    scrollAnimation.additive = NO;
-    scrollAnimation.removedOnCompletion = NO;
-    scrollAnimation.beginTime = CMTimeGetSeconds(composition.duration);
-    scrollAnimation.duration = 10.0;
-    scrollAnimation.fillMode = kCAFillModeForwards;
+    CABasicAnimation *scrollAnimation = [self getScrollAnimationAtTime:CMTimeGetSeconds(composition.duration) withDuration:10.0];
     [animationLayer addAnimation:scrollAnimation forKey:nil];
     
     //add fade away for video layer for credits to show
-    CABasicAnimation *fadeAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
-    fadeAnimation.fromValue = [NSNumber numberWithFloat:1.0];
-    fadeAnimation.toValue = [NSNumber numberWithFloat:0.0];
-    fadeAnimation.additive = NO;
-    fadeAnimation.removedOnCompletion = NO;
-    fadeAnimation.beginTime = CMTimeGetSeconds(composition.duration);
-    fadeAnimation.duration = 0.1;
-    fadeAnimation.fillMode = kCAFillModeForwards;
+    CABasicAnimation *fadeAnimation = [self getFadeAnimationAtTime:CMTimeGetSeconds(composition.duration) withDuration:0.1];
     [videoLayer addAnimation:fadeAnimation forKey:nil];
     
     //first i get the picturetimings array
@@ -508,10 +453,9 @@
     videoComposition.animationTool = [AVVideoCompositionCoreAnimationTool videoCompositionCoreAnimationToolWithPostProcessingAsVideoLayer:videoLayer inLayer:parentLayer];
     
     //session export
-    [self sessionExport: theScene:composition:videoComposition:videoFileURL:creditsFileURL:outputFileURL:indexPath:state];
+    [self processExportSession :theScene :composition :videoComposition :videoFileURL:outputFileURL:state];
 
 }
-
 
 #pragma mark - Table view data source
 
