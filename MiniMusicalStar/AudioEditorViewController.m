@@ -23,6 +23,7 @@
 @synthesize playButtonImage;
 @synthesize pauseButtonImage;
 @synthesize recordingImage;
+@synthesize delegate;
 
 - (void)dealloc
 {
@@ -376,11 +377,8 @@
 {
     if (isPlaying == YES && isRecording == NO) { //if the player is playing
         //is playing
-        [self.thePlayer stop];
-        [self.playPauseButton setImage:playButtonImage forState:UIControlStateNormal];
         
-        isPlaying = NO;    
-        isRecording = NO;   //to be safe
+        [self stopPlayerWhenPlaying:NO];
         
     } else if (isPlaying == NO && isRecording == YES) { //if the player is recording
     
@@ -393,7 +391,7 @@
             return;
         }
         
-        [[NSNotificationCenter defaultCenter] removeObserver:self];
+        //[[NSNotificationCenter defaultCenter] removeObserver:self];
                
         [self.thePlayer seekTo:0];
         [self.thePlayer stop];
@@ -417,11 +415,7 @@
     else //player is neither playing or recording
     {
         //if the play pause button is press, we only expect it to be playing
-        isPlaying = YES;    
-        isRecording = NO;
-        
-        [self.thePlayer play];
-        [self.playPauseButton setImage:pauseButtonImage forState:UIControlStateNormal];
+        [self startPlayerPlaying];
     }
     
     [trackTableView reloadData];
@@ -436,6 +430,32 @@
     thePlayer = [[MixPlayerRecorder alloc] initWithAudioFileURLs:self.tracksForViewNSURL];
     [self.thePlayer seekTo:0];
     [self.thePlayer stop];
+    
+    [self registerNotifications];
+}
+
+- (void)startPlayerPlaying
+{
+    isPlaying = YES;    
+    isRecording = NO;
+    [self.thePlayer play];
+    [self.playPauseButton setImage:pauseButtonImage forState:UIControlStateNormal];
+}
+
+- (void)stopPlayerWhenPlaying:(bool)hasReachedEnd
+{
+    isPlaying = NO;    
+    isRecording = NO;
+    
+    if (self.thePlayer.isPlaying == YES) {
+        [self.thePlayer stop];
+    }
+    
+    [self.playPauseButton setImage:playButtonImage forState:UIControlStateNormal];
+    
+    if (hasReachedEnd == YES) {
+        [delegate bringSliderToZero];
+    }
 }
 
 #pragma mark - instance methods
@@ -446,6 +466,7 @@
     id audioForRow = [tracksForView objectAtIndex:indexInConsolidatedAudioTracksArray];
     
     isRecording = YES;
+    isPlaying = NO;
     
     //reload the tableviewcell
     [trackTableView reloadData];
@@ -460,7 +481,7 @@
     NSString *userDocumentDirectory = [ShowDAO userDocumentDirectory];
     NSString *uniqueFilename = [MiniMusicalStarUtilities getUniqueFilenameWithoutExt];
     
-    NSString *audioCoverFilepath = [userDocumentDirectory stringByAppendingFormat:@"/%@.caf", uniqueFilename];    //we are going to use .caf files because i am going to encode in IMA4
+    NSString *audioCoverFilepath = [userDocumentDirectory stringByAppendingFormat:@"/%@.caf", uniqueFilename];
     
     NSURL *fileURL = [NSURL fileURLWithPath:audioCoverFilepath];
     [fileManager removeItemAtURL:fileURL error:nil];    //if file exists delete the file first
@@ -475,7 +496,7 @@
     [thePlayer enableRecordingToFile:fileURL];
     [thePlayer play];
     
-    [self registerNotifications];
+    //[self registerNotifications];
 }
 
 - (void)trashCoverAudio:(int)indexInConsolidatedAudioTracksArray
@@ -503,7 +524,7 @@
 }
 
 - (void)recordingIsCompleted
-{
+{    
     isRecording = NO;
       
     CoverSceneAudio *newCoverSceneAudio = [NSEntityDescription insertNewObjectForEntityForName:@"CoverSceneAudio" inManagedObjectContext:context];
@@ -527,8 +548,18 @@
 }
 
 - (void)registerNotifications
+{    
+    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(recordingIsCompleted) name:kMixPlayerRecorderPlaybackStopped object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(recordingIsCompleted) name:kMixPlayerRecorderRecordingHasReachedEnd object:nil];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivedPlayerPlayedHasReachedNotification) name:kMixPlayerRecorderPlayingHasReachedEnd object:nil];
+}
+
+- (void)receivedPlayerPlayedHasReachedNotification
 {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(recordingIsCompleted) name:kMixPlayerRecorderPlaybackStopped object:nil];
+    //NSLog(@"inside receivedPlayerPlayedHasReachedNotification");
+    [self stopPlayerWhenPlaying:YES];
 }
 
 - (void)deRegisterFromNSNotifcationCenter

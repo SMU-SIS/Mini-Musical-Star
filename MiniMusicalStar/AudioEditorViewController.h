@@ -14,10 +14,17 @@
 #import "CoverSceneAudio.h"
 #import <AVFoundation/AVFoundation.h>
 
+@protocol AudioEditorDelegate <NSObject>
+@required
+- (void)bringSliderToZero;
+@end
+
 @class Audio;
 @interface AudioEditorViewController : UIViewController
 <UITableViewDelegate, UITableViewDataSource, UIPopoverControllerDelegate>
-{        
+{      
+    id <AudioEditorDelegate> delegate;
+    
     //variables to track the state of the MixPlayer
     bool isRecording;
     bool isPlaying;
@@ -57,6 +64,8 @@
 
 @property (nonatomic, retain) UIButton *playPauseButton;
 
+@property (nonatomic, assign) id delegate;
+
 - (id)initWithScene:(Scene *)theScene andCoverScene:(CoverScene *)aCoverScene andContext:(NSManagedObjectContext *)aContext andPlayPauseButton:(UIButton*)aPlayPauseButton;
 
 - (void)autosaveWhenContextDidChange:(NSNotification*)notification;
@@ -69,6 +78,9 @@
 - (void)registerNotifications;
 - (void)deRegisterFromNSNotifcationCenter;
 - (int)getTableViewRow:(UIButton*)sender;
+- (void)startPlayerPlaying;
+- (void)recordingIsCompleted;
+- (void)stopPlayerWhenPlaying:(bool)hasReachedEnd;
 
 //instance methods for the audio and coveraudio arrays
 - (NSArray*)getExportAudioURLs;

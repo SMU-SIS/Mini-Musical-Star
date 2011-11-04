@@ -17,7 +17,8 @@
 - (NSArray*) getExportAudioURLs;
 @end
 
-@interface SceneEditViewController : UIViewController <UIScrollViewDelegate, UIAlertViewDelegate, PhotoEditorViewDelegate> {
+@interface SceneEditViewController : UIViewController 
+    <UIScrollViewDelegate, UIAlertViewDelegate, PhotoEditorViewDelegate, AudioEditorDelegate> {
     // To be used when scrolls originate from the UIPageControl
     BOOL pageControlUsed;
     BOOL transitioning;

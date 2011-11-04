@@ -9,6 +9,8 @@
 #define kNumberOfPages 2
 #import "SceneEditViewController.h"
 
+
+
 @implementation SceneEditViewController
 
 @synthesize context;
@@ -109,6 +111,8 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+    
+    audioView.delegate = nil;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -191,6 +195,8 @@
     //load the audio view controller
     audioView = [[AudioEditorViewController alloc] initWithScene:theScene andCoverScene:theCoverScene andContext:context andPlayPauseButton:playPauseButton];
     
+    audioView.delegate = self;
+    
     //load the photo view controller
     photoView = [[PhotoEditorViewController alloc] initWithScene:theScene andCoverScene:theCoverScene andContext:context];
     [photoView setDelegate:self];
@@ -213,12 +219,14 @@
     {
         //convert the float value to seconds
         if (self.audioView.thePlayer.isPlaying)
+            //if the player is playing
         {
             [self.audioView.thePlayer seekTo:targetSeconds];
         }
         
         else
         {
+            //if the player is not playing
             [self.audioView.thePlayer seekTo:targetSeconds];
             [self.audioView.thePlayer stop];
         }
@@ -328,6 +336,13 @@
 	[playPositionSlider setThumbImage:tumbImage forState:UIControlStateNormal];
     
     playPositionSlider.continuous = YES;
+}
+
+#pragma mark - AudioEditorDelegate methods
+
+- (void)bringSliderToZero
+{
+    [self setSliderPosition:0];
 }
 
 @end
