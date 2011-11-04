@@ -174,8 +174,6 @@
         
         CMTimeRangeShow(exportSession.timeRange);
         
-//        NSArray *userInfo = [NSArray arrayWithObjects:prog,exportSession,nil];
-//        NSTimer *progressBarLoader = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(refreshProgressBar:) userInfo:userInfo repeats:YES];
         [exportSession exportAsynchronouslyWithCompletionHandler:^{
             switch ([exportSession status]) {
                 case AVAssetExportSessionStatusCompleted:

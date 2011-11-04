@@ -30,5 +30,7 @@
 
 - (Show *)initShowWithPropertyListFile: (NSString *)pListFilePath atPath:(NSURL *)showPath;
 - (Scene *)sceneForIndex:(int)idx;
+- (NSMutableArray*) getMusicalImagesArray;
+- (NSMutableArray*) getMusicalPicturesTimingDict;
 
 @end

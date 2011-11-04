@@ -14,5 +14,4 @@
 
 + (CVPixelBufferRef) pixelBufferFromCGImage: (CGImageRef) image size:(CGSize) size;
 + (void) createImagesConvertedToVideo: (Scene*) theScene: (NSArray*) imagesArray: (NSURL*) videoFileURL :(CGSize) size;
-+ (void) createTextConvertedToVideo: (NSArray*)creditsList: (NSURL*) creditsFileURL :(CGSize) size;
 @end
