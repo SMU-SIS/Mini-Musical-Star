@@ -34,7 +34,9 @@ void uncaughtExceptionHandler(NSException *exception) {
     
     self.viewController.managedObjectContext = [self managedObjectContext];
 
-    [ConsoleManager run];
+    #if (TARGET_IPHONE_SIMULATOR)
+        [ConsoleManager run];
+    #endif
     
     self.window.rootViewController = self.naviController;
     self.naviController.delegate = self;
