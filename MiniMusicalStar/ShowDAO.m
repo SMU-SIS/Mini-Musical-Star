@@ -13,12 +13,14 @@
 #import "ASINetworkQueue.h"
 #import "ZipArchive.h"
 #import "SBJson.h"
+#import "StoreController.h"
 
 @implementation ShowDAO
 @synthesize loadedShows, activeDownloads, delegate;
 
 - (void)dealloc
 {
+    
     [loadedShows release];
     [activeDownloads release];
     [super dealloc];
@@ -36,6 +38,8 @@
         [self checkForNewShowsFromServer]; //this will talk to App Store for IAP, will return asynchronously so must handle it
         
         self.activeDownloads = [NSMutableDictionary dictionary];
+        
+
     }
     
     return self;
@@ -176,10 +180,12 @@
         //create UndownloadShow objects for all of them
         UndownloadedShow *newShow = [[UndownloadedShow alloc] init];
         
+        newShow.skProduct = skProduct;
         newShow.showHash = skProduct.productIdentifier;
         newShow.title = skProduct.localizedTitle;
         newShow.showDescription = skProduct.localizedDescription;
         newShow.price = skProduct.price;
+        newShow.downloadURL = [NSString stringWithFormat:@"http://mmsmusicalstore.appspot.com/shows/%@/download", skProduct.productIdentifier];
         
         //grab the new show's cover image from our server
         NSString *coverImageString = [NSString stringWithFormat:@"http://mmsmusicalstore.appspot.com/shows/%@/cover_image", skProduct.productIdentifier];
@@ -199,6 +205,8 @@
     {
         [self.delegate showDAO:self didFinishLoadingShows:self.loadedShows];
     }
+    
+    NSLog(@"reached here");
 }
 
 - (void)downloadShow:(UndownloadedShow *)aShow progressIndicatorDelegate:(id)aDelegate

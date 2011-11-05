@@ -13,6 +13,7 @@
 @class NewOpenViewController;
 @class UndownloadedShow;
 @class Show;
+@class StoreController;
 
 @interface MenuViewController : UIViewController <NSFetchedResultsControllerDelegate, ShowDAOStateDelegate>
 
@@ -20,11 +21,11 @@
 @property (retain, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (retain, nonatomic) NSMutableArray *buttonArray;
 @property (retain, nonatomic) ShowDAO *showDAO;
-
+@property (assign, nonatomic) StoreController *storeController;
 - (void)createScrollViewOfShows;
 - (UIButton *)createButtonForShow:(Show *)aShow frame:(CGRect)buttonFrame;
 - (UIButton *)createButtonForUndownloadedShow:(UndownloadedShow *)aShow frame:(CGRect)buttonFrame;
-- (void)downloadMusical:(UIButton *)sender;
+- (void)downloadMusical:(NSString *)productIdentifier;
 - (void)cancelDownloadOfShow:(UIButton *)sender;
 - (void)resetToCleanStateForPartiallyDownloadedShow:(UndownloadedShow *)aShow;
 - (void)selectMusical:(UIImageView *)musicalButton;

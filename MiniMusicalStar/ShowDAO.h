@@ -11,6 +11,7 @@
 
 @class UndownloadedShow;
 @class Show;
+@class StoreController;
 
 @protocol ShowDAOStateDelegate <NSObject>
 @required
