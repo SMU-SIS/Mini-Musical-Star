@@ -9,26 +9,51 @@
 
 #import "MiniMusicalStarAppDelegate.h"
 #import "MenuViewController.h"
+#import "ConsoleManager.h"
 
 @implementation MiniMusicalStarAppDelegate
-
 
 @synthesize window=_window;
 
 @synthesize viewController=_viewController;
 @synthesize naviController=_naviController;
+@synthesize facebook;
+
+//workaround to get a proper stacktrace in Xcode 4.2
+void uncaughtExceptionHandler(NSException *exception) {
+    NSLog(@"CRASH: %@", exception);
+    NSLog(@"Stack Trace: %@", [exception callStackSymbols]);
+    // Internal error reporting
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    //sleep(2);
+    NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
     
     // Override point for customization after application launch.
     
-    self.viewController.managedObjectContext = self.managedObjectContext;
+    self.viewController.managedObjectContext = [self managedObjectContext];
 
+    #if (TARGET_IPHONE_SIMULATOR)
+        [ConsoleManager run];
+    #endif
+    
     self.window.rootViewController = self.naviController;
+    self.naviController.delegate = self;
+    
+    //hide the navigation bar for the first view controller
+    self.naviController.navigationBarHidden = YES;
+    
     [self.window makeKeyAndVisible];
     return YES;
+}
+
+- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
+    if ( [viewController class] == [MenuViewController class] ) {
+        [navigationController setNavigationBarHidden:YES animated:animated];
+    } else if ( [navigationController isNavigationBarHidden] ) {
+        [navigationController setNavigationBarHidden:NO animated:animated];
+    }
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -115,6 +140,9 @@
     return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
 }
 
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+    return [facebook handleOpenURL:url];
+}
 
 - (void)dealloc
 {

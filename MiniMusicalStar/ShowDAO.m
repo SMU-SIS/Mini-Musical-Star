@@ -58,7 +58,7 @@
     [manager createDirectoryAtPath:showsDirectory withIntermediateDirectories:NO attributes:nil error:&error];
     
     BOOL isDirectory = YES;
-    if (![manager fileExistsAtPath:@"Howling Dog" isDirectory:&isDirectory])
+    if (![manager fileExistsAtPath:[showsDirectory stringByAppendingPathComponent:@"Howling Dog"] isDirectory:&isDirectory])
     {
         //then seed the tutorial
         NSString *howlingDogZip = [[NSBundle mainBundle] pathForResource:@"howling_dog" ofType:@"zip"];
@@ -176,7 +176,7 @@
         //create UndownloadShow objects for all of them
         UndownloadedShow *newShow = [[UndownloadedShow alloc] init];
         
-        newShow.showID = skProduct.productIdentifier;
+        newShow.showHash = skProduct.productIdentifier;
         newShow.title = skProduct.localizedTitle;
         newShow.showDescription = skProduct.localizedDescription;
         newShow.price = skProduct.price;
@@ -255,11 +255,12 @@
 }
             
 - (BOOL)checkIfExistsLocally:(NSString *)productIdentifier
+
 {
     for (int i = 0; i < self.loadedShows.count; i++)
     {
         Show *aShow = [self.loadedShows objectAtIndex:i];
-        if ([productIdentifier isEqualToString:aShow.showID])
+        if ([productIdentifier isEqualToString:aShow.showHash])
         {
             return YES;
         }

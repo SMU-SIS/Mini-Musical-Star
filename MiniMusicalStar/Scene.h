@@ -30,4 +30,6 @@
 - (Picture *)pictureForIndex:(int)index;
 -(NSArray *)arrayOfAudioTrackURLs;
 -(NSArray *)audioTracks;
+- (NSMutableArray*) getOrderedPictureTimingArray;
+
 @end

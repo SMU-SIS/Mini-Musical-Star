@@ -10,7 +10,7 @@
 
 @interface UndownloadedShow : NSObject
 
-@property (retain, nonatomic) NSString *showID;
+@property (retain, nonatomic) NSString *showHash;
 @property (retain, nonatomic) NSString *title;
 @property (retain, nonatomic) NSURL *downloadURL;
 @property (retain, nonatomic) UIImage *coverImage;

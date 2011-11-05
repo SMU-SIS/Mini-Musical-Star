@@ -12,58 +12,50 @@
 #import "Scene.h"
 #import "CoverScene.h"
 #import "CoverSceneAudio.h"
+#import <AVFoundation/AVFoundation.h>
+
+@protocol AudioEditorDelegate <NSObject>
+@required
+- (void)bringSliderToZero;
+@end
+
 @class Audio;
 @interface AudioEditorViewController : UIViewController
 <UITableViewDelegate, UITableViewDataSource, UIPopoverControllerDelegate>
-{
-    UITableView *trackTableView;
-    UIImage *recordImage;
-    UIImage *recordingImage;
-    UIImage *mutedImage;
-    UIImage *unMutedImage;
-    UIImage *trashbinImage;
+{      
+    id <AudioEditorDelegate> delegate;
     
     //variables to track the state of the MixPlayer
     bool isRecording;
     bool isPlaying;
-    
-    //for the lyrics popover
-    UIScrollView *lyricsScrollView;
-    UILabel *lyricsLabel;
-    UIPopoverController *selectLyricsPopover;
-    UIToolbar *lyricsViewToolbar;
-    
-    //stores a pointer to the play/pause button to the scene editor
-    UIButton *playPauseButton;
-    
-    //variables to store values temporarily when recording covers
-    int currentRecordingTrack;
-    NSString *lyrics;
-    NSURL *currentRecordingURL;
-    Audio *currentRecordingAudio;
-    
-    NSMutableArray *arrayOfReplaceableAudios;
+
+    bool stopButtonPressWhenRecordingWarningHasDisplayed;
+
+    int currentRecordingIndex;
 }
 
 @property (nonatomic, retain) UITableView *trackTableView;
 @property (nonatomic, retain) UIImage *recordImage;
-@property (nonatomic, retain) UIImage *recordingImage;
 @property (nonatomic, retain) UIImage *mutedImage;
 @property (nonatomic, retain) UIImage *unmutedImage;
 @property (nonatomic, retain) UIImage *trashbinImage;
+@property (nonatomic, retain) UIImage *showLyricsImage;
+@property (nonatomic, retain) UIImage *playButtonImage;
+@property (nonatomic, retain) UIImage *pauseButtonImage;
+@property (nonatomic, retain) UIImage *recordingImage;
 
-@property (nonatomic, retain) NSString *lyrics;
-
-//for the lyrics
+//for the lyrics popover
 @property (nonatomic, retain) UIScrollView *lyricsScrollView;
 @property (nonatomic, retain) UILabel *lyricsLabel;
-@property (nonatomic, retain) UIPopoverController *selectLyricsPopover;
-@property (nonatomic, retain) UIToolbar *lyricsViewToolbar;
 
 @property (nonatomic, retain) MixPlayerRecorder *thePlayer;
-@property (nonatomic, retain) NSArray *theAudioObjects;
+
+@property (nonatomic, retain) Scene *theScene;
 @property (nonatomic, retain) CoverScene *theCoverScene;
+
 @property (nonatomic, retain) NSMutableArray *tracksForView;
+@property (nonatomic, retain) NSMutableArray *tracksForViewNSURL;
+@property (nonatomic, retain) NSMutableArray *arrayOfReplaceableAudios;
 
 @property (nonatomic, retain) NSManagedObjectContext *context;
 
@@ -72,39 +64,33 @@
 
 @property (nonatomic, retain) UIButton *playPauseButton;
 
-@property (nonatomic, retain) NSMutableArray *arrayOfReplaceableAudios;
+@property (nonatomic, assign) id delegate;
 
 - (id)initWithScene:(Scene *)theScene andCoverScene:(CoverScene *)aCoverScene andContext:(NSManagedObjectContext *)aContext andPlayPauseButton:(UIButton*)aPlayPauseButton;
 
-- (void)playButtonIsPressed;
-- (void)stopButtonIsPresssed;
+- (void)autosaveWhenContextDidChange:(NSNotification*)notification;
 
+//instance methods
 - (void)startCoverAudioRecording:(int)indexInConsolidatedAudioTracksArray;
 - (void)trashCoverAudio:(int)indexInConsolidatedAudioTracksArray;
-
 - (bool)isRecording;
-
-- (void)giveMePlayPauseButton:(UIButton*)aButton;
-
-- (void)deRegisterFromNSNotifcationCenter;
+- (void)playPauseButtonIsPressed;
 - (void)registerNotifications;
+- (void)deRegisterFromNSNotifcationCenter;
+- (int)getTableViewRow:(UIButton*)sender;
+- (void)startPlayerPlaying;
+- (void)recordingIsCompleted;
+- (void)stopPlayerWhenPlaying:(bool)hasReachedEnd;
 
-- (void)drawLyricsView;
-- (CAGradientLayer*)createGradientLayer:(CGRect)frame firstColor:(UIColor*)firstColor andSecondColor:(UIColor*)secondColor;
-- (UIScrollView*)createLyricsScrollView;
-- (UILabel*)createLyricsLabel;
-- (void)loadLyrics:(NSString*)someLyrics;
-
-+ (NSString*)getUniqueFilenameWithoutExt;
-
+//instance methods for the audio and coveraudio arrays
 - (NSArray*)getExportAudioURLs;
-
-- (void)showSelectLyricsPopover:(id*)sender;
-- (UIPopoverController*)createSelectLyricsPopover;
-
-- (void)consolidateOriginalAndCoverTracks;
+- (void)consolidateArrays;
 - (void)consolidateReplaceableAudios;
 
-- (NSString*)findFirstReplaceableTrackAndSetLyrics;
+//instance methods for gui
+- (void)drawLyricsView;
+- (void)loadLyrics:(NSString*)someLyrics;
+- (UIScrollView*)createLyricsScrollView;
+- (UILabel*)createLyricsLabel;
 
 @end

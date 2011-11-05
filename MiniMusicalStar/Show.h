@@ -17,7 +17,7 @@
 
 @property (retain, nonatomic) NSMutableDictionary *scenes;
 @property (retain, nonatomic) NSMutableArray *scenesOrder;
-@property (retain, nonatomic) NSString *showID;
+@property (retain, nonatomic) NSString *showHash;
 @property (retain, nonatomic) NSString *title;
 @property (retain, nonatomic) NSString *author;
 @property (retain, nonatomic) NSDate *createdDate;
@@ -30,5 +30,7 @@
 
 - (Show *)initShowWithPropertyListFile: (NSString *)pListFilePath atPath:(NSURL *)showPath;
 - (Scene *)sceneForIndex:(int)idx;
+- (NSMutableArray*) getMusicalImagesArray;
+- (NSMutableArray*) getMusicalPicturesTimingDict;
 
 @end

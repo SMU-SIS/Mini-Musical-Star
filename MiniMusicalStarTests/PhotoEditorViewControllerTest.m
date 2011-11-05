@@ -58,7 +58,7 @@
     self.controller = [[[PhotoEditorViewController alloc] init] autorelease];
     GHAssertNotNULL(controller,@"controller did not get initialized");
     
-    self.controller.thePictures = pictureArray;
+    //self.controller.thePictures = pictureArray;
     self.controller.theCoverScene = [OCMockObject mockForClass: [CoverScene class]];
     self.controller.context = [OCMockObject mockForClass: [NSManagedObjectContext class]];
 //    AFOpenFlowView *mockOpenFlowView = [[AFOpenFlowView alloc] init];

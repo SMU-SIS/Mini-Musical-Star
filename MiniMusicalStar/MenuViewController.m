@@ -17,7 +17,6 @@
 @implementation MenuViewController
 @synthesize managedObjectContext, scrollView, buttonArray, showDAO;
 
-
 - (void)dealloc
 {
     [managedObjectContext release];
@@ -48,6 +47,10 @@
 {
     [super viewDidLoad];
     
+    //load background    
+    UIColor *background = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"main_background.png"]];
+    [self.view setBackgroundColor:background];
+    
     //load the shows on the local disk
     self.showDAO = [[ShowDAO alloc] initWithDelegate:self];
     
@@ -74,8 +77,8 @@
     scrollView.showsHorizontalScrollIndicator = NO;
     scrollView.showsVerticalScrollIndicator = NO;
     scrollView.pagingEnabled = NO;
-    scrollView.clipsToBounds = NO;    
-    [scrollView setContentSize:CGSizeMake(self.showDAO.loadedShows.count * 280, scrollView.frame.size.height)];
+    scrollView.clipsToBounds = YES;    
+    [scrollView setContentSize:CGSizeMake(35 + (self.showDAO.loadedShows.count * (280 + 125)), scrollView.frame.size.height)];
     
     //create a buttonArray as the backing for the buttons in the scrollview (so we can refer to them later)
     self.buttonArray = [NSMutableArray arrayWithCapacity:self.showDAO.loadedShows.count];
@@ -84,7 +87,7 @@
     [self.showDAO.loadedShows enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         
         CGRect frame;
-        frame.origin.x = scrollView.frame.size.width/3 * idx;
+        frame.origin.x = 35 + ((280 + 125) * idx);
         frame.origin.y = 0;
         frame.size.width = 280;
         frame.size.height = scrollView.frame.size.height;
@@ -237,12 +240,16 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    scrollView.hidden = YES;
+    //scrollView.hidden = YES;
+
 }
 - (void)viewDidAppear:(BOOL)animated
 {
-    scrollView.hidden = NO;
+    //scrollView.hidden = NO;
+    //hide the navigation bar
+    
 }
+
 
 - (void)viewDidUnload
 {

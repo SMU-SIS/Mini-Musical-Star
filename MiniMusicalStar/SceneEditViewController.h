@@ -13,15 +13,24 @@
 #import "CoverScene.h"
 #import "MixPlayerRecorder.h"
 
-@interface SceneEditViewController : UIViewController <UIScrollViewDelegate, UIAlertViewDelegate, PhotoEditorViewDelegate> {
+@protocol SceneEditViewDelegate <NSObject>
+- (NSArray*) getExportAudioURLs;
+@end
+
+@interface SceneEditViewController : UIViewController 
+    <UIScrollViewDelegate, UIAlertViewDelegate, PhotoEditorViewDelegate, AudioEditorDelegate> {
     // To be used when scrolls originate from the UIPageControl
     BOOL pageControlUsed;
     BOOL transitioning;
     BOOL isReallyStop;
     BOOL isAlertShown;
     
+    id <SceneEditViewDelegate> delegate;
+    
     IBOutlet UIButton *playPauseButton;
 }
+
+@property (nonatomic, assign) id <SceneEditViewDelegate> delegate;
 
 @property (retain, nonatomic) AudioEditorViewController *audioView;
 @property (retain, nonatomic) PhotoEditorViewController *photoView;
@@ -36,17 +45,14 @@
 @property (retain, nonatomic) UIBarButtonItem *containerToggleButton;
 @property (retain, nonatomic) Scene *theScene;
 @property (retain, nonatomic) CoverScene *theCoverScene;
-
 @property (retain, nonatomic) NSManagedObjectContext *context;
 
 - (SceneEditViewController *)initWithScene:(Scene *)aScene andSceneCover:(CoverScene *)aCoverScene andContext:(NSManagedObjectContext *)aContext;
 - (void)loadChildViewControllers;
 - (void)setSliderPosition:(int) targetSeconds;
-- (void)showReallyAlertView;
-- (void)playPauseButtonIsPressed;
 - (void)stopPlayer;
-- (BOOL)isRecording;
 - (NSArray*) getExportAudioURLs;
 - (void) playMovie:(NSURL*)filePath;
+-(void)drawPlaySlider;
     
 @end

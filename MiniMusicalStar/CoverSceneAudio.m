@@ -11,9 +11,15 @@
 
 
 @implementation CoverSceneAudio
-@dynamic OriginalHash;
+@dynamic originalHash;
 @dynamic path;
 @dynamic title;
 @dynamic CoverScene;
+
+- (BOOL)deleteAudioFile
+{
+    NSFileManager *manager = [NSFileManager defaultManager];
+    return [manager removeItemAtPath:self.path error:nil];
+}
 
 @end

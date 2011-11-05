@@ -14,7 +14,7 @@
 @interface CoverScene : NSManagedObject {
 @private
 }
-@property (nonatomic, retain) NSNumber * SceneNum;
+@property (nonatomic, retain) NSString *sceneHash;
 @property (nonatomic, retain) NSSet *Audio;
 @property (nonatomic, retain) Cover *Cover;
 @property (nonatomic, retain) NSSet *Picture;

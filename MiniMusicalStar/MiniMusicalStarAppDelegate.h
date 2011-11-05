@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Facebook.h"
 
 @class MenuViewController;
 
-@interface MiniMusicalStarAppDelegate : NSObject <UIApplicationDelegate> {
+@interface MiniMusicalStarAppDelegate : NSObject <UIApplicationDelegate, UINavigationControllerDelegate> {
     NSManagedObjectModel *managedObjectModel;
     NSManagedObjectContext *managedObjectContext;
     NSPersistentStoreCoordinator *persistentStoreCoordinator;
@@ -24,6 +25,8 @@
 
 @property (nonatomic, retain) IBOutlet UINavigationController *naviController;
 @property (nonatomic, retain) IBOutlet MenuViewController *viewController;
+
+@property (nonatomic, assign) Facebook *facebook;
 
 - (NSString *)applicationDocumentsDirectory;
 

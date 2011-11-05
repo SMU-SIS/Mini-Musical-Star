@@ -32,9 +32,12 @@
         // Initialization code here.
         self.hash = aHash;
         self.title = [dictionary objectForKey:@"title"];
-        self.coverPicture = [[UIImage alloc] initWithContentsOfFile:[assetPath stringByAppendingString:[dictionary objectForKey:@"cover-picture"]]];
-        self.description = [dictionary objectForKey:@"description"];
         
+        NSString *picturePath = [assetPath stringByAppendingPathComponent:[dictionary objectForKey:@"cover-picture"]];
+        self.coverPicture = [[UIImage alloc] initWithContentsOfFile:picturePath];
+        
+        self.description = [dictionary objectForKey:@"description"];
+        NSLog(@"%@", self.coverPicture);
         //init the audio stuff here
         NSMutableDictionary *plistAudioDict = [dictionary objectForKey:@"audio"];
         self.audioDict = [NSMutableDictionary dictionaryWithCapacity:[plistAudioDict count]];
@@ -129,10 +132,31 @@
     return [[self.pictureTimingsArray objectAtIndex:index] intValue];
 }
 
+- (NSMutableArray*) getOrderedPictureTimingArray
+{
+    NSMutableArray *sortedTimingsArray = [NSMutableArray arrayWithArray:[self.pictureTimingDict allKeys]];
+    [sortedTimingsArray sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        NSString *strObj1 = (NSString *)obj1;
+        NSString *strObj2 = (NSString *)obj2;
+        
+        if ([strObj1 intValue] > [strObj2 intValue])
+        {
+            return NSOrderedDescending;
+        }
+        
+        else
+        {
+            return NSOrderedAscending;
+        }
+    }];
+    
+    return sortedTimingsArray;
+}
+
 - (UIImage *)coverPicture
 {
     
-    if (coverPicture)
+    if (coverPicture != nil)
     {
         return coverPicture;
     }

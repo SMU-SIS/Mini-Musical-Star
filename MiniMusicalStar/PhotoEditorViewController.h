@@ -57,6 +57,7 @@
 - (BOOL) setSliderImages:(UInt32)timeAt;
 - (int)replaceCenterImage: (UIImage*)image;
 - (void)openFlowView:(AFOpenFlowView *)openFlowView selectionDidChange:(int)index;
+-(void)autosaveWhenContextDidChange:(NSNotification*)notification;
 
 -(IBAction)pressManualButton;
 

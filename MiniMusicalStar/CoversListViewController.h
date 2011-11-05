@@ -10,6 +10,13 @@
 #import "Show.h"
 #import "Cover.h"
 
+@protocol CoversListDelegate <NSObject>
+
+- (void)loadSceneSelectionScrollViewWithCover:(Cover *)aCover;
+-(IBAction) showMediaManagement: (id)sender;
+
+@end
+
 @interface CoversListViewController : UITableViewController <NSFetchedResultsControllerDelegate>
 
 @property (assign, nonatomic) id delegate;
@@ -17,7 +24,9 @@
 @property (retain, nonatomic) NSManagedObjectContext *context;
 @property (retain, nonatomic) NSFetchedResultsController *frc;
 
+- (Cover*) getSelectedCover: (NSIndexPath *)indexPath;
 - (id)initWithShow:(Show *)aShow context:(NSManagedObjectContext *)aContext;
 - (void)createFetchedResultsController;
 - (void)configureCell:(UITableViewCell*)cell atIndexPath:(NSIndexPath*)indexPath;
+- (int)numberOfCovers;
 @end

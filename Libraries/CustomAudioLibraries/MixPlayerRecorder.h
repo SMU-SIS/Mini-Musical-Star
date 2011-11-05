@@ -15,6 +15,8 @@
 #define kMixPlayerRecorderPlaybackStarted @"kMixPlayerRecorderPlaybackStarted"
 #define kMixPlayerRecorderPlaybackStopped @"kMixPlayerRecorderPlaybackStopped"
 #define kMixPlayerRecorderPlaybackElapsedTimeAdvanced @"kMixPlayerRecorderPlaybackElapsedTimeAdvanced"
+#define kMixPlayerRecorderRecordingHasReachedEnd @"kMixPlayerRecorderRecordingHasReachedEnd"
+#define kMixPlayerRecorderPlayingHasReachedEnd @"kMixPlayerRecorderPlayingHasReachedEnd"
 
 #import <Foundation/Foundation.h>
 #import <AudioToolbox/AudioToolbox.h>
@@ -85,4 +87,5 @@
 -(void)postNotificationForElapsedTime; //you don't have to call this manually
 -(bool)checkGraphStatus; //for testing purposes only
 
+- (NSString*)getCurrentAudioRoute;
 @end

@@ -8,34 +8,49 @@
 
 #import <UIKit/UIKit.h>
 #import "Show.h"
-#import "SceneViewController.h"
 #import "Cover.h"
 #import "CoversListViewController.h"
+#import "ExportTableViewController.h"
+#import "AlertPrompt.h"
+#import "ExportViewController.h"
 
-@interface ChoiceSelectionViewController : UIViewController{
+@class SceneStripController;
+@class SceneEditViewController;
+
+@interface ChoiceSelectionViewController : UIViewController <CoversListDelegate, NSFetchedResultsControllerDelegate> {
     IBOutlet UIImageView *showCover;
     IBOutlet UIButton *create;
     IBOutlet UIButton *cover;
     
     NSManagedObjectContext *managedObjectContext;
-    UIViewController *currentSelectedCoversList;
-    UIView *currentSelectedMusical;
 }
 
 @property (retain, nonatomic) Show *theShow;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
-@property (retain, nonatomic) UIViewController *currentSelectedCoversList;
-@property (retain, nonatomic) UIView *currentSelectedMusical;
 @property (retain, nonatomic) NSFetchedResultsController *frc;
-
+@property (retain, nonatomic) NSString *coverName;
+@property (nonatomic, retain) ExportTableViewController *exportTableController;
+@property (nonatomic, retain) ExportViewController *exportViewController;
+@property (nonatomic, retain) CoversListViewController *currentSelectedCoversList;
+@property (nonatomic, retain) UIBarButtonItem *mediaManagementButton;
 @property (retain, nonatomic) IBOutlet UILabel *showTitle;
 @property (retain, nonatomic) IBOutlet UITextView *showDescription;
+@property (retain, nonatomic) IBOutlet SceneStripController *sceneStripController;
+@property (retain, nonatomic) IBOutlet UITableView *coversTableView;
+@property (retain, nonatomic) IBOutlet UIButton *exportButton;
 
+-(IBAction) showMediaManagement: (id)sender;
 -(ChoiceSelectionViewController *)initWithAShowForSelection:(Show *)aShow context:(NSManagedObjectContext *)aContext;
-
--(IBAction)createMusical:(UIButton*)sender;
--(IBAction)listCoversForMusical:(UIButton*)sender;
+- (void)loadSceneSelectionScrollViewWithCover:(Cover *)aCover;
+-(void)createMusical;
+-(IBAction)loadCoversList:(UIButton*)sender;
+- (IBAction)removeScrollStrip:(id) sender;
+-(IBAction)promptForCoverName:(UIButton*)sender;
+- (IBAction)goToExportPage: (id)sender;
 
 - (void)loadCoversForShow:(Show *)aShow;
+-(void)selectedSavedCover;
+
+- (void)dismissCoversList;
 
 @end

@@ -8,6 +8,7 @@
 
 #import "CameraPopupViewController.h"
 #import <MobileCoreServices/MobileCoreServices.h>
+#import "MiniMusicalStarUtilities.h"
 
 @implementation CameraPopupViewController
 
@@ -37,6 +38,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    UIImage *takePhotoImage = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"camera" ofType:@"png"]];
+    [takePhotoButton setImage:takePhotoImage forState:UIControlStateNormal];
+    UIImage *photoLibraryImage = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"photo_library" ofType:@"png"]];
+    [replacePictureButton setImage:photoLibraryImage forState:UIControlStateNormal];
 }
 
 - (void)viewDidUnload
@@ -167,7 +172,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
         //save photo to documents directory, then store path in core data
         
         //write image
-        NSString *imageFileName = [NSString stringWithFormat:@"user_%i.jpg", selectedIndex];
+        NSString *imageFileName = [MiniMusicalStarUtilities getUniqueFilenameWithoutExt];
 
         NSString  *jpgPath = [NSHomeDirectory() stringByAppendingPathComponent:[@"Documents" stringByAppendingPathComponent:imageFileName]];
         
@@ -179,7 +184,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
         //save to coredata
         CoverScenePicture *newPicture = [NSEntityDescription insertNewObjectForEntityForName:@"CoverScenePicture" inManagedObjectContext:context];
         newPicture.OriginalHash = self.originalHash;
-        newPicture.OrderNumber = [NSNumber numberWithInt:(selectedIndex)];
+        newPicture.OrderNumber = [[NSNumber numberWithInt:(selectedIndex)] stringValue];
         newPicture.Path = documentsDirectoryImage;
         [theCoverScene addPictureObject:newPicture];
     }

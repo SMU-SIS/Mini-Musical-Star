@@ -7,20 +7,59 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Show.h"
+#import <MediaPlayer/MediaPlayer.h>
+#import <AVFoundation/AVFoundation.h>
+#import "FacebookUploaderViewController.h"
+#import "ExportedAsset.h"
 
-@protocol ExportTableViewControllerDelegate <NSObject>
+@class Show;
+@class ShowDAO;
+@class Scene;
+@class SceneUtility;
+@class Cover;
+@class CoverScene;
+@class FacebookUploader;
+@class YouTubeUploader; 
+@class ImageToVideoConverter;
+@class MiniMusicalStarUtilities;
 
--(void)didTap:(NSString *)string;
-
+@protocol ExportTableViewDelegate <NSObject>
+- (void) reloadMediaTable;
+- (NSMutableArray *) getTextFieldArray;
 @end
 
 @interface ExportTableViewController : UITableViewController
+
 {
-    id delegate;
+    id <ExportTableViewDelegate> delegate;
 }
 
+@property (retain, nonatomic) NSArray *musicalArray;
+@property (retain, nonatomic) NSArray *scenesArray;
+@property (retain, nonatomic) NSMutableArray *exportedAssetsArray;
 @property (retain, nonatomic) Show *theShow;
-@property (nonatomic, assign) id<ExportTableViewControllerDelegate> delegate;
+@property (retain, nonatomic) Cover *theCover;
+@property (retain, nonatomic) SceneUtility *theSceneUtility;
+
+@property (nonatomic, assign) id <ExportTableViewDelegate> delegate;
+
+@property (nonatomic, retain) NSTimer *timer;
+@property (nonatomic, retain) UIBarButtonItem *uploadBarButtonItem;
+@property (retain, nonatomic) NSMutableArray *tempMusicalContainer;
+
+@property (retain, nonatomic) NSManagedObjectContext *context;
+
+- (id)initWithStyle:(UITableViewStyle)style:(Show*)show:(Cover*)cover context:(NSManagedObjectContext *)aContext;
+- (void) generateMusical;
+- (void) prepareMusicalNotification;
+- (void) processExportSession: (AVMutableComposition*) composition:(NSURL*)videoFileURL:(NSURL*)creditsFileURL: (NSURL*) outputFileURL: (UIProgressView*) prog: (NSString*) state;
+-(void) sessionExport: (AVMutableComposition*) composition: (NSURL*)videoFileURL: (NSURL*)creditsFileURL: (NSURL*)outputFileURL: (NSIndexPath*) indexPath: (NSString*) state;
+- (void)exportScene:(Scene*) scene:(CoverScene*) coverScene: (NSIndexPath*) indexPath;
+- (void)exportMusical:(Show*)show;
+
+- (void) removeFileAtPath: (NSURL*) filePath;
+- (void) exportCompleted: (NSURL*) videoFileURL: (NSURL*) creditsFileURL: (NSURL*) outputFileURL: (UIProgressView*) prog: (NSTimer*) progressBarLoader: (NSString*) state;
+- (void) allScenesExportedNotificationSender;
+- (int)getTableViewRow:(UIButton*)sender;
 
 @end

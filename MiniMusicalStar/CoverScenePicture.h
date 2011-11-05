@@ -14,11 +14,12 @@
 @interface CoverScenePicture : NSManagedObject {
 @private
 }
-@property (retain, nonatomic) NSString *OriginalHash;
+@property (retain, nonatomic) NSString *originalHash;
 @property (nonatomic, retain) NSNumber * OrderNumber;
 @property (nonatomic, retain) NSString * Path;
 @property (nonatomic, retain) CoverScene *CoverScene;
 
 -(UIImage *)image;
+- (BOOL)deletePictureFile;
 
 @end
