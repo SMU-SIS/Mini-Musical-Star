@@ -9,7 +9,7 @@
 
 #import "MiniMusicalStarAppDelegate.h"
 #import "MenuViewController.h"
-#import "ConsoleManager.h"
+//#import "ConsoleManager.h"
 
 @implementation MiniMusicalStarAppDelegate
 
@@ -34,9 +34,9 @@ void uncaughtExceptionHandler(NSException *exception) {
     
     self.viewController.managedObjectContext = [self managedObjectContext];
 
-    #if (TARGET_IPHONE_SIMULATOR)
-        [ConsoleManager run];
-    #endif
+//    #if (TARGET_IPHONE_SIMULATOR)
+//        [ConsoleManager run];
+//    #endif
     
     self.window.rootViewController = self.naviController;
     self.naviController.delegate = self;
