@@ -2539,7 +2539,6 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MiniMusicalStar/MiniMusicalStar-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = "USE_PRIVATE_API=1";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "MiniMusicalStar/MiniMusicalStar-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
@@ -2566,7 +2565,6 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MiniMusicalStar/MiniMusicalStar-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = "USE_PRIVATE_API=1";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "MiniMusicalStar/MiniMusicalStar-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
