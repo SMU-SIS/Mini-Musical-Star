@@ -34,6 +34,8 @@
     int currentRecordingIndex;
 }
 
+@property (nonatomic, retain) IBOutlet UILabel *recordingStatusLabel;
+
 @property (nonatomic, retain) UITableView *trackTableView;
 @property (nonatomic, retain) UIImage *recordImage;
 @property (nonatomic, retain) UIImage *mutedImage;

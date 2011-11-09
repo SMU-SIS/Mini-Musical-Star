@@ -13,6 +13,7 @@
 #import "ShowDAO.h"
 
 @implementation AudioEditorViewController
+@synthesize recordingStatusLabel;
 @synthesize thePlayer, theScene, theCoverScene, context;
 @synthesize tracksForView, tracksForViewNSURL;
 @synthesize trackTableView, recordImage, mutedImage, unmutedImage, trashbinImage, showLyricsImage;
@@ -59,7 +60,7 @@
     
     [arrayOfReplaceableAudios release];
     
-    
+    [recordingStatusLabel release];
     
     [super dealloc];
 }
@@ -357,6 +358,8 @@
         
         //if the audiotrack can be replaced, start recording
         [self startCoverAudioRecording:row];
+        
+        self.recordingStatusLabel.text = @"NOW RECORDING";
     }
 }
 
@@ -411,6 +414,8 @@
         //clear values
         currentRecordingAudio = nil;
         currentRecordingURL = nil;
+        
+        self.recordingStatusLabel.text = @"";
     }
     else //player is neither playing or recording
     {
@@ -456,6 +461,8 @@
     if (hasReachedEnd == YES) {
         [delegate bringSliderToZero];
     }
+    
+    self.recordingStatusLabel.text = @"";
 }
 
 #pragma mark - instance methods
