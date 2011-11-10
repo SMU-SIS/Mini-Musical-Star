@@ -260,6 +260,66 @@
     
 }
 
+-(AVMutableVideoComposition*) getVideoCompositionWithCustomAnimationsToComposition:(AVMutableComposition*)composition andSortedTimingsArrayForKensBurn:(NSMutableArray*)sortedTimingsArray withVideoAsset:(AVAsset*)videoAsset ofVideoSize:(CGSize)videoSize
+{
+    AVMutableVideoComposition *videoComposition = [AVMutableVideoComposition videoComposition];
+    
+    AVMutableVideoCompositionInstruction *passThroughInstruction = [AVMutableVideoCompositionInstruction videoCompositionInstruction];
+    passThroughInstruction.timeRange = CMTimeRangeMake(kCMTimeZero, CMTimeAdd([composition duration], CMTimeMake(11, 1)));
+    AVAssetTrack *videoTrack = [[composition tracksWithMediaType:AVMediaTypeVideo] objectAtIndex:0];
+    AVMutableVideoCompositionLayerInstruction *passThroughLayer = [AVMutableVideoCompositionLayerInstruction videoCompositionLayerInstructionWithAssetTrack:videoTrack];    
+    passThroughInstruction.layerInstructions = [NSArray arrayWithObject:passThroughLayer];
+    passThroughInstruction.enablePostProcessing = YES;
+    
+    videoComposition.instructions = [NSArray arrayWithObject:passThroughInstruction];       
+    videoComposition.frameDuration = CMTimeMake(1, 30); 
+    videoComposition.renderSize = videoSize;
+    videoComposition.renderScale = 1.0;
+    
+    [composition insertEmptyTimeRange:CMTimeRangeMake(composition.duration,CMTimeMake(11,1))];
+    
+    CALayer *animationLayer = [CALayer layer];
+    animationLayer.bounds = CGRectMake(0, 0, videoSize.width, videoSize.height);
+    
+    CALayer *parentLayer = [CALayer layer];
+    CALayer *videoLayer = [CALayer layer];
+    
+    parentLayer.bounds = CGRectMake(0, 0, videoSize.width, videoSize.height);
+    parentLayer.anchorPoint =  CGPointMake(0, 0);
+    parentLayer.position = CGPointMake(0, 0);
+    
+    videoLayer.frame = CGRectMake(0, 0, videoSize.width, videoSize.height);
+    [parentLayer addSublayer:videoLayer];
+    videoLayer.anchorPoint =  CGPointMake(0.5, 0.5);
+    videoLayer.position = CGPointMake(CGRectGetMidX(parentLayer.bounds), CGRectGetMidY(parentLayer.bounds));
+    [parentLayer addSublayer:animationLayer];
+    animationLayer.anchorPoint =  CGPointMake(0.5, 0.5);
+    animationLayer.position = CGPointMake(CGRectGetMidX(parentLayer.bounds),0);
+    
+    NSMutableArray *textFieldArray = [delegate getTextFieldArray];
+    [CustomVideoAnimations addTextAnimationLayersToLayer:animationLayer withTextArray:textFieldArray forVideoSize:videoSize];
+    
+    [animationLayer setOpacity: 0.0];
+    
+    CABasicAnimation *appearAnimation = [CustomVideoAnimations getAppearAnimationAtTime:CMTimeGetSeconds(composition.duration) withDuration: 1.0];
+    [animationLayer addAnimation:appearAnimation forKey:nil];
+    
+    CABasicAnimation *scrollAnimation = [CustomVideoAnimations getScrollAnimationAtTime:CMTimeGetSeconds(composition.duration) withDuration:10.0];
+    [animationLayer addAnimation:scrollAnimation forKey:nil];
+    
+    CABasicAnimation *fadeAnimation = [CustomVideoAnimations getFadeAnimationAtTime:CMTimeGetSeconds(composition.duration) withDuration:0.1];
+    [videoLayer addAnimation:fadeAnimation forKey:nil];
+    
+    Float64 videoLength = CMTimeGetSeconds(videoAsset.duration);
+    
+    KensBurnAnimation *kbAnim = [[KensBurnAnimation alloc] init];
+    [kbAnim addKensBurnAnimationToLayer:videoLayer withTimingsArray:sortedTimingsArray overDuration:videoLength];
+    
+    videoComposition.animationTool = [AVVideoCompositionCoreAnimationTool videoCompositionCoreAnimationToolWithPostProcessingAsVideoLayer:videoLayer inLayer:parentLayer];
+    
+    return videoComposition;
+}
+
 -(void)generateSceneVideo :(Scene*) theScene: (NSArray*) imagesArray:(NSArray*) audioExportURLs:(NSIndexPath*) indexPath: (NSString*) state
 {
     __block NSError *error = nil;
@@ -307,63 +367,7 @@
     videoSize.width = fabs(videoSize.width);
     videoSize.height = fabs(videoSize.height);
     
-    AVMutableVideoComposition *videoComposition = [AVMutableVideoComposition videoComposition];
-    
-    AVMutableVideoCompositionInstruction *passThroughInstruction = [AVMutableVideoCompositionInstruction videoCompositionInstruction];
-    passThroughInstruction.timeRange = CMTimeRangeMake(kCMTimeZero, CMTimeAdd([composition duration], CMTimeMake(11, 1)));
-    AVAssetTrack *videoTrack = [[composition tracksWithMediaType:AVMediaTypeVideo] objectAtIndex:0];
-    AVMutableVideoCompositionLayerInstruction *passThroughLayer = [AVMutableVideoCompositionLayerInstruction videoCompositionLayerInstructionWithAssetTrack:videoTrack];    
-    passThroughInstruction.layerInstructions = [NSArray arrayWithObject:passThroughLayer];
-    passThroughInstruction.enablePostProcessing = YES;
-    
-    videoComposition.instructions = [NSArray arrayWithObject:passThroughInstruction];       
-    videoComposition.frameDuration = CMTimeMake(1, 30); 
-    videoComposition.renderSize = videoSize;
-    videoComposition.renderScale = 1.0;
-    
-    [composition insertEmptyTimeRange:CMTimeRangeMake(composition.duration,CMTimeMake(11,1))];
-    
-    CALayer *animationLayer = [CALayer layer];
-    animationLayer.bounds = CGRectMake(0, 0, videoSize.width, videoSize.height);
-    
-    CALayer *parentLayer = [CALayer layer];
-    CALayer *videoLayer = [CALayer layer];
-    
-    parentLayer.bounds = CGRectMake(0, 0, videoSize.width, videoSize.height);
-    parentLayer.anchorPoint =  CGPointMake(0, 0);
-    parentLayer.position = CGPointMake(0, 0);
-    
-    videoLayer.frame = CGRectMake(0, 0, videoSize.width, videoSize.height);
-    [parentLayer addSublayer:videoLayer];
-    videoLayer.anchorPoint =  CGPointMake(0.5, 0.5);
-    videoLayer.position = CGPointMake(CGRectGetMidX(parentLayer.bounds), CGRectGetMidY(parentLayer.bounds));
-    [parentLayer addSublayer:animationLayer];
-    animationLayer.anchorPoint =  CGPointMake(0.5, 0.5);
-    animationLayer.position = CGPointMake(CGRectGetMidX(parentLayer.bounds),0);
-    
-    NSMutableArray *textFieldArray = [delegate getTextFieldArray];
-    
-    [CustomVideoAnimations addTextAnimationLayersToLayer:animationLayer withTextArray:textFieldArray forVideoSize:videoSize];
-    
-    [animationLayer setOpacity: 0.0];
-    
-    CABasicAnimation *appearAnimation = [CustomVideoAnimations getAppearAnimationAtTime:CMTimeGetSeconds(composition.duration) withDuration: 1.0];
-    [animationLayer addAnimation:appearAnimation forKey:nil];
-    
-    CABasicAnimation *scrollAnimation = [CustomVideoAnimations getScrollAnimationAtTime:CMTimeGetSeconds(composition.duration) withDuration:10.0];
-    [animationLayer addAnimation:scrollAnimation forKey:nil];
-    
-    //add fade away for video layer for credits to show
-    CABasicAnimation *fadeAnimation = [CustomVideoAnimations getFadeAnimationAtTime:CMTimeGetSeconds(composition.duration) withDuration:0.1];
-    [videoLayer addAnimation:fadeAnimation forKey:nil];
-    
-    Float64 videoLength = CMTimeGetSeconds(videoAsset.duration);
-    
-    KensBurnAnimation *kbAnim = [[KensBurnAnimation alloc] init];
-    [kbAnim addKensBurnAnimationToLayer:videoLayer withTimingsArray:sortedTimingsArray overDuration:videoLength];
-    
-    videoComposition.animationTool = [AVVideoCompositionCoreAnimationTool videoCompositionCoreAnimationToolWithPostProcessingAsVideoLayer:videoLayer inLayer:parentLayer];
-    
+    AVMutableVideoComposition *videoComposition = [self getVideoCompositionWithCustomAnimationsToComposition:composition andSortedTimingsArrayForKensBurn:sortedTimingsArray withVideoAsset:videoAsset ofVideoSize:videoSize];
     //session export
     [self processExportSession :theScene :composition :videoComposition :videoFileURL:outputFileURL:state];
     
