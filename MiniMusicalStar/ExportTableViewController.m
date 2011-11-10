@@ -357,30 +357,10 @@
     CABasicAnimation *fadeAnimation = [CustomVideoAnimations getFadeAnimationAtTime:CMTimeGetSeconds(composition.duration) withDuration:0.1];
     [videoLayer addAnimation:fadeAnimation forKey:nil];
     
-    for(int i =0 ; i<sortedTimingsArray.count ; i++)
-    {
-        float startTime = [[sortedTimingsArray objectAtIndex:i] floatValue];
-        
-        float duration = 0;
-        
-        if (i + 1 != sortedTimingsArray.count){
-            duration = [[sortedTimingsArray objectAtIndex:i+1] floatValue] - startTime;
-        }else{
-            Float64 videoLength = CMTimeGetSeconds(videoAsset.duration);
-            duration = videoLength - startTime;
-        }
-        
-        if(i==0){
-            startTime = startTime + 0.1;
-            duration = duration - 0.1;
-        }
-        
-        KensBurnAnimation *kbAnim = [[KensBurnAnimation alloc] init];
-        CABasicAnimation *kensBurnAnimation = [kbAnim getKensBurnAnimationForImageAtTime:startTime andDuration:duration];
-        
-        [videoLayer addAnimation:kensBurnAnimation forKey:nil];
-    }
+    Float64 videoLength = CMTimeGetSeconds(videoAsset.duration);
     
+    KensBurnAnimation *kbAnim = [[KensBurnAnimation alloc] init];
+    [kbAnim addKensBurnAnimationToLayer:videoLayer withTimingsArray:sortedTimingsArray overDuration:videoLength];
     
     videoComposition.animationTool = [AVVideoCompositionCoreAnimationTool videoCompositionCoreAnimationToolWithPostProcessingAsVideoLayer:videoLayer inLayer:parentLayer];
     

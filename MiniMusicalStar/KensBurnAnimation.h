@@ -23,7 +23,7 @@
 - (void)randomGenerateKensBurnNumbers;
 - (NSInteger)getRandFrom:(NSInteger)min to:(NSInteger)max;
 -(CABasicAnimation*) getKensBurnAnimationForImageAtTime: (float) startTime andDuration: (float) duration;
-
+-(void) addKensBurnAnimationToLayer: (CALayer*)layer withTimingsArray:(NSMutableArray*)sortedTimingsArray overDuration:(Float64)durationInSeconds;
 /* C methods */
 float randomFloat();
 float randomFloatWithRange(float a, float b);

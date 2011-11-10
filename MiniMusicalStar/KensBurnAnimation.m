@@ -43,18 +43,6 @@ NSInteger xMovement, yMovement, duration;
     [super dealloc];
 }
 
-- (void)startAnimation
-{
-    [self randomGenerateKensBurnNumbers];
-    
-    [UIView animateWithDuration:duration animations:^(void) {
-        CGAffineTransform zoomIn = CGAffineTransformMakeScale(zoomScale, zoomScale);
-        CGAffineTransform moveRight = CGAffineTransformMakeTranslation(xMovement, yMovement);
-        CGAffineTransform combo1 = CGAffineTransformConcat(zoomIn, moveRight);
-        imageViewForKensBurning.transform = combo1;
-    }];
-}
-
 -(CABasicAnimation*) getKensBurnAnimationForImageAtTime: (float) startTime andDuration: (float) duration
 {
     [self randomGenerateKensBurnNumbers];
@@ -74,6 +62,32 @@ NSInteger xMovement, yMovement, duration;
     kensBurnAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
     return kensBurnAnimation;
     
+}
+
+-(void) addKensBurnAnimationToLayer: (CALayer*)layer withTimingsArray:(NSMutableArray*)sortedTimingsArray overDuration:(Float64)durationInSeconds
+{
+    for(int i =0 ; i<sortedTimingsArray.count ; i++)
+    {
+        float startTime = [[sortedTimingsArray objectAtIndex:i] floatValue];
+        
+        float duration = 0;
+        
+        if (i + 1 != sortedTimingsArray.count){
+            duration = [[sortedTimingsArray objectAtIndex:i+1] floatValue] - startTime;
+        }else{
+            Float64 videoLength = duration;
+            duration = videoLength - startTime;
+        }
+        
+        if(i==0){
+            startTime = startTime + 0.1;
+            duration = duration - 0.1;
+        }
+        
+        CABasicAnimation *kensBurnAnimation = [self getKensBurnAnimationForImageAtTime:startTime andDuration:duration];
+        
+        [layer addAnimation:kensBurnAnimation forKey:nil];
+    }
 }
 
 - (void)randomGenerateKensBurnNumbers
