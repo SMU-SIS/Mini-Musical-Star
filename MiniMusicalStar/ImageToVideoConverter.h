@@ -13,5 +13,5 @@
 @interface ImageToVideoConverter : NSObject
 
 + (CVPixelBufferRef) pixelBufferFromCGImage: (CGImageRef) image size:(CGSize) size;
-+ (void) createImagesConvertedToVideo: (Scene*) theScene: (NSArray*) imagesArray: (NSURL*) videoFileURL :(CGSize) size;
++ (void) createImagesConvertedToVideo: (NSMutableArray*) sortedTimingsArray: (NSArray*) imagesArray: (NSURL*) videoFileURL :(CGSize) size;
 @end

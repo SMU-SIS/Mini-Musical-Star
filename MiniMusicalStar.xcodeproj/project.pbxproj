@@ -146,6 +146,7 @@
 		3ADA7B00142F869D0045F53E /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFFDEB6142C7CB8000D8494 /* Reachability.m */; };
 		3AF97A34144BE6FE00133C47 /* ExportTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF97A32144BE6FE00133C47 /* ExportTableViewController.m */; };
 		3AF97A35144BE6FE00133C47 /* ExportTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AF97A33144BE6FE00133C47 /* ExportTableViewController.xib */; };
+		3AFDC57A146B97E800BB5F75 /* CustomVideoAnimations.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFDC579146B97E800BB5F75 /* CustomVideoAnimations.m */; };
 		3AFFDE1E142C7191000D8494 /* bass.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3AFFDDEB142C7191000D8494 /* bass.mp3 */; };
 		3AFFDE20142C7191000D8494 /* drums.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3AFFDDEC142C7191000D8494 /* drums.mp3 */; };
 		3AFFDE22142C7191000D8494 /* guitar.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3AFFDDED142C7191000D8494 /* guitar.mp3 */; };
@@ -547,6 +548,8 @@
 		3AF97A31144BE6FE00133C47 /* ExportTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExportTableViewController.h; sourceTree = "<group>"; };
 		3AF97A32144BE6FE00133C47 /* ExportTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExportTableViewController.m; sourceTree = "<group>"; };
 		3AF97A33144BE6FE00133C47 /* ExportTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExportTableViewController.xib; sourceTree = "<group>"; };
+		3AFDC578146B97E800BB5F75 /* CustomVideoAnimations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomVideoAnimations.h; sourceTree = "<group>"; };
+		3AFDC579146B97E800BB5F75 /* CustomVideoAnimations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomVideoAnimations.m; sourceTree = "<group>"; };
 		3AFFDDEB142C7191000D8494 /* bass.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bass.mp3; sourceTree = "<group>"; };
 		3AFFDDEC142C7191000D8494 /* drums.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = drums.mp3; sourceTree = "<group>"; };
 		3AFFDDED142C7191000D8494 /* guitar.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = guitar.mp3; sourceTree = "<group>"; };
@@ -1182,6 +1185,8 @@
 				3A9FAC8714622D1700D2B642 /* KensBurnAnimation.m */,
 				3A4EB697145592CE005A662F /* ImageToVideoConverter.h */,
 				3A4EB698145592CE005A662F /* ImageToVideoConverter.m */,
+				3AFDC578146B97E800BB5F75 /* CustomVideoAnimations.h */,
+				3AFDC579146B97E800BB5F75 /* CustomVideoAnimations.m */,
 			);
 			name = CustomVideoLibraries;
 			sourceTree = "<group>";
@@ -2824,6 +2829,7 @@
 				3A9FAC65146162AE00D2B642 /* SimpleEditor.m in Sources */,
 				3A9FAC8814622D1700D2B642 /* KensBurnAnimation.m in Sources */,
 				3A9FAC9B146256D600D2B642 /* AddCreditsViewController.m in Sources */,
+				3AFDC57A146B97E800BB5F75 /* CustomVideoAnimations.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

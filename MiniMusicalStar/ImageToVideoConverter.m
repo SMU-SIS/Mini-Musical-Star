@@ -49,7 +49,7 @@
     return pxbuffer;
 }
 
-+ (void) createImagesConvertedToVideo: (Scene*) theScene: (NSArray*) imagesArray: (NSURL*) videoFileURL :(CGSize) size
++ (void) createImagesConvertedToVideo: (NSMutableArray*) sortedTimingsArray: (NSArray*) imagesArray: (NSURL*) videoFileURL :(CGSize) size
 {
     
     __block NSError *error = nil;
@@ -83,8 +83,6 @@
     __block CVPixelBufferRef buffer = NULL;
     __block BOOL retry = NO;
     __block int i = 0;
-    //sort the fucking array
-    __block NSMutableArray *sortedTimingsArray = theScene.getOrderedPictureTimingArray;
     
     [imagesArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         UIImage *img = (UIImage *)obj;

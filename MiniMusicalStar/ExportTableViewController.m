@@ -18,6 +18,7 @@
 #import "ExportedAsset.h"
 #import "DSActivityView.h"
 #import "KensBurnAnimation.h"
+#import "CustomVideoAnimations.h"
 
 @implementation ExportTableViewController
 
@@ -259,46 +260,7 @@
     
 }
 
--(CABasicAnimation*) getAppearAnimationAtTime:(float)startTime withDuration:(float)duration
-{
-    CABasicAnimation *appearAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
-    appearAnimation.fromValue = [NSNumber numberWithFloat:0.0];
-    appearAnimation.toValue = [NSNumber numberWithFloat:1.0];
-    appearAnimation.additive = NO;
-    appearAnimation.removedOnCompletion = NO;
-    appearAnimation.beginTime = startTime;
-    appearAnimation.duration = duration;
-    appearAnimation.fillMode = kCAFillModeForwards;
-    return appearAnimation;  
-}
-
--(CABasicAnimation*) getScrollAnimationAtTime:(float)startTime withDuration:(float)duration
-{
-    CABasicAnimation *scrollAnimation = [CABasicAnimation animationWithKeyPath:@"transform.translation.y"];
-    scrollAnimation.fromValue = [NSNumber numberWithFloat:0.0];
-    scrollAnimation.toValue = [NSNumber numberWithFloat:500.0];
-    scrollAnimation.additive = NO;
-    scrollAnimation.removedOnCompletion = NO;
-    scrollAnimation.beginTime = startTime;
-    scrollAnimation.duration = duration;
-    scrollAnimation.fillMode = kCAFillModeForwards;
-    return scrollAnimation;
-}
-
--(CABasicAnimation*) getFadeAnimationAtTime:(float)startTime withDuration:(float)duration
-{
-    CABasicAnimation *fadeAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
-    fadeAnimation.fromValue = [NSNumber numberWithFloat:1.0];
-    fadeAnimation.toValue = [NSNumber numberWithFloat:0.0];
-    fadeAnimation.additive = NO;
-    fadeAnimation.removedOnCompletion = NO;
-    fadeAnimation.beginTime = startTime;
-    fadeAnimation.duration = duration;
-    fadeAnimation.fillMode = kCAFillModeForwards;
-    return fadeAnimation;
-}
-
--(void)generateSceneVideo: (Scene*) theScene: (NSArray*) imagesArray:(NSArray*) audioExportURLs:(NSIndexPath*) indexPath: (NSString*) state
+-(void)generateSceneVideo :(Scene*) theScene: (NSArray*) imagesArray:(NSArray*) audioExportURLs:(NSIndexPath*) indexPath: (NSString*) state
 {
     __block NSError *error = nil;
     CGSize size = CGSizeMake(640, 480);
@@ -307,9 +269,12 @@
     
     NSString *exportFilename = [@"/scene_" stringByAppendingString:[[MiniMusicalStarUtilities getUniqueFilenameWithoutExt] stringByAppendingString:@".mov"]];
     NSURL *outputFileURL = [NSURL fileURLWithPath:[[ShowDAO userDocumentDirectory] stringByAppendingString:exportFilename]];
-    //write image to video conversion
-    [ImageToVideoConverter createImagesConvertedToVideo:theScene :imagesArray :videoFileURL :size];
     
+    //first i get the picturetimings array
+    __block NSMutableArray *sortedTimingsArray = [theScene getOrderedPictureTimingArray];
+    
+    //write image to video conversion
+    [ImageToVideoConverter createImagesConvertedToVideo:sortedTimingsArray :imagesArray :videoFileURL :size];
     
     //now i will combine track and video
     AVMutableComposition *composition = [AVMutableComposition composition];
@@ -336,22 +301,12 @@
                                    ofTrack:[[videoAsset tracksWithMediaType:AVMediaTypeVideo]objectAtIndex:0] 
                                     atTime:kCMTimeZero error:&error];
 
-    if([state isEqualToString: @"scene only"]){
-        
-        
-        
-    }
-    
-    CMTimeRange timeRange = CMTimeRangeMake(kCMTimeZero, [videoAsset duration]);
     AVAssetTrack *clipVideoTrack = [[videoAsset tracksWithMediaType:AVMediaTypeVideo] objectAtIndex:0];
     
     CGSize videoSize = CGSizeApplyAffineTransform(clipVideoTrack.naturalSize, clipVideoTrack.preferredTransform);
     videoSize.width = fabs(videoSize.width);
     videoSize.height = fabs(videoSize.height);
-    
-    CMTime titleDuration = CMTimeMakeWithSeconds(5, 600);
-//    CMTimeRange titleRange = CMTimeRangeMake(kCMTimeZero, titleDuration);
-    
+
     AVMutableVideoComposition *videoComposition = [AVMutableVideoComposition videoComposition];
     
     AVMutableVideoCompositionInstruction *passThroughInstruction = [AVMutableVideoCompositionInstruction videoCompositionInstruction];
@@ -388,40 +343,19 @@
     
     NSMutableArray *textFieldArray = [delegate getTextFieldArray];
     
-    [textFieldArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        
-        UITextField *textField = (UITextField*) obj;
-        
-        NSLog(@"textfield %@",textField.text);
-        
-        CATextLayer *textLayer = [CATextLayer layer];
-        textLayer.string = textField.text;
-        textLayer.font = @"Lucida Grande";
-        textLayer.fontSize = 30;
-        
-        textLayer.alignmentMode = kCAAlignmentCenter;
-        textLayer.bounds = CGRectMake(0, 0, videoSize.width, videoSize.height);
-        
-        textLayer.position = CGPointMake(320, 250 -(idx * 50));
-        
-        [animationLayer addSublayer:textLayer];
-    }];
-
+    [CustomVideoAnimations addTextAnimationLayersToLayer:animationLayer withTextArray:textFieldArray forVideoSize:videoSize];
     
     [animationLayer setOpacity: 0.0];
     
-    CABasicAnimation *appearAnimation = [self getAppearAnimationAtTime:CMTimeGetSeconds(composition.duration) withDuration: 1.0];
+    CABasicAnimation *appearAnimation = [CustomVideoAnimations getAppearAnimationAtTime:CMTimeGetSeconds(composition.duration) withDuration: 1.0];
     [animationLayer addAnimation:appearAnimation forKey:nil];
     
-    CABasicAnimation *scrollAnimation = [self getScrollAnimationAtTime:CMTimeGetSeconds(composition.duration) withDuration:10.0];
+    CABasicAnimation *scrollAnimation = [CustomVideoAnimations getScrollAnimationAtTime:CMTimeGetSeconds(composition.duration) withDuration:10.0];
     [animationLayer addAnimation:scrollAnimation forKey:nil];
     
     //add fade away for video layer for credits to show
-    CABasicAnimation *fadeAnimation = [self getFadeAnimationAtTime:CMTimeGetSeconds(composition.duration) withDuration:0.1];
+    CABasicAnimation *fadeAnimation = [CustomVideoAnimations getFadeAnimationAtTime:CMTimeGetSeconds(composition.duration) withDuration:0.1];
     [videoLayer addAnimation:fadeAnimation forKey:nil];
-    
-    //first i get the picturetimings array
-    __block NSMutableArray *sortedTimingsArray = [theScene getOrderedPictureTimingArray];
     
     for(int i =0 ; i<sortedTimingsArray.count ; i++)
     {
