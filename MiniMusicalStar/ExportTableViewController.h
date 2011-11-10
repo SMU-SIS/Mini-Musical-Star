@@ -38,6 +38,7 @@
 @property (retain, nonatomic) NSArray *scenesArray;
 @property (retain, nonatomic) NSMutableArray *exportedAssetsArray;
 @property (retain, nonatomic) Show *theShow;
+@property (retain, nonatomic) Scene *theScene;
 @property (retain, nonatomic) Cover *theCover;
 @property (retain, nonatomic) SceneUtility *theSceneUtility;
 
@@ -52,13 +53,17 @@
 - (id)initWithStyle:(UITableViewStyle)style:(Show*)show:(Cover*)cover context:(NSManagedObjectContext *)aContext;
 - (void) generateMusical;
 - (void) prepareMusicalNotification;
-- (void) processExportSession: (AVMutableComposition*) composition:(NSURL*)videoFileURL:(NSURL*)creditsFileURL: (NSURL*) outputFileURL: (UIProgressView*) prog: (NSString*) state;
+
 -(void) sessionExport: (AVMutableComposition*) composition: (NSURL*)videoFileURL: (NSURL*)creditsFileURL: (NSURL*)outputFileURL: (NSIndexPath*) indexPath: (NSString*) state;
 - (void)exportScene:(Scene*) scene:(CoverScene*) coverScene: (NSIndexPath*) indexPath;
 - (void)exportMusical:(Show*)show;
 
 - (void) removeFileAtPath: (NSURL*) filePath;
-- (void) exportCompleted: (NSURL*) videoFileURL: (NSURL*) creditsFileURL: (NSURL*) outputFileURL: (UIProgressView*) prog: (NSTimer*) progressBarLoader: (NSString*) state;
+
+- (void) processExportSessionWithComposition:(AVMutableComposition*)composition andVideoComposition:(AVMutableVideoComposition*)videoComposition withOutputFilePath:(NSURL*)outputFileURL andVideoFilePath:(NSURL*)videoFileURL forMusical:(BOOL)isMusical;
+- (void) saveExportedAssetAt:(NSURL*)outputFileURL andDeleteVideoFile:(NSURL*)videoFileURL forMusical:(BOOL)isMusical;
+-(void)processImageAndAudioAppendingToVideoWithImagesArray:(NSArray*)imagesArray andAudioFilePaths:(NSArray*) audioExportURLs forMusical:(BOOL)isMusical;
+
 - (void) allScenesExportedNotificationSender;
 - (int)getTableViewRow:(UIButton*)sender;
 

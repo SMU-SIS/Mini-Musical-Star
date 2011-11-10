@@ -23,6 +23,7 @@
 @implementation ExportTableViewController
 
 @synthesize theShow;
+@synthesize theScene;
 @synthesize theCover;
 @synthesize theSceneUtility;
 @synthesize timer;
@@ -43,6 +44,7 @@
     [exportedAssetsArray release];
     [timer release];
     [theSceneUtility release];
+    [theScene release];
     [theShow release];
     [context release];
     
@@ -80,6 +82,8 @@
                              ofAsset:videoAsset atTime:composition.duration error:nil];
         
     }];
+    
+
     
     NSString *exportFilename = [@"/musical_" stringByAppendingString:[[MiniMusicalStarUtilities getUniqueFilenameWithoutExt] stringByAppendingString:@".mov"]];
     NSURL *outputFileURL = [NSURL fileURLWithPath:[[ShowDAO userDocumentDirectory] stringByAppendingString:exportFilename]];
@@ -156,15 +160,13 @@
     return nil;
 }
 
-- (void) processExportSession: (Scene*) scene :(AVMutableComposition*) composition :(AVMutableVideoComposition*)videoComposition :(NSURL*)videoFileURL: (NSURL*) outputFileURL: (NSString*) state
+- (void) processExportSessionWithComposition:(AVMutableComposition*)composition andVideoComposition:(AVMutableVideoComposition*)videoComposition withOutputFilePath:(NSURL*)outputFileURL andVideoFilePath:(NSURL*)videoFileURL forMusical:(BOOL)isMusical
 {
     NSArray *compatiblePresets = [AVAssetExportSession exportPresetsCompatibleWithAsset:composition];
     
     if ([compatiblePresets containsObject:AVAssetExportPreset640x480]) {
         AVAssetExportSession *exportSession = [[AVAssetExportSession alloc]
                                                initWithAsset:composition presetName:AVAssetExportPresetHighestQuality];
-        
-        //wire the videoComposition
         if(videoComposition){
             exportSession.videoComposition = videoComposition;
         }
@@ -179,7 +181,7 @@
             switch ([exportSession status]) {
                 case AVAssetExportSessionStatusCompleted:
                     NSLog(@"Export Completed");
-                    [self exportCompleted: scene: videoFileURL:outputFileURL:state];
+                    [self saveExportedAssetAt:outputFileURL andDeleteVideoFile:videoFileURL forMusical:isMusical];
                     break;
                 case AVAssetExportSessionStatusFailed:
                     NSLog(@"Export failed: %@", [[exportSession error] localizedDescription]);
@@ -192,14 +194,14 @@
         }];
     }
 }
-- (void) exportCompleted: (Scene*) scene :(NSURL*) videoFileURL: (NSURL*) outputFileURL: (NSString*) state
+- (void) saveExportedAssetAt:(NSURL*)outputFileURL andDeleteVideoFile:(NSURL*)videoFileURL forMusical:(BOOL)isMusical
 {
-    if ([state isEqualToString: @"scene only"]){
+    if (!isMusical){
         //save the URL into a new model
         ExportedAsset *newAsset = [NSEntityDescription insertNewObjectForEntityForName:@"ExportedAsset" inManagedObjectContext:self.context];
         newAsset.isFullShow = NO;
         newAsset.exportPath = [outputFileURL absoluteString];
-        newAsset.title = scene.title;
+        newAsset.title = self.theScene.title;
         newAsset.originalHash = theCover.originalHash;
         newAsset.exportHash = [outputFileURL lastPathComponent];
         newAsset.dateCreated = [NSDate date];
@@ -209,11 +211,7 @@
         [self.exportedAssetsArray addObject:newAsset];
         
         [self removeFileAtPath:videoFileURL];
-    }else if ([state isEqualToString: @"scenes for musical"]){
-        [self.tempMusicalContainer addObject:outputFileURL];
-        [self allScenesExportedNotificationSender];
-        [self removeFileAtPath:videoFileURL];
-    }else if ([state isEqualToString: @"musical appending"]){
+    }else{
         //save the URL into a new model
         ExportedAsset *newAsset = [NSEntityDescription insertNewObjectForEntityForName:@"ExportedAsset" inManagedObjectContext:self.context];
         newAsset.isFullShow = [NSNumber numberWithInt:1];
@@ -320,7 +318,7 @@
     return videoComposition;
 }
 
--(void)generateSceneVideo :(Scene*) theScene: (NSArray*) imagesArray:(NSArray*) audioExportURLs:(NSIndexPath*) indexPath: (NSString*) state
+-(void)processImageAndAudioAppendingToVideoWithImagesArray:(NSArray*)imagesArray andAudioFilePaths:(NSArray*) audioExportURLs forMusical:(BOOL)isMusical
 {
     __block NSError *error = nil;
     CGSize size = CGSizeMake(640, 480);
@@ -331,7 +329,7 @@
     NSURL *outputFileURL = [NSURL fileURLWithPath:[[ShowDAO userDocumentDirectory] stringByAppendingString:exportFilename]];
     
     //first i get the picturetimings array
-    __block NSMutableArray *sortedTimingsArray = [theScene getOrderedPictureTimingArray];
+    NSMutableArray *sortedTimingsArray = [self.theScene getOrderedPictureTimingArray];
     
     //write image to video conversion
     [ImageToVideoConverter createImagesConvertedToVideo:sortedTimingsArray :imagesArray :videoFileURL :size];
@@ -369,7 +367,7 @@
     
     AVMutableVideoComposition *videoComposition = [self getVideoCompositionWithCustomAnimationsToComposition:composition andSortedTimingsArrayForKensBurn:sortedTimingsArray withVideoAsset:videoAsset ofVideoSize:videoSize];
     //session export
-    [self processExportSession :theScene :composition :videoComposition :videoFileURL:outputFileURL:state];
+    [self processExportSessionWithComposition:composition andVideoComposition:videoComposition withOutputFilePath:outputFileURL andVideoFilePath:videoFileURL forMusical:isMusical];
     
 }
 
@@ -457,43 +455,40 @@
 
 - (void)exportScene:(Scene*) scene:(CoverScene*) coverScene: (NSIndexPath*) indexPath
 {
-    theSceneUtility = [[SceneUtility alloc] initWithSceneAndCoverScene: scene:coverScene];
+    theSceneUtility = [[SceneUtility alloc] initWithSceneAndCoverScene: self.theScene:coverScene];
     
     [DSBezelActivityView newActivityViewForView:self.view withLabel:@"Exporting your scene... WAIT OK!? otherwise your ipad might EXPLODE...BOOM!"];
     
-    [self generateSceneVideo :scene:[theSceneUtility getMergedImagesArray]:[theSceneUtility getExportAudioURLs]:indexPath:@"scene only"];
+    [self processImageAndAudioAppendingToVideoWithImagesArray:[theSceneUtility getMergedImagesArray] andAudioFilePaths:[theSceneUtility getExportAudioURLs] forMusical:NO];
     
 }
 - (void)exportMusical:(Show*)show
 {
     [DSBezelActivityView newActivityViewForView:self.view withLabel:@"Exporting your musical... WAIT OK!? otherwise your ipad might EXPLODE...BOOM!"];
+    
+    //get the fully appended images array and picturetimings dict
+    NSMutableArray *musicalImagesArray = [[NSMutableArray alloc] initWithCapacity:0];
     [scenesArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:idx inSection:1];
         Scene *scene = (Scene*)obj;
         CoverScene *coverScene = [theCover coverSceneForSceneHash:scene.hash];
         theSceneUtility = [[SceneUtility alloc] initWithSceneAndCoverScene: scene:coverScene];
-        [self generateSceneVideo:scene:[theSceneUtility getMergedImagesArray]:[theSceneUtility getExportAudioURLs]:indexPath:@"scenes for musical"];
+        [musicalImagesArray addObjectsFromArray:theSceneUtility.getMergedImagesArray];
     }];
+    //[self generateSceneVideo:scene:[theSceneUtility getMergedImagesArray]:[theSceneUtility getExportAudioURLs]:indexPath:@"musical"];
     
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     [detailViewController release];
-     */
-    
+
     if(indexPath.section == 0){
         [self exportMusical:[musicalArray objectAtIndex:0]];
     }else if(indexPath.section == 1){
         Scene *selectedScene = [scenesArray objectAtIndex:indexPath.row];
         CoverScene *selectedCoverScene = [theCover coverSceneForSceneHash:selectedScene.hash];
-        [self exportScene :selectedScene:selectedCoverScene:indexPath];
+        self.theScene = selectedScene;
+        [self exportScene :nil:selectedCoverScene:indexPath];
     }
     
 }
