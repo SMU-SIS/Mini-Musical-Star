@@ -43,6 +43,7 @@
     [scenesArray release];
     [exportedAssetsArray release];
     [timer release];
+    [theCover release];
     [theSceneUtility release];
     [theScene release];
     [theShow release];
@@ -250,13 +251,6 @@
     
 }
 
-- (void) allScenesExportedNotificationSender
-{
-    if ([tempMusicalContainer count] == [scenesArray count]){
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"scenesFinished" object:self];
-    }
-    
-}
 
 -(AVMutableVideoComposition*) getVideoCompositionWithCustomAnimationsToComposition:(AVMutableComposition*)composition andSortedTimingsArrayForKensBurn:(NSMutableArray*)sortedTimingsArray withVideoAsset:(AVAsset*)videoAsset ofVideoSize:(CGSize)videoSize
 {
@@ -318,7 +312,7 @@
     return videoComposition;
 }
 
--(void)processImageAndAudioAppendingToVideoWithImagesArray:(NSArray*)imagesArray andAudioFilePaths:(NSArray*) audioExportURLs forMusical:(BOOL)isMusical
+-(void)processImageAndAudioAppendingToVideoWithImagesArray:(NSArray*)imagesArray andSortedPicturesTimingArray:(NSMutableArray*)sortedTimingsArray andAudioFilePaths:(NSArray*) audioExportURLs forMusical:(BOOL)isMusical
 {
     __block NSError *error = nil;
     CGSize size = CGSizeMake(640, 480);
@@ -327,9 +321,6 @@
     
     NSString *exportFilename = [@"/scene_" stringByAppendingString:[[MiniMusicalStarUtilities getUniqueFilenameWithoutExt] stringByAppendingString:@".mov"]];
     NSURL *outputFileURL = [NSURL fileURLWithPath:[[ShowDAO userDocumentDirectory] stringByAppendingString:exportFilename]];
-    
-    //first i get the picturetimings array
-    NSMutableArray *sortedTimingsArray = [self.theScene getOrderedPictureTimingArray];
     
     //write image to video conversion
     [ImageToVideoConverter createImagesConvertedToVideo:sortedTimingsArray :imagesArray :videoFileURL :size];
@@ -459,7 +450,7 @@
     
     [DSBezelActivityView newActivityViewForView:self.view withLabel:@"Exporting your scene... WAIT OK!? otherwise your ipad might EXPLODE...BOOM!"];
     
-    [self processImageAndAudioAppendingToVideoWithImagesArray:[theSceneUtility getMergedImagesArray] andAudioFilePaths:[theSceneUtility getExportAudioURLs] forMusical:NO];
+    [self processImageAndAudioAppendingToVideoWithImagesArray:[theSceneUtility getMergedImagesArray] andSortedPicturesTimingArray:[self.theScene getOrderedPictureTimingArray] andAudioFilePaths:[theSceneUtility getExportAudioURLs] forMusical:NO];
     
 }
 - (void)exportMusical:(Show*)show
@@ -468,20 +459,23 @@
     
     //get the fully appended images array and picturetimings dict
     NSMutableArray *musicalImagesArray = [[NSMutableArray alloc] initWithCapacity:0];
+    //get an appendable array for audioExportURLS
+    NSMutableArray *musicalAudioURLs = [[NSMutableArray alloc] initWithCapacity:0];
+    NSMutableArray *musicalImagesPicturesTimingsArray = [[NSMutableArray alloc] initWithCapacity:0];
     [scenesArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:idx inSection:1];
         Scene *scene = (Scene*)obj;
         CoverScene *coverScene = [theCover coverSceneForSceneHash:scene.hash];
         theSceneUtility = [[SceneUtility alloc] initWithSceneAndCoverScene: scene:coverScene];
+        
         [musicalImagesArray addObjectsFromArray:theSceneUtility.getMergedImagesArray];
+        [musicalAudioURLs addObjectsFromArray:theSceneUtility.getExportAudioURLs];
+        [musicalImagesPicturesTimingsArray addObjectsFromArray:[scene getOrderedPictureTimingArray]];
     }];
-    //[self generateSceneVideo:scene:[theSceneUtility getMergedImagesArray]:[theSceneUtility getExportAudioURLs]:indexPath:@"musical"];
-    
+    [self processImageAndAudioAppendingToVideoWithImagesArray:musicalImagesArray andSortedPicturesTimingArray:nil andAudioFilePaths:nil forMusical:YES];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
     if(indexPath.section == 0){
         [self exportMusical:[musicalArray objectAtIndex:0]];
     }else if(indexPath.section == 1){

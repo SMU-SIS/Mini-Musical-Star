@@ -62,9 +62,8 @@
 
 - (void) processExportSessionWithComposition:(AVMutableComposition*)composition andVideoComposition:(AVMutableVideoComposition*)videoComposition withOutputFilePath:(NSURL*)outputFileURL andVideoFilePath:(NSURL*)videoFileURL forMusical:(BOOL)isMusical;
 - (void) saveExportedAssetAt:(NSURL*)outputFileURL andDeleteVideoFile:(NSURL*)videoFileURL forMusical:(BOOL)isMusical;
--(void)processImageAndAudioAppendingToVideoWithImagesArray:(NSArray*)imagesArray andAudioFilePaths:(NSArray*) audioExportURLs forMusical:(BOOL)isMusical;
+-(void)processImageAndAudioAppendingToVideoWithImagesArray:(NSArray*)imagesArray andSortedPicturesTimingArray:(NSMutableArray*)sortedTimingsArray andAudioFilePaths:(NSArray*) audioExportURLs forMusical:(BOOL)isMusical;
 
-- (void) allScenesExportedNotificationSender;
 - (int)getTableViewRow:(UIButton*)sender;
 
 @end
