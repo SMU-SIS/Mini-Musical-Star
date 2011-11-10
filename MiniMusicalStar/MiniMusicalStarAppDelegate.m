@@ -17,7 +17,6 @@
 
 @synthesize viewController=_viewController;
 @synthesize naviController=_naviController;
-@synthesize facebook;
 
 //workaround to get a proper stacktrace in Xcode 4.2
 void uncaughtExceptionHandler(NSException *exception) {
@@ -140,9 +139,9 @@ void uncaughtExceptionHandler(NSException *exception) {
     return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
 }
 
-- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
-    return [facebook handleOpenURL:url];
-}
+//- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+//
+//}
 
 - (void)dealloc
 {
