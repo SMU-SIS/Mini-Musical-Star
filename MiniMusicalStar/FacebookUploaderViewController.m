@@ -25,8 +25,6 @@
     if (self) {
         facebook = [[Facebook alloc] initWithAppId:@"185884178157618" andDelegate:self];
         
-        MiniMusicalStarAppDelegate *appDelegate = (MiniMusicalStarAppDelegate*)[UIApplication sharedApplication].delegate;
-        appDelegate.facebook = self.facebook;
         
         self.videoNSURL = aVideoNSURL;
         self.title = aTitle;
@@ -68,9 +66,6 @@
 
 - (void)dealloc
 {
- //   delegate = nil; //using assign dont need
-   MiniMusicalStarAppDelegate *appDelegate = (MiniMusicalStarAppDelegate*)[UIApplication sharedApplication].delegate;
-    appDelegate.facebook = nil;
     
     [facebook release];
     [videoNSURL release];
@@ -145,7 +140,6 @@
 
 - (IBAction)okButtonIsPressed
 {    
-    [delegate facebookUploadSuccess];
 }
 
 @end
