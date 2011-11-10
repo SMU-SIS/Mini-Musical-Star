@@ -190,26 +190,26 @@ static NSString* kSDKVersion = @"2";
   // This minimizes the chance that the user will have to enter his or
   // her credentials in order to authorize the application.
   BOOL didOpenOtherApp = NO;
-  UIDevice *device = [UIDevice currentDevice];
-  if ([device respondsToSelector:@selector(isMultitaskingSupported)] && [device isMultitaskingSupported]) {
-    if (tryFBAppAuth) {
-      NSString *scheme = kFBAppAuthURLScheme;
-      if (_urlSchemeSuffix) {
-        scheme = [scheme stringByAppendingString:@"2"];
-      }
-      NSString *urlPrefix = [NSString stringWithFormat:@"%@://%@", scheme, kFBAppAuthURLPath];
-      NSString *fbAppUrl = [FBRequest serializeURL:urlPrefix params:params];
-      didOpenOtherApp = [[UIApplication sharedApplication] openURL:[NSURL URLWithString:fbAppUrl]];
-    }
-
-    if (trySafariAuth && !didOpenOtherApp) {
-      NSString *nextUrl = [self getOwnBaseUrl];
-      [params setValue:nextUrl forKey:@"redirect_uri"];
-
-      NSString *fbAppUrl = [FBRequest serializeURL:loginDialogURL params:params];
-      didOpenOtherApp = [[UIApplication sharedApplication] openURL:[NSURL URLWithString:fbAppUrl]];
-    }
-  }
+//  UIDevice *device = [UIDevice currentDevice];
+//  if ([device respondsToSelector:@selector(isMultitaskingSupported)] && [device isMultitaskingSupported]) {
+//    if (tryFBAppAuth) {
+//      NSString *scheme = kFBAppAuthURLScheme;
+//      if (_urlSchemeSuffix) {
+//        scheme = [scheme stringByAppendingString:@"2"];
+//      }
+//      NSString *urlPrefix = [NSString stringWithFormat:@"%@://%@", scheme, kFBAppAuthURLPath];
+//      NSString *fbAppUrl = [FBRequest serializeURL:urlPrefix params:params];
+//      didOpenOtherApp = [[UIApplication sharedApplication] openURL:[NSURL URLWithString:fbAppUrl]];
+//    }
+//
+//    if (trySafariAuth && !didOpenOtherApp) {
+//      NSString *nextUrl = [self getOwnBaseUrl];
+//      [params setValue:nextUrl forKey:@"redirect_uri"];
+//
+//      NSString *fbAppUrl = [FBRequest serializeURL:loginDialogURL params:params];
+//      didOpenOtherApp = [[UIApplication sharedApplication] openURL:[NSURL URLWithString:fbAppUrl]];
+//    }
+//  }
 
   // If single sign-on failed, open an inline login dialog. This will require the user to
   // enter his or her credentials.
