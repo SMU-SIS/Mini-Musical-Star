@@ -75,7 +75,7 @@ NSInteger xMovement, yMovement, duration;
         if (i + 1 != sortedTimingsArray.count){
             duration = [[sortedTimingsArray objectAtIndex:i+1] floatValue] - startTime;
         }else{
-            Float64 videoLength = duration;
+            Float64 videoLength = durationInSeconds;
             duration = videoLength - startTime;
         }
         

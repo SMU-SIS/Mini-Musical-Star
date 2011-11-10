@@ -80,11 +80,11 @@
                              ofAsset:videoAsset atTime:composition.duration error:nil];
         
     }];
-
+    
     NSString *exportFilename = [@"/musical_" stringByAppendingString:[[MiniMusicalStarUtilities getUniqueFilenameWithoutExt] stringByAppendingString:@".mov"]];
     NSURL *outputFileURL = [NSURL fileURLWithPath:[[ShowDAO userDocumentDirectory] stringByAppendingString:exportFilename]];
     [self processExportSession: nil:composition :nil :nil:outputFileURL:@"musical appending"];
-
+    
 }
 
 - (void) prepareMusicalNotification
@@ -107,10 +107,10 @@
     [super viewDidLoad];
     
     self.tableView.rowHeight = 100.0;
-
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
- 
+    
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
@@ -188,7 +188,7 @@
                     break;
             }
             [exportSession release];
-
+            
         }];
     }
 }
@@ -247,9 +247,9 @@
 {
     UIProgressView *prog = [aTimer.userInfo objectAtIndex:0];
     AVAssetExportSession *exportSession = [aTimer.userInfo objectAtIndex:1];
-//    NSLog(@"export timer : %f",exportSession.progress);
+    //    NSLog(@"export timer : %f",exportSession.progress);
     [prog setProgress: exportSession.progress];
-
+    
 }
 
 - (void) allScenesExportedNotificationSender
@@ -289,10 +289,10 @@
         
         compositionAudioTrack = [composition addMutableTrackWithMediaType:AVMediaTypeAudio preferredTrackID:kCMPersistentTrackID_Invalid];
         [compositionAudioTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero,audioAsset.duration) 
-                                        ofTrack:[[audioAsset tracksWithMediaType:AVMediaTypeAudio]objectAtIndex:0] 
-                                         atTime:kCMTimeZero
-                                          error:&error];
-         CMTimeRangeShow(CMTimeRangeMake(kCMTimeZero,audioAsset.duration));
+                                       ofTrack:[[audioAsset tracksWithMediaType:AVMediaTypeAudio]objectAtIndex:0] 
+                                        atTime:kCMTimeZero
+                                         error:&error];
+        CMTimeRangeShow(CMTimeRangeMake(kCMTimeZero,audioAsset.duration));
     }];
     
     AVMutableCompositionTrack *compositionVideoTrack = [composition addMutableTrackWithMediaType:AVMediaTypeVideo preferredTrackID:kCMPersistentTrackID_Invalid];
@@ -300,13 +300,13 @@
     [compositionVideoTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero,videoAsset.duration) 
                                    ofTrack:[[videoAsset tracksWithMediaType:AVMediaTypeVideo]objectAtIndex:0] 
                                     atTime:kCMTimeZero error:&error];
-
+    
     AVAssetTrack *clipVideoTrack = [[videoAsset tracksWithMediaType:AVMediaTypeVideo] objectAtIndex:0];
     
     CGSize videoSize = CGSizeApplyAffineTransform(clipVideoTrack.naturalSize, clipVideoTrack.preferredTransform);
     videoSize.width = fabs(videoSize.width);
     videoSize.height = fabs(videoSize.height);
-
+    
     AVMutableVideoComposition *videoComposition = [AVMutableVideoComposition videoComposition];
     
     AVMutableVideoCompositionInstruction *passThroughInstruction = [AVMutableVideoCompositionInstruction videoCompositionInstruction];
@@ -320,7 +320,7 @@
     videoComposition.frameDuration = CMTimeMake(1, 30); 
     videoComposition.renderSize = videoSize;
     videoComposition.renderScale = 1.0;
-
+    
     [composition insertEmptyTimeRange:CMTimeRangeMake(composition.duration,CMTimeMake(11,1))];
     
     CALayer *animationLayer = [CALayer layer];
@@ -337,7 +337,7 @@
     [parentLayer addSublayer:videoLayer];
     videoLayer.anchorPoint =  CGPointMake(0.5, 0.5);
     videoLayer.position = CGPointMake(CGRectGetMidX(parentLayer.bounds), CGRectGetMidY(parentLayer.bounds));
-    [parentLayer addSublayer:animationLayer];    
+    [parentLayer addSublayer:animationLayer];
     animationLayer.anchorPoint =  CGPointMake(0.5, 0.5);
     animationLayer.position = CGPointMake(CGRectGetMidX(parentLayer.bounds),0);
     
@@ -366,7 +366,7 @@
     
     //session export
     [self processExportSession :theScene :composition :videoComposition :videoFileURL:outputFileURL:state];
-
+    
 }
 
 #pragma mark - Table view data source
@@ -391,7 +391,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-      
+    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
@@ -449,45 +449,6 @@
 	return customView;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
 #pragma mark - Table view delegate
 
 - (void)exportScene:(Scene*) scene:(CoverScene*) coverScene: (NSIndexPath*) indexPath
@@ -497,7 +458,7 @@
     [DSBezelActivityView newActivityViewForView:self.view withLabel:@"Exporting your scene... WAIT OK!? otherwise your ipad might EXPLODE...BOOM!"];
     
     [self generateSceneVideo :scene:[theSceneUtility getMergedImagesArray]:[theSceneUtility getExportAudioURLs]:indexPath:@"scene only"];
-
+    
 }
 - (void)exportMusical:(Show*)show
 {
@@ -530,7 +491,7 @@
         CoverScene *selectedCoverScene = [theCover coverSceneForSceneHash:selectedScene.hash];
         [self exportScene :selectedScene:selectedCoverScene:indexPath];
     }
-       
+    
 }
 
 @end
