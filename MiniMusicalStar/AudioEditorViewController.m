@@ -90,9 +90,7 @@
         
         [self.view setBackgroundColor:background];
         
-        
-        isPlaying = NO;
-        isRecording = NO;
+        [self updatePlayerStatus:NO AndRecordingStatus:NO];
         
         currentRecordingIndex = -1;
         
@@ -262,7 +260,7 @@
     if ([audioForRow isKindOfClass:[Audio class]]) {
         if ([(NSNumber *)[audioForRow valueForKey:@"replaceable"] boolValue]) {
             
-            if (isRecording && [indexPath row] == currentRecordingIndex) {
+            if ([self isRecording] && [indexPath row] == currentRecordingIndex) {
                 [recordOrTrashButton setImage:recordingImage forState:UIControlStateNormal];
             } else {
                 [recordOrTrashButton setImage:recordImage forState:UIControlStateNormal];
@@ -318,7 +316,7 @@
 {    
     int row = -1;
     
-    if (isRecording == YES) {        
+    if ([self isRecording] == YES) {        
         UIAlertView *recordButtonHitWhenRecordingAlert = [[UIAlertView alloc] initWithTitle:@"Opps!" message:@"You are not supposed to hit me when recording!" delegate:nil cancelButtonTitle:@"I'm sorry!" otherButtonTitles:nil];
         [recordButtonHitWhenRecordingAlert show];
         [recordButtonHitWhenRecordingAlert release];
@@ -333,10 +331,9 @@
     if ([audioForRow isKindOfClass:[CoverSceneAudio class]]) {
         
         //check if player is playing
-        if (isPlaying == YES) {
+        if ([self isPlaying] == YES) {
             [self.thePlayer stop];
-            isPlaying = NO;
-            isRecording = NO;
+            [self updatePlayerStatus:NO AndRecordingStatus:NO];
         }
         
         //if this is a recorded track, delete   
@@ -378,12 +375,12 @@
 
 - (void)playPauseButtonIsPressed
 {
-    if (isPlaying == YES && isRecording == NO) { //if the player is playing
+    if ([self isPlaying] == YES && [self isRecording] == NO) { //if the player is playing
         //is playing
         
         [self stopPlayerWhenPlaying:NO];
         
-    } else if (isPlaying == NO && isRecording == YES) { //if the player is recording
+    } else if ([self isPlaying] == NO && [self isRecording] == YES) { //if the player is recording
     
         //is recording
         if (!stopButtonPressWhenRecordingWarningHasDisplayed) {
@@ -401,8 +398,8 @@
         [self.playPauseButton setImage:playButtonImage forState:UIControlStateNormal];
         stopButtonPressWhenRecordingWarningHasDisplayed = NO;   //reset
         
-        isPlaying = NO;    
-        isRecording = NO;   //to be safe
+        [self updatePlayerStatus:NO AndRecordingStatus:NO];
+        
         currentRecordingIndex = -1;
         
         if (!thePlayer.stoppedBecauseReachedEnd) {
@@ -441,16 +438,14 @@
 
 - (void)startPlayerPlaying
 {
-    isPlaying = YES;    
-    isRecording = NO;
+    [self updatePlayerStatus:YES AndRecordingStatus:NO];
     [self.thePlayer play];
     [self.playPauseButton setImage:pauseButtonImage forState:UIControlStateNormal];
 }
 
 - (void)stopPlayerWhenPlaying:(bool)hasReachedEnd
 {
-    isPlaying = NO;    
-    isRecording = NO;
+    [self updatePlayerStatus:NO AndRecordingStatus:NO];
     
     if (self.thePlayer.isPlaying == YES) {
         [self.thePlayer stop];
@@ -472,8 +467,7 @@
     //get the corresponding Audio object
     id audioForRow = [tracksForView objectAtIndex:indexInConsolidatedAudioTracksArray];
     
-    isRecording = YES;
-    isPlaying = NO;
+    [self updatePlayerStatus:NO AndRecordingStatus:YES];
     
     //reload the tableviewcell
     [trackTableView reloadData];
@@ -532,7 +526,7 @@
 
 - (void)recordingIsCompleted
 {    
-    isRecording = NO;
+    [self updatePlayerStatus:NO AndRecordingStatus:NO];
       
     CoverSceneAudio *newCoverSceneAudio = [NSEntityDescription insertNewObjectForEntityForName:@"CoverSceneAudio" inManagedObjectContext:context];
     newCoverSceneAudio.title = currentRecordingAudio.title;
@@ -554,6 +548,11 @@
     return isRecording;
 }
 
+- (bool)isPlaying
+{
+    return isPlaying;
+}
+
 - (void)registerNotifications
 {    
     //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(recordingIsCompleted) name:kMixPlayerRecorderPlaybackStopped object:nil];
@@ -565,7 +564,6 @@
 
 - (void)receivedPlayerPlayedHasReachedNotification
 {
-    //NSLog(@"inside receivedPlayerPlayedHasReachedNotification");
     [self stopPlayerWhenPlaying:YES];
 }
 
@@ -656,6 +654,12 @@
     }];
 }
 
+- (void) updatePlayerStatus:(bool)playingStatus AndRecordingStatus:(bool)recordingStatus
+{
+    isPlaying = playingStatus;
+    isRecording = recordingStatus;
+}
+
 #pragma mark - instance methods for gui
 
 /* constants related to displaying lyrics */
@@ -668,8 +672,6 @@
 {
     [self createLyricsScrollView];
     [self createLyricsLabel];
-    
-    //[lyricsScrollView addSubview:lyricsLabel];
     [self.view addSubview:lyricsScrollView];
 }
 

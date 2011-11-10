@@ -75,6 +75,7 @@
 //instance methods
 - (void)startCoverAudioRecording:(int)indexInConsolidatedAudioTracksArray;
 - (void)trashCoverAudio:(int)indexInConsolidatedAudioTracksArray;
+- (bool)isPlaying;
 - (bool)isRecording;
 - (void)playPauseButtonIsPressed;
 - (void)registerNotifications;
@@ -83,6 +84,7 @@
 - (void)startPlayerPlaying;
 - (void)recordingIsCompleted;
 - (void)stopPlayerWhenPlaying:(bool)hasReachedEnd;
+- (void) updatePlayerStatus:(bool)playingStatus AndRecordingStatus:(bool)recordingStatus;
 
 //instance methods for the audio and coveraudio arrays
 - (NSArray*)getExportAudioURLs;
