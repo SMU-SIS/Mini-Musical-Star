@@ -113,8 +113,6 @@
     //KVO the Audio NSSet
     [self.theCoverScene addObserver:self forKeyPath:@"Audio" options:0 context:@"NewCoverTrackAdded"];
     
-//    self.view.backgroundColor = [UIColor clearColor];
-    
     trackTableView = [[UITableView alloc] initWithFrame:CGRectMake(30, 50, 500, 480) style:UITableViewStylePlain];
     
     trackTableView.delegate = self;
@@ -469,7 +467,6 @@
     
     [self updatePlayerStatus:NO AndRecordingStatus:YES];
     
-    //reload the tableviewcell
     [trackTableView reloadData];
     
     /* start recording once we determine it is a original track */
@@ -496,8 +493,6 @@
     //start recording using MixPlayerRecorder
     [thePlayer enableRecordingToFile:fileURL];
     [thePlayer play];
-    
-    //[self registerNotifications];
 }
 
 - (void)trashCoverAudio:(int)indexInConsolidatedAudioTracksArray
@@ -554,9 +549,7 @@
 }
 
 - (void)registerNotifications
-{    
-    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(recordingIsCompleted) name:kMixPlayerRecorderPlaybackStopped object:nil];
-    
+{ 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(recordingIsCompleted) name:kMixPlayerRecorderRecordingHasReachedEnd object:nil];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivedPlayerPlayedHasReachedNotification) name:kMixPlayerRecorderPlayingHasReachedEnd object:nil];
