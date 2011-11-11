@@ -13,7 +13,7 @@
 @protocol FacebookUploaderDelegate <NSObject>
 @required
 - (void)facebookUploadSuccess;
-- (void)facebookUploadFailed;
+- (void)facebookUploadNotSuccessful;
 @end
 
 @interface FacebookUploaderViewController : UIViewController
