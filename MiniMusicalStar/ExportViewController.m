@@ -188,14 +188,18 @@
 
 - (void)facebookUploadSuccess
 {  
-    NSLog(@"uploadSuccess");
+    NSLog(@"inside facebookUploadSuccess");
+    
     [self.facebookUploaderViewController.view removeFromSuperview];
-   [self.facebookUploaderViewController release];
+    [self.facebookUploaderViewController release];
 }
 
 - (void)facebookUploadFailed
 {
+    NSLog(@"inside facebookUploadFailed");
     
+    [self.facebookUploaderViewController.view removeFromSuperview];
+    //[self.facebookUploaderViewController release];
 }
 
 #pragma - YouTubeUploaderDelegate methods

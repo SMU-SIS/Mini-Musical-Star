@@ -12,6 +12,7 @@
 
 @synthesize delegate;
 @synthesize okButton;
+@synthesize statusLabel;
 @synthesize facebook;
 @synthesize videoNSURL;
 @synthesize videoTitle;
@@ -19,18 +20,34 @@
 @synthesize uploadIndicator;
 @synthesize centerView;
 
+#pragma mark - init and dealloc
+
 - (id)initWithProperties:(NSURL*)aVideoNSURL title:(NSString*)aTitle description:(NSString*)aDescription 
 {
     self = [super initWithNibName:@"FacebookUploaderViewController" bundle:nil];
     if (self) {
         facebook = [[Facebook alloc] initWithAppId:@"185884178157618" andDelegate:self];
         
-        
         self.videoNSURL = aVideoNSURL;
         self.title = aTitle;
         self.videoDescription = aDescription;
+        
+        uploadHasCompleted = NO;
     }
     return self;
+}
+
+- (void)dealloc
+{   
+    NSLog(@"inside FacebookUploaderViewController.m dealloc");
+    
+    [facebook release];
+    [videoNSURL release];
+    [videoTitle release];
+    [videoDescription release];
+    [statusLabel release];
+    
+    [super dealloc];
 }
 
 - (void)didReceiveMemoryWarning
@@ -47,7 +64,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    okButton.enabled = NO; 
+//    okButton.enabled = NO; 
+    self.okButton.titleLabel.text = @"Cancel";
     self.uploadIndicator.hidesWhenStopped = YES;
 }
 
@@ -64,22 +82,12 @@
 	return YES;
 }
 
-- (void)dealloc
-{
-    
-    [facebook release];
-    [videoNSURL release];
-    [videoTitle release];
-    [videoDescription release];
-        
-    [super dealloc];
-}
-
 #pragma mark - instance methods
 
 - (void)startUpload
 {
     [self.uploadIndicator startAnimating];
+    self.statusLabel.text = @"Uploading musical...";
     
     NSArray* permissions = [[NSArray alloc] initWithObjects:
                             @"publish_stream", nil];
@@ -89,7 +97,11 @@
 
 #pragma mark - FBSession delegate methods
 
-- (void)fbDidLogin {
+/**
+ * Called when the user successfully logged in.
+ */
+- (void)fbDidLogin
+{
     NSString *filePath = [videoNSURL path];
     
     NSData *videoData = [NSData dataWithContentsOfFile:filePath];
@@ -104,11 +116,26 @@
                      andHttpMethod:@"POST"
                        andDelegate:self];
     
+    
     NSLog(@"The facebook upload has started! Please wait for next NSLog to confirm upload.");
 }
 
-- (void)fbDidNotLogin:(BOOL)cancelled {
-	NSLog(@"did not login");
+/**
+ * Called when the user dismissed the dialog without logging in.
+ */
+- (void)fbDidNotLogin:(BOOL)cancelled
+{
+    NSLog(@"did not login");
+    //handle
+}
+
+/**
+ * Called when the user logged out.
+ */
+- (void)fbDidLogout
+{
+    NSLog(@"logged out login");
+    //handle
 }
 
 
@@ -119,27 +146,36 @@
 		result = [result objectAtIndex:0];
 	}
 	
-    //NSLog(@"Result of API call: %@", result);
+    NSLog(@"Result of API call: %@", result);
     NSLog(@"The facebook upload is completed");
     
     [self.uploadIndicator stopAnimating];
-    [okButton setTitle:@"OK" forState:UIControlStateNormal];
-    self.okButton.enabled = YES;
+    [okButton setTitle:@"Ok." forState:UIControlStateNormal];
+    uploadHasCompleted = YES;
+    
+    
 }
 
 - (void)request:(FBRequest *)request didFailWithError:(NSError *)error {
-    NSLog(@"The facebook upload failed");
+    self.statusLabel.text = @"Upload failed. Please retry.";
+    
     NSLog(@"Failed with error: %@", [error localizedDescription]);
     NSLog(@"Err details: %@", [error description]);
     
-    self.okButton.titleLabel.text = @"Ok";
-    self.okButton.enabled = YES;
+    self.okButton.titleLabel.text = @"Ok.";
+    uploadHasCompleted = NO;
 }
 
 #pragma mark - IBAction methods
 
 - (IBAction)okButtonIsPressed
 {    
+    if (uploadHasCompleted) {
+        [delegate facebookUploadSuccess];
+    } else {
+        //if the upload did not complete
+        [delegate facebookUploadFailed];
+    }
 }
 
 @end
