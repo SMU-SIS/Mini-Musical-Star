@@ -147,6 +147,7 @@
 		3AF97A34144BE6FE00133C47 /* ExportTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF97A32144BE6FE00133C47 /* ExportTableViewController.m */; };
 		3AF97A35144BE6FE00133C47 /* ExportTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AF97A33144BE6FE00133C47 /* ExportTableViewController.xib */; };
 		3AFDC57A146B97E800BB5F75 /* CustomVideoAnimations.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFDC579146B97E800BB5F75 /* CustomVideoAnimations.m */; };
+		3AFDC57C146CEA3D00BB5F75 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AFDC57B146CEA3D00BB5F75 /* AssetsLibrary.framework */; };
 		3AFFDE1E142C7191000D8494 /* bass.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3AFFDDEB142C7191000D8494 /* bass.mp3 */; };
 		3AFFDE20142C7191000D8494 /* drums.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3AFFDDEC142C7191000D8494 /* drums.mp3 */; };
 		3AFFDE22142C7191000D8494 /* guitar.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3AFFDDED142C7191000D8494 /* guitar.mp3 */; };
@@ -253,7 +254,7 @@
 		646E4D4D1454199300F066F6 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 646E4D371454199300F066F6 /* SBJsonWriter.m */; };
 		646E54D114542E0700F066F6 /* libGDataTouchStaticLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 646E54C714542DEB00F066F6 /* libGDataTouchStaticLib.a */; };
 		64985A3B14528E5400485F4D /* sample.mov in Resources */ = {isa = PBXBuildFile; fileRef = 64985A3A14528E5400485F4D /* sample.mov */; };
-		649E1D30146CF12800DC7B28 /* FBDialog.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 649E1D2F146CF12800DC7B28 /* FBDialog.bundle */; };
+		649E1D6E146CF33300DC7B28 /* FBDialog.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 649E1D6D146CF33300DC7B28 /* FBDialog.bundle */; };
 		64CF0B94145BA6A800A9BF08 /* facebook_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 64CF0B92145BA6A800A9BF08 /* facebook_32.png */; };
 		64CF0B95145BA6A800A9BF08 /* youtube_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 64CF0B93145BA6A800A9BF08 /* youtube_32.png */; };
 		64D6CCC9145D4A3F00D172D2 /* FacebookUploaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D6CCC7145D4A3F00D172D2 /* FacebookUploaderViewController.m */; };
@@ -551,6 +552,7 @@
 		3AF97A33144BE6FE00133C47 /* ExportTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExportTableViewController.xib; sourceTree = "<group>"; };
 		3AFDC578146B97E800BB5F75 /* CustomVideoAnimations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomVideoAnimations.h; sourceTree = "<group>"; };
 		3AFDC579146B97E800BB5F75 /* CustomVideoAnimations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomVideoAnimations.m; sourceTree = "<group>"; };
+		3AFDC57B146CEA3D00BB5F75 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		3AFFDDEB142C7191000D8494 /* bass.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bass.mp3; sourceTree = "<group>"; };
 		3AFFDDEC142C7191000D8494 /* drums.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = drums.mp3; sourceTree = "<group>"; };
 		3AFFDDED142C7191000D8494 /* guitar.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = guitar.mp3; sourceTree = "<group>"; };
@@ -1033,7 +1035,7 @@
 		646E560A14542F7400F066F6 /* GTMOAuth2ViewControllerTouch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMOAuth2ViewControllerTouch.h; sourceTree = "<group>"; };
 		646E560B14542F7400F066F6 /* GTMReadMonitorInputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMReadMonitorInputStream.h; sourceTree = "<group>"; };
 		64985A3A14528E5400485F4D /* sample.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; name = sample.mov; path = Resources/sample.mov; sourceTree = "<group>"; };
-		649E1D2F146CF12800DC7B28 /* FBDialog.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = FBDialog.bundle; sourceTree = "<group>"; };
+		649E1D6D146CF33300DC7B28 /* FBDialog.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = FBDialog.bundle; sourceTree = "<group>"; };
 		64CF0B92145BA6A800A9BF08 /* facebook_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facebook_32.png; sourceTree = "<group>"; };
 		64CF0B93145BA6A800A9BF08 /* youtube_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = youtube_32.png; sourceTree = "<group>"; };
 		64D6CCC6145D4A3F00D172D2 /* FacebookUploaderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookUploaderViewController.h; sourceTree = "<group>"; };
@@ -1157,6 +1159,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3AFDC57C146CEA3D00BB5F75 /* AssetsLibrary.framework in Frameworks */,
 				3A065B06145EE60E001BCEA5 /* MediaPlayer.framework in Frameworks */,
 				646E54D114542E0700F066F6 /* libGDataTouchStaticLib.a in Frameworks */,
 				3A5F7C681440CE1D00E9C570 /* CoreVideo.framework in Frameworks */,
@@ -1722,8 +1725,8 @@
 		646E4D061454199300F066F6 /* Facebook */ = {
 			isa = PBXGroup;
 			children = (
+				649E1D6D146CF33300DC7B28 /* FBDialog.bundle */,
 				646E4D071454199300F066F6 /* Facebook.h */,
-				649E1D2F146CF12800DC7B28 /* FBDialog.bundle */,
 				646E4D081454199300F066F6 /* Facebook.m */,
 				646E4D091454199300F066F6 /* FBConnect.h */,
 				646E4D0A1454199300F066F6 /* FBDialog.h */,
@@ -2348,6 +2351,7 @@
 		EDA2A1C313F26F8400B64EA5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3AFDC57B146CEA3D00BB5F75 /* AssetsLibrary.framework */,
 				3A065B05145EE60D001BCEA5 /* MediaPlayer.framework */,
 				646E54B814542DEA00F066F6 /* GData.xcodeproj */,
 				3A5F7C671440CE1D00E9C570 /* CoreVideo.framework */,
@@ -2628,7 +2632,7 @@
 				3A9FAC9C146256D600D2B642 /* AddCreditsViewController.xib in Resources */,
 				9573CCDF1462D3860055B413 /* stripsceneselection.png in Resources */,
 				3A9FACBF1462D40C00D2B642 /* blankblack.png in Resources */,
-				649E1D30146CF12800DC7B28 /* FBDialog.bundle in Resources */,
+				649E1D6E146CF33300DC7B28 /* FBDialog.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
