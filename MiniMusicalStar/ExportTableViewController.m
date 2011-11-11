@@ -28,6 +28,7 @@
 @synthesize theSceneUtility;
 @synthesize timer;
 @synthesize musicalArray;
+@synthesize musicalAudioMappings;
 @synthesize scenesArray;
 @synthesize exportedAssetsArray;
 @synthesize uploadBarButtonItem;
@@ -47,6 +48,7 @@
     [theSceneUtility release];
     [theScene release];
     [theShow release];
+    [musicalAudioMappings release];
     [context release];
     
     [super dealloc];
@@ -61,6 +63,7 @@
         self.theCover = cover;
         self.musicalArray = [NSArray arrayWithObject:show];
         self.scenesArray = [show.scenes allValues];
+        self.musicalAudioMappings = [[NSMutableArray alloc] initWithCapacity:0];
         self.exportedAssetsArray = [[NSMutableArray alloc] initWithCapacity:0];
         self.tempMusicalContainer = [[NSMutableArray alloc] init];
         self.context = aContext;
@@ -226,10 +229,6 @@
         
         [self.exportedAssetsArray addObject:newAsset];
         
-        [tempMusicalContainer enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-            [self removeFileAtPath:obj];
-        }];
-        [tempMusicalContainer removeAllObjects];
     }
     [self.delegate reloadMediaTable];
     [self.tableView reloadData];
@@ -331,17 +330,32 @@
     AVURLAsset* videoAsset = [[AVURLAsset alloc]initWithURL:videoFileURL options:nil];
     
     __block AVMutableCompositionTrack *compositionAudioTrack = NULL;
-    
     [audioExportURLs enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         NSURL *audioURL = (NSURL*)obj;
         AVURLAsset* audioAsset = [[AVURLAsset alloc]initWithURL:audioURL options:nil];
         
         compositionAudioTrack = [composition addMutableTrackWithMediaType:AVMediaTypeAudio preferredTrackID:kCMPersistentTrackID_Invalid];
-        [compositionAudioTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero,audioAsset.duration) 
+        
+        //if it is a musical, check ordering
+        if(isMusical){
+            CMTime startTime = CMTimeMake([[musicalAudioMappings objectAtIndex:idx] floatValue] *1000000, 1000000);
+//            CMTimeShow(startTime);
+            NSLog(@"idx %i",idx);
+//            CMTime endTime = CMTimeAdd(startTime,);
+            [compositionAudioTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero,audioAsset.duration) 
+                                           ofTrack:[[audioAsset tracksWithMediaType:AVMediaTypeAudio]objectAtIndex:0] 
+                                            atTime:startTime
+                                             error:&error];
+            
+//            CMTimeRangeShow(CMTimeRangeMake(startTime,endTime));
+            
+        }else{
+            [compositionAudioTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero,audioAsset.duration) 
                                        ofTrack:[[audioAsset tracksWithMediaType:AVMediaTypeAudio]objectAtIndex:0] 
                                         atTime:kCMTimeZero
                                          error:&error];
-        CMTimeRangeShow(CMTimeRangeMake(kCMTimeZero,audioAsset.duration));
+        }
+//        CMTimeRangeShow(CMTimeRangeMake(kCMTimeZero,audioAsset.duration));
     }];
     
     AVMutableCompositionTrack *compositionVideoTrack = [composition addMutableTrackWithMediaType:AVMediaTypeVideo preferredTrackID:kCMPersistentTrackID_Invalid];
@@ -462,16 +476,49 @@
     //get an appendable array for audioExportURLS
     NSMutableArray *musicalAudioURLs = [[NSMutableArray alloc] initWithCapacity:0];
     NSMutableArray *musicalImagesPicturesTimingsArray = [[NSMutableArray alloc] initWithCapacity:0];
-    [scenesArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+    
+    CMTime previousAssetDuration = kCMTimeZero;
+    int audioOrderCount = 1;
+    [self.musicalAudioMappings removeAllObjects];
+    for (id obj in scenesArray){
         Scene *scene = (Scene*)obj;
         CoverScene *coverScene = [theCover coverSceneForSceneHash:scene.hash];
         theSceneUtility = [[SceneUtility alloc] initWithSceneAndCoverScene: scene:coverScene];
         
         [musicalImagesArray addObjectsFromArray:theSceneUtility.getMergedImagesArray];
+        
+        if(CMTimeCompare(previousAssetDuration, kCMTimeZero) != 0){
+            NSMutableArray *transferredArray = [[NSMutableArray alloc] initWithCapacity:0];
+            for (int i = 0 ; i<scene.getOrderedPictureTimingArray.count; i++){
+                int timing = [[scene.getOrderedPictureTimingArray objectAtIndex:i] intValue];
+                timing += [[NSNumber numberWithFloat:CMTimeGetSeconds(previousAssetDuration)] intValue];
+                NSNumber *newTiming =[NSNumber numberWithInt:timing];
+                [transferredArray addObject:newTiming];
+            }
+            [musicalImagesPicturesTimingsArray addObjectsFromArray:transferredArray];
+            
+        }else{
+            [musicalImagesPicturesTimingsArray addObjectsFromArray:[scene getOrderedPictureTimingArray]];
+        }
+        
         [musicalAudioURLs addObjectsFromArray:theSceneUtility.getExportAudioURLs];
-        [musicalImagesPicturesTimingsArray addObjectsFromArray:[scene getOrderedPictureTimingArray]];
-    }];
-    [self processImageAndAudioAppendingToVideoWithImagesArray:musicalImagesArray andSortedPicturesTimingArray:nil andAudioFilePaths:nil forMusical:YES];
+        
+        //map audio sequences to scene order
+        for (id obj in theSceneUtility.getExportAudioURLs)
+        {
+            [self.musicalAudioMappings addObject:[NSNumber numberWithFloat: CMTimeGetSeconds(previousAssetDuration)]];
+        }
+        
+        
+        //get duration of previous scene measured with duration of first audio file
+        NSURL *firstAudioURL = [theSceneUtility.getExportAudioURLs objectAtIndex:0];
+        AVURLAsset* audioAsset = [[AVURLAsset alloc]initWithURL:firstAudioURL options:nil];
+        previousAssetDuration = audioAsset.duration;
+        
+        audioOrderCount += 1;
+    };
+    NSLog(@"musicaltimingsarray %@",self.musicalAudioMappings);
+    [self processImageAndAudioAppendingToVideoWithImagesArray:musicalImagesArray andSortedPicturesTimingArray:musicalImagesPicturesTimingsArray andAudioFilePaths:musicalAudioURLs forMusical:YES];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
