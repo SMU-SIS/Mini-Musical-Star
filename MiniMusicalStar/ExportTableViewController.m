@@ -192,6 +192,9 @@
     
     //try to save to photos library
     ALAsset *libraryAsset = [[ALAsset alloc] init];
+    [libraryAsset setVideoAtPath:outputFileURL completionBlock:^(NSURL *assetURL, NSError *error) {
+        //donothing
+    }];
     [libraryAsset writeModifiedVideoAtPathToSavedPhotosAlbum:outputFileURL completionBlock:^(NSURL *assetURL, NSError *error) {
         NSLog(@"wooohoo");
     }];
