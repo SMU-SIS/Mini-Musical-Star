@@ -148,7 +148,7 @@
         
         exportSession.outputURL = outputFileURL;
         exportSession.outputFileType = AVFileTypeQuickTimeMovie;
-        exportSession.timeRange = CMTimeRangeMake(kCMTimeZero,CMTimeAdd(composition.duration,CMTimeMake(11,1)));
+        exportSession.timeRange = CMTimeRangeMake(kCMTimeZero,CMTimeAdd(composition.duration,CMTimeMake(15,1)));
         
         CMTimeRangeShow(exportSession.timeRange);
         
@@ -190,15 +190,15 @@
     [self.exportedAssetsArray addObject:newAsset];
     [self removeFileAtPath:videoFileURL];
     
-    //try to save to photos library
-    ALAsset *libraryAsset = [[ALAsset alloc] init];
-    [libraryAsset setVideoAtPath:outputFileURL completionBlock:^(NSURL *assetURL, NSError *error) {
-        //donothing
-    }];
-    [libraryAsset writeModifiedVideoAtPathToSavedPhotosAlbum:outputFileURL completionBlock:^(NSURL *assetURL, NSError *error) {
-        NSLog(@"wooohoo");
-    }];
-    
+//    //try to save to photos library
+//    ALAsset *libraryAsset = [[ALAsset alloc] init];
+//    [libraryAsset setVideoAtPath:outputFileURL completionBlock:^(NSURL *assetURL, NSError *error) {
+//        //donothing
+//    }];
+//    [libraryAsset writeModifiedVideoAtPathToSavedPhotosAlbum:outputFileURL completionBlock:^(NSURL *assetURL, NSError *error) {
+//        NSLog(@"wooohoo");
+//    }];
+//    
     [self.delegate reloadMediaTable];
     [self.tableView reloadData];
     [DSBezelActivityView removeViewAnimated:YES];
@@ -225,7 +225,7 @@
     AVMutableVideoComposition *videoComposition = [AVMutableVideoComposition videoComposition];
     
     AVMutableVideoCompositionInstruction *passThroughInstruction = [AVMutableVideoCompositionInstruction videoCompositionInstruction];
-    passThroughInstruction.timeRange = CMTimeRangeMake(kCMTimeZero, CMTimeAdd([composition duration], CMTimeMake(11, 1)));
+    passThroughInstruction.timeRange = CMTimeRangeMake(kCMTimeZero, CMTimeAdd([composition duration], CMTimeMake(15, 1)));
     AVAssetTrack *videoTrack = [[composition tracksWithMediaType:AVMediaTypeVideo] objectAtIndex:0];
     AVMutableVideoCompositionLayerInstruction *passThroughLayer = [AVMutableVideoCompositionLayerInstruction videoCompositionLayerInstructionWithAssetTrack:videoTrack];    
     passThroughInstruction.layerInstructions = [NSArray arrayWithObject:passThroughLayer];
@@ -236,7 +236,7 @@
     videoComposition.renderSize = videoSize;
     videoComposition.renderScale = 1.0;
     
-    [composition insertEmptyTimeRange:CMTimeRangeMake(composition.duration,CMTimeMake(11,1))];
+    [composition insertEmptyTimeRange:CMTimeRangeMake(composition.duration,CMTimeMake(15,1))];
     
     CALayer *animationLayer = [CALayer layer];
     animationLayer.bounds = CGRectMake(0, 0, videoSize.width, videoSize.height);
@@ -269,6 +269,20 @@
     
     CABasicAnimation *fadeAnimation = [CustomVideoAnimations getFadeAnimationAtTime:CMTimeGetSeconds(composition.duration) withDuration:0.1];
     [videoLayer addAnimation:fadeAnimation forKey:nil];
+    
+    //add ending brand
+    CALayer *brandLayer = [CALayer layer];
+    UIImage *brandImage = [UIImage imageNamed:@"lastscreen.png"];
+    brandLayer.bounds = CGRectMake(0, 0, videoSize.width, videoSize.height);
+    brandLayer.position = CGPointMake(CGRectGetMidX(parentLayer.bounds),0);
+    brandLayer.contents = (id) brandImage.CGImage;
+    brandLayer.opacity = 0.0;
+    
+    CABasicAnimation *brandAppearAnimation = [CustomVideoAnimations getAppearAnimationAtTime:CMTimeGetSeconds(composition.duration)+8 withDuration: 2.0];
+    
+    [brandLayer addAnimation:brandAppearAnimation forKey:nil];
+    
+    [animationLayer addSublayer:brandLayer];
     
     Float64 videoLength = CMTimeGetSeconds(videoAsset.duration);
     

@@ -144,6 +144,7 @@
 		3ADA7AFE142F86830045F53E /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 95DAE886141481400039201D /* libxml2.dylib */; };
 		3ADA7AFF142F86860045F53E /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 95DAE888141481470039201D /* libz.dylib */; };
 		3ADA7B00142F869D0045F53E /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFFDEB6142C7CB8000D8494 /* Reachability.m */; };
+		3ADF358F146D8DC300C8F595 /* lastscreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 3ADF358E146D8DC300C8F595 /* lastscreen.png */; };
 		3AF97A34144BE6FE00133C47 /* ExportTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF97A32144BE6FE00133C47 /* ExportTableViewController.m */; };
 		3AF97A35144BE6FE00133C47 /* ExportTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AF97A33144BE6FE00133C47 /* ExportTableViewController.xib */; };
 		3AFDC57A146B97E800BB5F75 /* CustomVideoAnimations.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFDC579146B97E800BB5F75 /* CustomVideoAnimations.m */; };
@@ -547,6 +548,7 @@
 		3ADA7AEA142F85B40045F53E /* AudioFileRingBufferTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioFileRingBufferTest.m; sourceTree = "<group>"; };
 		3ADA7AEB142F85B40045F53E /* MixPlayerRecorderTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MixPlayerRecorderTest.h; sourceTree = "<group>"; };
 		3ADA7AEC142F85B40045F53E /* MixPlayerRecorderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MixPlayerRecorderTest.m; sourceTree = "<group>"; };
+		3ADF358E146D8DC300C8F595 /* lastscreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lastscreen.png; sourceTree = "<group>"; };
 		3AF97A31144BE6FE00133C47 /* ExportTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExportTableViewController.h; sourceTree = "<group>"; };
 		3AF97A32144BE6FE00133C47 /* ExportTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExportTableViewController.m; sourceTree = "<group>"; };
 		3AF97A33144BE6FE00133C47 /* ExportTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExportTableViewController.xib; sourceTree = "<group>"; };
@@ -2148,6 +2150,7 @@
 		820E2A1E140A0A2A00B80BBC /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				3ADF358E146D8DC300C8F595 /* lastscreen.png */,
 				3A9FACBE1462D40C00D2B642 /* blankblack.png */,
 				3A9FAC6614618C8200D2B642 /* coverflow2.png */,
 				3A065AD0145EC101001BCEA5 /* cover_cell.png */,
@@ -2633,6 +2636,7 @@
 				9573CCDF1462D3860055B413 /* stripsceneselection.png in Resources */,
 				3A9FACBF1462D40C00D2B642 /* blankblack.png in Resources */,
 				649E1D6E146CF33300DC7B28 /* FBDialog.bundle in Resources */,
+				3ADF358F146D8DC300C8F595 /* lastscreen.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
