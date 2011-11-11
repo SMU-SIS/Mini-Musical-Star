@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <MediaPlayer/MediaPlayer.h>
 #import <AVFoundation/AVFoundation.h>
+#import <AssetsLibrary/AssetsLibrary.h>
 #import "FacebookUploaderViewController.h"
 #import "ExportedAsset.h"
 

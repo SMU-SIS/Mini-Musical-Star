@@ -19,7 +19,6 @@
 //constructo
 - (id)initWithImageView:(UIImageView*)anImageView;
 
-- (void)startAnimation;
 - (void)randomGenerateKensBurnNumbers;
 - (NSInteger)getRandFrom:(NSInteger)min to:(NSInteger)max;
 -(CABasicAnimation*) getKensBurnAnimationForImageAtTime: (float) startTime andDuration: (float) duration;

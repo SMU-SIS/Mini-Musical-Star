@@ -67,7 +67,6 @@
         self.exportedAssetsArray = [[NSMutableArray alloc] initWithCapacity:0];
         self.tempMusicalContainer = [[NSMutableArray alloc] init];
         self.context = aContext;
-        [self prepareMusicalNotification];
     }
     return self;
 }
@@ -191,6 +190,12 @@
     [self.exportedAssetsArray addObject:newAsset];
     [self removeFileAtPath:videoFileURL];
     
+    //try to save to photos library
+    ALAsset *libraryAsset = [[ALAsset alloc] init];
+    [libraryAsset writeModifiedVideoAtPathToSavedPhotosAlbum:outputFileURL completionBlock:^(NSURL *assetURL, NSError *error) {
+        NSLog(@"wooohoo");
+    }];
+    
     [self.delegate reloadMediaTable];
     [self.tableView reloadData];
     [DSBezelActivityView removeViewAnimated:YES];
@@ -279,7 +284,7 @@
     NSString *videoFilename = [@"/vid_" stringByAppendingString:[[MiniMusicalStarUtilities getUniqueFilenameWithoutExt] stringByAppendingString:@".mov"]];
     NSURL *videoFileURL = [NSURL fileURLWithPath:[[ShowDAO userDocumentDirectory] stringByAppendingString:videoFilename]];
     
-    NSString *exportFilename = [@"/scene_" stringByAppendingString:[[MiniMusicalStarUtilities getUniqueFilenameWithoutExt] stringByAppendingString:@".mov"]];
+    NSString *exportFilename = [@"/export_" stringByAppendingString:[[MiniMusicalStarUtilities getUniqueFilenameWithoutExt] stringByAppendingString:@".mov"]];
     NSURL *outputFileURL = [NSURL fileURLWithPath:[[ShowDAO userDocumentDirectory] stringByAppendingString:exportFilename]];
     
     //write image to video conversion
