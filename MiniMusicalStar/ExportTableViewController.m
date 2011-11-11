@@ -72,34 +72,6 @@
     return self;
 }
 
-- (void) generateMusical{
-    //now i will combine track and video
-    __block AVMutableComposition *composition = [AVMutableComposition composition];
-    [tempMusicalContainer enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        AVURLAsset *videoAsset = [[AVURLAsset alloc]initWithURL:obj options:nil];
-        CMTime startTime = kCMTimeZero;
-        if(idx > 0){
-            AVURLAsset *previousVideoAsset = [[AVURLAsset alloc]initWithURL:[tempMusicalContainer objectAtIndex:idx-1] options:nil];
-            startTime = previousVideoAsset.duration;
-        }
-        [composition insertTimeRange: CMTimeRangeMake(kCMTimeZero,videoAsset.duration)
-                             ofAsset:videoAsset atTime:composition.duration error:nil];
-        
-    }];
-    
-
-    
-    NSString *exportFilename = [@"/musical_" stringByAppendingString:[[MiniMusicalStarUtilities getUniqueFilenameWithoutExt] stringByAppendingString:@".mov"]];
-    NSURL *outputFileURL = [NSURL fileURLWithPath:[[ShowDAO userDocumentDirectory] stringByAppendingString:exportFilename]];
-    [self processExportSession: nil:composition :nil :nil:outputFileURL:@"musical appending"];
-    
-}
-
-- (void) prepareMusicalNotification
-{
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(generateMusical) name:@"scenesFinished" object:nil];
-}
-
 - (void)didReceiveMemoryWarning
 {
     // Releases the view if it doesn't have a superview.
@@ -200,36 +172,25 @@
 }
 - (void) saveExportedAssetAt:(NSURL*)outputFileURL andDeleteVideoFile:(NSURL*)videoFileURL forMusical:(BOOL)isMusical
 {
+    //save the URL into a new model
+    ExportedAsset *newAsset = [NSEntityDescription insertNewObjectForEntityForName:@"ExportedAsset" inManagedObjectContext:self.context];
+    newAsset.exportPath = [outputFileURL absoluteString];
+    newAsset.originalHash = theCover.originalHash;
+    newAsset.exportHash = [outputFileURL lastPathComponent];
+    newAsset.dateCreated = [NSDate date];
+    
     if (!isMusical){
-        //save the URL into a new model
-        ExportedAsset *newAsset = [NSEntityDescription insertNewObjectForEntityForName:@"ExportedAsset" inManagedObjectContext:self.context];
         newAsset.isFullShow = NO;
-        newAsset.exportPath = [outputFileURL absoluteString];
         newAsset.title = self.theScene.title;
-        newAsset.originalHash = theCover.originalHash;
-        newAsset.exportHash = [outputFileURL lastPathComponent];
-        newAsset.dateCreated = [NSDate date];
-        
-        [self.context save:nil];
-        
-        [self.exportedAssetsArray addObject:newAsset];
-        
-        [self removeFileAtPath:videoFileURL];
     }else{
-        //save the URL into a new model
-        ExportedAsset *newAsset = [NSEntityDescription insertNewObjectForEntityForName:@"ExportedAsset" inManagedObjectContext:self.context];
         newAsset.isFullShow = [NSNumber numberWithInt:1];
-        newAsset.exportPath = [outputFileURL absoluteString];
         newAsset.title = theShow.title;
-        newAsset.originalHash = theCover.originalHash;
-        newAsset.exportHash = [outputFileURL lastPathComponent];
-        newAsset.dateCreated = [NSDate date];
-        
-        [self.context save:nil];
-        
-        [self.exportedAssetsArray addObject:newAsset];
-        
     }
+    
+    [self.context save:nil];
+    [self.exportedAssetsArray addObject:newAsset];
+    [self removeFileAtPath:videoFileURL];
+    
     [self.delegate reloadMediaTable];
     [self.tableView reloadData];
     [DSBezelActivityView removeViewAnimated:YES];
@@ -339,15 +300,10 @@
         //if it is a musical, check ordering
         if(isMusical){
             CMTime startTime = CMTimeMake([[musicalAudioMappings objectAtIndex:idx] floatValue] *1000000, 1000000);
-//            CMTimeShow(startTime);
-            NSLog(@"idx %i",idx);
-//            CMTime endTime = CMTimeAdd(startTime,);
             [compositionAudioTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero,audioAsset.duration) 
                                            ofTrack:[[audioAsset tracksWithMediaType:AVMediaTypeAudio]objectAtIndex:0] 
                                             atTime:startTime
                                              error:&error];
-            
-//            CMTimeRangeShow(CMTimeRangeMake(startTime,endTime));
             
         }else{
             [compositionAudioTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero,audioAsset.duration) 
@@ -355,7 +311,6 @@
                                         atTime:kCMTimeZero
                                          error:&error];
         }
-//        CMTimeRangeShow(CMTimeRangeMake(kCMTimeZero,audioAsset.duration));
     }];
     
     AVMutableCompositionTrack *compositionVideoTrack = [composition addMutableTrackWithMediaType:AVMediaTypeVideo preferredTrackID:kCMPersistentTrackID_Invalid];
@@ -517,7 +472,6 @@
         
         audioOrderCount += 1;
     };
-    NSLog(@"musicaltimingsarray %@",self.musicalAudioMappings);
     [self processImageAndAudioAppendingToVideoWithImagesArray:musicalImagesArray andSortedPicturesTimingArray:musicalImagesPicturesTimingsArray andAudioFilePaths:musicalAudioURLs forMusical:YES];
 }
 
