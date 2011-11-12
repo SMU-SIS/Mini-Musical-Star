@@ -128,9 +128,6 @@
 		3ABD22F7146E08D900FB8D72 /* ProgressOverlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ABD22F5146E08D900FB8D72 /* ProgressOverlayViewController.m */; };
 		3ABD22F8146E08D900FB8D72 /* ProgressOverlayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3ABD22F6146E08D900FB8D72 /* ProgressOverlayViewController.xib */; };
 		3ABD231A146EA5A700FB8D72 /* export_cell.png in Resources */ = {isa = PBXBuildFile; fileRef = 3ABD2319146EA5A700FB8D72 /* export_cell.png */; };
-		3ABD2358146EB6BE00FB8D72 /* setcredits.png in Resources */ = {isa = PBXBuildFile; fileRef = 3ABD2357146EB6BE00FB8D72 /* setcredits.png */; };
-		3ABD235A146EBF2C00FB8D72 /* taptoedit.png in Resources */ = {isa = PBXBuildFile; fileRef = 3ABD2359146EBF2C00FB8D72 /* taptoedit.png */; };
-		3ABD235C146EC27C00FB8D72 /* videos.png in Resources */ = {isa = PBXBuildFile; fileRef = 3ABD235B146EC27C00FB8D72 /* videos.png */; };
 		3ADA7AED142F85B40045F53E /* AudioFileRingBufferTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ADA7AEA142F85B40045F53E /* AudioFileRingBufferTest.m */; };
 		3ADA7AEE142F85B40045F53E /* MixPlayerRecorderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ADA7AEC142F85B40045F53E /* MixPlayerRecorderTest.m */; };
 		3ADA7AF0142F85EC0045F53E /* AudioFileRingBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFFDEF2142C7E0F000D8494 /* AudioFileRingBuffer.m */; };
@@ -283,6 +280,7 @@
 		64E0E124145D70150074D133 /* note_for_lyrics.png in Resources */ = {isa = PBXBuildFile; fileRef = 64E0E123145D70150074D133 /* note_for_lyrics.png */; };
 		64E0E126145D7E2C0074D133 /* track.png in Resources */ = {isa = PBXBuildFile; fileRef = 64E0E125145D7E2C0074D133 /* track.png */; };
 		64E0E128145D8AB90074D133 /* export.png in Resources */ = {isa = PBXBuildFile; fileRef = 64E0E127145D8AB90074D133 /* export.png */; };
+		64F58017146EC4C20090EAC6 /* facebook_overlay.png in Resources */ = {isa = PBXBuildFile; fileRef = 64F58016146EC4C20090EAC6 /* facebook_overlay.png */; };
 		737716CB1445D61500BF2036 /* ChoiceSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 737716C91445D61500BF2036 /* ChoiceSelectionViewController.m */; };
 		737716CC1445D61500BF2036 /* ChoiceSelectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 737716CA1445D61500BF2036 /* ChoiceSelectionViewController.xib */; };
 		73843EAD144CDD2C00C55337 /* AlertPrompt.m in Sources */ = {isa = PBXBuildFile; fileRef = 73843EAC144CDD2C00C55337 /* AlertPrompt.m */; };
@@ -564,9 +562,6 @@
 		3ABD22F5146E08D900FB8D72 /* ProgressOverlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressOverlayViewController.m; sourceTree = "<group>"; };
 		3ABD22F6146E08D900FB8D72 /* ProgressOverlayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProgressOverlayViewController.xib; sourceTree = "<group>"; };
 		3ABD2319146EA5A700FB8D72 /* export_cell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = export_cell.png; sourceTree = "<group>"; };
-		3ABD2357146EB6BE00FB8D72 /* setcredits.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = setcredits.png; sourceTree = "<group>"; };
-		3ABD2359146EBF2C00FB8D72 /* taptoedit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = taptoedit.png; sourceTree = "<group>"; };
-		3ABD235B146EC27C00FB8D72 /* videos.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = videos.png; sourceTree = "<group>"; };
 		3ADA7AE9142F85B40045F53E /* AudioFileRingBufferTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioFileRingBufferTest.h; sourceTree = "<group>"; };
 		3ADA7AEA142F85B40045F53E /* AudioFileRingBufferTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioFileRingBufferTest.m; sourceTree = "<group>"; };
 		3ADA7AEB142F85B40045F53E /* MixPlayerRecorderTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MixPlayerRecorderTest.h; sourceTree = "<group>"; };
@@ -1084,6 +1079,7 @@
 		64E0E123145D70150074D133 /* note_for_lyrics.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = note_for_lyrics.png; path = Resources/note_for_lyrics.png; sourceTree = "<group>"; };
 		64E0E125145D7E2C0074D133 /* track.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = track.png; path = Resources/track.png; sourceTree = "<group>"; };
 		64E0E127145D8AB90074D133 /* export.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = export.png; sourceTree = "<group>"; };
+		64F58016146EC4C20090EAC6 /* facebook_overlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = facebook_overlay.png; path = Resources/facebook_overlay.png; sourceTree = "<group>"; };
 		737716C81445D61500BF2036 /* ChoiceSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChoiceSelectionViewController.h; sourceTree = "<group>"; };
 		737716C91445D61500BF2036 /* ChoiceSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChoiceSelectionViewController.m; sourceTree = "<group>"; };
 		737716CA1445D61500BF2036 /* ChoiceSelectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChoiceSelectionViewController.xib; sourceTree = "<group>"; };
@@ -2192,9 +2188,7 @@
 		820E2A1E140A0A2A00B80BBC /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				3ABD235B146EC27C00FB8D72 /* videos.png */,
-				3ABD2359146EBF2C00FB8D72 /* taptoedit.png */,
-				3ABD2357146EB6BE00FB8D72 /* setcredits.png */,
+				64F58016146EC4C20090EAC6 /* facebook_overlay.png */,
 				3ABD2319146EA5A700FB8D72 /* export_cell.png */,
 				6480DD27146E6DEC00576167 /* youtube_overlay.png */,
 				3ADF358E146D8DC300C8F595 /* lastscreen.png */,
@@ -2699,9 +2693,7 @@
 				3ABD231A146EA5A700FB8D72 /* export_cell.png in Resources */,
 				64709A0C146EC22D0096BB1F /* youtube_tryagain.png in Resources */,
 				64709A0E146EC2360096BB1F /* fb_tryagain.png in Resources */,
-				3ABD2358146EB6BE00FB8D72 /* setcredits.png in Resources */,
-				3ABD235A146EBF2C00FB8D72 /* taptoedit.png in Resources */,
-				3ABD235C146EC27C00FB8D72 /* videos.png in Resources */,
+				64F58017146EC4C20090EAC6 /* facebook_overlay.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
