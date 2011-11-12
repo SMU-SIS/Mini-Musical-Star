@@ -256,6 +256,12 @@
 		646E4D4C1454199300F066F6 /* SBJsonUTF8Stream.m in Sources */ = {isa = PBXBuildFile; fileRef = 646E4D351454199300F066F6 /* SBJsonUTF8Stream.m */; };
 		646E4D4D1454199300F066F6 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 646E4D371454199300F066F6 /* SBJsonWriter.m */; };
 		646E54D114542E0700F066F6 /* libGDataTouchStaticLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 646E54C714542DEB00F066F6 /* libGDataTouchStaticLib.a */; };
+		647099C6146E9E5A0096BB1F /* youtube_cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = 647099C3146E9E5A0096BB1F /* youtube_cancel.png */; };
+		647099C7146E9E5A0096BB1F /* youtube_close.png in Resources */ = {isa = PBXBuildFile; fileRef = 647099C4146E9E5A0096BB1F /* youtube_close.png */; };
+		647099C8146E9E5A0096BB1F /* youtube_upload.png in Resources */ = {isa = PBXBuildFile; fileRef = 647099C5146E9E5A0096BB1F /* youtube_upload.png */; };
+		647099CC146E9E650096BB1F /* fb_cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = 647099C9146E9E650096BB1F /* fb_cancel.png */; };
+		647099CD146E9E650096BB1F /* fb_close.png in Resources */ = {isa = PBXBuildFile; fileRef = 647099CA146E9E650096BB1F /* fb_close.png */; };
+		647099CE146E9E650096BB1F /* fb_upload.png in Resources */ = {isa = PBXBuildFile; fileRef = 647099CB146E9E650096BB1F /* fb_upload.png */; };
 		6480DD26146E564500576167 /* close_x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6480DD25146E564500576167 /* close_x.png */; };
 		6480DD28146E6DEC00576167 /* youtube_overlay.png in Resources */ = {isa = PBXBuildFile; fileRef = 6480DD27146E6DEC00576167 /* youtube_overlay.png */; };
 		64985A3B14528E5400485F4D /* sample.mov in Resources */ = {isa = PBXBuildFile; fileRef = 64985A3A14528E5400485F4D /* sample.mov */; };
@@ -1043,6 +1049,12 @@
 		646E560914542F7400F066F6 /* GTMOAuth2SignIn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMOAuth2SignIn.h; sourceTree = "<group>"; };
 		646E560A14542F7400F066F6 /* GTMOAuth2ViewControllerTouch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMOAuth2ViewControllerTouch.h; sourceTree = "<group>"; };
 		646E560B14542F7400F066F6 /* GTMReadMonitorInputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMReadMonitorInputStream.h; sourceTree = "<group>"; };
+		647099C3146E9E5A0096BB1F /* youtube_cancel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = youtube_cancel.png; sourceTree = "<group>"; };
+		647099C4146E9E5A0096BB1F /* youtube_close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = youtube_close.png; sourceTree = "<group>"; };
+		647099C5146E9E5A0096BB1F /* youtube_upload.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = youtube_upload.png; sourceTree = "<group>"; };
+		647099C9146E9E650096BB1F /* fb_cancel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fb_cancel.png; sourceTree = "<group>"; };
+		647099CA146E9E650096BB1F /* fb_close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fb_close.png; sourceTree = "<group>"; };
+		647099CB146E9E650096BB1F /* fb_upload.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fb_upload.png; sourceTree = "<group>"; };
 		6480DD25146E564500576167 /* close_x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close_x.png; sourceTree = "<group>"; };
 		6480DD27146E6DEC00576167 /* youtube_overlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = youtube_overlay.png; path = Resources/youtube_overlay.png; sourceTree = "<group>"; };
 		64985A3A14528E5400485F4D /* sample.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; name = sample.mov; path = Resources/sample.mov; sourceTree = "<group>"; };
@@ -1527,6 +1539,12 @@
 		3AFFDDF1142C7191000D8494 /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
+				647099C9146E9E650096BB1F /* fb_cancel.png */,
+				647099CA146E9E650096BB1F /* fb_close.png */,
+				647099CB146E9E650096BB1F /* fb_upload.png */,
+				647099C3146E9E5A0096BB1F /* youtube_cancel.png */,
+				647099C4146E9E5A0096BB1F /* youtube_close.png */,
+				647099C5146E9E5A0096BB1F /* youtube_upload.png */,
 				6480DD25146E564500576167 /* close_x.png */,
 				6457E056145DA26400ABBF87 /* newcover.png */,
 				6457E04C145D9E1E00ABBF87 /* camera.png */,
@@ -2654,6 +2672,12 @@
 				3ABD22F8146E08D900FB8D72 /* ProgressOverlayViewController.xib in Resources */,
 				6480DD26146E564500576167 /* close_x.png in Resources */,
 				6480DD28146E6DEC00576167 /* youtube_overlay.png in Resources */,
+				647099C6146E9E5A0096BB1F /* youtube_cancel.png in Resources */,
+				647099C7146E9E5A0096BB1F /* youtube_close.png in Resources */,
+				647099C8146E9E5A0096BB1F /* youtube_upload.png in Resources */,
+				647099CC146E9E650096BB1F /* fb_cancel.png in Resources */,
+				647099CD146E9E650096BB1F /* fb_close.png in Resources */,
+				647099CE146E9E650096BB1F /* fb_upload.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
