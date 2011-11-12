@@ -55,7 +55,6 @@
 //for the cues
 @property (retain, nonatomic) CueController *cueController;
 @property (retain, nonatomic) UIView *cueView;
-@property (retain, nonatomic) Cue *currentCue;
 
 //for the MixPlayerRecorder
 @property (nonatomic, retain) MixPlayerRecorder *thePlayer;

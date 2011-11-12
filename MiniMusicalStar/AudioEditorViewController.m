@@ -31,7 +31,7 @@
 @synthesize pauseButtonImage;
 @synthesize recordingImage;
 @synthesize delegate;
-@synthesize cueController,cueView, currentCue;
+@synthesize cueController,cueView;
 
 - (void)dealloc
 {
@@ -70,7 +70,6 @@
     
     [cueController release];
     [cueView release];
-    [currentCue release];
     
     [super dealloc];
 }
@@ -415,7 +414,7 @@
     int row = [self getTableViewRow:sender];
     Cue *theCue = [self.cueController getCurrentCueForTrackIndex:row];
     
-    if (self.currentCue == theCue)
+    if (self.cueController.currentCue == theCue)
     {
         [self removeAndUnloadCueFromView];
     }
@@ -436,14 +435,53 @@
         [textView release];
         
         [self.view addSubview:self.cueView];
+        [self.view sendSubviewToBack:self.cueView];
+        
+        //animate the lyrics view sliding down
+        CGRect lyricsFrame = self.lyricsScrollView.frame;
+        lyricsFrame.origin.y = lyricsFrame.origin.y + 50;
+        lyricsFrame.size.height = lyricsFrame.size.height - 50;
+        
+        CGRect lyricsLabelFrame = self.lyricsLabel.frame;
+        lyricsLabelFrame.origin.y = lyricsLabelFrame.origin.y + 50;
+        lyricsLabelFrame.size.height = lyricsLabelFrame.size.height - 50;
+        
+        [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationCurveEaseInOut
+                         animations:^{
+                             self.lyricsScrollView.frame = lyricsFrame;
+                             self.lyricsLabel.frame = lyricsLabelFrame;
+                         }
+                         completion:^(BOOL finished) {
+                             NSLog(@"animation done!");
+                         }];
+
     }
 }
 
 - (void)removeAndUnloadCueFromView
 {
-    [self.cueView removeFromSuperview];
-    self.cueController.currentCue = nil;
-    self.cueView = nil;
+    if (self.cueView && self.cueController.currentCue)
+    {
+        //animate the lyrics view sliding up
+        CGRect lyricsFrame = self.lyricsScrollView.frame;
+        lyricsFrame.origin.y = lyricsFrame.origin.y - 50;
+        lyricsFrame.size.height = lyricsFrame.size.height + 50;
+        
+        CGRect lyricsLabelFrame = self.lyricsLabel.frame;
+        lyricsLabelFrame.origin.y = lyricsLabelFrame.origin.y - 50;
+        lyricsLabelFrame.size.height = lyricsLabelFrame.size.height + 50;
+        
+        [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationCurveEaseInOut
+                         animations:^{
+                             self.lyricsScrollView.frame = lyricsFrame;
+                             self.lyricsLabel.frame = lyricsLabelFrame;
+                         }
+                         completion:^(BOOL finished) {
+                             [self.cueView removeFromSuperview];
+                             self.cueController.currentCue = nil;
+                             self.cueView = nil;
+                         }];
+    }
 }
 
 #pragma mark - instance methods for player
