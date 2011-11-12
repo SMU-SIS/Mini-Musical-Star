@@ -35,9 +35,11 @@
 @synthesize tempMusicalContainer;
 @synthesize context;
 @synthesize delegate;
+@synthesize exportSession;
 
 -(void)dealloc
 {
+    [exportSession release];
     [delegate release];
     [tempMusicalContainer release];
     [musicalArray release];
@@ -140,7 +142,7 @@
     NSArray *compatiblePresets = [AVAssetExportSession exportPresetsCompatibleWithAsset:composition];
     
     if ([compatiblePresets containsObject:AVAssetExportPreset640x480]) {
-        AVAssetExportSession *exportSession = [[AVAssetExportSession alloc]
+        self.exportSession = [[AVAssetExportSession alloc]
                                                initWithAsset:composition presetName:AVAssetExportPresetHighestQuality];
         if(videoComposition){
             exportSession.videoComposition = videoComposition;
@@ -151,6 +153,9 @@
         exportSession.timeRange = CMTimeRangeMake(kCMTimeZero,CMTimeAdd(composition.duration,CMTimeMake(15,1)));
         
         CMTimeRangeShow(exportSession.timeRange);
+        
+        //fit progress bar
+        NSTimer *aTimer = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(refreshProgressBar:) userInfo:nil repeats:YES];
         
         [exportSession exportAsynchronouslyWithCompletionHandler:^{
             switch ([exportSession status]) {
@@ -164,11 +169,23 @@
                 default:
                     break;
             }
+            [aTimer invalidate];
             [exportSession release];
             
         }];
     }
 }
+
+#pragma mark - KVO callbacks
+
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)changeContext
+{    
+    NSString *kvoContext = (NSString *)changeContext;
+    if ([kvoContext isEqualToString:@"progressValueChanged"]) {
+        NSLog(@"value : ");
+    }
+}
+
 - (void) saveExportedAssetAt:(NSURL*)outputFileURL andDeleteVideoFile:(NSURL*)videoFileURL forMusical:(BOOL)isMusical
 {
     //save the URL into a new model
@@ -201,7 +218,7 @@
 //    
     [self.delegate reloadMediaTable];
     [self.tableView reloadData];
-    [DSBezelActivityView removeViewAnimated:YES];
+//    [DSBezelActivityView removeViewAnimated:YES];
     
 }
 
@@ -212,10 +229,10 @@
 
 - (void)refreshProgressBar:(NSTimer*) aTimer
 {
-    UIProgressView *prog = [aTimer.userInfo objectAtIndex:0];
-    AVAssetExportSession *exportSession = [aTimer.userInfo objectAtIndex:1];
-    //    NSLog(@"export timer : %f",exportSession.progress);
-    [prog setProgress: exportSession.progress];
+
+//    AVAssetExportSession *exportSession = aTimer.userInfo;
+//    NSLog(@"export timer : %f",exportSession.progress);
+    [delegate setProgressViewAtValue:self.exportSession.progress withAnimation:YES];
     
 }
 
@@ -380,7 +397,9 @@
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
         
-        cell.textLabel.backgroundColor = [UIColor clearColor];
+        UIImage *background = [UIImage imageNamed: @"export_cell.png"];
+        cell.backgroundColor = [[UIColor alloc] initWithPatternImage:background];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
     // Configure the cell...
@@ -423,9 +442,9 @@
 	headerLabel.frame = CGRectMake(10.0, 0.0, 300.0, 44.0);
     
     if (section == 0) {
-        headerLabel.text = @"Export Musical";
+        headerLabel.text = @"Create your Musicals";
     } else if (section == 1) {
-        headerLabel.text = @"Export Scenes";
+        headerLabel.text = @"Create Scene Only";
     }
     
 	[customView addSubview:headerLabel];
@@ -439,14 +458,13 @@
 {
     theSceneUtility = [[SceneUtility alloc] initWithSceneAndCoverScene: self.theScene:coverScene];
     
-    [DSBezelActivityView newActivityViewForView:self.view withLabel:@"Exporting your scene... WAIT OK!? otherwise your ipad might EXPLODE...BOOM!"];
-    
+//    [DSBezelActivityView newActivityViewForView:self.view withLabel:@"Exporting your scene... WAIT OK!? otherwise your ipad might EXPLODE...BOOM!"];
     [self processImageAndAudioAppendingToVideoWithImagesArray:[theSceneUtility getMergedImagesArray] andSortedPicturesTimingArray:[self.theScene getOrderedPictureTimingArray] andAudioFilePaths:[theSceneUtility getExportAudioURLs] forMusical:NO];
     
 }
 - (void)exportMusical:(Show*)show
 {
-    [DSBezelActivityView newActivityViewForView:self.view withLabel:@"Exporting your musical... WAIT OK!? otherwise your ipad might EXPLODE...BOOM!"];
+//    [DSBezelActivityView newActivityViewForView:self.view withLabel:@"Exporting your musical... WAIT OK!? otherwise your ipad might EXPLODE...BOOM!"];
     
     //get the fully appended images array and picturetimings dict
     NSMutableArray *musicalImagesArray = [[NSMutableArray alloc] initWithCapacity:0];
@@ -497,8 +515,14 @@
     [self processImageAndAudioAppendingToVideoWithImagesArray:musicalImagesArray andSortedPicturesTimingArray:musicalImagesPicturesTimingsArray andAudioFilePaths:musicalAudioURLs forMusical:YES];
 }
 
+- (void) cancelExportSession
+{
+    [self.exportSession cancelExport];
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [delegate showProgressView];
     if(indexPath.section == 0){
         [self exportMusical:[musicalArray objectAtIndex:0]];
     }else if(indexPath.section == 1){

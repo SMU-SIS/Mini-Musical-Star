@@ -82,7 +82,7 @@
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<string key="IBUIText"/>
+						<string key="IBUIText">Change this to your own credits!</string>
 						<int key="IBUIBorderStyle">3</int>
 						<string key="IBUIPlaceholder">Enter cool text as credits</string>
 						<object class="NSColor" key="IBUITextColor">
@@ -119,7 +119,7 @@
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<string key="IBUIText"/>
+						<string key="IBUIText">Made with by THE legendaries</string>
 						<int key="IBUIBorderStyle">3</int>
 						<string key="IBUIPlaceholder">so that you can</string>
 						<object class="NSColor" key="IBUITextColor">
@@ -147,7 +147,7 @@
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<string key="IBUIText"/>
+						<string key="IBUIText">Asti Andayani Temi, Tommi Lew</string>
 						<int key="IBUIBorderStyle">3</int>
 						<string key="IBUIPlaceholder">show the world that</string>
 						<object class="NSColor" key="IBUITextColor">
@@ -175,7 +175,7 @@
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<string key="IBUIText"/>
+						<string key="IBUIText">Adrian Cheng, Lee Jun Kit</string>
 						<int key="IBUIBorderStyle">3</int>
 						<string key="IBUIPlaceholder">YOU created this special cover</string>
 						<object class="NSColor" key="IBUITextColor">
@@ -197,13 +197,12 @@
 						<string key="NSFrame">{{62, 194}, {288, 31}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:320</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<string key="IBUIText"/>
+						<string key="IBUIText">Tan Wei Jie</string>
 						<int key="IBUIBorderStyle">3</int>
 						<string key="IBUIPlaceholder">and that it is simply awesome!</string>
 						<object class="NSColor" key="IBUITextColor">
@@ -448,7 +447,6 @@
 						<reference key="object" ref="766721923"/>
 						<array class="NSMutableArray" key="children">
 							<reference ref="729271211"/>
-							<reference ref="255399491"/>
 							<reference ref="286716857"/>
 							<reference ref="700381816"/>
 							<reference ref="187062892"/>
@@ -456,6 +454,7 @@
 							<reference ref="173660164"/>
 							<reference ref="858456484"/>
 							<reference ref="581413034"/>
+							<reference ref="255399491"/>
 							<reference ref="82197016"/>
 							<reference ref="1058754909"/>
 						</array>

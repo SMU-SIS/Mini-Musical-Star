@@ -1,31 +1,24 @@
 //
-//  AddCreditsViewController.m
+//  ProgressOverlayViewController.m
 //  MiniMusicalStar
 //
-//  Created by Adrian Cheng Bing Jie on 3/11/11.
+//  Created by Adrian Cheng Bing Jie on 12/11/11.
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "AddCreditsViewController.h"
+#import "ProgressOverlayViewController.h"
 
-@implementation AddCreditsViewController
+@implementation ProgressOverlayViewController
 
-@synthesize textFieldOne;
-@synthesize textFieldTwo;
-@synthesize textFieldThree;
-@synthesize textFieldFour;
-@synthesize textFieldFive;
+@synthesize progressView;
+@synthesize cancelButton;
+@synthesize delegate;
 
-@synthesize textFieldArray;
-
-- (void) dealloc
+-(void) dealloc
 {
-    [textFieldArray release];
-    [textFieldOne release];
-    [textFieldTwo release];
-    [textFieldThree release];
-    [textFieldFour release];
-    [textFieldFive release];
+    [delegate release];
+    [progressView release];
+    [cancelButton release];
     [super dealloc];
 }
 
@@ -34,7 +27,6 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        self.textFieldArray = [NSMutableArray arrayWithCapacity:0];
     }
     return self;
 }
@@ -47,22 +39,11 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
-- (NSMutableArray*) getTextFieldArray
-{
-    [self.textFieldArray addObject:textFieldOne];
-    [self.textFieldArray addObject:textFieldTwo];
-    [self.textFieldArray addObject:textFieldThree];
-    [self.textFieldArray addObject:textFieldFour];
-    [self.textFieldArray addObject:textFieldFive];
-    return self.textFieldArray;
-}
-
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -78,5 +59,17 @@
     // Return YES for supported orientations
 	return YES;
 }
+
+-(IBAction)cancelProgressView:(id)sender
+{
+    [delegate cancelExportSession];
+    [self.view removeFromSuperview];
+}
+
+-(void) changeCancelToDoneButton
+{
+    [self.cancelButton setTitle:@"Done" forState:UIControlStateNormal];
+}
+
 
 @end

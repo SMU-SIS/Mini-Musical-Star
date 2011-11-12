@@ -15,9 +15,10 @@
 #import "MediaTableViewController.h"
 #import "ExportedAsset.h"
 #import "YouTubeUploaderViewController.h"
+#import "ProgressOverlayViewController.h"
 
 @interface ExportViewController : UIViewController 
-    <ExportTableViewDelegate, MediaTableViewDelegate, FacebookUploaderDelegate, YouTubeUploaderDelegate>
+    <ProgressOverlayViewDelegate, ExportTableViewDelegate, MediaTableViewDelegate, FacebookUploaderDelegate, YouTubeUploaderDelegate>
 
 @property (retain, nonatomic) Show *theShow;
 @property (retain, nonatomic) Cover *theCover;
@@ -32,9 +33,15 @@
 @property (nonatomic, retain) FacebookUploaderViewController *facebookUploaderViewController;
 @property (nonatomic, retain) YouTubeUploaderViewController *youtubeUploaderViewController;
 
+@property (nonatomic,retain) ProgressOverlayViewController *progressViewController;
+
 - (ExportViewController*)initWithStuff:(Show*)show:(Cover*)cover context:(NSManagedObjectContext *)aContext;
 
 - (void) addExportedAsset: (ExportedAsset*) asset;
+
+- (void) showProgressView;
+- (void) setProgressViewAtValue:(float)value withAnimation:(BOOL)isAnimated;
+- (void) removeProgressView;
 
 - (NSMutableArray*) getTextFieldArray;
 

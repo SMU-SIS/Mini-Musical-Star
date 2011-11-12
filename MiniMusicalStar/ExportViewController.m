@@ -18,6 +18,7 @@
 @synthesize addCreditsButton;
 @synthesize popoverController;
 @synthesize addCreditsViewController;
+@synthesize progressViewController;
     
 - (void)dealloc
 {
@@ -25,6 +26,7 @@
     [theCover release];
     [context release];
     
+    [progressViewController release];
     [popoverController release];
     [mediaTableViewController release];
     [exportTableViewController release];
@@ -63,17 +65,53 @@
         UIColor *background = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"exportpage.png"]];
         self.view.backgroundColor = background;
         
-        self.exportTableViewController.tableView.backgroundView.alpha = 0;
-        self.exportTableViewController.tableView.frame = CGRectMake(50,200,400,450);
+        self.exportTableViewController.tableView.backgroundView.hidden = YES;
+        self.exportTableViewController.tableView.frame = CGRectMake(50,160,400,590);
         
-        self.mediaTableViewController.tableView.frame = CGRectMake(570,200,370,480);
-        self.mediaTableViewController.tableView.backgroundView.alpha = 0;
+        [self.exportTableViewController.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+        
+        self.mediaTableViewController.tableView.frame = CGRectMake(570,160,370,590);
+        self.mediaTableViewController.tableView.backgroundView.hidden = YES;
+        
+        [self.mediaTableViewController.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+        
+        self.progressViewController = [[ProgressOverlayViewController alloc] init];
+        [self.progressViewController setDelegate:self];
         
         [self.view addSubview:self.exportTableViewController.tableView];
         [self.view addSubview:self.mediaTableViewController.tableView];
     }
     
     return self;
+}
+
+- (void) showProgressView
+{
+
+//    [progressViewController.cancelButton setTitle:@"Cancel" forState:UIControlStateNormal];
+    [self.progressViewController.view setAlpha:0.0];
+    [self.view addSubview:progressViewController.view];
+    [UIView beginAnimations:nil context:nil];
+    [self.progressViewController.view setAlpha:1.0];
+    [UIView commitAnimations];
+}
+
+- (void) setProgressViewAtValue:(float)value withAnimation:(BOOL)isAnimated
+{
+    [progressViewController.progressView setProgress:value animated:isAnimated];
+    if(value == 1.0){
+        [self performSelector:@selector(removeProgressView) withObject:nil afterDelay:5.0];
+    }
+}
+
+- (void) removeProgressView
+{
+    [progressViewController.view removeFromSuperview];
+}
+
+-(void) cancelExportSession
+{
+    [self.exportTableViewController cancelExportSession];
 }
 
 - (IBAction) editTable:(id)sender
@@ -200,16 +238,14 @@
 
 #pragma - YouTubeUploaderDelegate methods
 
-- (void)youTubeUploadSuccess
+- (void)removeYouTubeUploadOverlay
 {
-    NSLog(@"uploadSuccess");
+    if (youtubeUploaderViewController.isUploading) {
+        [youtubeUploaderViewController cancelUpload];
+    }
+    
     [self.youtubeUploaderViewController.view removeFromSuperview];
     [self.youtubeUploaderViewController release];
-}
-
-- (void)youTubeUploadFailed
-{
-    
 }
 
 #pragma - MediaTableViewDelegate methods
@@ -237,8 +273,6 @@
     youtubeUploaderViewController.view.alpha = 0.9;
     youtubeUploaderViewController.centerView.alpha = 1;
     youtubeUploaderViewController.centerView.backgroundColor = [UIColor whiteColor];
-    
-    [youtubeUploaderViewController startUpload];
 }
 
 @end
