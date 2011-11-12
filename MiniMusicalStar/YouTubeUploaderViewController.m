@@ -212,7 +212,7 @@
         }
         
         [self.okButton setTitle:@"TRY AGAIN" forState:UIControlStateNormal];
-        [self.okButton setImage:[UIImage imageNamed:@"export.png"] forState:UIControlStateNormal]; //change button
+        [self.okButton setImage:[UIImage imageNamed:@"youtube_tryagain.png"] forState:UIControlStateNormal]; //change button
 
         //NSLog(@"The upload has failed with %@", error);
     }
@@ -252,7 +252,7 @@ hasDeliveredByteCount:(unsigned long long)numberOfBytesRead ofTotalByteCount:(un
     if (![self validateTextFields]) {
         self.statusLabel.text = @"Please enter both username and password";
         [self.okButton setTitle:@"TRY AGAIN" forState:UIControlStateNormal];
-        [self.okButton setImage:[UIImage imageNamed:@"export.png"] forState:UIControlStateNormal];
+        [self.okButton setImage:[UIImage imageNamed:@"youtube_tryagain.png"] forState:UIControlStateNormal];
         return;
     }
     
@@ -273,7 +273,7 @@ hasDeliveredByteCount:(unsigned long long)numberOfBytesRead ofTotalByteCount:(un
     self.uploadProgressView.progress = 0;
     self.statusLabel.text = @"Upload cancelled";
     [self.okButton setTitle:@"TRY AGAIN" forState:UIControlStateNormal];
-    [self.okButton setImage:[UIImage imageNamed:@"export.png"] forState:UIControlStateNormal];
+    [self.okButton setImage:[UIImage imageNamed:@"youtube_tryagain.png"] forState:UIControlStateNormal];
 }
 
 - (bool)validateTextFields
