@@ -47,26 +47,6 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
-//- (IBAction)onValueChange:(id)sender 
-//{
-//    NSString *text = nil;
-//    int MAX_LENGTH = 20;
-//    switch ([sender tag] ) 
-//    {
-//        case 1: 
-//        {
-//            text = textFieldOne.text;
-//            if (MAX_LENGTH < [text length]) {
-//                textFieldOne.text = [text substringToIndex:MAX_LENGTH];
-//            }
-//        }
-//            break;
-//        default:
-//            break;
-//    }
-//    
-//}
-
 - (NSMutableArray*) getTextFieldArray
 {
     [self.textFieldArray addObject:textFieldOne];

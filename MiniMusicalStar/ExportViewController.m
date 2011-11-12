@@ -65,11 +65,11 @@
         UIColor *background = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"exportpage.png"]];
         self.view.backgroundColor = background;
         
-        self.exportTableViewController.tableView.backgroundView.alpha = 0;
-        self.exportTableViewController.tableView.frame = CGRectMake(50,200,400,450);
+        self.exportTableViewController.tableView.backgroundView.hidden = YES;
+        self.exportTableViewController.tableView.frame = CGRectMake(50,160,400,590);
         
-        self.mediaTableViewController.tableView.frame = CGRectMake(570,200,370,480);
-        self.mediaTableViewController.tableView.backgroundView.alpha = 0;
+        self.mediaTableViewController.tableView.frame = CGRectMake(570,160,370,590);
+        self.mediaTableViewController.tableView.backgroundView.hidden = YES;
         
         self.progressViewController = [[ProgressOverlayViewController alloc] init];
         [self.progressViewController setDelegate:self];
@@ -87,6 +87,7 @@
 //    [UIView setAnimationDuration:0.75];
 //    [UIView setAnimationDelegate:self];
 //    [UIView setAnimationTransition:UIViewAnimationTransitionCurlDown forView:progressViewController.view cache:YES];
+    [progressViewController.cancelButton setTitle:@"Cancel" forState:UIControlStateNormal];
     [self.view addSubview:progressViewController.view];
 //    [UIView commitAnimations];
 }
@@ -124,7 +125,7 @@
 }
 - (IBAction) togglePopoverForAddCredits
 {
-    [self.popoverController presentPopoverFromRect:self.addCreditsButton.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
+    [self.popoverController presentPopoverFromRect:CGRectMake(211,74,110,37) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
 }
 
 - (void) reloadMediaTable
