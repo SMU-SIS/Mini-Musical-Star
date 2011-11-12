@@ -15,11 +15,11 @@
 
 /* Range of constant values for randomization */
 #define MINZOOMSCALE 1.1
-#define MAXZOOMSCALE 1.8
-#define MINXMOVEMENT -150
-#define MAXXMOVEMENT 150
-#define MINYMOVEMENT -150
-#define MAXYMOVEMENT 150
+#define MAXZOOMSCALE 1.5
+#define MINXMOVEMENT -100
+#define MAXXMOVEMENT 100
+#define MINYMOVEMENT -100
+#define MAXYMOVEMENT 100
 #define MINDURATION 5
 #define MAXDURATION 8
 
