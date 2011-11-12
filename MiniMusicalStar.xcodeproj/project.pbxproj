@@ -280,12 +280,12 @@
 		9502152F146EB7C900B5C372 /* CueController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9502152E146EB7C900B5C372 /* CueController.m */; };
 		95021535146EC94D00B5C372 /* DDInvocationGrabber.m in Sources */ = {isa = PBXBuildFile; fileRef = 95021532146EC94D00B5C372 /* DDInvocationGrabber.m */; };
 		95021536146EC94D00B5C372 /* NSObject+DDExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 95021534146EC94D00B5C372 /* NSObject+DDExtensions.m */; };
+		95021538146EECB400B5C372 /* howling_dog.zip in Resources */ = {isa = PBXBuildFile; fileRef = 95021537146EECB400B5C372 /* howling_dog.zip */; };
 		9510D177142F882600908ABC /* bass.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3AFFDDEB142C7191000D8494 /* bass.mp3 */; };
 		9510D179142F882900908ABC /* drums.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3AFFDDEC142C7191000D8494 /* drums.mp3 */; };
 		9510D17A142F882C00908ABC /* guitar.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3AFFDDED142C7191000D8494 /* guitar.mp3 */; };
 		9510D17B142F882F00908ABC /* keys.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3AFFDDEE142C7191000D8494 /* keys.mp3 */; };
 		9510D17C142F883200908ABC /* vocals.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3AFFDDEF142C7191000D8494 /* vocals.mp3 */; };
-		9533AAEA144E8F5E0092725C /* howling_dog.zip in Resources */ = {isa = PBXBuildFile; fileRef = 9533AAE9144E8F5E0092725C /* howling_dog.zip */; };
 		95674E16145BFE6A00836B5F /* SceneStripController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95674E15145BFE6A00836B5F /* SceneStripController.m */; };
 		9569E05B1418A2A80016DAF3 /* AudioEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9569E0581418A2A80016DAF3 /* AudioEditorViewController.m */; };
 		9569E05C1418A2A80016DAF3 /* PhotoEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9569E05A1418A2A80016DAF3 /* PhotoEditorViewController.m */; };
@@ -1074,7 +1074,7 @@
 		95021532146EC94D00B5C372 /* DDInvocationGrabber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDInvocationGrabber.m; sourceTree = "<group>"; };
 		95021533146EC94D00B5C372 /* NSObject+DDExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+DDExtensions.h"; sourceTree = "<group>"; };
 		95021534146EC94D00B5C372 /* NSObject+DDExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+DDExtensions.m"; sourceTree = "<group>"; };
-		9533AAE9144E8F5E0092725C /* howling_dog.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = howling_dog.zip; sourceTree = "<group>"; };
+		95021537146EECB400B5C372 /* howling_dog.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = howling_dog.zip; sourceTree = "<group>"; };
 		95674E14145BFE6A00836B5F /* SceneStripController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneStripController.h; sourceTree = "<group>"; };
 		95674E15145BFE6A00836B5F /* SceneStripController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SceneStripController.m; sourceTree = "<group>"; };
 		9569E0571418A2A80016DAF3 /* AudioEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioEditorViewController.h; sourceTree = "<group>"; };
@@ -2162,6 +2162,7 @@
 		820E2A1E140A0A2A00B80BBC /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				95021537146EECB400B5C372 /* howling_dog.zip */,
 				3ADF358E146D8DC300C8F595 /* lastscreen.png */,
 				3A9FACBE1462D40C00D2B642 /* blankblack.png */,
 				3A9FAC6614618C8200D2B642 /* coverflow2.png */,
@@ -2179,7 +2180,6 @@
 				3A10EFBF145BF56F006F8EEC /* photo_library.png */,
 				64985A3A14528E5400485F4D /* sample.mov */,
 				3A4EB6B41456A8CF005A662F /* lastclip.mov */,
-				9533AAE9144E8F5E0092725C /* howling_dog.zip */,
 				95D2069C1449E480004B6E8B /* scene page helper graphic.png */,
 				95D206991449B0EA004B6E8B /* Icons */,
 				950060031440B5FF000BB0A6 /* musical_placeholder.png */,
@@ -2627,7 +2627,6 @@
 				95D2069B1449B0F8004B6E8B /* 40-inbox.png in Resources */,
 				95D2069D1449E480004B6E8B /* scene page helper graphic.png in Resources */,
 				3AF97A35144BE6FE00133C47 /* ExportTableViewController.xib in Resources */,
-				9533AAEA144E8F5E0092725C /* howling_dog.zip in Resources */,
 				64985A3B14528E5400485F4D /* sample.mov in Resources */,
 				3A4EB6B51456A8CF005A662F /* lastclip.mov in Resources */,
 				3AB141F71457FF3700173EAD /* ConsoleViewController.xib in Resources */,
@@ -2665,6 +2664,7 @@
 				3A9FACBF1462D40C00D2B642 /* blankblack.png in Resources */,
 				649E1D6E146CF33300DC7B28 /* FBDialog.bundle in Resources */,
 				3ADF358F146D8DC300C8F595 /* lastscreen.png in Resources */,
+				95021538146EECB400B5C372 /* howling_dog.zip in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
