@@ -13,12 +13,10 @@
     int currentSecond;
 }
 
-@property (retain, nonatomic) UIView *view;
 @property (retain, nonatomic) NSArray *tracks;
-@property (retain, nonatomic) Cue *currentCue;
+@property (assign, nonatomic) Cue *currentCue;
 @property (assign, nonatomic) id delegate;
 
 - (id)initWithAudioArray:(NSArray *)tracksArray;
 - (Cue *)getCurrentCueForTrackIndex: (int)trackIndex;
-- (void)loadView;
 @end

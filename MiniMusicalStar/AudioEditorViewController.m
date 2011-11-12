@@ -421,10 +421,10 @@
     }
     
     //change the cue only if a different cue is requested
-    else if (self.currentCue != theCue)
+    else if (self.cueController.currentCue != theCue)
     {
         [self removeAndUnloadCueFromView];
-        self.currentCue = theCue;
+        self.cueController.currentCue = theCue;
         
         CGRect frame = CGRectMake(520, 30, 460, 50);
         
@@ -442,7 +442,7 @@
 - (void)removeAndUnloadCueFromView
 {
     [self.cueView removeFromSuperview];
-    self.currentCue = nil;
+    self.cueController.currentCue = nil;
     self.cueView = nil;
 }
 

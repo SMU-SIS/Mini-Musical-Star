@@ -12,14 +12,12 @@
 #import "Audio.h"
 
 @implementation CueController
-@synthesize view, tracks, currentCue, delegate;
+@synthesize tracks, currentCue, delegate;
 
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [view release];
     [tracks release];
-    [currentCue release];
     [super dealloc];
 }
 
@@ -42,6 +40,13 @@
 {
     MixPlayerRecorder *thePlayer = notification.object;
     currentSecond = thePlayer.elapsedPlaybackTimeInSeconds;
+    
+    //check the current cue first to see if its time is up
+    if (![self.currentCue shouldCueBeShowingAtSecond:currentSecond])
+    {
+        [delegate performSelectorOnMainThread:@selector(removeAndUnloadCueFromView) withObject:nil waitUntilDone:NO];
+    }
+    
     //check the tracks to see which ones got cues at this point in time and let the parent controller know
     [self.tracks enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         if ([obj isKindOfClass:[Audio class]])
@@ -67,23 +72,6 @@
 {
     Audio *theAudio = (Audio *)[self.tracks objectAtIndex:trackIndex];
     return [theAudio cueForSecond:currentSecond];
-}
-
-- (void)loadView
-{
-    /* constants related to displaying lyrics */
-    #define LYRICS_VIEW_WIDTH 460 //the entire width of the landscape screen
-    #define LYRICS_VIEW_HEIGHT 530
-    #define LYRICS_VIEW_X 520
-    #define LYRICS_VIEW_Y 30
-    CGRect frame = CGRectMake(520, 30, 460, 100);
-    self.view = [[UIView alloc] initWithFrame:frame];
-    
-    //create the content view
-    UITextView *contentView = [[UITextView alloc] initWithFrame:frame];
-    //contentView.text = self.theCue.content;
-    contentView.backgroundColor = [UIColor redColor];
-    [self.view addSubview:contentView];
 }
 
 @end

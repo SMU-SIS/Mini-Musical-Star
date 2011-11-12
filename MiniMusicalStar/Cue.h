@@ -17,4 +17,5 @@
 @property (retain, nonatomic) NSURL *contentPath;
 
 - (id)initWithCueHash: (NSString *)aCueHash startTime: (NSNumber *)aStartTime endTime: (NSNumber *)anEndTime content: (NSString *)aContent contentPath: (NSURL *)aContentPath;
+- (BOOL)shouldCueBeShowingAtSecond:(int)second;
 @end

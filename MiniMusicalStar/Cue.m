@@ -34,4 +34,9 @@
     return self;
 }
 
+- (BOOL)shouldCueBeShowingAtSecond:(int)second
+{
+    return ((self.startTime <= second) && (self.endTime) > second);
+}
+
 @end

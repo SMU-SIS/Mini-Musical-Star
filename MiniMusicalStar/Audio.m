@@ -53,7 +53,7 @@
     
     [self.audioCueList enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         Cue *aCue = (Cue *)obj;
-        if ((aCue.startTime <= second) && (aCue.endTime) > second)
+        if ([aCue shouldCueBeShowingAtSecond:second])
         {
             cueToReturn = aCue;
             *stop = YES;
