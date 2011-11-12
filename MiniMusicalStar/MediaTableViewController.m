@@ -198,7 +198,7 @@
     // Configure the cell...
     NSManagedObject *mo = [frc objectAtIndexPath:indexPath];
     NSString *title = [[mo valueForKey:@"title"] description];
-    NSString *dateCreated = [@"Created at " stringByAppendingString:[[mo valueForKey:@"dateCreated"] description]];
+    NSString *dateCreated = [[mo valueForKey:@"dateCreated"] description];
     
     [[cell textLabel] setText:title];
     [[cell detailTextLabel] setText:dateCreated];
