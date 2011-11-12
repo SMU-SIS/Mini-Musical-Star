@@ -38,6 +38,7 @@
 @property (retain, nonatomic) IBOutlet SceneStripController *sceneStripController;
 @property (retain, nonatomic) IBOutlet UITableView *coversTableView;
 @property (retain, nonatomic) IBOutlet UIButton *exportButton;
+@property (retain, nonatomic) UIButton *grayViewButton;
 
 -(IBAction) showMediaManagement: (id)sender;
 -(ChoiceSelectionViewController *)initWithAShowForSelection:(Show *)aShow context:(NSManagedObjectContext *)aContext;

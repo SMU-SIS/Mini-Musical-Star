@@ -24,9 +24,11 @@
 @synthesize currentSelectedCoversList;
 @synthesize exportButton;
 @synthesize exportViewController;
+@synthesize grayViewButton;
 
 - (void)dealloc
 {
+    [grayViewButton release];
     [exportViewController release];
     [exportButton release];
     [currentSelectedCoversList release];
@@ -72,7 +74,22 @@
     self.currentSelectedCoversList.tableView.separatorColor = [UIColor clearColor];
     [self.view addSubview:self.currentSelectedCoversList.view];
     
+    self.grayViewButton = [[UIButton alloc] initWithFrame:CGRectMake(0,0,1024,768)];
+    grayViewButton.backgroundColor = [UIColor grayColor];
+    grayViewButton.alpha = 0.0;
+    [grayViewButton addTarget:self action:@selector(fadeGrayViewButton) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:grayViewButton];
+    
+    UIImageView *selectSceneHelpImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"taptoedit.png"]];
+    selectSceneHelpImageView.frame = CGRectMake(0,583,500,125);
+    [self.view addSubview:selectSceneHelpImageView];
     return self;
+}
+
+-(void) fadeGrayViewButton
+{
+    self.grayViewButton.alpha = 0.0;
+    [self removeScrollStrip:nil];
 }
 
 - (IBAction)goToExportPage: (id)sender
@@ -196,6 +213,8 @@
     [self.sceneStripController setCoverTitleLabel:aCover.title];
     sceneStripController.context = self.managedObjectContext;
     
+    self.grayViewButton.opaque = NO;
+    
     [self.view addSubview:self.sceneStripController.view];
     [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationCurveEaseIn animations:^{
         CGAffineTransform moveLeft = CGAffineTransformMakeTranslation(-1024, 0);
@@ -208,7 +227,7 @@
         }];
         
     } completion:^(BOOL finished) {
-        //do nothing
+        
     }];
     
 }
@@ -217,7 +236,6 @@
 {
     if(self.sceneStripController.view.superview != nil){
         [self bounceScrollStrip:aCover];
-//        [self performSelector:@selector(addScrollStrip:) withObject:self afterDelay:0.5];
         return;
     };
     

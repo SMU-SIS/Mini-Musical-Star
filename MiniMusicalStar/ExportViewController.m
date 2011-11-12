@@ -129,7 +129,7 @@
 }
 - (IBAction) togglePopoverForAddCredits
 {
-    [self.popoverController presentPopoverFromRect:CGRectMake(211,74,110,37) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
+    [self.popoverController presentPopoverFromRect:self.addCreditsButton.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
 }
 
 - (void) reloadMediaTable

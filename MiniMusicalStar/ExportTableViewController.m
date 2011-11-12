@@ -444,7 +444,7 @@
     if (section == 0) {
         headerLabel.text = @"Create your Musicals";
     } else if (section == 1) {
-        headerLabel.text = @"Create particular Scenes";
+        headerLabel.text = @"Create Scene Only";
     }
     
 	[customView addSubview:headerLabel];
