@@ -96,7 +96,7 @@
 {
     [progressViewController.progressView setProgress:value animated:isAnimated];
     if(value == 1.0){
-        [self removeProgressView];
+        [self performSelector:@selector(removeProgressView) withObject:nil afterDelay:5.0];
     }
 }
 
