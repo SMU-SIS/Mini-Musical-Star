@@ -89,9 +89,8 @@
     [self.view addSubview:selectSceneHelpImageView];
     selectSceneHelpImageView.hidden = YES;
     
-    self.exportViewButton = [[UIButton alloc] initWithFrame:CGRectMake(724,140,300,50)];
+    self.exportViewButton = [[UIButton alloc] initWithFrame:CGRectMake(1024,140,300,50)];
     [exportViewButton setImage:[UIImage imageNamed:@"videos.png"] forState:UIControlStateNormal];
-    exportViewButton.hidden = YES;
     [exportViewButton addTarget:self action:@selector(showMediaManagement:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:exportViewButton];
     
@@ -101,8 +100,14 @@
 -(void) fadeGrayViewButton
 {
     self.grayViewButton.alpha = 0.0;
-    self.exportViewButton.hidden = YES;
     self.selectSceneHelpImageView.hidden = YES;
+    
+    [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationCurveEaseIn animations:^{
+        CGAffineTransform moveRight = CGAffineTransformMakeTranslation(300, 0);
+        self.exportViewButton.transform = moveRight;
+    } completion:^(BOOL finished) {
+    }];
+    
     [self removeScrollStrip:nil];
 }
 
@@ -228,8 +233,16 @@
     sceneStripController.context = self.managedObjectContext;
     
     self.grayViewButton.alpha = 0.5;
-    self.exportViewButton.hidden = NO;
     self.selectSceneHelpImageView.hidden = NO;
+    
+    //slide the exportViewButton
+    [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationCurveEaseIn animations:^{
+        CGAffineTransform moveLeft = CGAffineTransformMakeTranslation(-300, 0);
+        self.exportViewButton.transform = moveLeft;
+        
+        
+    } completion:^(BOOL finished) {
+    }];
     
     [self.view addSubview:self.sceneStripController.view];
     [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationCurveEaseIn animations:^{
