@@ -37,6 +37,9 @@ void uncaughtExceptionHandler(NSException *exception) {
         [ConsoleManager run];
     #endif
     
+    //warn when zombie is enabled
+    char* szZombie = getenv("NSZombieEnabled"); if (szZombie && 0 == strcasecmp(szZombie, "YES")) { NSLog(@"NSZombieEnabled enabled!"); }
+    
     self.window.rootViewController = self.naviController;
     self.naviController.delegate = self;
     

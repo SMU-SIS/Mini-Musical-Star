@@ -254,6 +254,8 @@
 {
     //need to alloc the NSNumber because there is no autorelease pool in the secondary thread
     [self performSelectorOnMainThread:@selector(updateProgressSliderWithTime) withObject:nil waitUntilDone:NO];
+    
+    
 }
 
 //for the secondary thread to call on the main thread

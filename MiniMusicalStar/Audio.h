@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "AudioCue.h"
+
+@class Cue;
 @interface Audio : NSObject
 
 @property (retain, nonatomic) NSString *hash;
@@ -19,5 +21,6 @@
 @property (retain, nonatomic) NSMutableDictionary *audioCueList;
 
 - (id)initWithHash:(NSString *)key dictionary:(NSDictionary *)obj assetPath:assetPath;
+- (Cue *)cueForSecond: (int)second;
 
 @end

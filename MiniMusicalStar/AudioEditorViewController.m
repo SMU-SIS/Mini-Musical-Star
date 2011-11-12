@@ -11,6 +11,7 @@
 #import "MiniMusicalStarUtilities.h"
 #import <AVFoundation/AVFoundation.h>
 #import "ShowDAO.h"
+#import "Cue.h"
 
 @implementation AudioEditorViewController
 @synthesize recordingStatusLabel;
@@ -166,6 +167,56 @@
 	return YES;
 }
 
+#pragma mark - cues
+- (void)didReceiveElapsedTimeNotification:(NSNotification *)notification
+{
+    //get the current time and check the audio for any cues
+    int currentSecond = self.thePlayer.elapsedPlaybackTimeInSeconds;
+    NSLog(@"currentsecond is %i", currentSecond);
+    
+    [self.tracksForView enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        NSLog(@"in the block");
+        //type check for Audio classes
+        if ([obj isKindOfClass:[Audio class]])
+        {
+            NSLog(@"yes this is audio class");
+            //get the table row corresponding to the current track
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:idx inSection:0];
+            UITableViewCell *theCell = [trackTableView cellForRowAtIndexPath:indexPath];
+            UIButton *showCueButton = (UIButton *)[theCell.contentView viewWithTag:5];
+            
+            Audio *theAudio = (Audio *)obj;
+            Cue *theCue = [theAudio cueForSecond:currentSecond];
+            if (theCue)
+            {
+                NSLog(@"setting hidden to no");
+                [self performSelectorOnMainThread:@selector(setCueButtonToShow:) withObject:showCueButton waitUntilDone:NO];
+                //showCueButton.hidden = NO;
+            }
+            
+            else
+            {
+                NSLog(@"setting hidden to yes");
+                [self performSelectorOnMainThread:@selector(setCueButtonToHide:) withObject:showCueButton waitUntilDone:NO];
+                //showCueButton.hidden = YES;
+            }
+        }
+    }];
+}
+            
+- (void)setCueButtonToHide:(UIButton *)theButton
+{
+    NSLog(@"hrgregegeg");
+    [theButton setHidden:YES];
+}
+
+- (void)setCueButtonToShow:(UIButton *)theButton
+{
+    [theButton setHidden:NO];
+}
+                 
+                 
+
 #pragma mark - UITableView delegate methods
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -197,6 +248,7 @@
     UIButton *recordOrTrashButton;
     UIButton *muteOrUnmuteButton;
     UIButton *showLyricsButton;
+    UIButton *showCueButton;
 
     //get the corresponding Audio object
     id audioForRow = [tracksForView objectAtIndex:[indexPath row]];
@@ -235,8 +287,18 @@
         //button to show lyrics
         showLyricsButton = [[UIButton alloc] initWithFrame:CGRectMake(300+xShift, 105, 50, 50)];
         [cell.contentView addSubview:showLyricsButton];
+        
         showLyricsButton.tag = 4;
         [showLyricsButton release];
+        
+        //button to show cue
+        showCueButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        showCueButton.frame = CGRectMake(400+xShift, 105, 50, 50);
+        [showCueButton setTitle:@"Cue" forState:UIControlStateNormal];
+        [showCueButton setHidden:YES];
+        [cell.contentView addSubview:showCueButton];
+        showCueButton.tag = 5;
+        [showCueButton release];
         
         [recordOrTrashButton addTarget:self action:@selector(recordOrTrashButtonIsPressed:) 
                       forControlEvents:UIControlEventTouchDown];
@@ -244,6 +306,8 @@
                      forControlEvents:UIControlEventTouchDown];
         [showLyricsButton addTarget:self action:@selector(showLyricsButtonIsPressed:) 
                    forControlEvents:UIControlEventTouchDown];
+        [showCueButton addTarget:self action:@selector(showCueButtonIsPressed:)
+                forControlEvents:UIControlEventTouchDown];
     }
     
     //start configuring...
@@ -367,6 +431,11 @@
     Audio *audio = (Audio*)audioForRow;
     
     [self loadLyrics:[audio lyrics]];
+}
+
+- (void)showCueButtonIsPressed:(UIButton *)sender
+{
+    
 }
 
 #pragma mark - instance methods for player
@@ -553,6 +622,9 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(recordingIsCompleted) name:kMixPlayerRecorderRecordingHasReachedEnd object:nil];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivedPlayerPlayedHasReachedNotification) name:kMixPlayerRecorderPlayingHasReachedEnd object:nil];
+    
+    //register to receive time elapsed notifcations
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveElapsedTimeNotification:) name:kMixPlayerRecorderPlaybackElapsedTimeAdvanced object:nil];
 }
 
 - (void)receivedPlayerPlayedHasReachedNotification

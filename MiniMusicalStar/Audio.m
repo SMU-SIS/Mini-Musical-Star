@@ -27,11 +27,19 @@
         self.audioCueList = [NSMutableDictionary dictionary];
         
         NSDictionary *cuesDict = [dictionary objectForKey:@"cues"];
+        
+        //this has many cues
         [cuesDict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
             NSDictionary *cueDict = (NSDictionary *)obj;
+            NSLog(@"cueDict is %@", cueDict);
             
-            Cue *aCue = [[Cue alloc] initWithCueHash:key startTime:[cueDict objectForKey:@"start-time"] endTime:[cueDict objectForKey:@"end-time"] content:[cueDict objectForKey:@"content"] contentPath:[cueDict objectForKey:@"contentPath"]];
+            Cue *aCue = [[Cue alloc] initWithCueHash:key 
+                                        startTime:[cueDict objectForKey:@"start-time"] 
+                                        endTime:[cueDict objectForKey:@"end-time"]
+                                        content:[cueDict objectForKey:@"content"] 
+                                        contentPath:[cueDict objectForKey:@"contentPath"]];
             
+            NSLog(@"adding cue to audioCueList");
             [self.audioCueList setObject:aCue forKey:key];
             
         }];
@@ -39,6 +47,24 @@
     }
     
     return self;
+}
+
+- (Cue *)cueForSecond: (int)second
+{
+    __block Cue *cueToReturn = nil;
+    NSLog(@"current second is %i", second);
+    
+    [self.audioCueList enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+        Cue *aCue = (Cue *)obj;
+        NSLog(@"this cue start time is %i and end time is %i", aCue.startTime, aCue.endTime);
+        if ((aCue.startTime <= second) && (aCue.endTime) > second)
+        {
+            cueToReturn = aCue;
+            *stop = YES;
+        }
+    }];
+    
+    return cueToReturn;
 }
 
 - (void)dealloc
