@@ -7,6 +7,7 @@
 //
 
 #import "Audio.h"
+#import "Cue.h"
 
 @implementation Audio
 @synthesize hash, title, path, replaceable, duration, lyrics, audioCueList;
@@ -21,6 +22,19 @@
         self.replaceable = [dictionary objectForKey:@"replaceable"];
         self.duration = [dictionary objectForKey:@"duration"];
         self.lyrics = [dictionary objectForKey:@"lyrics"];
+        
+        //load in all the cues
+        self.audioCueList = [NSMutableDictionary dictionary];
+        
+        NSDictionary *cuesDict = [dictionary objectForKey:@"cues"];
+        [cuesDict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+            NSDictionary *cueDict = (NSDictionary *)obj;
+            
+            Cue *aCue = [[Cue alloc] initWithCueHash:key startTime:[cueDict objectForKey:@"start-time"] endTime:[cueDict objectForKey:@"end-time"] content:[cueDict objectForKey:@"content"] contentPath:[cueDict objectForKey:@"contentPath"]];
+            
+            [self.audioCueList setObject:aCue forKey:key];
+            
+        }];
         
     }
     

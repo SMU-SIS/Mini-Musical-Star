@@ -16,7 +16,7 @@
 @property (retain, nonatomic) NSNumber *replaceable;
 @property (retain, nonatomic) NSNumber *duration;
 @property (retain, nonatomic) NSString *lyrics;
-@property (retain, nonatomic) NSMutableArray *audioCueList;
+@property (retain, nonatomic) NSMutableDictionary *audioCueList;
 
 - (id)initWithHash:(NSString *)key dictionary:(NSDictionary *)obj assetPath:assetPath;
 
