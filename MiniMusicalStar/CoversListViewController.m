@@ -207,11 +207,11 @@
     [[cell textLabel] setText:temp];
     [[cell textLabel] setBackgroundColor:[UIColor clearColor]];
     
-    UIButton *selectExportButton = [[UIButton alloc] initWithFrame:CGRectMake(220,30,96,32)];
-    [selectExportButton setImage:[UIImage imageNamed:@"export.png"] forState:UIControlStateNormal];
-    [selectExportButton addTarget:delegate action:@selector(showMediaManagement:) forControlEvents:UIControlEventTouchUpInside];
-    [selectExportButton setTag:indexPath.row];
-    [cell.contentView addSubview:selectExportButton];
+//    UIButton *selectExportButton = [[UIButton alloc] initWithFrame:CGRectMake(220,30,96,32)];
+//    [selectExportButton setImage:[UIImage imageNamed:@"export.png"] forState:UIControlStateNormal];
+//    [selectExportButton addTarget:delegate action:@selector(showMediaManagement:) forControlEvents:UIControlEventTouchUpInside];
+//    [selectExportButton setTag:indexPath.row];
+//    [cell.contentView addSubview:selectExportButton];
 }
 
 //called when there is a change in the covers list

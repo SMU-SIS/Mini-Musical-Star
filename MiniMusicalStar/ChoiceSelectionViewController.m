@@ -25,9 +25,11 @@
 @synthesize exportButton;
 @synthesize exportViewController;
 @synthesize grayViewButton;
+@synthesize exportViewButton;
 
 - (void)dealloc
 {
+    [exportViewButton release];
     [grayViewButton release];
     [exportViewController release];
     [exportButton release];
@@ -83,12 +85,20 @@
     UIImageView *selectSceneHelpImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"taptoedit.png"]];
     selectSceneHelpImageView.frame = CGRectMake(0,583,500,125);
     [self.view addSubview:selectSceneHelpImageView];
+    
+    self.exportViewButton = [[UIButton alloc] initWithFrame:CGRectMake(724,140,300,50)];
+    [exportViewButton setImage:[UIImage imageNamed:@"videos.png"] forState:UIControlStateNormal];
+    exportViewButton.hidden = YES;
+    [exportViewButton addTarget:self action:@selector(showMediaManagement:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:exportViewButton];
+    
     return self;
 }
 
 -(void) fadeGrayViewButton
 {
     self.grayViewButton.alpha = 0.0;
+    self.exportViewButton.hidden = YES;
     [self removeScrollStrip:nil];
 }
 
@@ -213,7 +223,8 @@
     [self.sceneStripController setCoverTitleLabel:aCover.title];
     sceneStripController.context = self.managedObjectContext;
     
-    self.grayViewButton.opaque = NO;
+    self.grayViewButton.alpha = 0.5;
+    self.exportViewButton.hidden = NO;
     
     [self.view addSubview:self.sceneStripController.view];
     [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationCurveEaseIn animations:^{
