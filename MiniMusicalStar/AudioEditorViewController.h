@@ -8,10 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
-#import "MixPlayerRecorder.h"
-#import "Scene.h"
-#import "CoverScene.h"
-#import "CoverSceneAudio.h"
 #import <AVFoundation/AVFoundation.h>
 
 @protocol AudioEditorDelegate <NSObject>
@@ -20,6 +16,12 @@
 @end
 
 @class Audio;
+@class CueController;
+@class MixPlayerRecorder;
+@class Scene;
+@class CoverScene;
+@class Cue;
+
 @interface AudioEditorViewController : UIViewController
 <UITableViewDelegate, UITableViewDataSource, UIPopoverControllerDelegate>
 {      
@@ -50,6 +52,12 @@
 @property (nonatomic, retain) UIScrollView *lyricsScrollView;
 @property (nonatomic, retain) UILabel *lyricsLabel;
 
+//for the cues
+@property (retain, nonatomic) CueController *cueController;
+@property (retain, nonatomic) UIView *cueView;
+@property (retain, nonatomic) Cue *currentCue;
+
+//for the MixPlayerRecorder
 @property (nonatomic, retain) MixPlayerRecorder *thePlayer;
 
 @property (nonatomic, retain) Scene *theScene;
@@ -97,4 +105,7 @@
 - (UIScrollView*)createLyricsScrollView;
 - (UILabel*)createLyricsLabel;
 
+//instance methods for cue
+- (void)setCueButton:(BOOL)shouldShow forTrackIndex:(NSUInteger)trackIndex;
+- (void)removeAndUnloadCueFromView;
 @end

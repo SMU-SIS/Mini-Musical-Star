@@ -277,6 +277,9 @@
 		950060051440B5FF000BB0A6 /* musical_placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 950060031440B5FF000BB0A6 /* musical_placeholder.png */; };
 		950060061440B5FF000BB0A6 /* scene_placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 950060041440B5FF000BB0A6 /* scene_placeholder.png */; };
 		9502152C146E35EE00B5C372 /* Cue.m in Sources */ = {isa = PBXBuildFile; fileRef = 9502152B146E35EE00B5C372 /* Cue.m */; };
+		9502152F146EB7C900B5C372 /* CueController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9502152E146EB7C900B5C372 /* CueController.m */; };
+		95021535146EC94D00B5C372 /* DDInvocationGrabber.m in Sources */ = {isa = PBXBuildFile; fileRef = 95021532146EC94D00B5C372 /* DDInvocationGrabber.m */; };
+		95021536146EC94D00B5C372 /* NSObject+DDExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 95021534146EC94D00B5C372 /* NSObject+DDExtensions.m */; };
 		9510D177142F882600908ABC /* bass.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3AFFDDEB142C7191000D8494 /* bass.mp3 */; };
 		9510D179142F882900908ABC /* drums.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3AFFDDEC142C7191000D8494 /* drums.mp3 */; };
 		9510D17A142F882C00908ABC /* guitar.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3AFFDDED142C7191000D8494 /* guitar.mp3 */; };
@@ -1065,6 +1068,12 @@
 		950060041440B5FF000BB0A6 /* scene_placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scene_placeholder.png; sourceTree = "<group>"; };
 		9502152A146E35EE00B5C372 /* Cue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cue.h; sourceTree = "<group>"; };
 		9502152B146E35EE00B5C372 /* Cue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cue.m; sourceTree = "<group>"; };
+		9502152D146EB7C900B5C372 /* CueController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CueController.h; sourceTree = "<group>"; };
+		9502152E146EB7C900B5C372 /* CueController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CueController.m; sourceTree = "<group>"; };
+		95021531146EC94D00B5C372 /* DDInvocationGrabber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDInvocationGrabber.h; sourceTree = "<group>"; };
+		95021532146EC94D00B5C372 /* DDInvocationGrabber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDInvocationGrabber.m; sourceTree = "<group>"; };
+		95021533146EC94D00B5C372 /* NSObject+DDExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+DDExtensions.h"; sourceTree = "<group>"; };
+		95021534146EC94D00B5C372 /* NSObject+DDExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+DDExtensions.m"; sourceTree = "<group>"; };
 		9533AAE9144E8F5E0092725C /* howling_dog.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = howling_dog.zip; sourceTree = "<group>"; };
 		95674E14145BFE6A00836B5F /* SceneStripController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneStripController.h; sourceTree = "<group>"; };
 		95674E15145BFE6A00836B5F /* SceneStripController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SceneStripController.m; sourceTree = "<group>"; };
@@ -2183,6 +2192,17 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+		95021530146EC93F00B5C372 /* ddInvokeOnMainThread */ = {
+			isa = PBXGroup;
+			children = (
+				95021531146EC94D00B5C372 /* DDInvocationGrabber.h */,
+				95021532146EC94D00B5C372 /* DDInvocationGrabber.m */,
+				95021533146EC94D00B5C372 /* NSObject+DDExtensions.h */,
+				95021534146EC94D00B5C372 /* NSObject+DDExtensions.m */,
+			);
+			name = ddInvokeOnMainThread;
+			sourceTree = "<group>";
+		};
 		9572E0C9140E117200713F45 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -2229,6 +2249,7 @@
 		95DAE8F31414DFD00039201D /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				95021530146EC93F00B5C372 /* ddInvokeOnMainThread */,
 				3A9FAC63146162AE00D2B642 /* SimpleEditor.h */,
 				3A9FAC64146162AE00D2B642 /* SimpleEditor.m */,
 				3AB141721457FF3700173EAD /* libcat */,
@@ -2307,6 +2328,8 @@
 				64D6CCC7145D4A3F00D172D2 /* FacebookUploaderViewController.m */,
 				6427849B145EEF1C00B8C740 /* YouTubeUploaderViewController.h */,
 				6427849C145EEF1C00B8C740 /* YouTubeUploaderViewController.m */,
+				9502152D146EB7C900B5C372 /* CueController.h */,
+				9502152E146EB7C900B5C372 /* CueController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -2848,6 +2871,9 @@
 				3A9FAC9B146256D600D2B642 /* AddCreditsViewController.m in Sources */,
 				3AFDC57A146B97E800BB5F75 /* CustomVideoAnimations.m in Sources */,
 				9502152C146E35EE00B5C372 /* Cue.m in Sources */,
+				9502152F146EB7C900B5C372 /* CueController.m in Sources */,
+				95021535146EC94D00B5C372 /* DDInvocationGrabber.m in Sources */,
+				95021536146EC94D00B5C372 /* NSObject+DDExtensions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
