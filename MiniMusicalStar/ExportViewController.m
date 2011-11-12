@@ -83,20 +83,20 @@
 
 - (void) showProgressView
 {
-//    [UIView beginAnimations:nil context:nil];
-//    [UIView setAnimationDuration:0.75];
-//    [UIView setAnimationDelegate:self];
-//    [UIView setAnimationTransition:UIViewAnimationTransitionCurlDown forView:progressViewController.view cache:YES];
-    [progressViewController.cancelButton setTitle:@"Cancel" forState:UIControlStateNormal];
+
+//    [progressViewController.cancelButton setTitle:@"Cancel" forState:UIControlStateNormal];
+    [self.progressViewController.view setAlpha:0.0];
     [self.view addSubview:progressViewController.view];
-//    [UIView commitAnimations];
+    [UIView beginAnimations:nil context:nil];
+    [self.progressViewController.view setAlpha:1.0];
+    [UIView commitAnimations];
 }
 
 - (void) setProgressViewAtValue:(float)value withAnimation:(BOOL)isAnimated
 {
     [progressViewController.progressView setProgress:value animated:isAnimated];
     if(value == 1.0){
-        [progressViewController changeCancelToDoneButton];
+        [progressViewController cancelProgressView:nil];
     }
 }
 
