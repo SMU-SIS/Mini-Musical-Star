@@ -27,6 +27,8 @@
 @protocol ExportTableViewDelegate <NSObject>
 - (void) reloadMediaTable;
 - (NSMutableArray *) getTextFieldArray;
+- (void) showProgressView;
+- (void) setProgressViewAtValue:(float)value withAnimation:(BOOL)isAnimated;
 @end
 
 @interface ExportTableViewController : UITableViewController
@@ -65,6 +67,8 @@
 - (void) processExportSessionWithComposition:(AVMutableComposition*)composition andVideoComposition:(AVMutableVideoComposition*)videoComposition withOutputFilePath:(NSURL*)outputFileURL andVideoFilePath:(NSURL*)videoFileURL forMusical:(BOOL)isMusical;
 - (void) saveExportedAssetAt:(NSURL*)outputFileURL andDeleteVideoFile:(NSURL*)videoFileURL forMusical:(BOOL)isMusical;
 -(void)processImageAndAudioAppendingToVideoWithImagesArray:(NSArray*)imagesArray andSortedPicturesTimingArray:(NSMutableArray*)sortedTimingsArray andAudioFilePaths:(NSArray*) audioExportURLs forMusical:(BOOL)isMusical;
+
+- (void)refreshProgressBar:(NSTimer*) aTimer;
 
 - (int)getTableViewRow:(UIButton*)sender;
 

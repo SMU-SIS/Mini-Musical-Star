@@ -125,6 +125,8 @@
 		3AB1421D1457FF3700173EAD /* Inspect.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AB141E41457FF3700173EAD /* Inspect.m */; };
 		3AB1421E1457FF3700173EAD /* Logger.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AB141E61457FF3700173EAD /* Logger.m */; };
 		3AB1421F1457FF3700173EAD /* UnitTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AB141E81457FF3700173EAD /* UnitTest.m */; };
+		3ABD22F7146E08D900FB8D72 /* ProgressOverlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ABD22F5146E08D900FB8D72 /* ProgressOverlayViewController.m */; };
+		3ABD22F8146E08D900FB8D72 /* ProgressOverlayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3ABD22F6146E08D900FB8D72 /* ProgressOverlayViewController.xib */; };
 		3ADA7AED142F85B40045F53E /* AudioFileRingBufferTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ADA7AEA142F85B40045F53E /* AudioFileRingBufferTest.m */; };
 		3ADA7AEE142F85B40045F53E /* MixPlayerRecorderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ADA7AEC142F85B40045F53E /* MixPlayerRecorderTest.m */; };
 		3ADA7AF0142F85EC0045F53E /* AudioFileRingBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFFDEF2142C7E0F000D8494 /* AudioFileRingBuffer.m */; };
@@ -544,6 +546,9 @@
 		3AB141E71457FF3700173EAD /* UnitTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitTest.h; sourceTree = "<group>"; };
 		3AB141E81457FF3700173EAD /* UnitTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnitTest.m; sourceTree = "<group>"; };
 		3AB141E91457FF3700173EAD /* UserConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserConstants.h; sourceTree = "<group>"; };
+		3ABD22F4146E08D900FB8D72 /* ProgressOverlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressOverlayViewController.h; sourceTree = "<group>"; };
+		3ABD22F5146E08D900FB8D72 /* ProgressOverlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressOverlayViewController.m; sourceTree = "<group>"; };
+		3ABD22F6146E08D900FB8D72 /* ProgressOverlayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProgressOverlayViewController.xib; sourceTree = "<group>"; };
 		3ADA7AE9142F85B40045F53E /* AudioFileRingBufferTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioFileRingBufferTest.h; sourceTree = "<group>"; };
 		3ADA7AEA142F85B40045F53E /* AudioFileRingBufferTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioFileRingBufferTest.m; sourceTree = "<group>"; };
 		3ADA7AEB142F85B40045F53E /* MixPlayerRecorderTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MixPlayerRecorderTest.h; sourceTree = "<group>"; };
@@ -2272,6 +2277,8 @@
 				ED885C2F140BC13100209530 /* XIB */,
 				EDA2A1D913F26F8400B64EA5 /* MenuViewController.h */,
 				EDA2A1DA13F26F8400B64EA5 /* MenuViewController.m */,
+				3ABD22F4146E08D900FB8D72 /* ProgressOverlayViewController.h */,
+				3ABD22F5146E08D900FB8D72 /* ProgressOverlayViewController.m */,
 				737716C81445D61500BF2036 /* ChoiceSelectionViewController.h */,
 				737716C91445D61500BF2036 /* ChoiceSelectionViewController.m */,
 				95C526AB1438DA740008AE13 /* CoversListViewController.h */,
@@ -2327,6 +2334,7 @@
 				3A9FAC9A146256D500D2B642 /* AddCreditsViewController.xib */,
 				6457E05A145DA2FF00ABBF87 /* ShareTableViewController.xib */,
 				6427849D145EEF1C00B8C740 /* YouTubeUploaderViewController.xib */,
+				3ABD22F6146E08D900FB8D72 /* ProgressOverlayViewController.xib */,
 			);
 			name = XIB;
 			sourceTree = "<group>";
@@ -2637,6 +2645,7 @@
 				3A9FACBF1462D40C00D2B642 /* blankblack.png in Resources */,
 				649E1D6E146CF33300DC7B28 /* FBDialog.bundle in Resources */,
 				3ADF358F146D8DC300C8F595 /* lastscreen.png in Resources */,
+				3ABD22F8146E08D900FB8D72 /* ProgressOverlayViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2842,6 +2851,7 @@
 				3A9FAC8814622D1700D2B642 /* KensBurnAnimation.m in Sources */,
 				3A9FAC9B146256D600D2B642 /* AddCreditsViewController.m in Sources */,
 				3AFDC57A146B97E800BB5F75 /* CustomVideoAnimations.m in Sources */,
+				3ABD22F7146E08D900FB8D72 /* ProgressOverlayViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

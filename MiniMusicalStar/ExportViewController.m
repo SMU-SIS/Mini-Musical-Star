@@ -18,6 +18,7 @@
 @synthesize addCreditsButton;
 @synthesize popoverController;
 @synthesize addCreditsViewController;
+@synthesize progressViewController;
     
 - (void)dealloc
 {
@@ -25,6 +26,7 @@
     [theCover release];
     [context release];
     
+    [progressViewController release];
     [popoverController release];
     [mediaTableViewController release];
     [exportTableViewController release];
@@ -69,11 +71,33 @@
         self.mediaTableViewController.tableView.frame = CGRectMake(570,200,370,480);
         self.mediaTableViewController.tableView.backgroundView.alpha = 0;
         
+        self.progressViewController = [[ProgressOverlayViewController alloc] init];
+        
         [self.view addSubview:self.exportTableViewController.tableView];
         [self.view addSubview:self.mediaTableViewController.tableView];
     }
     
     return self;
+}
+
+- (void) showProgressView
+{
+//    [UIView beginAnimations:nil context:nil];
+//    [UIView setAnimationDuration:0.75];
+//    [UIView setAnimationDelegate:self];
+//    [UIView setAnimationTransition:UIViewAnimationTransitionCurlDown forView:progressViewController.view cache:YES];
+    [self.view addSubview:progressViewController.view];
+//    [UIView commitAnimations];
+}
+
+- (void) setProgressViewAtValue:(float)value withAnimation:(BOOL)isAnimated
+{
+    [progressViewController.progressView setProgress:value animated:isAnimated];
+}
+
+- (void) removeProgressView:(float)value withAnimation:(BOOL)isAnimated
+{
+    [progressViewController.view removeFromSuperview];
 }
 
 - (IBAction) editTable:(id)sender
