@@ -39,7 +39,7 @@
 				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<array class="NSMutableArray" key="NSSubviews">
-					<object class="IBUIImageView" id="605180315">
+					<object class="IBUIImageView" id="521290050">
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{342, -5}, {340, 370}}</string>
@@ -244,7 +244,7 @@
 						</object>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">fb_upload.png</string>
+							<string key="NSResourceName">youtube_upload.png</string>
 						</object>
 						<object class="IBUIFontDescription" key="IBUIFontDescription" id="576899871">
 							<int key="type">2</int>
@@ -285,7 +285,7 @@
 				<string key="NSFrame">{{0, 20}, {1024, 748}}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView"/>
+				<reference key="NSNextKeyView" ref="521290050"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
 					<bytes key="NSWhite">MC42NjY2NjY2NjY3AA</bytes>
@@ -394,7 +394,7 @@
 						<int key="objectID">2</int>
 						<reference key="object" ref="766721923"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="605180315"/>
+							<reference ref="521290050"/>
 							<reference ref="429338107"/>
 							<reference ref="800571171"/>
 							<reference ref="360420556"/>
@@ -408,7 +408,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">53</int>
-						<reference key="object" ref="605180315"/>
+						<reference key="object" ref="521290050"/>
 						<reference key="parent" ref="766721923"/>
 					</object>
 					<object class="IBObjectRecord">
@@ -527,8 +527,8 @@
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="close_x.png">{29, 29}</string>
-			<string key="fb_upload.png">{150, 40}</string>
 			<string key="youtube_overlay.png">{340, 370}</string>
+			<string key="youtube_upload.png">{150, 40}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">933</string>
 	</data>

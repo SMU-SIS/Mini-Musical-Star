@@ -238,14 +238,12 @@
 
 #pragma - YouTubeUploaderDelegate methods
 
-- (void)youTubeUploadSuccess
+- (void)removeYouTubeUploadOverlay
 {
-    [self.youtubeUploaderViewController.view removeFromSuperview];
-    [self.youtubeUploaderViewController release];
-}
-
-- (void)youTubeUploadNotSuccessful
-{
+    if (youtubeUploaderViewController.isUploading) {
+        [youtubeUploaderViewController cancelUpload];
+    }
+    
     [self.youtubeUploaderViewController.view removeFromSuperview];
     [self.youtubeUploaderViewController release];
 }

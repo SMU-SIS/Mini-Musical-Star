@@ -11,19 +11,15 @@
 
 @protocol YouTubeUploaderDelegate <NSObject>
 @required
-- (void)youTubeUploadSuccess;
-- (void)youTubeUploadNotSuccessful;
+- (void)removeYouTubeUploadOverlay;
 @end
 
 @interface YouTubeUploaderViewController : UIViewController
 {
     id <YouTubeUploaderDelegate> delegate;
-    
     GDataServiceTicket *mUploadTicket;
     
-    bool uploadHasCompleted;
-    bool uploadWasStarted;
-    bool userHasCancelled;
+    bool isUploading;
 }
 
 //from xib
@@ -40,11 +36,15 @@
 @property (nonatomic, retain) NSString *videoTitle;
 @property (nonatomic, retain) NSString *videoDescription;
 
+- (bool)isUploading;
+
 - (GDataServiceGoogleYouTube *)youTubeService;
 - (void)setUploadTicket:(GDataServiceTicket *)ticket;
 - (NSArray*)getUserCredentials;
 
 - (id)initWithProperties:(NSURL*)aVideoNSURL title:(NSString*)aTitle description:(NSString*)aDescription;
 - (void)startUpload;
+- (void)cancelUpload;
+- (bool)validateTextFields;
 
 @end
