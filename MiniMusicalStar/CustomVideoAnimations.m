@@ -18,13 +18,13 @@
         
         CATextLayer *textLayer = [CATextLayer layer];
         textLayer.string = textField.text;
-        textLayer.font = @"Lucida Grande";
+        textLayer.font = @"Univers";
         textLayer.fontSize = 30;
         
         textLayer.alignmentMode = kCAAlignmentCenter;
         textLayer.bounds = CGRectMake(0, 0, videoSize.width, videoSize.height);
         
-        textLayer.position = CGPointMake(320, 250 -(idx * 50));
+        textLayer.position = CGPointMake(320, 350 -(idx * 70));
         
         [animationLayer addSublayer:textLayer];
     }];
