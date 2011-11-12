@@ -96,11 +96,11 @@
 {
     [progressViewController.progressView setProgress:value animated:isAnimated];
     if(value == 1.0){
-        [progressViewController cancelProgressView:nil];
+        [self removeProgressView];
     }
 }
 
-- (void) removeProgressView:(float)value withAnimation:(BOOL)isAnimated
+- (void) removeProgressView
 {
     [progressViewController.view removeFromSuperview];
 }

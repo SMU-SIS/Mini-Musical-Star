@@ -41,6 +41,7 @@
 
 - (void) showProgressView;
 - (void) setProgressViewAtValue:(float)value withAnimation:(BOOL)isAnimated;
+- (void) removeProgressView;
 
 - (NSMutableArray*) getTextFieldArray;
 
