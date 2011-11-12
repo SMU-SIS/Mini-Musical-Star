@@ -105,7 +105,7 @@
     {
         AlertPrompt *prompt = (AlertPrompt *)alertView;
         if (prompt.enteredText.length == 0) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"OPPS!" message:@"Please enter something!" delegate:self cancelButtonTitle:@"OK!" otherButtonTitles:nil, nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"OOPS!" message:@"Please enter something!" delegate:self cancelButtonTitle:@"OK!" otherButtonTitles:nil, nil];
             [alert show];
             [alert release]; 
         }

@@ -68,8 +68,12 @@
         self.exportTableViewController.tableView.backgroundView.hidden = YES;
         self.exportTableViewController.tableView.frame = CGRectMake(50,160,400,590);
         
+        [self.exportTableViewController.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+        
         self.mediaTableViewController.tableView.frame = CGRectMake(570,160,370,590);
         self.mediaTableViewController.tableView.backgroundView.hidden = YES;
+        
+        [self.mediaTableViewController.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
         
         self.progressViewController = [[ProgressOverlayViewController alloc] init];
         [self.progressViewController setDelegate:self];

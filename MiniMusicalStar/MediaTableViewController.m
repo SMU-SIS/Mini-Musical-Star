@@ -168,6 +168,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
         //create the accessory view with the fb and youtube upload buttons
         UIView *accessoryView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 110, 70)];
@@ -201,6 +202,8 @@
     NSDate *date = [mo valueForKey:@"dateCreated"];
     NSString *dateCreated = [date descriptionWithLocale:[NSLocale currentLocale]];
     
+    UIImage *background = [UIImage imageNamed: @"export_cell.png"];
+    cell.backgroundColor = [[UIColor alloc] initWithPatternImage:background];
     [[cell textLabel] setText:title];
     [[cell detailTextLabel] setText:dateCreated];
     [[cell textLabel] setBackgroundColor:[UIColor clearColor]];

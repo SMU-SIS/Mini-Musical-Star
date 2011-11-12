@@ -397,7 +397,9 @@
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
         
-        cell.textLabel.backgroundColor = [UIColor clearColor];
+        UIImage *background = [UIImage imageNamed: @"export_cell.png"];
+        cell.backgroundColor = [[UIColor alloc] initWithPatternImage:background];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
     // Configure the cell...
@@ -440,9 +442,9 @@
 	headerLabel.frame = CGRectMake(10.0, 0.0, 300.0, 44.0);
     
     if (section == 0) {
-        headerLabel.text = @"Export Musical";
+        headerLabel.text = @"Create your Musicals";
     } else if (section == 1) {
-        headerLabel.text = @"Export Scenes";
+        headerLabel.text = @"Create particular Scenes";
     }
     
 	[customView addSubview:headerLabel];
@@ -515,7 +517,6 @@
 
 - (void) cancelExportSession
 {
-    NSLog(@"did i get invoked?");
     [self.exportSession cancelExport];
 }
 
