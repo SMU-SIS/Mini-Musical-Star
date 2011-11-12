@@ -8,11 +8,21 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol ProgressOverlayViewDelegate <NSObject>
+- (void) cancelExportSession;
+@end
+
 @interface ProgressOverlayViewController : UIViewController
+{
+    id <ProgressOverlayViewDelegate> delegate;
+}
+
+@property (nonatomic, assign) id <ProgressOverlayViewDelegate> delegate;
 
 @property(retain,nonatomic) IBOutlet UIProgressView *progressView;
 @property(retain,nonatomic) IBOutlet UIButton *cancelButton;
 
 -(IBAction)cancelProgressView:(id)sender;
+-(void) changeCancelToDoneButton;
 
 @end

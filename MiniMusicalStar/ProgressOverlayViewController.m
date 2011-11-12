@@ -12,9 +12,11 @@
 
 @synthesize progressView;
 @synthesize cancelButton;
+@synthesize delegate;
 
 -(void) dealloc
 {
+    [delegate release];
     [progressView release];
     [cancelButton release];
     [super dealloc];
@@ -60,7 +62,13 @@
 
 -(IBAction)cancelProgressView:(id)sender
 {
+    [delegate cancelExportSession];
     [self.view removeFromSuperview];
+}
+
+-(void) changeCancelToDoneButton
+{
+    [self.cancelButton setTitle:@"Done" forState:UIControlStateNormal];
 }
 
 

@@ -52,6 +52,8 @@
 @property (nonatomic, retain) UIBarButtonItem *uploadBarButtonItem;
 @property (retain, nonatomic) NSMutableArray *tempMusicalContainer;
 
+@property(retain,nonatomic) AVAssetExportSession *exportSession;
+
 @property (retain, nonatomic) NSManagedObjectContext *context;
 
 - (id)initWithStyle:(UITableViewStyle)style:(Show*)show:(Cover*)cover context:(NSManagedObjectContext *)aContext;

@@ -35,9 +35,11 @@
 @synthesize tempMusicalContainer;
 @synthesize context;
 @synthesize delegate;
+@synthesize exportSession;
 
 -(void)dealloc
 {
+    [exportSession release];
     [delegate release];
     [tempMusicalContainer release];
     [musicalArray release];
@@ -140,7 +142,7 @@
     NSArray *compatiblePresets = [AVAssetExportSession exportPresetsCompatibleWithAsset:composition];
     
     if ([compatiblePresets containsObject:AVAssetExportPreset640x480]) {
-        AVAssetExportSession *exportSession = [[AVAssetExportSession alloc]
+        self.exportSession = [[AVAssetExportSession alloc]
                                                initWithAsset:composition presetName:AVAssetExportPresetHighestQuality];
         if(videoComposition){
             exportSession.videoComposition = videoComposition;
@@ -153,7 +155,7 @@
         CMTimeRangeShow(exportSession.timeRange);
         
         //fit progress bar
-        NSTimer *aTimer = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(refreshProgressBar:) userInfo:exportSession repeats:YES];
+        NSTimer *aTimer = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(refreshProgressBar:) userInfo:nil repeats:YES];
         
         [exportSession exportAsynchronouslyWithCompletionHandler:^{
             switch ([exportSession status]) {
@@ -228,9 +230,9 @@
 - (void)refreshProgressBar:(NSTimer*) aTimer
 {
 
-    AVAssetExportSession *exportSession = aTimer.userInfo;
+//    AVAssetExportSession *exportSession = aTimer.userInfo;
 //    NSLog(@"export timer : %f",exportSession.progress);
-    [delegate setProgressViewAtValue:exportSession.progress withAnimation:YES];
+    [delegate setProgressViewAtValue:self.exportSession.progress withAnimation:YES];
     
 }
 
@@ -509,6 +511,12 @@
         audioOrderCount += 1;
     };
     [self processImageAndAudioAppendingToVideoWithImagesArray:musicalImagesArray andSortedPicturesTimingArray:musicalImagesPicturesTimingsArray andAudioFilePaths:musicalAudioURLs forMusical:YES];
+}
+
+- (void) cancelExportSession
+{
+    NSLog(@"did i get invoked?");
+    [self.exportSession cancelExport];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

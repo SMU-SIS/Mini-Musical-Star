@@ -72,6 +72,7 @@
         self.mediaTableViewController.tableView.backgroundView.alpha = 0;
         
         self.progressViewController = [[ProgressOverlayViewController alloc] init];
+        [self.progressViewController setDelegate:self];
         
         [self.view addSubview:self.exportTableViewController.tableView];
         [self.view addSubview:self.mediaTableViewController.tableView];
@@ -93,11 +94,19 @@
 - (void) setProgressViewAtValue:(float)value withAnimation:(BOOL)isAnimated
 {
     [progressViewController.progressView setProgress:value animated:isAnimated];
+    if(value == 1.0){
+        [progressViewController changeCancelToDoneButton];
+    }
 }
 
 - (void) removeProgressView:(float)value withAnimation:(BOOL)isAnimated
 {
     [progressViewController.view removeFromSuperview];
+}
+
+-(void) cancelExportSession
+{
+    [self.exportTableViewController cancelExportSession];
 }
 
 - (IBAction) editTable:(id)sender

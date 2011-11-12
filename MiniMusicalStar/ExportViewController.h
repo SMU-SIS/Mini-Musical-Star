@@ -18,7 +18,7 @@
 #import "ProgressOverlayViewController.h"
 
 @interface ExportViewController : UIViewController 
-    <ExportTableViewDelegate, MediaTableViewDelegate, FacebookUploaderDelegate, YouTubeUploaderDelegate>
+    <ProgressOverlayViewDelegate, ExportTableViewDelegate, MediaTableViewDelegate, FacebookUploaderDelegate, YouTubeUploaderDelegate>
 
 @property (retain, nonatomic) Show *theShow;
 @property (retain, nonatomic) Cover *theCover;
