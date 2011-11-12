@@ -236,14 +236,14 @@
 
 - (void)youTubeUploadSuccess
 {
-    NSLog(@"uploadSuccess");
     [self.youtubeUploaderViewController.view removeFromSuperview];
     [self.youtubeUploaderViewController release];
 }
 
-- (void)youTubeUploadFailed
+- (void)youTubeUploadNotSuccessful
 {
-    
+    [self.youtubeUploaderViewController.view removeFromSuperview];
+    [self.youtubeUploaderViewController release];
 }
 
 #pragma - MediaTableViewDelegate methods
@@ -271,8 +271,6 @@
     youtubeUploaderViewController.view.alpha = 0.9;
     youtubeUploaderViewController.centerView.alpha = 1;
     youtubeUploaderViewController.centerView.backgroundColor = [UIColor whiteColor];
-    
-    [youtubeUploaderViewController startUpload];
 }
 
 @end
