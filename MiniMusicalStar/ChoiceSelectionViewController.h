@@ -40,6 +40,7 @@
 @property (retain, nonatomic) IBOutlet UIButton *exportButton;
 @property (retain, nonatomic) UIButton *grayViewButton;
 @property (retain, nonatomic) UIButton *exportViewButton;
+@property (retain, nonatomic) UIImageView *selectSceneHelpImageView;
 
 -(IBAction) showMediaManagement: (id)sender;
 -(ChoiceSelectionViewController *)initWithAShowForSelection:(Show *)aShow context:(NSManagedObjectContext *)aContext;

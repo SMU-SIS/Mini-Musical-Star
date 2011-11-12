@@ -26,9 +26,11 @@
 @synthesize exportViewController;
 @synthesize grayViewButton;
 @synthesize exportViewButton;
+@synthesize selectSceneHelpImageView;
 
 - (void)dealloc
 {
+    [selectSceneHelpImageView release];
     [exportViewButton release];
     [grayViewButton release];
     [exportViewController release];
@@ -82,9 +84,10 @@
     [grayViewButton addTarget:self action:@selector(fadeGrayViewButton) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:grayViewButton];
     
-    UIImageView *selectSceneHelpImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"taptoedit.png"]];
+    self.selectSceneHelpImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"taptoedit.png"]];
     selectSceneHelpImageView.frame = CGRectMake(0,583,500,125);
     [self.view addSubview:selectSceneHelpImageView];
+    selectSceneHelpImageView.hidden = YES;
     
     self.exportViewButton = [[UIButton alloc] initWithFrame:CGRectMake(724,140,300,50)];
     [exportViewButton setImage:[UIImage imageNamed:@"videos.png"] forState:UIControlStateNormal];
@@ -99,6 +102,7 @@
 {
     self.grayViewButton.alpha = 0.0;
     self.exportViewButton.hidden = YES;
+    self.selectSceneHelpImageView.hidden = YES;
     [self removeScrollStrip:nil];
 }
 
@@ -225,6 +229,7 @@
     
     self.grayViewButton.alpha = 0.5;
     self.exportViewButton.hidden = NO;
+    self.selectSceneHelpImageView.hidden = NO;
     
     [self.view addSubview:self.sceneStripController.view];
     [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationCurveEaseIn animations:^{
