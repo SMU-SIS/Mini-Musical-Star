@@ -257,6 +257,7 @@
 		646E4D4D1454199300F066F6 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 646E4D371454199300F066F6 /* SBJsonWriter.m */; };
 		646E54D114542E0700F066F6 /* libGDataTouchStaticLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 646E54C714542DEB00F066F6 /* libGDataTouchStaticLib.a */; };
 		6480DD26146E564500576167 /* close_x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6480DD25146E564500576167 /* close_x.png */; };
+		6480DD28146E6DEC00576167 /* youtube_overlay.png in Resources */ = {isa = PBXBuildFile; fileRef = 6480DD27146E6DEC00576167 /* youtube_overlay.png */; };
 		64985A3B14528E5400485F4D /* sample.mov in Resources */ = {isa = PBXBuildFile; fileRef = 64985A3A14528E5400485F4D /* sample.mov */; };
 		649E1D6E146CF33300DC7B28 /* FBDialog.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 649E1D6D146CF33300DC7B28 /* FBDialog.bundle */; };
 		64CF0B94145BA6A800A9BF08 /* facebook_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 64CF0B92145BA6A800A9BF08 /* facebook_32.png */; };
@@ -1043,6 +1044,7 @@
 		646E560A14542F7400F066F6 /* GTMOAuth2ViewControllerTouch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMOAuth2ViewControllerTouch.h; sourceTree = "<group>"; };
 		646E560B14542F7400F066F6 /* GTMReadMonitorInputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMReadMonitorInputStream.h; sourceTree = "<group>"; };
 		6480DD25146E564500576167 /* close_x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close_x.png; sourceTree = "<group>"; };
+		6480DD27146E6DEC00576167 /* youtube_overlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = youtube_overlay.png; path = Resources/youtube_overlay.png; sourceTree = "<group>"; };
 		64985A3A14528E5400485F4D /* sample.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; name = sample.mov; path = Resources/sample.mov; sourceTree = "<group>"; };
 		649E1D6D146CF33300DC7B28 /* FBDialog.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = FBDialog.bundle; sourceTree = "<group>"; };
 		64CF0B92145BA6A800A9BF08 /* facebook_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facebook_32.png; sourceTree = "<group>"; };
@@ -2158,6 +2160,7 @@
 		820E2A1E140A0A2A00B80BBC /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				6480DD27146E6DEC00576167 /* youtube_overlay.png */,
 				3ADF358E146D8DC300C8F595 /* lastscreen.png */,
 				3A9FACBE1462D40C00D2B642 /* blankblack.png */,
 				3A9FAC6614618C8200D2B642 /* coverflow2.png */,
@@ -2650,6 +2653,7 @@
 				3ADF358F146D8DC300C8F595 /* lastscreen.png in Resources */,
 				3ABD22F8146E08D900FB8D72 /* ProgressOverlayViewController.xib in Resources */,
 				6480DD26146E564500576167 /* close_x.png in Resources */,
+				6480DD28146E6DEC00576167 /* youtube_overlay.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
