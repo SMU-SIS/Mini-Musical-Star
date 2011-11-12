@@ -149,7 +149,7 @@
     // Return the number of rows in the section.
     id <NSFetchedResultsSectionInfo> sectionInfo = nil;
     sectionInfo = [[frc sections] objectAtIndex:section];
-    NSLog(@"we have %i objects in MEDIA TABLE VIEW", [sectionInfo numberOfObjects]);
+//    NSLog(@"we have %i objects in MEDIA TABLE VIEW", [sectionInfo numberOfObjects]);
     return [sectionInfo numberOfObjects];
 }
 
@@ -198,7 +198,8 @@
     // Configure the cell...
     NSManagedObject *mo = [frc objectAtIndexPath:indexPath];
     NSString *title = [[mo valueForKey:@"title"] description];
-    NSString *dateCreated = [[mo valueForKey:@"dateCreated"] description];
+    NSDate *date = [mo valueForKey:@"dateCreated"];
+    NSString *dateCreated = [date descriptionWithLocale:[NSLocale currentLocale]];
     
     [[cell textLabel] setText:title];
     [[cell detailTextLabel] setText:dateCreated];
