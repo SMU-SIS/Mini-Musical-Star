@@ -272,6 +272,11 @@
 		6480DD28146E6DEC00576167 /* youtube_overlay.png in Resources */ = {isa = PBXBuildFile; fileRef = 6480DD27146E6DEC00576167 /* youtube_overlay.png */; };
 		64985A3B14528E5400485F4D /* sample.mov in Resources */ = {isa = PBXBuildFile; fileRef = 64985A3A14528E5400485F4D /* sample.mov */; };
 		649E1D6E146CF33300DC7B28 /* FBDialog.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 649E1D6D146CF33300DC7B28 /* FBDialog.bundle */; };
+		64B3B08F146FCFC80067968E /* micScroller.png in Resources */ = {isa = PBXBuildFile; fileRef = 64B3B08A146FCFC80067968E /* micScroller.png */; };
+		64B3B090146FCFC80067968E /* scrollerBack.png in Resources */ = {isa = PBXBuildFile; fileRef = 64B3B08B146FCFC80067968E /* scrollerBack.png */; };
+		64B3B091146FCFC80067968E /* scrollerFront.png in Resources */ = {isa = PBXBuildFile; fileRef = 64B3B08C146FCFC80067968E /* scrollerFront.png */; };
+		64B3B092146FCFC80067968E /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 64B3B08D146FCFC80067968E /* star.png */; };
+		64B3B093146FCFC80067968E /* volumePin.png in Resources */ = {isa = PBXBuildFile; fileRef = 64B3B08E146FCFC80067968E /* volumePin.png */; };
 		64CF0B94145BA6A800A9BF08 /* facebook_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 64CF0B92145BA6A800A9BF08 /* facebook_32.png */; };
 		64CF0B95145BA6A800A9BF08 /* youtube_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 64CF0B93145BA6A800A9BF08 /* youtube_32.png */; };
 		64D6CCC9145D4A3F00D172D2 /* FacebookUploaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D6CCC7145D4A3F00D172D2 /* FacebookUploaderViewController.m */; };
@@ -1075,6 +1080,11 @@
 		6480DD27146E6DEC00576167 /* youtube_overlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = youtube_overlay.png; path = Resources/youtube_overlay.png; sourceTree = "<group>"; };
 		64985A3A14528E5400485F4D /* sample.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; name = sample.mov; path = Resources/sample.mov; sourceTree = "<group>"; };
 		649E1D6D146CF33300DC7B28 /* FBDialog.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = FBDialog.bundle; sourceTree = "<group>"; };
+		64B3B08A146FCFC80067968E /* micScroller.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = micScroller.png; sourceTree = "<group>"; };
+		64B3B08B146FCFC80067968E /* scrollerBack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scrollerBack.png; sourceTree = "<group>"; };
+		64B3B08C146FCFC80067968E /* scrollerFront.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scrollerFront.png; sourceTree = "<group>"; };
+		64B3B08D146FCFC80067968E /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
+		64B3B08E146FCFC80067968E /* volumePin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = volumePin.png; sourceTree = "<group>"; };
 		64CF0B92145BA6A800A9BF08 /* facebook_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facebook_32.png; sourceTree = "<group>"; };
 		64CF0B93145BA6A800A9BF08 /* youtube_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = youtube_32.png; sourceTree = "<group>"; };
 		64D6CCC6145D4A3F00D172D2 /* FacebookUploaderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookUploaderViewController.h; sourceTree = "<group>"; };
@@ -1564,6 +1574,11 @@
 		3AFFDDF1142C7191000D8494 /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
+				64B3B08A146FCFC80067968E /* micScroller.png */,
+				64B3B08B146FCFC80067968E /* scrollerBack.png */,
+				64B3B08C146FCFC80067968E /* scrollerFront.png */,
+				64B3B08D146FCFC80067968E /* star.png */,
+				64B3B08E146FCFC80067968E /* volumePin.png */,
 				64709A0D146EC2360096BB1F /* fb_tryagain.png */,
 				64709A0B146EC22D0096BB1F /* youtube_tryagain.png */,
 				647099C9146E9E650096BB1F /* fb_cancel.png */,
@@ -2733,6 +2748,11 @@
 				3A6F576C146FADF700202BCF /* setcreditshere.png in Resources */,
 				3A6F578C146FB42200202BCF /* cancelexport.png in Resources */,
 				950E4F5C146FBAE50057D15F /* howling_dog.zip in Resources */,
+				64B3B08F146FCFC80067968E /* micScroller.png in Resources */,
+				64B3B090146FCFC80067968E /* scrollerBack.png in Resources */,
+				64B3B091146FCFC80067968E /* scrollerFront.png in Resources */,
+				64B3B092146FCFC80067968E /* star.png in Resources */,
+				64B3B093146FCFC80067968E /* volumePin.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
