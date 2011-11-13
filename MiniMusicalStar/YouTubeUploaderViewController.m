@@ -63,8 +63,8 @@
     [super viewDidLoad];
     
     [self.passwordTextField setSecureTextEntry:YES];
-    self.usernameTextField.text = @"giantmusicalstar@gmail.com";
-    self.passwordTextField.text = @"thebiggiant";
+    //self.usernameTextField.text = @"giantmusicalstar@gmail.com";
+    //self.passwordTextField.text = @"thebiggiant";
     self.uploadProgressView.progress = 0;
     self.statusLabel.text = @"";
     [self.okButton setTitle:@"UPLOAD" forState:UIControlStateNormal];
