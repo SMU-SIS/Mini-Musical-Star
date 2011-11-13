@@ -291,7 +291,8 @@
     // Setup custom slider images
 	UIImage *maxImage = [UIImage imageNamed:@"scrollerBack.png"];
 	UIImage *minImage = [UIImage imageNamed:@"scrollerFront.png"];
-	UIImage *tumbImage= [UIImage imageNamed:@"star.png"];	
+	UIImage *tumbImage= [UIImage imageNamed:@"star.png"];
+	UIImage *micImage = [UIImage imageNamed:@"micScroller.png"];
     
 	minImage=[minImage stretchableImageWithLeftCapWidth:10.0 topCapHeight:0.0];
 	maxImage=[maxImage stretchableImageWithLeftCapWidth:10.0 topCapHeight:0.0];
@@ -302,6 +303,13 @@
 	[playPositionSlider setThumbImage:tumbImage forState:UIControlStateNormal];
     
     playPositionSlider.continuous = YES;
+    
+    // Setup the MicVolume Slider
+    [micVolumeSlider setMinimumTrackImage:minImage forState:UIControlStateNormal];
+	[micVolumeSlider setMaximumTrackImage:maxImage forState:UIControlStateNormal];
+    [micVolumeSlider setThumbImage:micImage forState:UIControlStateNormal];
+    
+    micVolumeSlider.continuous = YES;
 }
 
 #pragma mark - AudioEditorDelegate methods
