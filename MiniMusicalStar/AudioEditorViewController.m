@@ -324,6 +324,8 @@
         } else {
             [muteOrUnmuteButton setImage:mutedImage forState:UIControlStateNormal];
         }
+        
+        [showLyricsButton setImage:nil forState:UIControlStateNormal];
     }
     
     return cell;
@@ -401,12 +403,26 @@
 - (void)showLyricsButtonIsPressed:(UIButton*)sender
 {
     int row = [self getTableViewRow:sender];
-    
-    //get the corresponding Audio object
     id audioForRow = [tracksForView objectAtIndex:row];
+    
+    if ([audioForRow isKindOfClass:[CoverSceneAudio class]]) {
+        return;
+    }
+    
     Audio *audio = (Audio*)audioForRow;
     
-    [self loadLyrics:[audio lyrics]];
+    if ([audio.replaceable intValue] == 0) {
+        return;
+    }
+    
+    NSString *trimmedLyrics =[[audio lyrics] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    
+    if ([trimmedLyrics isEqualToString:@""]) {
+        [self loadLyrics:@"no lyrics were found for this track"];
+    } else {
+        [self loadLyrics:[audio lyrics]];
+    }
+    
 }
 
 - (void)showCueButtonIsPressed:(UIButton *)sender
