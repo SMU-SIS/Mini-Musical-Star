@@ -224,14 +224,8 @@
 
 #pragma - FacebookUploaderDelegate methods
 
-- (void)facebookUploadSuccess
-{  
-    [self.facebookUploaderViewController.view removeFromSuperview];
-    [self.facebookUploaderViewController release];
-}
-
-- (void)facebookUploadNotSuccessful
-{   
+- (void)removeFacebookUploadOverlay
+{
     [self.facebookUploaderViewController.view removeFromSuperview];
     [self.facebookUploaderViewController release];
 }
@@ -260,8 +254,6 @@
     facebookUploaderViewController.view.alpha = 0.9;
     facebookUploaderViewController.centerView.alpha = 1;
     facebookUploaderViewController.centerView.backgroundColor = [UIColor whiteColor];
-    
-    [facebookUploaderViewController startUpload];
 }
 
 - (void) uploadToYouTube:(NSURL*)filePath
