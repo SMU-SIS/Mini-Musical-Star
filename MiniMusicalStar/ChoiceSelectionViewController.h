@@ -54,6 +54,8 @@
 - (void)loadCoversForShow:(Show *)aShow;
 -(void)selectedSavedCover;
 
+-(void) setVideosButtonTag:(int)number;
+
 - (void)dismissCoversList;
 
 @end

@@ -157,6 +157,7 @@
             newCover.title = prompt.enteredText;
             newCover.originalHash = [MiniMusicalStarUtilities getUniqueFilenameWithoutExt];
             newCover.coverOfShowHash = theShow.showHash;
+//            [self setVideosButtonTag:self.coversTableView
             [self loadSceneSelectionScrollViewWithCover:newCover];
         }
     }
@@ -291,6 +292,10 @@
     [self.navigationController pushViewController:aController animated:YES];
 }
 
+-(void) setVideosButtonTag:(int)number
+{
+    self.exportViewButton.tag = number;
+}
 
 -(IBAction) showMediaManagement: (id)sender{
     

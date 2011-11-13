@@ -11,7 +11,7 @@
 #import "Cover.h"
 
 @protocol CoversListDelegate <NSObject>
-
+-(void) setVideosButtonTag:(int)number;
 - (void)loadSceneSelectionScrollViewWithCover:(Cover *)aCover;
 -(IBAction) showMediaManagement: (id)sender;
 

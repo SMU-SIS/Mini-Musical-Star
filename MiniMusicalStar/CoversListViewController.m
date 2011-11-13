@@ -298,6 +298,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     Cover *selectedCover = [frc objectAtIndexPath:indexPath];
+    [delegate setVideosButtonTag:indexPath.row];
     [delegate performSelector:@selector(loadSceneSelectionScrollViewWithCover:) withObject:selectedCover];
 }
 
