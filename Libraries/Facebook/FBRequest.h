@@ -22,7 +22,9 @@
 /**
  * Do not use this interface directly, instead, use method in Facebook.h
  */
-@interface FBRequest : NSObject {
+@interface FBRequest : NSObject 
+    <NSURLConnectionDataDelegate>
+{
   id<FBRequestDelegate> _delegate;
   NSString*             _url;
   NSString*             _httpMethod;

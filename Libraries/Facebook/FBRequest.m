@@ -307,6 +307,12 @@ static const NSTimeInterval kTimeoutInterval = 180.0;
 
 }
 
+- (void)connection:(NSURLConnection *)connection didSendBodyData:(NSInteger)bytesWritten totalBytesWritten:(NSInteger)totalBytesWritten totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite
+{
+    NSLog(@"totalBytesWritten: %i", totalBytesWritten);
+    NSLog(@"totalBytesExpectedToWrite, %i", totalBytesExpectedToWrite);
+}
+
 /**
  * make the cancel the Facebook request
  */
