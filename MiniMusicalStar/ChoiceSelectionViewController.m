@@ -90,7 +90,7 @@
     selectSceneHelpImageView.hidden = YES;
     
     self.exportViewButton = [[UIButton alloc] initWithFrame:CGRectMake(1024,140,300,50)];
-    [exportViewButton setImage:[UIImage imageNamed:@"videos.png"] forState:UIControlStateNormal];
+    [exportViewButton setImage:[UIImage imageNamed:@"gotovideos.png"] forState:UIControlStateNormal];
     [exportViewButton addTarget:self action:@selector(showMediaManagement:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:exportViewButton];
     
