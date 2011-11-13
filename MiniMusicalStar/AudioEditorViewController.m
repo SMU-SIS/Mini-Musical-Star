@@ -17,6 +17,7 @@
 #import "CoverScene.h"
 #import "CoverSceneAudio.h"
 #import "CueController.h"
+#import "DSActivityView.h"
 
 @implementation AudioEditorViewController
 @synthesize recordingStatusLabel;
@@ -234,7 +235,7 @@
     UILabel *muteUnmuteLabel;
     UILabel *recordRecordingLabel;
     UILabel *showHideLyricsLabel;
-    UILabel *showCuesLabel;
+    //UILabel *showCuesLabel;
 
     //get the corresponding Audio object
     id audioForRow = [tracksForView objectAtIndex:[indexPath row]];
@@ -693,6 +694,8 @@
         return;
     }
     
+    [DSBezelActivityView newActivityViewForView:self.view withLabel:@"Deleting track..."];
+    
     CoverSceneAudio *audioToBeRemoved = (CoverSceneAudio*)audioForRow;
     NSURL *urlOfAudioToBeRemoved = [NSURL fileURLWithPath:audioToBeRemoved.path];
     
@@ -704,6 +707,9 @@
     }
     
     [self.theCoverScene removeAudioObject:audioToBeRemoved];
+    
+    [DSBezelActivityView removeViewAnimated:YES];
+    
     [self consolidateArrays];
     [trackTableView reloadData];
 }
