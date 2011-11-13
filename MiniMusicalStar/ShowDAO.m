@@ -66,6 +66,7 @@
     {
         //then seed the tutorial
         NSString *howlingDogZip = [[NSBundle mainBundle] pathForResource:@"howling_dog" ofType:@"zip"];
+        NSLog(@"HOWLING DOG PATH IS %@", howlingDogZip);
         [self unzipDownloadedShowURL:howlingDogZip toPath:[showsDirectory stringByAppendingPathComponent:@"Howling Dog"]];
     }
 }

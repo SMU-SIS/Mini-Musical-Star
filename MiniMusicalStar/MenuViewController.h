@@ -14,10 +14,13 @@
 @class UndownloadedShow;
 @class Show;
 @class StoreController;
+@class ShowDAO;
+@class VideoPlayerViewController;
 
 @interface MenuViewController : UIViewController <NSFetchedResultsControllerDelegate, ShowDAOStateDelegate>
 
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
+@property (retain, nonatomic) IBOutlet UIButton *tutorialButton;
 @property (retain, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (retain, nonatomic) NSMutableArray *buttonArray;
 @property (retain, nonatomic) ShowDAO *showDAO;
@@ -29,6 +32,7 @@
 - (void)cancelDownloadOfShow:(UIButton *)sender;
 - (void)resetToCleanStateForPartiallyDownloadedShow:(UndownloadedShow *)aShow;
 - (void)selectMusical:(UIImageView *)musicalButton;
+- (IBAction) playTutorial:(id)sender;
 
 
 @end

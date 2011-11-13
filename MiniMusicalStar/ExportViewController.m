@@ -18,13 +18,17 @@
 @synthesize addCreditsButton;
 @synthesize popoverController;
 @synthesize addCreditsViewController;
+@synthesize progressViewController;
+@synthesize tutorialButton;
     
 - (void)dealloc
 {
+    [tutorialButton release];
     [theShow release];
     [theCover release];
     [context release];
     
+    [progressViewController release];
     [popoverController release];
     [mediaTableViewController release];
     [exportTableViewController release];
@@ -63,17 +67,51 @@
         UIColor *background = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"exportpage.png"]];
         self.view.backgroundColor = background;
         
-        self.exportTableViewController.tableView.backgroundView.alpha = 0;
-        self.exportTableViewController.tableView.frame = CGRectMake(50,200,400,450);
+        self.exportTableViewController.tableView.backgroundView.hidden = YES;
+        self.exportTableViewController.tableView.frame = CGRectMake(50,160,400,590);
         
-        self.mediaTableViewController.tableView.frame = CGRectMake(570,200,370,480);
-        self.mediaTableViewController.tableView.backgroundView.alpha = 0;
+        [self.exportTableViewController.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+        
+        self.mediaTableViewController.tableView.frame = CGRectMake(570,160,370,590);
+        self.mediaTableViewController.tableView.backgroundView.hidden = YES;
+        
+        [self.mediaTableViewController.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+        
+        self.progressViewController = [[ProgressOverlayViewController alloc] init];
+        [self.progressViewController setDelegate:self];
         
         [self.view addSubview:self.exportTableViewController.tableView];
         [self.view addSubview:self.mediaTableViewController.tableView];
     }
     
     return self;
+}
+
+- (void) showProgressView
+{
+    [self.progressViewController.view setAlpha:0.0];
+    [self.view addSubview:progressViewController.view];
+    [UIView beginAnimations:nil context:nil];
+    [self.progressViewController.view setAlpha:1.0];
+    [UIView commitAnimations];
+}
+
+- (void) setProgressViewAtValue:(float)value withAnimation:(BOOL)isAnimated
+{
+    [progressViewController.progressView setProgress:value animated:isAnimated];
+    if(value == 1.0){
+        [self performSelector:@selector(removeProgressView) withObject:nil afterDelay:5.0];
+    }
+}
+
+- (void) removeProgressView
+{
+    [progressViewController.view removeFromSuperview];
+}
+
+-(void) cancelExportSession
+{
+    [self.exportTableViewController cancelExportSession];
 }
 
 - (IBAction) editTable:(id)sender
@@ -186,30 +224,30 @@
 
 #pragma - FacebookUploaderDelegate methods
 
-- (void)facebookUploadSuccess
-{  
-    NSLog(@"uploadSuccess");
-    [self.facebookUploaderViewController.view removeFromSuperview];
-   [self.facebookUploaderViewController release];
-}
-
-- (void)facebookUploadFailed
+- (void)removeFacebookUploadOverlay
 {
-    
+    [UIView beginAnimations:nil context:nil];
+    [facebookUploaderViewController.view setAlpha:0.0];
+    [UIView commitAnimations];
+//    [self.facebookUploaderViewController.view removeFromSuperview];
+
+    [self.facebookUploaderViewController release];
 }
 
 #pragma - YouTubeUploaderDelegate methods
 
-- (void)youTubeUploadSuccess
+- (void)removeYouTubeUploadOverlay
 {
-    NSLog(@"uploadSuccess");
-    [self.youtubeUploaderViewController.view removeFromSuperview];
-    [self.youtubeUploaderViewController release];
-}
-
-- (void)youTubeUploadFailed
-{
+    if (youtubeUploaderViewController.isUploading) {
+        [youtubeUploaderViewController cancelUpload];
+    }
     
+    [UIView beginAnimations:nil context:nil];
+    [youtubeUploaderViewController.view setAlpha:0.0];
+    [UIView commitAnimations];
+    
+//    [self.youtubeUploaderViewController.view removeFromSuperview];
+    [self.youtubeUploaderViewController release];
 }
 
 #pragma - MediaTableViewDelegate methods
@@ -220,12 +258,11 @@
     facebookUploaderViewController = [[FacebookUploaderViewController alloc] initWithProperties:filePath title:@"Uploaded with Mini Musical Star" description:@""];
     
     self.facebookUploaderViewController.delegate = self;
+    [facebookUploaderViewController.view setAlpha:0.0];
     [self.view addSubview:facebookUploaderViewController.view];
-    facebookUploaderViewController.view.alpha = 0.9;
-    facebookUploaderViewController.centerView.alpha = 1;
-    facebookUploaderViewController.centerView.backgroundColor = [UIColor whiteColor];
-    
-    [facebookUploaderViewController startUpload];
+    [UIView beginAnimations:nil context:nil];
+    [facebookUploaderViewController.view setAlpha:0.9];
+    [UIView commitAnimations];
 }
 
 - (void) uploadToYouTube:(NSURL*)filePath
@@ -234,11 +271,15 @@
 
     self.youtubeUploaderViewController.delegate = self;
     [self.view addSubview:youtubeUploaderViewController.view];
-    youtubeUploaderViewController.view.alpha = 0.9;
-    youtubeUploaderViewController.centerView.alpha = 1;
-    youtubeUploaderViewController.centerView.backgroundColor = [UIColor whiteColor];
-    
-    [youtubeUploaderViewController startUpload];
+    [UIView beginAnimations:nil context:nil];
+    [youtubeUploaderViewController.view setAlpha:0.9];
+    [UIView commitAnimations];
+}
+
+- (IBAction) playTutorial:(id)sender
+{
+    //play tutorial video player
+    [self playMovie:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"export" ofType:@"m4v"]]];
 }
 
 @end

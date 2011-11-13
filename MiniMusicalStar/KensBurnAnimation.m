@@ -15,11 +15,11 @@
 
 /* Range of constant values for randomization */
 #define MINZOOMSCALE 1.1
-#define MAXZOOMSCALE 1.8
-#define MINXMOVEMENT -150
-#define MAXXMOVEMENT 150
-#define MINYMOVEMENT -150
-#define MAXYMOVEMENT 150
+#define MAXZOOMSCALE 1.5
+#define MINXMOVEMENT -100
+#define MAXXMOVEMENT 100
+#define MINYMOVEMENT -100
+#define MAXYMOVEMENT 100
 #define MINDURATION 5
 #define MAXDURATION 8
 
@@ -43,18 +43,6 @@ NSInteger xMovement, yMovement, duration;
     [super dealloc];
 }
 
-- (void)startAnimation
-{
-    [self randomGenerateKensBurnNumbers];
-    
-    [UIView animateWithDuration:duration animations:^(void) {
-        CGAffineTransform zoomIn = CGAffineTransformMakeScale(zoomScale, zoomScale);
-        CGAffineTransform moveRight = CGAffineTransformMakeTranslation(xMovement, yMovement);
-        CGAffineTransform combo1 = CGAffineTransformConcat(zoomIn, moveRight);
-        imageViewForKensBurning.transform = combo1;
-    }];
-}
-
 -(CABasicAnimation*) getKensBurnAnimationForImageAtTime: (float) startTime andDuration: (float) duration
 {
     [self randomGenerateKensBurnNumbers];
@@ -74,6 +62,32 @@ NSInteger xMovement, yMovement, duration;
     kensBurnAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
     return kensBurnAnimation;
     
+}
+
+-(void) addKensBurnAnimationToLayer: (CALayer*)layer withTimingsArray:(NSMutableArray*)sortedTimingsArray overDuration:(Float64)durationInSeconds
+{
+    for(int i =0 ; i<sortedTimingsArray.count ; i++)
+    {
+        float startTime = [[sortedTimingsArray objectAtIndex:i] floatValue];
+        
+        float duration = 0;
+        
+        if (i + 1 != sortedTimingsArray.count){
+            duration = [[sortedTimingsArray objectAtIndex:i+1] floatValue] - startTime;
+        }else{
+            Float64 videoLength = durationInSeconds;
+            duration = videoLength - startTime;
+        }
+        
+        if(i==0){
+            startTime = startTime + 0.1;
+            duration = duration - 0.1;
+        }
+        
+        CABasicAnimation *kensBurnAnimation = [self getKensBurnAnimationForImageAtTime:startTime andDuration:duration];
+        
+        [layer addAnimation:kensBurnAnimation forKey:nil];
+    }
 }
 
 - (void)randomGenerateKensBurnNumbers

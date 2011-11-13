@@ -17,7 +17,6 @@
 
 @synthesize viewController=_viewController;
 @synthesize naviController=_naviController;
-@synthesize facebook;
 
 //workaround to get a proper stacktrace in Xcode 4.2
 void uncaughtExceptionHandler(NSException *exception) {
@@ -37,6 +36,9 @@ void uncaughtExceptionHandler(NSException *exception) {
 //    #if (TARGET_IPHONE_SIMULATOR)
 //        [ConsoleManager run];
 //    #endif
+    
+    //warn when zombie is enabled
+    char* szZombie = getenv("NSZombieEnabled"); if (szZombie && 0 == strcasecmp(szZombie, "YES")) { NSLog(@"NSZombieEnabled enabled!"); }
     
     self.window.rootViewController = self.naviController;
     self.naviController.delegate = self;
@@ -140,9 +142,9 @@ void uncaughtExceptionHandler(NSException *exception) {
     return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
 }
 
-- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
-    return [facebook handleOpenURL:url];
-}
+//- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+//
+//}
 
 - (void)dealloc
 {

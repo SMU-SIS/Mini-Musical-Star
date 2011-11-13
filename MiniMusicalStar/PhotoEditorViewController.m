@@ -10,10 +10,11 @@
 
 @implementation PhotoEditorViewController
 
-@synthesize leftPicture, rightPicture, centerPicture, theScene, imagesArray, theCoverScene, context, currentSelectedCover, cameraPopupViewController, delegate, exportFilename;
+@synthesize leftPicture, rightPicture, centerPicture, theScene, imagesArray, theCoverScene, context, currentSelectedCover, cameraPopupViewController, delegate, exportFilename, tutorialButton;
 
 -(void)dealloc
 {
+    [tutorialButton release];
     [exportFilename release];
     [leftPicture release];
     [rightPicture release];
@@ -59,8 +60,8 @@
     ((AFOpenFlowView *)self.view).viewDelegate = self;
     [self performSelector:@selector(loadImagesIntoOpenFlow)];
     
-    UIColor *background = [[UIColor alloc] initWithPatternImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"softboard" ofType:@"png"]]];
-    [self.view setBackgroundColor:background];
+//    UIColor *background = [[UIColor alloc] initWithPatternImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"softboard" ofType:@"png"]]];
+//    [self.view setBackgroundColor:background];
     
     //Applying autosave here
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(autosaveWhenContextDidChange:) name:NSManagedObjectContextObjectsDidChangeNotification object:context];
@@ -195,6 +196,12 @@
 {
     // Return YES for supported orientations
 	return YES;
+}
+
+- (IBAction) playTutorial:(id)sender
+{
+    //play tutorial video player
+    [delegate playMovie:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"photo" ofType:@"m4v"]]];
 }
 
 @end

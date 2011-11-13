@@ -22,7 +22,9 @@
 /**
  * Do not use this interface directly, instead, use method in Facebook.h
  */
-@interface FBRequest : NSObject {
+@interface FBRequest : NSObject 
+    <NSURLConnectionDataDelegate>
+{
   id<FBRequestDelegate> _delegate;
   NSString*             _url;
   NSString*             _httpMethod;
@@ -70,6 +72,8 @@
 
 - (void) connect;
 
+- (void) cancel;
+
 @end
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -111,6 +115,11 @@
  * The result object is the raw response from the server of type NSData
  */
 - (void)request:(FBRequest *)request didLoadRawResponse:(NSData *)data;
+
+/**
+ * Called to update the progress of the upload
+ */
+- (void)didSendBodyData:(NSInteger)bytesWritten totalBytesWritten:(NSInteger)totalBytesWritten totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite;
 
 @end
 

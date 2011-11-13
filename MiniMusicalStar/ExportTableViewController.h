@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <MediaPlayer/MediaPlayer.h>
 #import <AVFoundation/AVFoundation.h>
+#import <AssetsLibrary/AssetsLibrary.h>
 #import "FacebookUploaderViewController.h"
 #import "ExportedAsset.h"
 
@@ -26,6 +27,8 @@
 @protocol ExportTableViewDelegate <NSObject>
 - (void) reloadMediaTable;
 - (NSMutableArray *) getTextFieldArray;
+- (void) showProgressView;
+- (void) setProgressViewAtValue:(float)value withAnimation:(BOOL)isAnimated;
 @end
 
 @interface ExportTableViewController : UITableViewController
@@ -37,7 +40,9 @@
 @property (retain, nonatomic) NSArray *musicalArray;
 @property (retain, nonatomic) NSArray *scenesArray;
 @property (retain, nonatomic) NSMutableArray *exportedAssetsArray;
+@property (retain, nonatomic) NSMutableArray *musicalAudioMappings;
 @property (retain, nonatomic) Show *theShow;
+@property (retain, nonatomic) Scene *theScene;
 @property (retain, nonatomic) Cover *theCover;
 @property (retain, nonatomic) SceneUtility *theSceneUtility;
 
@@ -47,19 +52,26 @@
 @property (nonatomic, retain) UIBarButtonItem *uploadBarButtonItem;
 @property (retain, nonatomic) NSMutableArray *tempMusicalContainer;
 
+@property(retain,nonatomic) AVAssetExportSession *exportSession;
+
 @property (retain, nonatomic) NSManagedObjectContext *context;
 
 - (id)initWithStyle:(UITableViewStyle)style:(Show*)show:(Cover*)cover context:(NSManagedObjectContext *)aContext;
 - (void) generateMusical;
 - (void) prepareMusicalNotification;
-- (void) processExportSession: (AVMutableComposition*) composition:(NSURL*)videoFileURL:(NSURL*)creditsFileURL: (NSURL*) outputFileURL: (UIProgressView*) prog: (NSString*) state;
+
 -(void) sessionExport: (AVMutableComposition*) composition: (NSURL*)videoFileURL: (NSURL*)creditsFileURL: (NSURL*)outputFileURL: (NSIndexPath*) indexPath: (NSString*) state;
 - (void)exportScene:(Scene*) scene:(CoverScene*) coverScene: (NSIndexPath*) indexPath;
 - (void)exportMusical:(Show*)show;
 
 - (void) removeFileAtPath: (NSURL*) filePath;
-- (void) exportCompleted: (NSURL*) videoFileURL: (NSURL*) creditsFileURL: (NSURL*) outputFileURL: (UIProgressView*) prog: (NSTimer*) progressBarLoader: (NSString*) state;
-- (void) allScenesExportedNotificationSender;
+
+- (void) processExportSessionWithComposition:(AVMutableComposition*)composition andVideoComposition:(AVMutableVideoComposition*)videoComposition withOutputFilePath:(NSURL*)outputFileURL andVideoFilePath:(NSURL*)videoFileURL forMusical:(BOOL)isMusical;
+- (void) saveExportedAssetAt:(NSURL*)outputFileURL andDeleteVideoFile:(NSURL*)videoFileURL forMusical:(BOOL)isMusical;
+-(void)processImageAndAudioAppendingToVideoWithImagesArray:(NSArray*)imagesArray andSortedPicturesTimingArray:(NSMutableArray*)sortedTimingsArray andAudioFilePaths:(NSArray*) audioExportURLs forMusical:(BOOL)isMusical;
+
+- (void)refreshProgressBar:(NSTimer*) aTimer;
+
 - (int)getTableViewRow:(UIButton*)sender;
 
 @end

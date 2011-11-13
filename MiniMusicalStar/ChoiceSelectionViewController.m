@@ -24,9 +24,17 @@
 @synthesize currentSelectedCoversList;
 @synthesize exportButton;
 @synthesize exportViewController;
+@synthesize grayViewButton;
+@synthesize exportViewButton;
+@synthesize selectSceneHelpImageView;
+@synthesize tutorialButton;
 
 - (void)dealloc
 {
+    [tutorialButton release];
+    [selectSceneHelpImageView release];
+    [exportViewButton release];
+    [grayViewButton release];
     [exportViewController release];
     [exportButton release];
     [currentSelectedCoversList release];
@@ -72,7 +80,41 @@
     self.currentSelectedCoversList.tableView.separatorColor = [UIColor clearColor];
     [self.view addSubview:self.currentSelectedCoversList.view];
     
+    self.grayViewButton = [[UIButton alloc] initWithFrame:CGRectMake(0,0,1024,768)];
+    grayViewButton.backgroundColor = [UIColor grayColor];
+    grayViewButton.alpha = 0.0;
+    [grayViewButton addTarget:self action:@selector(fadeGrayViewButton) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:grayViewButton];
+    
+    self.selectSceneHelpImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"taptoedit.png"]];
+    selectSceneHelpImageView.frame = CGRectMake(0,708,300,60);
+    [self.view addSubview:selectSceneHelpImageView];
+    
+    self.exportViewButton = [[UIButton alloc] initWithFrame:CGRectMake(1024,140,300,50)];
+    [exportViewButton setImage:[UIImage imageNamed:@"gotovideos.png"] forState:UIControlStateNormal];
+    [exportViewButton addTarget:self action:@selector(showMediaManagement:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:exportViewButton];
+    
     return self;
+}
+
+-(void) fadeGrayViewButton
+{
+    self.grayViewButton.alpha = 0.0;
+    
+    [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationCurveEaseIn animations:^{
+        CGAffineTransform moveDown = CGAffineTransformMakeTranslation(0, 60);
+        self.selectSceneHelpImageView.transform = moveDown;
+    } completion:^(BOOL finished) {
+    }];
+    
+    [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationCurveEaseIn animations:^{
+        CGAffineTransform moveRight = CGAffineTransformMakeTranslation(300, 0);
+        self.exportViewButton.transform = moveRight;
+    } completion:^(BOOL finished) {
+    }];
+    
+    [self removeScrollStrip:nil];
 }
 
 - (IBAction)goToExportPage: (id)sender
@@ -105,7 +147,7 @@
     {
         AlertPrompt *prompt = (AlertPrompt *)alertView;
         if (prompt.enteredText.length == 0) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"OPPS!" message:@"Please enter something!" delegate:self cancelButtonTitle:@"OK!" otherButtonTitles:nil, nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"OOPS!" message:@"Please enter something!" delegate:self cancelButtonTitle:@"OK!" otherButtonTitles:nil, nil];
             [alert show];
             [alert release]; 
         }
@@ -117,6 +159,8 @@
             newCover.title = prompt.enteredText;
             newCover.originalHash = [MiniMusicalStarUtilities getUniqueFilenameWithoutExt];
             newCover.coverOfShowHash = theShow.showHash;
+            [self setVideosButtonTag:[self.currentSelectedCoversList numberOfCovers]
+             ];
             [self loadSceneSelectionScrollViewWithCover:newCover];
         }
     }
@@ -196,6 +240,22 @@
     [self.sceneStripController setCoverTitleLabel:aCover.title];
     sceneStripController.context = self.managedObjectContext;
     
+    self.grayViewButton.alpha = 0.5;
+    [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationCurveEaseIn animations:^{
+        CGAffineTransform moveUp = CGAffineTransformMakeTranslation(0, -60);
+        self.selectSceneHelpImageView.transform = moveUp;
+    } completion:^(BOOL finished) {
+    }];
+    
+    //slide the exportViewButton
+    [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationCurveEaseIn animations:^{
+        CGAffineTransform moveLeft = CGAffineTransformMakeTranslation(-300, 0);
+        self.exportViewButton.transform = moveLeft;
+        
+        
+    } completion:^(BOOL finished) {
+    }];
+    
     [self.view addSubview:self.sceneStripController.view];
     [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationCurveEaseIn animations:^{
         CGAffineTransform moveLeft = CGAffineTransformMakeTranslation(-1024, 0);
@@ -208,7 +268,7 @@
         }];
         
     } completion:^(BOOL finished) {
-        //do nothing
+        
     }];
     
 }
@@ -217,7 +277,6 @@
 {
     if(self.sceneStripController.view.superview != nil){
         [self bounceScrollStrip:aCover];
-//        [self performSelector:@selector(addScrollStrip:) withObject:self afterDelay:0.5];
         return;
     };
     
@@ -236,6 +295,10 @@
     [self.navigationController pushViewController:aController animated:YES];
 }
 
+-(void) setVideosButtonTag:(int)number
+{
+    self.exportViewButton.tag = number;
+}
 
 -(IBAction) showMediaManagement: (id)sender{
     
@@ -265,6 +328,45 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationLandscapeLeft || interfaceOrientation == UIInterfaceOrientationLandscapeRight);
+}
+
+- (IBAction) playTutorial:(id)sender
+{
+    //play tutorial video player
+    [self playMovie:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"covers_selection" ofType:@"m4v"]]];
+}
+
+- (void) playMovie:(NSURL*)filePath
+{
+    MPMoviePlayerController *moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL: filePath];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(moviePlayBackDidFinish:)
+                                                 name:MPMoviePlayerPlaybackDidFinishNotification
+                                               object:moviePlayer];
+    [moviePlayer setFullscreen:YES animated:YES];
+    self.navigationController.navigationBarHidden = YES;
+    moviePlayer.controlStyle = MPMovieControlStyleFullscreen;
+    moviePlayer.shouldAutoplay = YES;
+    [moviePlayer.view setFrame: self.view.bounds];  // player's frame must match parent's
+    
+    [self.view addSubview: moviePlayer.view];
+    
+    [moviePlayer play];
+}
+
+- (void) moviePlayBackDidFinish:(NSNotification*)notification {
+    MPMoviePlayerController *moviePlayer = [notification object];
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:MPMoviePlayerPlaybackDidFinishNotification
+                                                  object:moviePlayer];
+    
+    // If the moviePlayer.view was added to the view, it needs to be removed
+    if ([moviePlayer respondsToSelector:@selector(setFullscreen:animated:)]) {
+        [moviePlayer.view removeFromSuperview];
+    }
+    self.navigationController.navigationBarHidden = NO;
+    
+    [moviePlayer release];
 }
 
 

@@ -149,7 +149,7 @@
     // Return the number of rows in the section.
     id <NSFetchedResultsSectionInfo> sectionInfo = nil;
     sectionInfo = [[frc sections] objectAtIndex:section];
-    NSLog(@"we have %i objects in MEDIA TABLE VIEW", [sectionInfo numberOfObjects]);
+//    NSLog(@"we have %i objects in MEDIA TABLE VIEW", [sectionInfo numberOfObjects]);
     return [sectionInfo numberOfObjects];
 }
 
@@ -168,6 +168,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
         //create the accessory view with the fb and youtube upload buttons
         UIView *accessoryView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 110, 70)];
@@ -198,8 +199,11 @@
     // Configure the cell...
     NSManagedObject *mo = [frc objectAtIndexPath:indexPath];
     NSString *title = [[mo valueForKey:@"title"] description];
-    NSString *dateCreated = [@"Created at " stringByAppendingString:[[mo valueForKey:@"dateCreated"] description]];
+    NSDate *date = [mo valueForKey:@"dateCreated"];
+    NSString *dateCreated = [date descriptionWithLocale:[NSLocale currentLocale]];
     
+    UIImage *background = [UIImage imageNamed: @"export_cell.png"];
+    cell.backgroundColor = [[UIColor alloc] initWithPatternImage:background];
     [[cell textLabel] setText:title];
     [[cell detailTextLabel] setText:dateCreated];
     [[cell textLabel] setBackgroundColor:[UIColor clearColor]];

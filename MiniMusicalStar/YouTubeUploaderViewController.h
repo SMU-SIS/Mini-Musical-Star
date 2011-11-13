@@ -11,22 +11,24 @@
 
 @protocol YouTubeUploaderDelegate <NSObject>
 @required
-- (void)youTubeUploadSuccess;
-- (void)youTubeUploadFailed;
+- (void)removeYouTubeUploadOverlay;
 @end
 
 @interface YouTubeUploaderViewController : UIViewController
 {
     id <YouTubeUploaderDelegate> delegate;
-    
     GDataServiceTicket *mUploadTicket;
+    
+    bool isUploading;
 }
 
+//from xib
 @property (nonatomic, retain) IBOutlet UIButton *okButton;
-@property (nonatomic, retain) IBOutlet UIActivityIndicatorView *uploadIndicator;
 @property (nonatomic, retain) IBOutlet UIView *centerView;
 @property (nonatomic, retain) IBOutlet UITextField *usernameTextField;
 @property (nonatomic, retain) IBOutlet UITextField *passwordTextField;
+@property (nonatomic, retain) IBOutlet UILabel *statusLabel;
+@property (nonatomic, retain) IBOutlet UIProgressView *uploadProgressView;
 
 @property (nonatomic, assign) id delegate;
 
@@ -34,11 +36,15 @@
 @property (nonatomic, retain) NSString *videoTitle;
 @property (nonatomic, retain) NSString *videoDescription;
 
+- (bool)isUploading;
+
 - (GDataServiceGoogleYouTube *)youTubeService;
 - (void)setUploadTicket:(GDataServiceTicket *)ticket;
 - (NSArray*)getUserCredentials;
 
 - (id)initWithProperties:(NSURL*)aVideoNSURL title:(NSString*)aTitle description:(NSString*)aDescription;
 - (void)startUpload;
+- (void)cancelUpload;
+- (bool)validateTextFields;
 
 @end

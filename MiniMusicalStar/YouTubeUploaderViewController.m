@@ -8,60 +8,31 @@
 
 #import "YouTubeUploaderViewController.h"
 #import "GDataServiceGoogleYouTube.h"
-#import "GDataEntryPhotoAlbum.h"
-#import "GDataEntryPhoto.h"
-#import "GDataFeedPhoto.h"
 #import "GDataEntryYouTubeUpload.h"
 #import "GDataYouTubeConstants.h"
+#import "MiniMusicalStarUtilities.h"
 
 @interface YouTubeUploaderViewController (PrivateMethods)
-//- (void)updateUI;
-//
-//- (void)fetchEntryImageURLString:(NSString *)urlString;
-//
-//- (GDataEntryBase *)selectedEntry;
-//- (void)fetchAllEntries;
-//- (void)uploadVideoFile;
-//- (void)restartUpload;
-//
-//- (GDataFeedYouTubeVideo *)entriesFeed;
-//- (void)setEntriesFeed:(GDataFeedYouTubeVideo *)feed;
-//
-//- (NSError *)entriesFetchError;
-//- (void)setEntriesFetchError:(NSError *)error;
-//
-//- (GDataServiceTicket *)entriesFetchTicket;
-//- (void)setEntriesFetchTicket:(GDataServiceTicket *)ticket;
-//
-//- (NSString *)entryImageURLString;
-//- (void)setEntryImageURLString:(NSString *)str;
-//
-//- (GDataServiceTicket *)uploadTicket;
-//- (void)setUploadTicket:(GDataServiceTicket *)ticket;
-//
-//- (NSURL *)uploadLocationURL;
-//- (void)setUploadLocationURL:(NSURL *)url;
-//
-//- (GDataServiceGoogleYouTube *)youTubeService;
-//
-//- (void)ticket:(GDataServiceTicket *)ticket
-//hasDeliveredByteCount:(unsigned long long)numberOfBytesRead
-//ofTotalByteCount:(unsigned long long)dataLength;
-//
-//- (void)fetchStandardCategories;
+- (void)ticket:(GDataServiceTicket *)ticket hasDeliveredByteCount:(unsigned long long)numberOfBytesRead ofTotalByteCount:(unsigned long long)dataLength;
 @end
 
 @implementation YouTubeUploaderViewController
 
 @synthesize delegate;
-@synthesize okButton;
+
 @synthesize videoNSURL;
 @synthesize videoTitle;
 @synthesize videoDescription;
-@synthesize uploadIndicator;
+
+//from xib
 @synthesize centerView;
 @synthesize usernameTextField;
 @synthesize passwordTextField;
+@synthesize statusLabel;
+@synthesize uploadProgressView;
+@synthesize okButton;
+
+#pragma mark - init and dealloc
 
 - (id)initWithProperties:(NSURL*)aVideoNSURL title:(NSString*)aTitle description:(NSString*)aDescription 
 {
@@ -70,8 +41,46 @@
         self.videoNSURL = aVideoNSURL;
         self.videoTitle = aTitle;
         self.videoDescription = aDescription;
+        
+        isUploading = NO;
     }
     return self;
+}
+
+- (void)dealloc
+{
+    [videoNSURL release];
+    [videoTitle release];
+    [videoDescription release];
+    
+    [self setUploadTicket:nil];
+}
+
+#pragma mark - View lifecycle
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    [self.passwordTextField setSecureTextEntry:YES];
+    //self.usernameTextField.text = @"giantmusicalstar@gmail.com";
+    //self.passwordTextField.text = @"thebiggiant";
+    self.uploadProgressView.progress = 0;
+    self.statusLabel.text = @"";
+    [self.okButton setTitle:@"UPLOAD" forState:UIControlStateNormal];
+    [self.okButton setImage:[UIImage imageNamed:@"youtube_upload.png"] forState:UIControlStateNormal];
+}
+
+- (void)viewDidUnload
+{
+    [super viewDidUnload];
+
+    [okButton release];
+    [centerView release];
+    [passwordTextField release];
+    [usernameTextField release];
+    [statusLabel release];
+    [uploadProgressView release];
 }
 
 - (void)didReceiveMemoryWarning
@@ -82,40 +91,10 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
-#pragma mark - View lifecycle
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    [self.passwordTextField setSecureTextEntry:YES];
-    self.usernameTextField.text = @"giantmusicalstar@gmail.com";
-    self.passwordTextField.text = @"thebiggiant";
-    self.uploadIndicator.hidden = YES;
-}
-
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-}
-
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
 	return YES;
-}
-
-- (void)dealloc
-{
-    [okButton release];
-    [uploadIndicator release];
-    [centerView release];
-    [videoNSURL release];
-    [videoTitle release];
-    [videoDescription release];
-    [passwordTextField release];
-    [usernameTextField release];
 }
 
 - (void)upload
@@ -148,6 +127,7 @@
     
     BOOL isPrivate = NO;
     
+    
     GDataYouTubeMediaGroup *mediaGroup = [GDataYouTubeMediaGroup mediaGroup];
     [mediaGroup setMediaTitle:title];
     [mediaGroup setMediaDescription:desc];
@@ -155,8 +135,10 @@
     [mediaGroup setMediaKeywords:keywords];
     [mediaGroup setIsPrivate:isPrivate];
     
+    
     NSString *mimeType = [GDataUtilities MIMETypeForFileAtPath:path
                                                defaultMIMEType:@"video/mov"];
+    
     
     // create the upload entry with the mediaGroup and the file
     GDataEntryYouTubeUpload *entry;
@@ -165,9 +147,8 @@
                                                       MIMEType:mimeType
                                                           slug:filename];
     
-    //commented away codes which shows progress
-    //SEL progressSel = @selector(ticket:hasDeliveredByteCount:ofTotalByteCount:);
-    //[service setServiceUploadProgressSelector:progressSel];
+    SEL progressSel = @selector(ticket:hasDeliveredByteCount:ofTotalByteCount:);
+    [service setServiceUploadProgressSelector:progressSel];
     
     GDataServiceTicket *ticket;
     ticket = [service fetchEntryByInsertingEntry:entry
@@ -175,24 +156,6 @@
                                         delegate:self
                                didFinishSelector:@selector(uploadTicket:finishedWithEntry:error:)];
     [self setUploadTicket:ticket];
-    
-    // To allow restarting after stopping, we need to track the upload location
-    // URL. The location URL will be a different address than the upload URL that
-    // is used to start a new// upload.
-    //
-    // For compatibility with systems that do not support Objective-C blocks
-    // (iOS 3 and Mac OS X 10.5), the location URL may also be obtained in the
-    // progress callback as ((GTMHTTPUploadFetcher *)[ticket objectFetcher]).locationURL
-    // 
-    //    GTMHTTPUploadFetcher *uploadFetcher = (GTMHTTPUploadFetcher *)[ticket objectFetcher];
-    //    [uploadFetcher setLocationChangeBlock:^(NSURL *url) {
-    //        [self setUploadLocationURL:url];
-    //        [self updateUI];
-    //    }];
-    
-    //[self updateUI];
-    
-    NSLog(@"The upload to youtube has started.");
 }
 
 #pragma mark -
@@ -226,36 +189,42 @@
     return service;
 }
 
-#pragma mark -
+#pragma mark - call backs
 
 // upload callback
 - (void)uploadTicket:(GDataServiceTicket *)ticket
    finishedWithEntry:(GDataEntryYouTubeVideo *)videoEntry
                error:(NSError *)error {
+
     if (error == nil) {
-        // tell the user that the add worked
-        //[self displayAlert:@"Uploaded" format:@"Uploaded video: %@",[[videoEntry title] stringValue]];
-        NSLog(@"The upload to youtube has succeeded. View at www.youtube.com/giantmusicalstar");
-        
-        [self.uploadIndicator setHidden:YES];
-        [self.uploadIndicator stopAnimating];
-        self.okButton.enabled = YES;
-        self.okButton.titleLabel.text = @"OK";
-        
-    
-        // refetch the current entries, in case the list of uploads
-        // has changed
-        //  [self fetchAllEntries];
+        statusLabel.text = @"Upload complete!";
+        [self.okButton setTitle:@"CLOSE" forState:UIControlStateNormal];
+        [self.okButton setImage:[UIImage imageNamed:@"youtube_close.png"] forState:UIControlStateNormal];
+                
     } else {
-        //[self displayAlert:@"Upload failed"
-        //format:@"Upload failed: %@", error];
-        NSLog(@"The upload to youtube has failed.");
+            
+        if (error.code == 403) {
+            //incorrect username or password
+            statusLabel.text = @"Incorrect username or password. Retry?";
+        } else {
+            //handle everything else
+            statusLabel.text = @"An error seemed to have occured! Please try again!";
+        }
         
+        [self.okButton setTitle:@"TRY AGAIN" forState:UIControlStateNormal];
+        [self.okButton setImage:[UIImage imageNamed:@"youtube_tryagain.png"] forState:UIControlStateNormal]; //change button
+
+        //NSLog(@"The upload has failed with %@", error);
     }
-    // [mUploadProgressIndicator setDoubleValue:0.0];
     
     [self setUploadTicket:nil];
-    //[self updateUI];
+}
+
+// progress callback, update the progress view
+- (void)ticket:(GDataServiceTicket *)ticket
+hasDeliveredByteCount:(unsigned long long)numberOfBytesRead ofTotalByteCount:(unsigned long long)dataLength 
+{
+    self.uploadProgressView.progress = (double)numberOfBytesRead/(double)dataLength;
 }
 
 #pragma mark Setters and Getters
@@ -267,26 +236,81 @@
 
 #pragma mark instance methods
 
+- (bool)isUploading
+{
+    return isUploading;
+}
+
 - (NSArray*)getUserCredentials
 {    
     NSArray *userCredentialsArray = [NSArray arrayWithObjects:usernameTextField.text, passwordTextField.text, nil];
     return userCredentialsArray;
 }
 
+- (void)startUpload
+{
+    if (![self validateTextFields]) {
+        self.statusLabel.text = @"Please enter both username and password";
+        [self.okButton setTitle:@"TRY AGAIN" forState:UIControlStateNormal];
+        [self.okButton setImage:[UIImage imageNamed:@"youtube_tryagain.png"] forState:UIControlStateNormal];
+        return;
+    }
+    
+    [self upload];
+    
+    isUploading = YES;
+    self.statusLabel.text = @"Uploading...";
+    [self.okButton setTitle:@"CANCEL" forState:UIControlStateNormal];
+    [self.okButton setImage:[UIImage imageNamed:@"youtube_cancel.png"] forState:UIControlStateNormal];
+}
+
+- (void)cancelUpload
+{
+    [mUploadTicket cancelTicket];
+    [self setUploadTicket:nil];
+    
+    isUploading = NO;
+    self.uploadProgressView.progress = 0;
+    self.statusLabel.text = @"Upload cancelled";
+    [self.okButton setTitle:@"TRY AGAIN" forState:UIControlStateNormal];
+    [self.okButton setImage:[UIImage imageNamed:@"youtube_tryagain.png"] forState:UIControlStateNormal];
+}
+
+- (bool)validateTextFields
+{
+    if ([self.usernameTextField.text isEqualToString:@""] ||
+        [self.passwordTextField.text isEqualToString:@""]) {
+        return false;
+    }
+    
+    return true;
+}
+
 #pragma mark - IBAction methods
 
 - (IBAction)okButtonIsPressed
-{    
-    [delegate youTubeUploadSuccess];
+{       
+    if ([self.okButton.titleLabel.text isEqualToString:@"UPLOAD"] || 
+            [self.okButton.titleLabel.text isEqualToString:@"TRY AGAIN"]) {
+        [self startUpload];
+        self.okButton.titleLabel.text = @"CANCEL";
+        
+    } else if ([self.okButton.titleLabel.text isEqualToString:@"CANCEL"]) {
+        [self cancelUpload];
+    
+    } else if ([self.okButton.titleLabel.text isEqualToString:@"CLOSE"]) {
+        [delegate removeYouTubeUploadOverlay];
+    }
+    
 }
 
-#pragma mark - instance methods
-
-- (void)startUpload
+- (IBAction)closeButtonIsPressed
 {
-    [self upload];
-    [self.uploadIndicator setHidden:NO];
-    [self.uploadIndicator startAnimating];
+    if (isUploading) {
+        [self cancelUpload];
+    }
+    
+    [delegate removeYouTubeUploadOverlay];
 }
 
 @end

@@ -12,19 +12,22 @@
 
 @protocol FacebookUploaderDelegate <NSObject>
 @required
-- (void)facebookUploadSuccess;
-- (void)facebookUploadFailed;
+- (void)removeFacebookUploadOverlay;
 @end
 
 @interface FacebookUploaderViewController : UIViewController
     <FBSessionDelegate, FBRequestDelegate>
 {
     id <FacebookUploaderDelegate> delegate;
+    
+    bool uploadHasCompleted;
+    bool isUploading;
 }
 
 @property (nonatomic, retain) IBOutlet UIButton *okButton;
-@property (nonatomic, retain) IBOutlet UIActivityIndicatorView *uploadIndicator;
 @property (nonatomic, retain) IBOutlet UIView *centerView;
+@property (nonatomic, retain) IBOutlet UILabel *statusLabel;
+@property (nonatomic, retain) IBOutlet UIProgressView *uploadProgressView;
 
 @property (nonatomic, assign) id delegate;
 
@@ -35,5 +38,8 @@
 
 - (id)initWithProperties:(NSURL*)aVideoNSURL title:(NSString*)aTitle description:(NSString*)aDescription;
 - (void)startUpload;
+
+- (IBAction)okButtonIsPressed;
+- (IBAction)closeButtonIsPressed;
 
 @end

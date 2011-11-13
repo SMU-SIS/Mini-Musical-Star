@@ -9,8 +9,12 @@
 #endif
 
 #ifdef __OBJC__
-    #import <UIKit/UIKit.h>
-    #import <Foundation/Foundation.h>
-    #import <CoreData/CoreData.h>
-    #import "UIImage+Resize.h"
+
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
+#import "UIImage+Resize.h"
+#import "DDInvocationGrabber.h"
+#import "NSObject+DDExtensions.h"
+
 #endif

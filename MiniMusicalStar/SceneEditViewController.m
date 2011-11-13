@@ -8,8 +8,7 @@
 
 #define kNumberOfPages 2
 #import "SceneEditViewController.h"
-
-
+#import <MediaPlayer/MediaPlayer.h>
 
 @implementation SceneEditViewController
 
@@ -254,6 +253,8 @@
 {
     //need to alloc the NSNumber because there is no autorelease pool in the secondary thread
     [self performSelectorOnMainThread:@selector(updateProgressSliderWithTime) withObject:nil waitUntilDone:NO];
+    
+    
 }
 
 //for the secondary thread to call on the main thread
@@ -266,42 +267,6 @@
     [elapsedTimeLabel setText:[NSString stringWithFormat:@"%i:%0.2i", [self.audioView.thePlayer elapsedPlaybackTimeInSeconds]/60, [self.audioView.thePlayer elapsedPlaybackTimeInSeconds]%60]];
     float progressSliderValue = (float)[self.audioView.thePlayer elapsedPlaybackTimeInSeconds] / (float)[self.audioView.thePlayer totalPlaybackTimeInSeconds];    
     playPositionSlider.value = progressSliderValue;
-}
-
-- (void) playMovie:(NSURL*)filePath
-{
-    MPMoviePlayerController *moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:filePath];
-    
-    // Register to receive a notification when the movie has finished playing.
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(moviePlayBackDidFinish:)
-                                                 name:MPMoviePlayerPlaybackDidFinishNotification
-                                               object:moviePlayer];
-    
-    if ([moviePlayer respondsToSelector:@selector(setFullscreen:animated:)]) {
-        // Use the new 3.2 style API
-        
-        [moviePlayer.view setFrame:self.view.bounds];
-        moviePlayer.controlStyle = MPMovieControlStyleFullscreen;
-        moviePlayer.shouldAutoplay = YES;
-        [self.view setBackgroundColor:[UIColor blackColor]];
-        [self.view addSubview:moviePlayer.view];
-        [moviePlayer play];
-    }   
-}
-
-- (void) moviePlayBackDidFinish:(NSNotification*)notification {
-    MPMoviePlayerController *moviePlayer = [notification object];
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:MPMoviePlayerPlaybackDidFinishNotification
-                                                  object:moviePlayer];
-    
-    // If the moviePlayer.view was added to the view, it needs to be removed
-    if ([moviePlayer respondsToSelector:@selector(setFullscreen:animated:)]) {
-        [moviePlayer.view removeFromSuperview];
-    }
-    
-    [moviePlayer release];
 }
 
 -(void)didReceivePlayerStoppedNotification:(NSNotification *)notification
@@ -323,9 +288,10 @@
 -(void)drawPlaySlider
 {
     // Setup custom slider images
-	UIImage *maxImage = [UIImage imageNamed:@"empty.png"];
-	UIImage *minImage = [UIImage imageNamed:@"scroller.png"];
-	UIImage *tumbImage= [UIImage imageNamed:@"star.png"];	
+	UIImage *maxImage = [UIImage imageNamed:@"scrollerBack.png"];
+	UIImage *minImage = [UIImage imageNamed:@"scrollerFront.png"];
+	UIImage *tumbImage= [UIImage imageNamed:@"star.png"];
+	UIImage *micImage = [UIImage imageNamed:@"micScroller.png"];
     
 	minImage=[minImage stretchableImageWithLeftCapWidth:10.0 topCapHeight:0.0];
 	maxImage=[maxImage stretchableImageWithLeftCapWidth:10.0 topCapHeight:0.0];
@@ -336,6 +302,13 @@
 	[playPositionSlider setThumbImage:tumbImage forState:UIControlStateNormal];
     
     playPositionSlider.continuous = YES;
+    
+    // Setup the MicVolume Slider
+    [micVolumeSlider setMinimumTrackImage:minImage forState:UIControlStateNormal];
+	[micVolumeSlider setMaximumTrackImage:maxImage forState:UIControlStateNormal];
+    [micVolumeSlider setThumbImage:micImage forState:UIControlStateNormal];
+    
+    micVolumeSlider.continuous = YES;
 }
 
 #pragma mark - AudioEditorDelegate methods
@@ -343,6 +316,39 @@
 - (void)bringSliderToZero
 {
     [self setSliderPosition:0];
+}
+
+- (void) playMovie:(NSURL*)filePath
+{
+    MPMoviePlayerController *moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL: filePath];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(moviePlayBackDidFinish:)
+                                                 name:MPMoviePlayerPlaybackDidFinishNotification
+                                               object:moviePlayer];
+    [moviePlayer setFullscreen:YES animated:YES];
+    self.navigationController.navigationBarHidden = YES;
+    moviePlayer.controlStyle = MPMovieControlStyleFullscreen;
+    moviePlayer.shouldAutoplay = YES;
+    [moviePlayer.view setFrame: self.view.bounds];  // player's frame must match parent's
+    
+    [self.view addSubview: moviePlayer.view];
+    
+    [moviePlayer play];
+}
+
+- (void) moviePlayBackDidFinish:(NSNotification*)notification {
+    MPMoviePlayerController *moviePlayer = [notification object];
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:MPMoviePlayerPlaybackDidFinishNotification
+                                                  object:moviePlayer];
+    
+    // If the moviePlayer.view was added to the view, it needs to be removed
+    if ([moviePlayer respondsToSelector:@selector(setFullscreen:animated:)]) {
+        [moviePlayer.view removeFromSuperview];
+    }
+    self.navigationController.navigationBarHidden = NO;
+    
+    [moviePlayer release];
 }
 
 @end

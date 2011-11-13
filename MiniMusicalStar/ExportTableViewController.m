@@ -18,31 +18,39 @@
 #import "ExportedAsset.h"
 #import "DSActivityView.h"
 #import "KensBurnAnimation.h"
+#import "CustomVideoAnimations.h"
 
 @implementation ExportTableViewController
 
 @synthesize theShow;
+@synthesize theScene;
 @synthesize theCover;
 @synthesize theSceneUtility;
 @synthesize timer;
 @synthesize musicalArray;
+@synthesize musicalAudioMappings;
 @synthesize scenesArray;
 @synthesize exportedAssetsArray;
 @synthesize uploadBarButtonItem;
 @synthesize tempMusicalContainer;
 @synthesize context;
 @synthesize delegate;
+@synthesize exportSession;
 
 -(void)dealloc
 {
+    [exportSession release];
     [delegate release];
     [tempMusicalContainer release];
     [musicalArray release];
     [scenesArray release];
     [exportedAssetsArray release];
     [timer release];
+    [theCover release];
     [theSceneUtility release];
+    [theScene release];
     [theShow release];
+    [musicalAudioMappings release];
     [context release];
     
     [super dealloc];
@@ -57,38 +65,12 @@
         self.theCover = cover;
         self.musicalArray = [NSArray arrayWithObject:show];
         self.scenesArray = [show.scenes allValues];
+        self.musicalAudioMappings = [[NSMutableArray alloc] initWithCapacity:0];
         self.exportedAssetsArray = [[NSMutableArray alloc] initWithCapacity:0];
         self.tempMusicalContainer = [[NSMutableArray alloc] init];
         self.context = aContext;
-        [self prepareMusicalNotification];
     }
     return self;
-}
-
-- (void) generateMusical{
-    //now i will combine track and video
-    __block AVMutableComposition *composition = [AVMutableComposition composition];
-    [tempMusicalContainer enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        AVURLAsset *videoAsset = [[AVURLAsset alloc]initWithURL:obj options:nil];
-        CMTime startTime = kCMTimeZero;
-        if(idx > 0){
-            AVURLAsset *previousVideoAsset = [[AVURLAsset alloc]initWithURL:[tempMusicalContainer objectAtIndex:idx-1] options:nil];
-            startTime = previousVideoAsset.duration;
-        }
-        [composition insertTimeRange: CMTimeRangeMake(kCMTimeZero,videoAsset.duration)
-                             ofAsset:videoAsset atTime:composition.duration error:nil];
-        
-    }];
-
-    NSString *exportFilename = [@"/musical_" stringByAppendingString:[[MiniMusicalStarUtilities getUniqueFilenameWithoutExt] stringByAppendingString:@".mov"]];
-    NSURL *outputFileURL = [NSURL fileURLWithPath:[[ShowDAO userDocumentDirectory] stringByAppendingString:exportFilename]];
-    [self processExportSession: nil:composition :nil :nil:outputFileURL:@"musical appending"];
-
-}
-
-- (void) prepareMusicalNotification
-{
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(generateMusical) name:@"scenesFinished" object:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -106,10 +88,10 @@
     [super viewDidLoad];
     
     self.tableView.rowHeight = 100.0;
-
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
- 
+    
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
@@ -155,30 +137,31 @@
     return nil;
 }
 
-- (void) processExportSession: (Scene*) scene :(AVMutableComposition*) composition :(AVMutableVideoComposition*)videoComposition :(NSURL*)videoFileURL: (NSURL*) outputFileURL: (NSString*) state
+- (void) processExportSessionWithComposition:(AVMutableComposition*)composition andVideoComposition:(AVMutableVideoComposition*)videoComposition withOutputFilePath:(NSURL*)outputFileURL andVideoFilePath:(NSURL*)videoFileURL forMusical:(BOOL)isMusical
 {
     NSArray *compatiblePresets = [AVAssetExportSession exportPresetsCompatibleWithAsset:composition];
     
     if ([compatiblePresets containsObject:AVAssetExportPreset640x480]) {
-        AVAssetExportSession *exportSession = [[AVAssetExportSession alloc]
+        self.exportSession = [[AVAssetExportSession alloc]
                                                initWithAsset:composition presetName:AVAssetExportPresetHighestQuality];
-        
-        //wire the videoComposition
         if(videoComposition){
             exportSession.videoComposition = videoComposition;
         }
         
         exportSession.outputURL = outputFileURL;
         exportSession.outputFileType = AVFileTypeQuickTimeMovie;
-        exportSession.timeRange = CMTimeRangeMake(kCMTimeZero,CMTimeAdd(composition.duration,CMTimeMake(11,1)));
+        exportSession.timeRange = CMTimeRangeMake(kCMTimeZero,CMTimeAdd(composition.duration,CMTimeMake(15,1)));
         
         CMTimeRangeShow(exportSession.timeRange);
+        
+        //fit progress bar
+        NSTimer *aTimer = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(refreshProgressBar:) userInfo:nil repeats:YES];
         
         [exportSession exportAsynchronouslyWithCompletionHandler:^{
             switch ([exportSession status]) {
                 case AVAssetExportSessionStatusCompleted:
                     NSLog(@"Export Completed");
-                    [self exportCompleted: scene: videoFileURL:outputFileURL:state];
+                    [self saveExportedAssetAt:outputFileURL andDeleteVideoFile:videoFileURL forMusical:isMusical];
                     break;
                 case AVAssetExportSessionStatusFailed:
                     NSLog(@"Export failed: %@", [[exportSession error] localizedDescription]);
@@ -186,54 +169,56 @@
                 default:
                     break;
             }
+            [aTimer invalidate];
             [exportSession release];
-
+            
         }];
     }
 }
-- (void) exportCompleted: (Scene*) scene :(NSURL*) videoFileURL: (NSURL*) outputFileURL: (NSString*) state
-{
-    if ([state isEqualToString: @"scene only"]){
-        //save the URL into a new model
-        ExportedAsset *newAsset = [NSEntityDescription insertNewObjectForEntityForName:@"ExportedAsset" inManagedObjectContext:self.context];
-        newAsset.isFullShow = NO;
-        newAsset.exportPath = [outputFileURL absoluteString];
-        newAsset.title = scene.title;
-        newAsset.originalHash = theCover.originalHash;
-        newAsset.exportHash = [outputFileURL lastPathComponent];
-        newAsset.dateCreated = [NSDate date];
-        
-        [self.context save:nil];
-        
-        [self.exportedAssetsArray addObject:newAsset];
-        
-        [self removeFileAtPath:videoFileURL];
-    }else if ([state isEqualToString: @"scenes for musical"]){
-        [self.tempMusicalContainer addObject:outputFileURL];
-        [self allScenesExportedNotificationSender];
-        [self removeFileAtPath:videoFileURL];
-    }else if ([state isEqualToString: @"musical appending"]){
-        //save the URL into a new model
-        ExportedAsset *newAsset = [NSEntityDescription insertNewObjectForEntityForName:@"ExportedAsset" inManagedObjectContext:self.context];
-        newAsset.isFullShow = [NSNumber numberWithInt:1];
-        newAsset.exportPath = [outputFileURL absoluteString];
-        newAsset.title = theShow.title;
-        newAsset.originalHash = theCover.originalHash;
-        newAsset.exportHash = [outputFileURL lastPathComponent];
-        newAsset.dateCreated = [NSDate date];
-        
-        [self.context save:nil];
-        
-        [self.exportedAssetsArray addObject:newAsset];
-        
-        [tempMusicalContainer enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-            [self removeFileAtPath:obj];
-        }];
-        [tempMusicalContainer removeAllObjects];
+
+#pragma mark - KVO callbacks
+
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)changeContext
+{    
+    NSString *kvoContext = (NSString *)changeContext;
+    if ([kvoContext isEqualToString:@"progressValueChanged"]) {
+        NSLog(@"value : ");
     }
+}
+
+- (void) saveExportedAssetAt:(NSURL*)outputFileURL andDeleteVideoFile:(NSURL*)videoFileURL forMusical:(BOOL)isMusical
+{
+    //save the URL into a new model
+    ExportedAsset *newAsset = [NSEntityDescription insertNewObjectForEntityForName:@"ExportedAsset" inManagedObjectContext:self.context];
+    newAsset.exportPath = [outputFileURL absoluteString];
+    newAsset.originalHash = theCover.originalHash;
+    newAsset.exportHash = [outputFileURL lastPathComponent];
+    newAsset.dateCreated = [NSDate date];
+    
+    if (!isMusical){
+        newAsset.isFullShow = NO;
+        newAsset.title = self.theScene.title;
+    }else{
+        newAsset.isFullShow = [NSNumber numberWithInt:1];
+        newAsset.title = theShow.title;
+    }
+    
+    [self.context save:nil];
+    [self.exportedAssetsArray addObject:newAsset];
+    [self removeFileAtPath:videoFileURL];
+    
+//    //try to save to photos library
+//    ALAsset *libraryAsset = [[ALAsset alloc] init];
+//    [libraryAsset setVideoAtPath:outputFileURL completionBlock:^(NSURL *assetURL, NSError *error) {
+//        //donothing
+//    }];
+//    [libraryAsset writeModifiedVideoAtPathToSavedPhotosAlbum:outputFileURL completionBlock:^(NSURL *assetURL, NSError *error) {
+//        NSLog(@"wooohoo");
+//    }];
+//    
     [self.delegate reloadMediaTable];
     [self.tableView reloadData];
-    [DSBezelActivityView removeViewAnimated:YES];
+//    [DSBezelActivityView removeViewAnimated:YES];
     
 }
 
@@ -244,118 +229,20 @@
 
 - (void)refreshProgressBar:(NSTimer*) aTimer
 {
-    UIProgressView *prog = [aTimer.userInfo objectAtIndex:0];
-    AVAssetExportSession *exportSession = [aTimer.userInfo objectAtIndex:1];
+
+//    AVAssetExportSession *exportSession = aTimer.userInfo;
 //    NSLog(@"export timer : %f",exportSession.progress);
-    [prog setProgress: exportSession.progress];
-
-}
-
-- (void) allScenesExportedNotificationSender
-{
-    if ([tempMusicalContainer count] == [scenesArray count]){
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"scenesFinished" object:self];
-    }
+    [delegate setProgressViewAtValue:self.exportSession.progress withAnimation:YES];
     
 }
 
--(CABasicAnimation*) getAppearAnimationAtTime:(float)startTime withDuration:(float)duration
-{
-    CABasicAnimation *appearAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
-    appearAnimation.fromValue = [NSNumber numberWithFloat:0.0];
-    appearAnimation.toValue = [NSNumber numberWithFloat:1.0];
-    appearAnimation.additive = NO;
-    appearAnimation.removedOnCompletion = NO;
-    appearAnimation.beginTime = startTime;
-    appearAnimation.duration = duration;
-    appearAnimation.fillMode = kCAFillModeForwards;
-    return appearAnimation;  
-}
 
--(CABasicAnimation*) getScrollAnimationAtTime:(float)startTime withDuration:(float)duration
+-(AVMutableVideoComposition*) getVideoCompositionWithCustomAnimationsToComposition:(AVMutableComposition*)composition andSortedTimingsArrayForKensBurn:(NSMutableArray*)sortedTimingsArray withVideoAsset:(AVAsset*)videoAsset ofVideoSize:(CGSize)videoSize
 {
-    CABasicAnimation *scrollAnimation = [CABasicAnimation animationWithKeyPath:@"transform.translation.y"];
-    scrollAnimation.fromValue = [NSNumber numberWithFloat:0.0];
-    scrollAnimation.toValue = [NSNumber numberWithFloat:500.0];
-    scrollAnimation.additive = NO;
-    scrollAnimation.removedOnCompletion = NO;
-    scrollAnimation.beginTime = startTime;
-    scrollAnimation.duration = duration;
-    scrollAnimation.fillMode = kCAFillModeForwards;
-    return scrollAnimation;
-}
-
--(CABasicAnimation*) getFadeAnimationAtTime:(float)startTime withDuration:(float)duration
-{
-    CABasicAnimation *fadeAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
-    fadeAnimation.fromValue = [NSNumber numberWithFloat:1.0];
-    fadeAnimation.toValue = [NSNumber numberWithFloat:0.0];
-    fadeAnimation.additive = NO;
-    fadeAnimation.removedOnCompletion = NO;
-    fadeAnimation.beginTime = startTime;
-    fadeAnimation.duration = duration;
-    fadeAnimation.fillMode = kCAFillModeForwards;
-    return fadeAnimation;
-}
-
--(void)generateSceneVideo: (Scene*) theScene: (NSArray*) imagesArray:(NSArray*) audioExportURLs:(NSIndexPath*) indexPath: (NSString*) state
-{
-    __block NSError *error = nil;
-    CGSize size = CGSizeMake(640, 480);
-    NSString *videoFilename = [@"/vid_" stringByAppendingString:[[MiniMusicalStarUtilities getUniqueFilenameWithoutExt] stringByAppendingString:@".mov"]];
-    NSURL *videoFileURL = [NSURL fileURLWithPath:[[ShowDAO userDocumentDirectory] stringByAppendingString:videoFilename]];
-    
-    NSString *exportFilename = [@"/scene_" stringByAppendingString:[[MiniMusicalStarUtilities getUniqueFilenameWithoutExt] stringByAppendingString:@".mov"]];
-    NSURL *outputFileURL = [NSURL fileURLWithPath:[[ShowDAO userDocumentDirectory] stringByAppendingString:exportFilename]];
-    //write image to video conversion
-    [ImageToVideoConverter createImagesConvertedToVideo:theScene :imagesArray :videoFileURL :size];
-    
-    
-    //now i will combine track and video
-    AVMutableComposition *composition = [AVMutableComposition composition];
-    
-    AVURLAsset* videoAsset = [[AVURLAsset alloc]initWithURL:videoFileURL options:nil];
-    
-    __block AVMutableCompositionTrack *compositionAudioTrack = NULL;
-    
-    [audioExportURLs enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        NSURL *audioURL = (NSURL*)obj;
-        AVURLAsset* audioAsset = [[AVURLAsset alloc]initWithURL:audioURL options:nil];
-        
-        compositionAudioTrack = [composition addMutableTrackWithMediaType:AVMediaTypeAudio preferredTrackID:kCMPersistentTrackID_Invalid];
-        [compositionAudioTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero,audioAsset.duration) 
-                                        ofTrack:[[audioAsset tracksWithMediaType:AVMediaTypeAudio]objectAtIndex:0] 
-                                         atTime:kCMTimeZero
-                                          error:&error];
-         CMTimeRangeShow(CMTimeRangeMake(kCMTimeZero,audioAsset.duration));
-    }];
-    
-    AVMutableCompositionTrack *compositionVideoTrack = [composition addMutableTrackWithMediaType:AVMediaTypeVideo preferredTrackID:kCMPersistentTrackID_Invalid];
-    
-    [compositionVideoTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero,videoAsset.duration) 
-                                   ofTrack:[[videoAsset tracksWithMediaType:AVMediaTypeVideo]objectAtIndex:0] 
-                                    atTime:kCMTimeZero error:&error];
-
-    if([state isEqualToString: @"scene only"]){
-        
-        
-        
-    }
-    
-    CMTimeRange timeRange = CMTimeRangeMake(kCMTimeZero, [videoAsset duration]);
-    AVAssetTrack *clipVideoTrack = [[videoAsset tracksWithMediaType:AVMediaTypeVideo] objectAtIndex:0];
-    
-    CGSize videoSize = CGSizeApplyAffineTransform(clipVideoTrack.naturalSize, clipVideoTrack.preferredTransform);
-    videoSize.width = fabs(videoSize.width);
-    videoSize.height = fabs(videoSize.height);
-    
-    CMTime titleDuration = CMTimeMakeWithSeconds(5, 600);
-//    CMTimeRange titleRange = CMTimeRangeMake(kCMTimeZero, titleDuration);
-    
     AVMutableVideoComposition *videoComposition = [AVMutableVideoComposition videoComposition];
     
     AVMutableVideoCompositionInstruction *passThroughInstruction = [AVMutableVideoCompositionInstruction videoCompositionInstruction];
-    passThroughInstruction.timeRange = CMTimeRangeMake(kCMTimeZero, CMTimeAdd([composition duration], CMTimeMake(11, 1)));
+    passThroughInstruction.timeRange = CMTimeRangeMake(kCMTimeZero, CMTimeAdd([composition duration], CMTimeMake(15, 1)));
     AVAssetTrack *videoTrack = [[composition tracksWithMediaType:AVMediaTypeVideo] objectAtIndex:0];
     AVMutableVideoCompositionLayerInstruction *passThroughLayer = [AVMutableVideoCompositionLayerInstruction videoCompositionLayerInstructionWithAssetTrack:videoTrack];    
     passThroughInstruction.layerInstructions = [NSArray arrayWithObject:passThroughLayer];
@@ -365,8 +252,8 @@
     videoComposition.frameDuration = CMTimeMake(1, 30); 
     videoComposition.renderSize = videoSize;
     videoComposition.renderScale = 1.0;
-
-    [composition insertEmptyTimeRange:CMTimeRangeMake(composition.duration,CMTimeMake(11,1))];
+    
+    [composition insertEmptyTimeRange:CMTimeRangeMake(composition.duration,CMTimeMake(15,1))];
     
     CALayer *animationLayer = [CALayer layer];
     animationLayer.bounds = CGRectMake(0, 0, videoSize.width, videoSize.height);
@@ -382,77 +269,105 @@
     [parentLayer addSublayer:videoLayer];
     videoLayer.anchorPoint =  CGPointMake(0.5, 0.5);
     videoLayer.position = CGPointMake(CGRectGetMidX(parentLayer.bounds), CGRectGetMidY(parentLayer.bounds));
-    [parentLayer addSublayer:animationLayer];    
+    [parentLayer addSublayer:animationLayer];
     animationLayer.anchorPoint =  CGPointMake(0.5, 0.5);
     animationLayer.position = CGPointMake(CGRectGetMidX(parentLayer.bounds),0);
     
     NSMutableArray *textFieldArray = [delegate getTextFieldArray];
-    
-    [textFieldArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        
-        UITextField *textField = (UITextField*) obj;
-        
-        NSLog(@"textfield %@",textField.text);
-        
-        CATextLayer *textLayer = [CATextLayer layer];
-        textLayer.string = textField.text;
-        textLayer.font = @"Lucida Grande";
-        textLayer.fontSize = 30;
-        
-        textLayer.alignmentMode = kCAAlignmentCenter;
-        textLayer.bounds = CGRectMake(0, 0, videoSize.width, videoSize.height);
-        
-        textLayer.position = CGPointMake(320, 250 -(idx * 50));
-        
-        [animationLayer addSublayer:textLayer];
-    }];
-
+    [CustomVideoAnimations addTextAnimationLayersToLayer:animationLayer withTextArray:textFieldArray forVideoSize:videoSize];
     
     [animationLayer setOpacity: 0.0];
     
-    CABasicAnimation *appearAnimation = [self getAppearAnimationAtTime:CMTimeGetSeconds(composition.duration) withDuration: 1.0];
+    CABasicAnimation *appearAnimation = [CustomVideoAnimations getAppearAnimationAtTime:CMTimeGetSeconds(composition.duration) withDuration: 1.0];
     [animationLayer addAnimation:appearAnimation forKey:nil];
     
-    CABasicAnimation *scrollAnimation = [self getScrollAnimationAtTime:CMTimeGetSeconds(composition.duration) withDuration:10.0];
+    CABasicAnimation *scrollAnimation = [CustomVideoAnimations getScrollAnimationAtTime:CMTimeGetSeconds(composition.duration) withDuration:10.0];
     [animationLayer addAnimation:scrollAnimation forKey:nil];
     
-    //add fade away for video layer for credits to show
-    CABasicAnimation *fadeAnimation = [self getFadeAnimationAtTime:CMTimeGetSeconds(composition.duration) withDuration:0.1];
+    CABasicAnimation *fadeAnimation = [CustomVideoAnimations getFadeAnimationAtTime:CMTimeGetSeconds(composition.duration) withDuration:0.1];
     [videoLayer addAnimation:fadeAnimation forKey:nil];
     
-    //first i get the picturetimings array
-    __block NSMutableArray *sortedTimingsArray = [theScene getOrderedPictureTimingArray];
+    //add ending brand
+    CALayer *brandLayer = [CALayer layer];
+    UIImage *brandImage = [UIImage imageNamed:@"lastscreen.png"];
+    brandLayer.bounds = CGRectMake(0, 0, videoSize.width, videoSize.height);
+    brandLayer.position = CGPointMake(CGRectGetMidX(parentLayer.bounds),0);
+    brandLayer.contents = (id) brandImage.CGImage;
+    brandLayer.opacity = 0.0;
     
-    for(int i =0 ; i<sortedTimingsArray.count ; i++)
-    {
-        float startTime = [[sortedTimingsArray objectAtIndex:i] floatValue];
-        
-        float duration = 0;
-        
-        if (i + 1 != sortedTimingsArray.count){
-            duration = [[sortedTimingsArray objectAtIndex:i+1] floatValue] - startTime;
-        }else{
-            Float64 videoLength = CMTimeGetSeconds(videoAsset.duration);
-            duration = videoLength - startTime;
-        }
-        
-        if(i==0){
-            startTime = startTime + 0.1;
-            duration = duration - 0.1;
-        }
-        
-        KensBurnAnimation *kbAnim = [[KensBurnAnimation alloc] init];
-        CABasicAnimation *kensBurnAnimation = [kbAnim getKensBurnAnimationForImageAtTime:startTime andDuration:duration];
-        
-        [videoLayer addAnimation:kensBurnAnimation forKey:nil];
-    }
+    CABasicAnimation *brandAppearAnimation = [CustomVideoAnimations getAppearAnimationAtTime:CMTimeGetSeconds(composition.duration)+8 withDuration: 2.0];
     
+    [brandLayer addAnimation:brandAppearAnimation forKey:nil];
+    
+    [animationLayer addSublayer:brandLayer];
+    
+    Float64 videoLength = CMTimeGetSeconds(videoAsset.duration);
+    
+    KensBurnAnimation *kbAnim = [[KensBurnAnimation alloc] init];
+    [kbAnim addKensBurnAnimationToLayer:videoLayer withTimingsArray:sortedTimingsArray overDuration:videoLength];
     
     videoComposition.animationTool = [AVVideoCompositionCoreAnimationTool videoCompositionCoreAnimationToolWithPostProcessingAsVideoLayer:videoLayer inLayer:parentLayer];
     
-    //session export
-    [self processExportSession :theScene :composition :videoComposition :videoFileURL:outputFileURL:state];
+    return videoComposition;
+}
 
+-(void)processImageAndAudioAppendingToVideoWithImagesArray:(NSArray*)imagesArray andSortedPicturesTimingArray:(NSMutableArray*)sortedTimingsArray andAudioFilePaths:(NSArray*) audioExportURLs forMusical:(BOOL)isMusical
+{
+    __block NSError *error = nil;
+    CGSize size = CGSizeMake(640, 480);
+    NSString *videoFilename = [@"/vid_" stringByAppendingString:[[MiniMusicalStarUtilities getUniqueFilenameWithoutExt] stringByAppendingString:@".mov"]];
+    NSURL *videoFileURL = [NSURL fileURLWithPath:[[ShowDAO userDocumentDirectory] stringByAppendingString:videoFilename]];
+    
+    NSString *exportFilename = [@"/export_" stringByAppendingString:[[MiniMusicalStarUtilities getUniqueFilenameWithoutExt] stringByAppendingString:@".mov"]];
+    NSURL *outputFileURL = [NSURL fileURLWithPath:[[ShowDAO userDocumentDirectory] stringByAppendingString:exportFilename]];
+    
+    //write image to video conversion
+    [ImageToVideoConverter createImagesConvertedToVideo:sortedTimingsArray :imagesArray :videoFileURL :size];
+    
+    //now i will combine track and video
+    AVMutableComposition *composition = [AVMutableComposition composition];
+    
+    AVURLAsset* videoAsset = [[AVURLAsset alloc]initWithURL:videoFileURL options:nil];
+    
+    __block AVMutableCompositionTrack *compositionAudioTrack = NULL;
+    [audioExportURLs enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        NSURL *audioURL = (NSURL*)obj;
+        AVURLAsset* audioAsset = [[AVURLAsset alloc]initWithURL:audioURL options:nil];
+        
+        compositionAudioTrack = [composition addMutableTrackWithMediaType:AVMediaTypeAudio preferredTrackID:kCMPersistentTrackID_Invalid];
+        
+        //if it is a musical, check ordering
+        if(isMusical){
+            CMTime startTime = CMTimeMake([[musicalAudioMappings objectAtIndex:idx] floatValue] *1000000, 1000000);
+            [compositionAudioTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero,audioAsset.duration) 
+                                           ofTrack:[[audioAsset tracksWithMediaType:AVMediaTypeAudio]objectAtIndex:0] 
+                                            atTime:startTime
+                                             error:&error];
+            
+        }else{
+            [compositionAudioTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero,audioAsset.duration) 
+                                       ofTrack:[[audioAsset tracksWithMediaType:AVMediaTypeAudio]objectAtIndex:0] 
+                                        atTime:kCMTimeZero
+                                         error:&error];
+        }
+    }];
+    
+    AVMutableCompositionTrack *compositionVideoTrack = [composition addMutableTrackWithMediaType:AVMediaTypeVideo preferredTrackID:kCMPersistentTrackID_Invalid];
+    
+    [compositionVideoTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero,videoAsset.duration) 
+                                   ofTrack:[[videoAsset tracksWithMediaType:AVMediaTypeVideo]objectAtIndex:0] 
+                                    atTime:kCMTimeZero error:&error];
+    
+    AVAssetTrack *clipVideoTrack = [[videoAsset tracksWithMediaType:AVMediaTypeVideo] objectAtIndex:0];
+    
+    CGSize videoSize = CGSizeApplyAffineTransform(clipVideoTrack.naturalSize, clipVideoTrack.preferredTransform);
+    videoSize.width = fabs(videoSize.width);
+    videoSize.height = fabs(videoSize.height);
+    
+    AVMutableVideoComposition *videoComposition = [self getVideoCompositionWithCustomAnimationsToComposition:composition andSortedTimingsArrayForKensBurn:sortedTimingsArray withVideoAsset:videoAsset ofVideoSize:videoSize];
+    //session export
+    [self processExportSessionWithComposition:composition andVideoComposition:videoComposition withOutputFilePath:outputFileURL andVideoFilePath:videoFileURL forMusical:isMusical];
+    
 }
 
 #pragma mark - Table view data source
@@ -477,12 +392,14 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-      
+    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
         
-        cell.textLabel.backgroundColor = [UIColor clearColor];
+        UIImage *background = [UIImage imageNamed: @"export_cell.png"];
+        cell.backgroundColor = [[UIColor alloc] initWithPatternImage:background];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
     // Configure the cell...
@@ -525,9 +442,9 @@
 	headerLabel.frame = CGRectMake(10.0, 0.0, 300.0, 44.0);
     
     if (section == 0) {
-        headerLabel.text = @"Export Musical";
+        headerLabel.text = @"Create your Musicals";
     } else if (section == 1) {
-        headerLabel.text = @"Export Scenes";
+        headerLabel.text = @"Create Scene Only";
     }
     
 	[customView addSubview:headerLabel];
@@ -535,88 +452,86 @@
 	return customView;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
 #pragma mark - Table view delegate
 
 - (void)exportScene:(Scene*) scene:(CoverScene*) coverScene: (NSIndexPath*) indexPath
 {
-    theSceneUtility = [[SceneUtility alloc] initWithSceneAndCoverScene: scene:coverScene];
+    theSceneUtility = [[SceneUtility alloc] initWithSceneAndCoverScene: self.theScene:coverScene];
     
-    [DSBezelActivityView newActivityViewForView:self.view withLabel:@"Exporting your scene... WAIT OK!? otherwise your ipad might EXPLODE...BOOM!"];
+//    [DSBezelActivityView newActivityViewForView:self.view withLabel:@"Exporting your scene... WAIT OK!? otherwise your ipad might EXPLODE...BOOM!"];
+    [self processImageAndAudioAppendingToVideoWithImagesArray:[theSceneUtility getMergedImagesArray] andSortedPicturesTimingArray:[self.theScene getOrderedPictureTimingArray] andAudioFilePaths:[theSceneUtility getExportAudioURLs] forMusical:NO];
     
-    [self generateSceneVideo :scene:[theSceneUtility getMergedImagesArray]:[theSceneUtility getExportAudioURLs]:indexPath:@"scene only"];
-
 }
 - (void)exportMusical:(Show*)show
 {
-    [DSBezelActivityView newActivityViewForView:self.view withLabel:@"Exporting your musical... WAIT OK!? otherwise your ipad might EXPLODE...BOOM!"];
-    [scenesArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:idx inSection:1];
+//    [DSBezelActivityView newActivityViewForView:self.view withLabel:@"Exporting your musical... WAIT OK!? otherwise your ipad might EXPLODE...BOOM!"];
+    
+    //get the fully appended images array and picturetimings dict
+    NSMutableArray *musicalImagesArray = [[NSMutableArray alloc] initWithCapacity:0];
+    //get an appendable array for audioExportURLS
+    NSMutableArray *musicalAudioURLs = [[NSMutableArray alloc] initWithCapacity:0];
+    NSMutableArray *musicalImagesPicturesTimingsArray = [[NSMutableArray alloc] initWithCapacity:0];
+    
+    CMTime previousAssetDuration = kCMTimeZero;
+    int audioOrderCount = 1;
+    [self.musicalAudioMappings removeAllObjects];
+    for (id obj in scenesArray){
         Scene *scene = (Scene*)obj;
         CoverScene *coverScene = [theCover coverSceneForSceneHash:scene.hash];
         theSceneUtility = [[SceneUtility alloc] initWithSceneAndCoverScene: scene:coverScene];
-        [self generateSceneVideo:scene:[theSceneUtility getMergedImagesArray]:[theSceneUtility getExportAudioURLs]:indexPath:@"scenes for musical"];
-    }];
-    
+        
+        [musicalImagesArray addObjectsFromArray:theSceneUtility.getMergedImagesArray];
+        
+        if(CMTimeCompare(previousAssetDuration, kCMTimeZero) != 0){
+            NSMutableArray *transferredArray = [[NSMutableArray alloc] initWithCapacity:0];
+            for (int i = 0 ; i<scene.getOrderedPictureTimingArray.count; i++){
+                int timing = [[scene.getOrderedPictureTimingArray objectAtIndex:i] intValue];
+                timing += [[NSNumber numberWithFloat:CMTimeGetSeconds(previousAssetDuration)] intValue];
+                NSNumber *newTiming =[NSNumber numberWithInt:timing];
+                [transferredArray addObject:newTiming];
+            }
+            [musicalImagesPicturesTimingsArray addObjectsFromArray:transferredArray];
+            
+        }else{
+            [musicalImagesPicturesTimingsArray addObjectsFromArray:[scene getOrderedPictureTimingArray]];
+        }
+        
+        [musicalAudioURLs addObjectsFromArray:theSceneUtility.getExportAudioURLs];
+        
+        //map audio sequences to scene order
+        for (id obj in theSceneUtility.getExportAudioURLs)
+        {
+            [self.musicalAudioMappings addObject:[NSNumber numberWithFloat: CMTimeGetSeconds(previousAssetDuration)]];
+        }
+        
+        
+        //get duration of previous scene measured with duration of first audio file
+        NSURL *firstAudioURL = [theSceneUtility.getExportAudioURLs objectAtIndex:0];
+        AVURLAsset* audioAsset = [[AVURLAsset alloc]initWithURL:firstAudioURL options:nil];
+        previousAssetDuration = audioAsset.duration;
+        
+        audioOrderCount += 1;
+    };
+    [self processImageAndAudioAppendingToVideoWithImagesArray:musicalImagesArray andSortedPicturesTimingArray:musicalImagesPicturesTimingsArray andAudioFilePaths:musicalAudioURLs forMusical:YES];
+}
+
+- (void) cancelExportSession
+{
+    [self.exportSession cancelExport];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     [detailViewController release];
-     */
-    
+    [delegate showProgressView];
     if(indexPath.section == 0){
         [self exportMusical:[musicalArray objectAtIndex:0]];
     }else if(indexPath.section == 1){
         Scene *selectedScene = [scenesArray objectAtIndex:indexPath.row];
         CoverScene *selectedCoverScene = [theCover coverSceneForSceneHash:selectedScene.hash];
-        [self exportScene :selectedScene:selectedCoverScene:indexPath];
+        self.theScene = selectedScene;
+        [self exportScene :nil:selectedCoverScene:indexPath];
     }
-       
+    
 }
 
 @end

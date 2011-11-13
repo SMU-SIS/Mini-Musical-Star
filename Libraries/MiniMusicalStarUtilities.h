@@ -13,5 +13,6 @@
 + (NSString*)returnMD5HashOfData:(NSData*)aData;
 + (NSString*)returnMD5HashOfString:(NSString*)aString;
 + (NSString*)getUniqueFilenameWithoutExt;
++ (BOOL) NSStringIsValidEmail:(NSString *)checkString;
 
 @end

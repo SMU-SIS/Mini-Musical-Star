@@ -8,10 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
-#import "MixPlayerRecorder.h"
-#import "Scene.h"
-#import "CoverScene.h"
-#import "CoverSceneAudio.h"
 #import <AVFoundation/AVFoundation.h>
 
 @protocol AudioEditorDelegate <NSObject>
@@ -20,6 +16,12 @@
 @end
 
 @class Audio;
+@class CueController;
+@class MixPlayerRecorder;
+@class Scene;
+@class CoverScene;
+@class Cue;
+
 @interface AudioEditorViewController : UIViewController
 <UITableViewDelegate, UITableViewDataSource, UIPopoverControllerDelegate>
 {      
@@ -34,6 +36,8 @@
     int currentRecordingIndex;
 }
 
+@property (nonatomic, retain) IBOutlet UILabel *recordingStatusLabel;
+
 @property (nonatomic, retain) UITableView *trackTableView;
 @property (nonatomic, retain) UIImage *recordImage;
 @property (nonatomic, retain) UIImage *mutedImage;
@@ -43,11 +47,17 @@
 @property (nonatomic, retain) UIImage *playButtonImage;
 @property (nonatomic, retain) UIImage *pauseButtonImage;
 @property (nonatomic, retain) UIImage *recordingImage;
+@property (retain, nonatomic) IBOutlet UIButton *tutorialButton;
 
 //for the lyrics popover
 @property (nonatomic, retain) UIScrollView *lyricsScrollView;
 @property (nonatomic, retain) UILabel *lyricsLabel;
 
+//for the cues
+@property (retain, nonatomic) CueController *cueController;
+@property (retain, nonatomic) UIView *cueView;
+
+//for the MixPlayerRecorder
 @property (nonatomic, retain) MixPlayerRecorder *thePlayer;
 
 @property (nonatomic, retain) Scene *theScene;
@@ -73,6 +83,7 @@
 //instance methods
 - (void)startCoverAudioRecording:(int)indexInConsolidatedAudioTracksArray;
 - (void)trashCoverAudio:(int)indexInConsolidatedAudioTracksArray;
+- (bool)isPlaying;
 - (bool)isRecording;
 - (void)playPauseButtonIsPressed;
 - (void)registerNotifications;
@@ -81,6 +92,7 @@
 - (void)startPlayerPlaying;
 - (void)recordingIsCompleted;
 - (void)stopPlayerWhenPlaying:(bool)hasReachedEnd;
+- (void) updatePlayerStatus:(bool)playingStatus AndRecordingStatus:(bool)recordingStatus;
 
 //instance methods for the audio and coveraudio arrays
 - (NSArray*)getExportAudioURLs;
@@ -93,4 +105,9 @@
 - (UIScrollView*)createLyricsScrollView;
 - (UILabel*)createLyricsLabel;
 
+//instance methods for cue
+- (void)setCueButton:(BOOL)shouldShow forTrackIndex:(NSUInteger)trackIndex;
+- (void)removeAndUnloadCueFromView;
+
+- (IBAction) playTutorial:(id)sender;
 @end

@@ -6,13 +6,21 @@
 //  Copyright 2011 mohawk.riceball@gmail.com. All rights reserved.
 //
 
+
 #import "AudioEditorViewController.h"
 #import "Audio.h"
 #import "MiniMusicalStarUtilities.h"
-#import <AVFoundation/AVFoundation.h>
 #import "ShowDAO.h"
+#import "Cue.h"
+#import "MixPlayerRecorder.h"
+#import "Scene.h"
+#import "CoverScene.h"
+#import "CoverSceneAudio.h"
+#import "CueController.h"
+#import "DSActivityView.h"
 
 @implementation AudioEditorViewController
+@synthesize recordingStatusLabel;
 @synthesize thePlayer, theScene, theCoverScene, context;
 @synthesize tracksForView, tracksForViewNSURL;
 @synthesize trackTableView, recordImage, mutedImage, unmutedImage, trashbinImage, showLyricsImage;
@@ -24,12 +32,19 @@
 @synthesize pauseButtonImage;
 @synthesize recordingImage;
 @synthesize delegate;
+@synthesize tutorialButton;
+@synthesize cueController,cueView;
 
 - (void)dealloc
 {
-    NSLog(@"%p deallocating now", self);
     [self deRegisterFromNSNotifcationCenter];
     [self.theCoverScene removeObserver:self forKeyPath:@"Audio"];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
+    [cueController deregisterNotifications];
+    
+    [tutorialButton release];
     
     [thePlayer stop];
     [thePlayer release];
@@ -59,7 +74,10 @@
     
     [arrayOfReplaceableAudios release];
     
+    [recordingStatusLabel release];
     
+    [cueController release];
+    [cueView release];
     
     [super dealloc];
 }
@@ -77,7 +95,6 @@
 - (AudioEditorViewController *)initWithScene:(Scene *)aScene andCoverScene:(CoverScene *)aCoverScene andContext:(NSManagedObjectContext *)aContext andPlayPauseButton:(UIButton*)aPlayPauseButton
 {
     self = [super init];
-    NSLog(@"INIT %p", self);
     if (self)
     {
         self.theScene = aScene;
@@ -85,21 +102,23 @@
         self.context = aContext;
         self.playPauseButton = aPlayPauseButton;
         
-        UIColor *background = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"softboard.png"]];
+//        UIColor *background = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"softboard.png"]];
+//        
+//        [self.view setBackgroundColor:background];
         
-        [self.view setBackgroundColor:background];
-        
-        
-        isPlaying = NO;
-        isRecording = NO;
+        [self updatePlayerStatus:NO AndRecordingStatus:NO];
         
         currentRecordingIndex = -1;
         
-        tracksForView = [[NSMutableArray alloc] initWithCapacity:1];
-        tracksForViewNSURL = [[NSMutableArray alloc] initWithCapacity:1];
+        self.tracksForView = [[NSMutableArray alloc] initWithCapacity:1];
+        self.tracksForViewNSURL = [[NSMutableArray alloc] initWithCapacity:1];
         
         [self performSelector:@selector(consolidateArrays)];
         [self consolidateReplaceableAudios];
+        
+        //load the cueController
+        self.cueController = [[CueController alloc] initWithAudioArray: self.tracksForView];
+        self.cueController.delegate = self;
 
         [self drawLyricsView];
     }
@@ -113,8 +132,6 @@
     
     //KVO the Audio NSSet
     [self.theCoverScene addObserver:self forKeyPath:@"Audio" options:0 context:@"NewCoverTrackAdded"];
-    
-//    self.view.backgroundColor = [UIColor clearColor];
     
     trackTableView = [[UITableView alloc] initWithFrame:CGRectMake(30, 50, 500, 480) style:UITableViewStylePlain];
     
@@ -142,7 +159,9 @@
         Audio *anAudio = (Audio*) [arrayOfReplaceableAudios objectAtIndex:0];
         [self loadLyrics:anAudio.lyrics];
     }
-       
+    
+
+    
     //Applying autosave here
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(autosaveWhenContextDidChange:) name:NSManagedObjectContextObjectsDidChangeNotification object:context];
 }
@@ -161,6 +180,8 @@
     
     [self.theCoverScene removeObserver:self forKeyPath:@"Audio"];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
+    [cueController deregisterNotifications];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -168,6 +189,19 @@
     // Return YES for supported orientations
 	return YES;
 }
+
+#pragma mark - cues
+- (void)setCueButton:(BOOL)shouldShow forTrackIndex:(NSUInteger)trackIndex
+{
+    //get the table row corresponding to the current track
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:trackIndex inSection:0];
+    UITableViewCell *theCell = [trackTableView cellForRowAtIndexPath:indexPath];
+    UIButton *showCueButton = (UIButton *)[theCell.contentView viewWithTag:5];
+    
+    [showCueButton setHidden:!shouldShow];
+}
+                 
+                 
 
 #pragma mark - UITableView delegate methods
 
@@ -200,6 +234,11 @@
     UIButton *recordOrTrashButton;
     UIButton *muteOrUnmuteButton;
     UIButton *showLyricsButton;
+    UIButton *showCueButton;
+    UILabel *muteUnmuteLabel;
+    UILabel *recordRecordingLabel;
+    UILabel *showHideLyricsLabel;
+    //UILabel *showCuesLabel;
 
     //get the corresponding Audio object
     id audioForRow = [tracksForView objectAtIndex:[indexPath row]];
@@ -238,8 +277,18 @@
         //button to show lyrics
         showLyricsButton = [[UIButton alloc] initWithFrame:CGRectMake(300+xShift, 105, 50, 50)];
         [cell.contentView addSubview:showLyricsButton];
+        
         showLyricsButton.tag = 4;
         [showLyricsButton release];
+        
+        //button to show cue
+        showCueButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        showCueButton.frame = CGRectMake(400+xShift, 105, 50, 50);
+        [showCueButton setTitle:@"Cue" forState:UIControlStateNormal];
+        [showCueButton setHidden:YES];
+        [cell.contentView addSubview:showCueButton];
+        showCueButton.tag = 5;
+        [showCueButton release];
         
         [recordOrTrashButton addTarget:self action:@selector(recordOrTrashButtonIsPressed:) 
                       forControlEvents:UIControlEventTouchDown];
@@ -247,6 +296,40 @@
                      forControlEvents:UIControlEventTouchDown];
         [showLyricsButton addTarget:self action:@selector(showLyricsButtonIsPressed:) 
                    forControlEvents:UIControlEventTouchDown];
+        [showCueButton addTarget:self action:@selector(showCueButtonIsPressed:)
+                forControlEvents:UIControlEventTouchDown];
+        
+        //label for mute and unmute
+        muteUnmuteLabel = [[UILabel alloc] initWithFrame:CGRectMake(100+xShift-15, 150, 80, 15)];
+        muteUnmuteLabel.font = [UIFont systemFontOfSize:10];
+        muteUnmuteLabel.textAlignment = UITextAlignmentCenter;
+        [cell.contentView addSubview:muteUnmuteLabel];
+        muteUnmuteLabel.tag = 6;
+        [muteUnmuteLabel release];
+        
+        //label for record and trash
+        recordRecordingLabel = [[UILabel alloc] initWithFrame:CGRectMake(200+xShift-15, 150, 80, 15)];
+        recordRecordingLabel.font = [UIFont systemFontOfSize:10];
+        recordRecordingLabel.textAlignment = UITextAlignmentCenter;
+        [cell.contentView addSubview:recordRecordingLabel];
+        recordRecordingLabel.tag = 7;
+        [recordRecordingLabel release];
+
+        //label for show and hide lyrics label
+        showHideLyricsLabel = [[UILabel alloc] initWithFrame:CGRectMake(300+xShift-15, 150, 80, 15)];
+        showHideLyricsLabel.font = [UIFont systemFontOfSize:10];
+        showHideLyricsLabel.textAlignment = UITextAlignmentCenter;
+        [cell.contentView addSubview:showHideLyricsLabel];
+        showHideLyricsLabel.tag = 8;
+        [showHideLyricsLabel release];
+
+//        showCuesLabel = [[UILabel alloc] initWithFrame:CGRectMake(100+xShift-15, 150, 80, 15)];
+//        showCuesLabel.font = [UIFont systemFontOfSize:10];
+//        showCuesLabel.backgroundColor = [UIColor blueColor];
+//        showCuesLabel.textAlignment = UITextAlignmentCenter;
+//        [cell.contentView addSubview:showCuesLabel];
+//        showCuesLabel.tag = 9;
+//        [showCuesLabel release];
     }
     
     //start configuring...
@@ -257,36 +340,54 @@
     recordOrTrashButton = (UIButton*)[cell.contentView viewWithTag:2];
     muteOrUnmuteButton = (UIButton*)[cell.contentView viewWithTag:3];
     showLyricsButton = (UIButton*)[cell.contentView viewWithTag:4];
+    muteUnmuteLabel = (UILabel*)[cell.contentView viewWithTag:6];
+    recordRecordingLabel = (UILabel*)[cell.contentView viewWithTag:7];
+    showHideLyricsLabel = (UILabel*)[cell.contentView viewWithTag:8];
     
     if ([audioForRow isKindOfClass:[Audio class]]) {
         if ([(NSNumber *)[audioForRow valueForKey:@"replaceable"] boolValue]) {
             
-            if (isRecording && [indexPath row] == currentRecordingIndex) {
+            if ([self isRecording] && [indexPath row] == currentRecordingIndex) {
                 [recordOrTrashButton setImage:recordingImage forState:UIControlStateNormal];
+                recordRecordingLabel.text = @"Recording";
             } else {
                 [recordOrTrashButton setImage:recordImage forState:UIControlStateNormal];
+                recordRecordingLabel.text = @"Record";
             }
             
             [showLyricsButton setImage:showLyricsImage forState:UIControlStateNormal];
+            showHideLyricsLabel.text = @"Show lyrics";
+
         } else {
             [recordOrTrashButton setImage:nil forState:UIControlStateNormal];
+            recordRecordingLabel.text = @"";
             [showLyricsButton setImage:nil forState:UIControlStateNormal];
+            showHideLyricsLabel.text = @"";
         }
         
         if (![thePlayer busNumberIsMuted:[indexPath row]]) {
             [muteOrUnmuteButton setImage:unmutedImage forState:UIControlStateNormal];
+            muteUnmuteLabel.text = @"Mute";
+
         } else {
             [muteOrUnmuteButton setImage:mutedImage forState:UIControlStateNormal];
+            muteUnmuteLabel.text = @"Unmute";
         }
                
     } else { //if CoverAudio        
         [recordOrTrashButton setImage:trashbinImage forState:UIControlStateNormal];
+        recordRecordingLabel.text = @"Delete track";
         
         if (![thePlayer busNumberIsMuted:[indexPath row]]) {
             [muteOrUnmuteButton setImage:unmutedImage forState:UIControlStateNormal];
+            muteUnmuteLabel.text = @"Mute";
         } else {
             [muteOrUnmuteButton setImage:mutedImage forState:UIControlStateNormal];
+            muteUnmuteLabel.text = @"Unmute";
         }
+        
+        [showLyricsButton setImage:nil forState:UIControlStateNormal];
+        showHideLyricsLabel.text = @"";
     }
     
     return cell;
@@ -317,7 +418,7 @@
 {    
     int row = -1;
     
-    if (isRecording == YES) {        
+    if ([self isRecording] == YES) {        
         UIAlertView *recordButtonHitWhenRecordingAlert = [[UIAlertView alloc] initWithTitle:@"Opps!" message:@"You are not supposed to hit me when recording!" delegate:nil cancelButtonTitle:@"I'm sorry!" otherButtonTitles:nil];
         [recordButtonHitWhenRecordingAlert show];
         [recordButtonHitWhenRecordingAlert release];
@@ -332,10 +433,9 @@
     if ([audioForRow isKindOfClass:[CoverSceneAudio class]]) {
         
         //check if player is playing
-        if (isPlaying == YES) {
+        if ([self isPlaying] == YES) {
             [self.thePlayer stop];
-            isPlaying = NO;
-            isRecording = NO;
+            [self updatePlayerStatus:NO AndRecordingStatus:NO];
         }
         
         //if this is a recorded track, delete   
@@ -357,30 +457,121 @@
         
         //if the audiotrack can be replaced, start recording
         [self startCoverAudioRecording:row];
+        
+        self.recordingStatusLabel.text = @"NOW RECORDING";
     }
 }
 
 - (void)showLyricsButtonIsPressed:(UIButton*)sender
 {
     int row = [self getTableViewRow:sender];
-    
-    //get the corresponding Audio object
     id audioForRow = [tracksForView objectAtIndex:row];
+    
+    if ([audioForRow isKindOfClass:[CoverSceneAudio class]]) {
+        return;
+    }
+    
     Audio *audio = (Audio*)audioForRow;
     
-    [self loadLyrics:[audio lyrics]];
+    if ([audio.replaceable intValue] == 0) {
+        return;
+    }
+    
+    NSString *trimmedLyrics =[[audio lyrics] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    
+    if ([trimmedLyrics isEqualToString:@""]) {
+        [self loadLyrics:@"no lyrics were found for this track"];
+    } else {
+        [self loadLyrics:[audio lyrics]];
+    }
+    
+}
+
+- (void)showCueButtonIsPressed:(UIButton *)sender
+{
+    int row = [self getTableViewRow:sender];
+    Cue *theCue = [self.cueController getCurrentCueForTrackIndex:row];
+    
+    if (self.cueController.currentCue == theCue)
+    {
+        [self removeAndUnloadCueFromView];
+    }
+    
+    //change the cue only if a different cue is requested
+    else if (self.cueController.currentCue != theCue)
+    {
+        [self removeAndUnloadCueFromView];
+        self.cueController.currentCue = theCue;
+        
+        CGRect frame = CGRectMake(520, 30, 460, 50);
+        
+        UITextView *textView = [[UITextView alloc] initWithFrame:frame];
+        textView.frame = frame;
+        textView.text = theCue.content;
+        
+        self.cueView = textView;
+        [textView release];
+        
+        [self.view addSubview:self.cueView];
+        [self.view sendSubviewToBack:self.cueView];
+        
+        //animate the lyrics view sliding down
+        CGRect lyricsFrame = self.lyricsScrollView.frame;
+        lyricsFrame.origin.y = lyricsFrame.origin.y + 50;
+        lyricsFrame.size.height = lyricsFrame.size.height - 50;
+        
+        CGRect lyricsLabelFrame = self.lyricsLabel.frame;
+        lyricsLabelFrame.origin.y = lyricsLabelFrame.origin.y + 50;
+        lyricsLabelFrame.size.height = lyricsLabelFrame.size.height - 50;
+        
+        [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationCurveEaseInOut
+                         animations:^{
+                             self.lyricsScrollView.frame = lyricsFrame;
+                             self.lyricsLabel.frame = lyricsLabelFrame;
+                         }
+                         completion:^(BOOL finished) {
+                             NSLog(@"animation done!");
+                         }];
+
+    }
+}
+
+- (void)removeAndUnloadCueFromView
+{
+    if (self.cueView && self.cueController.currentCue)
+    {
+        //animate the lyrics view sliding up
+        CGRect lyricsFrame = self.lyricsScrollView.frame;
+        lyricsFrame.origin.y = lyricsFrame.origin.y - 50;
+        lyricsFrame.size.height = lyricsFrame.size.height + 50;
+        
+        CGRect lyricsLabelFrame = self.lyricsLabel.frame;
+        lyricsLabelFrame.origin.y = lyricsLabelFrame.origin.y - 50;
+        lyricsLabelFrame.size.height = lyricsLabelFrame.size.height + 50;
+        
+        [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationCurveEaseInOut
+                         animations:^{
+                             self.lyricsScrollView.frame = lyricsFrame;
+                             self.lyricsLabel.frame = lyricsLabelFrame;
+                         }
+                         completion:^(BOOL finished) {
+                             [self.cueView removeFromSuperview];
+                             self.cueController.currentCue = nil;
+                             self.cueView = nil;
+                         }];
+    }
 }
 
 #pragma mark - instance methods for player
 
 - (void)playPauseButtonIsPressed
 {
-    if (isPlaying == YES && isRecording == NO) { //if the player is playing
+    if ([self isPlaying] == YES && [self isRecording] == NO) { //if the player is playing
         //is playing
         
         [self stopPlayerWhenPlaying:NO];
         
-    } else if (isPlaying == NO && isRecording == YES) { //if the player is recording
+    } else if ([self isPlaying] == NO && [self isRecording] == YES) { //if the player is recording
     
         //is recording
         if (!stopButtonPressWhenRecordingWarningHasDisplayed) {
@@ -398,8 +589,8 @@
         [self.playPauseButton setImage:playButtonImage forState:UIControlStateNormal];
         stopButtonPressWhenRecordingWarningHasDisplayed = NO;   //reset
         
-        isPlaying = NO;    
-        isRecording = NO;   //to be safe
+        [self updatePlayerStatus:NO AndRecordingStatus:NO];
+        
         currentRecordingIndex = -1;
         
         if (!thePlayer.stoppedBecauseReachedEnd) {
@@ -411,6 +602,8 @@
         //clear values
         currentRecordingAudio = nil;
         currentRecordingURL = nil;
+        
+        self.recordingStatusLabel.text = @"";
     }
     else //player is neither playing or recording
     {
@@ -436,16 +629,14 @@
 
 - (void)startPlayerPlaying
 {
-    isPlaying = YES;    
-    isRecording = NO;
+    [self updatePlayerStatus:YES AndRecordingStatus:NO];
     [self.thePlayer play];
     [self.playPauseButton setImage:pauseButtonImage forState:UIControlStateNormal];
 }
 
 - (void)stopPlayerWhenPlaying:(bool)hasReachedEnd
 {
-    isPlaying = NO;    
-    isRecording = NO;
+    [self updatePlayerStatus:NO AndRecordingStatus:NO];
     
     if (self.thePlayer.isPlaying == YES) {
         [self.thePlayer stop];
@@ -456,6 +647,8 @@
     if (hasReachedEnd == YES) {
         [delegate bringSliderToZero];
     }
+    
+    self.recordingStatusLabel.text = @"";
 }
 
 #pragma mark - instance methods
@@ -465,10 +658,8 @@
     //get the corresponding Audio object
     id audioForRow = [tracksForView objectAtIndex:indexInConsolidatedAudioTracksArray];
     
-    isRecording = YES;
-    isPlaying = NO;
+    [self updatePlayerStatus:NO AndRecordingStatus:YES];
     
-    //reload the tableviewcell
     [trackTableView reloadData];
     
     /* start recording once we determine it is a original track */
@@ -495,8 +686,6 @@
     //start recording using MixPlayerRecorder
     [thePlayer enableRecordingToFile:fileURL];
     [thePlayer play];
-    
-    //[self registerNotifications];
 }
 
 - (void)trashCoverAudio:(int)indexInConsolidatedAudioTracksArray
@@ -507,6 +696,8 @@
         NSLog(@"Trying to delete an audio track, crazy.");
         return;
     }
+    
+    [DSBezelActivityView newActivityViewForView:self.view withLabel:@"Deleting track..."];
     
     CoverSceneAudio *audioToBeRemoved = (CoverSceneAudio*)audioForRow;
     NSURL *urlOfAudioToBeRemoved = [NSURL fileURLWithPath:audioToBeRemoved.path];
@@ -519,13 +710,16 @@
     }
     
     [self.theCoverScene removeAudioObject:audioToBeRemoved];
+    
+    [DSBezelActivityView removeViewAnimated:YES];
+    
     [self consolidateArrays];
     [trackTableView reloadData];
 }
 
 - (void)recordingIsCompleted
 {    
-    isRecording = NO;
+    [self updatePlayerStatus:NO AndRecordingStatus:NO];
       
     CoverSceneAudio *newCoverSceneAudio = [NSEntityDescription insertNewObjectForEntityForName:@"CoverSceneAudio" inManagedObjectContext:context];
     newCoverSceneAudio.title = currentRecordingAudio.title;
@@ -547,18 +741,21 @@
     return isRecording;
 }
 
+- (bool)isPlaying
+{
+    return isPlaying;
+}
+
 - (void)registerNotifications
-{    
-    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(recordingIsCompleted) name:kMixPlayerRecorderPlaybackStopped object:nil];
-    
+{ 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(recordingIsCompleted) name:kMixPlayerRecorderRecordingHasReachedEnd object:nil];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivedPlayerPlayedHasReachedNotification) name:kMixPlayerRecorderPlayingHasReachedEnd object:nil];
+
 }
 
 - (void)receivedPlayerPlayedHasReachedNotification
 {
-    //NSLog(@"inside receivedPlayerPlayedHasReachedNotification");
     [self stopPlayerWhenPlaying:YES];
 }
 
@@ -649,6 +846,12 @@
     }];
 }
 
+- (void) updatePlayerStatus:(bool)playingStatus AndRecordingStatus:(bool)recordingStatus
+{
+    isPlaying = playingStatus;
+    isRecording = recordingStatus;
+}
+
 #pragma mark - instance methods for gui
 
 /* constants related to displaying lyrics */
@@ -661,8 +864,6 @@
 {
     [self createLyricsScrollView];
     [self createLyricsLabel];
-    
-    //[lyricsScrollView addSubview:lyricsLabel];
     [self.view addSubview:lyricsScrollView];
 }
 
@@ -681,9 +882,9 @@
     
     lyricsLabelFrame.size = [someLyrics sizeWithFont:lyricsLabel.font constrainedToSize:CGSizeMake(LYRICS_VIEW_WIDTH-20, 100000) lineBreakMode:lyricsLabel.lineBreakMode]; //get a CGRect for dynamically resizing the label based on the text.
     
-    lyricsLabel.frame = CGRectMake(30, 60, lyricsLabel.frame.size.width-100, lyricsLabelFrame.size.height); //set the new size of the label, we are only changing the height
+    lyricsLabel.frame = CGRectMake(-15, 70, lyricsLabel.frame.size.width-100, lyricsLabelFrame.size.height); //set the new size of the label, we are only changing the height
     
-    [lyricsScrollView setContentSize:CGSizeMake(lyricsLabel.frame.size.width, lyricsLabelFrame.size.height)]; //set content size of scroll view using calculated size of the text on the label
+    [lyricsScrollView setContentSize:CGSizeMake(lyricsLabel.frame.size.width, lyricsLabelFrame.size.height+100)]; //set content size of scroll view using calculated size of the text on the label
     
     lyricsLabel.text = someLyrics;
 }
@@ -703,12 +904,12 @@
 }
 
 - (UILabel*)createLyricsLabel {
-    lyricsLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, LYRICS_VIEW_WIDTH, LYRICS_VIEW_HEIGHT)];
+    lyricsLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 10, LYRICS_VIEW_WIDTH+50, LYRICS_VIEW_HEIGHT)];
     
     //configure the lyrics label
     lyricsLabel.lineBreakMode = UILineBreakModeWordWrap; //line break, word wrap
 	lyricsLabel.numberOfLines = 0; //0 - dynamic ngit umber of lines
-    [lyricsLabel setFont:[UIFont fontWithName:@"MarkerFelt-Wide" size:24]];
+    [lyricsLabel setFont:[UIFont fontWithName:@"MarkerFelt-Wide" size:16]];
     lyricsLabel.textColor = [UIColor blackColor];
     lyricsLabel.textAlignment =  UITextAlignmentCenter;
     lyricsLabel.backgroundColor = [UIColor clearColor];
@@ -743,5 +944,12 @@
         [trackTableView reloadData];
     }
 }
+
+- (IBAction) playTutorial:(id)sender
+{
+    //play tutorial video player
+    [delegate playMovie:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"audio" ofType:@"m4v"]]];
+}
+
 
 @end

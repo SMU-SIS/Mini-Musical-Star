@@ -290,7 +290,7 @@ static OSStatus renderNotification(void *inRefCon,
     error = AUGraphStart(processingGraph);
     CheckError(error, "Cannot start AUGraph");
     isPlaying = YES;
-//    printf("AUGraph started\n");
+    //printf("AUGraph started\n");
     
     //post notifications
     [[NSNotificationCenter defaultCenter] postNotificationName:kMixPlayerRecorderPlaybackStarted object:self];
@@ -465,7 +465,7 @@ static OSStatus renderNotification(void *inRefCon,
         elapsedPlaybackTimeInSeconds = tempElapsedTime;
         
         //send notification
-        [[NSNotificationCenter defaultCenter] postNotificationName:kMixPlayerRecorderPlaybackElapsedTimeAdvanced object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kMixPlayerRecorderPlaybackElapsedTimeAdvanced object:self];
     }
 
 }

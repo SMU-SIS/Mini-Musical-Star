@@ -185,6 +185,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell.selectionStyle = UITableViewCellEditingStyleNone;
         // Configure the cell...
         [self configureCell:cell atIndexPath:indexPath];
     }
@@ -206,11 +207,11 @@
     [[cell textLabel] setText:temp];
     [[cell textLabel] setBackgroundColor:[UIColor clearColor]];
     
-    UIButton *selectExportButton = [[UIButton alloc] initWithFrame:CGRectMake(220,30,96,32)];
-    [selectExportButton setImage:[UIImage imageNamed:@"export.png"] forState:UIControlStateNormal];
-    [selectExportButton addTarget:delegate action:@selector(showMediaManagement:) forControlEvents:UIControlEventTouchUpInside];
-    [selectExportButton setTag:indexPath.row];
-    [cell.contentView addSubview:selectExportButton];
+//    UIButton *selectExportButton = [[UIButton alloc] initWithFrame:CGRectMake(220,30,96,32)];
+//    [selectExportButton setImage:[UIImage imageNamed:@"export.png"] forState:UIControlStateNormal];
+//    [selectExportButton addTarget:delegate action:@selector(showMediaManagement:) forControlEvents:UIControlEventTouchUpInside];
+//    [selectExportButton setTag:indexPath.row];
+//    [cell.contentView addSubview:selectExportButton];
 }
 
 //called when there is a change in the covers list
@@ -297,6 +298,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     Cover *selectedCover = [frc objectAtIndexPath:indexPath];
+    [delegate setVideosButtonTag:indexPath.row];
     [delegate performSelector:@selector(loadSceneSelectionScrollViewWithCover:) withObject:selectedCover];
 }
 
