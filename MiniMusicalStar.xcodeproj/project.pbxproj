@@ -128,6 +128,7 @@
 		3ABD22F7146E08D900FB8D72 /* ProgressOverlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ABD22F5146E08D900FB8D72 /* ProgressOverlayViewController.m */; };
 		3ABD22F8146E08D900FB8D72 /* ProgressOverlayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3ABD22F6146E08D900FB8D72 /* ProgressOverlayViewController.xib */; };
 		3ABD231A146EA5A700FB8D72 /* export_cell.png in Resources */ = {isa = PBXBuildFile; fileRef = 3ABD2319146EA5A700FB8D72 /* export_cell.png */; };
+		3ABD23C7146F721E00FB8D72 /* taptoedit.png in Resources */ = {isa = PBXBuildFile; fileRef = 3ABD23C6146F721E00FB8D72 /* taptoedit.png */; };
 		3ADA7AED142F85B40045F53E /* AudioFileRingBufferTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ADA7AEA142F85B40045F53E /* AudioFileRingBufferTest.m */; };
 		3ADA7AEE142F85B40045F53E /* MixPlayerRecorderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ADA7AEC142F85B40045F53E /* MixPlayerRecorderTest.m */; };
 		3ADA7AF0142F85EC0045F53E /* AudioFileRingBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFFDEF2142C7E0F000D8494 /* AudioFileRingBuffer.m */; };
@@ -294,7 +295,6 @@
 		9502152F146EB7C900B5C372 /* CueController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9502152E146EB7C900B5C372 /* CueController.m */; };
 		95021535146EC94D00B5C372 /* DDInvocationGrabber.m in Sources */ = {isa = PBXBuildFile; fileRef = 95021532146EC94D00B5C372 /* DDInvocationGrabber.m */; };
 		95021536146EC94D00B5C372 /* NSObject+DDExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 95021534146EC94D00B5C372 /* NSObject+DDExtensions.m */; };
-		95021538146EECB400B5C372 /* howling_dog.zip in Resources */ = {isa = PBXBuildFile; fileRef = 95021537146EECB400B5C372 /* howling_dog.zip */; };
 		9510D177142F882600908ABC /* bass.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3AFFDDEB142C7191000D8494 /* bass.mp3 */; };
 		9510D179142F882900908ABC /* drums.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3AFFDDEC142C7191000D8494 /* drums.mp3 */; };
 		9510D17A142F882C00908ABC /* guitar.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3AFFDDED142C7191000D8494 /* guitar.mp3 */; };
@@ -566,6 +566,7 @@
 		3ABD22F5146E08D900FB8D72 /* ProgressOverlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressOverlayViewController.m; sourceTree = "<group>"; };
 		3ABD22F6146E08D900FB8D72 /* ProgressOverlayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProgressOverlayViewController.xib; sourceTree = "<group>"; };
 		3ABD2319146EA5A700FB8D72 /* export_cell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = export_cell.png; sourceTree = "<group>"; };
+		3ABD23C6146F721E00FB8D72 /* taptoedit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = taptoedit.png; path = Resources/taptoedit.png; sourceTree = "<group>"; };
 		3ADA7AE9142F85B40045F53E /* AudioFileRingBufferTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioFileRingBufferTest.h; sourceTree = "<group>"; };
 		3ADA7AEA142F85B40045F53E /* AudioFileRingBufferTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioFileRingBufferTest.m; sourceTree = "<group>"; };
 		3ADA7AEB142F85B40045F53E /* MixPlayerRecorderTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MixPlayerRecorderTest.h; sourceTree = "<group>"; };
@@ -1103,7 +1104,6 @@
 		95021532146EC94D00B5C372 /* DDInvocationGrabber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDInvocationGrabber.m; sourceTree = "<group>"; };
 		95021533146EC94D00B5C372 /* NSObject+DDExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+DDExtensions.h"; sourceTree = "<group>"; };
 		95021534146EC94D00B5C372 /* NSObject+DDExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+DDExtensions.m"; sourceTree = "<group>"; };
-		95021537146EECB400B5C372 /* howling_dog.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = howling_dog.zip; sourceTree = "<group>"; };
 		95674E14145BFE6A00836B5F /* SceneStripController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneStripController.h; sourceTree = "<group>"; };
 		95674E15145BFE6A00836B5F /* SceneStripController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SceneStripController.m; sourceTree = "<group>"; };
 		9569E0571418A2A80016DAF3 /* AudioEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioEditorViewController.h; sourceTree = "<group>"; };
@@ -2200,6 +2200,7 @@
 		820E2A1E140A0A2A00B80BBC /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				3ABD23C6146F721E00FB8D72 /* taptoedit.png */,
 				64F58016146EC4C20090EAC6 /* facebook_overlay.png */,
 				3ABD2319146EA5A700FB8D72 /* export_cell.png */,
 				6480DD27146E6DEC00576167 /* youtube_overlay.png */,
@@ -2720,6 +2721,7 @@
 				64709A0C146EC22D0096BB1F /* youtube_tryagain.png in Resources */,
 				64709A0E146EC2360096BB1F /* fb_tryagain.png in Resources */,
 				64F58017146EC4C20090EAC6 /* facebook_overlay.png in Resources */,
+				3ABD23C7146F721E00FB8D72 /* taptoedit.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -85,7 +85,7 @@
     [self.view addSubview:grayViewButton];
     
     self.selectSceneHelpImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"taptoedit.png"]];
-    selectSceneHelpImageView.frame = CGRectMake(0,583,500,125);
+    selectSceneHelpImageView.frame = CGRectMake(0,648,300,60);
     [self.view addSubview:selectSceneHelpImageView];
     selectSceneHelpImageView.hidden = YES;
     
