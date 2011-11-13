@@ -12,9 +12,10 @@
 		</object>
 		<object class="NSArray" key="IBDocument.IntegratedClassDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<string>IBProxyObject</string>
-			<string>IBUIView</string>
 			<string>IBUIButton</string>
+			<string>IBUIImageView</string>
+			<string>IBUIView</string>
+			<string>IBProxyObject</string>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -39,6 +40,21 @@
 				<int key="NSvFlags">292</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
+					<object class="IBUIImageView" id="381862056">
+						<reference key="NSNextResponder" ref="680058226"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrameSize">{1024, 580}</string>
+						<reference key="NSSuperview" ref="680058226"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="921805083"/>
+						<string key="NSReuseIdentifierKey">_NS:569</string>
+						<bool key="IBUIUserInteractionEnabled">NO</bool>
+						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+						<object class="NSCustomResource" key="IBUIImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">softboard.png</string>
+						</object>
+					</object>
 					<object class="IBUIButton" id="921805083">
 						<reference key="NSNextResponder" ref="680058226"/>
 						<int key="NSvFlags">292</int>
@@ -80,7 +96,7 @@
 				<string key="NSFrameSize">{1024, 580}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView" ref="921805083"/>
+				<reference key="NSNextKeyView" ref="381862056"/>
 				<string key="NSReuseIdentifierKey">_NS:195</string>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">1</int>
@@ -139,6 +155,7 @@
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="921805083"/>
+							<reference ref="381862056"/>
 						</object>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">Open Flow View</string>
@@ -146,6 +163,11 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">21</int>
 						<reference key="object" ref="921805083"/>
+						<reference key="parent" ref="680058226"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">41</int>
+						<reference key="object" ref="381862056"/>
 						<reference key="parent" ref="680058226"/>
 					</object>
 				</object>
@@ -162,6 +184,7 @@
 					<string>13.IBPluginDependency</string>
 					<string>21.IBPluginDependency</string>
 					<string>21.IBUIButtonInspectorSelectedStateConfigurationMetadataKey</string>
+					<string>41.IBPluginDependency</string>
 				</object>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -173,6 +196,7 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<real value="2"/>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="unlocalizedProperties">
@@ -187,7 +211,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">40</int>
+			<int key="maxID">41</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -289,6 +313,10 @@
 		</object>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
+		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
+			<string key="NS.key.0">softboard.png</string>
+			<string key="NS.object.0">{1024, 580}</string>
+		</object>
 		<string key="IBCocoaTouchPluginVersion">933</string>
 	</data>
 </archive>
