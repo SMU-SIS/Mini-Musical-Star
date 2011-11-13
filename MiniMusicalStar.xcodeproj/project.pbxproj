@@ -48,7 +48,6 @@
 		3A54B196144C4BEE008E52CC /* SceneUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A54B195144C4BEE008E52CC /* SceneUtility.m */; };
 		3A5F7C661440CE1600E9C570 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A5F7C651440CE1600E9C570 /* CoreMedia.framework */; };
 		3A5F7C681440CE1D00E9C570 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A5F7C671440CE1D00E9C570 /* CoreVideo.framework */; };
-		3A5F7C6C1440D74E00E9C570 /* VideoPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A5F7C6A1440D74D00E9C570 /* VideoPlayerViewController.m */; };
 		3A5F7C6D1440D74E00E9C570 /* VideoPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A5F7C6B1440D74D00E9C570 /* VideoPlayerViewController.xib */; };
 		3A683775142CBF7C000485F2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDA2A1C413F26F8400B64EA5 /* UIKit.framework */; };
 		3A683776142CBF7C000485F2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDA2A1C613F26F8400B64EA5 /* Foundation.framework */; };
@@ -428,8 +427,6 @@
 		3A5C9B77142C8EB200176351 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		3A5F7C651440CE1600E9C570 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		3A5F7C671440CE1D00E9C570 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
-		3A5F7C691440D74D00E9C570 /* VideoPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoPlayerViewController.h; sourceTree = "<group>"; };
-		3A5F7C6A1440D74D00E9C570 /* VideoPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoPlayerViewController.m; sourceTree = "<group>"; };
 		3A5F7C6B1440D74D00E9C570 /* VideoPlayerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoPlayerViewController.xib; sourceTree = "<group>"; };
 		3A683773142CBF7C000485F2 /* MiniMusicalStarTests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MiniMusicalStarTests.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A68378C142CBF95000485F2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -2375,8 +2372,6 @@
 				9569E0641418A2D30016DAF3 /* SceneEditViewController.m */,
 				EDA2A1D313F26F8400B64EA5 /* MiniMusicalStarAppDelegate.h */,
 				EDA2A1D413F26F8400B64EA5 /* MiniMusicalStarAppDelegate.m */,
-				3A5F7C691440D74D00E9C570 /* VideoPlayerViewController.h */,
-				3A5F7C6A1440D74D00E9C570 /* VideoPlayerViewController.m */,
 				95674E14145BFE6A00836B5F /* SceneStripController.h */,
 				95674E15145BFE6A00836B5F /* SceneStripController.m */,
 				64D6CCC6145D4A3F00D172D2 /* FacebookUploaderViewController.h */,
@@ -2852,7 +2847,6 @@
 				3AFFDF0F142C7E69000D8494 /* DSActivityView.m in Sources */,
 				95C526AE1438DA740008AE13 /* CoversListViewController.m in Sources */,
 				6410AF33143A00900062B04D /* MiniMusicalStarUtilities.m in Sources */,
-				3A5F7C6C1440D74E00E9C570 /* VideoPlayerViewController.m in Sources */,
 				737716CB1445D61500BF2036 /* ChoiceSelectionViewController.m in Sources */,
 				95D2069714482984004B6E8B /* UndownloadedShow.m in Sources */,
 				3AF97A34144BE6FE00133C47 /* ExportTableViewController.m in Sources */,

@@ -40,7 +40,7 @@
 				<int key="NSvFlags">292</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
-					<object class="IBUIImageView" id="381862056">
+					<object class="IBUIImageView" id="127132999">
 						<reference key="NSNextResponder" ref="680058226"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrameSize">{1024, 580}</string>
@@ -96,7 +96,7 @@
 				<string key="NSFrameSize">{1024, 580}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView" ref="381862056"/>
+				<reference key="NSNextKeyView" ref="127132999"/>
 				<string key="NSReuseIdentifierKey">_NS:195</string>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">1</int>
@@ -155,7 +155,7 @@
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="921805083"/>
-							<reference ref="381862056"/>
+							<reference ref="127132999"/>
 						</object>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">Open Flow View</string>
@@ -167,7 +167,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">41</int>
-						<reference key="object" ref="381862056"/>
+						<reference key="object" ref="127132999"/>
 						<reference key="parent" ref="680058226"/>
 					</object>
 				</object>

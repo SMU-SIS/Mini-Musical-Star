@@ -18,7 +18,7 @@
 #import "CameraPopupViewController.h"
 #import "CoverScene.h"
 #import "CoverScenePicture.h"
-#import "VideoPlayerViewController.h"
+//#import "VideoPlayerViewController.h"
 #import "AudioEditorViewController.h"
 #import "DSActivityView.h"
 

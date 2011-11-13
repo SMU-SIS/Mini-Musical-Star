@@ -270,42 +270,6 @@
     playPositionSlider.value = progressSliderValue;
 }
 
-- (void) playMovie:(NSURL*)filePath
-{
-    MPMoviePlayerController *moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:filePath];
-    
-    // Register to receive a notification when the movie has finished playing.
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(moviePlayBackDidFinish:)
-                                                 name:MPMoviePlayerPlaybackDidFinishNotification
-                                               object:moviePlayer];
-    
-    if ([moviePlayer respondsToSelector:@selector(setFullscreen:animated:)]) {
-        // Use the new 3.2 style API
-        
-        [moviePlayer.view setFrame:self.view.bounds];
-        moviePlayer.controlStyle = MPMovieControlStyleFullscreen;
-        moviePlayer.shouldAutoplay = YES;
-        [self.view setBackgroundColor:[UIColor blackColor]];
-        [self.view addSubview:moviePlayer.view];
-        [moviePlayer play];
-    }   
-}
-
-- (void) moviePlayBackDidFinish:(NSNotification*)notification {
-    MPMoviePlayerController *moviePlayer = [notification object];
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:MPMoviePlayerPlaybackDidFinishNotification
-                                                  object:moviePlayer];
-    
-    // If the moviePlayer.view was added to the view, it needs to be removed
-    if ([moviePlayer respondsToSelector:@selector(setFullscreen:animated:)]) {
-        [moviePlayer.view removeFromSuperview];
-    }
-    
-    [moviePlayer release];
-}
-
 -(void)didReceivePlayerStoppedNotification:(NSNotification *)notification
 {
     [playPauseButton setTitle:@"Play" forState:UIControlStateNormal];
