@@ -231,6 +231,10 @@
     UIButton *muteOrUnmuteButton;
     UIButton *showLyricsButton;
     UIButton *showCueButton;
+    UILabel *muteUnmuteLabel;
+    UILabel *recordRecordingLabel;
+    UILabel *showHideLyricsLabel;
+    UILabel *showCuesLabel;
 
     //get the corresponding Audio object
     id audioForRow = [tracksForView objectAtIndex:[indexPath row]];
@@ -290,6 +294,38 @@
                    forControlEvents:UIControlEventTouchDown];
         [showCueButton addTarget:self action:@selector(showCueButtonIsPressed:)
                 forControlEvents:UIControlEventTouchDown];
+        
+        //label for mute and unmute
+        muteUnmuteLabel = [[UILabel alloc] initWithFrame:CGRectMake(100+xShift-15, 150, 80, 15)];
+        muteUnmuteLabel.font = [UIFont systemFontOfSize:10];
+        muteUnmuteLabel.textAlignment = UITextAlignmentCenter;
+        [cell.contentView addSubview:muteUnmuteLabel];
+        muteUnmuteLabel.tag = 6;
+        [muteUnmuteLabel release];
+        
+        //label for record and trash
+        recordRecordingLabel = [[UILabel alloc] initWithFrame:CGRectMake(200+xShift-15, 150, 80, 15)];
+        recordRecordingLabel.font = [UIFont systemFontOfSize:10];
+        recordRecordingLabel.textAlignment = UITextAlignmentCenter;
+        [cell.contentView addSubview:recordRecordingLabel];
+        recordRecordingLabel.tag = 7;
+        [recordRecordingLabel release];
+
+        //label for show and hide lyrics label
+        showHideLyricsLabel = [[UILabel alloc] initWithFrame:CGRectMake(300+xShift-15, 150, 80, 15)];
+        showHideLyricsLabel.font = [UIFont systemFontOfSize:10];
+        showHideLyricsLabel.textAlignment = UITextAlignmentCenter;
+        [cell.contentView addSubview:showHideLyricsLabel];
+        showHideLyricsLabel.tag = 8;
+        [showHideLyricsLabel release];
+
+//        showCuesLabel = [[UILabel alloc] initWithFrame:CGRectMake(100+xShift-15, 150, 80, 15)];
+//        showCuesLabel.font = [UIFont systemFontOfSize:10];
+//        showCuesLabel.backgroundColor = [UIColor blueColor];
+//        showCuesLabel.textAlignment = UITextAlignmentCenter;
+//        [cell.contentView addSubview:showCuesLabel];
+//        showCuesLabel.tag = 9;
+//        [showCuesLabel release];
     }
     
     //start configuring...
@@ -300,38 +336,54 @@
     recordOrTrashButton = (UIButton*)[cell.contentView viewWithTag:2];
     muteOrUnmuteButton = (UIButton*)[cell.contentView viewWithTag:3];
     showLyricsButton = (UIButton*)[cell.contentView viewWithTag:4];
+    muteUnmuteLabel = (UILabel*)[cell.contentView viewWithTag:6];
+    recordRecordingLabel = (UILabel*)[cell.contentView viewWithTag:7];
+    showHideLyricsLabel = (UILabel*)[cell.contentView viewWithTag:8];
     
     if ([audioForRow isKindOfClass:[Audio class]]) {
         if ([(NSNumber *)[audioForRow valueForKey:@"replaceable"] boolValue]) {
             
             if ([self isRecording] && [indexPath row] == currentRecordingIndex) {
                 [recordOrTrashButton setImage:recordingImage forState:UIControlStateNormal];
+                recordRecordingLabel.text = @"Recording";
             } else {
                 [recordOrTrashButton setImage:recordImage forState:UIControlStateNormal];
+                recordRecordingLabel.text = @"Record";
             }
             
             [showLyricsButton setImage:showLyricsImage forState:UIControlStateNormal];
+            showHideLyricsLabel.text = @"Show lyrics";
+
         } else {
             [recordOrTrashButton setImage:nil forState:UIControlStateNormal];
+            recordRecordingLabel.text = @"";
             [showLyricsButton setImage:nil forState:UIControlStateNormal];
+            showHideLyricsLabel.text = @"";
         }
         
         if (![thePlayer busNumberIsMuted:[indexPath row]]) {
             [muteOrUnmuteButton setImage:unmutedImage forState:UIControlStateNormal];
+            muteUnmuteLabel.text = @"Mute";
+
         } else {
             [muteOrUnmuteButton setImage:mutedImage forState:UIControlStateNormal];
+            muteUnmuteLabel.text = @"Unmute";
         }
                
     } else { //if CoverAudio        
         [recordOrTrashButton setImage:trashbinImage forState:UIControlStateNormal];
+        recordRecordingLabel.text = @"Delete track";
         
         if (![thePlayer busNumberIsMuted:[indexPath row]]) {
             [muteOrUnmuteButton setImage:unmutedImage forState:UIControlStateNormal];
+            muteUnmuteLabel.text = @"Mute";
         } else {
             [muteOrUnmuteButton setImage:mutedImage forState:UIControlStateNormal];
+            muteUnmuteLabel.text = @"Unmute";
         }
         
         [showLyricsButton setImage:nil forState:UIControlStateNormal];
+        showHideLyricsLabel.text = @"";
     }
     
     return cell;
