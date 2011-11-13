@@ -116,5 +116,10 @@
  */
 - (void)request:(FBRequest *)request didLoadRawResponse:(NSData *)data;
 
+/**
+ * Called to update the progress of the upload
+ */
+- (void)didSendBodyData:(NSInteger)bytesWritten totalBytesWritten:(NSInteger)totalBytesWritten totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite;
+
 @end
 
