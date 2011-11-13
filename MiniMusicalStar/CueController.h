@@ -19,4 +19,5 @@
 
 - (id)initWithAudioArray:(NSArray *)tracksArray;
 - (Cue *)getCurrentCueForTrackIndex: (int)trackIndex;
+- (void)deregisterNotifications;
 @end

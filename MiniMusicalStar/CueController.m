@@ -16,7 +16,8 @@
 
 - (void)dealloc
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    NSLog(@"cuecontroller deallocating");
+    
     [tracks release];
     [super dealloc];
 }
@@ -29,11 +30,18 @@
         self.tracks = tracksArray;
         
         //register to receive time elapsed notifcations
+        NSLog(@"cuecontroller allocating");
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveElapsedTimeNotification:) name:kMixPlayerRecorderPlaybackElapsedTimeAdvanced object:nil];
         
     }
     
     return self;
+}
+
+- (void)deregisterNotifications
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    self.delegate = nil;
 }
 
 - (void)didReceiveElapsedTimeNotification:(NSNotification *)notification

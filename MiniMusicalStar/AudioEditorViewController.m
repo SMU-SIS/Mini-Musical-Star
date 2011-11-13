@@ -38,6 +38,10 @@
     [self deRegisterFromNSNotifcationCenter];
     [self.theCoverScene removeObserver:self forKeyPath:@"Audio"];
     
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
+    [cueController deregisterNotifications];
+    
     [thePlayer stop];
     [thePlayer release];
     [theScene release];
@@ -172,6 +176,8 @@
     
     [self.theCoverScene removeObserver:self forKeyPath:@"Audio"];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
+    [cueController deregisterNotifications];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
