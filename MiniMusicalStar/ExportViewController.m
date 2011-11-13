@@ -224,7 +224,11 @@
 
 - (void)removeFacebookUploadOverlay
 {
-    [self.facebookUploaderViewController.view removeFromSuperview];
+    [UIView beginAnimations:nil context:nil];
+    [facebookUploaderViewController.view setAlpha:0.0];
+    [UIView commitAnimations];
+//    [self.facebookUploaderViewController.view removeFromSuperview];
+
     [self.facebookUploaderViewController release];
 }
 
@@ -236,7 +240,11 @@
         [youtubeUploaderViewController cancelUpload];
     }
     
-    [self.youtubeUploaderViewController.view removeFromSuperview];
+    [UIView beginAnimations:nil context:nil];
+    [youtubeUploaderViewController.view setAlpha:0.0];
+    [UIView commitAnimations];
+    
+//    [self.youtubeUploaderViewController.view removeFromSuperview];
     [self.youtubeUploaderViewController release];
 }
 
@@ -248,10 +256,11 @@
     facebookUploaderViewController = [[FacebookUploaderViewController alloc] initWithProperties:filePath title:@"Uploaded with Mini Musical Star" description:@""];
     
     self.facebookUploaderViewController.delegate = self;
+    [facebookUploaderViewController.view setAlpha:0.0];
     [self.view addSubview:facebookUploaderViewController.view];
-    facebookUploaderViewController.view.alpha = 0.9;
-    facebookUploaderViewController.centerView.alpha = 1;
-    facebookUploaderViewController.centerView.backgroundColor = [UIColor whiteColor];
+    [UIView beginAnimations:nil context:nil];
+    [facebookUploaderViewController.view setAlpha:0.9];
+    [UIView commitAnimations];
 }
 
 - (void) uploadToYouTube:(NSURL*)filePath
@@ -260,9 +269,9 @@
 
     self.youtubeUploaderViewController.delegate = self;
     [self.view addSubview:youtubeUploaderViewController.view];
-    youtubeUploaderViewController.view.alpha = 0.9;
-    youtubeUploaderViewController.centerView.alpha = 1;
-    youtubeUploaderViewController.centerView.backgroundColor = [UIColor whiteColor];
+    [UIView beginAnimations:nil context:nil];
+    [youtubeUploaderViewController.view setAlpha:0.9];
+    [UIView commitAnimations];
 }
 
 @end
