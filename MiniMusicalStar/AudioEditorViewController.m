@@ -879,9 +879,9 @@
     
     lyricsLabelFrame.size = [someLyrics sizeWithFont:lyricsLabel.font constrainedToSize:CGSizeMake(LYRICS_VIEW_WIDTH-20, 100000) lineBreakMode:lyricsLabel.lineBreakMode]; //get a CGRect for dynamically resizing the label based on the text.
     
-    lyricsLabel.frame = CGRectMake(30, 60, lyricsLabel.frame.size.width-100, lyricsLabelFrame.size.height); //set the new size of the label, we are only changing the height
+    lyricsLabel.frame = CGRectMake(-15, 70, lyricsLabel.frame.size.width-100, lyricsLabelFrame.size.height); //set the new size of the label, we are only changing the height
     
-    [lyricsScrollView setContentSize:CGSizeMake(lyricsLabel.frame.size.width, lyricsLabelFrame.size.height)]; //set content size of scroll view using calculated size of the text on the label
+    [lyricsScrollView setContentSize:CGSizeMake(lyricsLabel.frame.size.width, lyricsLabelFrame.size.height+100)]; //set content size of scroll view using calculated size of the text on the label
     
     lyricsLabel.text = someLyrics;
 }
@@ -901,12 +901,12 @@
 }
 
 - (UILabel*)createLyricsLabel {
-    lyricsLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, LYRICS_VIEW_WIDTH, LYRICS_VIEW_HEIGHT)];
+    lyricsLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 10, LYRICS_VIEW_WIDTH+50, LYRICS_VIEW_HEIGHT)];
     
     //configure the lyrics label
     lyricsLabel.lineBreakMode = UILineBreakModeWordWrap; //line break, word wrap
 	lyricsLabel.numberOfLines = 0; //0 - dynamic ngit umber of lines
-    [lyricsLabel setFont:[UIFont fontWithName:@"MarkerFelt-Wide" size:24]];
+    [lyricsLabel setFont:[UIFont fontWithName:@"MarkerFelt-Wide" size:16]];
     lyricsLabel.textColor = [UIColor blackColor];
     lyricsLabel.textAlignment =  UITextAlignmentCenter;
     lyricsLabel.backgroundColor = [UIColor clearColor];
