@@ -10,10 +10,11 @@
 
 @implementation PhotoEditorViewController
 
-@synthesize leftPicture, rightPicture, centerPicture, theScene, imagesArray, theCoverScene, context, currentSelectedCover, cameraPopupViewController, delegate, exportFilename;
+@synthesize leftPicture, rightPicture, centerPicture, theScene, imagesArray, theCoverScene, context, currentSelectedCover, cameraPopupViewController, delegate, exportFilename, tutorialButton;
 
 -(void)dealloc
 {
+    [tutorialButton release];
     [exportFilename release];
     [leftPicture release];
     [rightPicture release];
@@ -195,6 +196,12 @@
 {
     // Return YES for supported orientations
 	return YES;
+}
+
+- (IBAction) playTutorial:(id)sender
+{
+    //play tutorial video player
+    [delegate playMovie:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"photo" ofType:@"m4v"]]];
 }
 
 @end

@@ -43,6 +43,7 @@
 @property(retain,nonatomic) Scene *theScene;
 @property (retain,nonatomic) NSMutableArray *imagesArray;
 @property (nonatomic) int currentSelectedCover;
+@property (retain, nonatomic) IBOutlet UIButton *tutorialButton;
 
 @property (nonatomic, assign) id <PhotoEditorViewDelegate> delegate;
 
@@ -60,6 +61,7 @@
 -(void)autosaveWhenContextDidChange:(NSNotification*)notification;
 
 -(IBAction)pressManualButton;
+- (IBAction) playTutorial:(id)sender;
 
 @property (retain,nonatomic) NSString *exportFilename;
 

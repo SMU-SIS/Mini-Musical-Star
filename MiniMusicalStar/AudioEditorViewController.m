@@ -945,4 +945,11 @@
     }
 }
 
+- (IBAction) playTutorial:(id)sender
+{
+    //play tutorial video player
+    [delegate playMovie:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"audio" ofType:@"m4v"]]];
+}
+
+
 @end
