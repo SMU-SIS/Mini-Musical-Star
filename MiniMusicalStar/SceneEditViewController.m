@@ -289,8 +289,8 @@
 -(void)drawPlaySlider
 {
     // Setup custom slider images
-	UIImage *maxImage = [UIImage imageNamed:@"empty.png"];
-	UIImage *minImage = [UIImage imageNamed:@"scroller.png"];
+	UIImage *maxImage = [UIImage imageNamed:@"scrollerBack.png"];
+	UIImage *minImage = [UIImage imageNamed:@"scrollerFront.png"];
 	UIImage *tumbImage= [UIImage imageNamed:@"star.png"];	
     
 	minImage=[minImage stretchableImageWithLeftCapWidth:10.0 topCapHeight:0.0];
