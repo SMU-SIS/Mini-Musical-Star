@@ -333,7 +333,7 @@
 - (IBAction) playTutorial:(id)sender
 {
     //play tutorial video player
-    [self playMovie:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"sample" ofType:@"mov"]]];
+    [self playMovie:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"covers_selection" ofType:@"m4v"]]];
 }
 
 - (void) playMovie:(NSURL*)filePath

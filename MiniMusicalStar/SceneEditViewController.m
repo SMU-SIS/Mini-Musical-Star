@@ -9,8 +9,6 @@
 #define kNumberOfPages 2
 #import "SceneEditViewController.h"
 
-
-
 @implementation SceneEditViewController
 
 @synthesize context;

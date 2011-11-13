@@ -32,6 +32,7 @@
 @synthesize pauseButtonImage;
 @synthesize recordingImage;
 @synthesize delegate;
+@synthesize tutorialButton;
 @synthesize cueController,cueView;
 
 - (void)dealloc
@@ -42,6 +43,8 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
     [cueController deregisterNotifications];
+    
+    [tutorialButton release];
     
     [thePlayer stop];
     [thePlayer release];

@@ -279,7 +279,7 @@
 - (IBAction) playTutorial:(id)sender
 {
     //play tutorial video player
-    [self playMovie:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"sample" ofType:@"mov"]]];
+    [self playMovie:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"export" ofType:@"m4v"]]];
 }
 
 @end

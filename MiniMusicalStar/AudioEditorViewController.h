@@ -47,6 +47,7 @@
 @property (nonatomic, retain) UIImage *playButtonImage;
 @property (nonatomic, retain) UIImage *pauseButtonImage;
 @property (nonatomic, retain) UIImage *recordingImage;
+@property (retain, nonatomic) IBOutlet UIButton *tutorialButton;
 
 //for the lyrics popover
 @property (nonatomic, retain) UIScrollView *lyricsScrollView;
@@ -107,4 +108,6 @@
 //instance methods for cue
 - (void)setCueButton:(BOOL)shouldShow forTrackIndex:(NSUInteger)trackIndex;
 - (void)removeAndUnloadCueFromView;
+
+- (IBAction) playTutorial:(id)sender;
 @end
