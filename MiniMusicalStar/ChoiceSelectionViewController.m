@@ -85,9 +85,8 @@
     [self.view addSubview:grayViewButton];
     
     self.selectSceneHelpImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"taptoedit.png"]];
-    selectSceneHelpImageView.frame = CGRectMake(0,648,300,60);
+    selectSceneHelpImageView.frame = CGRectMake(0,708,300,60);
     [self.view addSubview:selectSceneHelpImageView];
-    selectSceneHelpImageView.hidden = YES;
     
     self.exportViewButton = [[UIButton alloc] initWithFrame:CGRectMake(1024,140,300,50)];
     [exportViewButton setImage:[UIImage imageNamed:@"gotovideos.png"] forState:UIControlStateNormal];
@@ -100,7 +99,12 @@
 -(void) fadeGrayViewButton
 {
     self.grayViewButton.alpha = 0.0;
-    self.selectSceneHelpImageView.hidden = YES;
+    
+    [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationCurveEaseIn animations:^{
+        CGAffineTransform moveDown = CGAffineTransformMakeTranslation(0, 60);
+        self.selectSceneHelpImageView.transform = moveDown;
+    } completion:^(BOOL finished) {
+    }];
     
     [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationCurveEaseIn animations:^{
         CGAffineTransform moveRight = CGAffineTransformMakeTranslation(300, 0);
@@ -233,7 +237,11 @@
     sceneStripController.context = self.managedObjectContext;
     
     self.grayViewButton.alpha = 0.5;
-    self.selectSceneHelpImageView.hidden = NO;
+    [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationCurveEaseIn animations:^{
+        CGAffineTransform moveUp = CGAffineTransformMakeTranslation(0, -60);
+        self.selectSceneHelpImageView.transform = moveUp;
+    } completion:^(BOOL finished) {
+    }];
     
     //slide the exportViewButton
     [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationCurveEaseIn animations:^{
