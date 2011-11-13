@@ -28,6 +28,7 @@
 @property (retain, nonatomic) AddCreditsViewController *addCreditsViewController;
 
 @property (nonatomic, retain) IBOutlet UIButton *addCreditsButton;
+@property (retain, nonatomic) IBOutlet UIButton *tutorialButton;
 
 @property (nonatomic, retain) UIPopoverController *popoverController;
 @property (nonatomic, retain) FacebookUploaderViewController *facebookUploaderViewController;
@@ -49,6 +50,7 @@
 
 - (void) playMovie:(NSURL*)filePath;
 - (void) moviePlayBackDidFinish:(NSNotification*)notification;
+- (IBAction) playTutorial:(id)sender;
 
 - (IBAction) editTable:(id)sender;
 

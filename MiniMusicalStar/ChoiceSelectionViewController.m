@@ -27,9 +27,11 @@
 @synthesize grayViewButton;
 @synthesize exportViewButton;
 @synthesize selectSceneHelpImageView;
+@synthesize tutorialButton;
 
 - (void)dealloc
 {
+    [tutorialButton release];
     [selectSceneHelpImageView release];
     [exportViewButton release];
     [grayViewButton release];
@@ -326,6 +328,45 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationLandscapeLeft || interfaceOrientation == UIInterfaceOrientationLandscapeRight);
+}
+
+- (IBAction) playTutorial:(id)sender
+{
+    //play tutorial video player
+    [self playMovie:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"sample" ofType:@"mov"]]];
+}
+
+- (void) playMovie:(NSURL*)filePath
+{
+    MPMoviePlayerController *moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL: filePath];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(moviePlayBackDidFinish:)
+                                                 name:MPMoviePlayerPlaybackDidFinishNotification
+                                               object:moviePlayer];
+    [moviePlayer setFullscreen:YES animated:YES];
+    self.navigationController.navigationBarHidden = YES;
+    moviePlayer.controlStyle = MPMovieControlStyleFullscreen;
+    moviePlayer.shouldAutoplay = YES;
+    [moviePlayer.view setFrame: self.view.bounds];  // player's frame must match parent's
+    
+    [self.view addSubview: moviePlayer.view];
+    
+    [moviePlayer play];
+}
+
+- (void) moviePlayBackDidFinish:(NSNotification*)notification {
+    MPMoviePlayerController *moviePlayer = [notification object];
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:MPMoviePlayerPlaybackDidFinishNotification
+                                                  object:moviePlayer];
+    
+    // If the moviePlayer.view was added to the view, it needs to be removed
+    if ([moviePlayer respondsToSelector:@selector(setFullscreen:animated:)]) {
+        [moviePlayer.view removeFromSuperview];
+    }
+    self.navigationController.navigationBarHidden = NO;
+    
+    [moviePlayer release];
 }
 
 

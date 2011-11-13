@@ -19,9 +19,11 @@
 @synthesize popoverController;
 @synthesize addCreditsViewController;
 @synthesize progressViewController;
+@synthesize tutorialButton;
     
 - (void)dealloc
 {
+    [tutorialButton release];
     [theShow release];
     [theCover release];
     [context release];
@@ -272,6 +274,12 @@
     [UIView beginAnimations:nil context:nil];
     [youtubeUploaderViewController.view setAlpha:0.9];
     [UIView commitAnimations];
+}
+
+- (IBAction) playTutorial:(id)sender
+{
+    //play tutorial video player
+    [self playMovie:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"sample" ofType:@"mov"]]];
 }
 
 @end
