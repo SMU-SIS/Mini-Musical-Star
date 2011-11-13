@@ -87,8 +87,6 @@
 
 - (void) showProgressView
 {
-
-//    [progressViewController.cancelButton setTitle:@"Cancel" forState:UIControlStateNormal];
     [self.progressViewController.view setAlpha:0.0];
     [self.view addSubview:progressViewController.view];
     [UIView beginAnimations:nil context:nil];
