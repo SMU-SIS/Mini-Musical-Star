@@ -62,7 +62,7 @@
 						</object>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">setcredits.png</string>
+							<string key="NSResourceName">setcreditshere.png</string>
 						</object>
 						<object class="IBUIFontDescription" key="IBUIFontDescription">
 							<int key="type">2</int>
@@ -215,7 +215,7 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="NS.key.0">setcredits.png</string>
+			<string key="NS.key.0">setcreditshere.png</string>
 			<string key="NS.object.0">{200, 50}</string>
 		</object>
 		<string key="IBCocoaTouchPluginVersion">933</string>

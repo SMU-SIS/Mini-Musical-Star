@@ -157,7 +157,8 @@
             newCover.title = prompt.enteredText;
             newCover.originalHash = [MiniMusicalStarUtilities getUniqueFilenameWithoutExt];
             newCover.coverOfShowHash = theShow.showHash;
-//            [self setVideosButtonTag:self.coversTableView
+            [self setVideosButtonTag:[self.currentSelectedCoversList numberOfCovers]
+             ];
             [self loadSceneSelectionScrollViewWithCover:newCover];
         }
     }
