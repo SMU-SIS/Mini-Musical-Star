@@ -17,8 +17,8 @@
 @synthesize videoNSURL;
 @synthesize videoTitle;
 @synthesize videoDescription;
-@synthesize uploadIndicator;
 @synthesize centerView;
+@synthesize uploadProgressView;
 
 #pragma mark - init and dealloc
 
@@ -44,10 +44,6 @@
     [facebook release];
     [videoNSURL release];
     [videoTitle release];
-    
-//    if (facebook != nil) {
-//        [facebook release];
-//    }
                           
     [super dealloc];
 }
@@ -59,14 +55,9 @@
     [super viewDidLoad];
     
     self.statusLabel.text = @"Ready to upload? Click the button below?";
-    
+    self.uploadProgressView.progress = 0;
     [self.okButton setTitle:@"UPLOAD" forState:UIControlStateNormal];
     [self.okButton setImage:[UIImage imageNamed:@"fb_upload.png"] forState:UIControlStateNormal];
-    
-    self.uploadIndicator.hidesWhenStopped = YES;
-
-    CGAffineTransform scale = CGAffineTransformMakeScale (2.0,2.0);
-    self.uploadIndicator.transform = scale;
 }
 
 - (void)viewDidUnload
@@ -74,9 +65,9 @@
     [super viewDidUnload];
 
     [okButton release];
-    [uploadIndicator release];
     [centerView release];
     [statusLabel release];
+    [uploadProgressView release];
 }
 
 - (void)didReceiveMemoryWarning
@@ -101,8 +92,6 @@
                             @"publish_stream", nil];
     [facebook authorize:permissions];
     [permissions release];
-    
-    
 }
 
 #pragma mark - FBSession delegate methods
@@ -127,12 +116,11 @@
     
     isUploading = YES;
     
-    [self.uploadIndicator startAnimating];
     [self.okButton setTitle:@"CANCEL" forState:UIControlStateNormal];
     self.statusLabel.text = @"Uploading musical...";
     [self.okButton setImage:[UIImage imageNamed:@"fb_cancel.png"] forState:UIControlStateNormal];
     
-    NSLog(@"The facebook upload has started! Please wait for next NSLog to confirm upload.");
+//    NSLog(@"The facebook upload has started! Please wait for next NSLog to confirm upload.");
 }
 
 /**
@@ -140,7 +128,7 @@
  */
 - (void)fbDidNotLogin:(BOOL)cancelled
 {
-    NSLog(@"inside fbDidNotLogin:(BOOL)cancelled");
+//    NSLog(@"inside fbDidNotLogin:(BOOL)cancelled");
     
     self.statusLabel.text = @"You did not login to Facebook successfully! Try again! Anyway...are you online?";
     [self.okButton setTitle:@"TRY AGAIN" forState:UIControlStateNormal];
@@ -152,7 +140,7 @@
  */
 - (void)fbDidLogout
 {
-    NSLog(@"inside fbDidLogout");
+//    NSLog(@"inside fbDidLogout");
     self.statusLabel.text = @"You are logged out of Facebook. Please try again!";
     [self.okButton setTitle:@"TRY AGAIN" forState:UIControlStateNormal];
     [self.okButton setImage:[UIImage imageNamed:@"fb_tryagain.png"] forState:UIControlStateNormal];
@@ -165,15 +153,14 @@
 	if ([result isKindOfClass:[NSArray class]]) {
 		result = [result objectAtIndex:0];
 	}
-    
-    [self.uploadIndicator stopAnimating];    
+
     statusLabel.text = @"Upload complete!";
     [self.okButton setTitle:@"CLOSE" forState:UIControlStateNormal];
     [self.okButton setImage:[UIImage imageNamed:@"fb_close.png"] forState:UIControlStateNormal];
     uploadHasCompleted = YES;
 
-    NSLog(@"Result of API call: %@", result);
-    NSLog(@"The facebook upload is completed");
+//    NSLog(@"Result of API call: %@", result);
+//    NSLog(@"The facebook upload is completed");
 }
 
 - (void)request:(FBRequest *)request didFailWithError:(NSError *)error {
@@ -183,8 +170,13 @@
     
     isUploading = NO;
     
-    NSLog(@"Failed with error: %@", [error localizedDescription]);
-    NSLog(@"Err details: %@", [error description]);
+//    NSLog(@"Failed with error: %@", [error localizedDescription]);
+//    NSLog(@"Err details: %@", [error description]);
+}
+
+- (void)didSendBodyData:(NSInteger)bytesWritten totalBytesWritten:(NSInteger)totalBytesWritten totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite
+{
+    self.uploadProgressView.progress = (double)totalBytesWritten/(double)totalBytesExpectedToWrite;
 }
 
 #pragma mark - IBAction methods
@@ -196,6 +188,7 @@
         
         [self startUpload];
         self.okButton.titleLabel.text = @"CANCEL";
+        self.uploadProgressView.progress = 0;
         
     } else if ([self.okButton.titleLabel.text isEqualToString:@"CANCEL"]) {
         
@@ -205,9 +198,9 @@
         }
         
         self.statusLabel.text = @"You have cancelled the download!";
-        [self.uploadIndicator stopAnimating];
         [self.okButton setTitle:@"TRY AGAIN" forState:UIControlStateNormal];
         [self.okButton setImage:[UIImage imageNamed:@"fb_tryagain.png"] forState:UIControlStateNormal];
+        self.uploadProgressView.progress = 0;
         
     } else if ([self.okButton.titleLabel.text isEqualToString:@"CLOSE"]) {
         [delegate removeFacebookUploadOverlay];

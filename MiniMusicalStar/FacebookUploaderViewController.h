@@ -25,9 +25,9 @@
 }
 
 @property (nonatomic, retain) IBOutlet UIButton *okButton;
-@property (nonatomic, retain) IBOutlet UIActivityIndicatorView *uploadIndicator;
 @property (nonatomic, retain) IBOutlet UIView *centerView;
 @property (nonatomic, retain) IBOutlet UILabel *statusLabel;
+@property (nonatomic, retain) IBOutlet UIProgressView *uploadProgressView;
 
 @property (nonatomic, assign) id delegate;
 
