@@ -33,7 +33,7 @@
 @synthesize recordingImage;
 @synthesize delegate;
 @synthesize tutorialButton;
-@synthesize cueController,cueView;
+@synthesize cueController,cueView, cueButtonImage;
 
 - (void)dealloc
 {
@@ -63,6 +63,7 @@
     [showLyricsImage release];
     [playButtonImage release];
     [pauseButtonImage release];
+    [cueButtonImage release];
     
     [lyricsScrollView release];
     [lyricsLabel release];
@@ -153,6 +154,7 @@
     playButtonImage = [UIImage imageNamed:@"play.png"];
     pauseButtonImage = [UIImage imageNamed:@"pause.png"];
     recordingImage = [UIImage imageNamed:@"recording.png"];
+    cueButtonImage = [UIImage imageNamed:@"audiocues.png"];
     
     //load first replaceable audio's lyrics
     if (arrayOfReplaceableAudios != nil && [arrayOfReplaceableAudios count] != 0) {
@@ -282,9 +284,7 @@
         [showLyricsButton release];
         
         //button to show cue
-        showCueButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        showCueButton.frame = CGRectMake(400+xShift, 105, 50, 50);
-        [showCueButton setTitle:@"Cue" forState:UIControlStateNormal];
+        showCueButton = [[UIButton alloc] initWithFrame:CGRectMake(400+xShift, 105, 50, 50)];
         [showCueButton setHidden:YES];
         [cell.contentView addSubview:showCueButton];
         showCueButton.tag = 5;
@@ -340,6 +340,7 @@
     recordOrTrashButton = (UIButton*)[cell.contentView viewWithTag:2];
     muteOrUnmuteButton = (UIButton*)[cell.contentView viewWithTag:3];
     showLyricsButton = (UIButton*)[cell.contentView viewWithTag:4];
+    showCueButton = (UIButton*)[cell.contentView viewWithTag:5];
     muteUnmuteLabel = (UILabel*)[cell.contentView viewWithTag:6];
     recordRecordingLabel = (UILabel*)[cell.contentView viewWithTag:7];
     showHideLyricsLabel = (UILabel*)[cell.contentView viewWithTag:8];
@@ -357,6 +358,9 @@
             
             [showLyricsButton setImage:showLyricsImage forState:UIControlStateNormal];
             showHideLyricsLabel.text = @"Show lyrics";
+            
+            [showCueButton setImage:cueButtonImage forState:UIControlStateNormal];
+            
 
         } else {
             [recordOrTrashButton setImage:nil forState:UIControlStateNormal];

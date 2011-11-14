@@ -47,6 +47,7 @@
 @property (nonatomic, retain) UIImage *playButtonImage;
 @property (nonatomic, retain) UIImage *pauseButtonImage;
 @property (nonatomic, retain) UIImage *recordingImage;
+@property (retain, nonatomic) UIImage *cueButtonImage;
 @property (retain, nonatomic) IBOutlet UIButton *tutorialButton;
 
 //for the lyrics popover
