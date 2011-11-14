@@ -358,6 +358,7 @@
 		9502152F146EB7C900B5C372 /* CueController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9502152E146EB7C900B5C372 /* CueController.m */; };
 		95021535146EC94D00B5C372 /* DDInvocationGrabber.m in Sources */ = {isa = PBXBuildFile; fileRef = 95021532146EC94D00B5C372 /* DDInvocationGrabber.m */; };
 		95021536146EC94D00B5C372 /* NSObject+DDExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 95021534146EC94D00B5C372 /* NSObject+DDExtensions.m */; };
+		95041564147157870032FD52 /* howling_dog.zip in Resources */ = {isa = PBXBuildFile; fileRef = 95041563147157870032FD52 /* howling_dog.zip */; };
 		9510D177142F882600908ABC /* bass.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3AFFDDEB142C7191000D8494 /* bass.mp3 */; };
 		9510D179142F882900908ABC /* drums.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3AFFDDEC142C7191000D8494 /* drums.mp3 */; };
 		9510D17A142F882C00908ABC /* guitar.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3AFFDDED142C7191000D8494 /* guitar.mp3 */; };
@@ -1499,6 +1500,7 @@
 		95021532146EC94D00B5C372 /* DDInvocationGrabber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDInvocationGrabber.m; sourceTree = "<group>"; };
 		95021533146EC94D00B5C372 /* NSObject+DDExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+DDExtensions.h"; sourceTree = "<group>"; };
 		95021534146EC94D00B5C372 /* NSObject+DDExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+DDExtensions.m"; sourceTree = "<group>"; };
+		95041563147157870032FD52 /* howling_dog.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = howling_dog.zip; sourceTree = "<group>"; };
 		95674E14145BFE6A00836B5F /* SceneStripController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneStripController.h; sourceTree = "<group>"; };
 		95674E15145BFE6A00836B5F /* SceneStripController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SceneStripController.m; sourceTree = "<group>"; };
 		9569E0571418A2A80016DAF3 /* AudioEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioEditorViewController.h; sourceTree = "<group>"; };
@@ -2935,6 +2937,7 @@
 		820E2A1E140A0A2A00B80BBC /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				95041563147157870032FD52 /* howling_dog.zip */,
 				3A5FCB99147001420065B6C4 /* tutorialbutton.png */,
 				3A5FCB86146FE61B0065B6C4 /* audio.m4v */,
 				3A5FCB87146FE61B0065B6C4 /* photo.m4v */,
@@ -3498,6 +3501,7 @@
 				3A5FCB88146FE61B0065B6C4 /* audio.m4v in Resources */,
 				3A5FCB89146FE61B0065B6C4 /* photo.m4v in Resources */,
 				3A5FCB9A147001420065B6C4 /* tutorialbutton.png in Resources */,
+				95041564147157870032FD52 /* howling_dog.zip in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
