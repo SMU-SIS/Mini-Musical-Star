@@ -566,13 +566,12 @@
 
 - (void)playPauseButtonIsPressed
 {
-    if ([self isPlaying] == YES && [self isRecording] == NO) { //if the player is playing
+    if ([self isPlaying] == YES && [self isRecording] == NO) {
         //is playing
         
         [self stopPlayerWhenPlaying:NO];
         
-    } else if ([self isPlaying] == NO && [self isRecording] == YES) { //if the player is recording
-    
+    } else if ([self isPlaying] == NO && [self isRecording] == YES) {
         //is recording
         if (!stopButtonPressWhenRecordingWarningHasDisplayed) {
             UIAlertView *stopWhenRecordingAlertView = [[[UIAlertView alloc] initWithTitle:@"Stop?" message:@"Do you realy want to stop? :(" delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil] autorelease];
