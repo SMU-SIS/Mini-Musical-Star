@@ -59,7 +59,7 @@
         aLabel.font = [UIFont fontWithName:@"MarkerFelt-Wide" size:16];
         [aLabel sizeToFit];
         
-        aLabel.textColor = [UIColor redColor];
+        aLabel.textColor = [UIColor blackColor];
         aLabel.textAlignment = UITextAlignmentCenter;
         aLabel.backgroundColor = [UIColor clearColor];
         CGRect frame = CGRectMake(0, 0, self.cueView.frame.size.width, self.cueView.frame.size.height);
