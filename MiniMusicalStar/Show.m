@@ -103,12 +103,6 @@
     return [self.scenes objectForKey:[self.scenesOrder objectAtIndex:idx]];
 }
 
-- (NSMutableArray*) getMusicalImagesArray
-{
-    NSLog(@"THE SCENES :%@",scenes);
-}
-//- (NSMutableArray*) getMusicalPicturesTimingDict;
-
 
 
 @end

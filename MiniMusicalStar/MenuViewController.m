@@ -188,6 +188,7 @@
 
 - (void)cancelDownloadOfShow:(UIButton *)sender
 {
+    downloadRequestGotCancelled = YES;
     [self.showDAO cancelDownloadForShow:[self.showDAO.loadedShows objectAtIndex:sender.tag]];
     
     //the callback on the request will handle the resetting of the button using the method below
@@ -203,6 +204,15 @@
     
     UILabel *downloadLabel = (UILabel *)[showButton.superview viewWithTag:-1];
     downloadLabel.text = @"Tap to Download";
+    
+    if (!downloadRequestGotCancelled) //meaning that the request failed
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Download Failed" message:@"Perhaps the network is busy or unstable? You're welcome to try again." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+        [alert release];
+    }
+    
+    downloadRequestGotCancelled = NO;
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context

@@ -15,7 +15,9 @@
 @class ShowDAO;
 @class VideoPlayerViewController;
 
-@interface MenuViewController : UIViewController <NSFetchedResultsControllerDelegate>
+@interface MenuViewController : UIViewController <NSFetchedResultsControllerDelegate> {
+    BOOL downloadRequestGotCancelled;
+}
 
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @property (retain, nonatomic) IBOutlet UIButton *tutorialButton;
