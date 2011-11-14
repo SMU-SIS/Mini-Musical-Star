@@ -159,7 +159,7 @@
         //get a reference to the current selected photo
         Picture *pic = [theScene pictureForIndex:self.currentSelectedCover];
         
-        CameraPopupViewController *overlayView = [[CameraPopupViewController alloc] initWithCoverScene:theCoverScene andContext:context originalHash:pic.hash];
+        CameraPopupViewController *overlayView = [[CameraPopupViewController alloc] initWithCoverScene:theCoverScene andContext:context originalHash:pic.hash cue:pic.theCue];
         
         [overlayView.view setAlpha:0.0];
         [self.view addSubview:overlayView.view];

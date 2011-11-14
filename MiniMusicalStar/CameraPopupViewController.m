@@ -9,10 +9,11 @@
 #import "CameraPopupViewController.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 #import "MiniMusicalStarUtilities.h"
+#import "Cue.h"
 
 @implementation CameraPopupViewController
 
-@synthesize takePhotoButton, replacePictureButton, popoverController, delegate, context, theCoverScene, originalHash;
+@synthesize takePhotoButton, replacePictureButton, popoverController, delegate, context, theCoverScene, originalHash, theCue, cueView;
 
 -(void) dealloc
 {
@@ -22,6 +23,8 @@
     [theCoverScene release];
     [originalHash release];
     [context release];
+    [theCue release];
+    [cueView release];
     [super dealloc];
 }
 
@@ -42,6 +45,23 @@
     [takePhotoButton setImage:takePhotoImage forState:UIControlStateNormal];
     UIImage *photoLibraryImage = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"photo_library" ofType:@"png"]];
     [replacePictureButton setImage:photoLibraryImage forState:UIControlStateNormal];
+    
+    //check if there is a cue, if there is display it
+    if (self.theCue)
+    {
+        //create a view and plonk it on the screen
+        UILabel *aLabel = [[UILabel alloc] init];
+        aLabel.text = theCue.content;
+        aLabel.font = [UIFont fontWithName:@"Helvetica" size:26];
+        [aLabel sizeToFit];
+        aLabel.textColor = [UIColor redColor];
+        aLabel.textAlignment = UITextAlignmentCenter;
+        
+        CGRect frame = CGRectMake(0, 0, self.cueView.frame.size.width, self.cueView.frame.size.height);
+        aLabel.frame = frame;
+        
+        [self.cueView addSubview:aLabel];
+    }
 }
 
 - (void)viewDidUnload
@@ -57,7 +77,7 @@
 	return YES;
 }
 
-- (id)initWithCoverScene:(CoverScene *)coverScene andContext:(NSManagedObjectContext *)aContext originalHash:(NSString *)aOriginalHash
+- (id)initWithCoverScene:(CoverScene *)coverScene andContext:(NSManagedObjectContext *)aContext originalHash:(NSString *)aOriginalHash cue:(Cue *)aCue
 {
     self = [super init];
     if (self)
@@ -65,6 +85,7 @@
         self.theCoverScene = coverScene;
         self.context = aContext;
         self.originalHash = aOriginalHash;
+        self.theCue = aCue;
     }
     
     return self;

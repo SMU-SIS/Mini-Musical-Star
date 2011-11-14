@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PictureCue.h"
 
+@class Cue;
 @interface Picture : NSObject
 
 @property (retain, nonatomic) NSString *hash;
@@ -18,6 +18,7 @@
 @property (assign, nonatomic) UInt32 duration;
 @property (retain, nonatomic) NSMutableArray *pictureCueList;
 @property (assign, nonatomic) UInt32 orderNumber;
+@property (retain, nonatomic) Cue *theCue;
 
 - (id)initWithHash:(NSString *)key dictionary:(NSDictionary *)obj assetPath:assetPath;
 

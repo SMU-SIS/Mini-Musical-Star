@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "AudioCue.h"
 
 @class Cue;
 @interface Audio : NSObject
