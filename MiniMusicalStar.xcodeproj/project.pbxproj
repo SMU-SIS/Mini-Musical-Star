@@ -63,6 +63,36 @@
 		3A6837A5142CC5FE000485F2 /* GHUnitIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A6837A4142CC5FE000485F2 /* GHUnitIOS.framework */; };
 		3A6F576C146FADF700202BCF /* setcreditshere.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A6F576B146FADF700202BCF /* setcreditshere.png */; };
 		3A6F578C146FB42200202BCF /* cancelexport.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A6F578B146FB42200202BCF /* cancelexport.png */; };
+		3A6FB69D14712101002B558C /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA2A1DA13F26F8400B64EA5 /* MenuViewController.m */; };
+		3A6FB69E14712104002B558C /* ChoiceSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 737716C91445D61500BF2036 /* ChoiceSelectionViewController.m */; };
+		3A6FB69F14712107002B558C /* CoversListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C526AC1438DA740008AE13 /* CoversListViewController.m */; };
+		3A6FB6A01471210D002B558C /* ProgressOverlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ABD22F5146E08D900FB8D72 /* ProgressOverlayViewController.m */; };
+		3A6FB6A114712133002B558C /* ExportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D6CD26145D612C00D172D2 /* ExportViewController.m */; };
+		3A6FB6A214712137002B558C /* ExportTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF97A32144BE6FE00133C47 /* ExportTableViewController.m */; };
+		3A6FB6A31471213A002B558C /* MediaTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A21953E145E4E3E0052C0FE /* MediaTableViewController.m */; };
+		3A6FB6A41471213D002B558C /* AddCreditsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A9FAC99146256D500D2B642 /* AddCreditsViewController.m */; };
+		3A6FB6A51471213F002B558C /* AudioEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9569E0581418A2A80016DAF3 /* AudioEditorViewController.m */; };
+		3A6FB6A614712145002B558C /* SceneEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9569E0641418A2D30016DAF3 /* SceneEditViewController.m */; };
+		3A6FB6A714712149002B558C /* MiniMusicalStarAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA2A1D413F26F8400B64EA5 /* MiniMusicalStarAppDelegate.m */; };
+		3A6FB6A81471214D002B558C /* SceneStripController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95674E15145BFE6A00836B5F /* SceneStripController.m */; };
+		3A6FB6A914712151002B558C /* FacebookUploaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D6CCC7145D4A3F00D172D2 /* FacebookUploaderViewController.m */; };
+		3A6FB6AA14712154002B558C /* YouTubeUploaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6427849C145EEF1C00B8C740 /* YouTubeUploaderViewController.m */; };
+		3A6FB6AB14712157002B558C /* CueController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9502152E146EB7C900B5C372 /* CueController.m */; };
+		3A6FB6AC14712163002B558C /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AFDC57B146CEA3D00BB5F75 /* AssetsLibrary.framework */; };
+		3A6FB6AD14712166002B558C /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A065B05145EE60D001BCEA5 /* MediaPlayer.framework */; };
+		3A6FB6AE14712178002B558C /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A5F7C671440CE1D00E9C570 /* CoreVideo.framework */; };
+		3A6FB6AF1471217B002B558C /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A5F7C651440CE1600E9C570 /* CoreMedia.framework */; };
+		3A6FB6B0147121B1002B558C /* AudioCue.m in Sources */ = {isa = PBXBuildFile; fileRef = 9572E0CC140E118400713F45 /* AudioCue.m */; };
+		3A6FB6B1147121B4002B558C /* Audio.m in Sources */ = {isa = PBXBuildFile; fileRef = 9572E0CE140E118400713F45 /* Audio.m */; };
+		3A6FB6B2147121C2002B558C /* Scene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9572E0D4140E118400713F45 /* Scene.m */; };
+		3A6FB6B3147121C5002B558C /* SceneUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A54B195144C4BEE008E52CC /* SceneUtility.m */; };
+		3A6FB6B4147121C9002B558C /* Show.m in Sources */ = {isa = PBXBuildFile; fileRef = 9572E0D6140E118400713F45 /* Show.m */; };
+		3A6FB6B5147121CB002B558C /* UndownloadedShow.m in Sources */ = {isa = PBXBuildFile; fileRef = 95D2069614482984004B6E8B /* UndownloadedShow.m */; };
+		3A6FB6B6147121CE002B558C /* Cue.m in Sources */ = {isa = PBXBuildFile; fileRef = 9502152B146E35EE00B5C372 /* Cue.m */; };
+		3A6FB6B7147121D2002B558C /* Cover.m in Sources */ = {isa = PBXBuildFile; fileRef = 95F9FFD31425C86B00A18463 /* Cover.m */; };
+		3A6FB6B8147121D7002B558C /* CoverSceneAudio.m in Sources */ = {isa = PBXBuildFile; fileRef = 95F9FFD91425C86B00A18463 /* CoverSceneAudio.m */; };
+		3A6FB6B9147121D9002B558C /* CoverScenePicture.m in Sources */ = {isa = PBXBuildFile; fileRef = 95F9FFDB1425C86B00A18463 /* CoverScenePicture.m */; };
+		3A6FB6BA147121DC002B558C /* ExportedAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A065B03145ED9D4001BCEA5 /* ExportedAsset.m */; };
 		3A72F57D142ED15D009BC19E /* PhotoEditorViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A72F57C142ED15D009BC19E /* PhotoEditorViewControllerTest.m */; };
 		3A72F58A142EEEC2009BC19E /* CameraPopupViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A72F589142EEEC2009BC19E /* CameraPopupViewControllerTest.m */; };
 		3A72F58F142EF24C009BC19E /* MenuViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A72F58E142EF24C009BC19E /* MenuViewControllerTest.m */; };
@@ -1222,6 +1252,10 @@
 				3ADA7AFE142F86830045F53E /* libxml2.dylib in Frameworks */,
 				3ADA7AFF142F86860045F53E /* libz.dylib in Frameworks */,
 				3AAD1EFC143F5DD70090DD44 /* AVFoundation.framework in Frameworks */,
+				3A6FB6AC14712163002B558C /* AssetsLibrary.framework in Frameworks */,
+				3A6FB6AD14712166002B558C /* MediaPlayer.framework in Frameworks */,
+				3A6FB6AE14712178002B558C /* CoreVideo.framework in Frameworks */,
+				3A6FB6AF1471217B002B558C /* CoreMedia.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2838,6 +2872,32 @@
 				3ADA7AFD142F865C0045F53E /* ASINetworkQueue.m in Sources */,
 				3ADA7B00142F869D0045F53E /* Reachability.m in Sources */,
 				643AC0ED142FF2AE00F65B85 /* AudioEditViewControllerTest.m in Sources */,
+				3A6FB69D14712101002B558C /* MenuViewController.m in Sources */,
+				3A6FB69E14712104002B558C /* ChoiceSelectionViewController.m in Sources */,
+				3A6FB69F14712107002B558C /* CoversListViewController.m in Sources */,
+				3A6FB6A01471210D002B558C /* ProgressOverlayViewController.m in Sources */,
+				3A6FB6A114712133002B558C /* ExportViewController.m in Sources */,
+				3A6FB6A214712137002B558C /* ExportTableViewController.m in Sources */,
+				3A6FB6A31471213A002B558C /* MediaTableViewController.m in Sources */,
+				3A6FB6A41471213D002B558C /* AddCreditsViewController.m in Sources */,
+				3A6FB6A51471213F002B558C /* AudioEditorViewController.m in Sources */,
+				3A6FB6A614712145002B558C /* SceneEditViewController.m in Sources */,
+				3A6FB6A714712149002B558C /* MiniMusicalStarAppDelegate.m in Sources */,
+				3A6FB6A81471214D002B558C /* SceneStripController.m in Sources */,
+				3A6FB6A914712151002B558C /* FacebookUploaderViewController.m in Sources */,
+				3A6FB6AA14712154002B558C /* YouTubeUploaderViewController.m in Sources */,
+				3A6FB6AB14712157002B558C /* CueController.m in Sources */,
+				3A6FB6B0147121B1002B558C /* AudioCue.m in Sources */,
+				3A6FB6B1147121B4002B558C /* Audio.m in Sources */,
+				3A6FB6B2147121C2002B558C /* Scene.m in Sources */,
+				3A6FB6B3147121C5002B558C /* SceneUtility.m in Sources */,
+				3A6FB6B4147121C9002B558C /* Show.m in Sources */,
+				3A6FB6B5147121CB002B558C /* UndownloadedShow.m in Sources */,
+				3A6FB6B6147121CE002B558C /* Cue.m in Sources */,
+				3A6FB6B7147121D2002B558C /* Cover.m in Sources */,
+				3A6FB6B8147121D7002B558C /* CoverSceneAudio.m in Sources */,
+				3A6FB6B9147121D9002B558C /* CoverScenePicture.m in Sources */,
+				3A6FB6BA147121DC002B558C /* ExportedAsset.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
