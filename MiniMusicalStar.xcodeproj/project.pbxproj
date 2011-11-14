@@ -223,8 +223,6 @@
 		3A6FB798147129B9002B558C /* SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6FB782147129B9002B558C /* SBJSON.m */; };
 		3A6FB799147129B9002B558C /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6FB784147129B9002B558C /* SBJsonBase.m */; };
 		3A6FB79A147129B9002B558C /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6FB784147129B9002B558C /* SBJsonBase.m */; };
-		3A6FB79B147129B9002B558C /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6FB786147129B9002B558C /* SBJsonParser.m */; };
-		3A6FB79D147129B9002B558C /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6FB788147129B9002B558C /* SBJsonWriter.m */; };
 		3A72F57D142ED15D009BC19E /* PhotoEditorViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A72F57C142ED15D009BC19E /* PhotoEditorViewControllerTest.m */; };
 		3A72F58A142EEEC2009BC19E /* CameraPopupViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A72F589142EEEC2009BC19E /* CameraPopupViewControllerTest.m */; };
 		3A72F58F142EF24C009BC19E /* MenuViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A72F58E142EF24C009BC19E /* MenuViewControllerTest.m */; };
@@ -3915,8 +3913,6 @@
 				3A6FB795147129B9002B558C /* NSString+SBJSON.m in Sources */,
 				3A6FB797147129B9002B558C /* SBJSON.m in Sources */,
 				3A6FB799147129B9002B558C /* SBJsonBase.m in Sources */,
-				3A6FB79B147129B9002B558C /* SBJsonParser.m in Sources */,
-				3A6FB79D147129B9002B558C /* SBJsonWriter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
