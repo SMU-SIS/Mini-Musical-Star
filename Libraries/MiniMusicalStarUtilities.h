@@ -14,5 +14,6 @@
 + (NSString*)returnMD5HashOfString:(NSString*)aString;
 + (NSString*)getUniqueFilenameWithoutExt;
 + (BOOL) NSStringIsValidEmail:(NSString *)checkString;
++ (NSString*)getCurrentDateTimeInStringInFormat:(NSString*)aDateFormat;
 
 @end

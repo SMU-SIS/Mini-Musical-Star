@@ -62,4 +62,16 @@
     return [emailTest evaluateWithObject:checkString];
 }
 
++ (NSString*)getCurrentDateTimeInStringInFormat:(NSString*)aDateFormat
+{
+    NSString* dateString = @"";
+    NSDate *now = [NSDate date];
+    
+    NSDateFormatter *dateFormat = [[[NSDateFormatter alloc] init] autorelease];
+    [dateFormat setDateFormat:aDateFormat];
+    dateString = [dateFormat stringFromDate:now];
+    
+    return dateString;
+}
+
 @end
