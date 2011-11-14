@@ -102,10 +102,6 @@
         self.context = aContext;
         self.playPauseButton = aPlayPauseButton;
         
-//        UIColor *background = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"softboard.png"]];
-//        
-//        [self.view setBackgroundColor:background];
-        
         [self updatePlayerStatus:NO AndRecordingStatus:NO];
         
         currentRecordingIndex = -1;
