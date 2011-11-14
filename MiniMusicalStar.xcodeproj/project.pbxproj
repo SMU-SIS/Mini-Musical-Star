@@ -93,6 +93,25 @@
 		3A6FB6B8147121D7002B558C /* CoverSceneAudio.m in Sources */ = {isa = PBXBuildFile; fileRef = 95F9FFD91425C86B00A18463 /* CoverSceneAudio.m */; };
 		3A6FB6B9147121D9002B558C /* CoverScenePicture.m in Sources */ = {isa = PBXBuildFile; fileRef = 95F9FFDB1425C86B00A18463 /* CoverScenePicture.m */; };
 		3A6FB6BA147121DC002B558C /* ExportedAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A065B03145ED9D4001BCEA5 /* ExportedAsset.m */; };
+		3A6FB6BB147122BF002B558C /* CameraPopupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95F9FFC61425C63700A18463 /* CameraPopupViewController.xib */; };
+		3A6FB6BC147122C2002B558C /* ChoiceSelectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 737716CA1445D61500BF2036 /* ChoiceSelectionViewController.xib */; };
+		3A6FB6BD147122C8002B558C /* MenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDA2A1DC13F26F8400B64EA5 /* MenuViewController.xib */; };
+		3A6FB6BE147122CB002B558C /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDA2A1D613F26F8400B64EA5 /* MainWindow.xib */; };
+		3A6FB6BF147122CE002B558C /* PlaybackViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDC5CC3113F6260400EAF813 /* PlaybackViewController.xib */; };
+		3A6FB6C0147122D0002B558C /* SceneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 820511BE13F3BB9B0016F87E /* SceneViewController.xib */; };
+		3A6FB6C1147122D3002B558C /* AudioEditorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9569E05D1418A2B10016DAF3 /* AudioEditorViewController.xib */; };
+		3A6FB6C2147122D7002B558C /* PhotoEditorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9569E05E1418A2B10016DAF3 /* PhotoEditorViewController.xib */; };
+		3A6FB6C3147122DB002B558C /* SceneEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9569E0611418A2C90016DAF3 /* SceneEditViewController.xib */; };
+		3A6FB6C4147122DF002B558C /* CoversListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95C526AD1438DA740008AE13 /* CoversListViewController.xib */; };
+		3A6FB6C5147122E3002B558C /* VideoPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A5F7C6B1440D74D00E9C570 /* VideoPlayerViewController.xib */; };
+		3A6FB6C6147122E5002B558C /* FacebookUploaderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64D6CCC8145D4A3F00D172D2 /* FacebookUploaderViewController.xib */; };
+		3A6FB6C7147122E9002B558C /* MediaTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A21953F145E4E3F0052C0FE /* MediaTableViewController.xib */; };
+		3A6FB6C8147122EC002B558C /* ExportTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AF97A33144BE6FE00133C47 /* ExportTableViewController.xib */; };
+		3A6FB6C9147122EF002B558C /* ExportViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64D6CD27145D612C00D172D2 /* ExportViewController.xib */; };
+		3A6FB6CA147122F1002B558C /* AddCreditsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A9FAC9A146256D500D2B642 /* AddCreditsViewController.xib */; };
+		3A6FB6CB147122F4002B558C /* ShareTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6457E05A145DA2FF00ABBF87 /* ShareTableViewController.xib */; };
+		3A6FB6CC147122F6002B558C /* YouTubeUploaderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6427849D145EEF1C00B8C740 /* YouTubeUploaderViewController.xib */; };
+		3A6FB6CD147122F9002B558C /* ProgressOverlayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3ABD22F6146E08D900FB8D72 /* ProgressOverlayViewController.xib */; };
 		3A72F57D142ED15D009BC19E /* PhotoEditorViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A72F57C142ED15D009BC19E /* PhotoEditorViewControllerTest.m */; };
 		3A72F58A142EEEC2009BC19E /* CameraPopupViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A72F589142EEEC2009BC19E /* CameraPopupViewControllerTest.m */; };
 		3A72F58F142EF24C009BC19E /* MenuViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A72F58E142EF24C009BC19E /* MenuViewControllerTest.m */; };
@@ -2670,6 +2689,25 @@
 				9510D17A142F882C00908ABC /* guitar.mp3 in Resources */,
 				9510D17B142F882F00908ABC /* keys.mp3 in Resources */,
 				9510D17C142F883200908ABC /* vocals.mp3 in Resources */,
+				3A6FB6BB147122BF002B558C /* CameraPopupViewController.xib in Resources */,
+				3A6FB6BC147122C2002B558C /* ChoiceSelectionViewController.xib in Resources */,
+				3A6FB6BD147122C8002B558C /* MenuViewController.xib in Resources */,
+				3A6FB6BE147122CB002B558C /* MainWindow.xib in Resources */,
+				3A6FB6BF147122CE002B558C /* PlaybackViewController.xib in Resources */,
+				3A6FB6C0147122D0002B558C /* SceneViewController.xib in Resources */,
+				3A6FB6C1147122D3002B558C /* AudioEditorViewController.xib in Resources */,
+				3A6FB6C2147122D7002B558C /* PhotoEditorViewController.xib in Resources */,
+				3A6FB6C3147122DB002B558C /* SceneEditViewController.xib in Resources */,
+				3A6FB6C4147122DF002B558C /* CoversListViewController.xib in Resources */,
+				3A6FB6C5147122E3002B558C /* VideoPlayerViewController.xib in Resources */,
+				3A6FB6C6147122E5002B558C /* FacebookUploaderViewController.xib in Resources */,
+				3A6FB6C7147122E9002B558C /* MediaTableViewController.xib in Resources */,
+				3A6FB6C8147122EC002B558C /* ExportTableViewController.xib in Resources */,
+				3A6FB6C9147122EF002B558C /* ExportViewController.xib in Resources */,
+				3A6FB6CA147122F1002B558C /* AddCreditsViewController.xib in Resources */,
+				3A6FB6CB147122F4002B558C /* ShareTableViewController.xib in Resources */,
+				3A6FB6CC147122F6002B558C /* YouTubeUploaderViewController.xib in Resources */,
+				3A6FB6CD147122F9002B558C /* ProgressOverlayViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
