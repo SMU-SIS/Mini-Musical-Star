@@ -28,7 +28,6 @@
 		3A10F10C145C428C006F8EEC /* main_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A10F10B145C428C006F8EEC /* main_background.png */; };
 		3A12E368142F1D9A004B97BE /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A12E367142F1D9A004B97BE /* libOCMock.a */; };
 		3A12E374142F2BD3004B97BE /* Picture.m in Sources */ = {isa = PBXBuildFile; fileRef = 9572E0D0140E118400713F45 /* Picture.m */; };
-		3A12E375142F2C2D004B97BE /* PictureCue.m in Sources */ = {isa = PBXBuildFile; fileRef = 9572E0D2140E118400713F45 /* PictureCue.m */; };
 		3A12E376142F7379004B97BE /* CoverScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 95F9FFD71425C86B00A18463 /* CoverScene.m */; };
 		3A12E377142F7547004B97BE /* AFOpenFlowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFFDECE142C7CCD000D8494 /* AFOpenFlowView.m */; };
 		3A12E378142F7551004B97BE /* AFItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFFDECB142C7CCD000D8494 /* AFItemView.m */; };
@@ -82,7 +81,6 @@
 		3A6FB6AD14712166002B558C /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A065B05145EE60D001BCEA5 /* MediaPlayer.framework */; };
 		3A6FB6AE14712178002B558C /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A5F7C671440CE1D00E9C570 /* CoreVideo.framework */; };
 		3A6FB6AF1471217B002B558C /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A5F7C651440CE1600E9C570 /* CoreMedia.framework */; };
-		3A6FB6B0147121B1002B558C /* AudioCue.m in Sources */ = {isa = PBXBuildFile; fileRef = 9572E0CC140E118400713F45 /* AudioCue.m */; };
 		3A6FB6B1147121B4002B558C /* Audio.m in Sources */ = {isa = PBXBuildFile; fileRef = 9572E0CE140E118400713F45 /* Audio.m */; };
 		3A6FB6B2147121C2002B558C /* Scene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9572E0D4140E118400713F45 /* Scene.m */; };
 		3A6FB6B3147121C5002B558C /* SceneUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A54B195144C4BEE008E52CC /* SceneUtility.m */; };
@@ -371,10 +369,8 @@
 		9569E0601418A2B10016DAF3 /* PhotoEditorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9569E05E1418A2B10016DAF3 /* PhotoEditorViewController.xib */; };
 		9569E0621418A2C90016DAF3 /* SceneEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9569E0611418A2C90016DAF3 /* SceneEditViewController.xib */; };
 		9569E0651418A2D30016DAF3 /* SceneEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9569E0641418A2D30016DAF3 /* SceneEditViewController.m */; };
-		9572E0D7140E118400713F45 /* AudioCue.m in Sources */ = {isa = PBXBuildFile; fileRef = 9572E0CC140E118400713F45 /* AudioCue.m */; };
 		9572E0D8140E118400713F45 /* Audio.m in Sources */ = {isa = PBXBuildFile; fileRef = 9572E0CE140E118400713F45 /* Audio.m */; };
 		9572E0D9140E118400713F45 /* Picture.m in Sources */ = {isa = PBXBuildFile; fileRef = 9572E0D0140E118400713F45 /* Picture.m */; };
-		9572E0DA140E118400713F45 /* PictureCue.m in Sources */ = {isa = PBXBuildFile; fileRef = 9572E0D2140E118400713F45 /* PictureCue.m */; };
 		9572E0DB140E118400713F45 /* Scene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9572E0D4140E118400713F45 /* Scene.m */; };
 		9572E0DC140E118400713F45 /* Show.m in Sources */ = {isa = PBXBuildFile; fileRef = 9572E0D6140E118400713F45 /* Show.m */; };
 		9572E0E0140E11FF00713F45 /* ShowDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 9572E0DF140E11FF00713F45 /* ShowDAO.m */; };
@@ -1512,14 +1508,10 @@
 		9569E0611418A2C90016DAF3 /* SceneEditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SceneEditViewController.xib; sourceTree = "<group>"; };
 		9569E0631418A2D30016DAF3 /* SceneEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneEditViewController.h; sourceTree = "<group>"; };
 		9569E0641418A2D30016DAF3 /* SceneEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SceneEditViewController.m; sourceTree = "<group>"; };
-		9572E0CB140E118400713F45 /* AudioCue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioCue.h; sourceTree = "<group>"; };
-		9572E0CC140E118400713F45 /* AudioCue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioCue.m; sourceTree = "<group>"; };
 		9572E0CD140E118400713F45 /* Audio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Audio.h; sourceTree = "<group>"; };
 		9572E0CE140E118400713F45 /* Audio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Audio.m; sourceTree = "<group>"; };
 		9572E0CF140E118400713F45 /* Picture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Picture.h; sourceTree = "<group>"; };
 		9572E0D0140E118400713F45 /* Picture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Picture.m; sourceTree = "<group>"; };
-		9572E0D1140E118400713F45 /* PictureCue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PictureCue.h; sourceTree = "<group>"; };
-		9572E0D2140E118400713F45 /* PictureCue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PictureCue.m; sourceTree = "<group>"; };
 		9572E0D3140E118400713F45 /* Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scene.h; sourceTree = "<group>"; };
 		9572E0D4140E118400713F45 /* Scene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Scene.m; sourceTree = "<group>"; };
 		9572E0D5140E118400713F45 /* Show.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Show.h; sourceTree = "<group>"; };
@@ -2995,14 +2987,10 @@
 			isa = PBXGroup;
 			children = (
 				95F9FFD01425C85600A18463 /* Cover CoreData Models */,
-				9572E0CB140E118400713F45 /* AudioCue.h */,
-				9572E0CC140E118400713F45 /* AudioCue.m */,
 				9572E0CD140E118400713F45 /* Audio.h */,
 				9572E0CE140E118400713F45 /* Audio.m */,
 				9572E0CF140E118400713F45 /* Picture.h */,
 				9572E0D0140E118400713F45 /* Picture.m */,
-				9572E0D1140E118400713F45 /* PictureCue.h */,
-				9572E0D2140E118400713F45 /* PictureCue.m */,
 				9572E0D3140E118400713F45 /* Scene.h */,
 				9572E0D4140E118400713F45 /* Scene.m */,
 				3A54B194144C4BED008E52CC /* SceneUtility.h */,
@@ -3539,7 +3527,6 @@
 				3A010656142F14E30054A0BB /* PhotoEditorViewController.m in Sources */,
 				3A010658142F14ED0054A0BB /* CameraPopupViewController.m in Sources */,
 				3A12E374142F2BD3004B97BE /* Picture.m in Sources */,
-				3A12E375142F2C2D004B97BE /* PictureCue.m in Sources */,
 				3A12E376142F7379004B97BE /* CoverScene.m in Sources */,
 				3A12E377142F7547004B97BE /* AFOpenFlowView.m in Sources */,
 				3A12E378142F7551004B97BE /* AFItemView.m in Sources */,
@@ -3578,7 +3565,6 @@
 				3A6FB6A914712151002B558C /* FacebookUploaderViewController.m in Sources */,
 				3A6FB6AA14712154002B558C /* YouTubeUploaderViewController.m in Sources */,
 				3A6FB6AB14712157002B558C /* CueController.m in Sources */,
-				3A6FB6B0147121B1002B558C /* AudioCue.m in Sources */,
 				3A6FB6B1147121B4002B558C /* Audio.m in Sources */,
 				3A6FB6B2147121C2002B558C /* Scene.m in Sources */,
 				3A6FB6B3147121C5002B558C /* SceneUtility.m in Sources */,
@@ -3599,10 +3585,8 @@
 				EDA2A1D213F26F8400B64EA5 /* main.m in Sources */,
 				EDA2A1D513F26F8400B64EA5 /* MiniMusicalStarAppDelegate.m in Sources */,
 				EDA2A1DB13F26F8400B64EA5 /* MenuViewController.m in Sources */,
-				9572E0D7140E118400713F45 /* AudioCue.m in Sources */,
 				9572E0D8140E118400713F45 /* Audio.m in Sources */,
 				9572E0D9140E118400713F45 /* Picture.m in Sources */,
-				9572E0DA140E118400713F45 /* PictureCue.m in Sources */,
 				9572E0DB140E118400713F45 /* Scene.m in Sources */,
 				9572E0DC140E118400713F45 /* Show.m in Sources */,
 				9572E0E0140E11FF00713F45 /* ShowDAO.m in Sources */,
