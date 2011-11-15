@@ -207,7 +207,7 @@
     
     if (!downloadRequestGotCancelled) //meaning that the request failed
     {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Download Failed" message:@"Perhaps the network is busy or unstable? You're welcome to try again." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Download Failed" message:@"Your iPad's internet connection might be busy or unstable. Try again later!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
         [alert release];
     }
