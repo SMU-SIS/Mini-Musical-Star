@@ -422,6 +422,7 @@
 		95021536146EC94D00B5C372 /* NSObject+DDExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 95021534146EC94D00B5C372 /* NSObject+DDExtensions.m */; };
 		95041584147185A30032FD52 /* audiocues.png in Resources */ = {isa = PBXBuildFile; fileRef = 95041583147185A30032FD52 /* audiocues.png */; };
 		95041586147189200032FD52 /* photoboxcue.png in Resources */ = {isa = PBXBuildFile; fileRef = 95041585147189200032FD52 /* photoboxcue.png */; };
+		950415A61472DC040032FD52 /* howling_dog.zip in Resources */ = {isa = PBXBuildFile; fileRef = 950415A51472DC040032FD52 /* howling_dog.zip */; };
 		95674E16145BFE6A00836B5F /* SceneStripController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95674E15145BFE6A00836B5F /* SceneStripController.m */; };
 		9569E05B1418A2A80016DAF3 /* AudioEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9569E0581418A2A80016DAF3 /* AudioEditorViewController.m */; };
 		9569E05C1418A2A80016DAF3 /* PhotoEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9569E05A1418A2A80016DAF3 /* PhotoEditorViewController.m */; };
@@ -1536,6 +1537,7 @@
 		95021534146EC94D00B5C372 /* NSObject+DDExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+DDExtensions.m"; sourceTree = "<group>"; };
 		95041583147185A30032FD52 /* audiocues.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = audiocues.png; sourceTree = "<group>"; };
 		95041585147189200032FD52 /* photoboxcue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = photoboxcue.png; sourceTree = "<group>"; };
+		950415A51472DC040032FD52 /* howling_dog.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = howling_dog.zip; sourceTree = "<group>"; };
 		95674E14145BFE6A00836B5F /* SceneStripController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneStripController.h; sourceTree = "<group>"; };
 		95674E15145BFE6A00836B5F /* SceneStripController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SceneStripController.m; sourceTree = "<group>"; };
 		9569E0571418A2A80016DAF3 /* AudioEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioEditorViewController.h; sourceTree = "<group>"; };
@@ -2908,6 +2910,7 @@
 		820E2A1E140A0A2A00B80BBC /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				950415A51472DC040032FD52 /* howling_dog.zip */,
 				95041583147185A30032FD52 /* audiocues.png */,
 				95041585147189200032FD52 /* photoboxcue.png */,
 				3A5FCB99147001420065B6C4 /* tutorialbutton.png */,
@@ -3445,6 +3448,7 @@
 				95041586147189200032FD52 /* photoboxcue.png in Resources */,
 				6474991E14725E1100A0D308 /* LyricsViewController.xib in Resources */,
 				6474992314725E3900A0D308 /* TracksTableViewController.xib in Resources */,
+				950415A61472DC040032FD52 /* howling_dog.zip in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
