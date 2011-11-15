@@ -9,5 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @interface LyricsViewController : UIViewController
+{
+    
+}
+
+@property (nonatomic, retain) IBOutlet UIScrollView *lyricsScrollView;
+@property (nonatomic, retain) IBOutlet UILabel *lyricsLabel;
 
 @end
