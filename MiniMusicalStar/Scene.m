@@ -37,7 +37,6 @@
         self.coverPicture = [[UIImage alloc] initWithContentsOfFile:picturePath];
         
         self.description = [dictionary objectForKey:@"description"];
-        NSLog(@"%@", self.coverPicture);
         //init the audio stuff here
         NSMutableDictionary *plistAudioDict = [dictionary objectForKey:@"audio"];
         self.audioDict = [NSMutableDictionary dictionaryWithCapacity:[plistAudioDict count]];

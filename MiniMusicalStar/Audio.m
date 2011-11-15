@@ -21,7 +21,20 @@
         self.path = [assetPath stringByAppendingPathComponent:[dictionary objectForKey:@"path"]];
         self.replaceable = [dictionary objectForKey:@"replaceable"];
         self.duration = [dictionary objectForKey:@"duration"];
-        self.lyrics = [dictionary objectForKey:@"lyrics"];
+        
+        //load in the lyrics for tracks that have 'em
+        NSString *lyricsFile = [dictionary objectForKey:@"lyrics"];
+        if (lyricsFile)
+        {
+            NSError *err = nil;
+            NSString *lyricsPath = [assetPath stringByAppendingPathComponent:lyricsFile];
+            self.lyrics = [NSString stringWithContentsOfFile:lyricsPath encoding:NSUTF8StringEncoding error:&err];
+            if (!self.lyrics)
+            {
+                NSLog(@"Error loading lyrics: %@", err.localizedDescription);
+            }
+        }
+
         
         //load in all the cues
         self.audioCueList = [NSMutableDictionary dictionary];
