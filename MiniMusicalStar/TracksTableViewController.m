@@ -43,11 +43,6 @@
         self.context = aContext;
         self.recordingStatusLabel = aRecordingStatusLabel;
         
-        if (playPauseButton == nil)  {
-            NSLog(@"damm!");
-            
-        }
-        
         [self updatePlayerStatus:NO AndRecordingStatus:NO];
         currentRecordingIndex = -1;
         
