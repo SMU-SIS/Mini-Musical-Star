@@ -11,9 +11,11 @@
 #import "Scene.h"
 #import "CoverScene.h"
 
+#define kBringSliderToZero @"kBringSliderToZero"
+
 @protocol TracksTableViewDelegate <NSObject>
 @required
-- (void)bringSliderToZero;
+- (void)loadLyrics:(NSString*)aLyrics;
 @end
 
 @interface TracksTableViewController : UITableViewController

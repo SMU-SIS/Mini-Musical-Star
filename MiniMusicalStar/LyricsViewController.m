@@ -65,19 +65,26 @@
 #define LYRICS_VIEW_X 520
 #define LYRICS_VIEW_Y 30
 
-- (void)loadLyrics:(NSString*)someLyrics
+//- (void)loadLyrics:(NSString*)someLyrics
+//{
+//    CGRect lyricsLabelFrame = lyricsLabel.bounds;
+//    
+//    lyricsLabelFrame.size = [someLyrics sizeWithFont:lyricsLabel.font constrainedToSize:CGSizeMake(LYRICS_VIEW_WIDTH-20, 100000) lineBreakMode:lyricsLabel.lineBreakMode];
+//    
+//    //set new size of label
+//    lyricsLabel.frame = CGRectMake(-15, 70, lyricsLabel.frame.size.width-100, lyricsLabelFrame.size.height);
+//    
+//    //set new content size of scroll view
+//    [lyricsScrollView setContentSize:CGSizeMake(lyricsLabel.frame.size.width, lyricsLabelFrame.size.height+100)];
+//    
+//    lyricsLabel.text = someLyrics;
+//}
+
+#pragma mark - TracksTableViewDelegate methods
+
+- (void)loadLyrics:(NSString*)aLyrics
 {
-    CGRect lyricsLabelFrame = lyricsLabel.bounds;
     
-    lyricsLabelFrame.size = [someLyrics sizeWithFont:lyricsLabel.font constrainedToSize:CGSizeMake(LYRICS_VIEW_WIDTH-20, 100000) lineBreakMode:lyricsLabel.lineBreakMode];
-    
-    //set new size of label
-    lyricsLabel.frame = CGRectMake(-15, 70, lyricsLabel.frame.size.width-100, lyricsLabelFrame.size.height);
-    
-    //set new content size of scroll view
-    [lyricsScrollView setContentSize:CGSizeMake(lyricsLabel.frame.size.width, lyricsLabelFrame.size.height+100)];
-    
-    lyricsLabel.text = someLyrics;
 }
 
 @end

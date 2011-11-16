@@ -12,8 +12,12 @@
 #import "Scene.h"
 #import "CoverScene.h"
 
+@protocol AudioEditorDelegate <NSObject>
+@end
+
 @interface AudioEditorViewController : UIViewController
 {
+    id <AudioEditorDelegate> delegate;
 }
 
 //initializers

@@ -59,12 +59,14 @@
         
         //KVO the Audio NSSet
         [self.theCoverScene addObserver:self forKeyPath:@"Audio" options:0 context:@"NewCoverTrackAdded"];
-        
-        self.tableView.dataSource = self;
-        self.tableView.delegate = self;
+
         self.tableView.backgroundColor = [UIColor clearColor];
-        
-        //***TELL LYRICS VIEW TO LOAD LYRICS, THROUGH AUDIOVIEW OR AS A DELEGATE***
+
+        //load first replaceable audio's lyrics
+        if (arrayOfReplaceableAudios != nil && [arrayOfReplaceableAudios count] != 0) {
+            Audio *anAudio = (Audio*) [arrayOfReplaceableAudios objectAtIndex:0];
+            [delegate loadLyrics:anAudio.lyrics];
+        }
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(autosaveWhenContextDidChange:) name:NSManagedObjectContextObjectsDidChangeNotification object:context];
     }
@@ -411,7 +413,8 @@
     [self.playPauseButton setImage:[UIImage imageNamed:@"play.png"] forState:UIControlStateNormal];
     
     if (hasReachedEnd == YES) {
-        [delegate bringSliderToZero];
+        //[delegate bringSliderToZero];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kBringSliderToZero object:self];
     }
     
     self.recordingStatusLabel.text = @"";

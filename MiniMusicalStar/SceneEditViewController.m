@@ -9,6 +9,7 @@
 #define kNumberOfPages 2
 #import "SceneEditViewController.h"
 #import <MediaPlayer/MediaPlayer.h>
+#import "TracksTableViewController.h"
 
 @implementation SceneEditViewController
 
@@ -73,6 +74,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceivePlayerStoppedNotification:) name:kMixPlayerRecorderPlaybackStopped object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveElapsedTimeNotification:) name:kMixPlayerRecorderPlaybackElapsedTimeAdvanced object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveBringSliderToZeroNotification) name:kBringSliderToZero object:nil];
 }
 
 - (void)viewDidLoad
@@ -194,7 +197,8 @@
     //load the audio view controller
     audioView = [[AudioEditorViewController alloc] initWithScene:theScene andCoverScene:theCoverScene andContext:context];
     
-    self.audioView.tracksTableViewController.delegate = self;
+    self.audioView.delegate = self;
+    self.audioView.tracksTableViewController.delegate = audioView.lyricsViewController;
     
     //load the photo view controller
     photoView = [[PhotoEditorViewController alloc] initWithScene:theScene andCoverScene:theCoverScene andContext:context];
@@ -285,6 +289,11 @@
     return (interfaceOrientation == UIInterfaceOrientationLandscapeLeft || interfaceOrientation == UIInterfaceOrientationLandscapeRight);
 }
 
+- (void)didReceiveBringSliderToZeroNotification
+{
+    [self setSliderPosition:0];
+}
+
 -(void)drawPlaySlider
 {
     // Setup custom slider images
@@ -311,12 +320,7 @@
     micVolumeSlider.continuous = YES;
 }
 
-#pragma mark - TracksTableViewDelegate methods
-
-- (void)bringSliderToZero
-{
-    [self setSliderPosition:0];
-}
+#pragma mark - AudioViewDelegate methods
 
 - (void) playMovie:(NSURL*)filePath
 {

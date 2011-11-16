@@ -18,7 +18,7 @@
 @end
 
 @interface SceneEditViewController : UIViewController 
-    <UIScrollViewDelegate, UIAlertViewDelegate, PhotoEditorViewDelegate, TracksTableViewDelegate> {
+    <UIScrollViewDelegate, UIAlertViewDelegate, PhotoEditorViewDelegate, AudioEditorDelegate> {
     // To be used when scrolls originate from the UIPageControl
     BOOL pageControlUsed;
     BOOL transitioning;
