@@ -39,7 +39,6 @@
         tracksTableViewController = [[TracksTableViewController alloc] initWithScene:aScene andACoverScene:aCoverScene andAContext:aContext andARecordingStatusLabel:recordingStatusLabel];
         
         lyricsViewController = [[LyricsViewController alloc] init];
-        
     }
     
     return self;
@@ -78,14 +77,6 @@
     newSize.size.height = tracksTableViewFrame.size.height;
     self.tracksTableViewController.tableView.frame = newSize;
     
-    CGRect lyricsViewControllerFrame = lyricsViewController.view.frame;
-    lyricsViewControllerFrame.origin.x = 0;
-    lyricsViewControllerFrame.origin.y = 0;
-    lyricsViewController.view.frame = lyricsViewControllerFrame;
-    
-//    NSLog(@"lyrics view frame: %@", NSStringFromCGRect(lyricsView.frame));
-//    NSLog(@"lyrics from scroll view : %@", NSStringFromCGRect(lyricsViewController.view.frame));
-    
     self.tracksTableViewController.playPauseButton = self.playPauseButton;
 }
 
@@ -118,6 +109,5 @@
     //play tutorial video player
     [delegate playMovie:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"audio" ofType:@"m4v"]]];
 }
-
 
 @end

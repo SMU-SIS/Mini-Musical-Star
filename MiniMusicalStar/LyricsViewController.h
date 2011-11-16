@@ -11,9 +11,6 @@
 
 @interface LyricsViewController : UIViewController
     <TracksTableViewDelegate>
-{
-    
-}
 
 @property (nonatomic, retain) IBOutlet UIScrollView *lyricsScrollView;
 @property (nonatomic, retain) IBOutlet UILabel *lyricsLabel;

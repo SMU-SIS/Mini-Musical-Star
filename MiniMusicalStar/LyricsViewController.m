@@ -24,7 +24,8 @@
 
 - (void) dealloc
 {
-    
+    [lyricsScrollView release];
+    [lyricsLabel release];
 }
 
 #pragma mark - View lifecycle
@@ -40,8 +41,8 @@
 {
     [super viewDidUnload];
     
-    [lyricsScrollView release];
-    [lyricsLabel release];
+    lyricsScrollView = nil;
+    lyricsLabel = nil;
 }
 
 - (void)didReceiveMemoryWarning
@@ -52,33 +53,8 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-	return YES;
-}
-
 #pragma mark - instance methods
 
-#define LYRICS_VIEW_WIDTH 460
-#define LYRICS_VIEW_HEIGHT 530
-#define LYRICS_VIEW_X 520
-#define LYRICS_VIEW_Y 30
-
-//- (void)loadLyrics:(NSString*)someLyrics
-//{
-//    CGRect lyricsLabelFrame = lyricsLabel.bounds;
-//    
-//    lyricsLabelFrame.size = [someLyrics sizeWithFont:lyricsLabel.font constrainedToSize:CGSizeMake(LYRICS_VIEW_WIDTH-20, 100000) lineBreakMode:lyricsLabel.lineBreakMode];
-//    
-//    //set new size of label
-//    lyricsLabel.frame = CGRectMake(-15, 70, lyricsLabel.frame.size.width-100, lyricsLabelFrame.size.height);
-//    
-//    //set new content size of scroll view
-//    [lyricsScrollView setContentSize:CGSizeMake(lyricsLabel.frame.size.width, lyricsLabelFrame.size.height+100)];
-//    
-//    lyricsLabel.text = someLyrics;
-//}
 
 #pragma mark - TracksTableViewDelegate methods
 
@@ -88,24 +64,15 @@
     
     CGSize expectedLabelSize = [aLyrics sizeWithFont:lyricsLabel.font constrainedToSize:maximumLabelSize lineBreakMode:lyricsLabel.lineBreakMode];
     
+    CGRect newSize = lyricsLabel.frame;
+    newSize.size.height = expectedLabelSize.height;
+    lyricsLabel.frame = newSize;
+    
     lyricsLabel.text = aLyrics;
-    
-    [lyricsLabel sizeToFit];
-    //    
-    //    CGRect newFrame = lyricsLabel.frame;
-    //    newFrame.size.height = expectedLabelSize.height;
-    //    newFrame.size.width = expectedLabelSize.width+50;
-    //    lyricsLabel.frame = newFrame;
-    
-    
+        
     CGSize scrollViewSize = lyricsScrollView.frame.size;
-    scrollViewSize.height = expectedLabelSize.height;
-    //    scrollViewSize.width = scrollViewSize.width+50;//del
+    scrollViewSize.height = expectedLabelSize.height+100;
     [lyricsScrollView setContentSize:scrollViewSize]; 
-    
-    
-    [lyricsLabel setBackgroundColor:[UIColor purpleColor]];
-    lyricsLabel.alpha = 0.5;
 }
 
 @end

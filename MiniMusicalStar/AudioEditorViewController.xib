@@ -136,7 +136,7 @@
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="20553345"/>
 						<string key="NSReuseIdentifierKey">_NS:212</string>
-						<object class="NSColor" key="IBUIBackgroundColor">
+						<object class="NSColor" key="IBUIBackgroundColor" id="141052699">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MCAwAA</bytes>
 						</object>
@@ -145,15 +145,12 @@
 					<object class="IBUIView" id="320592427">
 						<reference key="NSNextResponder" ref="710011650"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{543, 81}, {431, 456}}</string>
+						<string key="NSFrame">{{543, 73}, {431, 464}}</string>
 						<reference key="NSSuperview" ref="710011650"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:212</string>
-						<object class="NSColor" key="IBUIBackgroundColor">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC42IDAuNiAwLjYgMC42AA</bytes>
-						</object>
+						<reference key="IBUIBackgroundColor" ref="141052699"/>
 						<bool key="IBUIAutoresizesSubviews">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 					</object>
