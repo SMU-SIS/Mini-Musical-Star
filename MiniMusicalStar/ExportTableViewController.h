@@ -38,7 +38,7 @@
 }
 
 @property (retain, nonatomic) NSArray *musicalArray;
-@property (retain, nonatomic) NSArray *scenesArray;
+@property (retain, nonatomic) NSMutableArray *scenesArray;
 @property (retain, nonatomic) NSMutableArray *exportedAssetsArray;
 @property (retain, nonatomic) NSMutableArray *musicalAudioMappings;
 @property (retain, nonatomic) Show *theShow;

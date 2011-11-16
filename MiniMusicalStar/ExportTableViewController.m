@@ -64,7 +64,12 @@
         self.theShow = show;
         self.theCover = cover;
         self.musicalArray = [NSArray arrayWithObject:show];
-        self.scenesArray = [show.scenes allValues];
+//        NSArray *array = [show.scenes allValues];
+        self.scenesArray = [[NSMutableArray alloc] initWithCapacity:0];
+        for (id obj in theShow.scenesOrder){
+            NSString *hash = (NSString*) obj;
+            [self.scenesArray addObject:[theShow.scenes objectForKey:hash]];
+        }
         self.musicalAudioMappings = [[NSMutableArray alloc] initWithCapacity:0];
         self.exportedAssetsArray = [[NSMutableArray alloc] initWithCapacity:0];
         self.tempMusicalContainer = [[NSMutableArray alloc] init];
