@@ -92,13 +92,13 @@
 
     //update the total time label
     //[totalTimeLabel setText:[NSString stringWithFormat:@"%lu", thePlayer.totalPlaybackTimeInSeconds]];
-    [totalTimeLabel setText:[NSString stringWithFormat:@"%lu:%0.2lu", [self.audioView.thePlayer totalPlaybackTimeInSeconds]/60, [self.audioView.thePlayer totalPlaybackTimeInSeconds]%60]];
+    [totalTimeLabel setText:[NSString stringWithFormat:@"%lu:%0.2lu", [self.audioView.tracksTableViewController.thePlayer totalPlaybackTimeInSeconds]/60, [self.audioView.tracksTableViewController.thePlayer totalPlaybackTimeInSeconds]%60]];
     
     //update the song title
     [songInfoLabel setText:theScene.title];
 
     //set the mic volume control value
-    micVolumeSlider.value = [self.audioView.thePlayer getMicVolume];
+    micVolumeSlider.value = [self.audioView.tracksTableViewController.thePlayer getMicVolume];
     
     [self drawPlaySlider];
     
@@ -111,7 +111,7 @@
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
     
-    audioView.delegate = nil;
+    self.audioView.tracksTableViewController.delegate = nil;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -122,14 +122,14 @@
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    [audioView deRegisterFromNSNotifcationCenter];
+    [audioView.tracksTableViewController deRegisterFromNSNotifcationCenter];
 }
 
 #pragma mark - IBActions
 
 - (IBAction)playPauseButtonPressed:(UIButton *)sender
 {
-    [self.audioView playPauseButtonIsPressed];
+    [self.audioView.tracksTableViewController playPauseButtonIsPressed];
 }
 
 - (IBAction)toggleContainerView
@@ -176,13 +176,13 @@
 {
     //this adjusts the mic volume
     //[thePlayer setMicVolume:sender.value];
-    [self.audioView.thePlayer setMicVolume:sender.value];
+    [self.audioView.tracksTableViewController.thePlayer setMicVolume:sender.value];
 }
 
 - (IBAction)toggleSeek:(UISlider *)sender
 {
     //convert the float value to seconds
-    int targetSeconds = sender.value * [self.audioView.thePlayer totalPlaybackTimeInSeconds];
+    int targetSeconds = sender.value * [self.audioView.tracksTableViewController.thePlayer totalPlaybackTimeInSeconds];
     [self setSliderPosition:targetSeconds];
     
 }
@@ -194,7 +194,7 @@
     //load the audio view controller
     audioView = [[AudioEditorViewController alloc] initWithScene:theScene andCoverScene:theCoverScene andContext:context andPlayPauseButton:playPauseButton];
     
-    audioView.delegate = self;
+    self.audioView.tracksTableViewController.delegate = self;
     
     //load the photo view controller
     photoView = [[PhotoEditorViewController alloc] initWithScene:theScene andCoverScene:theCoverScene andContext:context];
@@ -202,12 +202,12 @@
 }
 
 - (NSArray*) getExportAudioURLs{
-    return [audioView getExportAudioURLs];
+    return [audioView.tracksTableViewController getExportAudioURLs];
 }
 
 - (void)setSliderPosition:(int) targetSeconds
 {
-    if (self.audioView.thePlayer.isRecording)
+    if (self.audioView.tracksTableViewController.thePlayer.isRecording)
     {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Oops!" message:@"Sorry, you can't seek while recording!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
         [alertView show];
@@ -217,29 +217,29 @@
     else
     {
         //convert the float value to seconds
-        if (self.audioView.thePlayer.isPlaying)
+        if (self.audioView.tracksTableViewController.thePlayer.isPlaying)
             //if the player is playing
         {
-            [self.audioView.thePlayer seekTo:targetSeconds];
+            [self.audioView.tracksTableViewController.thePlayer seekTo:targetSeconds];
         }
         
         else
         {
             //if the player is not playing
-            [self.audioView.thePlayer seekTo:targetSeconds];
-            [self.audioView.thePlayer stop];
+            [self.audioView.tracksTableViewController.thePlayer seekTo:targetSeconds];
+            [self.audioView.tracksTableViewController.thePlayer stop];
         }
     }
 }
 
 - (void)stopPlayer
 {
-    [self.audioView.thePlayer stop];
+    [self.audioView.tracksTableViewController.thePlayer stop];
 }
 
 -(BOOL)isRecording
 {
-    return [audioView isRecording];
+    return [audioView.tracksTableViewController isRecording];
 }
 
 #pragma mark - notifys and callbacks
@@ -261,11 +261,11 @@
 -(void)updateProgressSliderWithTime
 {
     //inform the PhotoEditorViewController
-    [photoView setSliderImages:[self.audioView.thePlayer elapsedPlaybackTimeInSeconds]];
+    [photoView setSliderImages:[self.audioView.tracksTableViewController.thePlayer elapsedPlaybackTimeInSeconds]];
     
     //update the playback labels
-    [elapsedTimeLabel setText:[NSString stringWithFormat:@"%i:%0.2i", [self.audioView.thePlayer elapsedPlaybackTimeInSeconds]/60, [self.audioView.thePlayer elapsedPlaybackTimeInSeconds]%60]];
-    float progressSliderValue = (float)[self.audioView.thePlayer elapsedPlaybackTimeInSeconds] / (float)[self.audioView.thePlayer totalPlaybackTimeInSeconds];    
+    [elapsedTimeLabel setText:[NSString stringWithFormat:@"%i:%0.2i", [self.audioView.tracksTableViewController.thePlayer elapsedPlaybackTimeInSeconds]/60, [self.audioView.tracksTableViewController.thePlayer elapsedPlaybackTimeInSeconds]%60]];
+    float progressSliderValue = (float)[self.audioView.tracksTableViewController.thePlayer elapsedPlaybackTimeInSeconds] / (float)[self.audioView.tracksTableViewController.thePlayer totalPlaybackTimeInSeconds];    
     playPositionSlider.value = progressSliderValue;
 }
 
@@ -311,7 +311,7 @@
     micVolumeSlider.continuous = YES;
 }
 
-#pragma mark - AudioEditorDelegate methods
+#pragma mark - TracksTableViewDelegate methods
 
 - (void)bringSliderToZero
 {
