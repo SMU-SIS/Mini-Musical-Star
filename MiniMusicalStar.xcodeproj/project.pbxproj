@@ -70,7 +70,6 @@
 		3A6FB6A214712137002B558C /* ExportTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF97A32144BE6FE00133C47 /* ExportTableViewController.m */; };
 		3A6FB6A31471213A002B558C /* MediaTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A21953E145E4E3E0052C0FE /* MediaTableViewController.m */; };
 		3A6FB6A41471213D002B558C /* AddCreditsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A9FAC99146256D500D2B642 /* AddCreditsViewController.m */; };
-		3A6FB6A51471213F002B558C /* AudioEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9569E0581418A2A80016DAF3 /* AudioEditorViewController.m */; };
 		3A6FB6A614712145002B558C /* SceneEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9569E0641418A2D30016DAF3 /* SceneEditViewController.m */; };
 		3A6FB6A714712149002B558C /* MiniMusicalStarAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA2A1D413F26F8400B64EA5 /* MiniMusicalStarAppDelegate.m */; };
 		3A6FB6A81471214D002B558C /* SceneStripController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95674E15145BFE6A00836B5F /* SceneStripController.m */; };
@@ -389,6 +388,9 @@
 		6474992314725E3900A0D308 /* TracksTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6474992114725E3900A0D308 /* TracksTableViewController.xib */; };
 		6480DD26146E564500576167 /* close_x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6480DD25146E564500576167 /* close_x.png */; };
 		6480DD28146E6DEC00576167 /* youtube_overlay.png in Resources */ = {isa = PBXBuildFile; fileRef = 6480DD27146E6DEC00576167 /* youtube_overlay.png */; };
+		64832F5114726EB700627E0A /* TrackTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 64832F5014726EB600627E0A /* TrackTableViewCell.m */; };
+		64832F5314726EC500627E0A /* TrackTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64832F5214726EC500627E0A /* TrackTableViewCell.xib */; };
+		64832F591472C7F900627E0A /* AudioEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64832F581472C7E400627E0A /* AudioEditorViewController.m */; };
 		64985A3B14528E5400485F4D /* sample.mov in Resources */ = {isa = PBXBuildFile; fileRef = 64985A3A14528E5400485F4D /* sample.mov */; };
 		64B3B08F146FCFC80067968E /* micScroller.png in Resources */ = {isa = PBXBuildFile; fileRef = 64B3B08A146FCFC80067968E /* micScroller.png */; };
 		64B3B090146FCFC80067968E /* scrollerBack.png in Resources */ = {isa = PBXBuildFile; fileRef = 64B3B08B146FCFC80067968E /* scrollerBack.png */; };
@@ -422,9 +424,7 @@
 		95021536146EC94D00B5C372 /* NSObject+DDExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 95021534146EC94D00B5C372 /* NSObject+DDExtensions.m */; };
 		95041584147185A30032FD52 /* audiocues.png in Resources */ = {isa = PBXBuildFile; fileRef = 95041583147185A30032FD52 /* audiocues.png */; };
 		95041586147189200032FD52 /* photoboxcue.png in Resources */ = {isa = PBXBuildFile; fileRef = 95041585147189200032FD52 /* photoboxcue.png */; };
-		950415A61472DC040032FD52 /* howling_dog.zip in Resources */ = {isa = PBXBuildFile; fileRef = 950415A51472DC040032FD52 /* howling_dog.zip */; };
 		95674E16145BFE6A00836B5F /* SceneStripController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95674E15145BFE6A00836B5F /* SceneStripController.m */; };
-		9569E05B1418A2A80016DAF3 /* AudioEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9569E0581418A2A80016DAF3 /* AudioEditorViewController.m */; };
 		9569E05C1418A2A80016DAF3 /* PhotoEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9569E05A1418A2A80016DAF3 /* PhotoEditorViewController.m */; };
 		9569E05F1418A2B10016DAF3 /* AudioEditorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9569E05D1418A2B10016DAF3 /* AudioEditorViewController.xib */; };
 		9569E0601418A2B10016DAF3 /* PhotoEditorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9569E05E1418A2B10016DAF3 /* PhotoEditorViewController.xib */; };
@@ -1496,6 +1496,11 @@
 		6474992114725E3900A0D308 /* TracksTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TracksTableViewController.xib; sourceTree = "<group>"; };
 		6480DD25146E564500576167 /* close_x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close_x.png; sourceTree = "<group>"; };
 		6480DD27146E6DEC00576167 /* youtube_overlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = youtube_overlay.png; path = Resources/youtube_overlay.png; sourceTree = "<group>"; };
+		64832F4F14726EB400627E0A /* TrackTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackTableViewCell.h; sourceTree = "<group>"; };
+		64832F5014726EB600627E0A /* TrackTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackTableViewCell.m; sourceTree = "<group>"; };
+		64832F5214726EC500627E0A /* TrackTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TrackTableViewCell.xib; sourceTree = "<group>"; };
+		64832F571472C7DD00627E0A /* AudioEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioEditorViewController.h; sourceTree = "<group>"; };
+		64832F581472C7E400627E0A /* AudioEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioEditorViewController.m; sourceTree = "<group>"; };
 		64985A3A14528E5400485F4D /* sample.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; name = sample.mov; path = Resources/sample.mov; sourceTree = "<group>"; };
 		64B3B08A146FCFC80067968E /* micScroller.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = micScroller.png; sourceTree = "<group>"; };
 		64B3B08B146FCFC80067968E /* scrollerBack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scrollerBack.png; sourceTree = "<group>"; };
@@ -1540,8 +1545,6 @@
 		950415A51472DC040032FD52 /* howling_dog.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = howling_dog.zip; sourceTree = "<group>"; };
 		95674E14145BFE6A00836B5F /* SceneStripController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneStripController.h; sourceTree = "<group>"; };
 		95674E15145BFE6A00836B5F /* SceneStripController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SceneStripController.m; sourceTree = "<group>"; };
-		9569E0571418A2A80016DAF3 /* AudioEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioEditorViewController.h; sourceTree = "<group>"; };
-		9569E0581418A2A80016DAF3 /* AudioEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioEditorViewController.m; sourceTree = "<group>"; };
 		9569E0591418A2A80016DAF3 /* PhotoEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoEditorViewController.h; sourceTree = "<group>"; };
 		9569E05A1418A2A80016DAF3 /* PhotoEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoEditorViewController.m; sourceTree = "<group>"; };
 		9569E05D1418A2B10016DAF3 /* AudioEditorViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AudioEditorViewController.xib; sourceTree = "<group>"; };
@@ -3072,8 +3075,6 @@
 				3A21953E145E4E3E0052C0FE /* MediaTableViewController.m */,
 				3A9FAC98146256D400D2B642 /* AddCreditsViewController.h */,
 				3A9FAC99146256D500D2B642 /* AddCreditsViewController.m */,
-				9569E0571418A2A80016DAF3 /* AudioEditorViewController.h */,
-				9569E0581418A2A80016DAF3 /* AudioEditorViewController.m */,
 				9569E0591418A2A80016DAF3 /* PhotoEditorViewController.h */,
 				9569E05A1418A2A80016DAF3 /* PhotoEditorViewController.m */,
 				9569E0631418A2D30016DAF3 /* SceneEditViewController.h */,
@@ -3092,6 +3093,10 @@
 				6474991B14725E1100A0D308 /* LyricsViewController.m */,
 				6474991F14725E3900A0D308 /* TracksTableViewController.h */,
 				6474992014725E3900A0D308 /* TracksTableViewController.m */,
+				64832F4F14726EB400627E0A /* TrackTableViewCell.h */,
+				64832F5014726EB600627E0A /* TrackTableViewCell.m */,
+				64832F571472C7DD00627E0A /* AudioEditorViewController.h */,
+				64832F581472C7E400627E0A /* AudioEditorViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -3120,6 +3125,7 @@
 				6427849D145EEF1C00B8C740 /* YouTubeUploaderViewController.xib */,
 				6474992114725E3900A0D308 /* TracksTableViewController.xib */,
 				3ABD22F6146E08D900FB8D72 /* ProgressOverlayViewController.xib */,
+				64832F5214726EC500627E0A /* TrackTableViewCell.xib */,
 			);
 			name = XIB;
 			sourceTree = "<group>";
@@ -3448,7 +3454,7 @@
 				95041586147189200032FD52 /* photoboxcue.png in Resources */,
 				6474991E14725E1100A0D308 /* LyricsViewController.xib in Resources */,
 				6474992314725E3900A0D308 /* TracksTableViewController.xib in Resources */,
-				950415A61472DC040032FD52 /* howling_dog.zip in Resources */,
+				64832F5314726EC500627E0A /* TrackTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3517,7 +3523,6 @@
 				3A6FB6A214712137002B558C /* ExportTableViewController.m in Sources */,
 				3A6FB6A31471213A002B558C /* MediaTableViewController.m in Sources */,
 				3A6FB6A41471213D002B558C /* AddCreditsViewController.m in Sources */,
-				3A6FB6A51471213F002B558C /* AudioEditorViewController.m in Sources */,
 				3A6FB6A614712145002B558C /* SceneEditViewController.m in Sources */,
 				3A6FB6A714712149002B558C /* MiniMusicalStarAppDelegate.m in Sources */,
 				3A6FB6A81471214D002B558C /* SceneStripController.m in Sources */,
@@ -3637,7 +3642,6 @@
 				9572E0DB140E118400713F45 /* Scene.m in Sources */,
 				9572E0DC140E118400713F45 /* Show.m in Sources */,
 				9572E0E0140E11FF00713F45 /* ShowDAO.m in Sources */,
-				9569E05B1418A2A80016DAF3 /* AudioEditorViewController.m in Sources */,
 				9569E05C1418A2A80016DAF3 /* PhotoEditorViewController.m in Sources */,
 				9569E0651418A2D30016DAF3 /* SceneEditViewController.m in Sources */,
 				95F9FFC51425C60400A18463 /* CameraPopupViewController.m in Sources */,
@@ -3770,6 +3774,8 @@
 				3A6FB799147129B9002B558C /* SBJsonBase.m in Sources */,
 				6474991D14725E1100A0D308 /* LyricsViewController.m in Sources */,
 				6474992214725E3900A0D308 /* TracksTableViewController.m in Sources */,
+				64832F5114726EB700627E0A /* TrackTableViewCell.m in Sources */,
+				64832F591472C7F900627E0A /* AudioEditorViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
