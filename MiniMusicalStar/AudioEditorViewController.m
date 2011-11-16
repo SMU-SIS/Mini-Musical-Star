@@ -253,7 +253,7 @@
         trackNameLabel.backgroundColor = [UIColor clearColor];
         trackNameLabel.textColor = [UIColor blackColor];
         trackNameLabel.textAlignment =  UITextAlignmentCenter;
-        [trackNameLabel setFont:[UIFont fontWithName:@"GillSans-Bold" size:20]];
+        [trackNameLabel setFont:[UIFont fontWithName:@"GillSans-Bold" size:30]];
         [cell.contentView addSubview:trackNameLabel];
         trackNameLabel.tag = 1;
         [trackNameLabel release];
@@ -569,11 +569,36 @@
         
     } else if ([self isPlaying] == NO && [self isRecording] == YES) {
         //is recording
+        if (!stopButtonPressWhenRecordingWarningHasDisplayed) {
+            UIAlertView *stopWhenRecordingAlertView = [[[UIAlertView alloc] initWithTitle:@"Stop?" message:@"Do you realy want to stop? :(" delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil] autorelease];
+            stopWhenRecordingAlertView.tag = 1;
+            [stopWhenRecordingAlertView show];
+
+            return;
+        }
+        
+        //[[NSNotificationCenter defaultCenter] removeObserver:self];
                
         [self.thePlayer seekTo:0];
         [self.thePlayer stop];
+        [self.playPauseButton setImage:playButtonImage forState:UIControlStateNormal];
+        stopButtonPressWhenRecordingWarningHasDisplayed = NO;   //reset
         
-        [self recordingIsCompleted];
+        [self updatePlayerStatus:NO AndRecordingStatus:NO];
+        
+        currentRecordingIndex = -1;
+        
+        if (!thePlayer.stoppedBecauseReachedEnd) {
+            //if file exists delete the file first
+            NSFileManager *fileManager = [NSFileManager defaultManager];
+            [fileManager removeItemAtURL:currentRecordingURL error:nil];
+        }
+        
+        //clear values
+        currentRecordingAudio = nil;
+        currentRecordingURL = nil;
+        
+        self.recordingStatusLabel.text = @"";
     }
     else //player is neither playing or recording
     {
@@ -692,7 +717,7 @@
     [self updatePlayerStatus:NO AndRecordingStatus:NO];
       
     CoverSceneAudio *newCoverSceneAudio = [NSEntityDescription insertNewObjectForEntityForName:@"CoverSceneAudio" inManagedObjectContext:context];
-    newCoverSceneAudio.title = [NSString stringWithFormat:@"%@ %@", currentRecordingAudio.title, [MiniMusicalStarUtilities getCurrentDateTimeInStringInFormat:@"dd/mm hh:mm:ss"]];
+    newCoverSceneAudio.title = currentRecordingAudio.title;
     newCoverSceneAudio.path = [currentRecordingURL path];
     newCoverSceneAudio.OriginalHash = currentRecordingAudio.hash;
     [self.theCoverScene addAudioObject:newCoverSceneAudio];
@@ -702,7 +727,6 @@
     currentRecordingAudio = nil;
     currentRecordingURL = nil;
     currentRecordingIndex = -1;
-    self.recordingStatusLabel.text = @"";
     
     [trackTableView reloadData];
 }
@@ -886,6 +910,23 @@
     lyricsLabel.backgroundColor = [UIColor clearColor];
     
     return lyricsLabel;
+}
+
+
+#pragma mark - UIAlertViewDelegate Protocol methods
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (alertView.tag == 1) {
+        if (buttonIndex == 1) {
+            //user pressed yes
+            stopButtonPressWhenRecordingWarningHasDisplayed = YES;
+            [self playPauseButtonIsPressed];
+        } else if (buttonIndex == 0) {
+            //user pressed no
+            stopButtonPressWhenRecordingWarningHasDisplayed = NO;   //reset to default value
+        }
+    }
 }
 
 #pragma mark - KVO callbacks

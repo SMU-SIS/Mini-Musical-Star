@@ -31,6 +31,8 @@
     bool isRecording;
     bool isPlaying;
 
+    bool stopButtonPressWhenRecordingWarningHasDisplayed;
+
     int currentRecordingIndex;
 }
 
