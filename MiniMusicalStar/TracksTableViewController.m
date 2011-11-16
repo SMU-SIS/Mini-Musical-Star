@@ -561,6 +561,11 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivedPlayerPlayedHasReachedNotification) name:kMixPlayerRecorderPlayingHasReachedEnd object:nil];
 }
 
+- (void)deRegisterFromNSNotifcationCenter
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (void)receivedPlayerPlayedHasReachedNotification
 {
     [self stopPlayerWhenPlaying:YES];
