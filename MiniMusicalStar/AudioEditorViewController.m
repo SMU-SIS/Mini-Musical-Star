@@ -28,18 +28,17 @@
 
 #pragma mark - initializers and deinitializers
 
-- (AudioEditorViewController *)initWithScene:(Scene *)aScene andCoverScene:(CoverScene *)aCoverScene andContext:(NSManagedObjectContext *)aContext andPlayPauseButton:(UIButton*)aPlayPauseButton
+- (AudioEditorViewController *)initWithScene:(Scene *)aScene andCoverScene:(CoverScene *)aCoverScene andContext:(NSManagedObjectContext *)aContext;
 {
     self = [super init];
     if (self) {
-        tracksTableViewController = [[TracksTableViewController alloc] initWithScene:aScene andACoverScene:aCoverScene andAContext:aContext andAPlayPauseButton:aPlayPauseButton andARecordingStatusLabel:recordingStatusLabel];
-        
-        lyricsViewController = [[LyricsViewController alloc] init];
-        
         self.theScene = aScene;
         self.theCoverScene = aCoverScene;
         self.context = aContext;
-        self.playPauseButton = aPlayPauseButton;
+
+        tracksTableViewController = [[TracksTableViewController alloc] initWithScene:aScene andACoverScene:aCoverScene andAContext:aContext andARecordingStatusLabel:recordingStatusLabel];
+        
+        lyricsViewController = [[LyricsViewController alloc] init];
         
     }
     
@@ -78,6 +77,16 @@
     newSize.size.width = tracksTableViewFrame.size.width;
     newSize.size.height = tracksTableViewFrame.size.height;
     self.tracksTableViewController.tableView.frame = newSize;
+    
+    CGRect lyricsViewControllerFrame = lyricsViewController.view.frame;
+    lyricsViewControllerFrame.origin.x = 0;
+    lyricsViewControllerFrame.origin.y = 0;
+    lyricsViewController.view.frame = lyricsViewControllerFrame;
+    
+//    NSLog(@"lyrics view frame: %@", NSStringFromCGRect(lyricsView.frame));
+//    NSLog(@"lyrics from scroll view : %@", NSStringFromCGRect(lyricsViewController.view.frame));
+    
+    self.tracksTableViewController.playPauseButton = self.playPauseButton;
 }
 
 - (void)viewDidUnload

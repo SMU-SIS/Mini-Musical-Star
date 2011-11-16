@@ -192,7 +192,7 @@
 - (void)loadChildViewControllers
 {
     //load the audio view controller
-    audioView = [[AudioEditorViewController alloc] initWithScene:theScene andCoverScene:theCoverScene andContext:context andPlayPauseButton:playPauseButton];
+    audioView = [[AudioEditorViewController alloc] initWithScene:theScene andCoverScene:theCoverScene andContext:context];
     
     self.audioView.tracksTableViewController.delegate = self;
     

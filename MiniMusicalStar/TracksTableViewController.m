@@ -34,15 +34,19 @@
 
 #pragma initializers and deinitalizers
 
-- (id)initWithScene:(Scene*)aScene andACoverScene:(CoverScene*)aCoverScene andAContext:(NSManagedObjectContext*)aContext andAPlayPauseButton:(UIButton*)aPlayPauseButton andARecordingStatusLabel:(UILabel*)aRecordingStatusLabel
+- (id)initWithScene:(Scene*)aScene andACoverScene:(CoverScene*)aCoverScene andAContext:(NSManagedObjectContext*)aContext andARecordingStatusLabel:(UILabel*)aRecordingStatusLabel
 {
     self = [super initWithStyle:UITableViewStylePlain];
     if (self) {
         self.theScene = aScene;
         self.theCoverScene = aCoverScene;
         self.context = aContext;
-        self.playPauseButton = aPlayPauseButton;
         self.recordingStatusLabel = aRecordingStatusLabel;
+        
+        if (playPauseButton == nil)  {
+            NSLog(@"damm!");
+            
+        }
         
         [self updatePlayerStatus:NO AndRecordingStatus:NO];
         currentRecordingIndex = -1;
@@ -71,6 +75,7 @@
 {
     [self.theCoverScene removeObserver:self forKeyPath:@"Audio"];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [self.thePlayer stop];
     
     [thePlayer release];
     [theScene release];
@@ -563,6 +568,11 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+- (void)receivedPlayerPlayedHasReachedNotification
+{
+    [self stopPlayerWhenPlaying:YES];
+}
+
 #pragma mark - autosave methods
 
 -(void)autosaveWhenContextDidChange:(NSNotification*)notification
@@ -661,7 +671,15 @@
     
 }
 
+#pragma mark - KVO callbacks
 
-
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)changeContext
+{    
+    NSString *kvoContext = (NSString *)changeContext;
+    if ([kvoContext isEqualToString:@"NewCoverTrackAdded"]) {
+        [self performSelector:@selector(consolidateArrays)];
+        [self.tableView reloadData];
+    }
+}
 
 @end

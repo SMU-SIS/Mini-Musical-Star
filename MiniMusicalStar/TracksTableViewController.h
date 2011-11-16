@@ -43,7 +43,7 @@
 @property (nonatomic, retain) Audio *currentRecordingAudio;
 
 //initializer
-- (id)initWithScene:(Scene*)aScene andACoverScene:(CoverScene*)aCoverScene andAContext:(NSManagedObjectContext*)aContext andAPlayPauseButton:(UIButton*)aPlayPauseButton andARecordingStatusLabel:(UILabel*)aRecordingStatusLabel;
+- (id)initWithScene:(Scene*)aScene andACoverScene:(CoverScene*)aCoverScene andAContext:(NSManagedObjectContext*)aContext andARecordingStatusLabel:(UILabel*)aRecordingStatusLabel;
 
 #pragma mark - instance methods
 - (void)updatePlayerStatus:(bool)playingStatus AndRecordingStatus:(bool)recordingStatus;
