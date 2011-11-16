@@ -51,7 +51,7 @@
     self.view.showsHorizontalScrollIndicator = NO;
     self.view.showsVerticalScrollIndicator = NO;
     self.view.pagingEnabled = NO;
-    self.view.clipsToBounds = NO;
+    self.view.clipsToBounds = YES;
     
     UIColor *background = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"stripsceneselection.png"]];
     self.view.backgroundColor = background;
