@@ -648,29 +648,27 @@
 }
 
 - (void)showLyricsButtonIsPressed:(UIButton*)sender
-{
-    NSLog(@"showLyricsButtonIsPressed");
+{    
+    int row = [self getTableViewRow:sender];
+    id audioForRow = [tracksForView objectAtIndex:row];
     
-//    int row = [self getTableViewRow:sender];
-//    id audioForRow = [tracksForView objectAtIndex:row];
-//    
-//    if ([audioForRow isKindOfClass:[CoverSceneAudio class]]) {
-//        return;
-//    }
-//    
-//    Audio *audio = (Audio*)audioForRow;
-//    
-//    if ([audio.replaceable intValue] == 0) {
-//        return;
-//    }
-//    
-//    NSString *trimmedLyrics =[[audio lyrics] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-//    
-//    if ([trimmedLyrics isEqualToString:@""]) {
-//        [self loadLyrics:@"no lyrics were found for this track"];
-//    } else {
-//        [self loadLyrics:[audio lyrics]];
-//    }
+    if ([audioForRow isKindOfClass:[CoverSceneAudio class]]) {
+        return;
+    }
+    
+    Audio *audio = (Audio*)audioForRow;
+    
+    if ([audio.replaceable intValue] == 0) {
+        return;
+    }
+    
+    NSString *trimmedLyrics =[[audio lyrics] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    
+    if ([trimmedLyrics isEqualToString:@""]) {
+        [delegate loadLyrics:@"no lyrics were found for this track"];
+    } else {
+        [delegate loadLyrics:[audio lyrics]];
+    }
     
 }
 

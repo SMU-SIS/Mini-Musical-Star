@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TracksTableViewController.h"
 
 @interface LyricsViewController : UIViewController
     <TracksTableViewDelegate>

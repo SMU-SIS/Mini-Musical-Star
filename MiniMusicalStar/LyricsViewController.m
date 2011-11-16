@@ -83,8 +83,29 @@
 #pragma mark - TracksTableViewDelegate methods
 
 - (void)loadLyrics:(NSString*)aLyrics
-{
+{   
+    CGSize maximumLabelSize = CGSizeMake(lyricsLabel.frame.size.width, 10000);
     
+    CGSize expectedLabelSize = [aLyrics sizeWithFont:lyricsLabel.font constrainedToSize:maximumLabelSize lineBreakMode:lyricsLabel.lineBreakMode];
+    
+    lyricsLabel.text = aLyrics;
+    
+    [lyricsLabel sizeToFit];
+    //    
+    //    CGRect newFrame = lyricsLabel.frame;
+    //    newFrame.size.height = expectedLabelSize.height;
+    //    newFrame.size.width = expectedLabelSize.width+50;
+    //    lyricsLabel.frame = newFrame;
+    
+    
+    CGSize scrollViewSize = lyricsScrollView.frame.size;
+    scrollViewSize.height = expectedLabelSize.height;
+    //    scrollViewSize.width = scrollViewSize.width+50;//del
+    [lyricsScrollView setContentSize:scrollViewSize]; 
+    
+    
+    [lyricsLabel setBackgroundColor:[UIColor purpleColor]];
+    lyricsLabel.alpha = 0.5;
 }
 
 @end
