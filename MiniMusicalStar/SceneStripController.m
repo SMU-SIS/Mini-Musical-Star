@@ -82,8 +82,8 @@
         
         //create the button's frame
         CGRect frame;
-        frame.origin.x = 38 + idx * 273;
-        frame.origin.y = 35;
+        frame.origin.x = 37 + idx * 273;
+        frame.origin.y = 34;
         frame.size.width = 200;
         frame.size.height = 150;
         
@@ -102,7 +102,7 @@
     int extend = 0;    
     if (self.theShow.scenes.count > 4) extend = self.theShow.scenes.count - 4;
     
-    [self.scrollView setContentSize:CGSizeMake(self.scrollView.frame.size.width + 38 + (extend * 273), 0)];
+    [self.scrollView setContentSize:CGSizeMake(self.scrollView.frame.size.width + 37 + (extend * 273), 0)];
 }
 
 -(void)selectScene:(UIButton *)sender
