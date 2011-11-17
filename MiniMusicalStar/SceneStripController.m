@@ -96,6 +96,28 @@
         [button addTarget:self action:@selector(selectScene:) forControlEvents:UIControlEventTouchUpInside];
         [self.scrollView addSubview:button];
         [button release];
+        
+        //add the scene title over the button
+        frame.size.height = 20;
+        UILabel *titleLabel = [[UILabel alloc] initWithFrame:frame];
+        titleLabel.text = theScene.title;
+        titleLabel.backgroundColor = [UIColor whiteColor];
+        //titleLabel.textAlignment = UITextAlignmentRight;
+        //titleLabel.textColor = [UIColor darkGrayColor];
+        [titleLabel sizeToFit];
+        
+        //align right
+        float width = titleLabel.frame.size.width;
+        CGRect labelFrame;
+        labelFrame.origin.x = ((37 + idx * 273) + 200) - width;
+        labelFrame.origin.y = 34;
+        labelFrame.size.width = width;
+        labelFrame.size.height = 20;
+        titleLabel.frame = labelFrame;
+        
+        [self.scrollView addSubview:titleLabel];
+        [titleLabel release];
+        
     }];
     
     //set the content size of the scrollview and check to see if the scrollview is overflowing
