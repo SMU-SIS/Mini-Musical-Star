@@ -142,7 +142,7 @@
     return nil;
 }
 
-- (void) processExportSessionWithComposition:(AVMutableComposition*)composition andVideoComposition:(AVMutableVideoComposition*)videoComposition withOutputFilePath:(NSURL*)outputFileURL andVideoFilePath:(NSURL*)videoFileURL forMusical:(BOOL)isMusical
+- (void) processExportSessionWithComposition:(AVMutableComposition*)composition andVideoComposition:(AVMutableVideoComposition*)videoComposition withOutputFilePath:(NSURL*)outputFileURL andVideoFilePath:(NSURL*)videoFileURL forMusical:(BOOL)isMusical isSceneAppend:(BOOL)isSceneAppend
 {
     NSArray *compatiblePresets = [AVAssetExportSession exportPresetsCompatibleWithAsset:composition];
     
@@ -160,8 +160,10 @@
         CMTimeRangeShow(exportSession.timeRange);
         
         //fit progress bar
-        NSTimer *aTimer = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(refreshProgressBar:) userInfo:nil repeats:YES];
-        
+        NSTimer *aTimer = nil;
+        if(!isSceneAppend){
+            aTimer = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(refreshProgressBar:) userInfo:nil repeats:YES];
+        }
         [exportSession exportAsynchronouslyWithCompletionHandler:^{
             switch ([exportSession status]) {
                 case AVAssetExportSessionStatusCompleted:
@@ -174,7 +176,9 @@
                 default:
                     break;
             }
-            [aTimer invalidate];
+            if(!isSceneAppend){
+                [aTimer invalidate];
+            }
             [exportSession release];
             
         }];
@@ -191,40 +195,35 @@
     }
 }
 
-- (void) saveExportedAssetAt:(NSURL*)outputFileURL andDeleteVideoFile:(NSURL*)videoFileURL forMusical:(BOOL)isMusical
+- (void) saveExportedAssetAt:(NSURL*)outputFileURL andDeleteVideoFile:(NSURL*)videoFileURL forMusical:(BOOL)isMusical isSceneAppend:(BOOL)isSceneAppend
 {
-    //save the URL into a new model
-    ExportedAsset *newAsset = [NSEntityDescription insertNewObjectForEntityForName:@"ExportedAsset" inManagedObjectContext:self.context];
-    newAsset.exportPath = [outputFileURL absoluteString];
-    newAsset.originalHash = theCover.originalHash;
-    newAsset.exportHash = [outputFileURL lastPathComponent];
-    newAsset.dateCreated = [NSDate date];
-    
-    if (!isMusical){
-        newAsset.isFullShow = NO;
-        newAsset.title = self.theScene.title;
+
+    if(isSceneAppend){
+        
     }else{
-        newAsset.isFullShow = [NSNumber numberWithInt:1];
-        newAsset.title = theShow.title;
+        //save the URL into a new model
+        ExportedAsset *newAsset = [NSEntityDescription insertNewObjectForEntityForName:@"ExportedAsset" inManagedObjectContext:self.context];
+        newAsset.exportPath = [outputFileURL absoluteString];
+        newAsset.originalHash = theCover.originalHash;
+        newAsset.exportHash = [outputFileURL lastPathComponent];
+        newAsset.dateCreated = [NSDate date];
+        if (!isMusical){
+            newAsset.isFullShow = NO;
+            newAsset.title = self.theScene.title;
+        }else{
+            newAsset.isFullShow = [NSNumber numberWithInt:1];
+            newAsset.title = theShow.title;
+        }
+        
+        [self.context save:nil];
+        [self.exportedAssetsArray addObject:newAsset];
+        
+        
+        [self.delegate reloadMediaTable];
+        [self.tableView reloadData];
     }
     
-    [self.context save:nil];
-    [self.exportedAssetsArray addObject:newAsset];
     [self removeFileAtPath:videoFileURL];
-    
-//    //try to save to photos library
-//    ALAsset *libraryAsset = [[ALAsset alloc] init];
-//    [libraryAsset setVideoAtPath:outputFileURL completionBlock:^(NSURL *assetURL, NSError *error) {
-//        //donothing
-//    }];
-//    [libraryAsset writeModifiedVideoAtPathToSavedPhotosAlbum:outputFileURL completionBlock:^(NSURL *assetURL, NSError *error) {
-//        NSLog(@"wooohoo");
-//    }];
-//    
-    [self.delegate reloadMediaTable];
-    [self.tableView reloadData];
-//    [DSBezelActivityView removeViewAnimated:YES];
-    
 }
 
 - (void) removeFileAtPath: (NSURL*) filePath
@@ -234,11 +233,7 @@
 
 - (void)refreshProgressBar:(NSTimer*) aTimer
 {
-
-//    AVAssetExportSession *exportSession = aTimer.userInfo;
-//    NSLog(@"export timer : %f",exportSession.progress);
     [delegate setProgressViewAtValue:self.exportSession.progress withAnimation:YES];
-    
 }
 
 
@@ -316,7 +311,7 @@
     return videoComposition;
 }
 
--(void)processImageAndAudioAppendingToVideoWithImagesArray:(NSArray*)imagesArray andSortedPicturesTimingArray:(NSMutableArray*)sortedTimingsArray andAudioFilePaths:(NSArray*) audioExportURLs forMusical:(BOOL)isMusical
+-(void)processImageAndAudioAppendingToVideoWithImagesArray:(NSArray*)imagesArray andSortedPicturesTimingArray:(NSMutableArray*)sortedTimingsArray andAudioFilePaths:(NSArray*) audioExportURLs forMusical:(BOOL)isMusical isSceneAppend:(BOOL)isSceneAppend
 {
     __block NSError *error = nil;
     CGSize size = CGSizeMake(640, 480);
@@ -342,19 +337,19 @@
         compositionAudioTrack = [composition addMutableTrackWithMediaType:AVMediaTypeAudio preferredTrackID:kCMPersistentTrackID_Invalid];
         
         //if it is a musical, check ordering
-        if(isMusical){
-            CMTime startTime = CMTimeMake([[musicalAudioMappings objectAtIndex:idx] floatValue] *1000000, 1000000);
-            [compositionAudioTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero,audioAsset.duration) 
-                                           ofTrack:[[audioAsset tracksWithMediaType:AVMediaTypeAudio]objectAtIndex:0] 
-                                            atTime:startTime
-                                             error:&error];
+//        if(isMusical){
+//            CMTime startTime = CMTimeMake([[musicalAudioMappings objectAtIndex:idx] floatValue] *1000000, 1000000);
+//            [compositionAudioTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero,audioAsset.duration) 
+//                                           ofTrack:[[audioAsset tracksWithMediaType:AVMediaTypeAudio]objectAtIndex:0] 
+//                                            atTime:startTime
+//                                             error:&error];
             
-        }else{
-            [compositionAudioTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero,audioAsset.duration) 
+//        }else{
+        [compositionAudioTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero,audioAsset.duration) 
                                        ofTrack:[[audioAsset tracksWithMediaType:AVMediaTypeAudio]objectAtIndex:0] 
                                         atTime:kCMTimeZero
                                          error:&error];
-        }
+//        }
     }];
     
     AVMutableCompositionTrack *compositionVideoTrack = [composition addMutableTrackWithMediaType:AVMediaTypeVideo preferredTrackID:kCMPersistentTrackID_Invalid];
@@ -369,9 +364,13 @@
     videoSize.width = fabs(videoSize.width);
     videoSize.height = fabs(videoSize.height);
     
-    AVMutableVideoComposition *videoComposition = [self getVideoCompositionWithCustomAnimationsToComposition:composition andSortedTimingsArrayForKensBurn:sortedTimingsArray withVideoAsset:videoAsset ofVideoSize:videoSize];
+    AVMutableVideoComposition *videoComposition = nil;
+    
+    if (isSceneAppend){
+        videoComposition = [self getVideoCompositionWithCustomAnimationsToComposition:composition andSortedTimingsArrayForKensBurn:sortedTimingsArray withVideoAsset:videoAsset ofVideoSize:videoSize];
+    }
     //session export
-    [self processExportSessionWithComposition:composition andVideoComposition:videoComposition withOutputFilePath:outputFileURL andVideoFilePath:videoFileURL forMusical:isMusical];
+    [self processExportSessionWithComposition:composition andVideoComposition:videoComposition withOutputFilePath:outputFileURL andVideoFilePath:videoFileURL forMusical:isMusical isSceneAppend:isSceneAppend];
     
 }
 
@@ -463,61 +462,63 @@
 {
     theSceneUtility = [[SceneUtility alloc] initWithSceneAndCoverScene: self.theScene:coverScene];
     
-//    [DSBezelActivityView newActivityViewForView:self.view withLabel:@"Exporting your scene... WAIT OK!? otherwise your ipad might EXPLODE...BOOM!"];
     [self processImageAndAudioAppendingToVideoWithImagesArray:[theSceneUtility getMergedImagesArray] andSortedPicturesTimingArray:[self.theScene getOrderedPictureTimingArray] andAudioFilePaths:[theSceneUtility getExportAudioURLs] forMusical:NO];
     
 }
 - (void)exportMusical:(Show*)show
 {
-//    [DSBezelActivityView newActivityViewForView:self.view withLabel:@"Exporting your musical... WAIT OK!? otherwise your ipad might EXPLODE...BOOM!"];
-    
     //get the fully appended images array and picturetimings dict
-    NSMutableArray *musicalImagesArray = [[NSMutableArray alloc] initWithCapacity:0];
-    //get an appendable array for audioExportURLS
-    NSMutableArray *musicalAudioURLs = [[NSMutableArray alloc] initWithCapacity:0];
-    NSMutableArray *musicalImagesPicturesTimingsArray = [[NSMutableArray alloc] initWithCapacity:0];
-    
-    CMTime previousAssetDuration = kCMTimeZero;
-    int audioOrderCount = 1;
-    [self.musicalAudioMappings removeAllObjects];
+//    NSMutableArray *musicalImagesArray = [[NSMutableArray alloc] initWithCapacity:0];
+//    //get an appendable array for audioExportURLS
+//    NSMutableArray *musicalAudioURLs = [[NSMutableArray alloc] initWithCapacity:0];
+//    NSMutableArray *musicalImagesPicturesTimingsArray = [[NSMutableArray alloc] initWithCapacity:0];
+//    
+//    CMTime previousAssetDuration = kCMTimeZero;
+//    int audioOrderCount = 1;
+//    [self.musicalAudioMappings removeAllObjects];
     for (id obj in scenesArray){
         Scene *scene = (Scene*)obj;
         CoverScene *coverScene = [theCover coverSceneForSceneHash:scene.hash];
         theSceneUtility = [[SceneUtility alloc] initWithSceneAndCoverScene: scene:coverScene];
+//        theSceneUtility = [[SceneUtility alloc] initWithSceneAndCoverScene: self.theScene:coverScene];
         
-        [musicalImagesArray addObjectsFromArray:theSceneUtility.getMergedImagesArray];
-        
-        if(CMTimeCompare(previousAssetDuration, kCMTimeZero) != 0){
-            NSMutableArray *transferredArray = [[NSMutableArray alloc] initWithCapacity:0];
-            for (int i = 0 ; i<scene.getOrderedPictureTimingArray.count; i++){
-                int timing = [[scene.getOrderedPictureTimingArray objectAtIndex:i] intValue];
-                timing += [[NSNumber numberWithFloat:CMTimeGetSeconds(previousAssetDuration)] intValue];
-                NSNumber *newTiming =[NSNumber numberWithInt:timing];
-                [transferredArray addObject:newTiming];
-            }
-            [musicalImagesPicturesTimingsArray addObjectsFromArray:transferredArray];
-            
-        }else{
-            [musicalImagesPicturesTimingsArray addObjectsFromArray:[scene getOrderedPictureTimingArray]];
-        }
-        
-        [musicalAudioURLs addObjectsFromArray:theSceneUtility.getExportAudioURLs];
-        
-        //map audio sequences to scene order
-        for (id obj in theSceneUtility.getExportAudioURLs)
-        {
-            [self.musicalAudioMappings addObject:[NSNumber numberWithFloat: CMTimeGetSeconds(previousAssetDuration)]];
-        }
+        [self processImageAndAudioAppendingToVideoWithImagesArray:[theSceneUtility getMergedImagesArray] andSortedPicturesTimingArray:[scene getOrderedPictureTimingArray] andAudioFilePaths:[theSceneUtility getExportAudioURLs] forMusical:NO isSceneAppend:YES];
         
         
-        //get duration of previous scene measured with duration of first audio file
-        NSURL *firstAudioURL = [theSceneUtility.getExportAudioURLs objectAtIndex:0];
-        AVURLAsset* audioAsset = [[AVURLAsset alloc]initWithURL:firstAudioURL options:nil];
-        previousAssetDuration = audioAsset.duration;
         
-        audioOrderCount += 1;
+//        [musicalImagesArray addObjectsFromArray:theSceneUtility.getMergedImagesArray];
+//        
+//        if(CMTimeCompare(previousAssetDuration, kCMTimeZero) != 0){
+//            NSMutableArray *transferredArray = [[NSMutableArray alloc] initWithCapacity:0];
+//            for (int i = 0 ; i<scene.getOrderedPictureTimingArray.count; i++){
+//                int timing = [[scene.getOrderedPictureTimingArray objectAtIndex:i] intValue];
+//                timing += [[NSNumber numberWithFloat:CMTimeGetSeconds(previousAssetDuration)] intValue];
+//                NSNumber *newTiming =[NSNumber numberWithInt:timing];
+//                [transferredArray addObject:newTiming];
+//            }
+//            [musicalImagesPicturesTimingsArray addObjectsFromArray:transferredArray];
+//            
+//        }else{
+//            [musicalImagesPicturesTimingsArray addObjectsFromArray:[scene getOrderedPictureTimingArray]];
+//        }
+//        
+//        [musicalAudioURLs addObjectsFromArray:theSceneUtility.getExportAudioURLs];
+//        
+//        //map audio sequences to scene order
+//        for (id obj in theSceneUtility.getExportAudioURLs)
+//        {
+//            [self.musicalAudioMappings addObject:[NSNumber numberWithFloat: CMTimeGetSeconds(previousAssetDuration)]];
+//        }
+//        
+//        
+//        //get duration of previous scene measured with duration of first audio file
+//        NSURL *firstAudioURL = [theSceneUtility.getExportAudioURLs objectAtIndex:0];
+//        AVURLAsset* audioAsset = [[AVURLAsset alloc]initWithURL:firstAudioURL options:nil];
+//        previousAssetDuration = audioAsset.duration;
+//        
+//        audioOrderCount += 1;
     };
-    [self processImageAndAudioAppendingToVideoWithImagesArray:musicalImagesArray andSortedPicturesTimingArray:musicalImagesPicturesTimingsArray andAudioFilePaths:musicalAudioURLs forMusical:YES];
+//    [self processImageAndAudioAppendingToVideoWithImagesArray:musicalImagesArray andSortedPicturesTimingArray:musicalImagesPicturesTimingsArray andAudioFilePaths:musicalAudioURLs forMusical:YES];
 }
 
 - (void) cancelExportSession
