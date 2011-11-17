@@ -15,6 +15,7 @@
 
 @synthesize recordingStatusLabel;
 @synthesize tutorialButton;
+@synthesize cueTextView;
 
 @synthesize tracksTableView;
 @synthesize lyricsView;
@@ -56,6 +57,7 @@
 - (void)dealloc
 {
     [recordingStatusLabel release];
+    [cueTextView release];
     [tracksTableView release];
     [lyricsView release];
     
@@ -82,6 +84,7 @@
     [self.lyricsView addSubview:lyricsViewController.view];
     
     self.tracksTableView.clipsToBounds = YES;
+    self.lyricsView.clipsToBounds = YES;
     
     CGRect tracksTableViewFrame = tracksTableView.frame;
     CGRect newSize = tracksTableViewController.tableView.frame;
@@ -115,26 +118,19 @@
 
 - (void)removeAndUnloadCueFromView
 {
-    if (self.cueView && self.cueController.currentCue)
+    if (self.cueController.currentCue)
     {
         //animate the lyrics view sliding up
         CGRect lyricsFrame = self.lyricsView.frame;
         lyricsFrame.origin.y = lyricsFrame.origin.y - 50;
         lyricsFrame.size.height = lyricsFrame.size.height + 50;
         
-        //        CGRect lyricsLabelFrame = self.lyricsLabel.frame;
-        //        lyricsLabelFrame.origin.y = lyricsLabelFrame.origin.y - 50;
-        //        lyricsLabelFrame.size.height = lyricsLabelFrame.size.height + 50;
-        //        
         [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationCurveEaseInOut
                          animations:^{
                              self.lyricsView.frame = lyricsFrame;
-                             //                             self.lyricsLabel.frame = lyricsLabelFrame;
                          }
                          completion:^(BOOL finished) {
-                             [self.cueView removeFromSuperview];
                              self.cueController.currentCue = nil;
-                             self.cueView = nil;
                          }];
     }
 }
@@ -156,34 +152,18 @@
         [self removeAndUnloadCueFromView];
         self.cueController.currentCue = theCue;
         
-        CGRect frame = CGRectMake(520, 30, 460, 50);
-        
-        UITextView *textView = [[UITextView alloc] initWithFrame:frame];
-        textView.frame = frame;
-        textView.text = theCue.content;
-        
-        self.cueView = textView;
-        [textView release];
-        
-        [self.view addSubview:self.cueView];
-        [self.view sendSubviewToBack:self.cueView];
+        self.cueTextView.text = theCue.content;
         
         //animate the lyrics view sliding down
         CGRect lyricsFrame = self.lyricsView.frame;
         lyricsFrame.origin.y = lyricsFrame.origin.y + 50;
         lyricsFrame.size.height = lyricsFrame.size.height - 50;
         
-//        CGRect lyricsLabelFrame = self.lyricsLabel.frame;
-//        lyricsLabelFrame.origin.y = lyricsLabelFrame.origin.y + 50;
-//        lyricsLabelFrame.size.height = lyricsLabelFrame.size.height - 50;
-        
         [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationCurveEaseInOut
                          animations:^{
                              self.lyricsView.frame = lyricsFrame;
-                             //self.lyricsLabel.frame = lyricsLabelFrame;
                          }
-                         completion:^(BOOL finished) {
-                             NSLog(@"animation done!");
+                         completion:^(BOOL finished) {                             
                          }];
         
     }

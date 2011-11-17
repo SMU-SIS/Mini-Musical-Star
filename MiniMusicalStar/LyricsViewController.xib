@@ -81,7 +81,7 @@
 								</object>
 							</object>
 						</array>
-						<string key="NSFrameSize">{431, 470}</string>
+						<string key="NSFrameSize">{431, 480}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="870689606"/>
@@ -94,7 +94,7 @@
 						<bool key="IBUIShowsHorizontalScrollIndicator">NO</bool>
 					</object>
 				</array>
-				<string key="NSFrameSize">{431, 470}</string>
+				<string key="NSFrameSize">{431, 480}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="678917749"/>

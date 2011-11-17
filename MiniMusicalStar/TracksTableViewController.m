@@ -687,8 +687,10 @@
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:trackIndex inSection:0];
     UITableViewCell *theCell = [self.tableView cellForRowAtIndexPath:indexPath];
     UIButton *showCueButton = (UIButton *)[theCell.contentView viewWithTag:5];
+    UILabel *showCuesLabel = (UILabel*)[theCell.contentView viewWithTag:9];
     
     [showCueButton setHidden:!shouldShow];
+    [showCuesLabel setHidden:!shouldShow];
 }
 
 - (void)showCueButtonIsPressed:(UIButton*)sender

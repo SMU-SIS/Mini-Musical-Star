@@ -300,7 +300,7 @@
 						<reference key="NSSuperview" ref="120979425"/>
 						<reference key="NSNextKeyView" ref="392042320"/>
 						<string key="NSReuseIdentifierKey">_NS:396</string>
-						<object class="NSColor" key="IBUIBackgroundColor">
+						<object class="NSColor" key="IBUIBackgroundColor" id="25835078">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MCAwAA</bytes>
 						</object>
@@ -315,6 +315,7 @@
 				<reference key="NSSuperview"/>
 				<reference key="NSNextKeyView" ref="874545922"/>
 				<string key="NSReuseIdentifierKey">_NS:385</string>
+				<reference key="IBUIBackgroundColor" ref="25835078"/>
 				<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 				<int key="IBUISelectionStyle">0</int>
 				<reference key="IBUIContentView" ref="874545922"/>

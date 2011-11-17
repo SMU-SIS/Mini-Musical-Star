@@ -31,6 +31,7 @@
 //IBOutlets
 @property (nonatomic, retain) IBOutlet UILabel *recordingStatusLabel;
 @property (retain, nonatomic) IBOutlet UIButton *tutorialButton;
+@property (retain, nonatomic) IBOutlet UITextView *cueTextView;
 
 //containers
 @property (nonatomic, retain) IBOutlet UIView *tracksTableView;
