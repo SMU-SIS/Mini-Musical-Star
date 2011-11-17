@@ -25,7 +25,6 @@
 @synthesize theCoverScene;
 @synthesize context;
 @synthesize playPauseButton;
-@synthesize recordingStatusLabel;
 
 @synthesize tracksForView;
 @synthesize tracksForViewNSURL;
@@ -36,14 +35,14 @@
 
 #pragma initializers and deinitalizers
 
-- (id)initWithScene:(Scene*)aScene andACoverScene:(CoverScene*)aCoverScene andAContext:(NSManagedObjectContext*)aContext andARecordingStatusLabel:(UILabel*)aRecordingStatusLabel{
+- (id)initWithScene:(Scene*)aScene andACoverScene:(CoverScene*)aCoverScene andAContext:(NSManagedObjectContext*)aContext
+{
     
     self = [super initWithStyle:UITableViewStylePlain];
     if (self) {
         self.theScene = aScene;
         self.theCoverScene = aCoverScene;
         self.context = aContext;
-        self.recordingStatusLabel = aRecordingStatusLabel;
         
         [self updatePlayerStatus:NO AndRecordingStatus:NO];
         currentRecordingIndex = -1;
@@ -81,8 +80,6 @@
     [theCoverScene release];
     [context release];
     [playPauseButton release];
-    [recordingStatusLabel release];
-//    [self.audioViewController release];
     
     [tracksForView release];
     [tracksForViewNSURL release];
@@ -97,8 +94,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -357,7 +352,7 @@
     currentRecordingURL = nil;
     currentRecordingIndex = -1;
 
-    self.recordingStatusLabel.text = @"";
+    [self.audioEditorViewControllerDelegate updateRecordingStatusLabel:@""];
     
     [self.tableView reloadData];
 }
@@ -417,7 +412,7 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:kBringSliderToZero object:self];
     }
     
-    self.recordingStatusLabel.text = @"";
+    [self.audioEditorViewControllerDelegate updateRecordingStatusLabel:@""];
 }
 
 #pragma mark - instance methods for audio and coveraudio arrays
@@ -630,7 +625,7 @@
         //if the audiotrack can be replaced, start recording
         [self startCoverAudioRecording:row];
         
-        self.recordingStatusLabel.text = @"NOW RECORDING";
+        [self.audioEditorViewControllerDelegate updateRecordingStatusLabel:@"NOW RECORDING"];
     }
 }
 

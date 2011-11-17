@@ -18,6 +18,7 @@
 @protocol TracksTableViewDelegate <NSObject>
 @optional
 - (void)loadLyrics:(NSString*)aLyrics;
+- (void)updateRecordingStatusLabel:(NSString*)aStatus;
 - (void)cueButtonIsPressed:(int)trackIndex;
 @end
 
@@ -39,7 +40,6 @@
 @property (nonatomic, retain) CoverScene *theCoverScene;
 @property (nonatomic, retain) NSManagedObjectContext *context;
 @property (nonatomic, retain) UIButton *playPauseButton;
-@property (nonatomic, retain) UILabel *recordingStatusLabel;
 
 @property (nonatomic, retain) NSMutableArray *tracksForView;
 @property (nonatomic, retain) NSMutableArray *tracksForViewNSURL;
@@ -50,7 +50,7 @@
 @property (nonatomic, retain) Audio *currentRecordingAudio;
 
 #pragma mark - initializer
-- (id)initWithScene:(Scene*)aScene andACoverScene:(CoverScene*)aCoverScene andAContext:(NSManagedObjectContext*)aContext andARecordingStatusLabel:(UILabel*)aRecordingStatusLabel;
+- (id)initWithScene:(Scene*)aScene andACoverScene:(CoverScene*)aCoverScene andAContext:(NSManagedObjectContext*)aContext;
 
 #pragma mark - instance methods
 - (void)updatePlayerStatus:(bool)playingStatus AndRecordingStatus:(bool)recordingStatus;

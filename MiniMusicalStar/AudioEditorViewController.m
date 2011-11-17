@@ -40,7 +40,7 @@
         self.theCoverScene = aCoverScene;
         self.context = aContext;
 
-        tracksTableViewController = [[TracksTableViewController alloc] initWithScene:aScene andACoverScene:aCoverScene andAContext:aContext andARecordingStatusLabel:recordingStatusLabel];
+        tracksTableViewController = [[TracksTableViewController alloc] initWithScene:aScene andACoverScene:aCoverScene andAContext:aContext];
         
         lyricsViewController = [[LyricsViewController alloc] init];
         
@@ -187,6 +187,11 @@
                          }];
         
     }
+}
+
+-(void)updateRecordingStatusLabel:(NSString *)aStatus
+{
+    self.recordingStatusLabel.text = aStatus;
 }
 
 #pragma mark - IBAction

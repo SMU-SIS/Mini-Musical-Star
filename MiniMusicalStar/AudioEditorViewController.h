@@ -17,6 +17,7 @@
 @end
 
 @interface AudioEditorViewController : UIViewController
+    <TracksTableViewDelegate>
 {
     id <AudioEditorDelegate> delegate;
 }
