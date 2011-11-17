@@ -17,7 +17,8 @@
 
 @implementation TracksTableViewController
 
-@synthesize delegate;
+@synthesize lyricsViewControllerDelegate;
+@synthesize audioEditorViewControllerDelegate;
 
 @synthesize thePlayer;
 @synthesize theScene;
@@ -25,7 +26,6 @@
 @synthesize context;
 @synthesize playPauseButton;
 @synthesize recordingStatusLabel;
-@synthesize audioViewController;
 
 @synthesize tracksForView;
 @synthesize tracksForViewNSURL;
@@ -36,15 +36,14 @@
 
 #pragma initializers and deinitalizers
 
-- (id)initWithScene:(Scene*)aScene andACoverScene:(CoverScene*)aCoverScene andAContext:(NSManagedObjectContext*)aContext andARecordingStatusLabel:(UILabel*)aRecordingStatusLabel andAAudioEditorViewController:(AudioEditorViewController *)aAudioEditorViewController
-{
+- (id)initWithScene:(Scene*)aScene andACoverScene:(CoverScene*)aCoverScene andAContext:(NSManagedObjectContext*)aContext andARecordingStatusLabel:(UILabel*)aRecordingStatusLabel{
+    
     self = [super initWithStyle:UITableViewStylePlain];
     if (self) {
         self.theScene = aScene;
         self.theCoverScene = aCoverScene;
         self.context = aContext;
         self.recordingStatusLabel = aRecordingStatusLabel;
-        self.audioViewController = aAudioEditorViewController;
         
         [self updatePlayerStatus:NO AndRecordingStatus:NO];
         currentRecordingIndex = -1;
@@ -63,7 +62,7 @@
         //load first replaceable audio's lyrics
         if (arrayOfReplaceableAudios != nil && [arrayOfReplaceableAudios count] != 0) {
             Audio *anAudio = (Audio*) [arrayOfReplaceableAudios objectAtIndex:0];
-            [delegate loadLyrics:anAudio.lyrics];
+            [lyricsViewControllerDelegate loadLyrics:anAudio.lyrics];
         }
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(autosaveWhenContextDidChange:) name:NSManagedObjectContextObjectsDidChangeNotification object:context];
@@ -83,7 +82,7 @@
     [context release];
     [playPauseButton release];
     [recordingStatusLabel release];
-    [audioViewController release];
+//    [self.audioViewController release];
     
     [tracksForView release];
     [tracksForViewNSURL release];
@@ -666,9 +665,9 @@
     NSString *trimmedLyrics =[[audio lyrics] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     
     if ([trimmedLyrics isEqualToString:@""]) {
-        [delegate loadLyrics:@"no lyrics were found for this track"];
+        [lyricsViewControllerDelegate loadLyrics:@"no lyrics were found for this track"];
     } else {
-        [delegate loadLyrics:[audio lyrics]];
+        [lyricsViewControllerDelegate loadLyrics:[audio lyrics]];
     }
     
 }
@@ -697,7 +696,7 @@
 
 - (void)showCueButtonIsPressed:(UIButton*)sender
 {
-    [audioViewController cueButtonIsPressed:[self getTableViewRow:sender]];
+    [audioEditorViewControllerDelegate cueButtonIsPressed:[self getTableViewRow:sender]];
 }
 
 @end

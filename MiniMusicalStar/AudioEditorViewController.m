@@ -40,7 +40,7 @@
         self.theCoverScene = aCoverScene;
         self.context = aContext;
 
-        tracksTableViewController = [[TracksTableViewController alloc] initWithScene:aScene andACoverScene:aCoverScene andAContext:aContext andARecordingStatusLabel:recordingStatusLabel andAAudioEditorViewController:self];
+        tracksTableViewController = [[TracksTableViewController alloc] initWithScene:aScene andACoverScene:aCoverScene andAContext:aContext andARecordingStatusLabel:recordingStatusLabel];
         
         lyricsViewController = [[LyricsViewController alloc] init];
         
@@ -51,6 +51,7 @@
     
     return self;
 }
+
 
 - (void)dealloc
 {
@@ -111,6 +112,35 @@
 }
 
 #pragma mark - instance methods
+
+- (void)removeAndUnloadCueFromView
+{
+    if (self.cueView && self.cueController.currentCue)
+    {
+        //animate the lyrics view sliding up
+        CGRect lyricsFrame = self.lyricsView.frame;
+        lyricsFrame.origin.y = lyricsFrame.origin.y - 50;
+        lyricsFrame.size.height = lyricsFrame.size.height + 50;
+        
+        //        CGRect lyricsLabelFrame = self.lyricsLabel.frame;
+        //        lyricsLabelFrame.origin.y = lyricsLabelFrame.origin.y - 50;
+        //        lyricsLabelFrame.size.height = lyricsLabelFrame.size.height + 50;
+        //        
+        [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationCurveEaseInOut
+                         animations:^{
+                             self.lyricsView.frame = lyricsFrame;
+                             //                             self.lyricsLabel.frame = lyricsLabelFrame;
+                         }
+                         completion:^(BOOL finished) {
+                             [self.cueView removeFromSuperview];
+                             self.cueController.currentCue = nil;
+                             self.cueView = nil;
+                         }];
+    }
+}
+
+#pragma mark - TracksTableViewDelegate methods
+
 - (void)cueButtonIsPressed:(int)trackIndex
 {    
     Cue *theCue = [self.cueController getCurrentCueForTrackIndex:trackIndex];
@@ -156,32 +186,6 @@
                              NSLog(@"animation done!");
                          }];
         
-    }
-}
-
-- (void)removeAndUnloadCueFromView
-{
-    if (self.cueView && self.cueController.currentCue)
-    {
-        //animate the lyrics view sliding up
-        CGRect lyricsFrame = self.lyricsView.frame;
-        lyricsFrame.origin.y = lyricsFrame.origin.y - 50;
-        lyricsFrame.size.height = lyricsFrame.size.height + 50;
-        
-//        CGRect lyricsLabelFrame = self.lyricsLabel.frame;
-//        lyricsLabelFrame.origin.y = lyricsLabelFrame.origin.y - 50;
-//        lyricsLabelFrame.size.height = lyricsLabelFrame.size.height + 50;
-//        
-        [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationCurveEaseInOut
-                         animations:^{
-                             self.lyricsView.frame = lyricsFrame;
-//                             self.lyricsLabel.frame = lyricsLabelFrame;
-                         }
-                         completion:^(BOOL finished) {
-                             [self.cueView removeFromSuperview];
-                             self.cueController.currentCue = nil;
-                             self.cueView = nil;
-                         }];
     }
 }
 

@@ -22,7 +22,7 @@
 @synthesize elapsedTimeLabel, totalTimeLabel, songInfoLabel, playPositionSlider, micVolumeSlider;
 
 - (void)dealloc
-{
+{   
     [delegate release];
     [audioView release];
     [photoView release];
@@ -37,7 +37,9 @@
     [theCoverScene release];
     [context release];
     [containerToggleButton release];
+    
     [super dealloc];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -114,7 +116,11 @@
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
     
-    self.audioView.tracksTableViewController.delegate = nil;
+    [audioView.view removeFromSuperview];
+    
+    //self.audioView.delegate = nil;
+    //self.audioView.tracksTableViewController.delegate = nil;
+
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -198,7 +204,8 @@
     audioView = [[AudioEditorViewController alloc] initWithScene:theScene andCoverScene:theCoverScene andContext:context];
     
     self.audioView.delegate = self;
-    self.audioView.tracksTableViewController.delegate = audioView.lyricsViewController;
+    self.audioView.tracksTableViewController.lyricsViewControllerDelegate = audioView.lyricsViewController;
+    self.audioView.tracksTableViewController.audioEditorViewControllerDelegate = self.audioView;
     
     //load the photo view controller
     photoView = [[PhotoEditorViewController alloc] initWithScene:theScene andCoverScene:theCoverScene andContext:context];
