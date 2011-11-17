@@ -65,6 +65,8 @@
         }
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(autosaveWhenContextDidChange:) name:NSManagedObjectContextObjectsDidChangeNotification object:context];
+        
+        self.tableView.separatorColor = [UIColor clearColor];
     }
     return self;
 }
