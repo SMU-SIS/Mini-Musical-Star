@@ -10,6 +10,8 @@
 #import "MixPlayerRecorder.h"
 #import "Scene.h"
 #import "CoverScene.h"
+#import "CueController.h"
+@class AudioEditorViewController;
 
 #define kBringSliderToZero @"kBringSliderToZero"
 
@@ -35,6 +37,7 @@
 @property (nonatomic, retain) NSManagedObjectContext *context;
 @property (nonatomic, retain) UIButton *playPauseButton;
 @property (nonatomic, retain) UILabel *recordingStatusLabel;
+@property (nonatomic, retain) AudioEditorViewController *audioViewController;
 
 @property (nonatomic, retain) NSMutableArray *tracksForView;
 @property (nonatomic, retain) NSMutableArray *tracksForViewNSURL;
@@ -44,8 +47,8 @@
 @property (nonatomic, retain) NSURL *currentRecordingURL;
 @property (nonatomic, retain) Audio *currentRecordingAudio;
 
-//initializer
-- (id)initWithScene:(Scene*)aScene andACoverScene:(CoverScene*)aCoverScene andAContext:(NSManagedObjectContext*)aContext andARecordingStatusLabel:(UILabel*)aRecordingStatusLabel;
+#pragma mark - initializer
+- (id)initWithScene:(Scene*)aScene andACoverScene:(CoverScene*)aCoverScene andAContext:(NSManagedObjectContext*)aContext andARecordingStatusLabel:(UILabel*)aRecordingStatusLabel andAAudioEditorViewController:(AudioEditorViewController*)aAudioEditorViewController;
 
 #pragma mark - instance methods
 - (void)updatePlayerStatus:(bool)playingStatus AndRecordingStatus:(bool)recordingStatus;
@@ -67,5 +70,10 @@
 #pragma mark - NSNotification methods
 - (void)registerNotifications;
 - (void)deRegisterFromNSNotifcationCenter;
+
+#pragma mark - instance methods for cues
+- (void)setCueButton:(BOOL)shouldShow forTrackIndex:(NSUInteger)trackIndex;
+
+- (void)showCueButtonIsPressed:(UIButton *)sender;
 
 @end

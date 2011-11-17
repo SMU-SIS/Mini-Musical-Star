@@ -13,6 +13,7 @@
 #import "DSActivityView.h"
 #import "MiniMusicalStarUtilities.h"
 #import "ShowDAO.h"
+#import "AudioEditorViewController.h"
 
 @implementation TracksTableViewController
 
@@ -24,6 +25,7 @@
 @synthesize context;
 @synthesize playPauseButton;
 @synthesize recordingStatusLabel;
+@synthesize audioViewController;
 
 @synthesize tracksForView;
 @synthesize tracksForViewNSURL;
@@ -34,7 +36,7 @@
 
 #pragma initializers and deinitalizers
 
-- (id)initWithScene:(Scene*)aScene andACoverScene:(CoverScene*)aCoverScene andAContext:(NSManagedObjectContext*)aContext andARecordingStatusLabel:(UILabel*)aRecordingStatusLabel
+- (id)initWithScene:(Scene*)aScene andACoverScene:(CoverScene*)aCoverScene andAContext:(NSManagedObjectContext*)aContext andARecordingStatusLabel:(UILabel*)aRecordingStatusLabel andAAudioEditorViewController:(AudioEditorViewController *)aAudioEditorViewController
 {
     self = [super initWithStyle:UITableViewStylePlain];
     if (self) {
@@ -42,6 +44,7 @@
         self.theCoverScene = aCoverScene;
         self.context = aContext;
         self.recordingStatusLabel = aRecordingStatusLabel;
+        self.audioViewController = aAudioEditorViewController;
         
         [self updatePlayerStatus:NO AndRecordingStatus:NO];
         currentRecordingIndex = -1;
@@ -80,6 +83,7 @@
     [context release];
     [playPauseButton release];
     [recordingStatusLabel release];
+    [audioViewController release];
     
     [tracksForView release];
     [tracksForViewNSURL release];
@@ -162,7 +166,7 @@
     UILabel *muteUnmuteLabel;
     UILabel *recordRecordingLabel;
     UILabel *showHideLyricsLabel;
-    //UILabel *showCuesLabel;
+    UILabel *showCuesLabel;
     
     //get the corresponding Audio object
     id audioForRow = [tracksForView objectAtIndex:[indexPath row]];
@@ -179,7 +183,7 @@
         [aCell.recordOrTrashButton addTarget:self action:@selector(recordOrTrashButtonIsPressed:) forControlEvents:UIControlEventTouchDown];
         [aCell.muteOrUnmuteButton addTarget:self action:@selector(muteOrUnmuteButtonIsPressed:) forControlEvents:UIControlEventTouchDown];
         [aCell.showLyricsButton addTarget:self action:@selector(showLyricsButtonIsPressed:) forControlEvents:UIControlEventTouchDown];
-//        [cell.showCueButton addTarget:self action:@selector(showCueButtonIsPressed:)forControlEvents:UIControlEventTouchDown];
+        [aCell.showCueButton addTarget:self action:@selector(showCueButtonIsPressed:)forControlEvents:UIControlEventTouchDown];
         
         [aCell release];
     }
@@ -187,13 +191,14 @@
     trackNameLabel = (UILabel*)[cell.contentView viewWithTag:1];
     trackNameLabel.text = [audioForRow valueForKey:@"title"]; //set the name of the track
     
-    recordOrTrashButton = (UIButton*)[cell.contentView viewWithTag:2];
-    muteOrUnmuteButton = (UIButton*)[cell.contentView viewWithTag:3];
+    muteOrUnmuteButton = (UIButton*)[cell.contentView viewWithTag:2];
+    recordOrTrashButton = (UIButton*)[cell.contentView viewWithTag:3];
     showLyricsButton = (UIButton*)[cell.contentView viewWithTag:4];
     showCueButton = (UIButton*)[cell.contentView viewWithTag:5];
     muteUnmuteLabel = (UILabel*)[cell.contentView viewWithTag:6];
     recordRecordingLabel = (UILabel*)[cell.contentView viewWithTag:7];
     showHideLyricsLabel = (UILabel*)[cell.contentView viewWithTag:8];
+    showCuesLabel = (UILabel*)[cell.contentView viewWithTag:9];
     
     if ([audioForRow isKindOfClass:[Audio class]]) {
         if ([(NSNumber *)[audioForRow valueForKey:@"replaceable"] boolValue]) {
@@ -209,8 +214,7 @@
             [showLyricsButton setImage:[UIImage imageNamed:@"lyrics_button.png"] forState:UIControlStateNormal];
             showHideLyricsLabel.text = @"Show lyrics";
             
-            //[showCueButton setImage:cueButtonImage forState:UIControlStateNormal];
-            
+            [showCueButton setImage:[UIImage imageNamed:@"audiocues.png"] forState:UIControlStateNormal];
             
         } else {
             [recordOrTrashButton setImage:nil forState:UIControlStateNormal];
@@ -240,7 +244,9 @@
             muteUnmuteLabel.text = @"Unmute";
         }
         
-        [showLyricsButton setImage:nil forState:UIControlStateNormal];
+        [showCueButton setImage:nil forState:UIControlStateNormal];
+        showCuesLabel.text = @"";
+
         showHideLyricsLabel.text = @"";
     }
     
@@ -676,6 +682,22 @@
         [self performSelector:@selector(consolidateArrays)];
         [self.tableView reloadData];
     }
+}
+
+#pragma mark - instance methods for cues
+- (void)setCueButton:(BOOL)shouldShow forTrackIndex:(NSUInteger)trackIndex
+{
+    //get the table row corresponding to the current track
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:trackIndex inSection:0];
+    UITableViewCell *theCell = [self.tableView cellForRowAtIndexPath:indexPath];
+    UIButton *showCueButton = (UIButton *)[theCell.contentView viewWithTag:5];
+    
+    [showCueButton setHidden:!shouldShow];
+}
+
+- (void)showCueButtonIsPressed:(UIButton*)sender
+{
+    [audioViewController cueButtonIsPressed:[self getTableViewRow:sender]];
 }
 
 @end

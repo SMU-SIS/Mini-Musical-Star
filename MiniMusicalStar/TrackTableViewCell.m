@@ -14,11 +14,11 @@
 @synthesize recordOrTrashButton;
 @synthesize muteOrUnmuteButton;
 @synthesize showLyricsButton;
-//@synthesize showCueButton;
+@synthesize showCueButton;
 @synthesize muteUnmuteLabel;
 @synthesize recordRecordingLabel;
 @synthesize showHideLyricsLabel;
-//@synthesize showCuesLabel
+@synthesize showCuesLabel;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -35,11 +35,11 @@
     [recordOrTrashButton release];
     [muteOrUnmuteButton release];
     [showLyricsButton release];
-//    [showCueButton release];
+    [showCueButton release];
     [muteUnmuteLabel release];
     [recordRecordingLabel release];
     [showHideLyricsLabel release];
-//    [showCuesLabel release];
+    [showCuesLabel release];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

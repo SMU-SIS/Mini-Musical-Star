@@ -11,6 +11,7 @@
 #import "LyricsViewController.h"
 #import "Scene.h"
 #import "CoverScene.h"
+#import "CueController.h"
 
 @protocol AudioEditorDelegate <NSObject>
 @end
@@ -38,15 +39,23 @@
 @property (nonatomic, retain) TracksTableViewController *tracksTableViewController;
 @property (nonatomic, retain) LyricsViewController *lyricsViewController;
 
+//for the cues
+@property (retain, nonatomic) CueController *cueController;
+@property (retain, nonatomic) UIView *cueView;
+
 @property (nonatomic, retain) Scene *theScene;
 @property (nonatomic, retain) CoverScene *theCoverScene;
 @property (nonatomic, retain) NSManagedObjectContext *context;
 @property (nonatomic, retain) UIButton *playPauseButton;
 
 //instance methods
+- (void)cueButtonIsPressed:(int)trackIndex;
+- (void)removeAndUnloadCueFromView;
 
 //IBAction
 - (IBAction) playTutorial:(id)sender;
 
+#pragma mark - instance methods for cues
+- (void)setCueButton:(BOOL)shouldShow forTrackIndex:(NSUInteger)trackIndex;
 
 @end
