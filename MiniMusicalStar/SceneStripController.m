@@ -13,7 +13,7 @@
 #import "SceneEditViewController.h"
 
 @implementation SceneStripController
-@synthesize view, theShow, theCover, context, delegate, coverLabel;
+@synthesize view, scrollView, ribbonImageView, theShow, theCover, context, delegate, coverLabel;
 
 - (void)dealloc
 {
@@ -21,6 +21,7 @@
     [context release];
     [theShow release];
     [theCover release];
+    [scrollView release];
     [view release];
     [super dealloc];
 }
@@ -30,7 +31,8 @@
     self = [super init];
     if (self)
     {
-        self.view = [[UIScrollView alloc] initWithFrame:CGRectMake(1024,368,1024,275)];
+        self.view = [[UIView alloc] initWithFrame:CGRectMake(1024,368,1024,275)];
+        self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(1024,55,1024,220)];
         self.theShow = aShow;
         self.theCover = aCover;
         
@@ -47,20 +49,28 @@
 
 - (void)loadSceneSelectionScrollView
 {
-    self.view.scrollEnabled = YES;
-    self.view.showsHorizontalScrollIndicator = NO;
-    self.view.showsVerticalScrollIndicator = NO;
-    self.view.pagingEnabled = NO;
-    self.view.clipsToBounds = YES;
+    self.scrollView.scrollEnabled = YES;
+    self.scrollView.showsHorizontalScrollIndicator = NO;
+    self.scrollView.showsVerticalScrollIndicator = NO;
+    self.scrollView.pagingEnabled = NO;
+    self.scrollView.clipsToBounds = YES;
     
-    UIColor *background = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"stripsceneselection.png"]];
-    self.view.backgroundColor = background;
+    UIColor *background = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"individualfilmstrip.png"]];
+    self.scrollView.backgroundColor = background;
     
-    self.coverLabel = [[UILabel alloc] initWithFrame:CGRectMake(1024+100,20,500,75)];
+    //ribbon!
+    UIImage *ribbonImage = [UIImage imageNamed:@"ribbonlabel.png"];
+    self.ribbonImageView = [[UIImageView alloc] initWithImage:ribbonImage];
+    self.ribbonImageView.frame = CGRectMake(1024, 0, ribbonImage.size.width, ribbonImage.size.height);
+    
+    self.coverLabel = [[UILabel alloc] initWithFrame:CGRectMake(100,0,500,75)];
 //    self.coverLabel.transform = CGAffineTransformMakeRotation(90);
     [coverLabel setFont:[UIFont fontWithName:@"Arial" size:30]];
     [coverLabel setBackgroundColor:[UIColor clearColor]];
-    [self.view addSubview:coverLabel];
+    [self.ribbonImageView addSubview:coverLabel];
+    
+    [self.view addSubview:self.scrollView];
+    [self.view addSubview:self.ribbonImageView];
     
     //look at the scene order dictionary in the Show object to place the scenes in the correct order
     [self.theShow.scenesOrder enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
@@ -72,8 +82,8 @@
         
         //create the button's frame
         CGRect frame;
-        frame.origin.x = 38 + view.frame.origin.x + idx * 274;
-        frame.origin.y = 93;
+        frame.origin.x = 38 + idx * 273;
+        frame.origin.y = 35;
         frame.size.width = 200;
         frame.size.height = 150;
         
@@ -84,7 +94,7 @@
         [button setTag:idx];
         [button setImage: theScene.coverPicture forState:(UIControlStateNormal)];
         [button addTarget:self action:@selector(selectScene:) forControlEvents:UIControlEventTouchUpInside];
-        [self.view addSubview:button];
+        [self.scrollView addSubview:button];
         [button release];
     }];
     
@@ -92,7 +102,7 @@
     int extend = 0;    
     if (self.theShow.scenes.count > 4) extend = self.theShow.scenes.count - 4;
     
-    [self.view setContentSize:CGSizeMake(self.view.frame.size.width + (extend * 200), 0)];
+    [self.scrollView setContentSize:CGSizeMake(self.scrollView.frame.size.width + 38 + (extend * 273), 0)];
 }
 
 -(void)selectScene:(UIButton *)sender
