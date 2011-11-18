@@ -369,19 +369,25 @@
 
 - (void)playPauseButtonIsPressed
 {
-    if ([self isPlaying] == YES && [self isRecording] == NO) { //if the player is playing
+    if ([self isPlaying] == YES && [self isRecording] == NO) {
         //is playing
         
         [self stopPlayerWhenPlaying:NO];
         
-    } else if ([self isPlaying] == NO && [self isRecording] == YES) { //if the player is recording
+    } else if ([self isPlaying] == NO && [self isRecording] == YES) {
+        //is recording
+        if (!stopButtonPressWhenRecordingWarningHasDisplayed) {
+            UIAlertView *stopWhenRecordingAlertView = [[[UIAlertView alloc] initWithTitle:@"Stop?" message:@"Do you realy want to stop? :(" delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil] autorelease];
+            stopWhenRecordingAlertView.tag = 1;
+            [stopWhenRecordingAlertView show];
+            
+            return;
+        }
         
-        [self.thePlayer seekTo:0];
-        [self.thePlayer stop];
-        [self recordingIsCompleted];
-               
+        [self stopPlayerWhenRecording];
+        
     }
-    else //player is neither playing or recording
+    else
     {
         //if the play pause button is press, we only expect it to be playing
         [self startPlayerPlaying];
@@ -411,6 +417,30 @@
         //[delegate bringSliderToZero];
         [[NSNotificationCenter defaultCenter] postNotificationName:kBringSliderToZero object:self];
     }
+    
+    [self.audioEditorViewControllerDelegate updateRecordingStatusLabel:@""];
+}
+
+- (void)stopPlayerWhenRecording
+{
+    [self.thePlayer seekTo:0];
+    [self.thePlayer stop];
+    [self.playPauseButton setImage:[UIImage imageNamed:@"play.png"] forState:UIControlStateNormal];
+    stopButtonPressWhenRecordingWarningHasDisplayed = NO;   //reset
+    
+    [self updatePlayerStatus:NO AndRecordingStatus:NO];
+    
+    currentRecordingIndex = -1;
+    
+    if (!thePlayer.stoppedBecauseReachedEnd) {
+        //if file exists delete the file first
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        [fileManager removeItemAtURL:currentRecordingURL error:nil];
+    }
+    
+    //clear values
+    currentRecordingAudio = nil;
+    currentRecordingURL = nil;
     
     [self.audioEditorViewControllerDelegate updateRecordingStatusLabel:@""];
 }
@@ -694,6 +724,22 @@
 - (void)showCueButtonIsPressed:(UIButton*)sender
 {
     [audioEditorViewControllerDelegate cueButtonIsPressed:[self getTableViewRow:sender]];
+}
+
+#pragma mark - UIAlertViewDelegate Protocol methods
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (alertView.tag == 1) {
+        if (buttonIndex == 1) {
+            //user pressed yes
+            stopButtonPressWhenRecordingWarningHasDisplayed = YES;
+            [self playPauseButtonIsPressed];
+        } else if (buttonIndex == 0) {
+            //user pressed no
+            stopButtonPressWhenRecordingWarningHasDisplayed = NO;   //reset to default value
+        }
+    }
 }
 
 @end

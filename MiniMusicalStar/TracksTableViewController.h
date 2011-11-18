@@ -31,6 +31,7 @@
     bool isRecording;
     bool isPlaying;
     int currentRecordingIndex;
+    bool stopButtonPressWhenRecordingWarningHasDisplayed;
 }
 
 @property (nonatomic, assign) id lyricsViewControllerDelegate;
@@ -69,6 +70,7 @@
 - (void)playPauseButtonIsPressed;
 - (void)startPlayerPlaying;
 - (void)stopPlayerWhenPlaying:(bool)hasReachedEnd;
+- (void)stopPlayerWhenRecording;
 
 #pragma mark - NSNotification methods
 - (void)registerNotifications;
