@@ -54,7 +54,7 @@
 {
     [super viewDidLoad];
     
-    self.statusLabel.text = @"Ready to upload? Click the button below?";
+    self.statusLabel.text = @"Ready to upload? Click the button below!";
     self.uploadProgressView.progress = 0;
     [self.okButton setTitle:@"UPLOAD" forState:UIControlStateNormal];
     [self.okButton setImage:[UIImage imageNamed:@"fb_upload.png"] forState:UIControlStateNormal];
