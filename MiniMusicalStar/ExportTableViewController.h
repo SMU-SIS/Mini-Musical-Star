@@ -52,7 +52,8 @@
 @property (nonatomic, retain) UIBarButtonItem *uploadBarButtonItem;
 @property (retain, nonatomic) NSMutableArray *tempMusicalContainer;
 
-@property(retain,nonatomic) AVAssetExportSession *exportSession;
+@property(retain,nonatomic) NSMutableArray *exportedAssetOrder;
+@property(retain,nonatomic) AVAssetExportSession *exportSessionObject;
 
 @property (retain, nonatomic) NSManagedObjectContext *context;
 
@@ -67,8 +68,9 @@
 - (void) removeFileAtPath: (NSURL*) filePath;
 
 - (void) processExportSessionWithComposition:(AVMutableComposition*)composition andVideoComposition:(AVMutableVideoComposition*)videoComposition withOutputFilePath:(NSURL*)outputFileURL andVideoFilePath:(NSURL*)videoFileURL forMusical:(BOOL)isMusical;
-- (void) saveExportedAssetAt:(NSURL*)outputFileURL andDeleteVideoFile:(NSURL*)videoFileURL forMusical:(BOOL)isMusical;
+- (void) saveExportedAssetAt:(NSURL*)outputFileURL andDeleteVideoFile:(NSURL*)videoFileURL forMusical:(BOOL)isMusical isSceneAppend:(BOOL)isSceneAppend;
 -(void)processImageAndAudioAppendingToVideoWithImagesArray:(NSArray*)imagesArray andSortedPicturesTimingArray:(NSMutableArray*)sortedTimingsArray andAudioFilePaths:(NSArray*) audioExportURLs forMusical:(BOOL)isMusical;
+-(AVMutableVideoComposition*) getVideoCompositionWithCustomAnimationsToComposition:(AVMutableComposition*)composition andSortedTimingsArrayForKensBurn:(NSMutableArray*)sortedTimingsArray withVideoAsset:(AVAsset*)videoAsset ofVideoSize:(CGSize)videoSize;
 
 - (void)refreshProgressBar:(NSTimer*) aTimer;
 
