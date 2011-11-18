@@ -19,6 +19,7 @@
 @property (nonatomic, retain) IBOutlet UILabel *recordRecordingLabel;
 @property (nonatomic, retain) IBOutlet UILabel *showHideLyricsLabel;
 @property (nonatomic, retain) IBOutlet UILabel *showCuesLabel;
+@property (nonatomic, retain) IBOutlet UILabel *createdDateLabel;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier;
 

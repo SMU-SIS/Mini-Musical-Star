@@ -15,6 +15,7 @@
 @dynamic path;
 @dynamic title;
 @dynamic CoverScene;
+@dynamic createdDate;
 
 - (BOOL)deleteAudioFile
 {

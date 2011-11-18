@@ -16,6 +16,7 @@
         <relationship name="Picture" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CoverScenePicture" inverseName="CoverScene" inverseEntity="CoverScenePicture"/>
     </entity>
     <entity name="CoverSceneAudio" representedClassName="CoverSceneAudio">
+        <attribute name="createdDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="originalHash" optional="YES" attributeType="String"/>
         <attribute name="path" optional="YES" attributeType="String"/>
         <attribute name="title" optional="YES" attributeType="String"/>
@@ -39,7 +40,7 @@
     <elements>
         <element name="Cover" positionX="-0" positionY="258" width="128" height="135"/>
         <element name="CoverScene" positionX="-38" positionY="72" width="128" height="105"/>
-        <element name="CoverSceneAudio" positionX="342" positionY="18" width="128" height="90"/>
+        <element name="CoverSceneAudio" positionX="342" positionY="18" width="128" height="120"/>
         <element name="CoverScenePicture" positionX="331" positionY="135" width="128" height="105"/>
         <element name="ExportedAsset" positionX="160" positionY="192" width="128" height="120"/>
     </elements>
