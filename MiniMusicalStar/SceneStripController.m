@@ -102,15 +102,21 @@
         UILabel *titleLabel = [[UILabel alloc] initWithFrame:frame];
         titleLabel.text = theScene.title;
         titleLabel.backgroundColor = [UIColor whiteColor];
-        //titleLabel.textAlignment = UITextAlignmentRight;
-        //titleLabel.textColor = [UIColor darkGrayColor];
+        titleLabel.alpha = 0.3;
+        titleLabel.layer.cornerRadius = 7;
+        titleLabel.textAlignment = UITextAlignmentCenter;
+        [titleLabel setFont:[UIFont fontWithName:@"Arial" size:16]];
         [titleLabel sizeToFit];
+        
+        CGRect newTitleLabelFrame = titleLabel.frame;
+        newTitleLabelFrame.size.width = newTitleLabelFrame.size.width+20;
+        titleLabel.frame = newTitleLabelFrame;
         
         //align right
         float width = titleLabel.frame.size.width;
         CGRect labelFrame;
         labelFrame.origin.x = ((37 + idx * 273) + 200) - width;
-        labelFrame.origin.y = 34;
+        labelFrame.origin.y = 40;
         labelFrame.size.width = width;
         labelFrame.size.height = 20;
         titleLabel.frame = labelFrame;
