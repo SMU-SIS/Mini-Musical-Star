@@ -241,6 +241,7 @@
         [showCueButton setImage:nil forState:UIControlStateNormal];
         showCuesLabel.text = @"";
 
+        [showLyricsButton setImage:nil forState:UIControlStateNormal];
         showHideLyricsLabel.text = @"";
     }
     
