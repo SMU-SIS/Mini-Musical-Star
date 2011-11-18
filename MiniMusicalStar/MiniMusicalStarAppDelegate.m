@@ -9,7 +9,7 @@
 
 #import "MiniMusicalStarAppDelegate.h"
 #import "MenuViewController.h"
-#import "ConsoleManager.h"
+//#import "ConsoleManager.h"
 
 @implementation MiniMusicalStarAppDelegate
 
@@ -33,9 +33,9 @@ void uncaughtExceptionHandler(NSException *exception) {
     
     self.viewController.managedObjectContext = [self managedObjectContext];
 
-    #if (TARGET_IPHONE_SIMULATOR)
-        [ConsoleManager run];
-    #endif
+//    #if (TARGET_IPHONE_SIMULATOR)
+//        [ConsoleManager run];
+//    #endif
     
     //warn when zombie is enabled
     char* szZombie = getenv("NSZombieEnabled"); if (szZombie && 0 == strcasecmp(szZombie, "YES")) { NSLog(@"NSZombieEnabled enabled!"); }
