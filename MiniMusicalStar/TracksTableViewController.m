@@ -174,8 +174,6 @@
         cell = [topLevelObjects objectAtIndex:0];
         [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
         
-        //int xShift = 30;
-        
         [aCell.recordOrTrashButton addTarget:self action:@selector(recordOrTrashButtonIsPressed:) forControlEvents:UIControlEventTouchDown];
         [aCell.muteOrUnmuteButton addTarget:self action:@selector(muteOrUnmuteButtonIsPressed:) forControlEvents:UIControlEventTouchDown];
         [aCell.showLyricsButton addTarget:self action:@selector(showLyricsButtonIsPressed:) forControlEvents:UIControlEventTouchDown];

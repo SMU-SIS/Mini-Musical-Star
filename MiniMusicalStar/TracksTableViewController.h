@@ -20,6 +20,7 @@
 - (void)loadLyrics:(NSString*)aLyrics;
 - (void)updateRecordingStatusLabel:(NSString*)aStatus;
 - (void)cueButtonIsPressed:(int)trackIndex;
+
 @end
 
 @interface TracksTableViewController : UITableViewController
