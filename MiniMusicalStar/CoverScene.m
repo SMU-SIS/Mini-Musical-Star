@@ -18,6 +18,13 @@
 @dynamic Cover;
 @dynamic Picture;
 
+- (NSArray *)sortedAudio
+{
+    //later date first
+    NSArray *sortDescriptors = [NSArray arrayWithObjects:[NSSortDescriptor sortDescriptorWithKey:@"createdDate" ascending:NO], nil];
+    return [self.Audio sortedArrayUsingDescriptors:sortDescriptors];
+}
+
 - (CoverScenePicture *)pictureForOriginalHash:(NSString *)hash
 {
     __block CoverScenePicture *pictureToReturn = nil;

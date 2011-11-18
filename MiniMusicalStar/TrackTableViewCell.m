@@ -19,6 +19,7 @@
 @synthesize recordRecordingLabel;
 @synthesize showHideLyricsLabel;
 @synthesize showCuesLabel;
+@synthesize createdDateLabel;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -40,6 +41,7 @@
     [recordRecordingLabel release];
     [showHideLyricsLabel release];
     [showCuesLabel release];
+    [createdDateLabel release];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
