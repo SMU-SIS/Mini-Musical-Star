@@ -57,12 +57,11 @@
     [manager createDirectoryAtPath:showsDirectory withIntermediateDirectories:NO attributes:nil error:&error];
     
     BOOL isDirectory = YES;
-    if (![manager fileExistsAtPath:[showsDirectory stringByAppendingPathComponent:@"Howling Dog"] isDirectory:&isDirectory])
+    if (![manager fileExistsAtPath:[showsDirectory stringByAppendingPathComponent:@"B1G1"] isDirectory:&isDirectory])
     {
         //then seed the tutorial
-        NSString *howlingDogZip = [[NSBundle mainBundle] pathForResource:@"howling_dog" ofType:@"zip"];
-        NSLog(@"HOWLING DOG PATH IS %@", howlingDogZip);
-        [self unzipDownloadedShowURL:howlingDogZip toPath:[showsDirectory stringByAppendingPathComponent:@"Howling Dog"]];
+        NSString *seededMusical = [[NSBundle mainBundle] pathForResource:@"b1g1" ofType:@"zip"];
+        [self unzipDownloadedShowURL:seededMusical toPath:[showsDirectory stringByAppendingPathComponent:@"B1G1"]];
     }
 }
 
