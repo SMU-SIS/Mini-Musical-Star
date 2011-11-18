@@ -18,6 +18,7 @@
 @property (nonatomic, retain) NSString * path;
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) CoverScene *CoverScene;
+@property (retain, nonatomic) NSDate *createdDate;
 
 - (BOOL)deleteAudioFile;
 
