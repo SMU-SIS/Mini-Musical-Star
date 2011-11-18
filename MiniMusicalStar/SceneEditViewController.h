@@ -54,5 +54,8 @@
 - (NSArray*) getExportAudioURLs;
 - (void) playMovie:(NSURL*)filePath;
 -(void)drawPlaySlider;
+
+- (void)updateCurrentAudioRouteAndAdjustVolume;
+- (void)updateVolumeSlider;
     
 @end

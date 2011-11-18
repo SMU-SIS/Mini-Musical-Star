@@ -78,6 +78,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveElapsedTimeNotification:) name:kMixPlayerRecorderPlaybackElapsedTimeAdvanced object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveBringSliderToZeroNotification) name:kBringSliderToZero object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateCurrentAudioRouteAndAdjustVolume) name:kMixPlayerRecorderAudioRouteHasChanged object:nil];
 }
 
 - (void)viewDidLoad
@@ -101,9 +103,8 @@
     
     //update the song title
     [songInfoLabel setText:theScene.title];
-
-    //set the mic volume control value
-    micVolumeSlider.value = [self.audioView.tracksTableViewController.thePlayer getMicVolume];
+    
+    [self updateCurrentAudioRouteAndAdjustVolume];
     
     [self drawPlaySlider];
     
@@ -362,4 +363,40 @@
     [moviePlayer release];
 }
 
+
+- (void)updateCurrentAudioRouteAndAdjustVolume
+{
+    NSString *currentAudioRoute = [self.audioView.tracksTableViewController.thePlayer checkHardwareAndAdjustVolume];
+    
+    if ([currentAudioRoute isEqualToString:@"SIMULATOR"]) {
+        //if simulator, set mic to 0 
+        [self.audioView.tracksTableViewController.thePlayer setMicVolume:0];
+        [self updateVolumeSlider];
+        
+    } else if ([currentAudioRoute isEqualToString:@"SPEAKER"]) {
+        //if ipad and speaker, set mic to 0 and disable slider
+        [self.audioView.tracksTableViewController.thePlayer setMicVolume:0];
+        [self updateVolumeSlider];
+        self.micVolumeSlider.enabled = NO;
+        
+    } else if ([currentAudioRoute isEqualToString:@"HEADPHONE"]) {
+        //if ipad and headphones, set mic to 1 and enable slider
+        self.micVolumeSlider.enabled = YES;
+        [self.audioView.tracksTableViewController.thePlayer setMicVolume:1];
+        [self updateVolumeSlider];
+        
+    } else {
+        //if error
+        self.micVolumeSlider.enabled = YES;
+        [self.audioView.tracksTableViewController.thePlayer setMicVolume:1];
+        [self updateVolumeSlider];
+    }
+}
+
+- (void)updateVolumeSlider
+{
+    micVolumeSlider.value = [self.audioView.tracksTableViewController.thePlayer getMicVolume];
+}
+
 @end
+
