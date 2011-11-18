@@ -382,7 +382,7 @@
     } else if ([currentAudioRoute isEqualToString:@"HEADPHONE"]) {
         //if ipad and headphones, set mic to 1 and enable slider
         self.micVolumeSlider.enabled = YES;
-        [self.audioView.tracksTableViewController.thePlayer setMicVolume:1];
+        //[self.audioView.tracksTableViewController.thePlayer setMicVolume:1];
         [self updateVolumeSlider];
         
     } else {
