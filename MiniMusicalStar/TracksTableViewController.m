@@ -163,6 +163,11 @@
     UILabel *recordRecordingLabel;
     UILabel *showHideLyricsLabel;
     UILabel *showCuesLabel;
+    UILabel *createdDateLabel;
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateStyle = NSDateFormatterMediumStyle;
+    dateFormatter.timeStyle = NSDateFormatterShortStyle;
     
     //get the corresponding Audio object
     id audioForRow = [tracksForView objectAtIndex:[indexPath row]];
@@ -193,8 +198,10 @@
     recordRecordingLabel = (UILabel*)[cell.contentView viewWithTag:7];
     showHideLyricsLabel = (UILabel*)[cell.contentView viewWithTag:8];
     showCuesLabel = (UILabel*)[cell.contentView viewWithTag:9];
+    createdDateLabel = (UILabel*)[cell.contentView viewWithTag:10];
     
     if ([audioForRow isKindOfClass:[Audio class]]) {
+        createdDateLabel.hidden = YES;
         if ([(NSNumber *)[audioForRow valueForKey:@"replaceable"] boolValue]) {
             
             if ([self isRecording] && [indexPath row] == currentRecordingIndex) {
@@ -226,9 +233,12 @@
             muteUnmuteLabel.text = @"Unmute";
         }
         
-    } else { //if CoverAudio        
+    } else { //if CoverAudio
         [recordOrTrashButton setImage:[UIImage imageNamed:@"trashbin.png"] forState:UIControlStateNormal];
         recordRecordingLabel.text = @"Delete track";
+        NSDate *createdDate = [audioForRow performSelector:@selector(createdDate)];
+        createdDateLabel.text = [dateFormatter stringFromDate:createdDate];
+        createdDateLabel.hidden = NO;
         
         if (![thePlayer busNumberIsMuted:[indexPath row]]) {
             [muteOrUnmuteButton setImage:[UIImage imageNamed:@"unmuted.png"] forState:UIControlStateNormal];
@@ -344,6 +354,7 @@
     CoverSceneAudio *newCoverSceneAudio = [NSEntityDescription insertNewObjectForEntityForName:@"CoverSceneAudio" inManagedObjectContext:context];
     newCoverSceneAudio.title = currentRecordingAudio.title;
     newCoverSceneAudio.path = [currentRecordingURL path];
+    newCoverSceneAudio.createdDate = [NSDate date];
     newCoverSceneAudio.OriginalHash = currentRecordingAudio.hash;
     [self.theCoverScene addAudioObject:newCoverSceneAudio];
     
@@ -460,7 +471,11 @@
         [self.tracksForView addObject:obj];
     }];
     
-    [self.theCoverScene.Audio enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
+//    [self.theCoverScene.Audio enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
+//        [self.tracksForView addObject:obj];
+//    }];
+    
+    [[self.theCoverScene sortedAudio] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         [self.tracksForView addObject:obj];
     }];
     
