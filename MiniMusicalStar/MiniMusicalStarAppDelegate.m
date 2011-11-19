@@ -47,6 +47,9 @@ void uncaughtExceptionHandler(NSException *exception) {
     self.naviController.navigationBarHidden = YES;
     
     [self.window makeKeyAndVisible];
+    
+    [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
+    
     return YES;
 }
 
