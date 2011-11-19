@@ -19,7 +19,7 @@
 @synthesize theScene, theCoverScene;
 @synthesize containerView, audioView, photoView;
 @synthesize playPauseButton;
-@synthesize elapsedTimeLabel, totalTimeLabel, songInfoLabel, playPositionSlider, micVolumeSlider;
+@synthesize elapsedTimeLabel, totalTimeLabel, songInfoLabel, playPositionSlider, micVolumeSlider, plugInEarphonesToEnableLabel;
 
 - (void)dealloc
 {   
@@ -33,6 +33,7 @@
     [songInfoLabel release];
     [playPositionSlider release];
     [micVolumeSlider release];
+    [plugInEarphonesToEnableLabel release];
     [theScene release];
     [theCoverScene release];
     [context release];
@@ -378,18 +379,22 @@
         [self.audioView.tracksTableViewController.thePlayer setMicVolume:0];
         [self updateVolumeSlider];
         self.micVolumeSlider.enabled = NO;
+        self.plugInEarphonesToEnableLabel.hidden = NO;
         
     } else if ([currentAudioRoute isEqualToString:@"HEADPHONE"]) {
         //if ipad and headphones, set mic to 1 and enable slider
         self.micVolumeSlider.enabled = YES;
         //[self.audioView.tracksTableViewController.thePlayer setMicVolume:1];
         [self updateVolumeSlider];
+        self.plugInEarphonesToEnableLabel.hidden = YES;
         
     } else {
         //if error
         self.micVolumeSlider.enabled = YES;
         [self.audioView.tracksTableViewController.thePlayer setMicVolume:1];
         [self updateVolumeSlider];
+        self.plugInEarphonesToEnableLabel.hidden = YES;
+
     }
 }
 
