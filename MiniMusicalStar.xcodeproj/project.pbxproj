@@ -37,6 +37,10 @@
 		3A21953C145E3B7A0052C0FE /* export.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A21953B145E3B7A0052C0FE /* export.png */; };
 		3A219540145E4E400052C0FE /* MediaTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A21953E145E4E3E0052C0FE /* MediaTableViewController.m */; };
 		3A219541145E4E400052C0FE /* MediaTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A21953F145E4E3F0052C0FE /* MediaTableViewController.xib */; };
+		3A2694F1147936A30093E2B0 /* AudioEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64832F581472C7E400627E0A /* AudioEditorViewController.m */; };
+		3A2694F2147936B50093E2B0 /* TrackTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 64832F5014726EB600627E0A /* TrackTableViewCell.m */; };
+		3A2694F3147936B90093E2B0 /* LyricsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6474991B14725E1100A0D308 /* LyricsViewController.m */; };
+		3A2694F4147936CA0093E2B0 /* TracksTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6474992014725E3900A0D308 /* TracksTableViewController.m */; };
 		3A4EB699145592CE005A662F /* ImageToVideoConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A4EB698145592CE005A662F /* ImageToVideoConverter.m */; };
 		3A4EB6B51456A8CF005A662F /* lastclip.mov in Resources */ = {isa = PBXBuildFile; fileRef = 3A4EB6B41456A8CF005A662F /* lastclip.mov */; };
 		3A4EBC171457E311005A662F /* CommandManagerTouchExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A4EBBD21457E311005A662F /* CommandManagerTouchExt.m */; };
@@ -3635,6 +3639,10 @@
 				3A6FB796147129B9002B558C /* NSString+SBJSON.m in Sources */,
 				3A6FB798147129B9002B558C /* SBJSON.m in Sources */,
 				3A6FB79A147129B9002B558C /* SBJsonBase.m in Sources */,
+				3A2694F1147936A30093E2B0 /* AudioEditorViewController.m in Sources */,
+				3A2694F2147936B50093E2B0 /* TrackTableViewCell.m in Sources */,
+				3A2694F3147936B90093E2B0 /* LyricsViewController.m in Sources */,
+				3A2694F4147936CA0093E2B0 /* TracksTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

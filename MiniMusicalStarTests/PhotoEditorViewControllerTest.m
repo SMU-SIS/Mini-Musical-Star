@@ -70,14 +70,14 @@
     self.controller = nil;
 }
 
-- (void)testInitWithPhotos
-{
-    id mockArray = [OCMockObject mockForClass:[NSArray class]];
-    id mockCoverScene = [OCMockObject mockForClass:[CoverScene class]];
-    id mockContext = [OCMockObject mockForClass:[NSManagedObjectContext class]];
-                      
-    GHAssertNotNULL([[PhotoEditorViewController alloc] initWithPhotos:mockArray andCoverScene:mockCoverScene andContext:mockContext],@"initWithPhotos should have initialized a PhotoEditorViewController object");
-}
+//- (void)testInitWithPhotos
+//{
+//    id mockArray = [OCMockObject mockForClass:[NSArray class]];
+//    id mockCoverScene = [OCMockObject mockForClass:[CoverScene class]];
+//    id mockContext = [OCMockObject mockForClass:[NSManagedObjectContext class]];
+//                      
+//    GHAssertNotNULL([[PhotoEditorViewController alloc] initWithPhotos:mockArray andCoverScene:mockCoverScene andContext:mockContext],@"initWithPhotos should have initialized a PhotoEditorViewController object");
+//}
 
 - (void)testSliderCanBeSet
 {
