@@ -57,11 +57,11 @@
     [manager createDirectoryAtPath:showsDirectory withIntermediateDirectories:NO attributes:nil error:&error];
     
     BOOL isDirectory = YES;
-    if (![manager fileExistsAtPath:[showsDirectory stringByAppendingPathComponent:@"B1G1"] isDirectory:&isDirectory])
+    if (![manager fileExistsAtPath:[showsDirectory stringByAppendingPathComponent:@"Howling Dog"] isDirectory:&isDirectory])
     {
         //then seed the tutorial
-        NSString *seededMusical = [[NSBundle mainBundle] pathForResource:@"b1g1" ofType:@"zip"];
-        [self unzipDownloadedShowURL:seededMusical toPath:[showsDirectory stringByAppendingPathComponent:@"B1G1"]];
+        NSString *seededMusical = [[NSBundle mainBundle] pathForResource:@"howling_dog" ofType:@"zip"];
+        [self unzipDownloadedShowURL:seededMusical toPath:[showsDirectory stringByAppendingPathComponent:@"Howling Dog"]];
     }
 }
 
@@ -101,7 +101,7 @@
 {
     
     NSString *urlStr = [[NSString alloc] 
-                        initWithFormat:@"http://dl.dropbox.com/u/23645/shows.plist?seedVar=%f", 
+                        initWithFormat:@"http://dl.dropbox.com/u/23645/shows_12.plist?seedVar=%f", 
                         (float)random()/RAND_MAX];
     NSURL *url = [NSURL URLWithString:urlStr];
     NSDictionary *root = [[NSDictionary alloc] initWithContentsOfURL:url];
