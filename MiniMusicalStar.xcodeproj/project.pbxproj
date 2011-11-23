@@ -2641,7 +2641,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mirna Temi (TYUQGTPF3J)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Jun Kit Lee (GQ9RG2NNL3)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jun Kit Lee (GQ9RG2NNL3)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
@@ -2656,7 +2657,8 @@
 					"-ObjC",
 					"-lxml2",
 				);
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "87DCBA36-41F5-4713-88B0-5FA8064A883D";
+				PROVISIONING_PROFILE = "B69FFB9F-DA7F-43B2-A9CF-4A79CC7F68C1";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B69FFB9F-DA7F-43B2-A9CF-4A79CC7F68C1";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = NO;
 				TARGETED_DEVICE_FAMILY = 2;
@@ -2692,6 +2694,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Jun Kit Lee (GQ9RG2NNL3)";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2705,6 +2708,7 @@
 				INFOPLIST_FILE = "MiniMusicalStar/MiniMusicalStar-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "B69FFB9F-DA7F-43B2-A9CF-4A79CC7F68C1";
 				SKIP_INSTALL = NO;
 				TEST_AFTER_BUILD = NO;
 				TEST_HOST = "";
@@ -2718,7 +2722,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Pivotal Expert PTE LTD";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Jun Kit Lee (GQ9RG2NNL3)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2731,7 +2736,7 @@
 				INFOPLIST_FILE = "MiniMusicalStar/MiniMusicalStar-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "2F3588A5-36D2-43BE-A327-54B2C7194782";
+				PROVISIONING_PROFILE = "B69FFB9F-DA7F-43B2-A9CF-4A79CC7F68C1";
 				SKIP_INSTALL = NO;
 				TEST_AFTER_BUILD = NO;
 				TEST_HOST = "";
