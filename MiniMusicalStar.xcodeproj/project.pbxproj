@@ -323,8 +323,8 @@
 		9572E0E0140E11FF00713F45 /* ShowDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 9572E0DF140E11FF00713F45 /* ShowDAO.m */; };
 		9573CCDF1462D3860055B413 /* stripsceneselection.png in Resources */ = {isa = PBXBuildFile; fileRef = 9573CCDE1462D3860055B413 /* stripsceneselection.png */; };
 		9578443B141DD2F10033721D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9578443A141DD2F10033721D /* QuartzCore.framework */; };
-		95B3E5DF147E02DA0031FDAA /* StoreController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B3E5DD147E02DA0031FDAA /* StoreController.m */; };
-		95B3E5FF147E04800031FDAA /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95B3E5FE147E04800031FDAA /* StoreKit.framework */; };
+		9594D06214653FB7000672C1 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9594D06114653FB7000672C1 /* StoreKit.framework */; };
+		9594D06514654657000672C1 /* StoreController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9594D06414654657000672C1 /* StoreController.m */; };
 		95C526AE1438DA740008AE13 /* CoversListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C526AC1438DA740008AE13 /* CoversListViewController.m */; };
 		95C526AF1438DA740008AE13 /* CoversListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95C526AD1438DA740008AE13 /* CoversListViewController.xib */; };
 		95D2069714482984004B6E8B /* UndownloadedShow.m in Sources */ = {isa = PBXBuildFile; fileRef = 95D2069614482984004B6E8B /* UndownloadedShow.m */; };
@@ -1417,7 +1417,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				95B3E5FF147E04800031FDAA /* StoreKit.framework in Frameworks */,
+				9594D06214653FB7000672C1 /* StoreKit.framework in Frameworks */,
 				3AFDC57C146CEA3D00BB5F75 /* AssetsLibrary.framework in Frameworks */,
 				3A065B06145EE60E001BCEA5 /* MediaPlayer.framework in Frameworks */,
 				646E54D114542E0700F066F6 /* libGDataTouchStaticLib.a in Frameworks */,
@@ -2532,6 +2532,8 @@
 				95B3E5DE147E02DA0031FDAA /* StoreController.h */,
 				9572E0DE140E11FF00713F45 /* ShowDAO.h */,
 				9572E0DF140E11FF00713F45 /* ShowDAO.m */,
+				9594D06314654657000672C1 /* StoreController.h */,
+				9594D06414654657000672C1 /* StoreController.m */,
 			);
 			name = DAOs;
 			sourceTree = "<group>";
@@ -2668,7 +2670,7 @@
 		EDA2A1B513F26F8300B64EA5 = {
 			isa = PBXGroup;
 			children = (
-				95B3E5FE147E04800031FDAA /* StoreKit.framework */,
+				9594D06114653FB7000672C1 /* StoreKit.framework */,
 				820E2A1E140A0A2A00B80BBC /* Resources */,
 				EDA2A1CA13F26F8400B64EA5 /* MiniMusicalStar */,
 				3A68378A142CBF95000485F2 /* MiniMusicalStarTests */,
@@ -3169,6 +3171,7 @@
 				3A9FAC65146162AE00D2B642 /* SimpleEditor.m in Sources */,
 				3A9FAC8814622D1700D2B642 /* KensBurnAnimation.m in Sources */,
 				3A9FAC9B146256D600D2B642 /* AddCreditsViewController.m in Sources */,
+				9594D06514654657000672C1 /* StoreController.m in Sources */,
 				3AFDC57A146B97E800BB5F75 /* CustomVideoAnimations.m in Sources */,
 				3ABD22F7146E08D900FB8D72 /* ProgressOverlayViewController.m in Sources */,
 				9502152C146E35EE00B5C372 /* Cue.m in Sources */,
@@ -3350,7 +3353,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_LDFLAGS = (
 					"-all_load",
 					"-ObjC",
@@ -3359,6 +3362,7 @@
 				PROVISIONING_PROFILE = "B69FFB9F-DA7F-43B2-A9CF-4A79CC7F68C1";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B69FFB9F-DA7F-43B2-A9CF-4A79CC7F68C1";
 				SDKROOT = iphoneos;
+				SKIP_INSTALL = NO;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
@@ -3367,23 +3371,22 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Pivotal Expert PTE LTD";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Pivotal Expert PTE LTD";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = (
 					"-all_load",
 					"-ObjC",
 					"-lxml2",
 				);
-				PROVISIONING_PROFILE = "2F3588A5-36D2-43BE-A327-54B2C7194782";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "2F3588A5-36D2-43BE-A327-54B2C7194782";
 				SDKROOT = iphoneos;
+				SKIP_INSTALL = NO;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
@@ -3393,6 +3396,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Jun Kit Lee (GQ9RG2NNL3)";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3406,6 +3410,8 @@
 				INFOPLIST_FILE = "MiniMusicalStar/MiniMusicalStar-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "B69FFB9F-DA7F-43B2-A9CF-4A79CC7F68C1";
+				SKIP_INSTALL = NO;
 				TEST_AFTER_BUILD = NO;
 				TEST_HOST = "";
 				VALIDATE_PRODUCT = YES;
@@ -3418,6 +3424,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Jun Kit Lee (GQ9RG2NNL3)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3430,6 +3438,8 @@
 				INFOPLIST_FILE = "MiniMusicalStar/MiniMusicalStar-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "B69FFB9F-DA7F-43B2-A9CF-4A79CC7F68C1";
+				SKIP_INSTALL = NO;
 				TEST_AFTER_BUILD = NO;
 				TEST_HOST = "";
 				VALIDATE_PRODUCT = YES;
