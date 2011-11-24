@@ -18,6 +18,8 @@
 @implementation MenuViewController
 @synthesize managedObjectContext, scrollView, buttonArray, showDAO, storeController, tutorialButton;
 
+bool downloadRequestGotCancelled = NO;
+
 - (void)dealloc
 {
     [tutorialButton release];
