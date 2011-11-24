@@ -324,6 +324,7 @@
 		9573CCDF1462D3860055B413 /* stripsceneselection.png in Resources */ = {isa = PBXBuildFile; fileRef = 9573CCDE1462D3860055B413 /* stripsceneselection.png */; };
 		9578443B141DD2F10033721D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9578443A141DD2F10033721D /* QuartzCore.framework */; };
 		95B3E5DF147E02DA0031FDAA /* StoreController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B3E5DD147E02DA0031FDAA /* StoreController.m */; };
+		95B3E5FF147E04800031FDAA /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95B3E5FE147E04800031FDAA /* StoreKit.framework */; };
 		95C526AE1438DA740008AE13 /* CoversListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C526AC1438DA740008AE13 /* CoversListViewController.m */; };
 		95C526AF1438DA740008AE13 /* CoversListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95C526AD1438DA740008AE13 /* CoversListViewController.xib */; };
 		95D2069714482984004B6E8B /* UndownloadedShow.m in Sources */ = {isa = PBXBuildFile; fileRef = 95D2069614482984004B6E8B /* UndownloadedShow.m */; };
@@ -1338,6 +1339,7 @@
 		9578443A141DD2F10033721D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		95B3E5DD147E02DA0031FDAA /* StoreController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreController.m; sourceTree = "<group>"; };
 		95B3E5DE147E02DA0031FDAA /* StoreController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreController.h; sourceTree = "<group>"; };
+		95B3E5FE147E04800031FDAA /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		95C526AB1438DA740008AE13 /* CoversListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoversListViewController.h; sourceTree = "<group>"; };
 		95C526AC1438DA740008AE13 /* CoversListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoversListViewController.m; sourceTree = "<group>"; };
 		95C526AD1438DA740008AE13 /* CoversListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CoversListViewController.xib; sourceTree = "<group>"; };
@@ -1415,6 +1417,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95B3E5FF147E04800031FDAA /* StoreKit.framework in Frameworks */,
 				3AFDC57C146CEA3D00BB5F75 /* AssetsLibrary.framework in Frameworks */,
 				3A065B06145EE60E001BCEA5 /* MediaPlayer.framework in Frameworks */,
 				646E54D114542E0700F066F6 /* libGDataTouchStaticLib.a in Frameworks */,
@@ -2665,6 +2668,7 @@
 		EDA2A1B513F26F8300B64EA5 = {
 			isa = PBXGroup;
 			children = (
+				95B3E5FE147E04800031FDAA /* StoreKit.framework */,
 				820E2A1E140A0A2A00B80BBC /* Resources */,
 				EDA2A1CA13F26F8400B64EA5 /* MiniMusicalStar */,
 				3A68378A142CBF95000485F2 /* MiniMusicalStarTests */,
