@@ -151,7 +151,7 @@
         
         else
         {
-            NSLog(@"undownloadProductIdentifiers count is 0");
+            //NSLog(@"undownloadProductIdentifiers count is 0");
             if([self.delegate respondsToSelector:@selector(showDAO:didFinishLoadingShows:)])
             {
                 [self.delegate showDAO:self didFinishLoadingShows:self.loadedShows];

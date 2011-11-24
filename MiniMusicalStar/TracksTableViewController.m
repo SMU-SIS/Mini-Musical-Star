@@ -255,6 +255,7 @@
         showHideLyricsLabel.text = @"";
     }
     
+    [dateFormatter release];
     return cell;
 }
 
@@ -590,7 +591,7 @@
     
     self.currentRecordingURL = fileURL;
     
-    [thePlayer stop];
+    //[thePlayer stop];
     [thePlayer seekTo:0];
     [thePlayer stop];
     

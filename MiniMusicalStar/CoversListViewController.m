@@ -57,7 +57,7 @@
     
     //predicate...
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(coverOfShowHash == %@)", theShow.showHash];
-    NSLog(@"%@", predicate);
+    //NSLog(@"%@", predicate);
     [request setPredicate:predicate];
     
     //sort descriptor...
@@ -173,7 +173,7 @@
     // Return the number of rows in the section.
     id <NSFetchedResultsSectionInfo> sectionInfo = nil;
     sectionInfo = [[frc sections] objectAtIndex:section];
-    NSLog(@"we have %i objects in database", [sectionInfo numberOfObjects]);
+    //NSLog(@"we have %i objects in database", [sectionInfo numberOfObjects]);
     return [sectionInfo numberOfObjects];
     
 }
