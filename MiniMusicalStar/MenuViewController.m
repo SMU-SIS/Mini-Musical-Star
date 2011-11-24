@@ -16,7 +16,7 @@
 #import "StoreController.h"
 
 @implementation MenuViewController
-@synthesize managedObjectContext, scrollView, buttonArray, showDAO, storeController, tutorialButton;
+@synthesize managedObjectContext, scrollView, buttonArray, showDAO, storeController, showsDownloadingInProgress, tutorialButton;
 
 bool downloadRequestGotCancelled = NO;
 
@@ -55,6 +55,8 @@ bool downloadRequestGotCancelled = NO;
     //set the store controller delegate
     self.storeController = [[StoreController alloc] init];
     self.storeController.delegate = self;
+    
+    self.showsDownloadingInProgress = [NSMutableDictionary dictionary];
     
     [[SKPaymentQueue defaultQueue] addTransactionObserver: self.storeController];
     
@@ -198,16 +200,39 @@ bool downloadRequestGotCancelled = NO;
 
 - (void)initiateShowPurchase:(UIButton *)sender
 {
+    //disable the button to prevent user from clicking twice
+    UIButton *showButton = (UIButton *)sender;
+    showButton.enabled = NO;
+    
+    UIView *theView = [sender superview];
+    __block UILabel *theLabel;
+    
+    [theView.subviews enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        UIView *aView = (UIView *)obj;
+        if (aView.tag == -1) theLabel = (UILabel *)aView;
+    }];
+    
+    //update the show's label
+    theLabel.text = @"Starting Purchase...";
     
     UndownloadedShow *showForPurchase = [self.showDAO.loadedShows objectAtIndex:sender.tag];
+    
+    //add this show to the showsDownloadingInProgress dictionary so we can keep track
+    [self.showsDownloadingInProgress setObject:showForPurchase forKey:showForPurchase.showHash];
+    
+    //create a new SKPayment and add it to the payment queue
     SKPayment *payment = [SKPayment paymentWithProduct: showForPurchase.skProduct];
     [[SKPaymentQueue defaultQueue] addPayment:payment];
     
-    //[self.showDAO downloadShow:[self.showDAO.loadedShows objectAtIndex:sender.tag] progressIndicatorDelegate:progressBar];
-    
-    //change the label text (the label has a tag of -1) to "tap to cancel"
+}
 
-    //[sender addTarget:self action:@selector(cancelDownloadOfShow:) forControlEvents:UIControlEventTouchUpInside];
+- (void)cancelPurchaseOfShow:(NSString *)productIdentifier
+{
+    downloadRequestGotCancelled = YES;
+    
+    //get the UIButton out
+    UndownloadedShow *theShow = [self.showsDownloadingInProgress objectForKey:productIdentifier];
+    [self resetToCleanStateForPartiallyDownloadedShow:theShow];
 }
 
 - (void)downloadMusical:(NSString *)productIdentifier
@@ -268,13 +293,14 @@ bool downloadRequestGotCancelled = NO;
 - (void)resetToCleanStateForPartiallyDownloadedShow:(UndownloadedShow *)aShow
 {
     UIButton *showButton = [buttonArray objectAtIndex:[self.showDAO.loadedShows indexOfObject:aShow]];
+    showButton.enabled = YES; //re-enable the show button if it was disabled (happens when purchasing)
     [[showButton.superview viewWithTag:-2] removeFromSuperview]; //remove the progress bar
     
     [showButton removeTarget:self action:@selector(cancelDownloadOfShow:) forControlEvents:UIControlEventTouchUpInside];
     [showButton addTarget:self action:@selector(initiateShowPurchase:) forControlEvents:UIControlEventTouchUpInside];
     
     UILabel *downloadLabel = (UILabel *)[showButton.superview viewWithTag:-1];
-    downloadLabel.text = @"Tap to Download";
+    downloadLabel.text = @"Tap to Purchase";
     
     if (!downloadRequestGotCancelled) //meaning that the request failed
     {

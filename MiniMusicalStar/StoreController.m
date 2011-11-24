@@ -63,7 +63,11 @@
         [alert release];
     }
     
+    [delegate performSelectorInBackground:@selector(cancelPurchaseOfShow:) withObject:transaction.payment.productIdentifier];
     [[SKPaymentQueue defaultQueue] finishTransaction: transaction];
+    
+    NSLog(@"product identifier is %@", transaction.payment.productIdentifier);
+
 }
 
 - (void) restoreTransaction: (SKPaymentTransaction *)transaction
@@ -85,8 +89,13 @@
 {
     SKPaymentTransaction *transaction = [self.activeTransactions objectForKey: productIdentifier];
     
-    // Remove the transaction from the payment queue.
-    [[SKPaymentQueue defaultQueue] finishTransaction: transaction];
+    // Remove the transaction from the payment queue
+    if (transaction)
+    {
+        //must check because there will not be a transaction object in activeTransactions if the user cancelled it before it has even started
+        [[SKPaymentQueue defaultQueue] finishTransaction: transaction];
+    }
+    
     
     [self.activeTransactions removeObjectForKey:productIdentifier];
 }

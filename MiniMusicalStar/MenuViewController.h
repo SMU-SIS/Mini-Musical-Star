@@ -24,7 +24,10 @@
 @property (retain, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (retain, nonatomic) NSMutableArray *buttonArray;
 @property (retain, nonatomic) ShowDAO *showDAO;
+
 @property (assign, nonatomic) StoreController *storeController;
+@property (retain, nonatomic) NSMutableDictionary *showsDownloadingInProgress;
+
 - (void)createScrollViewOfShows;
 - (UIButton *)createButtonForShow:(Show *)aShow frame:(CGRect)buttonFrame;
 - (UIButton *)createButtonForUndownloadedShow:(UndownloadedShow *)aShow frame:(CGRect)buttonFrame;
