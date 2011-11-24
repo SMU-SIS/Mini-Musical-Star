@@ -202,7 +202,7 @@ bool downloadRequestGotCancelled = NO;
 {
     //disable the button to prevent user from clicking twice
     UIButton *showButton = (UIButton *)sender;
-    showButton.enabled = NO;
+    [showButton removeTarget:self action:@selector(initiateShowPurchase:) forControlEvents:UIControlEventTouchUpInside];
     
     UIView *theView = [sender superview];
     __block UILabel *theLabel;
@@ -247,6 +247,8 @@ bool downloadRequestGotCancelled = NO;
                 BOOL finished = YES;
                 stop = &finished;
                 
+                
+                
                 //find back the label and add a progress bar
                 UIView *theView = [[self.buttonArray objectAtIndex:idx] superview];
                 
@@ -257,12 +259,20 @@ bool downloadRequestGotCancelled = NO;
                     if (aView.tag == -1) theLabel = (UILabel *)aView;
                 }];
                 
+                //and we set the label to "tap to cancel"
+                theLabel.text = @"Tap to Cancel";
+                
+                //and we wire up the button to cancel
+                UIButton *theButton = (UIButton *)[self.buttonArray objectAtIndex:idx];
+                [theButton addTarget:self action:@selector(cancelDownloadOfShow:) forControlEvents:UIControlEventTouchUpInside];
+                theButton.enabled = YES;
+                
                 //create a progress indicator
                 CGRect progressBarFrame;
                 progressBarFrame.size.width = 250;
-                progressBarFrame.size.height = 20;
-                progressBarFrame.origin.x = 10;
-                progressBarFrame.origin.y = 460;
+                progressBarFrame.size.height = 40;
+                progressBarFrame.origin.x = 15;
+                progressBarFrame.origin.y = 280;
                 
                 UIProgressView *progressBar = [[UIProgressView alloc] initWithFrame:progressBarFrame];
                 progressBar.tag = -2; //progress bar tag is 2
@@ -271,12 +281,6 @@ bool downloadRequestGotCancelled = NO;
                 //FINALLY we download the show
                 [self.showDAO downloadShow:aShow progressIndicatorDelegate:progressBar];
                 
-                //and we set the label to "tap to cancel"
-                theLabel.text = @"Tap to Cancel";
-                
-                //and we wire up the button to cancel
-                UIButton *theButton = (UIButton *)[self.buttonArray objectAtIndex:idx];
-                [theButton addTarget:self action:@selector(cancelDownloadOfShow:) forControlEvents:UIControlEventTouchUpInside];
             }
         }
     }];
@@ -308,6 +312,10 @@ bool downloadRequestGotCancelled = NO;
         [alert show];
         [alert release];
     }
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Download Cancelled" message:@"You can redownload this musical again by repurchasing it. Don't worry, you will not be charged." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alert show];
+    [alert release];
     
     downloadRequestGotCancelled = NO;
     

@@ -17,9 +17,20 @@
     if (self)
     {
         self.activeTransactions = [[NSMutableDictionary alloc] init];
+        [self clearTransactionQueue];
     }
     
     return self;
+}
+
+- (void)clearTransactionQueue
+{
+    NSArray *transactions = [[SKPaymentQueue defaultQueue] transactions];
+    for (SKPaymentTransaction *transaction in transactions)
+    {
+        NSLog(@"Transaction to be cleared is %@", transaction);
+        [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
+    }
 }
 
 - (void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray *)transactions
@@ -77,7 +88,7 @@
 
 - (void) recordTransaction: (SKPaymentTransaction *)transaction
 {
-    
+    NSLog(@"transaction record: %@", transaction);
 }
 
 - (void) provideContent: (NSString *)productIdentifier

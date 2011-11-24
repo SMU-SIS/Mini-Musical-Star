@@ -14,6 +14,8 @@
 @property (assign, nonatomic) id delegate;
 @property (retain, nonatomic) NSMutableDictionary *activeTransactions;
 
+- (void)clearTransactionQueue;
+
 - (void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray *)transactions;
 - (void)completeTransaction: (SKPaymentTransaction *)transaction;
 - (void)failedTransaction: (SKPaymentTransaction *)transaction;

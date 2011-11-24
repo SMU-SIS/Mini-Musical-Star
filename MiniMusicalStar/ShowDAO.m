@@ -186,7 +186,7 @@
         newShow.title = skProduct.localizedTitle;
         newShow.showDescription = skProduct.localizedDescription;
         newShow.price = skProduct.price;
-        newShow.downloadURL = [NSString stringWithFormat:@"http://mmsmusicalstore.appspot.com/shows/%@/download", skProduct.productIdentifier];
+        newShow.downloadURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://mmsmusicalstore.appspot.com/shows/%@/download", skProduct.productIdentifier]];
         
         //grab the new show's cover image from our server
         NSString *coverImageString = [NSString stringWithFormat:@"http://mmsmusicalstore.appspot.com/shows/%@/cover_image", skProduct.productIdentifier];
@@ -216,9 +216,9 @@
     NSString *destinationPath = [[[[ShowDAO userDocumentDirectory] stringByAppendingPathComponent:@"shows"] stringByAppendingPathComponent:aShow.title] stringByAppendingPathExtension:@"zip"];
     
     __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:aShow.downloadURL];
+    
     [request setDownloadProgressDelegate:aDelegate];
     [request setShowAccurateProgress:YES];
-    
     [request setDownloadDestinationPath:destinationPath];
     [request setCompletionBlock:^{
         
