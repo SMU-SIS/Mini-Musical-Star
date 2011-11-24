@@ -323,6 +323,7 @@
 		9572E0E0140E11FF00713F45 /* ShowDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 9572E0DF140E11FF00713F45 /* ShowDAO.m */; };
 		9573CCDF1462D3860055B413 /* stripsceneselection.png in Resources */ = {isa = PBXBuildFile; fileRef = 9573CCDE1462D3860055B413 /* stripsceneselection.png */; };
 		9578443B141DD2F10033721D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9578443A141DD2F10033721D /* QuartzCore.framework */; };
+		95B3E5DF147E02DA0031FDAA /* StoreController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B3E5DD147E02DA0031FDAA /* StoreController.m */; };
 		95C526AE1438DA740008AE13 /* CoversListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C526AC1438DA740008AE13 /* CoversListViewController.m */; };
 		95C526AF1438DA740008AE13 /* CoversListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95C526AD1438DA740008AE13 /* CoversListViewController.xib */; };
 		95D2069714482984004B6E8B /* UndownloadedShow.m in Sources */ = {isa = PBXBuildFile; fileRef = 95D2069614482984004B6E8B /* UndownloadedShow.m */; };
@@ -1335,6 +1336,8 @@
 		9572E0DF140E11FF00713F45 /* ShowDAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowDAO.m; sourceTree = "<group>"; };
 		9573CCDE1462D3860055B413 /* stripsceneselection.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stripsceneselection.png; sourceTree = "<group>"; };
 		9578443A141DD2F10033721D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		95B3E5DD147E02DA0031FDAA /* StoreController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreController.m; sourceTree = "<group>"; };
+		95B3E5DE147E02DA0031FDAA /* StoreController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreController.h; sourceTree = "<group>"; };
 		95C526AB1438DA740008AE13 /* CoversListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoversListViewController.h; sourceTree = "<group>"; };
 		95C526AC1438DA740008AE13 /* CoversListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoversListViewController.m; sourceTree = "<group>"; };
 		95C526AD1438DA740008AE13 /* CoversListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CoversListViewController.xib; sourceTree = "<group>"; };
@@ -2522,6 +2525,8 @@
 		9572E0DD140E119100713F45 /* DAOs */ = {
 			isa = PBXGroup;
 			children = (
+				95B3E5DD147E02DA0031FDAA /* StoreController.m */,
+				95B3E5DE147E02DA0031FDAA /* StoreController.h */,
 				9572E0DE140E11FF00713F45 /* ShowDAO.h */,
 				9572E0DF140E11FF00713F45 /* ShowDAO.m */,
 			);
@@ -3190,6 +3195,7 @@
 				6474992214725E3900A0D308 /* TracksTableViewController.m in Sources */,
 				64832F5114726EB700627E0A /* TrackTableViewCell.m in Sources */,
 				64832F591472C7F900627E0A /* AudioEditorViewController.m in Sources */,
+				95B3E5DF147E02DA0031FDAA /* StoreController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
