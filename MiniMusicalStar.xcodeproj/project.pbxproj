@@ -327,6 +327,8 @@
 		9594D06514654657000672C1 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		95B3E610147E06830031FDAA /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95B3E60F147E06830031FDAA /* StoreKit.framework */; };
 		95B3E611147E06A00031FDAA /* StoreController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B3E5DD147E02DA0031FDAA /* StoreController.m */; };
+		95B3E617147E2BCB0031FDAA /* NSString+MD5Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B3E614147E2BCB0031FDAA /* NSString+MD5Addition.m */; };
+		95B3E618147E2BCB0031FDAA /* UIDevice+IdentifierAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B3E616147E2BCB0031FDAA /* UIDevice+IdentifierAddition.m */; };
 		95C526AE1438DA740008AE13 /* CoversListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C526AC1438DA740008AE13 /* CoversListViewController.m */; };
 		95C526AF1438DA740008AE13 /* CoversListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95C526AD1438DA740008AE13 /* CoversListViewController.xib */; };
 		95D2069714482984004B6E8B /* UndownloadedShow.m in Sources */ = {isa = PBXBuildFile; fileRef = 95D2069614482984004B6E8B /* UndownloadedShow.m */; };
@@ -1342,6 +1344,10 @@
 		95B3E5DD147E02DA0031FDAA /* StoreController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreController.m; sourceTree = "<group>"; };
 		95B3E5DE147E02DA0031FDAA /* StoreController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreController.h; sourceTree = "<group>"; };
 		95B3E60F147E06830031FDAA /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		95B3E613147E2BCB0031FDAA /* NSString+MD5Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5Addition.h"; sourceTree = "<group>"; };
+		95B3E614147E2BCB0031FDAA /* NSString+MD5Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5Addition.m"; sourceTree = "<group>"; };
+		95B3E615147E2BCB0031FDAA /* UIDevice+IdentifierAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+IdentifierAddition.h"; sourceTree = "<group>"; };
+		95B3E616147E2BCB0031FDAA /* UIDevice+IdentifierAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+IdentifierAddition.m"; sourceTree = "<group>"; };
 		95C526AB1438DA740008AE13 /* CoversListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoversListViewController.h; sourceTree = "<group>"; };
 		95C526AC1438DA740008AE13 /* CoversListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoversListViewController.m; sourceTree = "<group>"; };
 		95C526AD1438DA740008AE13 /* CoversListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CoversListViewController.xib; sourceTree = "<group>"; };
@@ -2539,6 +2545,17 @@
 			name = DAOs;
 			sourceTree = "<group>";
 		};
+		95B3E612147E2BB30031FDAA /* UIDevice-with-UniqueIdentifier-for-iOS-5 */ = {
+			isa = PBXGroup;
+			children = (
+				95B3E613147E2BCB0031FDAA /* NSString+MD5Addition.h */,
+				95B3E614147E2BCB0031FDAA /* NSString+MD5Addition.m */,
+				95B3E615147E2BCB0031FDAA /* UIDevice+IdentifierAddition.h */,
+				95B3E616147E2BCB0031FDAA /* UIDevice+IdentifierAddition.m */,
+			);
+			name = "UIDevice-with-UniqueIdentifier-for-iOS-5";
+			sourceTree = "<group>";
+		};
 		95D206991449B0EA004B6E8B /* Icons */ = {
 			isa = PBXGroup;
 			children = (
@@ -2550,6 +2567,7 @@
 		95DAE8F31414DFD00039201D /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				95B3E612147E2BB30031FDAA /* UIDevice-with-UniqueIdentifier-for-iOS-5 */,
 				95021530146EC93F00B5C372 /* ddInvokeOnMainThread */,
 				3A9FAC63146162AE00D2B642 /* SimpleEditor.h */,
 				3A9FAC64146162AE00D2B642 /* SimpleEditor.m */,
@@ -3204,6 +3222,8 @@
 				64832F5114726EB700627E0A /* TrackTableViewCell.m in Sources */,
 				64832F591472C7F900627E0A /* AudioEditorViewController.m in Sources */,
 				95B3E611147E06A00031FDAA /* StoreController.m in Sources */,
+				95B3E617147E2BCB0031FDAA /* NSString+MD5Addition.m in Sources */,
+				95B3E618147E2BCB0031FDAA /* UIDevice+IdentifierAddition.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

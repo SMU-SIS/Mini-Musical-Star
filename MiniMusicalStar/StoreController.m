@@ -7,6 +7,16 @@
 //
 
 #import "StoreController.h"
+#import "MiniMusicalStarUtilities.h"
+#import "ASIFormDataRequest.h"
+#import "SBJSON.h"
+
+#ifdef DEBUG
+BOOL isBuiltDebug = YES;
+#else
+BOOL isBuiltDebug = NO;
+#endif
+
 
 @implementation StoreController
 @synthesize delegate, activeTransactions;
@@ -56,11 +66,21 @@
 - (void) completeTransaction: (SKPaymentTransaction *)transaction
 {
     // Your application should implement these two methods.
-    [self recordTransaction: transaction];
-    [self provideContent: transaction.payment.productIdentifier];
+    BOOL verified = [self verifyTransactionWithServer: transaction];
+    if (verified)
+    {
+        [self provideContent: transaction.payment.productIdentifier];
+        
+        // save transaction into activeTransactions while the content downloads
+        [self.activeTransactions setObject:transaction forKey:transaction.payment.productIdentifier];
+    }
     
-    // save transaction into activeTransactions while the content downloads
-    [self.activeTransactions setObject:transaction forKey:transaction.payment.productIdentifier];
+    else
+    {
+        NSLog(@"Transaction cannot be verified.");
+        [delegate performSelectorOnMainThread:@selector(displayTransactionUnverifiedErrorMessage) withObject:nil waitUntilDone:NO];
+    }
+
     
 }
 
@@ -83,12 +103,62 @@
 
 - (void) restoreTransaction: (SKPaymentTransaction *)transaction
 {
-    
+    //restoring transactions not implemented yet, instead get users to redownload for free
 }
 
-- (void) recordTransaction: (SKPaymentTransaction *)transaction
+- (BOOL) verifyTransactionWithServer: (SKPaymentTransaction *)transaction
 {
-    NSLog(@"transaction record: %@", transaction);
+    //create the dictionary
+//    NSDictionary *transactionDict = [NSDictionary dictionaryWithObjectsAndKeys:
+//                                     [[NSUserDefaults standardUserDefaults] objectForKey:@"uuid"], @"device_uuid",
+//                                     transaction.transactionIdentifier, @"transaction_identifier",
+//                                     transaction.transactionDate, @"transaction_date",
+//                                     transaction.payment.productIdentifier, @"product_identifier",
+//                                     [MiniMusicalStarUtilities encodeBase64WithData:transaction.transactionReceipt], @"transaction_receipt",
+//                                     nil];
+    
+    //post this to my server
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:@"http://mmsmusicalstore.appspot.com/receipts/new"]];
+    [request setPostValue:[MiniMusicalStarUtilities encodeBase64WithData:transaction.transactionReceipt] forKey:@"transaction-receipt"];
+    [request setPostValue:[[NSUserDefaults standardUserDefaults] objectForKey:@"uuid"] forKey:@"uuid"];
+    if (isBuiltDebug)
+    {
+       [request setPostValue:@"debug" forKey:@"build"]; 
+    }
+    
+    else
+    {
+        [request setPostValue:@"release" forKey:@"build"]; 
+    }
+    
+    //start the request (synchronously haha)
+    [request startSynchronous];
+    NSError *error = [request error];
+    if (!error)
+    {
+        NSString *response = [request responseString];
+        NSDictionary *responseDict = [response JSONValue];
+        
+        NSString *verified = [responseDict objectForKey:@"verified"];
+        if ([verified isEqualToString:@"true"])
+        {
+            return YES;
+        }
+        
+        else
+        {
+            return NO;
+        }
+    }
+    
+    else
+    {
+        NSLog(@"Error communicating with MMS server");
+    }
+    
+    return NO;
+    
+    
 }
 
 - (void) provideContent: (NSString *)productIdentifier

@@ -424,5 +424,12 @@ bool downloadRequestGotCancelled = NO;
     [moviePlayer release];
 }
 
+- (void)displayTransactionUnverifiedErrorMessage
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Unable to verify Transaction" message:@"Sorry, we are unable to verify the transaction. It's probably ilicit." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alert show];
+    [alert release];
+}
+
 
 @end

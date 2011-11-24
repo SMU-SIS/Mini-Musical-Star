@@ -26,6 +26,7 @@
 @property (assign, nonatomic) id delegate;
 
 + (NSMutableString *)userDocumentDirectory;
+- (void)generateUUIDInUserDefaults;
 - (id)initWithDelegate:(id)aDelegate;
 - (void)seedTutorialMusical;
 - (void)loadLocalShows;

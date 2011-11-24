@@ -39,16 +39,31 @@
         
         self.activeDownloads = [NSMutableDictionary dictionary];
         
-
+        //check if we have a uuid, if not generate one for the user
+        NSString *uuid = [[NSUserDefaults standardUserDefaults] objectForKey:@"uuid"];
+        if (!uuid)
+        {
+            [self generateUUIDInUserDefaults];
+        }
     }
     
     return self;
 }
 
-+ (NSMutableString *)userDocumentDirectory {
++ (NSMutableString *)userDocumentDirectory 
+{
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSMutableString *path = [NSMutableString stringWithString:[paths objectAtIndex:0]];
     return path;
+}
+
+- (void)generateUUIDInUserDefaults
+{
+    NSString *uuid = [[UIDevice currentDevice] uniqueDeviceIdentifier];
+    
+    //save it into the user defaults
+    [[NSUserDefaults standardUserDefaults] setObject:uuid forKey:@"uuid"];
+    
 }
 
 - (void)seedTutorialMusical
@@ -66,7 +81,6 @@
     {
         //then seed the tutorial
         NSString *howlingDogZip = [[NSBundle mainBundle] pathForResource:@"howling_dog" ofType:@"zip"];
-        NSLog(@"HOWLING DOG PATH IS %@", howlingDogZip);
         [self unzipDownloadedShowURL:howlingDogZip toPath:[showsDirectory stringByAppendingPathComponent:@"Howling Dog"]];
     }
 }
@@ -162,8 +176,10 @@
 - (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response
 {
     NSArray *storeProducts = response.products;
-    
-    NSLog(@"The invalid products are %@", response.invalidProductIdentifiers);
+    if (response.invalidProductIdentifiers.count > 0)
+    {
+        NSLog(@"The invalid products are %@", response.invalidProductIdentifiers);
+    }
     
     /*
      SKProduct:
@@ -207,7 +223,6 @@
         [self.delegate showDAO:self didFinishLoadingShows:self.loadedShows];
     }
     
-    NSLog(@"reached here");
 }
 
 - (void)downloadShow:(UndownloadedShow *)aShow progressIndicatorDelegate:(id)aDelegate

@@ -20,7 +20,7 @@
 - (void)completeTransaction: (SKPaymentTransaction *)transaction;
 - (void)failedTransaction: (SKPaymentTransaction *)transaction;
 - (void) restoreTransaction: (SKPaymentTransaction *)transaction;
-- (void)recordTransaction: (SKPaymentTransaction *)transaction;
+- (BOOL)verifyTransactionWithServer: (SKPaymentTransaction *)transaction;
 - (void) provideContent: (NSString *)productIdentifier;
 - (void) finishTransactionForProductIdentifier: (NSString *)productIdentifier;
 

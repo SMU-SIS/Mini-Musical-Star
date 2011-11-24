@@ -14,5 +14,7 @@
 + (NSString*)returnMD5HashOfString:(NSString*)aString;
 + (NSString*)getUniqueFilenameWithoutExt;
 + (BOOL) NSStringIsValidEmail:(NSString *)checkString;
-
++ (NSString *)encodeBase64WithData:(NSData *)objData;
++ (NSString *)encodeBase64WithString:(NSString *)strData;
++ (NSString *) strFromISO8601:(NSDate *) date;
 @end
