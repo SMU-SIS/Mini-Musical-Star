@@ -401,7 +401,6 @@ bool downloadRequestGotCancelled = NO;
                                                  name:MPMoviePlayerPlaybackDidFinishNotification
                                                object:moviePlayer];
     [moviePlayer setFullscreen:YES animated:YES];
-    self.navigationController.navigationBarHidden = YES;
     moviePlayer.controlStyle = MPMovieControlStyleFullscreen;
     moviePlayer.shouldAutoplay = YES;
     [moviePlayer.view setFrame: self.view.bounds];  // player's frame must match parent's
@@ -421,7 +420,6 @@ bool downloadRequestGotCancelled = NO;
     if ([moviePlayer respondsToSelector:@selector(setFullscreen:animated:)]) {
         [moviePlayer.view removeFromSuperview];
     }
-    self.navigationController.navigationBarHidden = NO;
     
     [moviePlayer release];
 }
