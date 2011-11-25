@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>MMS Musical Store: Edit Show</title>
+
+
+</head>
+<body>
+
+	<h2>Edit Show</h2>
+	<form method="post" action="/shows/{{show.key.id_or_name}}" enctype="multipart/form-data">
+		Show Product Identifier (the same as the one you enter on iTunes Connect): <input type="text" name="key-name" value="{{show.key.id_or_name}}" /><br />
+		Download URL: <input type="text" name="download-url" value="{{show.download_url}}" /><br />
+		Cover Image (please use PNG): <input type="file" name="cover-image" /><br />
+
+		<input type="submit" value="Save Show" />
+	</form>
+</body>
+</html>

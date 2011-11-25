@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>MMS Musical Store</title>
+
+
+</head>
+<body>
+	The iPad app will pull the in-app-purchase musical cover images from here, since Apple does not give us a way to upload images in iTunes Connect.
+	<h1>Current Shows</h1>
+	<table>
+		<tr>
+			<th>Product Identifier</th>
+			<th>Cover Image</th>
+			<th>Download URL</th>
+			<th>Actions</th>
+		</tr>
+
+		{% for show in shows %}
+			<tr>
+				<td>{{show.key.id_or_name}}</td>
+				<td><img src="/shows/{{show.key.id_or_name}}/cover_image" width="280" height="400" /></td>
+				<td>{{show.download_url}}</td>
+				<td><a href="/shows/{{show.key.id_or_name}}">Edit</a> | <a href="/shows/{{show.key.id_or_name}}/delete">Delete</a></td>
+			</tr>
+		{% endfor %}
+	</table>
+
+	<h2>Add New Show</h2>
+	<form method="post" action="/shows" enctype="multipart/form-data">
+		Show Product Identifier (the same as the one you enter on iTunes Connect): <input type="text" name="key-name" /><br />
+		Download URL: <input type="text" name="download-url" /><br />
+		Cover Image (please use PNG): <input type="file" name="cover-image" /><br />
+
+		<input type="submit" value="Add Show" />
+	</form>
+</body>
+</html>
