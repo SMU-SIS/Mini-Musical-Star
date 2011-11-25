@@ -143,7 +143,7 @@
         
         if (undownloadedProductIdentifiers.count > 0)
         {
-            SKProductsRequest *productsRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:productIdentifiers];
+            SKProductsRequest *productsRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:undownloadedProductIdentifiers];
             productsRequest.delegate = self;
             
             [productsRequest start];
@@ -284,12 +284,13 @@
     for (int i = 0; i < self.loadedShows.count; i++)
     {
         Show *aShow = [self.loadedShows objectAtIndex:i];
+        
         if ([productIdentifier isEqualToString:aShow.showHash])
         {
             return YES;
         }
     }
-    
+    NSLog(@"productIdentifier is %@", productIdentifier);
     return NO;
 }
 
