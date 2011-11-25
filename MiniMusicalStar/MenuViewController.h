@@ -27,6 +27,7 @@
 
 @property (assign, nonatomic) StoreController *storeController;
 @property (retain, nonatomic) NSMutableDictionary *showsDownloadingInProgress;
+@property (retain, nonatomic) NSNumber *purchaseWasCancelled;
 
 - (void)createScrollViewOfShows;
 - (UIButton *)createButtonForShow:(Show *)aShow frame:(CGRect)buttonFrame;

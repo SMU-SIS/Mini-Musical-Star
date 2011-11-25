@@ -94,6 +94,12 @@ BOOL isBuiltDebug = NO;
         [alert release];
     }
     
+    else
+    {
+        //if the user has cancelled the payment
+        [delegate performSelector:@selector(setPurchaseWasCancelled:) withObject:[NSNumber numberWithBool:YES]];
+    }
+    
     [delegate performSelectorInBackground:@selector(cancelPurchaseOfShow:) withObject:transaction.payment.productIdentifier];
     [[SKPaymentQueue defaultQueue] finishTransaction: transaction];
     
@@ -123,7 +129,7 @@ BOOL isBuiltDebug = NO;
     [request setPostValue:[[NSUserDefaults standardUserDefaults] objectForKey:@"uuid"] forKey:@"uuid"];
     if (isBuiltDebug)
     {
-       [request setPostValue:@"debug" forKey:@"build"]; 
+        [request setPostValue:@"debug" forKey:@"build"]; 
     }
     
     else

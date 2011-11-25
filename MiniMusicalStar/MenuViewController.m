@@ -16,7 +16,7 @@
 #import "StoreController.h"
 
 @implementation MenuViewController
-@synthesize managedObjectContext, scrollView, buttonArray, showDAO, storeController, showsDownloadingInProgress, tutorialButton;
+@synthesize managedObjectContext, scrollView, buttonArray, showDAO, storeController, showsDownloadingInProgress, tutorialButton, purchaseWasCancelled;
 
 bool downloadRequestGotCancelled = NO;
 
@@ -28,6 +28,7 @@ bool downloadRequestGotCancelled = NO;
     [scrollView release];
     [buttonArray release];
     [ShowDAO release];
+    [purchaseWasCancelled release];
     [super dealloc];
 }
 
@@ -118,6 +119,7 @@ bool downloadRequestGotCancelled = NO;
         
         UIButton *showButton;
         UILabel *downloadLabel = nil;
+        UILabel *pricetag = nil;
         
         //now we check if it's downloaded or undownloaded
         if ([obj isKindOfClass:[Show class]])
@@ -127,7 +129,8 @@ bool downloadRequestGotCancelled = NO;
         
         else if ([obj isKindOfClass:[UndownloadedShow class]])
         {
-            showButton = [self createButtonForUndownloadedShow:(UndownloadedShow *)obj frame:buttonFrame];
+            UndownloadedShow *theShow = (UndownloadedShow *)obj;
+            showButton = [self createButtonForUndownloadedShow:theShow frame:buttonFrame];
             
             //add a download label in the centre of the showButton
             CGRect downloadIconFrame;
@@ -154,12 +157,37 @@ bool downloadRequestGotCancelled = NO;
             downloadLabel.textColor = [UIColor whiteColor];
             downloadLabel.backgroundColor = [UIColor blackColor];
             [downloadLabel adjustsFontSizeToFitWidth];
+            
+            //create the price tag
+            pricetag = [[UILabel alloc] init];
+            NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+            formatter.numberStyle = NSNumberFormatterCurrencyStyle;
+            pricetag.text = [formatter stringFromNumber:theShow.skProduct.price];
+            [formatter release];
+            
+            [pricetag sizeToFit];
+            CGRect pricetagFrame;
+            pricetagFrame.size.width = pricetag.frame.size.width + 15;
+            pricetagFrame.size.height = pricetag.frame.size.height + 5;
+            pricetagFrame.origin.y = downloadIconFrame.origin.y - pricetagFrame.size.height - 20;
+            pricetagFrame.origin.x = musicalButtonView.frame.size.width - pricetagFrame.size.width;
+            
+            pricetag.frame = pricetagFrame;
+            //pricetag.layer.cornerRadius = 7;
+            
+            pricetag.backgroundColor = [UIColor blackColor];
+            pricetag.textColor = [UIColor whiteColor];
+            pricetag.textAlignment = UITextAlignmentCenter;
         }
         
         showButton.tag = idx;
         [buttonArray addObject: showButton];
         [musicalButtonView addSubview: showButton];
         if (downloadLabel != nil) [musicalButtonView addSubview: downloadLabel];
+        if (pricetag != nil) [musicalButtonView addSubview:pricetag];
+        
+        [downloadLabel release];
+        [pricetag release];
         
     }];
     
@@ -313,9 +341,14 @@ bool downloadRequestGotCancelled = NO;
         [alert release];
     }
     
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Download Cancelled" message:@"You can redownload this musical again by repurchasing it. Don't worry, you will not be charged." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    [alert show];
-    [alert release];
+    if (![purchaseWasCancelled boolValue])
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Download Cancelled" message:@"You can redownload this musical again by repurchasing it. Don't worry, you will not be charged." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+        [alert release];
+        
+        self.purchaseWasCancelled = [NSNumber numberWithBool:NO];
+    }
     
     downloadRequestGotCancelled = NO;
     
