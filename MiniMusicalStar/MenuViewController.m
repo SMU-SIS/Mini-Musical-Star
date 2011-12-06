@@ -27,7 +27,7 @@ bool downloadRequestGotCancelled = NO;
     [managedObjectContext release];
     [scrollView release];
     [buttonArray release];
-    [ShowDAO release];
+    [showDAO release];
     [purchaseWasCancelled release];
     [super dealloc];
 }
@@ -54,7 +54,7 @@ bool downloadRequestGotCancelled = NO;
     [super viewDidLoad];
     
     //set the store controller delegate
-    self.storeController = [[StoreController alloc] init];
+    self.storeController = [[[StoreController alloc] init] autorelease];
     self.storeController.delegate = self;
     
     self.showsDownloadingInProgress = [NSMutableDictionary dictionary];
@@ -66,7 +66,7 @@ bool downloadRequestGotCancelled = NO;
     [self.view setBackgroundColor:background];
     
     //load the shows on the local disk
-    self.showDAO = [[ShowDAO alloc] initWithDelegate:self];
+    self.showDAO = [[[ShowDAO alloc] initWithDelegate:self] autorelease];
     
     //show the spinner as ShowDAO communicates with the app store for IAP
     [DSBezelActivityView newActivityViewForView:self.view withLabel:@"Loading Shows..."];
@@ -107,7 +107,7 @@ bool downloadRequestGotCancelled = NO;
         frame.size.height = scrollView.frame.size.height;
         
         //add the placeholder view...
-        UIView *musicalButtonView = [[UIView alloc] initWithFrame:frame];
+        UIView *musicalButtonView = [[[UIView alloc] initWithFrame:frame] autorelease];
         [scrollView addSubview:musicalButtonView];
         
         //add the cover image as a button...
@@ -302,7 +302,7 @@ bool downloadRequestGotCancelled = NO;
                 progressBarFrame.origin.x = 15;
                 progressBarFrame.origin.y = 280;
                 
-                UIProgressView *progressBar = [[UIProgressView alloc] initWithFrame:progressBarFrame];
+                UIProgressView *progressBar = [[[UIProgressView alloc] initWithFrame:progressBarFrame] autorelease];
                 progressBar.tag = -2; //progress bar tag is 2
                 [theView addSubview:progressBar];
                 

@@ -350,7 +350,6 @@
 		95F9FFDE1425C86B00A18463 /* CoverScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 95F9FFD71425C86B00A18463 /* CoverScene.m */; };
 		95F9FFDF1425C86B00A18463 /* CoverSceneAudio.m in Sources */ = {isa = PBXBuildFile; fileRef = 95F9FFD91425C86B00A18463 /* CoverSceneAudio.m */; };
 		95F9FFE01425C86B00A18463 /* CoverScenePicture.m in Sources */ = {isa = PBXBuildFile; fileRef = 95F9FFDB1425C86B00A18463 /* CoverScenePicture.m */; };
-		95FCE9AC147B6F3B006C7834 /* howling_dog.zip in Resources */ = {isa = PBXBuildFile; fileRef = 95FCE9AB147B6F3B006C7834 /* howling_dog.zip */; };
 		EDA2A1C513F26F8400B64EA5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDA2A1C413F26F8400B64EA5 /* UIKit.framework */; };
 		EDA2A1C713F26F8400B64EA5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDA2A1C613F26F8400B64EA5 /* Foundation.framework */; };
 		EDA2A1C913F26F8400B64EA5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDA2A1C813F26F8400B64EA5 /* CoreGraphics.framework */; };
@@ -1378,7 +1377,6 @@
 		95F9FFD91425C86B00A18463 /* CoverSceneAudio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoverSceneAudio.m; sourceTree = "<group>"; };
 		95F9FFDA1425C86B00A18463 /* CoverScenePicture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoverScenePicture.h; sourceTree = "<group>"; };
 		95F9FFDB1425C86B00A18463 /* CoverScenePicture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoverScenePicture.m; sourceTree = "<group>"; };
-		95FCE9AB147B6F3B006C7834 /* howling_dog.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = howling_dog.zip; sourceTree = "<group>"; };
 		EDA2A1C013F26F8400B64EA5 /* MiniMusicalStar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MiniMusicalStar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDA2A1C413F26F8400B64EA5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		EDA2A1C613F26F8400B64EA5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -2459,7 +2457,6 @@
 		820E2A1E140A0A2A00B80BBC /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				95FCE9AB147B6F3B006C7834 /* howling_dog.zip */,
 				951FF8301474A8DD00773541 /* ribbonlabel.png */,
 				951FF82E1474A88800773541 /* individualfilmstrip.png */,
 				95041583147185A30032FD52 /* audiocues.png */,
@@ -3010,7 +3007,6 @@
 				64832F5314726EC500627E0A /* TrackTableViewCell.xib in Resources */,
 				951FF82F1474A88800773541 /* individualfilmstrip.png in Resources */,
 				951FF8311474A8DD00773541 /* ribbonlabel.png in Resources */,
-				95FCE9AC147B6F3B006C7834 /* howling_dog.zip in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -49,12 +49,12 @@
     //check if there is a cue, if there is display it
     if (self.theCue)
     {
-        UIColor *background = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"photoboxcue.png"]];
+        UIColor *background = [[[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"photoboxcue.png"]] autorelease];
         self.cueView.backgroundColor = background;
         
         
         //create a view and plonk it on the screen
-        UILabel *aLabel = [[UILabel alloc] init];
+        UILabel *aLabel = [[[UILabel alloc] init] autorelease];
         aLabel.text = theCue.content;
         aLabel.font = [UIFont fontWithName:@"MarkerFelt-Wide" size:16];
         [aLabel sizeToFit];
