@@ -333,6 +333,7 @@
 		95B3E611147E06A00031FDAA /* StoreController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B3E5DD147E02DA0031FDAA /* StoreController.m */; };
 		95B3E617147E2BCB0031FDAA /* NSString+MD5Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B3E614147E2BCB0031FDAA /* NSString+MD5Addition.m */; };
 		95B3E618147E2BCB0031FDAA /* UIDevice+IdentifierAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B3E616147E2BCB0031FDAA /* UIDevice+IdentifierAddition.m */; };
+		95C4E5D6148E446C0054DFE8 /* b1g1.zip in Resources */ = {isa = PBXBuildFile; fileRef = 95C4E5D5148E446C0054DFE8 /* b1g1.zip */; };
 		95C526AE1438DA740008AE13 /* CoversListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C526AC1438DA740008AE13 /* CoversListViewController.m */; };
 		95C526AF1438DA740008AE13 /* CoversListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95C526AD1438DA740008AE13 /* CoversListViewController.xib */; };
 		95D2069714482984004B6E8B /* UndownloadedShow.m in Sources */ = {isa = PBXBuildFile; fileRef = 95D2069614482984004B6E8B /* UndownloadedShow.m */; };
@@ -1351,6 +1352,7 @@
 		95B3E614147E2BCB0031FDAA /* NSString+MD5Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5Addition.m"; sourceTree = "<group>"; };
 		95B3E615147E2BCB0031FDAA /* UIDevice+IdentifierAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+IdentifierAddition.h"; sourceTree = "<group>"; };
 		95B3E616147E2BCB0031FDAA /* UIDevice+IdentifierAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+IdentifierAddition.m"; sourceTree = "<group>"; };
+		95C4E5D5148E446C0054DFE8 /* b1g1.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = b1g1.zip; sourceTree = "<group>"; };
 		95C526AB1438DA740008AE13 /* CoversListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoversListViewController.h; sourceTree = "<group>"; };
 		95C526AC1438DA740008AE13 /* CoversListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoversListViewController.m; sourceTree = "<group>"; };
 		95C526AD1438DA740008AE13 /* CoversListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CoversListViewController.xib; sourceTree = "<group>"; };
@@ -2457,6 +2459,7 @@
 		820E2A1E140A0A2A00B80BBC /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				95C4E5D5148E446C0054DFE8 /* b1g1.zip */,
 				951FF8301474A8DD00773541 /* ribbonlabel.png */,
 				951FF82E1474A88800773541 /* individualfilmstrip.png */,
 				95041583147185A30032FD52 /* audiocues.png */,
@@ -3007,6 +3010,7 @@
 				64832F5314726EC500627E0A /* TrackTableViewCell.xib in Resources */,
 				951FF82F1474A88800773541 /* individualfilmstrip.png in Resources */,
 				951FF8311474A8DD00773541 /* ribbonlabel.png in Resources */,
+				95C4E5D6148E446C0054DFE8 /* b1g1.zip in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
