@@ -67,15 +67,15 @@
         self.theCover = cover;
         self.musicalArray = [NSArray arrayWithObject:show];
 //        NSArray *array = [show.scenes allValues];
-        self.scenesArray = [[NSMutableArray alloc] initWithCapacity:0];
+        self.scenesArray = [[[NSMutableArray alloc] initWithCapacity:0] autorelease];
         for (id obj in theShow.scenesOrder){
             NSString *hash = (NSString*) obj;
             [self.scenesArray addObject:[theShow.scenes objectForKey:hash]];
         }
-        self.exportedAssetOrder = [[NSMutableArray alloc] initWithCapacity:0];
-        self.musicalAudioMappings = [[NSMutableArray alloc] initWithCapacity:0];
-        self.exportedAssetsArray = [[NSMutableArray alloc] initWithCapacity:0];
-        self.tempMusicalContainer = [[NSMutableArray alloc] init];
+        self.exportedAssetOrder = [[[NSMutableArray alloc] initWithCapacity:0] autorelease];
+        self.musicalAudioMappings = [[[NSMutableArray alloc] initWithCapacity:0] autorelease];
+        self.exportedAssetsArray = [[[NSMutableArray alloc] initWithCapacity:0] autorelease];
+        self.tempMusicalContainer = [[[NSMutableArray alloc] init] autorelease];
         self.context = aContext;
     }
     return self;
@@ -216,7 +216,7 @@
     AVMutableComposition *composition = [AVMutableComposition composition];
     for(id obj in exportedAssetOrder){
         NSURL *path = (NSURL*)obj;
-        AVURLAsset* videoAsset = [[AVURLAsset alloc]initWithURL:path options:nil];        
+        AVURLAsset* videoAsset = [[[AVURLAsset alloc]initWithURL:path options:nil] autorelease];        
         [composition insertTimeRange:CMTimeRangeMake(kCMTimeZero,videoAsset.duration) ofAsset:videoAsset atTime:composition.duration error:&error];
     }
 

@@ -55,16 +55,16 @@
         self.context = aContext;
         
         self.addCreditsViewController = [[AddCreditsViewController alloc] init];
-        self.popoverController = [[UIPopoverController alloc] initWithContentViewController:self.addCreditsViewController];
+        self.popoverController = [[[UIPopoverController alloc] initWithContentViewController:self.addCreditsViewController] autorelease];
         [self.popoverController setPopoverContentSize:CGSizeMake(400,300)];
         
-        self.exportTableViewController = [[ExportTableViewController alloc] initWithStyle:UITableViewStyleGrouped :theShow :theCover context:context];
+        self.exportTableViewController = [[[ExportTableViewController alloc] initWithStyle:UITableViewStyleGrouped :theShow :theCover context:context] autorelease];
         [self.exportTableViewController setDelegate:self];
         
-        self.mediaTableViewController = [[MediaTableViewController alloc] initWithStyle:UITableViewStyleGrouped withCover:self.theCover withContext:context];
+        self.mediaTableViewController = [[[MediaTableViewController alloc] initWithStyle:UITableViewStyleGrouped withCover:self.theCover withContext:context] autorelease];
         [self.mediaTableViewController setDelegate:self];
         
-        UIColor *background = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"exportpage.png"]];
+        UIColor *background = [[[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"exportpage.png"]] autorelease];
         self.view.backgroundColor = background;
         
         self.exportTableViewController.tableView.backgroundView.hidden = YES;
@@ -77,7 +77,7 @@
         
         [self.mediaTableViewController.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
         
-        self.progressViewController = [[ProgressOverlayViewController alloc] init];
+        self.progressViewController = [[[ProgressOverlayViewController alloc] init] autorelease];
         [self.progressViewController setDelegate:self];
         
         [self.view addSubview:self.exportTableViewController.tableView];

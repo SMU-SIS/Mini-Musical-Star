@@ -61,8 +61,8 @@
     [request setPredicate:predicate];
     
     //sort descriptor...
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"title" ascending:YES];
-    NSArray *descriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
+    NSSortDescriptor *sortDescriptor = [[[NSSortDescriptor alloc] initWithKey:@"title" ascending:YES] autorelease];
+    NSArray *descriptors = [[[NSArray alloc] initWithObjects:sortDescriptor, nil] autorelease];
     [request setSortDescriptors:descriptors];
     
     
@@ -197,7 +197,7 @@
 
 - (void)configureCell:(UITableViewCell*)cell atIndexPath:(NSIndexPath*)indexPath
 {
-    UIColor *background = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"cover_cell.png"]];
+    UIColor *background = [[[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"cover_cell.png"]] autorelease];
     cell.contentView.backgroundColor = background;
     
     NSManagedObject *mo = nil;
