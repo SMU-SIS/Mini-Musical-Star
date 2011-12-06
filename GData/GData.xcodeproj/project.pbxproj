@@ -6359,6 +6359,7 @@
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				OTHER_CFLAGS = "-DDEBUG=1";
+				SKIP_INSTALL = YES;
 				WARNING_CFLAGS = (
 					"-Wall",
 					"-Werror",
@@ -6390,6 +6391,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				SKIP_INSTALL = YES;
 				WARNING_CFLAGS = (
 					"-Wall",
 					"-Werror",

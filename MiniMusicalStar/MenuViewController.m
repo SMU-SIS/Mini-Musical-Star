@@ -7,24 +7,28 @@
 //
 
 #import "MenuViewController.h"
-//#import "NewOpenViewController.h"
 #import "UndownloadedShow.h"
 #import "ShowDAO.h"
 #import "Show.h"
 #import "Cover.h"
 #import "ChoiceSelectionViewController.h"
 #import "DSActivityView.h"
+#import "StoreController.h"
 
 @implementation MenuViewController
-@synthesize managedObjectContext, scrollView, buttonArray, showDAO, tutorialButton;
+@synthesize managedObjectContext, scrollView, buttonArray, showDAO, storeController, showsDownloadingInProgress, tutorialButton, purchaseWasCancelled;
+
+bool downloadRequestGotCancelled = NO;
 
 - (void)dealloc
 {
     [tutorialButton release];
+	[storeController release];
     [managedObjectContext release];
     [scrollView release];
     [buttonArray release];
     [ShowDAO release];
+    [purchaseWasCancelled release];
     [super dealloc];
 }
 
@@ -49,6 +53,14 @@
 {
     [super viewDidLoad];
     
+    //set the store controller delegate
+    self.storeController = [[StoreController alloc] init];
+    self.storeController.delegate = self;
+    
+    self.showsDownloadingInProgress = [NSMutableDictionary dictionary];
+    
+    [[SKPaymentQueue defaultQueue] addTransactionObserver: self.storeController];
+    
     //load background    
     UIColor *background = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"main_background.png"]];
     [self.view setBackgroundColor:background];
@@ -56,9 +68,20 @@
     //load the shows on the local disk
     self.showDAO = [[ShowDAO alloc] initWithDelegate:self];
     
-    [self createScrollViewOfShows];
-    [self.showDAO addObserver:self forKeyPath:@"loadedShows" options:NSKeyValueObservingOptionNew context:@"NewShowDownloaded"];
+    //show the spinner as ShowDAO communicates with the app store for IAP
+    [DSBezelActivityView newActivityViewForView:self.view withLabel:@"Loading Shows..."];
 
+}
+
+- (void)showDAO:(id)aShowDAO didFinishLoadingShows:(NSArray *)loadedShows
+{
+    //set up the scrollview
+    [self createScrollViewOfShows];
+    
+    //add the KVO to loadedShows on ShowDAO
+    [self.showDAO addObserver:self forKeyPath:@"loadedShows" options:NSKeyValueObservingOptionNew context:@"NewShowDownloaded"];
+    
+    [DSBezelActivityView removeViewAnimated:YES];
 }
 
 - (void)createScrollViewOfShows
@@ -96,6 +119,7 @@
         
         UIButton *showButton;
         UILabel *downloadLabel = nil;
+        UILabel *pricetag = nil;
         
         //now we check if it's downloaded or undownloaded
         if ([obj isKindOfClass:[Show class]])
@@ -105,7 +129,8 @@
         
         else if ([obj isKindOfClass:[UndownloadedShow class]])
         {
-            showButton = [self createButtonForUndownloadedShow:(UndownloadedShow *)obj frame:buttonFrame];
+            UndownloadedShow *theShow = (UndownloadedShow *)obj;
+            showButton = [self createButtonForUndownloadedShow:theShow frame:buttonFrame];
             
             //add a download label in the centre of the showButton
             CGRect downloadIconFrame;
@@ -116,18 +141,53 @@
             
             downloadLabel = [[UILabel alloc] initWithFrame:downloadIconFrame];
             downloadLabel.tag = -1; //used to identify the label later on
-            downloadLabel.text = @"Tap to Download";
+            
+            if ([SKPaymentQueue canMakePayments])
+            {
+                downloadLabel.text = @"Tap to Purchase";
+            }
+            
+            else
+            {
+                downloadLabel.text = @"In-App Purchase Disabled";
+            }
+            
             downloadLabel.textAlignment = UITextAlignmentCenter;
             downloadLabel.font = [downloadLabel.font fontWithSize:26.0];
             downloadLabel.textColor = [UIColor whiteColor];
             downloadLabel.backgroundColor = [UIColor blackColor];
             [downloadLabel adjustsFontSizeToFitWidth];
+            
+            //create the price tag
+            pricetag = [[UILabel alloc] init];
+            NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+            formatter.numberStyle = NSNumberFormatterCurrencyStyle;
+            pricetag.text = [formatter stringFromNumber:theShow.skProduct.price];
+            [formatter release];
+            
+            [pricetag sizeToFit];
+            CGRect pricetagFrame;
+            pricetagFrame.size.width = pricetag.frame.size.width + 15;
+            pricetagFrame.size.height = pricetag.frame.size.height + 5;
+            pricetagFrame.origin.y = downloadIconFrame.origin.y - pricetagFrame.size.height - 20;
+            pricetagFrame.origin.x = musicalButtonView.frame.size.width - pricetagFrame.size.width;
+            
+            pricetag.frame = pricetagFrame;
+            //pricetag.layer.cornerRadius = 7;
+            
+            pricetag.backgroundColor = [UIColor blackColor];
+            pricetag.textColor = [UIColor whiteColor];
+            pricetag.textAlignment = UITextAlignmentCenter;
         }
         
         showButton.tag = idx;
         [buttonArray addObject: showButton];
         [musicalButtonView addSubview: showButton];
         if (downloadLabel != nil) [musicalButtonView addSubview: downloadLabel];
+        if (pricetag != nil) [musicalButtonView addSubview:pricetag];
+        
+        [downloadLabel release];
+        [pricetag release];
         
     }];
     
@@ -157,33 +217,101 @@
     showButton.alpha = 0.5; //make the undownloaded musical lighter
 
     [showButton setImage:aShow.coverImage forState:UIControlStateNormal];
-    [showButton addTarget:self action:@selector(downloadMusical:) forControlEvents:UIControlEventTouchUpInside];
-    
+    if ([SKPaymentQueue canMakePayments])
+    {
+        [showButton addTarget:self action:@selector(initiateShowPurchase:) forControlEvents:UIControlEventTouchUpInside];
+    }
 
     return [showButton autorelease];
     
 }
 
-- (void)downloadMusical:(UIButton *)sender
+- (void)initiateShowPurchase:(UIButton *)sender
 {
-    //create a progress indicator
-    CGRect progressBarFrame;
-    progressBarFrame.size.width = 250;
-    progressBarFrame.size.height = 20;
-    progressBarFrame.origin.x = 10;
-    progressBarFrame.origin.y = sender.frame.size.height - 20;
+    //disable the button to prevent user from clicking twice
+    UIButton *showButton = (UIButton *)sender;
+    [showButton removeTarget:self action:@selector(initiateShowPurchase:) forControlEvents:UIControlEventTouchUpInside];
     
-    UIProgressView *progressBar = [[UIProgressView alloc] initWithFrame:progressBarFrame];
-    progressBar.tag = -2; //progress bar tag is 2
-    [sender.superview addSubview:progressBar];
+    UIView *theView = [sender superview];
+    __block UILabel *theLabel;
     
-    [self.showDAO downloadShow:[self.showDAO.loadedShows objectAtIndex:sender.tag] progressIndicatorDelegate:progressBar];
+    [theView.subviews enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        UIView *aView = (UIView *)obj;
+        if (aView.tag == -1) theLabel = (UILabel *)aView;
+    }];
     
-    //change the label text (the label has a tag of -1) to "tap to cancel"
-    UILabel *downloadLabel = (UILabel *)[sender.superview viewWithTag:-1];
-    downloadLabel.text = @"Tap to Cancel";
-    [sender removeTarget:self action:@selector(downloadMusical:) forControlEvents:UIControlEventTouchUpInside];
-    [sender addTarget:self action:@selector(cancelDownloadOfShow:) forControlEvents:UIControlEventTouchUpInside];
+    //update the show's label
+    theLabel.text = @"Starting Purchase...";
+    
+    UndownloadedShow *showForPurchase = [self.showDAO.loadedShows objectAtIndex:sender.tag];
+    
+    //add this show to the showsDownloadingInProgress dictionary so we can keep track
+    [self.showsDownloadingInProgress setObject:showForPurchase forKey:showForPurchase.showHash];
+    
+    //create a new SKPayment and add it to the payment queue
+    SKPayment *payment = [SKPayment paymentWithProduct: showForPurchase.skProduct];
+    [[SKPaymentQueue defaultQueue] addPayment:payment];
+    
+}
+
+- (void)cancelPurchaseOfShow:(NSString *)productIdentifier
+{
+    downloadRequestGotCancelled = YES;
+    
+    //get the UIButton out
+    UndownloadedShow *theShow = [self.showsDownloadingInProgress objectForKey:productIdentifier];
+    [self resetToCleanStateForPartiallyDownloadedShow:theShow];
+}
+
+- (void)downloadMusical:(NSString *)productIdentifier
+{
+    //find back the target show
+    [self.showDAO.loadedShows enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        if ([obj isKindOfClass:[UndownloadedShow class]])
+        {
+            UndownloadedShow *aShow = (UndownloadedShow *)obj;
+            if ([aShow.showHash isEqualToString:productIdentifier])
+            {
+                BOOL finished = YES;
+                stop = &finished;
+                
+                
+                
+                //find back the label and add a progress bar
+                UIView *theView = [[self.buttonArray objectAtIndex:idx] superview];
+                
+                __block UILabel *theLabel;
+                
+                [theView.subviews enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                    UIView *aView = (UIView *)obj;
+                    if (aView.tag == -1) theLabel = (UILabel *)aView;
+                }];
+                
+                //and we set the label to "tap to cancel"
+                theLabel.text = @"Tap to Cancel";
+                
+                //and we wire up the button to cancel
+                UIButton *theButton = (UIButton *)[self.buttonArray objectAtIndex:idx];
+                [theButton addTarget:self action:@selector(cancelDownloadOfShow:) forControlEvents:UIControlEventTouchUpInside];
+                theButton.enabled = YES;
+                
+                //create a progress indicator
+                CGRect progressBarFrame;
+                progressBarFrame.size.width = 250;
+                progressBarFrame.size.height = 40;
+                progressBarFrame.origin.x = 15;
+                progressBarFrame.origin.y = 280;
+                
+                UIProgressView *progressBar = [[UIProgressView alloc] initWithFrame:progressBarFrame];
+                progressBar.tag = -2; //progress bar tag is 2
+                [theView addSubview:progressBar];
+                
+                //FINALLY we download the show
+                [self.showDAO downloadShow:aShow progressIndicatorDelegate:progressBar];
+                
+            }
+        }
+    }];
 }
 
 - (void)cancelDownloadOfShow:(UIButton *)sender
@@ -197,13 +325,14 @@
 - (void)resetToCleanStateForPartiallyDownloadedShow:(UndownloadedShow *)aShow
 {
     UIButton *showButton = [buttonArray objectAtIndex:[self.showDAO.loadedShows indexOfObject:aShow]];
+    showButton.enabled = YES; //re-enable the show button if it was disabled (happens when purchasing)
     [[showButton.superview viewWithTag:-2] removeFromSuperview]; //remove the progress bar
     
     [showButton removeTarget:self action:@selector(cancelDownloadOfShow:) forControlEvents:UIControlEventTouchUpInside];
-    [showButton addTarget:self action:@selector(downloadMusical:) forControlEvents:UIControlEventTouchUpInside];
+    [showButton addTarget:self action:@selector(initiateShowPurchase:) forControlEvents:UIControlEventTouchUpInside];
     
     UILabel *downloadLabel = (UILabel *)[showButton.superview viewWithTag:-1];
-    downloadLabel.text = @"Tap to Download";
+    downloadLabel.text = @"Tap to Purchase";
     
     if (!downloadRequestGotCancelled) //meaning that the request failed
     {
@@ -212,7 +341,19 @@
         [alert release];
     }
     
+    if (![purchaseWasCancelled boolValue])
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Download Cancelled" message:@"You can redownload this musical again by repurchasing it. Don't worry, you will not be charged." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+        [alert release];
+        
+        self.purchaseWasCancelled = [NSNumber numberWithBool:NO];
+    }
+    
     downloadRequestGotCancelled = NO;
+    
+    //clear the store controller entry
+    [storeController finishTransactionForProductIdentifier: aShow.showHash];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
@@ -230,11 +371,15 @@
             //up the button opacity and change the button target
             UIButton *theButton = [buttonArray objectAtIndex:indexOfShow];
             theButton.alpha = 1.0;
-            [theButton removeTarget:self action:@selector(downloadMusical:) forControlEvents:UIControlEventTouchUpInside];
+            [theButton removeTarget:self action:@selector(cancelDownloadOfShow:) forControlEvents:UIControlEventTouchUpInside];
             [theButton addTarget:self action:@selector(selectMusical:) forControlEvents:UIControlEventTouchUpInside];
             
             //remove the label
             [[theButton.superview viewWithTag:-1] removeFromSuperview];
+            
+            //find the show to clear the store controller entry
+            Show *theShow = [self.showDAO.loadedShows objectAtIndex:indexOfShow];
+            [storeController finishTransactionForProductIdentifier:theShow.showHash];
         }
     }
 }
@@ -289,7 +434,6 @@
                                                  name:MPMoviePlayerPlaybackDidFinishNotification
                                                object:moviePlayer];
     [moviePlayer setFullscreen:YES animated:YES];
-    self.navigationController.navigationBarHidden = YES;
     moviePlayer.controlStyle = MPMovieControlStyleFullscreen;
     moviePlayer.shouldAutoplay = YES;
     [moviePlayer.view setFrame: self.view.bounds];  // player's frame must match parent's
@@ -309,9 +453,15 @@
     if ([moviePlayer respondsToSelector:@selector(setFullscreen:animated:)]) {
         [moviePlayer.view removeFromSuperview];
     }
-    self.navigationController.navigationBarHidden = NO;
     
     [moviePlayer release];
+}
+
+- (void)displayTransactionUnverifiedErrorMessage
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Unable to verify Transaction" message:@"Sorry, we are unable to verify the transaction. It's probably ilicit." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alert show];
+    [alert release];
 }
 
 

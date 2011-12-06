@@ -152,7 +152,7 @@
     if ([compatiblePresets containsObject:AVAssetExportPreset640x480]) {
         AVAssetExportSession *exportSession = [[AVAssetExportSession alloc]
                                                initWithAsset:composition presetName:AVAssetExportPresetHighestQuality];
-        if(!isSceneAppend){
+        if(!isSceneAppend && !isMusical){
             [delegate showProgressView];
             self.exportSessionObject = exportSession;
         }

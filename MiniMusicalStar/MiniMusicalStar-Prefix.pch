@@ -16,5 +16,7 @@
 #import "UIImage+Resize.h"
 #import "DDInvocationGrabber.h"
 #import "NSObject+DDExtensions.h"
+#import "NSString+MD5Addition.h"
+#import "UIDevice+IdentifierAddition.h"
 
 #endif

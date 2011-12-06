@@ -42,6 +42,7 @@
 @property (retain, nonatomic) IBOutlet UISlider *playPositionSlider;
 @property (retain, nonatomic) IBOutlet UISlider *micVolumeSlider;
 @property (retain, nonatomic) IBOutlet UIView *containerView;
+@property (retain, nonatomic) IBOutlet UILabel *plugInEarphonesToEnableLabel;
 @property (retain, nonatomic) UIBarButtonItem *containerToggleButton;
 @property (retain, nonatomic) Scene *theScene;
 @property (retain, nonatomic) CoverScene *theCoverScene;

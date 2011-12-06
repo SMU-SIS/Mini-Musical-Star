@@ -31,7 +31,7 @@
     __block CoverScene *returnScene = nil;
     [self.Scenes enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
         CoverScene *theScene = (CoverScene *)obj;
-        NSLog(@"theScene.sceneHash is %@ and sceneHash is %@", theScene.sceneHash, sceneHash);
+        //NSLog(@"theScene.sceneHash is %@ and sceneHash is %@", theScene.sceneHash, sceneHash);
         if ([theScene.sceneHash isEqualToString:sceneHash])
         {
             returnScene = theScene;
