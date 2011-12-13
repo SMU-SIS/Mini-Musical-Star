@@ -54,7 +54,7 @@ bool downloadRequestGotCancelled = NO;
     [super viewDidLoad];
     
     //set the store controller delegate
-    self.storeController = [[[StoreController alloc] init] autorelease];
+    self.storeController = [[StoreController alloc] init];
     self.storeController.delegate = self;
     
     self.showsDownloadingInProgress = [NSMutableDictionary dictionary];
