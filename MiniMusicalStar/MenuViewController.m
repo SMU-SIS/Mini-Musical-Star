@@ -260,7 +260,16 @@ bool downloadRequestGotCancelled = NO;
     
     //get the UIButton out
     UndownloadedShow *theShow = [self.showsDownloadingInProgress objectForKey:productIdentifier];
+    
+    //inserted this if statement for v1.3.2
+    //this method was somehow called when i started the app, even though there wasnt any cancellation of any purchase
+    //to be removed in future releases
+    if (theShow == nil) {
+        return;
+    }
+    
     [self resetToCleanStateForPartiallyDownloadedShow:theShow];
+    
 }
 
 - (void)downloadMusical:(NSString *)productIdentifier
