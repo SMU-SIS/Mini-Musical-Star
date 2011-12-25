@@ -3372,8 +3372,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Jun Kit Lee (GQ9RG2NNL3)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jun Kit Lee (GQ9RG2NNL3)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Ching Sien Lew (PTD793D6S2)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ching Sien Lew (PTD793D6S2)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
@@ -3427,7 +3427,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Jun Kit Lee (GQ9RG2NNL3)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Ching Sien Lew (PTD793D6S2)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ching Sien Lew (PTD793D6S2)";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3441,7 +3442,8 @@
 				INFOPLIST_FILE = "MiniMusicalStar/MiniMusicalStar-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "B69FFB9F-DA7F-43B2-A9CF-4A79CC7F68C1";
+				PROVISIONING_PROFILE = "CF334BC5-6863-453B-9C8F-3AD3AC24FB55";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "CF334BC5-6863-453B-9C8F-3AD3AC24FB55";
 				SKIP_INSTALL = NO;
 				TEST_AFTER_BUILD = NO;
 				TEST_HOST = "";

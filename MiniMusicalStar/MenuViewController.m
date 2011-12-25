@@ -263,6 +263,7 @@ bool downloadRequestGotCancelled = NO;
     
     //inserted this if statement for v1.3.2
     //this method was somehow called when i started the app, even though there wasnt any cancellation of any purchase
+    //suspect this might happen for some users when transiting from v1.3.1 to v1.3.2
     //to be removed in future releases
     if (theShow == nil) {
         return;
