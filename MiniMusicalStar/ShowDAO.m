@@ -89,7 +89,7 @@
 {
     NSError *error;
     NSFileManager *manager = [NSFileManager defaultManager];
-    NSLog(@"document directory is %@\n", [ShowDAO userDocumentDirectory]);
+//    NSLog(@"document directory is %@\n", [ShowDAO userDocumentDirectory]);
     
     NSString *showsDirectory = [[ShowDAO userDocumentDirectory] stringByAppendingString:@"/shows"];    
 
@@ -290,7 +290,7 @@
             return YES;
         }
     }
-    NSLog(@"productIdentifier is %@", productIdentifier);
+//    NSLog(@"productIdentifier is %@", productIdentifier);
     return NO;
 }
 
