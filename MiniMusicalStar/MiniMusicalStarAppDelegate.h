@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Heatmaps/HeatmapsDelegate.h>
 
 @class MenuViewController;
 
-@interface MiniMusicalStarAppDelegate : NSObject <UIApplicationDelegate, UINavigationControllerDelegate> {
+@interface MiniMusicalStarAppDelegate : NSObject <UIApplicationDelegate, UINavigationControllerDelegate, HeatmapsDelegate> {
     NSManagedObjectModel *managedObjectModel;
     NSManagedObjectContext *managedObjectContext;
     NSPersistentStoreCoordinator *persistentStoreCoordinator;

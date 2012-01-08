@@ -95,6 +95,10 @@
 
 - (void)viewDidLoad
 {
+    
+    //Heatma.ps
+    [self.tableView trackWithKey:@"cf7daba4823e2789-84d19d3d"];
+    
     [super viewDidLoad];
 
     // Uncomment the following line to preserve selection between presentations.
@@ -107,6 +111,10 @@
 - (void)viewDidUnload
 {
     [super viewDidUnload];
+    
+    //Heatma.ps
+    [self.tableView stopTracking];
+    
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }

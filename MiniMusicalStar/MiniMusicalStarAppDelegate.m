@@ -17,7 +17,8 @@
 
 @synthesize viewController=_viewController;
 @synthesize naviController=_naviController;
-
+@synthesize heatmaps;
+    
 //workaround to get a proper stacktrace in Xcode 4.2
 void uncaughtExceptionHandler(NSException *exception) {
     NSLog(@"CRASH: %@", exception);
@@ -49,6 +50,13 @@ void uncaughtExceptionHandler(NSException *exception) {
     [self.window makeKeyAndVisible];
     
     [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
+    
+    
+    //Heatma.ps
+    heatmaps = [[Heatmaps alloc] init];
+    heatmaps.showDebug = YES;   // Show debugger messages in the console
+    heatmaps.showMenu = YES;    // Show heatmaps and gestures menu
+    [heatmaps start];
     
     return YES;
 }
@@ -157,6 +165,7 @@ void uncaughtExceptionHandler(NSException *exception) {
     [managedObjectContext release];
     [managedObjectModel release];
     [persistentStoreCoordinator release];
+    [heatmaps release];
     [super dealloc];
 }
 

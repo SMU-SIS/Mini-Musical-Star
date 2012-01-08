@@ -11,6 +11,7 @@
 #import "Scene.h"
 #import "CoverScene.h"
 #import "CueController.h"
+#import <Heatmaps/UIView+Heatmaps.h>
 @class AudioEditorViewController;
 
 #define kBringSliderToZero @"kBringSliderToZero"
