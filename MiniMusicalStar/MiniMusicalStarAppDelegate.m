@@ -54,8 +54,8 @@ void uncaughtExceptionHandler(NSException *exception) {
     
     //Heatma.ps
     heatmaps = [[Heatmaps alloc] init];
-    heatmaps.showDebug = YES;   // Show debugger messages in the console
-    heatmaps.showMenu = YES;    // Show heatmaps and gestures menu
+//    heatmaps.showDebug = YES;   // Show debugger messages in the console
+//    heatmaps.showMenu = YES;    // Show heatmaps and gestures menu
     [heatmaps start];
     
     return YES;
